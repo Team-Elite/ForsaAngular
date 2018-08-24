@@ -1,0 +1,411 @@
+<!-- <form class="emp-form" #registrationForm="ngForm" (ngSubmit)="onSubmit(registrationForm)"> -->
+        <form class="emp-form" #registrationForm="ngForm" (ngSubmit)="registerUser(registrationForm)">
+  <body class="instibg" cz-shortcut-listen="true">
+    <!-- <link rel="stylesheet" href="../assets/css/common.css">
+<link rel="stylesheet" href="../assets/css/login_register.css"> -->
+      <!-- Wrapper for the Whole Application -->
+      <div id="wrapper">
+  
+          <!-- Header Starts Here -->
+          <header>
+              <div class="container">
+                  <div class="row">
+                      <div class="col-lg-4 col-md-4">
+                          <div class="instimatch-logo">
+                              <img alt="Insimatch Logo" src="./assets/images/instimatch-logo.jpg">
+                          </div>
+                      </div>
+                      <div class="col-lg-8 col-md-6">
+                          <ul class="in-lang text-right">
+                              <li class="active">
+                                  <a href="http://mysandbox.online/instimatch/register.html#">EN</a>
+                              </li>
+                              <li>
+                                  <a href="http://mysandbox.online/instimatch/register.html#">FR</a>
+                              </li>
+                              <li>
+                                  <a href="http://mysandbox.online/instimatch/register.html#">DE</a>
+                              </li>
+                              <li class="in-header-user text-right">
+                                  <a href="http://mysandbox.online/instimatch/register.html#">
+                                      <i class="material-icons whitebg"> supervisor_account </i>
+                                  </a>
+                              </li>
+                          </ul>
+  
+                      </div>
+  
+                  </div>
+              </div>
+          </header>
+          <!-- Header Ends Here -->
+  
+          <div class="container gutter">
+              <div class="row row-eq-height eqwrap">
+                  <section id="step1-reg" class="in-register col-lg-4 col-md-12">
+                      <div class="in-register-form">
+                          <h2 class="text-left">Register</h2>
+                            <!-- <form class="register-form"> -->
+                                    <div class="register-form">
+  
+                              <div id="radiogroup " class="fiftypercent">
+  
+                                  <div class="md-radio md-radio-inline ">
+                                      <input [value]="2" #rdbBank="ngModel" [(ngModel)]="registrationService.userModel.UserTypeId" name="UserTypeId" id="3" type="radio" checked=""> Bank
+                                      <label for="3"></label>
+                                  </div>
+                                  <div class="md-radio md-radio-inline">
+                                      <input [value]="3" #rdbNonBank="ngModel" [(ngModel)]="registrationService.userModel.UserTypeId" name="UserTypeId" id="4" type="radio"> Non-Bank
+                                      <label for="4"> </label>
+                                  </div>
+                              </div>
+                              <div class="form-group form-md-line-input has-error">
+                                  <div class="group input-group">
+                                      <input #BankName="ngModel" [(ngModel)]="registrationService.userModel.BankName" name="BankName" type="text" autofocus="" class="used">
+                                      <span class="highlight"></span>
+                                      <span class="bar"></span>
+                                      <label>Bank Name</label>
+                                      <span class="input-group-icon">
+                      <i class="material-icons">account_circle</i>
+                    </span>
+  
+                                  </div>
+                              </div>
+  
+                              <div class="form-group form-md-line-input has-error">
+                                  <div class="group input-group">
+                                      <input #Address="ngModel" [(ngModel)]="registrationService.userModel.Address" name="Address" type="text" class="used">
+                                      <span class="highlight"></span>
+                                      <span class="bar"></span>
+                                      <label>Address</label>
+                                      <span class="input-group-icon">
+                      <i class="material-icons">home</i>
+                    </span>
+  
+                                  </div>
+                              </div>
+  
+  
+                              <div class="form-group form-md-line-input has-error">
+                                  <div class="group input-group">
+                                      <input #ZipCode="ngModel" [(ngModel)]="registrationService.userModel.ZipCode" name="ZipCode" type="text" class="used">
+                                      <span class="highlight"></span>
+                                      <span class="bar"></span>
+                                      <label>Zip Code</label>
+  
+  
+                                  </div>
+                              </div>
+  
+                              <div class="form-group form-md-line-input has-error">
+                                  <div class="group input-group">
+                                      <input #City="ngModel" [(ngModel)]="registrationService.userModel.City" name="City" type="text" class="used">
+                                      <span class="highlight"></span>
+                                      <span class="bar"></span>
+                                      <label>City</label>
+  
+  
+                                  </div>
+                              </div>
+  
+                              <div class="form-group form-md-line-input has-error">
+                                  <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
+                                    <label>Country</label>
+                                      <select #CountryId="ngModel" [(ngModel)]="registrationService.userModel.CountryId" class="mdl-selectfield__select" name="CountryId" id="userCountry" >expand_more
+                                          <option value="0" disabled="" selected="">Country</option>
+                                          <option *ngFor="let country of registrationService.CountryList" value="{{country.CountryId}}">{{country.Country}}</option>
+                                       </select>
+                                  </div>
+  
+                             
+                                </div>
+                              <div class="form-group form-md-line-input">
+                                  <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
+                                      <select #LanguageId="ngModel" [(ngModel)]="registrationService.userModel.LanguageId" class="mdl-selectfield__select" id="preferredLanguage" name="LanguageId">
+                                      <option value="0" disabled="" selected=""> Language</option>
+                                      <option *ngFor="let language of registrationService.languageList"  value="{{language.LanguageId}}">{{language.LanguageCode}}</option>
+                                    </select>
+                                  </div>
+                              </div>
+  
+                              <div class="login-margin"></div>
+                              <button (click)="registrationService.ShowSection2 = true" type="button" class="button btn">
+                                  <div class="ripples buttonRipples" id="next-reg-2">
+                                      <span class="ripplesCircle" style="top: 17.2813px; left: 167.313px;"></span>
+                                  </div>
+                              Next
+                                  <i class="material-icons">
+                                      keyboard_arrow_right
+                                  </i>
+                              </button>
+                              <!-- <button >animation target</button> -->
+  
+                            </div>
+                          <div class="form-circles text-center">
+                              <a href="http://mysandbox.online/instimatch/register.html" class="dot active"></a>
+                              <a href="http://mysandbox.online/instimatch/register.html" class="dot"></a>
+  
+                              <a href="http://mysandbox.online/instimatch/register.html" class="dot"></a>
+                          </div>
+                      </div>
+                      registrationService.userModel.BankName {{registrationService.userModel.BankName}}
+                  </section>
+  
+  
+  
+                  <section *ngIf="registrationService.ShowSection2" id="step2-reg" class="in-register  col-lg-4 col-md-4 col-sm-12" style="display: block;">
+                      <div class="in-register-form">
+                          <!-- <form class="register-form"> -->
+                                <div  class="register-form">
+  
+  
+  
+  
+                              <div id="goback">
+                                  <a href="javascript():void(0)" (click)="registrationService.ShowSection2=false">
+                    <i class="material-icons">arrow_back</i>
+                                  </a>
+                              </div>
+  
+  
+                              <!-- <mat-form-field class="col-sm-12"> -->
+  
+  
+                              <div class="form-group form-md-line-input has-error">
+                                  <div class="group input-group">
+                                      <input #FirstName="ngModel" [(ngModel)]="registrationService.userModel.FirstName" name="FirstName" type="text" class="used">
+                                      <span class="highlight"></span>
+                                      <span class="bar"></span>
+                                      <label>First Name</label>
+                                      <span class="input-group-icon">
+                      <i class="material-icons">account_circle</i>
+                    </span>
+  
+                                  </div>
+                              </div>
+  
+                              <div class="form-group form-md-line-input has-error">
+                                  <div class="group input-group">
+                                      <input #LastName="ngModel" [(ngModel)]="registrationService.userModel.LastName" name="LastName" type="text" class="used">
+                                      <span class="highlight"></span>
+                                      <span class="bar"></span>
+                                      <label>Last Name</label>
+                                      <span class="input-group-icon">
+                      <i class="material-icons">account_circle</i>
+                    </span>
+  
+                                  </div>
+                              </div>
+  
+  
+                              <div class="form-group form-md-line-input has-error">
+                                  <div class="group input-group">
+                                      <input #UserName="ngModel" [(ngModel)]="registrationService.userModel.UserName" name="UserName" type="text" class="used">
+                                      <span class="highlight"></span>
+                                      <span class="bar"></span>
+                                      <label>Create Username</label>
+                                      <span class="input-group-icon">
+                      <i class="material-icons">mode_edit</i>
+                    </span>
+  
+                                  </div>
+                              </div>
+  
+                              <div class="form-group form-md-line-input has-error">
+                                  <div class="group input-group">
+                                      <input maxlength="10" #ContactNumber="ngModel" [(ngModel)]="registrationService.userModel.ContactNumber" name="ContactNumber" type="number"  class="used">
+                                      <span class="highlight"></span>
+                                      <span class="bar"></span>
+                                      <label>Contact Number</label>
+                                      <span class="input-group-icon">
+                      <i class="material-icons">phone</i>
+                    </span>
+  
+                                  </div>
+                              </div>
+  
+                              <div class="form-group form-md-line-input has-error">
+                                  <div class="group input-group">
+                                      <input email pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" #EmailAddress="ngModel" [(ngModel)]="registrationService.userModel.EmailAddress" name="EmailAddress" type="email" class="used">
+                                      <span class="highlight"></span>
+                                      <span class="bar"></span>
+                                      <label>Email Address</label>
+                                      <span class="input-group-icon">
+                      <i class="material-icons">email</i>
+                    </span>
+  
+                                  </div>
+                              </div>
+  
+  
+                              <div class="form-group form-md-line-input has-error">
+                                  <div class="group input-group">
+                                      <input #confirmEmailAddress="ngModel" [(ngModel)]="registrationService.confirmEmailAddress" name="confirmEmailAddress" type="email" class="used">
+                                      <span class="highlight"></span>
+                                      <span class="bar"></span>
+                                      <label>Confirm Email</label>
+                                      <span class="input-group-icon">
+                      <i class="material-icons">email</i>
+                    </span>
+  
+                                  </div>
+                              </div>
+                              <div class="login-margin"></div>
+                              <button (click)="registrationService.ShowSection3 = true" type="button" class="button btn" id="next-reg-3">
+                  <div class="ripples buttonRipples">
+                    <span class="ripplesCircle" style="top: 25.7969px; left: 201.313px;"></span>
+                  </div>
+                  Next
+                  <i class="material-icons">
+                    keyboard_arrow_right
+                  </i>
+                </button>
+                              <!-- <button >animation target</button> -->
+  
+                                </div>
+                          <div class="form-circles text-center">
+                              <a href="http://mysandbox.online/instimatch/register.html" class="dot"></a>
+                              <a href="http://mysandbox.online/instimatch/register.html" class="dot active"></a>
+  
+                              <a href="http://mysandbox.online/instimatch/register.html" class="dot"></a>
+                          </div>
+                      </div>
+  
+                  </section>
+  
+  
+  
+                  <section *ngIf="registrationService.ShowSection3" class="in-register col-lg-4 col-md-4 col-sm-12" id="step3-reg" style="display: block;">
+                      <div class="in-register-form">
+                          <div class="register-form">
+  
+  
+  
+  
+                              <div id="goback">
+                                  <a href="javascript():void(0)" (click)="registrationService.ShowSection3=false">
+                    <i class="material-icons">arrow_back</i>
+                                  </a>
+                              </div>
+  
+  
+                              <!-- <mat-form-field class="col-sm-12"> -->
+  
+  
+                              <div class="form-group form-md-line-input has-error">
+                                  <div class="group input-group">
+                                      <input #LongTermRatingAgency="ngModel" [(ngModel)]="registrationService.userModel.LongTermRatingAgency" name="LongTermRatingAgency" type="text" class="used">
+                                      <span class="highlight"></span>
+                                      <span class="bar"></span>
+                                      <label>Long Term Rating Agency</label>
+                                      <span class="input-group-icon">
+                      <i class="material-icons">user</i>
+                    </span>
+  
+                                  </div>
+                              </div>
+  
+                              <div class="form-group form-md-line-input has-error">
+                                  <div class="group input-group">
+                                      <input #LongTermRating="ngModel" [(ngModel)]="registrationService.userModel.LongTermRating" name="LongTermRating" type="text" class="used">
+                                      <span class="highlight"></span>
+                                      <span class="bar"></span>
+                                      <label>Long Term Rating</label>
+                                      <span class="input-group-icon">
+                      <i class="material-icons">trending_up
+                      </i>
+                    </span>
+  
+                                  </div>
+                              </div>
+  
+  
+                              <div class="form-group form-md-line-input has-error">
+                                  <div class="group input-group">
+                                      <input #ShortTermRatingAgency="ngModel" [(ngModel)]="registrationService.userModel.ShortTermRatingAgency" name="ShortTermRatingAgency" type="text" class="used">
+                                      <span class="highlight"></span>
+                                      <span class="bar"></span>
+                                      <label>Short Term Rating Agency</label>
+                                      <span class="input-group-icon">
+                      <i class="material-icons">pincode</i>
+                    </span>
+  
+                                  </div>
+                              </div>
+  
+                              <div class="form-group form-md-line-input has-error">
+                                  <div class="group input-group">
+                                      <input #ShortTermRating="ngModel" [(ngModel)]="registrationService.userModel.ShortTermRating" name="ShortTermRating" type="text" class="used">
+                                      <span class="highlight"></span>
+                                      <span class="bar"></span>
+                                      <label>Short Term Rating</label>
+                                      <span class="input-group-icon">
+                                          <i class="material-icons">trending_up
+                                          </i>
+                                        </span>
+  
+                                  </div>
+                              </div>
+                              <div class="in-ad-access">
+                                  <h6>Request Additional Access</h6>
+  
+                                  <div class="d-flex align-items-end flex-column">
+  
+  
+                                      <p>
+                                          <input #PromissaryNotesLenderOn="ngModel" [(ngModel)]="registrationService.userModel.PromissaryNotesLenderOn" name="PromissaryNotesLenderOn" id="cbx1" type="checkbox" class="cbx used">
+                                          <label for="cbx1" class="lbl"> Promissary Notes Lender On</label>
+                                      </p>
+                                      <p>
+                                          <input #PromissaryNotesBorrower="ngModel" [(ngModel)]="registrationService.userModel.PromissaryNotesBorrower" name="PromissaryNotesBorrower" id="cbx2" type="checkbox" class="cbx used">
+                                          <label for="cbx2" class="lbl"> Promissary Notes Borrower: </label>
+                                      </p>
+                                      <p>
+                                          <input #MoneyMarket="ngModel" [(ngModel)]="registrationService.userModel.MoneyMarket" name="MoneyMarket" id="cbx4" type="checkbox" class="cbx used">
+                                          <label for="cbx4" class="lbl"> Money Market : </label>
+                                      </p>
+  
+                                      <p>
+                                          <input #AcceptTermsAndConditions="ngModel" [(ngModel)]="registrationService.AcceptTermsAndConditions" name="AcceptTermsAndConditions" id="cbx3" type="checkbox" class="cbx used">
+                                          <label for="cbx3" class="lbl"> I accept the Terms and Condtions</label>
+                                      </p>
+  
+                                  </div>
+                              </div>
+  
+                              <div class="login-margin"></div>
+                              <button  type="submit" class="button btn">
+                  <div class="ripples buttonRipples">
+                    <span class="ripplesCircle" style="top: 20.7969px; left: 211.313px;"></span>
+                  </div>
+                  Next
+                  <i class="material-icons">
+                    keyboard_arrow_right
+                  </i>
+                </button>
+                              <!-- <button >animation target</button> -->
+  
+                          </div>
+                          <div class="form-circles text-center">
+                              <a href="http://mysandbox.online/instimatch/register.html" class="dot"></a>
+                              <a href="http://mysandbox.online/instimatch/register.html" class="dot"></a>
+  
+                              <a href="http://mysandbox.online/instimatch/register.html" class="dot active"></a>
+                          </div>
+                      </div>
+  
+                  </section>
+  
+              </div>
+          </div>
+  
+          <!-- Login Page Content-->
+  
+      </div>
+  
+      <script src="./Instimatch Registeration Form_files/index.js"></script>
+  
+  
+  
+  </body>
+</form>
