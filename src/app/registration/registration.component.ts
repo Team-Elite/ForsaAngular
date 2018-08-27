@@ -1,15 +1,30 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { RegistrationService } from './Shared/registration.service';
-
+import {CustomValidationServiceService} from '../Shared/custom-validation-service.service';
+//import {FormBuilder, FormGroup, Validators} from '@angular/forms'; 
+ 
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.css']
+  //imports:[FormGroup]
 })
 export class RegistrationComponent implements OnInit {
 
-  constructor(public registrationService:RegistrationService) { }
+  constructor(public registrationService:RegistrationService,public customValidationServiceService:CustomValidationServiceService
+//  ,public formBuilder:FormBuilder, public formGroup:FormGroup
+) { }
+
+//It checks if key pressed is integer or not if not then it returns false.
+numberOnly(event): boolean {
+  const charCode = (event.which) ? event.which : event.keyCode;
+  if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+    return false;
+  }
+  return true;
+
+}
 
   ngOnInit() {
 this.registrationService.getCountryList();
@@ -20,6 +35,11 @@ this.resetForm();
   resetForm(form?: NgForm){
     if(form != null){
       form.reset();
+
+      //var numberControl = new FormControl("", CustomValidators.number({min: 10000000000, max: 999999999999 }))
+  //     this.formGroup = this.formBuilder.group({
+  //       phone: ['',  [Validators.required, CustomValidationServiceService.checkLimit(10000000000,999999999999)]]
+  //  });
     }
     this.registrationService.userModel={
       UserId :0,
@@ -70,12 +90,45 @@ if(userExist == true){
 // Registering user..
 this.registrationService.RegisterUser(form.value).subscribe(data =>{
   this.resetForm(form);
-  alert('saved successfully');
+  alert('Registration is successfull. An email is sent to registered email id. This email have your login credentails.');
+  location.reload();
 })
   }
 
+
 ValidateUserForm(form:NgForm){
 
+  if(form.value.UserTypeId ==0){
+    alert('Please select is it Bank or Non-Bank.');
+  return false;  
+  }
+
+  if(form.value.UserName != undefined && form.value.UserName !=  null && form.value.UserName.length !=0){
+    if(form.value.UserName.indexOf(' ')>=0){
+    alert('User name can not have space.');
+  return false;
+    }
+  }
+
+  if(form.value.ContactNumber != undefined && form.value.ContactNumber != null && form.value.ContactNumber.length!=0){
+    try{
+      if(isNaN(Number(form.value.ContactNumber.toString())) == true ){
+        alert('Contact number must be numeric.');
+        return false;  
+      }
+      else if(form.value.ContactNumber.indexOf('.')>=0 ){
+        alert('Contact number must be numeric.');
+        return false;  
+      }
+      else if(form.value.ContactNumber.length <10 ){
+        alert('Contact number must be of length 10.');
+        return false;  
+      }
+    }
+    catch{
+return false;
+    }
+  }
   if(form.value.EmailAddress == undefined || form.value.EmailAddress ==  null || form.value.EmailAddress.length ==0){
     alert('Email address is required.');
   return false;
@@ -108,3 +161,5 @@ if(form.value.AcceptTermsAndConditions == false){
 return true;
   }
 }
+
+

@@ -5,13 +5,16 @@ import{FormsModule} from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { BlockPasteDirective } from './Shared/block-paste.directive';
+//import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 //import {ToastrModule} from 'ngx-toastr';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    BlockPasteDirective
   ],
   imports: [
     BrowserModule,
