@@ -55,4 +55,9 @@ export class RegistrationService {
       const response= await this.http.get(this.baseURL+'/api/User/IfUserNameAvailable?userName='+userName).toPromise();
       return response.json();
     }
+
+    async CheckIfEmailIdIsRegistered(emailId:string){
+     const response= await this.http.get(this.baseURL+'/api/User/IfEmailIdIsRegistered?emailId='+emailId).toPromise();
+     return response.json();
+    }
 }

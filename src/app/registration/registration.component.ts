@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { RegistrationService } from './Shared/registration.service';
 import {CustomValidationServiceService} from '../Shared/custom-validation-service.service';
+import {Router} from '@angular/router'
 //import {FormBuilder, FormGroup, Validators} from '@angular/forms'; 
  
 @Component({
@@ -13,6 +14,7 @@ import {CustomValidationServiceService} from '../Shared/custom-validation-servic
 export class RegistrationComponent implements OnInit {
 
   constructor(public registrationService:RegistrationService,public customValidationServiceService:CustomValidationServiceService
+    , public router: Router
 //  ,public formBuilder:FormBuilder, public formGroup:FormGroup
 ) { }
 
@@ -87,11 +89,21 @@ if(userExist == true){
   return;
 }
 
+// Checking if email already registered
+let ifEmailIdAlreadyRegistered= await this.registrationService.CheckIfEmailIdIsRegistered(form.value.EmailAddress);
+debugger;
+if(ifEmailIdAlreadyRegistered == true){
+  alert('This email id is already registered.');
+  //this.registrationService.userModelExist=null;
+  return;
+}
+
 // Registering user..
 this.registrationService.RegisterUser(form.value).subscribe(data =>{
   this.resetForm(form);
   alert('Registration is successfull. An email is sent to registered email id. This email have your login credentails.');
-  location.reload();
+  //location.reload();
+  this.router.navigate(['/login']);
 })
   }
 

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {LoginService} from './login.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -7,9 +9,78 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  constructor(public loginService:LoginService) { }
 
   ngOnInit() {
+    this.loginService.loginModel={
+      UserName:'',
+      UserPassword:'',
+      UserEmailId:'',
+      ForgotPasswordEmailId:''
+    }
+  }
+
+  async ValidateUser(form : NgForm){
+    debugger;
+
+    if(form !=null){
+      if(form.value.UserName == undefined || form.value.UserName == null || form.value.UserName.trim().length == 0){
+        alert("User name is required.");
+        return false;
+      }
+
+      
+      if(form.value.UserEmailId == undefined || form.value.UserEmailId == null || form.value.UserEmailId.trim().length == 0){
+        alert("Email id is required.");
+        return false;
+      }
+
+      let expression: RegExp ;
+      expression =new RegExp(/^[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}/)
+      if(form.value.UserEmailId!= undefined && form.value.UserEmailId !=  null && form.value.UserEmailId.length !=0){
+      if(!expression.test(form.value.UserEmailId)){
+        alert('Email address is not valid.');
+        return false;
+      }
+      }
+
+      if(form.value.UserPassword == undefined || form.value.UserPassword == null || form.value.UserPassword.trim().length == 0){
+        alert("Password is required.");
+        return false;
+      }
+      
+    }
+    let user= await this.loginService.ValidateUser(form.value);
+    if(user.IsSuccess == true){
+      alert('Login successfull.');
+    }
+    else{
+      alert('User Name/ Password /Email Id is incorrect.');
+    }
+  }
+
+  async ForgotPassword(form:NgForm){
+    debugger;
+    if(form.value.ForgotPasswordEmailId == undefined || form.value.ForgotPasswordEmailId == null || form.value.ForgotPasswordEmailId.trim().length == 0){
+      alert("Email id is required.");
+      return false;
+    }
+
+    let expression: RegExp ;
+    expression =new RegExp(/^[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}/)
+    if(form.value.ForgotPasswordEmailId!= undefined && form.value.ForgotPasswordEmailId !=  null && form.value.ForgotPasswordEmailId.length !=0){
+    if(!expression.test(form.value.ForgotPasswordEmailId)){
+      alert('Email address is not valid.');
+      return false;
+    }
+    }
+    let forgotEmail =await this.loginService.ForgotPassword(form.value);
+    if(forgotEmail.IsSuccess == true){
+      alert('Password sent.');
+    }
+    else{
+      alert('Email id is wrong.');
+    }
   }
 
 }

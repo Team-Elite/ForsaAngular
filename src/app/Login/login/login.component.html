@@ -1,3 +1,4 @@
+<form #LoginForm="ngForm" (ngSubmit)="ValidateUser(LoginForm)">
 <body class="instibg" cz-shortcut-listen="true">
   <!-- Wrapper for the Whole Application -->
   <div id="wrapper">
@@ -40,13 +41,14 @@
                   <div class="col-sm-12 in-login-form">
                       <h2 class="text-left">Log in</h2>
 
-                      <form class="login-form" id="instilogin">
+                      <!-- <form class="login-form" id="instilogin"> -->
+                          <div class="login-form" id="instilogin">
 
 
 
                           <div class="form-group form-md-line-input has-error">
                               <div class="group input-group">
-                                  <input type="name" autofocus="" class="used">
+                                  <input #UserName="ngModel" [(ngModel)]="loginService.loginModel.UserName" name="UserName" type="name" autofocus="" class="used">
                                   <span class="highlight"></span>
                                   <span class="bar"></span>
                                   <label>Name</label>
@@ -58,7 +60,7 @@
                           </div>
                           <div class="form-group form-md-line-input has-error">
                               <div class="group input-group">
-                                  <input type="email" class="used">
+                                  <input #UserEmailId="ngModel" [(ngModel)]="loginService.loginModel.UserEmailId" name="UserEmailId" type="email" class="used">
                                   <span class="highlight"></span>
                                   <span class="bar"></span>
                                   <label>Email</label>
@@ -71,7 +73,7 @@
 
                           <div class="form-group form-md-line-input has-error">
                               <div class=" input-group">
-                                  <input type="password" id="login_password" class="used">
+                                  <input #UserPassword ="ngModel" [(ngModel)]="loginService.loginModel.UserPassword" name="UserPassword" type="password" id="login_password" class="used">
                                   <span class="highlight"></span>
                                   <span class="bar"></span>
                                   <label>Enter your password</label>
@@ -106,7 +108,7 @@
                                       <div class="modal-body in-login">
                                           <div class="form-group form-md-line-input has-error">
                                               <div class="group input-group">
-                                                  <input type="email">
+                                                  <input #ForgotPasswordEmailId="ngModel" [(ngModel)]="loginService.loginModel.ForgotPasswordEmailId" name="ForgotPasswordEmailId" type="email">
                                                   <span class="highlight"></span>
                                                   <span class="bar"></span>
                                                   <label>Email</label>
@@ -118,7 +120,7 @@
                                           </div>
                                       </div>
                                       <div class="modal-footer">
-                                          <button type="button" class="btn btn-primary">Send</button>
+                                          <button type="button" class="btn btn-primary" (click)="ForgotPassword(LoginForm)">Send</button>
                                       </div>
                                   </div>
                               </div>
@@ -140,11 +142,11 @@
                   </i>
               </button>
                           <p class="text-center in-register-text">Don't have an account? ●
-                              <a routerLink="app-registration">Register Here</a>
+                              <a routerLink="/registration">Register Here</a>
                               <!-- <a routerLink="../Registration/app-registration"><button class="btn btn-success pull-right" > Add Customer</button></a> -->
                           </p>
 
-                      </form>
+                          </div>
                   </div>
 
               </div>
@@ -152,6 +154,4 @@
       </div>
 
   </div>
-</body>
-
-<router-outlet></router-outlet>
+</body></form>
