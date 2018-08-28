@@ -1,3 +1,157 @@
-<p>
-  login works!
-</p>
+<body class="instibg" cz-shortcut-listen="true">
+  <!-- Wrapper for the Whole Application -->
+  <div id="wrapper">
+      <header>
+          <div class="container">
+              <div class="row">
+                  <div class="col-lg-4 col-md-6">
+                      <div class="instimatch-logo">
+                          <img alt="Insimatch Logo" src="./assets/images/instimatch-logo.jpg">
+                      </div>
+                  </div>
+                  <div class="col-lg-8 col-md-6">
+                      <ul class="in-lang text-right">
+                          <li>
+                              <a href="http://mysandbox.online/instimatch/#">EN</a>
+                          </li>
+                          <li>
+                              <a href="http://mysandbox.online/instimatch/#">FR</a>
+                          </li>
+                          <li>
+                              <a href="http://mysandbox.online/instimatch/#">DE</a>
+                          </li>
+                          <li class="in-header-user text-right">
+                              <a href="http://mysandbox.online/instimatch/#">
+                                  <i class="material-icons whitebg"> supervisor_account </i>
+                              </a>
+                          </li>
+                      </ul>
+                  </div>
+              </div>
+          </div>
+      </header>
+
+
+      <!-- Login Page Content-->
+
+      <div class="container">
+          <section class="in-login">
+              <div class="row">
+                  <div class="col-sm-12 in-login-form">
+                      <h2 class="text-left">Log in</h2>
+
+                      <form class="login-form" id="instilogin">
+
+
+
+                          <div class="form-group form-md-line-input has-error">
+                              <div class="group input-group">
+                                  <input type="name" autofocus="" class="used">
+                                  <span class="highlight"></span>
+                                  <span class="bar"></span>
+                                  <label>Name</label>
+                                  <span class="input-group-icon">
+                    <i class="material-icons">account_circle</i>
+                  </span>
+
+                              </div>
+                          </div>
+                          <div class="form-group form-md-line-input has-error">
+                              <div class="group input-group">
+                                  <input type="email" class="used">
+                                  <span class="highlight"></span>
+                                  <span class="bar"></span>
+                                  <label>Email</label>
+                                  <span class="input-group-icon">
+                  <i class="material-icons">email</i>
+                </span>
+
+                              </div>
+                          </div>
+
+                          <div class="form-group form-md-line-input has-error">
+                              <div class=" input-group">
+                                  <input type="password" id="login_password" class="used">
+                                  <span class="highlight"></span>
+                                  <span class="bar"></span>
+                                  <label>Enter your password</label>
+                                  <span class="input-group-icon">
+                
+                  <i class="material-icons password_mask">remove_red_eye
+
+                    </i>
+                  
+                    <!-- <mat-icon  class="mat-icon material-icons" matsuffix="" role="img" aria-hidden="true">visibility_off</mat-icon> -->
+                  
+                  </span>
+
+                              </div>
+                          </div>
+
+                          <div class="forgot-pass form-group form-md-line-input has-error">
+
+                              <a id="forgot-btn" data-toggle="modal" data-target="#in-forgot-password">Forgotten your password?</a>
+
+                          </div>
+                          <!-- Modal -->
+                          <div class="modal fade" id="in-forgot-password" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                              <div class="modal-dialog modal-dialog-centered" role="document">
+                                  <div class="modal-content">
+                                      <div class="modal-header">
+                                          <h5 class="modal-title" id="exampleModalLongTitle">Forgot Password</h5>
+                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">×</span>
+      </button>
+                                      </div>
+                                      <div class="modal-body in-login">
+                                          <div class="form-group form-md-line-input has-error">
+                                              <div class="group input-group">
+                                                  <input type="email">
+                                                  <span class="highlight"></span>
+                                                  <span class="bar"></span>
+                                                  <label>Email</label>
+                                                  <span class="input-group-icon">
+                                  <i class="material-icons">email</i>
+                                </span>
+
+                                              </div>
+                                          </div>
+                                      </div>
+                                      <div class="modal-footer">
+                                          <button type="button" class="btn btn-primary">Send</button>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+
+                          <div class="form-group form-md-line-input has-error">
+                              <div class=" input-group">
+                                  <span class="line"> I am not a robot</span>
+                                  <input id="cbx3" type="checkbox" class="cbx used">
+                                  <label for="cbx3" class="lbl notrobot"> 
+              </label>
+                              </div>
+                          </div>
+                          <div class="login-margin"></div>
+                          <button type="submit" class="button btn buttonBlue">
+                <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
+                Enter <i class="material-icons">
+                    keyboard_arrow_right
+                  </i>
+              </button>
+                          <p class="text-center in-register-text">Don't have an account? ●
+                              <a routerLink="app-registration">Register Here</a>
+                              <!-- <a routerLink="../Registration/app-registration"><button class="btn btn-success pull-right" > Add Customer</button></a> -->
+                          </p>
+
+                      </form>
+                  </div>
+
+              </div>
+          </section>
+      </div>
+
+  </div>
+</body>
+
+<router-outlet></router-outlet>

@@ -9,6 +9,7 @@ import { BlockPasteDirective } from './Shared/block-paste.directive';
 import { LoginComponent } from './Login/login/login.component';
 //import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 //import {ToastrModule} from 'ngx-toastr';
+import {RouterModule} from '@angular/router';
 
 
 @NgModule({
@@ -21,7 +22,10 @@ import { LoginComponent } from './Login/login/login.component';
   imports: [
     BrowserModule,
     HttpModule,
-    FormsModule
+    FormsModule,
+    RouterModule.forRoot([{path:"", component:LoginComponent},
+    {path:"app-registration", component:RegistrationComponent}
+  ])
   ],
   providers: [],
   bootstrap: [AppComponent]
