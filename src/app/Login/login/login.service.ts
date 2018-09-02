@@ -4,13 +4,15 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 import {LoginModel} from './login-model.model';
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
-  baseURL:string='http://elitecore.cloudapp.net:8081';
-  //baseURL:string='http://localhost:60744/';
+  //baseURL:string='http://elitecore.cloudapp.net:8081';
+  baseURL:string='http://localhost:60744/';
   loginModel:LoginModel;
+  
   constructor(public http: Http) { }
 
  async ValidateUser(loginModel:LoginModel){

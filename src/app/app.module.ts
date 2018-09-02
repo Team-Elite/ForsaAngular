@@ -10,23 +10,31 @@ import { LoginComponent } from './Login/login/login.component';
 //import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 //import {ToastrModule} from 'ngx-toastr';
 import {RouterModule,Routes} from '@angular/router';
+import { RecaptchaModule } from 'ng-recaptcha';
+import { BankDashboardComponent } from './bank-dashboard/bank-dashboard.component';
+import { StorageServiceModule } from 'angular-webstorage-service';
 
 const appRoutes: Routes=[{path:'login',component:LoginComponent},
                          {path:'registration',component:RegistrationComponent},
-                         {path:'',redirectTo:'login', pathMatch:'full'}
+                         {path:'',redirectTo:'login', pathMatch:'full'},
+                         {path:'bankDashBoard',component:BankDashboardComponent},
+                        // {path:'',redirectTo:'bankDashBoard', pathMatch:'full'},
                         ];
 @NgModule({
   declarations: [
     AppComponent,
     RegistrationComponent,
     BlockPasteDirective,
-    LoginComponent
+    LoginComponent,
+    BankDashboardComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
     FormsModule,
-    RouterModule.forRoot(appRoutes,{ useHash: true })
+    RouterModule.forRoot(appRoutes,{ useHash: true }),
+    RecaptchaModule.forRoot(),
+    StorageServiceModule 
   ],
   providers: [],
   bootstrap: [AppComponent]

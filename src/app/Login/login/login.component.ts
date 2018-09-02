@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {LoginService} from './login.service';
 import { NgForm } from '@angular/forms';
+import {AuthenticateServiceService} from '../../Shared/authenticate-service.service';
+import {Router} from '@angular/router'
 
 @Component({
   selector: 'app-login',
@@ -8,8 +10,20 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  constructor(public loginService:LoginService, public authenticateServiceService:AuthenticateServiceService
+    , public router: Router) { }
 
-  constructor(public loginService:LoginService) { }
+
+  IfVerificationDone:boolean=false;
+  public resolved(captchaResponse: string) {
+    if(captchaResponse != undefined && captchaResponse != null && captchaResponse.trim().length !=0){
+      this.IfVerificationDone=true;
+    }
+    else{
+      this.IfVerificationDone=false;
+    }
+    console.log(`Resolved captcha with response ${captchaResponse}:`);
+  }
 
   ngOnInit() {
     this.loginService.loginModel={
@@ -52,7 +66,10 @@ export class LoginComponent implements OnInit {
     }
     let user= await this.loginService.ValidateUser(form.value);
     if(user.IsSuccess == true){
-      alert('Login successfull.');
+      debugger;
+      this.authenticateServiceService.SaveSession(user.data);
+      
+      this.router.navigate(['/bankDashBoard']);
     }
     else{
       alert('User Name/ Password /Email Id is incorrect.');

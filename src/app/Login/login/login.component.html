@@ -128,14 +128,19 @@
 
                           <div class="form-group form-md-line-input has-error">
                               <div class=" input-group">
-                                  <span class="line"> I am not a robot</span>
+                                      <re-captcha
+                                        (resolved)="resolved($event)"
+                                        siteKey="6Le8MW0UAAAAAAFbblL5_3hdpX6HgvbcXsCs8LMF"
+                                      ></re-captcha>
+                                    
+                                  <!-- <span class="line"> I am not a robot</span>
                                   <input id="cbx3" type="checkbox" class="cbx used">
                                   <label for="cbx3" class="lbl notrobot"> 
-              </label>
+              </label> -->
                               </div>
                           </div>
                           <div class="login-margin"></div>
-                          <button type="submit" class="button btn buttonBlue">
+                          <button [disabled]="!IfVerificationDone" type="submit" class="button btn buttonBlue">
                 <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
                 Enter <i class="material-icons">
                     keyboard_arrow_right
