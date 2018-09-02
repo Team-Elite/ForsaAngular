@@ -22,7 +22,6 @@ export class LoginComponent implements OnInit {
     else{
       this.IfVerificationDone=false;
     }
-    console.log(`Resolved captcha with response ${captchaResponse}:`);
   }
 
   ngOnInit() {
