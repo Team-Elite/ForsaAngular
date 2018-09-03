@@ -34,7 +34,7 @@ export class AuthenticateServiceService {
     GetUserId(){
       debugger;
       let userId =this.storage.get(this.userValue);
-      return userId.UserId;
+      return JSON.parse(userId)[0].UserId;
     }
 
     ClearSession(){

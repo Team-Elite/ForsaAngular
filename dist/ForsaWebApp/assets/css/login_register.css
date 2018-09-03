@@ -173,7 +173,8 @@ span.in-success-message {
 }
 
 #userCountry,
-#preferredLanguage {
+#preferredLanguage,
+#ClientGroupId, #SubGroupId,#Salutation,#RatingAgentur1,#RatingAgentur2,#DepositInsurance {
     background: #1f2024;
     font-size: 13px;
 }
