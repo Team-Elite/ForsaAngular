@@ -79,7 +79,22 @@ export class BankDashboardComponent implements OnInit {
   }
 
   GroupCheckUnCheck(event,group){
-debugger;
+    debugger;
+    let groupsString:string='';
+    for(var i=0;i<= this.bankDashboardService.listUserGroupForSettingRateOfInterestVisibility.length -1;i++){
+      let obj:any= this.bankDashboardService.listUserGroupForSettingRateOfInterestVisibility[i];
+      // if(obj.GroupName != group.GroupName && obj.IfRateWillBeVisible == true){
+        if(obj.IfRateWillBeVisible == true){
+        groupsString=groupsString+obj.GroupId+',';
+      }
+    }
+    groupsString = groupsString.substring(0,groupsString.length-1);
+    // if(event == true){
+    //   groupsString=groupsString+group.GroupId+',';
+    // }
+    this.bankDashboardService.UpdateUserGroupAgainstBankWhomRateOfInterestWillBeVisible(groupsString).subscribe(data=>{
+    alert('saved successfully');
+  })
   }
 
 }

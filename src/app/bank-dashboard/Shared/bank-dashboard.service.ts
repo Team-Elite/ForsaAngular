@@ -14,8 +14,8 @@ selectedRateOfInterestOfBankModel:RateOfInterestOfBankModel;
 listRateOfInterestOfBankModel:RateOfInterestOfBankModel[];
 listUserGroupForSettingRateOfInterestVisibility:GroupModel[];
 userId:number=57;
-baseURL:string='http://localhost:60744/';
-//baseURL:string='http://elitecore.cloudapp.net:8081';
+//baseURL:string='http://localhost:60744/';
+baseURL:string='http://elitecore.cloudapp.net:8081';
   constructor(private http:Http) { }
 
   async GetRateOfInterestOfBank(){
@@ -44,5 +44,12 @@ baseURL:string='http://localhost:60744/';
   }).toPromise().then(x=>{
   this.listUserGroupForSettingRateOfInterestVisibility=x;
   })
+  }
+
+  UpdateUserGroupAgainstBankWhomRateOfInterestWillBeVisible(GroupIds:string){
+    //var body=JSON.stringify(rateModel);
+    var headerOptions= new Headers({'Content-Type':'application/text'});
+    var requestOptions=new RequestOptions({method:RequestMethod.Post,headers:headerOptions});
+    return this.http.post(this.baseURL+'/api/BankDashBoard/UpdateUserGroupAgainstBankWhomRateOfInterestWillBeVisible?GroupIds='+GroupIds+"&userId="+this.userId,requestOptions).map(x=> x.json());
   }
 }
