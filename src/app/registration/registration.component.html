@@ -50,12 +50,17 @@
                               <div id="radiogroup " class="fiftypercent">
   
                                   <div class="md-radio md-radio-inline ">
-                                      <input [value]="2" #rdbBank="ngModel" [(ngModel)]="registrationService.userModel.UserTypeId" name="UserTypeId" id="3" type="radio" checked=""> Bank
-                                      <label for="3"></label>
+                                      <!-- <input [value]="2" #rdbBank="ngModel" [(ngModel)]="registrationService.userModel.UserTypeId" name="UserTypeId" id="3" type="radio" checked=""> Bank
+                                      <label for="3"></label> -->
+
+                                      <input #rdbBank="ngModel" [(ngModel)]="registrationService.userModel.rdbBank" name="rdbBank" id="rdbBank" type="checkbox" class="cbx used">
+                                          <label for="rdbBank" class="lbl"> Borrower </label>
                                   </div>
                                   <div class="md-radio md-radio-inline">
-                                      <input [value]="3" #rdbNonBank="ngModel" [(ngModel)]="registrationService.userModel.UserTypeId" name="UserTypeId" id="4" type="radio"> Non-Bank
-                                      <label for="4"> </label>
+                                      <!-- <input [value]="3" #rdbNonBank="ngModel" [(ngModel)]="registrationService.userModel.UserTypeId" name="UserTypeId" id="4" type="radio"> Non-Bank
+                                      <label for="4"> </label> -->
+                                      <input #rdbNonBank="ngModel" [(ngModel)]="registrationService.userModel.rdbNonBank" name="rdbNonBank" id="rdbNonBank" type="checkbox" class="cbx used">
+                                          <label for="rdbNonBank" class="lbl"> Lender </label>
                                   </div>
                               </div>
 
@@ -229,7 +234,7 @@
                               </div> -->
   
                               <div class="login-margin"></div>
-                              <button (click)="registrationService.ShowSection2 = true" type="button" class="button btn">
+                              <button (click)="Section2Visible(registrationForm)" type="button" class="button btn">
                                   <div class="ripples buttonRipples" id="next-reg-2">
                                       <span class="ripplesCircle" style="top: 17.2813px; left: 167.313px;"></span>
                                   </div>
@@ -390,7 +395,7 @@
                                 </div>
                             </div>
 
-                            <div *ngIf="registrationService.userModel.UserTypeId == 2" class="form-group form-md-line-input has-error">
+                            <div *ngIf="registrationService.userModel.rdbBank" class="form-group form-md-line-input has-error">
                                 <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
                                   <label>RatingAgentur1 </label>
                                     <select #RatingAgentur1="ngModel" [(ngModel)]="registrationService.userModel.RatingAgentur1" class="mdl-selectfield__select" name="RatingAgentur1" id="RatingAgentur1" >expand_more
@@ -400,7 +405,7 @@
                                 </div>
                               </div>
 
-                            <div *ngIf="registrationService.userModel.UserTypeId == 2" class="form-group form-md-line-input has-error">
+                            <div *ngIf="registrationService.userModel.rdbBank" class="form-group form-md-line-input has-error">
                                 <div class="group input-group">
                                     <input #RatingAgenturValue1="ngModel" [(ngModel)]="registrationService.userModel.RatingAgenturValue1" name="RatingAgenturValue1" type="text" class="used">
                                     <span class="highlight"></span>
@@ -409,7 +414,7 @@
                                    </div>
                             </div>
 
-                            <div *ngIf="registrationService.userModel.UserTypeId == 2" class="form-group form-md-line-input has-error">
+                            <div *ngIf="registrationService.userModel.rdbBank" class="form-group form-md-line-input has-error">
                                 <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
                                   <label>RatingAgentur2 </label>
                                     <select #RatingAgentur2="ngModel" [(ngModel)]="registrationService.userModel.RatingAgentur2" class="mdl-selectfield__select" name="RatingAgentur2" id="RatingAgentur2" >expand_more
@@ -419,7 +424,7 @@
                                 </div>
                               </div>
 
-                            <div *ngIf="registrationService.userModel.UserTypeId == 2" class="form-group form-md-line-input has-error">
+                            <div *ngIf="registrationService.userModel.rdbBank" class="form-group form-md-line-input has-error">
                                 <div class="group input-group">
                                     <input #RatingAgenturValue2="ngModel" [(ngModel)]="registrationService.userModel.RatingAgenturValue2" name="RatingAgenturValue2" type="text" class="used">
                                     <span class="highlight"></span>
@@ -428,7 +433,7 @@
                                    </div>
                             </div>
 
-                            <div *ngIf="registrationService.userModel.UserTypeId == 2" class="form-group form-md-line-input has-error">
+                            <div *ngIf="registrationService.userModel.rdbBank" class="form-group form-md-line-input has-error">
                                 <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
                                   <label>DepositInsurance </label>
                                     <select #DepositInsurance="ngModel" [(ngModel)]="registrationService.userModel.DepositInsurance" class="mdl-selectfield__select" name="DepositInsurance" id="DepositInsurance" >expand_more
@@ -439,7 +444,7 @@
                               </div>
 
                               <div class="login-margin"></div>
-                              <button (click)="registrationService.ShowSection3 = true" type="button" class="button btn" id="next-reg-3">
+                              <button (click)="Section3Visible(registrationForm)" type="button" class="button btn" id="next-reg-3">
                   <div class="ripples buttonRipples">
                     <span class="ripplesCircle" style="top: 25.7969px; left: 201.313px;"></span>
                   </div>
@@ -482,7 +487,7 @@
                                 
 
 
-                                <div *ngIf="registrationService.userModel.UserTypeId == 2" class="in-ad-access">
+                                <div *ngIf="registrationService.userModel.rdbBank" class="in-ad-access">
                                     <h6>Prices are shown For customer group * </h6>
     
                                     <div class="d-flex align-items-end flex-column">
@@ -564,15 +569,15 @@
                                   <div class="d-flex align-items-end flex-column">
   
   
-                                      <p *ngIf="registrationService.userModel.UserTypeId == 2">
+                                      <p *ngIf="registrationService.userModel.rdbBank">
                                           <input #AgreeToThePrivacyPolicy="ngModel" [(ngModel)]="registrationService.userModel.AgreeToThePrivacyPolicy" name="AgreeToThePrivacyPolicy" id="cbx1" type="checkbox" class="cbx used">
                                           <label for="cbx1" class="lbl"> I agree to the Privacy Policy</label>
                                       </p>
-                                      <p *ngIf="registrationService.userModel.UserTypeId == 2">
+                                      <p *ngIf="registrationService.userModel.rdbBank">
                                           <input #AgreeToTheRatingsMayPublish="ngModel" [(ngModel)]="registrationService.userModel.AgreeToTheRatingsMayPublish" name="AgreeToTheRatingsMayPublish" id="cbx2" type="checkbox" class="cbx used">
                                           <label for="cbx2" class="lbl"> I agree that ratings may be published on our company </label>
                                       </p>
-                                      <p *ngIf="registrationService.userModel.UserTypeId == 2">
+                                      <p *ngIf="registrationService.userModel.rdbBank">
                                           <input #AgreeThatInformationOfCompanyMayBePublished="ngModel" [(ngModel)]="registrationService.userModel.AgreeThatInformationOfCompanyMayBePublished" name="AgreeThatInformationOfCompanyMayBePublished" id="cbx4" type="checkbox" class="cbx used">
                                           <label for="cbx4" class="lbl"> that information about our company may be published on the platform </label>
                                       </p>

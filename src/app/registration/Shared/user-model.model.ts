@@ -40,4 +40,6 @@ export class UserModel {
      DateCreated: Date ;
      DateModified: Date ;
      ModifiedBy: number ;
+     rdbNonBank:boolean;
+     rdbBank:boolean;
 }

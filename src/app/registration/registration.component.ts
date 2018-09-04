@@ -101,7 +101,9 @@ this.resetForm();
      AcceptAGBS: false,
      DateCreated: new Date(),
      DateModified: new Date(),
-     ModifiedBy: -1
+     ModifiedBy: -1,
+     rdbBank:false,
+     rdbNonBank:false
     }
   }
 
@@ -132,19 +134,27 @@ if(ifEmailIdAlreadyRegistered == true){
   return;
 }
 
-if(form.value.UserTypeId == 2){
+if(form.value.rdbBank){
+  form.value.GroupIds='';
   if(form.value.GroupCommunities)
   form.value.GroupIds="1,";
   if(form.value.GroupCompanyGMBH)
   form.value.GroupIds=form.value.GroupIds+"2,";
   if(form.value.GroupCompany)
   form.value.GroupIds=form.value.GroupIds+"3,";
-
-  form.value.GroupIds =form.value.GroupIds.substring(0,form.value.GroupIds.length-1);
+  form.value.GroupIds =form.value.GroupIds.substring(0,form.value.GroupIds.length-1);  
 }
 else{
   form.value.GroupIds="";
 }
+
+
+form.value.UserTypeId='';
+if(form.value.rdbBank)
+form.value.UserTypeId='2,';
+if(form.value.rdbNonBank)
+form.value.UserTypeId=form.value.UserTypeId+'3,';
+form.value.UserTypeId= form.value.UserTypeId.substring(0,form.value.UserTypeId.length-1);
 
 // Registering user..
 this.registrationService.RegisterUser(form.value).subscribe(data =>{
@@ -248,7 +258,7 @@ if(form.value.UserTypeId ==2 && (form.value.DepositInsurance == undefined || for
   errorMessage=errorMessage+" Deposit Insurance,";
 }
 
-if(form.value.UserTypeId ==2){
+if(form.value.rdbBank){
 if(form.value.GroupCommunities == false){
   IfErrorFound=true;
   numberOfErrorFound++;
@@ -292,8 +302,8 @@ if(IfErrorFound){
   return false;
 }
 
-  if(form.value.UserTypeId ==0){
-    alert('Please select is it Bank or Non-Bank.');
+  if(form.value.rdbBank ==false && form.value.rdbNonBank == false){
+    alert('Please select is it Borrower or Lender.');
   return false;  
   }
 
@@ -351,6 +361,113 @@ if(form.value.AcceptAGBS == false){
 }
 return true;
   }
+
+Section2Visible(form:NgForm){
+let IfErrorFound:boolean=false;
+let numberOfErrorFound:number=0;
+let errorMessage : string='Fields marked with * are required. Please fill';
+
+if(form.value.NameOfCompany == undefined || form.value.NameOfCompany ==  null || form.value.NameOfCompany.length ==0){
+  IfErrorFound=true;
+  numberOfErrorFound++;
+  errorMessage=errorMessage+" Name of company,";
+}
+if(form.value.Street == undefined || form.value.Street ==  null || form.value.Street.length ==0){
+  IfErrorFound=true;
+  numberOfErrorFound++;
+  errorMessage=errorMessage+" Street,";
+}
+if(form.value.PostalCode == undefined || form.value.PostalCode ==  null || form.value.PostalCode.length ==0){
+  IfErrorFound=true;
+  numberOfErrorFound++;
+  errorMessage=errorMessage+" Postal Code,";
+}
+if(form.value.Place == undefined || form.value.Place ==  null || form.value.Place.length ==0){
+  IfErrorFound=true;
+  numberOfErrorFound++;
+  errorMessage=errorMessage+" Place,";
+}
+if(form.value.AccountHolder == undefined || form.value.AccountHolder ==  null || form.value.AccountHolder.length ==0){
+  IfErrorFound=true;
+  numberOfErrorFound++;
+  errorMessage=errorMessage+" Account Holder,";
+}
+
+if(form.value.Bank == undefined || form.value.Bank ==  null || form.value.Bank.length ==0){
+  IfErrorFound=true;
+  numberOfErrorFound++;
+  errorMessage=errorMessage+" Bank,";
+}
+if(form.value.IBAN == undefined || form.value.IBAN ==  null || form.value.IBAN.length ==0){
+  IfErrorFound=true;
+  numberOfErrorFound++;
+  errorMessage=errorMessage+" IBAN,";
+}
+if(form.value.BICCode == undefined || form.value.BICCode ==  null || form.value.BICCode.length ==0){
+  IfErrorFound=true;
+  numberOfErrorFound++;
+  errorMessage=errorMessage+" BICCode,";
+}
+if(form.value.ClientGroupId == undefined || form.value.ClientGroupId ==  null || form.value.ClientGroupId ==0){
+  IfErrorFound=true;
+  numberOfErrorFound++;
+  errorMessage=errorMessage+" Client group,";
+}
+if(form.value.SubGroupId == undefined || form.value.SubGroupId ==  null || form.value.SubGroupId =="0"){
+  IfErrorFound=true;
+  numberOfErrorFound++;
+  errorMessage=errorMessage+" Sub group,";
+}
+if(!IfErrorFound)
+this.registrationService.ShowSection2=true;
+else
+this.registrationService.ShowSection2=false;
+  }
+
+Section3Visible(form:NgForm){
+  let IfErrorFound:boolean=false;
+let numberOfErrorFound:number=0;
+let errorMessage : string='Fields marked with * are required. Please fill';
+if(form.value.Salutation == undefined || form.value.Salutation ==  null || form.value.Salutation ==0){
+  IfErrorFound=true;
+  numberOfErrorFound++;
+  errorMessage=errorMessage+" Salutation,";
+}
+if(form.value.FirstName == undefined || form.value.FirstName ==  null || form.value.FirstName.length ==0){
+  IfErrorFound=true;
+  numberOfErrorFound++;
+  errorMessage=errorMessage+" First Name,";
+}
+if(form.value.SurName == undefined || form.value.SurName ==  null || form.value.SurName.length ==0){
+  IfErrorFound=true;
+  numberOfErrorFound++;
+  errorMessage=errorMessage+" Sur Name,";
+}
+if(form.value.ContactNumber == undefined || form.value.ContactNumber ==  null || form.value.ContactNumber.length ==0){
+  IfErrorFound=true;
+  numberOfErrorFound++;
+  errorMessage=errorMessage+" Contact Number,";
+}
+if(form.value.EmailAddress == undefined || form.value.EmailAddress ==  null || form.value.EmailAddress.trim().length ==0){
+  IfErrorFound=true;
+  numberOfErrorFound++;
+  errorMessage=errorMessage+" Mail Address,";
+}
+if(form.value.UserName == undefined || form.value.UserName ==  null || form.value.UserName.trim().length ==0){
+  IfErrorFound=true;
+  numberOfErrorFound++;
+  errorMessage=errorMessage+" User Name,";
+}
+if(form.value.UserTypeId ==2 && (form.value.DepositInsurance == undefined || form.value.DepositInsurance ==  null || form.value.DepositInsurance ==0)){
+  IfErrorFound=true;
+  numberOfErrorFound++;
+  errorMessage=errorMessage+" Deposit Insurance,";
+}
+if(!IfErrorFound)
+this.registrationService.ShowSection3=true;
+else
+this.registrationService.ShowSection3=false;
+}
 }
 
 

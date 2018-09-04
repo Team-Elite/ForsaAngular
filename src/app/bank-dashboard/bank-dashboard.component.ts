@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {BankDashboardService } from './Shared/bank-dashboard.service';
 import {AuthenticateServiceService} from '../Shared/authenticate-service.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-bank-dashboard',
@@ -9,7 +10,7 @@ import {AuthenticateServiceService} from '../Shared/authenticate-service.service
 })
 export class BankDashboardComponent implements OnInit {
 
-  constructor(public bankDashboardService:BankDashboardService, public authenticateServiceService:AuthenticateServiceService) { }
+  constructor(public bankDashboardService:BankDashboardService, public authenticateServiceService:AuthenticateServiceService, public router: Router) { }
   IsPublished:boolean=false;
 
   ngOnInit() {
@@ -95,6 +96,11 @@ export class BankDashboardComponent implements OnInit {
     this.bankDashboardService.UpdateUserGroupAgainstBankWhomRateOfInterestWillBeVisible(groupsString).subscribe(data=>{
     alert('saved successfully');
   })
+  }
+
+  Logout(){
+    this.authenticateServiceService.ClearSession();
+    this.router.navigate(['/login']);
   }
 
 }
