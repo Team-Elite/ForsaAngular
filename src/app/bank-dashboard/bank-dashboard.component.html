@@ -10375,10 +10375,10 @@ font-size: 12px;
                                 <a href="http://mysandbox.online/forsa/applications.html#"><i class="material-icons icon-position">forum</i></a>
                             </li>
                             <li class="identity">
-                                <a href="http://mysandbox.online/forsa/applications.html#" data-toggle="modal" data-target=".admin-modal"><i class="material-icons">perm_identity</i>
+                                <a href="javascript:void(0);" (click)="ShowUpdateProfileModal()" data-toggle="modal" data-target=".admin-modal" ><i class="material-icons">perm_identity</i>
                                 </a>
                             </li>
-                            <li class="identity">
+                            <li class="identity" title="Logout">
                               <a href="javascript:void(0);" (click)="Logout()"><i class="material-icons">logout</i></a>
                             </li>
                             <li class="settings">
@@ -10577,7 +10577,7 @@ font-size: 12px;
 
 
                                            <!--admin icon modal page tab-->
-        <div class="modal fade bd-example-modal-lg-setting-page admin-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal fade bd-example-modal-lg-setting-page admin-modal" id="updateProfile" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
                                                <div class="modal-dialog modal-lg">
                                                  <div class="modal-content">
                                                    <div class="modal-header">
@@ -10595,16 +10595,16 @@ font-size: 12px;
                                                         <hr></div>
                                                     
                                                     <div class="col-md-6">
-                                                        <label>First Name</label>
-                                                        <input type="text" name="first" placeholder="mario" class="form-control" value="" id="first_name">
+                                                        <label>First Name *</label>
+                                                        <input #FirstName="ngModel" [(ngModel)]="copyLoggedInUser.FirstName" name="FirstName" type="text" placeholder="" class="form-control" id="first_name">
                                                     </div>
                                                     <div class="col-md-6">
-                                                         <label>Last Name</label>
-                                                        <input type="text" name="last" placeholder="singer" class="form-control" value="" id="last_name">
+                                                         <label>Sur Name *</label>
+                                                        <input #SurName="ngModel"[(ngModel)]="copyLoggedInUser.SurName" name="SurName" type="text" placeholder="" class="form-control" id="last_name">
                                                     </div>
                                                     <div class="col-md-12">
-                                                        <label>Company Name</label>
-                                                        <input type="text" name="company" placeholder="Stadt Singen" class="form-control" value="" id="company_name">
+                                                        <label>Company Name *</label>
+                                                        <input #NameOfCompany="ngModel" [(ngModel)]="copyLoggedInUser.NameOfCompany" name="NameOfCompany" type="text" placeholder="" class="form-control" id="company_name">
                                                     </div>
 
                                                   
@@ -10614,19 +10614,19 @@ font-size: 12px;
                                                    
                                                         <div class="heading col-sm-12"><h4>Change Password</h4><hr></div>
                                                     <div class="col-md-6">
-                                                        <label>Old Password</label>
-                                                        <input type="password" name="" class="form-control" value="">
+                                                        <label>Old Password *</label>
+                                                        <input #Password="ngModel" [(ngModel)]="copyLoggedInUser.Password" type="password" name="Password" class="form-control">
                                                     </div>
                                                     <div class="col-md-6">
-                                                         <label>New Password</label>
-                                                        <input type="password" name="" class="form-control" value="">
+                                                         <label>New Password *</label>
+                                                        <input #NewPassword="ngModel" [(ngModel)]="bankDashboardService.NewPassword" type="password" name="NewPassword" class="form-control">
                                                     </div>
                                                     <div class="col-md-12">
-                                                        <label>Confirm Password</label>
-                                                        <input type="password" name="" class="form-control" value="">
+                                                        <label>Confirm Password *</label>
+                                                        <input #ConfirmPassword="ngModel" [(ngModel)]="bankDashboardService.ConfirmPassword" type="password" name="ConfirmPassword" class="form-control">
                                                     </div>
                                                     <div class="col-md-12">
-                                                        <input type="button" class="btn btn-info btn-lg" id="sendRequest" value="Update">
+                                                        <input (click)="UpdateUserProfile()" type="button" class="btn btn-info btn-lg" id="sendRequest" value="Update">
                                                     </div>
                                               
 

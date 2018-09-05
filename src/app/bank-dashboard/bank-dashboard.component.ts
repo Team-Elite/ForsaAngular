@@ -12,6 +12,7 @@ export class BankDashboardComponent implements OnInit {
 
   constructor(public bankDashboardService:BankDashboardService, public authenticateServiceService:AuthenticateServiceService, public router: Router) { }
   IsPublished:boolean=false;
+  copyLoggedInUser:any;
 
   ngOnInit() {
     debugger;
@@ -19,6 +20,8 @@ export class BankDashboardComponent implements OnInit {
     this.bankDashboardService.userId = this.authenticateServiceService.GetUserId();
     this.GetRateOfInterestOfBank();
     this.GetUserGroupForSettingRateOfInterestVisibility();
+    this.bankDashboardService.loggedInUser= this.authenticateServiceService.GetUserDetail();
+    this.copyLoggedInUser = Object.assign({}, this.bankDashboardService.loggedInUser);
   }
 
   async GetRateOfInterestOfBank(){
@@ -99,8 +102,97 @@ export class BankDashboardComponent implements OnInit {
   }
 
   Logout(){
+    if(confirm("Are you sure you want to log out?")){
     this.authenticateServiceService.ClearSession();
     this.router.navigate(['/login']);
+    }
   }
 
+  UpdateUserProfile(){
+    debugger;
+
+    /* Validating controls */
+    if(this.ValidateUserPfrofileFields(this.copyLoggedInUser,this.bankDashboardService.NewPassword,this.bankDashboardService.ConfirmPassword)){
+      this.copyLoggedInUser.NewPassword=this.bankDashboardService.NewPassword.trim();
+      this.copyLoggedInUser.Password=this.copyLoggedInUser.Password.trim();
+      this.bankDashboardService.UpdateUserProfile(this.copyLoggedInUser).subscribe(data=>{
+      if(data !=undefined && data !=null){
+        debugger;
+        if(data.IsSuccess == false){
+          alert('Old password is not correct.')
+          return;
+        }
+        this.authenticateServiceService.UpdateSession(data.data);
+        this.bankDashboardService.loggedInUser= this.authenticateServiceService.GetUserDetail();
+        alert('Updated successfully.');
+      }
+    
+    });
+  }
+  }
+
+ValidateUserPfrofileFields(userModel:any,NewPassword:string,ConfirmPassword:string){
+let IfErrorFound:boolean=false;
+let message:string='Fields marked with * are mandatory. Please fill';
+if(userModel.FirstName == undefined || userModel.FirstName == null || userModel.FirstName.trim().length==0)
+{
+  IfErrorFound=true;
+  message=message+" First Name,";
+}
+
+if(userModel.SurName == undefined || userModel.SurName == null || userModel.SurName.trim().length==0)
+{
+  IfErrorFound=true;
+  message=message+" Sur Name,";
+}
+if(userModel.NameOfCompany == undefined || userModel.NameOfCompany == null || userModel.NameOfCompany.trim().length==0)
+{
+  IfErrorFound=true;
+  message=message+" Name of company,";
+}
+if(userModel.Password == undefined || userModel.Password == null || userModel.Password.trim().length==0)
+{
+  IfErrorFound=true;
+  message=message+" Old Password,";
+}
+if(NewPassword == undefined || NewPassword == null || NewPassword.trim().length==0)
+{
+  IfErrorFound=true;
+  message=message+" New Password,";
+}
+if(ConfirmPassword == undefined || ConfirmPassword == null || ConfirmPassword.trim().length==0)
+{
+  IfErrorFound=true;
+  message=message+" Confirm Password,";
+}
+if(IfErrorFound){
+  message=message.substring(0,message.length-1);
+  alert(message);
+  return false;
+}
+
+if(NewPassword.trim().length<6){
+  alert('Password must be at least of six characters.');
+  return false;
+}
+
+// if(userModel.NewPassword.trim() == userModel.Password.trim()){
+//   alert('Old password and new password can not be same.');
+//   return false;
+// }
+
+if(NewPassword.trim() != ConfirmPassword.trim()){
+  alert('New password and confirm password not matched.');
+  return false;
+}
+return true;
+
+}
+
+ShowUpdateProfileModal(){
+ //document.getElementById('updateProfile').style.display='block';
+ this.bankDashboardService.NewPassword='';
+ this.bankDashboardService.ConfirmPassword='';
+  this.copyLoggedInUser = Object.assign({}, this.bankDashboardService.loggedInUser);
+}
 }

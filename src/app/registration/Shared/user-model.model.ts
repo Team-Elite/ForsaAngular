@@ -42,4 +42,5 @@ export class UserModel {
      ModifiedBy: number ;
      rdbNonBank:boolean;
      rdbBank:boolean;
+     NewPassword:string;
 }

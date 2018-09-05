@@ -18,6 +18,12 @@ export class AuthenticateServiceService {
   this.storage.set(this.sessionCreatedAt,new Date());
   }
 
+  UpdateSession(value:any){
+    debugger;
+  this.storage.set(this.userValue,value);
+  this.storage.set(this.sessionCreatedAt,new Date());
+  }
+
   AuthenticateSession(){
     debugger;
     let val= this.storage.get(this.userValue);
@@ -35,6 +41,12 @@ export class AuthenticateServiceService {
       debugger;
       let userId =this.storage.get(this.userValue);
       return JSON.parse(userId)[0].UserId;
+    }
+
+    GetUserDetail(){
+      debugger;
+      let userId =this.storage.get(this.userValue);
+      return JSON.parse(userId)[0];
     }
 
     ClearSession(){

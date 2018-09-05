@@ -103,7 +103,8 @@ this.resetForm();
      DateModified: new Date(),
      ModifiedBy: -1,
      rdbBank:false,
-     rdbNonBank:false
+     rdbNonBank:false,
+     NewPassword:'',
     }
   }
 
@@ -413,15 +414,18 @@ if(form.value.ClientGroupId == undefined || form.value.ClientGroupId ==  null ||
   numberOfErrorFound++;
   errorMessage=errorMessage+" Client group,";
 }
-if(form.value.SubGroupId == undefined || form.value.SubGroupId ==  null || form.value.SubGroupId =="0"){
+if(form.value.SubGroupId == undefined || form.value.SubGroupId ==  null || form.value.SubGroupId ==0){
   IfErrorFound=true;
   numberOfErrorFound++;
   errorMessage=errorMessage+" Sub group,";
 }
 if(!IfErrorFound)
 this.registrationService.ShowSection2=true;
-else
+else{
 this.registrationService.ShowSection2=false;
+errorMessage=errorMessage.substring(0,errorMessage.length-1);
+alert(errorMessage);
+}
   }
 
 Section3Visible(form:NgForm){
@@ -465,8 +469,11 @@ if(form.value.UserTypeId ==2 && (form.value.DepositInsurance == undefined || for
 }
 if(!IfErrorFound)
 this.registrationService.ShowSection3=true;
-else
+else{
 this.registrationService.ShowSection3=false;
+errorMessage=errorMessage.substring(0,errorMessage.length-1);
+alert(errorMessage);
+}
 }
 }
 
