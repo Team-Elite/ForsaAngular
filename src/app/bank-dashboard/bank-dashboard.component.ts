@@ -13,6 +13,7 @@ export class BankDashboardComponent implements OnInit {
   constructor(public bankDashboardService:BankDashboardService, public authenticateServiceService:AuthenticateServiceService, public router: Router) { }
   IsPublished:boolean=false;
   copyLoggedInUser:any;
+  testTrue:boolean=false;
 
   ngOnInit() {
     debugger;
@@ -34,6 +35,9 @@ export class BankDashboardComponent implements OnInit {
 
   EnableTextBox(rate){
     rate.IsDoubleTapped=true;
+  }
+  EnableTextBox2(){
+    this.testTrue=true;
   }
 
   UpdateRateOfInterest(rate){

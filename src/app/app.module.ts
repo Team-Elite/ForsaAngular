@@ -13,11 +13,14 @@ import {RouterModule,Routes} from '@angular/router';
 import { RecaptchaModule } from 'ng-recaptcha';
 import { BankDashboardComponent } from './bank-dashboard/bank-dashboard.component';
 import { StorageServiceModule } from 'angular-webstorage-service';
+import { TestComponent } from './test/test.component';
+import {} from './test/test.component';
 
 const appRoutes: Routes=[{path:'login',component:LoginComponent},
                          {path:'registration',component:RegistrationComponent},
                          {path:'',redirectTo:'login', pathMatch:'full'},
                          {path:'bankDashBoard',component:BankDashboardComponent},
+                         {path:'test',component:TestComponent},
                         // {path:'',redirectTo:'bankDashBoard', pathMatch:'full'},
                         ];
 @NgModule({
@@ -26,7 +29,8 @@ const appRoutes: Routes=[{path:'login',component:LoginComponent},
     RegistrationComponent,
     BlockPasteDirective,
     LoginComponent,
-    BankDashboardComponent
+    BankDashboardComponent,
+    TestComponent
   ],
   imports: [
     BrowserModule,
