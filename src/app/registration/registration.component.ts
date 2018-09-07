@@ -9,7 +9,7 @@ import { NgbdModalBasic } from './Shared/modal-basic';
 //import {FormBuilder, FormGroup, Validators} from '@angular/forms'; 
  
 @Component({
-  selector: '[app-registration],[ngbd-modal-basic]',
+  selector: '[app-registration]',
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.css'],
   

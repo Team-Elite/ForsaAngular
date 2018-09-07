@@ -29,7 +29,6 @@ export class LoginComponent implements OnInit {
     this.loginService.loginModel={
       UserName:'',
       UserPassword:'',
-      UserEmailId:'',
       ForgotPasswordEmailId:''
     }
   }
@@ -43,21 +42,6 @@ export class LoginComponent implements OnInit {
         //this.toastr.success("Saved successfully.","Employee");
         this.toastr.error("User name is required.");
         return false;
-      }
-
-      
-      if(form.value.UserEmailId == undefined || form.value.UserEmailId == null || form.value.UserEmailId.trim().length == 0){
-        alert("Email id is required.");
-        return false;
-      }
-
-      let expression: RegExp ;
-      expression =new RegExp(/^[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}/)
-      if(form.value.UserEmailId!= undefined && form.value.UserEmailId !=  null && form.value.UserEmailId.length !=0){
-      if(!expression.test(form.value.UserEmailId)){
-        alert('Email address is not valid.');
-        return false;
-      }
       }
 
       if(form.value.UserPassword == undefined || form.value.UserPassword == null || form.value.UserPassword.trim().length == 0){
