@@ -22,7 +22,7 @@ export class UserModel {
      Password: string ;
      FurtherField1: string ;
      FurtherField2: string ;
-     LEINumber2: string ;
+     //LEINumber2: string ;
      UserTypeId: string ;
      RatingAgentur1: string ;
      RatingAgenturValue1: string ;

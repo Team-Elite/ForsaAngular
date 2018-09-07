@@ -1,5 +1,5 @@
 <!-- <form class="emp-form" #registrationForm="ngForm" (ngSubmit)="onSubmit(registrationForm)"> -->
-        <form  class="emp-form" #registrationForm="ngForm" (ngSubmit)="registerUser(registrationForm)">
+  <form  class="emp-form" #registrationForm="ngForm" (ngSubmit)="registerUser(registrationForm)">
   <body class="instibg" cz-shortcut-listen="true">
     <!-- <link rel="stylesheet" href="../assets/css/common.css">
 <link rel="stylesheet" href="../assets/css/login_register.css"> -->
@@ -392,14 +392,14 @@
                                 </div>
                             </div>
 
-                            <div class="form-group form-md-line-input has-error">
+                            <!-- <div class="form-group form-md-line-input has-error">
                                 <div class="group input-group">
                                     <input #LEINumber2="ngModel" [(ngModel)]="registrationService.userModel.LEINumber2" name="LEINumber2" type="text" class="used">
                                     <span class="highlight"></span>
                                     <span class="bar"></span>
                                     <label>LEI Number</label>
                                 </div>
-                            </div>
+                            </div> -->
 
                             <div *ngIf="registrationService.userModel.rdbBank" class="form-group form-md-line-input has-error">
                                 <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
