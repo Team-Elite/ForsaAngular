@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 import {AuthenticateServiceService} from '../../Shared/authenticate-service.service';
 import {Router} from '@angular/router';
 import { ToastrService  } from 'ngx-toastr';
+import { UserModel } from '../../registration/Shared/user-model.model';
 
 @Component({
   selector: 'app-login',
@@ -54,8 +55,9 @@ export class LoginComponent implements OnInit {
     if(user.IsSuccess == true){
       debugger;
       this.authenticateServiceService.SaveSession(user.data);
-      
+      if(user.data.UserTypeId==4){
       this.router.navigate(['/bankDashBoard']);
+    }
     }
     else{
       alert('User Name/ Password /Email Id is incorrect.');
