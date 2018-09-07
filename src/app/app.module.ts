@@ -15,6 +15,7 @@ import { BankDashboardComponent } from './bank-dashboard/bank-dashboard.componen
 import { StorageServiceModule } from 'angular-webstorage-service';
 import { TestComponent } from './test/test.component';
 import {} from './test/test.component';
+import { ToastrModule } from 'ngx-toastr';
 
 const appRoutes: Routes=[{path:'login',component:LoginComponent},
                          {path:'registration',component:RegistrationComponent},
@@ -38,7 +39,8 @@ const appRoutes: Routes=[{path:'login',component:LoginComponent},
     FormsModule,
     RouterModule.forRoot(appRoutes,{ useHash: true }),
     RecaptchaModule.forRoot(),
-    StorageServiceModule 
+    StorageServiceModule ,
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

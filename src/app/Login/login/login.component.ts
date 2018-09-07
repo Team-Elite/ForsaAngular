@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {LoginService} from './login.service';
 import { NgForm } from '@angular/forms';
 import {AuthenticateServiceService} from '../../Shared/authenticate-service.service';
-import {Router} from '@angular/router'
+import {Router} from '@angular/router';
+import { ToastrService  } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -11,10 +12,10 @@ import {Router} from '@angular/router'
 })
 export class LoginComponent implements OnInit {
   constructor(public loginService:LoginService, public authenticateServiceService:AuthenticateServiceService
-    , public router: Router) { }
+    , public router: Router,public  toastr: ToastrService) { }
 
 
-  IfVerificationDone:boolean=false;
+  IfVerificationDone:boolean=true;
   public resolved(captchaResponse: string) {
     if(captchaResponse != undefined && captchaResponse != null && captchaResponse.trim().length !=0){
       this.IfVerificationDone=true;
@@ -38,7 +39,9 @@ export class LoginComponent implements OnInit {
 
     if(form !=null){
       if(form.value.UserName == undefined || form.value.UserName == null || form.value.UserName.trim().length == 0){
-        alert("User name is required.");
+        //alert("User name is required.");
+        //this.toastr.success("Saved successfully.","Employee");
+        this.toastr.error("User name is required.");
         return false;
       }
 
