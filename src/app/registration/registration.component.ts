@@ -1,20 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { RegistrationService } from './Shared/registration.service';
 import {CustomValidationServiceService} from '../Shared/custom-validation-service.service';
-import {Router} from '@angular/router'
+import {Router} from '@angular/router';
+import {NgbModal, ModalDismissReasons, NgbModalConfig} from '@ng-bootstrap/ng-bootstrap'
+import { $$ } from '../../../node_modules/protractor';
+import { NgbdModalBasic } from './Shared/modal-basic';
 //import {FormBuilder, FormGroup, Validators} from '@angular/forms'; 
  
 @Component({
-  selector: 'app-registration',
+  selector: '[app-registration],[ngbd-modal-basic]',
   templateUrl: './registration.component.html',
-  styleUrls: ['./registration.component.css']
+  styleUrls: ['./registration.component.css'],
+  
   //imports:[FormGroup]
 })
+
 export class RegistrationComponent implements OnInit {
 
   constructor(public registrationService:RegistrationService,public customValidationServiceService:CustomValidationServiceService
-    , public router: Router
+    , public router: Router, public modalService: NgbdModalBasic
 //  ,public formBuilder:FormBuilder, public formGroup:FormGroup
 ) { }
 
@@ -50,6 +55,8 @@ this.registrationService.GetGroupList();
 
 this.resetForm();
   }
+
+
 
   resetForm(form?: NgForm){
     if(form != null){
@@ -299,7 +306,8 @@ if(form.value.AgreeThatInformationOfCompanyMayBePublished == false){
 
 if(IfErrorFound){
   errorMessage=errorMessage.substring(0,errorMessage.length-1);
-  alert(errorMessage);
+  
+  //alert(errorMessage);
   return false;
 }
 
@@ -424,7 +432,9 @@ this.registrationService.ShowSection2=true;
 else{
 this.registrationService.ShowSection2=false;
 errorMessage=errorMessage.substring(0,errorMessage.length-1);
-alert(errorMessage);
+
+this.modalService.open(errorMessage)
+  
 }
   }
 

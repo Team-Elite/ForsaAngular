@@ -3,6 +3,7 @@ import { NgModule, Component } from '@angular/core';
 import {HttpModule} from '@angular/http';
 import{FormsModule} from '@angular/forms';
 
+
 import { AppComponent } from './app.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { BlockPasteDirective } from './Shared/block-paste.directive';
@@ -16,6 +17,10 @@ import { StorageServiceModule } from 'angular-webstorage-service';
 import { TestComponent } from './test/test.component';
 import {} from './test/test.component';
 import { ToastrModule } from 'ngx-toastr';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbdModalBasic } from './registration/Shared/modal-basic';
+import { NgbModalBackdrop } from '../../node_modules/@ng-bootstrap/ng-bootstrap/modal/modal-backdrop';
+
 
 const appRoutes: Routes=[{path:'login',component:LoginComponent},
                          {path:'registration',component:RegistrationComponent},
@@ -31,7 +36,9 @@ const appRoutes: Routes=[{path:'login',component:LoginComponent},
     BlockPasteDirective,
     LoginComponent,
     BankDashboardComponent,
-    TestComponent
+    TestComponent,
+    NgbdModalBasic,
+    
   ],
   imports: [
     BrowserModule,
@@ -40,9 +47,15 @@ const appRoutes: Routes=[{path:'login',component:LoginComponent},
     RouterModule.forRoot(appRoutes,{ useHash: true }),
     RecaptchaModule.forRoot(),
     StorageServiceModule ,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    NgbModule,
+    
+    
   ],
-  providers: [],
+  providers: [
+    NgbdModalBasic,
+  ],
+  
   bootstrap: [AppComponent]
 })
 export class AppModule { }
