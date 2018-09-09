@@ -51,7 +51,7 @@
                                   <input #UserName="ngModel" [(ngModel)]="loginService.loginModel.UserName" name="UserName" type="name" autofocus="" class="used">
                                   <span class="highlight"></span>
                                   <span class="bar"></span>
-                                  <label>Name</label>
+                                  <label>Name / Email Id</label>
                                   <span class="input-group-icon">
                     <i class="material-icons">account_circle</i>
                   </span>
@@ -129,7 +129,7 @@
                               </div>
                           </div>
                           <div class="login-margin"></div>
-                          <button [disabled]="!IfVerificationDone" type="submit" class="button btn buttonBlue">
+                          <button type="submit" class="button btn buttonBlue">
                 <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
                 Enter <i class="material-icons">
                     keyboard_arrow_right

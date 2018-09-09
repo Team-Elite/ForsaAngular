@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {BankDashboardService } from './Shared/bank-dashboard.service';
 import {AuthenticateServiceService} from '../Shared/authenticate-service.service';
 import {Router} from '@angular/router';
+import { ToastrService  } from 'ngx-toastr';
 
 @Component({
   selector: 'app-bank-dashboard',
@@ -10,7 +11,8 @@ import {Router} from '@angular/router';
 })
 export class BankDashboardComponent implements OnInit {
 
-  constructor(public bankDashboardService:BankDashboardService, public authenticateServiceService:AuthenticateServiceService, public router: Router) { }
+  constructor(public bankDashboardService:BankDashboardService, public authenticateServiceService:AuthenticateServiceService, public router: Router
+    , public  toastr: ToastrService) { }
   IsPublished:boolean=false;
   copyLoggedInUser:any;
   testTrue:boolean=false;
@@ -42,7 +44,7 @@ export class BankDashboardComponent implements OnInit {
 
   UpdateRateOfInterest(rate){
     if(rate.RateOfInterest == undefined || rate.RateOfInterest == null || rate.RateOfInterest.length==0){
-      alert("Rate must be entered.");
+      this.toastr.error("Rate must be entered.","Dashboard");
       return;
     }
     rate.IsDoubleTapped=false;
@@ -53,7 +55,7 @@ export class BankDashboardComponent implements OnInit {
 
   IncreaseRateOfInterest(rate){
     if(rate.RateOfInterest == undefined || rate.RateOfInterest == null || rate.RateOfInterest.length==0){
-      alert("Rate must be entered.");
+      this.toastr.error("Rate must be entered.","Dashboard");
       return;
     }
     rate.RateOfInterest=parseFloat(rate.RateOfInterest)+.10;
@@ -65,7 +67,7 @@ export class BankDashboardComponent implements OnInit {
 
   DecreaseRateOfInterest(rate){
     if(rate.RateOfInterest == undefined || rate.RateOfInterest == null || rate.RateOfInterest.length==0){
-      alert("Rate must be entered.");
+      this.toastr.error("Rate must be entered.","Dashboard");
       return;
     }
     rate.RateOfInterest= parseFloat(rate.RateOfInterest)-.10;
@@ -78,7 +80,7 @@ export class BankDashboardComponent implements OnInit {
   PublishAndUnPublish(value){
   this.bankDashboardService.PublishAndUnPublish(value).subscribe(data =>{
     this.IsPublished=value;
-    alert("Changes saved successfully.");
+    this.toastr.success("Changes saved successfully.","Dashboard");
 })
   }
 
@@ -101,7 +103,7 @@ export class BankDashboardComponent implements OnInit {
     //   groupsString=groupsString+group.GroupId+',';
     // }
     this.bankDashboardService.UpdateUserGroupAgainstBankWhomRateOfInterestWillBeVisible(groupsString).subscribe(data=>{
-    alert('saved successfully');
+    this.toastr.success("Saved successfully.","Dashboard");
   })
   }
 
@@ -123,12 +125,12 @@ export class BankDashboardComponent implements OnInit {
       if(data !=undefined && data !=null){
         debugger;
         if(data.IsSuccess == false){
-          alert('Old password is not correct.')
+          this.toastr.error("Old password is not correct.","Dashboard");
           return;
         }
         this.authenticateServiceService.UpdateSession(data.data);
         this.bankDashboardService.loggedInUser= this.authenticateServiceService.GetUserDetail();
-        alert('Updated successfully.');
+        this.toastr.success("Updated successfully.","Dashboard");
       }
     
     });
@@ -171,12 +173,12 @@ if(ConfirmPassword == undefined || ConfirmPassword == null || ConfirmPassword.tr
 }
 if(IfErrorFound){
   message=message.substring(0,message.length-1);
-  alert(message);
+  this.toastr.error(message,"Dashboard");
   return false;
 }
 
 if(NewPassword.trim().length<6){
-  alert('Password must be at least of six characters.');
+  this.toastr.error("Password must be at least of six characters.","Dashboard");
   return false;
 }
 
@@ -186,7 +188,7 @@ if(NewPassword.trim().length<6){
 // }
 
 if(NewPassword.trim() != ConfirmPassword.trim()){
-  alert('New password and confirm password not matched.');
+  this.toastr.error("New password and confirm password not matched.","Dashboard");
   return false;
 }
 return true;

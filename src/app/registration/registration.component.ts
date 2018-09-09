@@ -3,9 +3,10 @@ import { NgForm } from '@angular/forms';
 import { RegistrationService } from './Shared/registration.service';
 import {CustomValidationServiceService} from '../Shared/custom-validation-service.service';
 import {Router} from '@angular/router';
-import {NgbModal, ModalDismissReasons, NgbModalConfig} from '@ng-bootstrap/ng-bootstrap'
-import { $$ } from '../../../node_modules/protractor';
-import { NgbdModalBasic } from './Shared/modal-basic';
+//import {NgbModal, ModalDismissReasons, NgbModalConfig} from '@ng-bootstrap/ng-bootstrap'
+//import { $$ } from '../../../node_modules/protractor';
+//import { NgbdModalBasic } from './Shared/modal-basic';
+import { ToastrService  } from 'ngx-toastr';
 //import {FormBuilder, FormGroup, Validators} from '@angular/forms'; 
  
 @Component({
@@ -19,7 +20,7 @@ import { NgbdModalBasic } from './Shared/modal-basic';
 export class RegistrationComponent implements OnInit {
 
   constructor(public registrationService:RegistrationService,public customValidationServiceService:CustomValidationServiceService
-    , public router: Router, public modalService: NgbdModalBasic
+    , public router: Router, public  toastr: ToastrService
 //  ,public formBuilder:FormBuilder, public formGroup:FormGroup
 ) { }
 
@@ -91,7 +92,7 @@ this.resetForm();
      Password: '',
      FurtherField1: '',
      FurtherField2: '',
-    //  LEINumber2: '',
+     LEINumber2: '',
      UserTypeId: '0' ,
      RatingAgentur1: '',
      RatingAgenturValue1: '',
@@ -112,6 +113,7 @@ this.resetForm();
      rdbBank:false,
      rdbNonBank:false,
      NewPassword:'',
+     //LEINumber2:''
     }
   }
 
@@ -128,7 +130,7 @@ return false;
 let userExist= await this.registrationService.CheckIfUserNameIsAvailable(form.value.UserName);
 debugger;
 if(userExist == true){
-  alert('User name not available.');
+  this.toastr.error("User name not available.","Registration");
   this.registrationService.userModelExist=null;
   return;
 }
@@ -137,7 +139,7 @@ if(userExist == true){
 let ifEmailIdAlreadyRegistered= await this.registrationService.CheckIfEmailIdIsRegistered(form.value.EmailAddress);
 debugger;
 if(ifEmailIdAlreadyRegistered == true){
-  alert('This email id is already registered.');
+  this.toastr.error("This email id is already registered.","Registration");
   //this.registrationService.userModelExist=null;
   return;
 }
@@ -159,15 +161,15 @@ else{
 
 form.value.UserTypeId='';
 if(form.value.rdbBank)
-form.value.UserTypeId='2,';
+form.value.UserTypeId='4,';
 if(form.value.rdbNonBank)
-form.value.UserTypeId=form.value.UserTypeId+'3,';
+form.value.UserTypeId=form.value.UserTypeId+'5,';
 form.value.UserTypeId= form.value.UserTypeId.substring(0,form.value.UserTypeId.length-1);
 
 // Registering user..
 this.registrationService.RegisterUser(form.value).subscribe(data =>{
   this.resetForm(form);
-  alert('Registration is successfull. An email is sent to registered email id. This email have your login credentails.');
+  this.toastr.success("Registration is successfull. An email is sent to registered email id. This email have your login credentails.","Registration");
   //location.reload();
   this.router.navigate(['/login']);
 })
@@ -306,19 +308,19 @@ if(form.value.AgreeThatInformationOfCompanyMayBePublished == false){
 
 if(IfErrorFound){
   errorMessage=errorMessage.substring(0,errorMessage.length-1);
-  
+  this.toastr.error(errorMessage,"Registration");
   //alert(errorMessage);
   return false;
 }
 
   if(form.value.rdbBank ==false && form.value.rdbNonBank == false){
-    alert('Please select is it Borrower or Lender.');
+    this.toastr.error("Please select is it Borrower or Lender.","Registration");
   return false;  
   }
 
   if(form.value.UserName != undefined && form.value.UserName !=  null && form.value.UserName.length !=0){
     if(form.value.UserName.indexOf(' ')>=0){
-    alert('User name can not have space.');
+    this.toastr.error("User name can not have space.","Registration");
   return false;
     }
   }
@@ -326,15 +328,15 @@ if(IfErrorFound){
   if(form.value.ContactNumber != undefined && form.value.ContactNumber != null && form.value.ContactNumber.length!=0){
     try{
       if(isNaN(Number(form.value.ContactNumber.toString())) == true ){
-        alert('Contact number must be numeric.');
+        this.toastr.error("Contact number must be numeric.","Registration");
         return false;  
       }
       else if(form.value.ContactNumber.indexOf('.')>=0 ){
-        alert('Contact number must be numeric.');
+        this.toastr.error("Contact number must be numeric.","Registration");
         return false;  
       }
       else if(form.value.ContactNumber.length <10 ){
-        alert('Contact number must be of length 10.');
+        this.toastr.error("Contact number must be of length 10.","Registration");
         return false;  
       }
     }
@@ -343,7 +345,7 @@ return false;
     }
   }
   if(form.value.EmailAddress == undefined || form.value.EmailAddress ==  null || form.value.EmailAddress.length ==0){
-    alert('Email address is required.');
+    this.toastr.error("Email address is required.","Registration");
   return false;
   }
 
@@ -351,7 +353,7 @@ return false;
 expression =new RegExp(/^[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}/)
 if(form.value.EmailAddress!= undefined && form.value.EmailAddress !=  null && form.value.EmailAddress.length !=0){
 if(!expression.test(form.value.EmailAddress)){
-  alert('Email address is not valid.');
+  this.toastr.error("Email address is not valid.","Registration");
   return false;
 }
 }
@@ -365,7 +367,11 @@ if(!expression.test(form.value.EmailAddress)){
 
 
 if(form.value.AcceptAGBS == false){
-  alert('Please accept AGBs.');
+  this.toastr.error("Please accept AGBs.","Registration");
+  return false;
+}
+if(!this.IfVerificationDone){
+  this.toastr.error("Please verify captcha.","Registration");
   return false;
 }
 return true;
@@ -432,8 +438,7 @@ this.registrationService.ShowSection2=true;
 else{
 this.registrationService.ShowSection2=false;
 errorMessage=errorMessage.substring(0,errorMessage.length-1);
-
-this.modalService.open(errorMessage)
+this.toastr.error(errorMessage,"Registration");
   
 }
   }
@@ -482,7 +487,7 @@ this.registrationService.ShowSection3=true;
 else{
 this.registrationService.ShowSection3=false;
 errorMessage=errorMessage.substring(0,errorMessage.length-1);
-alert(errorMessage);
+this.toastr.error(errorMessage,"Registration");
 }
 }
 }

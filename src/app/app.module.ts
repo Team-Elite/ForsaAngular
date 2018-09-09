@@ -20,6 +20,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbdModalBasic } from './registration/Shared/modal-basic';
 import { NgbModalBackdrop } from '../../node_modules/@ng-bootstrap/ng-bootstrap/modal/modal-backdrop';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 
 const appRoutes: Routes=[{path:'login',component:LoginComponent},
@@ -49,7 +50,7 @@ const appRoutes: Routes=[{path:'login',component:LoginComponent},
     StorageServiceModule ,
     ToastrModule.forRoot(),
     NgbModule,
-    
+    BrowserAnimationsModule,
     
   ],
   providers: [
