@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
 
 
   IfVerificationDone:boolean=false;
+  IfShowPassword:boolean=false;
   public resolved(captchaResponse: string) {
     if(captchaResponse != undefined && captchaResponse != null && captchaResponse.trim().length !=0){
       this.IfVerificationDone=true;
@@ -68,7 +69,7 @@ if(form.value.UserName.indexOf('@')>-1){
     if(user.IsSuccess == true){
       debugger;
       this.authenticateServiceService.SaveSession(user.data);
-      if(JSON.parse(user.data)[0].UserTypeId==5){
+      if(JSON.parse(user.data)[0].UserTypeId==4){
       this.router.navigate(['/bankDashBoard']);
     }
     }
@@ -100,6 +101,14 @@ if(form.value.UserName.indexOf('@')>-1){
     else{
       this.toastr.error("Email id is wrong.","Login - Forgot Password");
     }
+  }
+
+  keydown(event){
+this.IfShowPassword=true;
+}
+
+keyup(event){
+this.IfShowPassword=false;    
   }
 
 }

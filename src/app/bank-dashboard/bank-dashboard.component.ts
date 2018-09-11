@@ -130,7 +130,7 @@ export class BankDashboardComponent implements OnInit {
         }
         this.authenticateServiceService.UpdateSession(data.data);
         this.bankDashboardService.loggedInUser= this.authenticateServiceService.GetUserDetail();
-        this.toastr.success("Updated successfully.","Dashboard");
+        this.toastr.success("Updated successfully. An email has been sent to your email id.","Dashboard");
       }
     
     });

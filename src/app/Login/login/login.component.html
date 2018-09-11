@@ -61,23 +61,26 @@
                           
 
                           <div class="form-group form-md-line-input has-error">
-                              <div class=" input-group">
-                                  <input #UserPassword ="ngModel" [(ngModel)]="loginService.loginModel.UserPassword" name="UserPassword" type="password" id="login_password" class="used">
-                                  <span class="highlight"></span>
-                                  <span class="bar"></span>
-                                  <label>Enter your password</label>
-                                  <span class="input-group-icon">
+                            <div class=" input-group">
+                                <input *ngIf="!IfShowPassword" #UserPassword ="ngModel" [(ngModel)]="loginService.loginModel.UserPassword" name="UserPassword" type="password" id="login_password" class="used">
+                                <input *ngIf="IfShowPassword" #UserPassword1 ="ngModel" [(ngModel)]="loginService.loginModel.UserPassword" name="UserPassword1" type="text" id="login_password1" class="used">
+                                <span class="highlight"></span>
+                                <span class="bar"></span>
+                                <label>Enter your password</label>
+                                <span class="input-group-icon">
+              
+                                  <a (mousedown)="keydown($event)" (mouseup)="keyup($event)">
+                <i class="material-icons password_mask">remove_red_eye
+
+                  </i>
+              </a>
                 
-                  <i class="material-icons password_mask">remove_red_eye
+                  <!-- <mat-icon  class="mat-icon material-icons" matsuffix="" role="img" aria-hidden="true">visibility_off</mat-icon> -->
+                
+                </span>
 
-                    </i>
-                  
-                    <!-- <mat-icon  class="mat-icon material-icons" matsuffix="" role="img" aria-hidden="true">visibility_off</mat-icon> -->
-                  
-                  </span>
-
-                              </div>
-                          </div>
+                            </div>
+                        </div>
 
                           <div class="forgot-pass form-group form-md-line-input has-error">
 
@@ -97,7 +100,7 @@
                                       <div class="modal-body in-login">
                                           <div class="form-group form-md-line-input has-error">
                                               <div class="group input-group">
-                                                  <input #ForgotPasswordEmailId="ngModel" [(ngModel)]="loginService.loginModel.ForgotPasswordEmailId" name="ForgotPasswordEmailId" type="email">
+                                                  <input #ForgotPasswordEmailId="ngModel" [(ngModel)]="loginService.loginModel.ForgotPasswordEmailId" name="ForgotPasswordEmailId" type="email" class="used">
                                                   <span class="highlight"></span>
                                                   <span class="bar"></span>
                                                   <label>Email</label>
