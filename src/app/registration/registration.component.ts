@@ -263,29 +263,13 @@ if(form.value.UserName == undefined || form.value.UserName ==  null || form.valu
   numberOfErrorFound++;
   errorMessage=errorMessage+" User Name,";
 }
-if(form.value.UserTypeId ==2 && (form.value.DepositInsurance == undefined || form.value.DepositInsurance ==  null || form.value.DepositInsurance ==0)){
+if(form.value.UserTypeId ==4 && (form.value.DepositInsurance == undefined || form.value.DepositInsurance ==  null || form.value.DepositInsurance ==0)){
   IfErrorFound=true;
   numberOfErrorFound++;
   errorMessage=errorMessage+" Deposit Insurance,";
 }
 
 if(form.value.rdbBank){
-if(form.value.GroupCommunities == false){
-  IfErrorFound=true;
-  numberOfErrorFound++;
-  errorMessage=errorMessage+" Communities checkbox,";
-}
-if(form.value.GroupCompanyGMBH == false){
-  IfErrorFound=true;
-  numberOfErrorFound++;
-  errorMessage=errorMessage+" Company Gmbh checkbox,";
-}
-
-if(form.value.GroupCompany == false){
-  IfErrorFound=true;
-  numberOfErrorFound++;
-  errorMessage=errorMessage+" Company (AöR, KdöR) checkbox,";
-}
 
 if(form.value.AgreeToThePrivacyPolicy == false){
   IfErrorFound=true;
@@ -305,6 +289,14 @@ if(form.value.AgreeThatInformationOfCompanyMayBePublished == false){
   errorMessage=errorMessage+" that information about our company may be published on the platform checkbox,";
 }
 
+}
+
+if(form.value.rdbBank){
+  if(form.value.GroupCommunities == false && form.value.GroupCompanyGMBH == false && form.value.GroupCompany == false){
+    this.toastr.error("Please mark check atleast one out of Communities, Company Gmbh and Company (AöR, KdöR) checkboxes");
+    return false;
+  }
+  
 }
 
 if(IfErrorFound){

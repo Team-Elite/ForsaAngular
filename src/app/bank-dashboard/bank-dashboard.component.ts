@@ -50,6 +50,14 @@ export class BankDashboardComponent implements OnInit {
       this.toastr.error("Rate must be entered.","Dashboard");
       return;
     }
+    if(rate.RateOfInterest>9999.99){
+      this.toastr.error("Interest rate can not be greater than 9999.99","Dashboard");
+      return;
+    }
+    if(rate.RateOfInterest< -9999.99){
+      this.toastr.error("Interest rate can not be less than -9999.99","Dashboard");
+      return;
+    }
     rate.IsDoubleTapped=false;
     rate.ModifiedBy=this.bankDashboardService.userId;
     rate.RateOfInterest=rate.RateOfInterest.toFixed(2);
@@ -62,6 +70,11 @@ export class BankDashboardComponent implements OnInit {
       this.toastr.error("Rate must be entered.","Dashboard");
       return;
     }
+    debugger;
+    if(rate.RateOfInterest>=9999.99){
+      this.toastr.error("Interest rate can not be greater than 9999.99","Dashboard");
+      return;
+    }
     rate.RateOfInterest=parseFloat(rate.RateOfInterest)+.01;
     rate.RateOfInterest= parseFloat(rate.RateOfInterest).toFixed(2);
     rate.ModifiedBy=this.bankDashboardService.userId;
@@ -72,6 +85,10 @@ export class BankDashboardComponent implements OnInit {
   DecreaseRateOfInterest(rate){
     if(rate.RateOfInterest == undefined || rate.RateOfInterest == null || rate.RateOfInterest.length==0){
       this.toastr.error("Rate must be entered.","Dashboard");
+      return;
+    }
+    if(rate.RateOfInterest<= -9999.99){
+      this.toastr.error("Interest rate can not be less than -9999.99","Dashboard");
       return;
     }
     rate.RateOfInterest= parseFloat(rate.RateOfInterest)-.01;
@@ -112,10 +129,10 @@ export class BankDashboardComponent implements OnInit {
   }
 
   Logout(){
-    if(confirm("Are you sure you want to log out?")){
+    //if(confirm("Are you sure you want to log out?")){
     this.authenticateServiceService.ClearSession();
     this.router.navigate(['/login']);
-    }
+    //}
   }
 
   UpdateUserProfile(){
