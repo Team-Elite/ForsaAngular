@@ -53,7 +53,8 @@ this.registrationService.GetRatingAgeNturList2();
 this.registrationService.GetSubGroupList();
 this.registrationService.GetSalutationList();
 this.registrationService.GetGroupList();
-
+this.registrationService.ShowSection3=false;
+this.registrationService.ShowSection2=false;
 this.resetForm();
   }
 
@@ -92,7 +93,7 @@ this.resetForm();
      Password: '',
      FurtherField1: '',
      FurtherField2: '',
-     LEINumber2: '',
+     FurtherField3: '',
      UserTypeId: '0' ,
      RatingAgentur1: '',
      RatingAgenturValue1: '',
@@ -365,7 +366,7 @@ if(!expression.test(form.value.EmailAddress)){
 //   }
 // }
 
-
+debugger;
 if(form.value.AcceptAGBS == false){
   this.toastr.error("Please accept AGBs.","Registration");
   return false;
@@ -433,6 +434,12 @@ if(form.value.SubGroupId == undefined || form.value.SubGroupId ==  null || form.
   numberOfErrorFound++;
   errorMessage=errorMessage+" Sub group,";
 }
+
+if(form.value.rdbBank ==false && form.value.rdbNonBank == false){
+  this.toastr.error("Please select is it Borrower or Lender.","Registration");
+return false;  
+}
+
 if(!IfErrorFound)
 this.registrationService.ShowSection2=true;
 else{
@@ -441,6 +448,7 @@ errorMessage=errorMessage.substring(0,errorMessage.length-1);
 this.toastr.error(errorMessage,"Registration");
   
 }
+
   }
 
 Section3Visible(form:NgForm){
@@ -477,7 +485,7 @@ if(form.value.UserName == undefined || form.value.UserName ==  null || form.valu
   numberOfErrorFound++;
   errorMessage=errorMessage+" User Name,";
 }
-if(form.value.UserTypeId ==2 && (form.value.DepositInsurance == undefined || form.value.DepositInsurance ==  null || form.value.DepositInsurance ==0)){
+if(form.value.UserTypeId ==4 && (form.value.DepositInsurance == undefined || form.value.DepositInsurance ==  null || form.value.DepositInsurance ==0)){
   IfErrorFound=true;
   numberOfErrorFound++;
   errorMessage=errorMessage+" Deposit Insurance,";

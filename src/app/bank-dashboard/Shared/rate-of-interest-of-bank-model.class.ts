@@ -3,7 +3,7 @@ export class RateOfInterestOfBankModel {
     UserId :number;
     IsPublished :boolean;
     TimePeriodId :number;
-    RateOfInterest :number;
+    RateOfInterest :string;
     DateCreated :Date;
     DateModified :Date;
     ModifiedBy :number;

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0048)http://mysandbox.online/forsa/applications.html# -->
+<!-- saved from url=(0048)javascript:void(0); -->
 <html lang="en" class=" -webkit-"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     
     <title>Instimatch Dashboard</title>
@@ -10342,13 +10342,13 @@ font-size: 12px;
                     <div class="col-lg-8 col-md-8">
                         <ul class="in-lang text-right">
                             <li class="active lang-icon">
-                                <a href="http://mysandbox.online/forsa/applications.html#">EN</a>
+                                <a href="javascript:void(0);">EN</a>
                             </li>
                             <li class="french lang-icon">
-                                <a href="http://mysandbox.online/forsa/applications.html#">FR</a>
+                                <a href="javascript:void(0);">FR</a>
                             </li>
                             <li class="lang-icon">
-                                <a href="http://mysandbox.online/forsa/applications.html#">DE</a>
+                                <a href="javascript:void(0);">DE</a>
                             </li>
                             <li>
                                 <p>Account:</p>
@@ -10358,22 +10358,22 @@ font-size: 12px;
                                     <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
 
                                         <select class="mdl-selectfield__select" name="LogicRoom" id="logicroom">expand_more
-                                                    <option value="" disabled="" selected="">LogicRoom</option>
-                                                    <option value="logicroom1">1</option>
+                                                    <option value="" disabled="" selected="">Borrower</option>
+                                                    <!-- <option value="logicroom1">1</option>
                                                     <option value="logicroom2">2</option>
                                                     <option value="logicroom3">3</option>
-                                                    <option value="logicroom4">4</option>
+                                                    <option value="logicroom4">4</option> -->
                                             </select>
                                     </div>
 
                                 </div>
 
                             </li>
+                            <!-- <li>
+                                <a href="javascript:void(0);"><i class="material-icons icon-position">search</i></a>
+                            </li> -->
                             <li>
-                                <a href="http://mysandbox.online/forsa/applications.html#"><i class="material-icons icon-position">search</i></a>
-                            </li>
-                            <li>
-                                <a href="http://mysandbox.online/forsa/applications.html#"><i class="material-icons icon-position">forum</i></a>
+                                <a href="javascript:void(0);"><i class="material-icons icon-position">forum</i></a>
                             </li>
                             <li class="identity">
                                 <a href="javascript:void(0);" (click)="ShowUpdateProfileModal()" data-toggle="modal" data-target=".admin-modal" ><i class="material-icons">perm_identity</i>
@@ -10382,10 +10382,10 @@ font-size: 12px;
                             <li class="identity" title="Logout">
                               <a href="javascript:void(0);" (click)="Logout()"><i class="material-icons">logout</i></a>
                             </li>
-                            <li class="settings">
-                                <a href="http://mysandbox.online/forsa/applications.html#"><i class="material-icons icon-position">settings
+                            <!-- <li class="settings">
+                                <a href="javascript:void(0);"><i class="material-icons icon-position">settings
                                 </i></a>
-                            </li>
+                            </li> -->
                         </ul>
 
                     </div>
@@ -10434,11 +10434,11 @@ font-size: 12px;
                         <div class="dashboard-right application-sec">
                             <div class="in-buttons no-gutters row">
                                 <div class="col-sm-4">
-                                    <input class="form-control green-btn used" [disabled]="IsPublished" type="button" (click)="PublishAndUnPublish(true);" value="PUBLISH" id="publish">
+                                    <input style="cursor: pointer;" class="form-control green-btn used" [disabled]="IsPublished" type="button" (click)="PublishAndUnPublish(true);" value="PUBLISH" id="publish">
                                 </div>
                                 <div class="col-sm-4"></div>
                                 <div class="col-sm-4 pr-1">
-                                    <input class="form-control green-btn used" [disabled]="!IsPublished" type="button" (click)="PublishAndUnPublish(false);" value="STOP PUBLISH" id="publish">
+                                    <input style="cursor: pointer;" class="form-control green-btn used" [disabled]="!IsPublished" type="button" (click)="PublishAndUnPublish(false);" value="STOP PUBLISH" id="publish">
                                 </div>
                             </div>
                             <div *ngFor="let rate of bankDashboardService.listRateOfInterestOfBankModel" class=" no-gutters row">
@@ -10502,11 +10502,11 @@ font-size: 12px;
                                 </div>
                                 
                                 <div class="col-lg-3 col-md-6 col-sm-12 pr-2">
-                                    <input class="form-control green-btn used" type="button" value="Counterparty Configuration" id="" data-toggle="modal" data-target=".counterparty-modal">
+                                    <input style="cursor: pointer;" class="form-control green-btn used" type="button" value="Counterparty Configuration" id="" data-toggle="modal" data-target=".counterparty-modal">
                                 </div>
-                                <div class="col-lg-3 col-md-6 col-sm-12 pr-2">
+                                <!-- <div class="col-lg-3 col-md-6 col-sm-12 pr-2">
                                     <input class="form-control green-btn used" type="button" value="Chat with Forsa" id="">
-                                </div>
+                                </div> -->
                             </div>
                         
                     </div>
@@ -10603,15 +10603,15 @@ font-size: 12px;
                                                     
                                                     <div class="col-md-6">
                                                         <label>First Name *</label>
-                                                        <input #FirstName="ngModel" [(ngModel)]="copyLoggedInUser.FirstName" name="FirstName" type="text" placeholder="" class="form-control" id="first_name">
+                                                        <input #FirstName="ngModel" [disabled]="1==1" [(ngModel)]="copyLoggedInUser.FirstName" name="FirstName" type="text" placeholder="" class="form-control" id="first_name">
                                                     </div>
                                                     <div class="col-md-6">
                                                          <label>Sur Name *</label>
-                                                        <input #SurName="ngModel"[(ngModel)]="copyLoggedInUser.SurName" name="SurName" type="text" placeholder="" class="form-control" id="last_name">
+                                                        <input [disabled]="1==1" #SurName="ngModel"[(ngModel)]="copyLoggedInUser.SurName" name="SurName" type="text" placeholder="" class="form-control" id="last_name">
                                                     </div>
                                                     <div class="col-md-12">
                                                         <label>Company Name *</label>
-                                                        <input #NameOfCompany="ngModel" [(ngModel)]="copyLoggedInUser.NameOfCompany" name="NameOfCompany" type="text" placeholder="" class="form-control" id="company_name">
+                                                        <input [disabled]="1==1" #NameOfCompany="ngModel" [(ngModel)]="copyLoggedInUser.NameOfCompany" name="NameOfCompany" type="text" placeholder="" class="form-control" id="company_name">
                                                     </div>
 
                                                   

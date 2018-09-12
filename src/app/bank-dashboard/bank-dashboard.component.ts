@@ -28,7 +28,10 @@ export class BankDashboardComponent implements OnInit {
   }
 
   async GetRateOfInterestOfBank(){
-    await this.bankDashboardService.GetRateOfInterestOfBank();
+    debugger;
+   let rateList= await this.bankDashboardService.GetRateOfInterestOfBank();
+   this.bankDashboardService.listRateOfInterestOfBankModel=JSON.parse(rateList.data);
+   debugger;
     if(this.bankDashboardService.listRateOfInterestOfBankModel != undefined && this.bankDashboardService.listRateOfInterestOfBankModel != null
     && this.bankDashboardService.listRateOfInterestOfBankModel.length!=0){
       this.IsPublished=this.bankDashboardService.listRateOfInterestOfBankModel[0].IsPublished;
@@ -49,6 +52,7 @@ export class BankDashboardComponent implements OnInit {
     }
     rate.IsDoubleTapped=false;
     rate.ModifiedBy=this.bankDashboardService.userId;
+    rate.RateOfInterest=rate.RateOfInterest.toFixed(2);
     this.bankDashboardService.UpdateRateOfInterest(rate).subscribe(data =>{
     })
   }
@@ -58,7 +62,7 @@ export class BankDashboardComponent implements OnInit {
       this.toastr.error("Rate must be entered.","Dashboard");
       return;
     }
-    rate.RateOfInterest=parseFloat(rate.RateOfInterest)+.10;
+    rate.RateOfInterest=parseFloat(rate.RateOfInterest)+.01;
     rate.RateOfInterest= parseFloat(rate.RateOfInterest).toFixed(2);
     rate.ModifiedBy=this.bankDashboardService.userId;
     this.bankDashboardService.UpdateRateOfInterest(rate).subscribe(data =>{
@@ -70,7 +74,7 @@ export class BankDashboardComponent implements OnInit {
       this.toastr.error("Rate must be entered.","Dashboard");
       return;
     }
-    rate.RateOfInterest= parseFloat(rate.RateOfInterest)-.10;
+    rate.RateOfInterest= parseFloat(rate.RateOfInterest)-.01;
     rate.RateOfInterest= parseFloat(rate.RateOfInterest).toFixed(2);
     rate.ModifiedBy=this.bankDashboardService.userId;
     this.bankDashboardService.UpdateRateOfInterest(rate).subscribe(data =>{

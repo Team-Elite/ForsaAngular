@@ -24,10 +24,13 @@ ConfirmPassword:string='';
   constructor(private http:Http,public authenticateServiceService:AuthenticateServiceService) { }
 
   async GetRateOfInterestOfBank(){
-    await this.http.get(this.authenticateServiceService.baseURL+'/api/BankDashBoard/GetRateOfInterestOfBank?userId='+this.userId).map((data:Response) => {return data.json() as RateOfInterestOfBankModel[];
-  }).toPromise().then(x=>{
-  this.listRateOfInterestOfBankModel=x;
-  })
+  //   await this.http.get(this.authenticateServiceService.baseURL+'/api/BankDashBoard/GetRateOfInterestOfBank?userId='+this.userId).map((data:Response) => {return data.json() as RateOfInterestOfBankModel[];
+  // }).toPromise().then(x=>{
+  // this.listRateOfInterestOfBankModel=x;
+
+  const response= await this.http.get(this.authenticateServiceService.baseURL+'/api/BankDashBoard/GetRateOfInterestOfBank?userId='+this.userId).toPromise();
+      return response.json();
+  // })
   }
 
   UpdateRateOfInterest(rateModel: RateOfInterestOfBankModel){
