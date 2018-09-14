@@ -5,6 +5,7 @@ import {AuthenticateServiceService} from '../../Shared/authenticate-service.serv
 import {Router} from '@angular/router';
 import { ToastrService  } from 'ngx-toastr';
 import { UserModel } from '../../registration/Shared/user-model.model';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,8 @@ import { UserModel } from '../../registration/Shared/user-model.model';
 })
 export class LoginComponent implements OnInit {
   constructor(public loginService:LoginService, public authenticateServiceService:AuthenticateServiceService
-    , public router: Router,public  toastr: ToastrService) { }
+    , public router: Router,public  toastr: ToastrService
+    ,public spinner: NgxSpinnerService) { }
 
 
   IfVerificationDone:boolean=false;
@@ -65,6 +67,7 @@ if(form.value.UserName.indexOf('@')>-1){
       this.toastr.error("Please verify captcha.","Login");
       return false;
     }
+    this.spinner.show();
     let user= await this.loginService.ValidateUser(form.value);
     if(user.IsSuccess == true){
       debugger;
@@ -74,6 +77,7 @@ if(form.value.UserName.indexOf('@')>-1){
     }
     }
     else{
+      this.spinner.hide();
       this.toastr.error("User Name / Email Id or Password is incorrect.","Login");
     }
   }
@@ -94,11 +98,13 @@ if(form.value.UserName.indexOf('@')>-1){
       return false;
     }
     }
+    this.spinner.show();
     let forgotEmail =await this.loginService.ForgotPassword(form.value);
     if(forgotEmail.IsSuccess == true){
       this.toastr.success("Password sent.","Login - Forgot Password");
     }
     else{
+      this.spinner.hide();
       this.toastr.error("Email id is wrong.","Login - Forgot Password");
     }
   }

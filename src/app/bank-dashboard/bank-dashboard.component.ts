@@ -3,6 +3,7 @@ import {BankDashboardService } from './Shared/bank-dashboard.service';
 import {AuthenticateServiceService} from '../Shared/authenticate-service.service';
 import {Router} from '@angular/router';
 import { ToastrService  } from 'ngx-toastr';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-bank-dashboard',
@@ -12,12 +13,13 @@ import { ToastrService  } from 'ngx-toastr';
 export class BankDashboardComponent implements OnInit {
 
   constructor(public bankDashboardService:BankDashboardService, public authenticateServiceService:AuthenticateServiceService, public router: Router
-    , public  toastr: ToastrService) { }
+    , public  toastr: ToastrService, public spinner:NgxSpinnerService) { }
   IsPublished:boolean=false;
   copyLoggedInUser:any;
   testTrue:boolean=false;
 
   ngOnInit() {
+    this.spinner.show();
     debugger;
     this.authenticateServiceService.AuthenticateSession();
     this.bankDashboardService.userId = this.authenticateServiceService.GetUserId();
@@ -25,6 +27,7 @@ export class BankDashboardComponent implements OnInit {
     this.GetUserGroupForSettingRateOfInterestVisibility();
     this.bankDashboardService.loggedInUser= this.authenticateServiceService.GetUserDetail();
     this.copyLoggedInUser = Object.assign({}, this.bankDashboardService.loggedInUser);
+    this.spinner.hide();
   }
 
   async GetRateOfInterestOfBank(){
@@ -61,7 +64,9 @@ export class BankDashboardComponent implements OnInit {
     rate.IsDoubleTapped=false;
     rate.ModifiedBy=this.bankDashboardService.userId;
     rate.RateOfInterest=rate.RateOfInterest.toFixed(2);
+    this.spinner.show();
     this.bankDashboardService.UpdateRateOfInterest(rate).subscribe(data =>{
+    this.spinner.hide();
     })
   }
 
@@ -78,7 +83,9 @@ export class BankDashboardComponent implements OnInit {
     rate.RateOfInterest=parseFloat(rate.RateOfInterest)+.01;
     rate.RateOfInterest= parseFloat(rate.RateOfInterest).toFixed(2);
     rate.ModifiedBy=this.bankDashboardService.userId;
+    this.spinner.show();
     this.bankDashboardService.UpdateRateOfInterest(rate).subscribe(data =>{
+      this.spinner.hide();
     })
   }
 
@@ -94,19 +101,25 @@ export class BankDashboardComponent implements OnInit {
     rate.RateOfInterest= parseFloat(rate.RateOfInterest)-.01;
     rate.RateOfInterest= parseFloat(rate.RateOfInterest).toFixed(2);
     rate.ModifiedBy=this.bankDashboardService.userId;
+    this.spinner.show();
     this.bankDashboardService.UpdateRateOfInterest(rate).subscribe(data =>{
+      this.spinner.hide();
     })
   }
 
   PublishAndUnPublish(value){
+    this.spinner.show();
   this.bankDashboardService.PublishAndUnPublish(value).subscribe(data =>{
+    this.spinner.hide();
     this.IsPublished=value;
     this.toastr.success("Changes saved successfully.","Dashboard");
 })
   }
 
  async GetUserGroupForSettingRateOfInterestVisibility(){
+  this.spinner.show();
   await this.bankDashboardService.GetUserGroupForSettingRateOfInterestVisibility();
+  this.spinner.hide();
   }
 
   GroupCheckUnCheck(event,group){
@@ -123,7 +136,9 @@ export class BankDashboardComponent implements OnInit {
     // if(event == true){
     //   groupsString=groupsString+group.GroupId+',';
     // }
+    this.spinner.show();
     this.bankDashboardService.UpdateUserGroupAgainstBankWhomRateOfInterestWillBeVisible(groupsString).subscribe(data=>{
+      this.spinner.hide();
     this.toastr.success("Saved successfully.","Dashboard");
   })
   }
@@ -142,7 +157,9 @@ export class BankDashboardComponent implements OnInit {
     if(this.ValidateUserPfrofileFields(this.copyLoggedInUser,this.bankDashboardService.NewPassword,this.bankDashboardService.ConfirmPassword)){
       this.copyLoggedInUser.NewPassword=this.bankDashboardService.NewPassword.trim();
       this.copyLoggedInUser.Password=this.copyLoggedInUser.Password.trim();
+      this.spinner.show();
       this.bankDashboardService.UpdateUserProfile(this.copyLoggedInUser).subscribe(data=>{
+        this.spinner.hide();
       if(data !=undefined && data !=null){
         debugger;
         if(data.IsSuccess == false){

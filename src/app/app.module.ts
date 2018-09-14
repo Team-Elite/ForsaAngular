@@ -21,6 +21,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbdModalBasic } from './registration/Shared/modal-basic';
 import { NgbModalBackdrop } from '../../node_modules/@ng-bootstrap/ng-bootstrap/modal/modal-backdrop';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 
 const appRoutes: Routes=[{path:'login',component:LoginComponent},
@@ -51,7 +52,7 @@ const appRoutes: Routes=[{path:'login',component:LoginComponent},
     ToastrModule.forRoot(),
     NgbModule,
     BrowserAnimationsModule,
-    
+    NgxSpinnerModule
   ],
   providers: [
     NgbdModalBasic,

@@ -8,6 +8,7 @@ import {Router} from '@angular/router';
 //import { NgbdModalBasic } from './Shared/modal-basic';
 import { ToastrService  } from 'ngx-toastr';
 //import {FormBuilder, FormGroup, Validators} from '@angular/forms'; 
+import { NgxSpinnerService } from 'ngx-spinner';
  
 @Component({
   selector: '[app-registration]',
@@ -20,7 +21,7 @@ import { ToastrService  } from 'ngx-toastr';
 export class RegistrationComponent implements OnInit {
 
   constructor(public registrationService:RegistrationService,public customValidationServiceService:CustomValidationServiceService
-    , public router: Router, public  toastr: ToastrService
+    , public router: Router, public  toastr: ToastrService, public spinner:NgxSpinnerService
 //  ,public formBuilder:FormBuilder, public formGroup:FormGroup
 ) { }
 
@@ -127,10 +128,12 @@ if(!this.ValidateUserForm(form)){
 return false;
 }
 
+this.spinner.show();
 // Checking ifUserExist
 let userExist= await this.registrationService.CheckIfUserNameIsAvailable(form.value.UserName);
 debugger;
 if(userExist == true){
+  this.spinner.hide();
   this.toastr.error("User name not available.","Registration");
   this.registrationService.userModelExist=null;
   return;
@@ -140,11 +143,13 @@ if(userExist == true){
 let ifEmailIdAlreadyRegistered= await this.registrationService.CheckIfEmailIdIsRegistered(form.value.EmailAddress);
 debugger;
 if(ifEmailIdAlreadyRegistered == true){
+  this.spinner.hide();
   this.toastr.error("This email id is already registered.","Registration");
   //this.registrationService.userModelExist=null;
   return;
 }
 
+this.spinner.hide();
 if(form.value.rdbBank){
   form.value.GroupIds='';
   if(form.value.GroupCommunities)
@@ -167,12 +172,18 @@ if(form.value.rdbNonBank)
 form.value.UserTypeId=form.value.UserTypeId+'5,';
 form.value.UserTypeId= form.value.UserTypeId.substring(0,form.value.UserTypeId.length-1);
 
+this.spinner.show();
 // Registering user..
 this.registrationService.RegisterUser(form.value).subscribe(data =>{
   this.resetForm(form);
+  this.spinner.hide();
+  setTimeout(() => {
+    /** spinner ends after 5 seconds */
+    this.router.navigate(['/login']);
+}, 5000);
   this.toastr.success("Registration is successfull. An email is sent to registered email id. This email have your login credentails.","Registration");
   //location.reload();
-  this.router.navigate(['/login']);
+  
 })
   }
 
