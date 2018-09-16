@@ -1,0 +1,24 @@
+import { Injectable } from '@angular/core';
+import{Http,Response,Headers,RequestOptions,RequestMethod} from '@angular/http';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/toPromise';
+import {AuthenticateServiceService} from '../../Shared/authenticate-service.service';
+import {UserModel} from '../../registration/Shared/user-model.model';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class LenderDashboardService {
+
+  constructor(public http:Http, public authenticateServiceService: AuthenticateServiceService) { }
+
+  userId:number;
+  StartingScreen:string;
+  baseURL:string=this.authenticateServiceService.baseURL;
+  loggedInUser:UserModel;
+
+  async GetLenderStartPage(){
+    const response= await this.http.get(this.authenticateServiceService.baseURL+'/api/LenderStartPage/GetLenderStartPage?userId='+this.userId).toPromise();
+        return response.json();
+    }
+}

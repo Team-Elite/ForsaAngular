@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
     ,public spinner: NgxSpinnerService) { }
 
 
-  IfVerificationDone:boolean=false;
+  IfVerificationDone:boolean=true;
   IfShowPassword:boolean=false;
   public resolved(captchaResponse: string) {
     if(captchaResponse != undefined && captchaResponse != null && captchaResponse.trim().length !=0){
@@ -75,6 +75,10 @@ if(form.value.UserName.indexOf('@')>-1){
       if(JSON.parse(user.data)[0].UserTypeId==4){
       this.router.navigate(['/bankDashBoard']);
     }
+    else if(JSON.parse(user.data)[0].UserTypeId==5){
+      this.router.navigate(['/lenderDashboard']);
+    }
+    
     }
     else{
       this.spinner.hide();

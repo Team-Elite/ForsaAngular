@@ -153,7 +153,7 @@ this.spinner.hide();
 if(form.value.rdbBank){
   form.value.GroupIds='';
   if(form.value.GroupCommunities)
-  form.value.GroupIds="1,";
+  form.value.GroupIds="4,";
   if(form.value.GroupCompanyGMBH)
   form.value.GroupIds=form.value.GroupIds+"2,";
   if(form.value.GroupCompany)

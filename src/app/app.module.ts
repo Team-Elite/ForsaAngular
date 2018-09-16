@@ -9,7 +9,7 @@ import { RegistrationComponent } from './registration/registration.component';
 import { BlockPasteDirective } from './Shared/block-paste.directive';
 import { LoginComponent } from './Login/login/login.component';
 //import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-//import {ToastrModule} from 'ngx-toastr';
+//import {ToastrModule} from 'ngx-toastr'; 
 import {RouterModule,Routes} from '@angular/router';
 import { RecaptchaModule } from 'ng-recaptcha';
 import { BankDashboardComponent } from './bank-dashboard/bank-dashboard.component';
@@ -22,6 +22,8 @@ import { NgbdModalBasic } from './registration/Shared/modal-basic';
 import { NgbModalBackdrop } from '../../node_modules/@ng-bootstrap/ng-bootstrap/modal/modal-backdrop';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { LenderDashboardComponent } from './lender-dashboard/lender-dashboard.component';
+import { BestPriceViewComponent } from './lender-dashboard/best-price-view/best-price-view.component';
 
 
 const appRoutes: Routes=[{path:'login',component:LoginComponent},
@@ -29,6 +31,8 @@ const appRoutes: Routes=[{path:'login',component:LoginComponent},
                          {path:'',redirectTo:'login', pathMatch:'full'},
                          {path:'bankDashBoard',component:BankDashboardComponent},
                          {path:'test',component:TestComponent},
+                         {path:'lenderDashboard',component:LenderDashboardComponent},
+                         {path:'BestPriceView', component:BestPriceViewComponent}
                         // {path:'',redirectTo:'bankDashBoard', pathMatch:'full'},
                         ];
 @NgModule({
@@ -40,6 +44,8 @@ const appRoutes: Routes=[{path:'login',component:LoginComponent},
     BankDashboardComponent,
     TestComponent,
     NgbdModalBasic,
+    LenderDashboardComponent,
+    BestPriceViewComponent,
     
   ],
   imports: [
