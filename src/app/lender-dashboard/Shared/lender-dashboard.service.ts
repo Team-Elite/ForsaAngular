@@ -16,9 +16,18 @@ export class LenderDashboardService {
   StartingScreen:string;
   baseURL:string=this.authenticateServiceService.baseURL;
   loggedInUser:UserModel;
+  NewPassword:string;
+  ConfirmPassword:string;
 
   async GetLenderStartPage(){
     const response= await this.http.get(this.authenticateServiceService.baseURL+'/api/LenderStartPage/GetLenderStartPage?userId='+this.userId).toPromise();
         return response.json();
+    }
+
+    UpdateUserProfile(userModel:UserModel){
+      var body=JSON.stringify(userModel);
+      var headerOptions= new Headers({'Content-Type':'application/json'});
+      var requestOptions=new RequestOptions({method:RequestMethod.Post,headers:headerOptions});
+      return this.http.post(this.authenticateServiceService.baseURL+'/api/User/UpdateUser',body,requestOptions).map(x=> x.json());
     }
 }
