@@ -24,6 +24,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { LenderDashboardComponent } from './lender-dashboard/lender-dashboard.component';
 import { BestPriceViewComponent } from './lender-dashboard/best-price-view/best-price-view.component';
+import {DatePipe} from '@angular/common';
 
 
 const appRoutes: Routes=[{path:'login',component:LoginComponent},
@@ -62,6 +63,7 @@ const appRoutes: Routes=[{path:'login',component:LoginComponent},
   ],
   providers: [
     NgbdModalBasic,
+    DatePipe
   ],
   
   bootstrap: [AppComponent]

@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
     ,public spinner: NgxSpinnerService) { }
 
 
-  IfVerificationDone:boolean=false;
+  IfVerificationDone:boolean=true;
   IfShowPassword:boolean=false;
   public resolved(captchaResponse: string) {
     if(captchaResponse != undefined && captchaResponse != null && captchaResponse.trim().length !=0){

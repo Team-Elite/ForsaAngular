@@ -4,6 +4,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 import {LenderDashboardService} from '../../Shared/lender-dashboard.service';
 import {LenderModel} from '../../Shared/lender-model.class';
+import {LenderSendRequestModel} from '../Shared/lender-send-request-model.class';
 
 
 @Injectable({
@@ -17,6 +18,9 @@ export class BestPriceViewService {
   pageNumber:number;
   listRatesByTimePeriod:LenderModel[];
   listBankByTimePeriod:LenderModel[];
+  lenderSendRequestModel:LenderSendRequestModel;
+  listInterestConvention:any[];
+  listPayments:any[];
 
   async GetRatesByTimePeriod(){
     const response= await this.http.get(this.lenderDashboardService.baseURL+'/api/LenderBestPriceView/GetRatesByTimePeriod?userId='+this.lenderDashboardService.userId).toPromise();
