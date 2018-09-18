@@ -10700,9 +10700,9 @@ direction: ltr;
                                                     <table><tbody><tr><th>LENDER</th><td>{{bestPriceViewService.lenderSendRequestModel.LenderName}}</td></tr>
       <tr><th>BORROWER</th><td>{{bestPriceViewService.lenderSendRequestModel.BorrowerName}}</td></tr>
       <tr><th>AMOUNT</th><td><input #Amount="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.Amount" name="Amount" type="number"  id="amount" class="form-control requestamount"></td></tr>
-      <tr><th>START-DATE </th><td><input #StartDate="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.StartDate" name="StartDate" type="date" id="datepicker" class="form-control hasDatepicker datepicker"></td></tr>
-      <tr><th>END-DATE</th><td><input #EndDate="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.EndDate" name="EndDate" type="date" id="datepicker1" class="form-control hasDatepicker datepicker1"></td></tr>
-      <tr><th>NR. OF DAYS&nbsp;&nbsp;</th><td id="no_of_days"></td></tr>
+      <tr><th>START-DATE </th><td><input (change)="CalculateNumberOfDays()" #StartDate="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.StartDate" name="StartDate" type="date" id="datepicker" class="form-control hasDatepicker datepicker"></td></tr>
+      <tr><th>END-DATE</th><td><input (change)="CalculateNumberOfDays()" #EndDate="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.EndDate" name="EndDate" type="date" id="datepicker1" class="form-control hasDatepicker datepicker1"></td></tr>
+      <tr><th>NR. OF DAYS&nbsp;&nbsp;</th><td id="no_of_days">{{bestPriceViewService.lenderSendRequestModel.NoOfDays}}</td></tr>
       <tr><th>INTEREST CONVENTION</th><td>
         <select [disabled]="1==1" #InterestConvention="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.InterestConvention" name="InterestConvention"  class="form-control" id="interest">
             
@@ -10710,7 +10710,7 @@ direction: ltr;
       <tr><th>PAYMENTS</th><td>
         <select #Payments="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.Payments" name="Payments" [disabled]="1==1" class="form-control" id="payments">
             <option *ngFor="let payment of bestPriceViewService.listPayments" value="{{payment.Id}}">{{payment.Value}}</option></select></td></tr>
-      <tr><td><input type="button" (click)="SaveRequest()" class="btn btn-info btn-lg" id="sendRequest" value="SEND"></td></tr>
+      <tr><td><input type="button" (click)="SaveSendRequest()" class="btn btn-info btn-lg" id="sendRequest" value="SEND"></td></tr>
       </tbody></table>    
                                                        </div>
                                                       <div class="modal-footer">

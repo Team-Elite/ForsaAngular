@@ -32,4 +32,11 @@ export class BestPriceViewService {
       +this.lenderDashboardService.userId+'&timePeriod='+this.timePeriod+'&pageNumber='+this.pageNumber).toPromise();
           return response.json();
       }
+
+  SaveSendRequest(sendRequestModel:LenderSendRequestModel){
+    var body=JSON.stringify(sendRequestModel);
+    var headerOptions= new Headers({'Content-Type':'application/json'});
+    var requestOptions=new RequestOptions({method:RequestMethod.Post,headers:headerOptions});
+    return this.http.post(this.lenderDashboardService.baseURL+'/api/LenderBestPriceView/SaveSendRequest',body,requestOptions).map(x=> x.json());
+    }      
 }

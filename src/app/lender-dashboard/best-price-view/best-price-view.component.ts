@@ -28,8 +28,8 @@ export class BestPriceViewComponent implements OnInit {
     LenderName:'',
     BorrowerName:'',
     Amount :0.00,
-    StartDate :new Date(),
-    EndDate :new Date(),
+    StartDate :'',
+    EndDate :'',
     NoOfDays :0,
     InterestConvention :'',
     Payments :'',
@@ -37,6 +37,18 @@ export class BestPriceViewComponent implements OnInit {
     DateCreated :new Date(),
     DateModified :new Date(),
     RequestCreatedBy :this.bestPriceViewService.lenderDashboardService.userId
+    }
+  }
+  
+  CalculateNumberOfDays(){
+    debugger; 
+    let fromDate: any=new Date(this.bestPriceViewService.lenderSendRequestModel.StartDate);
+    let toDate: any =new Date(this.bestPriceViewService.lenderSendRequestModel.EndDate);
+    if(this.bestPriceViewService.lenderSendRequestModel.StartDate != "" && this.bestPriceViewService.lenderSendRequestModel.EndDate !=""){
+      this.bestPriceViewService.lenderSendRequestModel.NoOfDays= (toDate-fromDate)/86400000;
+    }
+    else{
+      this.bestPriceViewService.lenderSendRequestModel.NoOfDays=0;
     }
   }
 
@@ -59,11 +71,62 @@ export class BestPriceViewComponent implements OnInit {
 
    ShowSendRequestModal(bank:any){
      debugger;
+     this.bestPriceViewService.lenderSendRequestModel.Amount=0;
+     this.bestPriceViewService.lenderSendRequestModel.NoOfDays=0;
+     this.bestPriceViewService.lenderSendRequestModel.BorrowerId=bank.UserId;
+     this.bestPriceViewService.lenderSendRequestModel.LenderId=this.bestPriceViewService.lenderDashboardService.authenticateServiceService.GetUserId();
      this.bestPriceViewService.lenderSendRequestModel.BorrowerName=bank.Bank;
      this.bestPriceViewService.lenderSendRequestModel.LenderName=this.bestPriceViewService.lenderDashboardService.authenticateServiceService.GetLenderName();
      this.bestPriceViewService.lenderSendRequestModel.StartDate = this.pipe.transform(new Date(), 'yyyy-MM-dd');
      this.bestPriceViewService.lenderSendRequestModel.EndDate = this.pipe.transform(new Date(), 'yyyy-MM-dd');
      this.bestPriceViewService.lenderSendRequestModel.InterestConvention=this.bestPriceViewService.listInterestConvention[0].Id;
      this.bestPriceViewService.lenderSendRequestModel.Payments=this.bestPriceViewService.listPayments[0].Id;
+   }
+
+   SaveSendRequest(){
+     debugger;
+
+     if(!this.ValidateSendRequest(this.bestPriceViewService.lenderSendRequestModel)){
+       return false;
+     }
+
+    this.spinner.show(); 
+    this.bestPriceViewService.SaveSendRequest(this.bestPriceViewService.lenderSendRequestModel).subscribe(data =>{
+    this.spinner.hide();
+    this.toastr.success("Request sent successfully.","Dashboard");
+      
+    })
+   }
+
+   ValidateSendRequest(requestModel:any){
+
+    if(requestModel.Amount ==0){
+      this.toastr.error('Amounut can not be 0.');
+      return false;
+    }
+    let currentDate:any= new Date(this.pipe.transform(new Date(), 'yyyy-MM-dd')).getTime();
+    let startDate: any= new Date(requestModel.StartDate).getTime();
+    let endDate: any= new Date(requestModel.EndDate).getTime();
+    if(startDate< currentDate){
+      this.toastr.error('Start date can not be less than from today date.');
+      return false;
+    }
+
+    if(endDate< currentDate){
+      this.toastr.error('End date can not be less than from today date.');
+      return false;
+    }
+
+    if(endDate<startDate){
+      this.toastr.error('End date can not be less than start date.');
+      return false;
+    }
+
+    if(currentDate == endDate){
+      this.toastr.error('Start and End date can not be same.');
+      return false;
+    }
+
+    return true;
    }
 }
