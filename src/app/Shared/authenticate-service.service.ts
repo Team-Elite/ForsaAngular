@@ -49,6 +49,12 @@ export class AuthenticateServiceService {
       return JSON.parse(userId)[0].NameOfCompany;
     }
 
+    GetEmailId(){
+      debugger;
+      let userId =this.storage.get(this.userValue);
+      return JSON.parse(userId)[0].EmailAddress;
+    }
+
     GetBorrowerName(){
       debugger;
       let userId =this.storage.get(this.userValue);

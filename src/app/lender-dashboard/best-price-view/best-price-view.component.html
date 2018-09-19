@@ -10633,7 +10633,7 @@ direction: ltr;
                                     <button type="button" class="btn w-100 bold-btn green-btn in-buttons"> EUR (T/N)</button>
                                 </div>
                             </div>
-                            <div *ngFor="let bank of bestPriceViewService.listBankByTimePeriod" class=" no-gutters row">
+                            <div *ngFor="let bank of bestPriceViewService.listBankByTimePeriod | paginate: { itemsPerPage: 10, currentPage: p }" class=" no-gutters row">
                                 <div class="col-md-3 pr-1">
                                     <button type="button" class="btn w-100 active"> INFO</button>
                                 </div>
@@ -10649,34 +10649,13 @@ direction: ltr;
                             </div>
                             
                             <nav aria-label="Page navigation example" class="pagination-links">
-                                <ul class="pagination">
-                                <li class="page-item">
-                                    <a class="page-link" href="http://mysandbox.online/forsa/index.html#" aria-label="Previous">
-                                    <span aria-hidden="true">«</span>
-                                    <span class="sr-only">Previous</span>
-                                    </a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="http://mysandbox.online/forsa/index.html#" aria-label="Previous">
-                                    <span aria-hidden="true">&lt;</span>
-                                    <span class="sr-only">Previous</span>
-                                    </a>
-                                </li>
-                                <li class="page-item"><a class="page-link" href="http://mysandbox.online/forsa/index.html#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="http://mysandbox.online/forsa/index.html#">2</a></li>
-                                 <li class="page-item">
-                                    <a class="page-link" href="http://mysandbox.online/forsa/index.html#" aria-label="Previous">
-                                    <span aria-hidden="true">   &gt;</span>
-                                    <span class="sr-only">Next</span>
-                                    </a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="http://mysandbox.online/forsa/index.html#" aria-label="Next">
-                                    <span aria-hidden="true">»</span>
-                                    <span class="sr-only">Next</span>
-                                    </a>
-                                </li>
-                                </ul>
+                                <pagination-controls (pageChange)="p = $event"
+                                                  directionLinks="true"
+                                                  autoHide="true"
+                                                  responsive="true"
+                                                  previousLabel=""
+                                                  nextLabel=""></pagination-controls>
+                                
                             </nav>
                         </div>
                     </div>
@@ -10686,7 +10665,7 @@ direction: ltr;
                                              <!-- Large modal -->
                                              <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Large modal</button> -->
 
-                                             <div class="modal fade bd-example-modal-lg dashboard-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                             <div id="modalSendRequest" class="modal fade bd-example-modal-lg dashboard-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                                                <div class="modal-dialog modal-lg">
                                                  <div class="modal-content">
                                                    <div class="modal-header">
@@ -10699,7 +10678,7 @@ direction: ltr;
                                                    <div class="modal-body" id="lendrequestbody">
                                                     <table><tbody><tr><th>LENDER</th><td>{{bestPriceViewService.lenderSendRequestModel.LenderName}}</td></tr>
       <tr><th>BORROWER</th><td>{{bestPriceViewService.lenderSendRequestModel.BorrowerName}}</td></tr>
-      <tr><th>AMOUNT</th><td><input #Amount="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.Amount" name="Amount" type="number"  id="amount" class="form-control requestamount"></td></tr>
+      <tr><th>AMOUNT</th><td><input (keypress)="numberOnly($event)" #Amount="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.Amount" name="Amount" type="text"  id="amount" class="form-control requestamount"></td></tr>
       <tr><th>START-DATE </th><td><input (change)="CalculateNumberOfDays()" #StartDate="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.StartDate" name="StartDate" type="date" id="datepicker" class="form-control hasDatepicker datepicker"></td></tr>
       <tr><th>END-DATE</th><td><input (change)="CalculateNumberOfDays()" #EndDate="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.EndDate" name="EndDate" type="date" id="datepicker1" class="form-control hasDatepicker datepicker1"></td></tr>
       <tr><th>NR. OF DAYS&nbsp;&nbsp;</th><td id="no_of_days">{{bestPriceViewService.lenderSendRequestModel.NoOfDays}}</td></tr>
@@ -10715,6 +10694,7 @@ direction: ltr;
                                                        </div>
                                                       <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        <button id="closeSendRequestModal" style="display:none;" type="button" data-dismiss="modal" class="btn btn-secondary">Close 12</button>
                                                         
                                                       </div>
 

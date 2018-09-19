@@ -14,6 +14,7 @@ export class BestPriceViewComponent implements OnInit {
   constructor(public bestPriceViewService:BestPriceViewService,public spinner:NgxSpinnerService
     , public toastr:ToastrService, public pipe:DatePipe) { }
 
+    p:any;
   ngOnInit() {
     this.spinner.show();
     this.GetRatesByTimePeriod();
@@ -36,7 +37,10 @@ export class BestPriceViewComponent implements OnInit {
     IsRequestAccepted :false,
     DateCreated :new Date(),
     DateModified :new Date(),
-    RequestCreatedBy :this.bestPriceViewService.lenderDashboardService.userId
+    RequestCreatedBy :this.bestPriceViewService.lenderDashboardService.userId,
+    InterestConventionName:'',
+    LenderEmailId:'',
+    PaymentsName:'',
     }
   }
   
@@ -69,8 +73,19 @@ export class BestPriceViewComponent implements OnInit {
     this.spinner.hide();
    }
 
+   //It checks if key pressed is integer or not if not then it returns false.
+numberOnly(event): boolean {
+  const charCode = (event.which) ? event.which : event.keyCode;
+  if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+    return false;
+  }
+  return true;
+
+}
    ShowSendRequestModal(bank:any){
      debugger;
+    //  document.getElementById('modalSendRequest').style.display='block';
+    //  document.getElementById('modalSendRequest').style.display='block';
      this.bestPriceViewService.lenderSendRequestModel.Amount=0;
      this.bestPriceViewService.lenderSendRequestModel.NoOfDays=0;
      this.bestPriceViewService.lenderSendRequestModel.BorrowerId=bank.UserId;
@@ -81,10 +96,25 @@ export class BestPriceViewComponent implements OnInit {
      this.bestPriceViewService.lenderSendRequestModel.EndDate = this.pipe.transform(new Date(), 'yyyy-MM-dd');
      this.bestPriceViewService.lenderSendRequestModel.InterestConvention=this.bestPriceViewService.listInterestConvention[0].Id;
      this.bestPriceViewService.lenderSendRequestModel.Payments=this.bestPriceViewService.listPayments[0].Id;
+     this.bestPriceViewService.lenderSendRequestModel.LenderEmailId=this.bestPriceViewService.lenderDashboardService.authenticateServiceService.GetEmailId();
    }
 
    SaveSendRequest(){
      debugger;
+     for(var i =0; i<= this.bestPriceViewService.listInterestConvention.length-1;i++){
+       if(this.bestPriceViewService.lenderSendRequestModel.InterestConvention == this.bestPriceViewService.listInterestConvention[i].Id){
+        this.bestPriceViewService.lenderSendRequestModel.InterestConventionName=this.bestPriceViewService.listInterestConvention[i].Value;
+        break;
+       }
+     }
+
+     for(var i =0; i<= this.bestPriceViewService.listPayments.length-1;i++){
+      if(this.bestPriceViewService.lenderSendRequestModel.Payments == this.bestPriceViewService.listPayments[i].Id){
+       this.bestPriceViewService.lenderSendRequestModel.PaymentsName=this.bestPriceViewService.listPayments[i].Value;
+       break;
+      }
+    }
+     
 
      if(!this.ValidateSendRequest(this.bestPriceViewService.lenderSendRequestModel)){
        return false;
@@ -93,12 +123,29 @@ export class BestPriceViewComponent implements OnInit {
     this.spinner.show(); 
     this.bestPriceViewService.SaveSendRequest(this.bestPriceViewService.lenderSendRequestModel).subscribe(data =>{
     this.spinner.hide();
-    this.toastr.success("Request sent successfully.","Dashboard");
-      
+    this.toastr.success("Your Requst has been sent, kindly check your email for more details.","Dashboard");
+    var element= document.getElementById('closeSendRequestModal');
+    element.click();
     })
    }
 
    ValidateSendRequest(requestModel:any){
+
+    if(requestModel.Amount == undefined && requestModel.Amount == null && requestModel.Amount.length==0){
+      this.toastr.error("Please fill amount.","Dashboard");
+      return false;
+    }
+    if(requestModel.Amount != undefined && requestModel.Amount != null && requestModel.Amount.length!=0){
+      try{
+        if(isNaN(Number(requestModel.Amount.toString())) == true ){
+          this.toastr.error("Amount must be numeric.","Registration");
+          return false;  
+        }
+      }
+      catch{
+  return false;
+      }
+    }
 
     if(requestModel.Amount ==0){
       this.toastr.error('Amounut can not be 0.');

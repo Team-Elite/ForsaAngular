@@ -14,4 +14,8 @@ export class LenderSendRequestModel {
     DateCreated :Date;
     DateModified :Date;
     RequestCreatedBy :number;
+    InterestConventionName:string;
+    PaymentsName:string;
+    LenderEmailId:string;
+
 }

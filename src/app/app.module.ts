@@ -25,6 +25,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { LenderDashboardComponent } from './lender-dashboard/lender-dashboard.component';
 import { BestPriceViewComponent } from './lender-dashboard/best-price-view/best-price-view.component';
 import {DatePipe} from '@angular/common';
+import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
 
 
 const appRoutes: Routes=[{path:'login',component:LoginComponent},
@@ -59,7 +60,8 @@ const appRoutes: Routes=[{path:'login',component:LoginComponent},
     ToastrModule.forRoot(),
     NgbModule,
     BrowserAnimationsModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    NgxPaginationModule
   ],
   providers: [
     NgbdModalBasic,
