@@ -10704,18 +10704,18 @@ font-size: 12px;
                             <a href="http://mysandbox.online/forsa/index.html#" data-toggle="modal" data-target=".bd-example-modal-lg-setting-page">SETTING START PAGE<span class="align-middle input-group-icon "><i class="material-icons ">dashboard</i></span></a>
                         </li>
                         <li>
-                            <a href="javascript:void(0);">LENDER  SETTINGS<span class="align-middle input-group-icon "><i class="material-icons ">speaker_notes
+                            <a href="javascript:void(0);" (click)="SetCurrentPage('Lender Settings')">LENDER  SETTINGS<span class="align-middle input-group-icon "><i class="material-icons ">speaker_notes
                                 </i></span></a>
                         </li>
                         <li>
-                            <a href="javascript:void(0);" routerLink="/BestPriceView">BEST PRICE VIEW<span class="align-middle input-group-icon "><i class="material-icons ">settings</i></span></a>
+                            <a href="javascript:void(0);" (click)="SetCurrentPage('Best Price View')">BEST PRICE VIEW<span class="align-middle input-group-icon "><i class="material-icons ">settings</i></span></a>
                         </li>
                         <li>
-                            <a href="javascript:void(0);">VIEW ALL PRICE<span class="align-middle input-group-icon "><i class="material-icons ">view_list</i></span>
+                            <a href="javascript:void(0);" (click)="SetCurrentPage('View All Price')">VIEW ALL PRICE<span class="align-middle input-group-icon "><i class="material-icons ">view_list</i></span>
                                                 </a>
                         </li>
                         <li>
-                            <a href="javascript:void(0);">ALL BANKS<span class="align-middle input-group-icon "><i class="material-icons ">view_list</i></span>
+                            <a href="javascript:void(0);" (click)="SetCurrentPage('All Banks')">ALL BANKS<span class="align-middle input-group-icon "><i class="material-icons ">view_list</i></span>
                                                     </a>
                         </li>
                         <!-- <li>
@@ -10726,13 +10726,236 @@ font-size: 12px;
                             <a href="# ">Support<span class="align-middle input-group-icon "><i class="material-icons ">people</i></span>
                                                             </a>
                         </li> -->
-
                     </ul>
                 </div>
             </aside>
             <!-- Aside Ends Here-->
+            
+<div *ngIf="lenderDashboardService.CurrentPageName=='Best Price View'">
+  <app-best-price-view></app-best-price-view>
+</div>
 
-          <app-best-price-view></app-best-price-view>
+<div *ngIf="lenderDashboardService.CurrentPageName=='View All Price'">
+  <div class="container-fluid" id="main-panel">
+               
+               <div class="row lendersetting">
+                   <div class="col-lg-4 col-md-12 col-sm-12">
+                       <ul>
+                           <li class="heading">Bank</li>
+                           <form>
+   
+                           <li>
+                              <div class="form-md-line-input has-error">
+                                   <div class=" input-group" *ngFor="let bank of viewAllPriceService.listViewAllPrice1">
+                                       <span class="line">{{bank.Bank}}</span>
+                                       <input id="{{bank.UserId}}" name="{{bank.UserId}}" [(ngModel)]="bank.IsSelected" (ngModelChange)="DeselectSelectBank(bank)" type="checkbox" class="cbx used">
+                                       <label for="{{bank.UserId}}" class="lbl notrobot"> 
+                                       </label>
+                                   </div>
+                               </div>
+                           </li>
+                       </form>
+                       </ul>
+                   </div>
+   
+                    <div class="col-lg-4 col-md-12 col-sm-12">
+                       <ul>
+                           <!-- <li class="heading head-second">Bank</li> -->
+                           <form>
+   
+                           <li>
+                              <div class=" form-md-line-input has-error">
+                                <div class=" input-group" *ngFor="let bank of viewAllPriceService.listViewAllPrice2">
+                                       <span class="line">{{bank.Bank}}</span>
+                                       <input id="{{bank.UserId}}" name="{{bank.UserId}}" [(ngModel)]="bank.IsSelected" (ngModelChange)="DeselectSelectBank(bank)" type="checkbox" class="cbx used">
+                                       <label for="{{bank.UserId}}" class="lbl notrobot"> 
+                                       </label>
+                                   </div>
+                               </div>
+                           </li>
+                       </form>
+                       </ul>
+                   </div>
+   
+                    <div class="col-lg-4 col-md-12 col-sm-12">
+                       <ul>
+                          <!--  <li class="heading head-third">Bank</li> -->
+                           <form>
+   
+                           <li>
+                              <div class="form-md-line-input has-error">
+                                <div class=" input-group" *ngFor="let bank of viewAllPriceService.listViewAllPrice3">
+                                       <span class="line">{{bank.Bank}}</span>
+                                       <input id="{{bank.UserId}}" name="{{bank.UserId}}" [(ngModel)]="bank.IsSelected" (ngModelChange)="DeselectSelectBank(bank)" type="checkbox" class="cbx used">
+                                       
+                                       <label for="{{bank.UserId}}" class="lbl notrobot"> 
+                                       </label>
+                                   </div>
+                               </div>
+                           </li>
+                       </form>
+                       </ul>
+                   </div>
+                   
+               </div>
+                 
+               
+   
+   
+   
+              
+   
+               <!-- <div class="container-fluid" id="main-panel"> -->
+                   <div class="row dashboard-price-list">
+                       <div class="col-lg-12">
+                           <table class="table table-bordered table-responsive">
+                               <tbody><tr>
+                                   <th>All Banks</th>
+                                   <th>Tag</th>
+                                   <th>1 W</th>
+                                   <th>2 W</th>
+                                   <th>3 W</th>
+                                   <th>1 M</th>
+                                   <th>2 M</th>
+                                   <th>3 M</th>
+                                   <th>4 M</th>
+                                   <th>5 M</th>
+                                   <th>6 M</th>
+                                   <th>7 M</th>
+                                   <th>8 M</th>
+                                   <th>9 M</th>
+                                   <th>10 M</th>
+                                   <th>11 M</th>
+                                   <th>12 M</th>
+                                   <th>2 Y</th>
+                                   <th>3 Y</th>
+                                   <th>4 Y</th>
+                                   <th>5 Y</th>
+                               </tr>
+
+                               <tr *ngFor="let bank of viewAllPriceService.listAllBanks">
+                                   <td>{{bank.Bank}}</td>
+                                   <td>{{bank.TN}}</td>
+                                   <td>{{bank.Week1}}</td>
+                                   <td>{{bank.Week2}}</td>
+                                   <td>{{bank.Week3}}</td>
+                                   <td>{{bank.Month1}}</td>
+                                   <td>{{bank.Month2}}</td>
+                                   <td>{{bank.Month3}}</td>
+                                   <td>{{bank.Month4}}</td>
+                                   <td>{{bank.Month5}}</td>
+                                   <td>{{bank.Month6}}</td>
+                                   <td>{{bank.Month7}}</td>
+                                   <td>{{bank.Month8}}</td>
+                                   <td>{{bank.Month9}}</td>
+                                   <td>{{bank.Month10}}</td>
+                                   <td>{{bank.Month11}}</td>
+                                   <td>{{bank.Month12}}</td>
+                                   <td>{{bank.Year2}}</td>
+                                   <td>{{bank.Year3}}</td>
+                                   <td>{{bank.Year4}}</td>
+                                   <td>{{bank.Year5}}</td>
+                                   
+                               </tr>
+                               
+                           </tbody></table>
+                       </div>
+                   </div>
+               </div>
+</div>
+
+<div *ngIf="lenderDashboardService.CurrentPageName=='All Banks'">
+  <div class="container-fluid" id="main-panel">
+                <div class="row dashboard-price-list">
+                    <div class="col-lg-12">
+                        <table class="table table-bordered table-responsive">
+                            <tbody><tr>
+                                <th>GESAMTÜBERSICHT</th>
+                                <th>Tag</th>
+                                <th>1 W</th>
+                                <th>2 W</th>
+                                <th>3 W</th>
+                                <th>1 M</th>
+                                <th>2 M</th>
+                                <th>3 M</th>
+                                <th>4 M</th>
+                                <th>5 M</th>
+                                <th>6 M</th>
+                                <th>7 M</th>
+                                <th>8 M</th>
+                                <th>9 M</th>
+                                <th>10 M</th>
+                                <th>11 M</th>
+                                <th>12 M</th>
+                                <th>2 Y</th>
+                                <th>3 Y</th>
+                                <th>4 Y</th>
+                                <th>5 Y</th>
+                            </tr>
+                            <tr *ngFor="let bank of allBanksService.listAllBanks">
+                                   <td>{{bank.Bank}}</td>
+                                   <td>{{bank.TN}}</td>
+                                   <td>{{bank.Week1}}</td>
+                                   <td>{{bank.Week2}}</td>
+                                   <td>{{bank.Week3}}</td>
+                                   <td>{{bank.Month1}}</td>
+                                   <td>{{bank.Month2}}</td>
+                                   <td>{{bank.Month3}}</td>
+                                   <td>{{bank.Month4}}</td>
+                                   <td>{{bank.Month5}}</td>
+                                   <td>{{bank.Month6}}</td>
+                                   <td>{{bank.Month7}}</td>
+                                   <td>{{bank.Month8}}</td>
+                                   <td>{{bank.Month9}}</td>
+                                   <td>{{bank.Month10}}</td>
+                                   <td>{{bank.Month11}}</td>
+                                   <td>{{bank.Month12}}</td>
+                                   <td>{{bank.Year2}}</td>
+                                   <td>{{bank.Year3}}</td>
+                                   <td>{{bank.Year4}}</td>
+                                   <td>{{bank.Year5}}</td>
+                                   
+                               </tr>
+                        </tbody></table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade bd-example-modal-lg-marrino dashboard-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" style="display: none;" aria-hidden="true">
+                                               <div class="modal-dialog modal-lg">
+                                                 <div class="modal-content">
+                                                   <div class="modal-header">
+                                                     <h5 class="modal-title" id="exampleModalLongTitle">SEND REQUEST</h5>
+                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                       <span aria-hidden="true">×</span>
+                                                     </button>
+                                                   </div>
+
+                                                   <div class="modal-body" id="lendrequestbody">
+                                                    <table><tbody><tr><th>LENDER</th><td>Stadt Singen</td></tr>
+      <tr><th>BORROWER</th><td>Marrino Bank</td></tr>
+      <tr><th>AMOUNT</th><td><input type="number" id="amount" class="form-control requestamount"></td></tr>
+      <tr><th>START-DATE</th><td><input type="date" id="datepicker" class="form-control hasDatepicker datepicker"></td></tr>
+      <tr><th>END-DATE</th><td><input type="date" id="datepicker1" class="form-control hasDatepicker datepicker1"></td></tr>
+      <tr><th>NR. OF DAYS&nbsp;&nbsp;</th><td id="no_of_days"></td></tr>
+      <tr><th>INTEREST CONVENTION</th><td><select class="form-control" id="interest"><option value="act360">act/360</option></select></td></tr>
+      <tr><th>PAYMENTS</th><td><select class="form-control" id="payments"><option value="yearly payments">yearly payments</option></select></td></tr>
+      <tr><td><input type="button" class="btn btn-info btn-lg" id="sendRequest" value="SEND"></td></tr>
+      </tbody></table>    
+        
+                                                       </div>
+                                                      <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        
+                                                      </div>
+
+                                                 </div>
+                                               </div>
+                                             </div>
+</div>
+
+          
+
 
                 <!--admin icon modal page tab-->
         <div class="modal fade bd-example-modal-lg-setting-page admin-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">

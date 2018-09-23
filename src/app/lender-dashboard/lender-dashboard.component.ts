@@ -4,6 +4,8 @@ import {AuthenticateServiceService} from '../Shared/authenticate-service.service
 import {Router} from '@angular/router';
 import { ToastrService  } from 'ngx-toastr';
 import {LenderDashboardService} from './Shared/lender-dashboard.service';
+import {AllBanksService} from './Shared/all-banks.service';
+import {ViewAllPriceService} from './Shared/view-all-price.service';
 
 @Component({
   selector: 'app-lender-dashboard',
@@ -13,9 +15,11 @@ import {LenderDashboardService} from './Shared/lender-dashboard.service';
 export class LenderDashboardComponent implements OnInit {
 
   constructor(public lenderDashboardService:LenderDashboardService, public spinner:NgxSpinnerService
-    ,public authenticateServiceService:AuthenticateServiceService, public router:Router, public  toastr: ToastrService) { }
+    ,public authenticateServiceService:AuthenticateServiceService, public router:Router, public  toastr: ToastrService
+    , public allBanksService:AllBanksService, public viewAllPriceService:ViewAllPriceService) { }
 
     copyLoggedInUser:any;
+    
 
   ngOnInit() {
     this.spinner.show();
@@ -33,8 +37,10 @@ export class LenderDashboardComponent implements OnInit {
    let startPage= await this.lenderDashboardService.GetLenderStartPage();
    this.lenderDashboardService.StartingScreen=JSON.parse(startPage.data);
    this.spinner.hide();
-   if(this.lenderDashboardService.StartingScreen == "Best Price View")
-   this.router.navigate(['/BestPriceView']);
+   if(this.lenderDashboardService.StartingScreen[0].PageName == "Best Price View"){
+    this.lenderDashboardService.CurrentPageName="Best Price View";
+    //this.router.navigate(['/BestPriceView']);
+   }
   }
 
   Logout(){
@@ -132,4 +138,74 @@ export class LenderDashboardComponent implements OnInit {
       this.lenderDashboardService.ConfirmPassword='';
        this.copyLoggedInUser = Object.assign({}, this.lenderDashboardService.loggedInUser);
      }
+
+  SetCurrentPage(pageName:string){
+    debugger;
+    this.lenderDashboardService.CurrentPageName=pageName;
+    if(pageName=="All Banks"){
+      this.GetAllBanksWithInterestRateHorizontaly();
+    }
+    else if(pageName=='View All Price'){
+      this.viewAllPriceService.listViewAllPrice1=[];
+      this.viewAllPriceService.listViewAllPrice2=[];
+      this.viewAllPriceService.listViewAllPrice3=[];
+      this.GetAllBanksWithStatusIsDeselected();
+      this.GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected();
+    }
+  }
+
+  /* STARTS -----------******* All Banks region ****------------------*/
+  async GetAllBanksWithInterestRateHorizontaly(){
+    debugger;
+    this.spinner.show();
+    let rates= await this.allBanksService.GetAllBanksWithInterestRateHorizontaly();
+    this.allBanksService.listAllBanks=JSON.parse(rates.data);
+    this.spinner.hide();
+   }
+
+   /* ENDS-----------******* All Banks region ****------------------*/
+
+    /* STARTS -----------******* View All Price region ****------------------*/
+  async GetAllBanksWithStatusIsDeselected(){
+    debugger;
+    this.viewAllPriceService.count=0;
+    this.spinner.show();
+    let rates= await this.viewAllPriceService.GetAllBanksWithStatusIsDeselected();
+    this.viewAllPriceService.listViewAllPrice=JSON.parse(rates.data);
+    for(var i=0;i<=this.viewAllPriceService.listViewAllPrice.length-1;i++){
+      if(this.viewAllPriceService.count>16){
+        this.viewAllPriceService.listViewAllPrice3[this.viewAllPriceService.listViewAllPrice3.length]=this.viewAllPriceService.listViewAllPrice[i];
+      }
+      else if(this.viewAllPriceService.count>7){
+        this.viewAllPriceService.listViewAllPrice2[this.viewAllPriceService.listViewAllPrice2.length]=this.viewAllPriceService.listViewAllPrice[i];
+      }
+      else{
+        this.viewAllPriceService.listViewAllPrice1[i]=this.viewAllPriceService.listViewAllPrice[i];
+      }
+    this.viewAllPriceService.count++;
+    }
+    this.spinner.hide();
+   }
+
+  async DeselectSelectBank(bank:any){
+    debugger;
+  this.spinner.show();
+  var result = await this.viewAllPriceService.DeselectSelectBank(bank.UserId, bank.IsSelected);
+  if(JSON.parse(result.IsSuccess)){
+  this.GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected();
+  }else{
+    this.toastr.error("Some issue occured.","Dashboard");
+  }
+  this.spinner.hide();
+   }
+
+   async GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected(){
+    this.spinner.show();
+    let rates= await this.viewAllPriceService.GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected();
+    this.viewAllPriceService.listAllBanks=JSON.parse(rates.data);
+    this.spinner.hide(); 
+   }
+
+
+   /* ENDS-----------******* View All Price region ****------------------*/
 }

@@ -13,11 +13,12 @@ export class LenderDashboardService {
   constructor(public http:Http, public authenticateServiceService: AuthenticateServiceService) { }
 
   userId:number;
-  StartingScreen:string;
+  StartingScreen:any[];
   baseURL:string=this.authenticateServiceService.baseURL;
   loggedInUser:UserModel;
   NewPassword:string;
   ConfirmPassword:string;
+  CurrentPageName:string;
 
   async GetLenderStartPage(){
     const response= await this.http.get(this.authenticateServiceService.baseURL+'/api/LenderStartPage/GetLenderStartPage?userId='+this.userId).toPromise();
