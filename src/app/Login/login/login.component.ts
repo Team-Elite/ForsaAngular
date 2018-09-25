@@ -6,6 +6,7 @@ import {Router} from '@angular/router';
 import { ToastrService  } from 'ngx-toastr';
 import { UserModel } from '../../registration/Shared/user-model.model';
 import { NgxSpinnerService } from 'ngx-spinner';
+import {LenderDashboardService} from '../../lender-dashboard/Shared/lender-dashboard.service';
 
 @Component({
   selector: 'app-login',
@@ -15,10 +16,11 @@ import { NgxSpinnerService } from 'ngx-spinner';
 export class LoginComponent implements OnInit {
   constructor(public loginService:LoginService, public authenticateServiceService:AuthenticateServiceService
     , public router: Router,public  toastr: ToastrService
-    ,public spinner: NgxSpinnerService) { }
+    ,public spinner: NgxSpinnerService
+    ,public lenderDashboardService:LenderDashboardService) { }
 
 
-  IfVerificationDone:boolean=true;
+  IfVerificationDone:boolean=false;
   IfShowPassword:boolean=false;
   public resolved(captchaResponse: string) {
     if(captchaResponse != undefined && captchaResponse != null && captchaResponse.trim().length !=0){
@@ -76,7 +78,19 @@ if(form.value.UserName.indexOf('@')>-1){
       this.router.navigate(['/bankDashBoard']);
     }
     else if(JSON.parse(user.data)[0].UserTypeId==5){
-      this.router.navigate(['/lenderDashboard']);
+      
+  this.lenderDashboardService.userId = this.authenticateServiceService.GetUserId();
+  let startPage= await this.lenderDashboardService.GetLenderStartPage();
+  this.lenderDashboardService.StartingScreen=JSON.parse(startPage.data);
+  if(this.lenderDashboardService.StartingScreen[0].PageName == "Best Price View"){
+  this.router.navigate(['lenderDashboard/BestPriceView']);
+   }
+   else if(this.lenderDashboardService.StartingScreen[0].PageName == "View All Price"){
+    this.router.navigate(['lenderDashboard/ViewAllPrice']);
+   }
+   else if(this.lenderDashboardService.StartingScreen[0].PageName == "All Banks"){
+    this.router.navigate(['lenderDashboard/AllBanks']);
+   }
     }
     
     }

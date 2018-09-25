@@ -25,7 +25,9 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { LenderDashboardComponent } from './lender-dashboard/lender-dashboard.component';
 import { BestPriceViewComponent } from './lender-dashboard/best-price-view/best-price-view.component';
 import {DatePipe} from '@angular/common';
-import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
+import {NgxPaginationModule} from 'ngx-pagination';
+import { ViewAllPriceComponent } from './lender-dashboard/view-all-price/view-all-price.component';
+import { AllBanksComponent } from './lender-dashboard/all-banks/all-banks.component'; // <-- import the module
 
 
 const appRoutes: Routes=[{path:'login',component:LoginComponent},
@@ -33,8 +35,12 @@ const appRoutes: Routes=[{path:'login',component:LoginComponent},
                          {path:'',redirectTo:'login', pathMatch:'full'},
                          {path:'bankDashBoard',component:BankDashboardComponent},
                          {path:'test',component:TestComponent},
-                         {path:'lenderDashboard',component:LenderDashboardComponent},
-                         {path:'BestPriceView', component:BestPriceViewComponent}
+                         {path:'lenderDashboard',component:LenderDashboardComponent,
+               children:[{path:"BestPriceView",component:BestPriceViewComponent},
+                         {path:"ViewAllPrice",component:ViewAllPriceComponent} ,
+                         {path:'AllBanks',component:AllBanksComponent}           
+              ]}
+                        //  {path:'BestPriceView', component:BestPriceViewComponent}
                         // {path:'',redirectTo:'bankDashBoard', pathMatch:'full'},
                         ];
 @NgModule({
@@ -48,6 +54,8 @@ const appRoutes: Routes=[{path:'login',component:LoginComponent},
     NgbdModalBasic,
     LenderDashboardComponent,
     BestPriceViewComponent,
+    ViewAllPriceComponent,
+    AllBanksComponent,
     
   ],
   imports: [
