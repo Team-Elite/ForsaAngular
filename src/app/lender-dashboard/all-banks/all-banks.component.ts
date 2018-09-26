@@ -26,6 +26,15 @@ export class AllBanksComponent implements OnInit {
     this.spinner.hide();
    }
 
+   async GetAllBanksWithInterestRateHorizontalyOrderByColumnName(columnName:string){
+    debugger;
+    this.spinner.show();
+    let rates= await this.allBanksService.GetAllBanksWithInterestRateHorizontalyOrderByColumnName(columnName);
+    this.allBanksService.listAllBanks=JSON.parse(rates.data);
+    this.GetHighestRates();
+    this.spinner.hide();
+   }
+
    GetHighestRates(){
 debugger;
      if(this.allBanksService.listAllBanks!=undefined &&this.allBanksService.listAllBanks!= null && this.allBanksService.listAllBanks.length !=0){

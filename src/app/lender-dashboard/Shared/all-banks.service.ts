@@ -37,4 +37,10 @@ export class AllBanksService {
     const response= await this.http.get(this.lenderDashboardService.baseURL+'/api/LenderDashboard/GetAllBanksWithInterestRateHorizontaly?userId='+this.lenderDashboardService.userId).toPromise();
     return response.json();
     }
+
+    async GetAllBanksWithInterestRateHorizontalyOrderByColumnName(orderByColumn:string){
+      const response= await this.http.get(this.lenderDashboardService.baseURL+'/api/LenderDashboard/GetAllBanksWithInterestRateHorizontalyOrderByColumnName?userId='+this.lenderDashboardService.userId
+      +'&orderBy='+orderByColumn).toPromise();
+      return response.json();
+      }
 }
