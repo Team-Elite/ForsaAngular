@@ -15,9 +15,17 @@ export class BestPriceViewComponent implements OnInit {
     , public toastr:ToastrService, public pipe:DatePipe) { }
 
     p:any;
+    selectedTimePeriod:number=null;
   ngOnInit() {
     this.spinner.show();
     this.GetRatesByTimePeriod();
+    this.bestPriceViewService.listBankByTimePeriod=[];
+    var selectedTimePeriodId= undefined;
+    selectedTimePeriodId =this.bestPriceViewService.lenderDashboardService.authenticateServiceService.GetSavedSelectedTimePeriodId();
+    if(selectedTimePeriodId != undefined){
+      this.selectedTimePeriod=selectedTimePeriodId;
+      this.GetBanksByTimePeriod(selectedTimePeriodId);
+    }
 
     this.bestPriceViewService.listInterestConvention=[{Id:1, Value:'act/360'}];
     this.bestPriceViewService.listPayments=[{Id:1, Value:'yearly payments'}];
@@ -65,6 +73,9 @@ export class BestPriceViewComponent implements OnInit {
 
    async GetBanksByTimePeriod(timePeriodId:number){
     debugger;
+    //document.getElementById(timePeriodId.toString());
+    this.selectedTimePeriod=timePeriodId;
+    this.bestPriceViewService.lenderDashboardService.authenticateServiceService.SaveSelectedTimePeriodId(timePeriodId);
     this.bestPriceViewService.timePeriod=timePeriodId;
     this.bestPriceViewService.pageNumber=1;
     this.spinner.show();

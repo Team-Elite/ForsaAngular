@@ -8,6 +8,7 @@ import {Router} from '@angular/router'
 export class AuthenticateServiceService {
   userValue:string='userValue';
   sessionCreatedAt:string='sessionCreatedAt';
+  selectedBestPriceId:string='selectedBestPriceId';
   baseURL:string='http://elitecore.cloudapp.net:8081';
   //baseURL:string='http://localhost:60744/';
   constructor(@Inject(LOCAL_STORAGE) private storage: StorageService, public router: Router) { }
@@ -70,6 +71,17 @@ export class AuthenticateServiceService {
     ClearSession(){
       debugger;
       this.storage.remove(this.userValue);
+      this.storage.remove(this.selectedBestPriceId);
       this.storage.remove(this.sessionCreatedAt);
     }
+
+    SaveSelectedTimePeriodId(value:any){
+      this.storage.set(this.selectedBestPriceId,value);
+      }
+  
+      GetSavedSelectedTimePeriodId(){
+        debugger;
+        let Id =this.storage.get(this.selectedBestPriceId);
+        return Id;
+      }
 }
