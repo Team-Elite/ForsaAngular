@@ -10666,7 +10666,7 @@ direction: ltr;
                        </form>
                        </ul>
                    </div>
-                   
+                   <ngb-pagination [collectionSize]="70" pageSize="10" (pageChange)="test($event)" [(page)]="page" aria-label="Default pagination"></ngb-pagination>
                </div>
                  
                
@@ -10680,27 +10680,27 @@ direction: ltr;
                        <div class="col-lg-12">
                            <table class="table table-bordered table-responsive">
                                <tbody><tr>
-                                   <th>All Banks</th>
-                                   <th>Tag</th>
-                                   <th>1 W</th>
-                                   <th>2 W</th>
-                                   <th>3 W</th>
-                                   <th>1 M</th>
-                                   <th>2 M</th>
-                                   <th>3 M</th>
-                                   <th>4 M</th>
-                                   <th>5 M</th>
-                                   <th>6 M</th>
-                                   <th>7 M</th>
-                                   <th>8 M</th>
-                                   <th>9 M</th>
-                                   <th>10 M</th>
-                                   <th>11 M</th>
-                                   <th>12 M</th>
-                                   <th>2 Y</th>
-                                   <th>3 Y</th>
-                                   <th>4 Y</th>
-                                   <th>5 Y</th>
+                                <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected()" >All Banks</th>
+                                <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('TN')">Tag</th>
+                                <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Week1')">1 W</th>
+                                <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Week2')">2 W</th>
+                                <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Week3')">3 W</th>
+                                <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Month1')">1 M</th>
+                                <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Month2')">2 M</th>
+                                <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Month3')">3 M</th>
+                                <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Month4')">4 M</th>
+                                <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Month5')">5 M</th>
+                                <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Month6')">6 M</th>
+                                <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Month7')">7 M</th>
+                                <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Month8')">8 M</th>
+                                <th (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Month9')">9 M</th>
+                                <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Month10')">10 M</th>
+                                <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Month11')">11 M</th>
+                                <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Month12')">12 M</th>
+                                <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Year2')">2 Y</th>
+                                <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Year3')">3 Y</th>
+                                <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Year4')">4 Y</th>
+                                <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Year5')">5 Y</th>
                                </tr>
 
                                <tr *ngFor="let bank of viewAllPriceService.listAllBanks">

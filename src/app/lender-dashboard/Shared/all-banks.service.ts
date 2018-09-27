@@ -38,9 +38,9 @@ export class AllBanksService {
     return response.json();
     }
 
-    async GetAllBanksWithInterestRateHorizontalyOrderByColumnName(orderByColumn:string){
+  async GetAllBanksWithInterestRateHorizontalyOrderByColumnName(orderByColumn:string){
       const response= await this.http.get(this.lenderDashboardService.baseURL+'/api/LenderDashboard/GetAllBanksWithInterestRateHorizontalyOrderByColumnName?userId='+this.lenderDashboardService.userId
       +'&orderBy='+orderByColumn).toPromise();
       return response.json();
-      }
+    }
 }

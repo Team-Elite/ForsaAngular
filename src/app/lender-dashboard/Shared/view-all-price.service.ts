@@ -48,6 +48,12 @@ export class ViewAllPriceService {
     return response.json();
       }
 
+    async GetAllBanksWithInterestRateHorizontalyOrderByColumnName(orderByColumn:string){
+        const response= await this.http.get(this.lenderDashboardService.baseURL+'/api/LenderDashboard/GetAllBanksWithInterestRateHorizontalyOrderByColumnName?userId='+this.lenderDashboardService.userId
+        +'&orderBy='+orderByColumn).toPromise();
+        return response.json();
+      }
+
     async DeselectSelectBank(bankId:number,IsSelected:Boolean){
       const response= await this.http.get(this.lenderDashboardService.baseURL+'/api/LenderDashboard/DeselectBank?userId='+this.lenderDashboardService.userId+"&bankId="+bankId+"&IsSelected="+IsSelected).toPromise();
       return response.json();

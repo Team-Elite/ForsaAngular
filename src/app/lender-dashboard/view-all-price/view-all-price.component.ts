@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ViewAllPriceService} from '../Shared/view-all-price.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService  } from 'ngx-toastr';
+import {NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-view-all-price',
   templateUrl: './view-all-price.component.html',
@@ -11,6 +12,9 @@ export class ViewAllPriceComponent implements OnInit {
 
   constructor(public viewAllPriceService:ViewAllPriceService,public spinner:NgxSpinnerService
     , public toastr:ToastrService) { }
+
+  page:number=2;
+  previousPage: any;
 
   ngOnInit() {
      this.viewAllPriceService.listViewAllPrice1=[];
@@ -188,4 +192,20 @@ export class ViewAllPriceComponent implements OnInit {
 
        }
 
+  async GetAllBanksWithInterestRateHorizontalyOrderByColumnName(columnName:string){
+        debugger;
+        this.spinner.show();
+        let rates= await this.viewAllPriceService.GetAllBanksWithInterestRateHorizontalyOrderByColumnName(columnName);
+        this.viewAllPriceService.listAllBanks=JSON.parse(rates.data);
+        this.GetHighestRatesViewAllPrice();
+        this.spinner.hide();
+       }
+
+  test(page: number) {
+        debugger;
+        if (page !== this.previousPage) {
+          this.previousPage = page;
+          alert(page);
+        }
+      }
 }
