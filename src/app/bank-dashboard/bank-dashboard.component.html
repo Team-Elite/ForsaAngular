@@ -10529,11 +10529,25 @@ font-size: 12px;
                                                     <form>
                                                     <div class="row">
                                                       <div class="form-md-line-input has-error col-sm-12">
-                                <div *ngFor="let group of bankDashboardService.listUserGroupForSettingRateOfInterestVisibility" class=" input-group">
-                                    <span class="line">{{group.GroupName}}</span>
-                                    <input id="{{group.GroupName}}" name="{{group.GroupName}}" [(ngModel)]="group.IfRateWillBeVisible" (ngModelChange)="GroupCheckUnCheck($event,group)" type="checkbox" class="cbx used" checked="checked">
+                                <div  *ngFor="let group of bankDashboardService.listUserGroupForSettingRateOfInterestVisibility" class=" input-group">
+                                  <div *ngIf="bankDashboardService.lastGroupId == group.GroupName" class=" input-group">
+
+                                  
+                                  <span class="line">{{group.GroupName}}</span>
+                                  
+                                    <input   type="checkbox" class="cbx used" checked="checked">
                                     <label for="{{group.GroupName}}" class="lbl notrobot"> 
-                                    </label>
+                                      </label>
+                                    </div>
+                                    <div *ngIf="bankDashboardService.lastGroupId != group.GroupName" class=" input-group">
+
+                                  
+                                        <span class="line">{{group.GroupName}}</span>
+                                          <input  id="{{group.GroupName}}" name="{{group.GroupName}}" [(ngModel)]="group.IfRateWillBeVisible" (ngModelChange)="GroupCheckUnCheck($event,group);" type="checkbox" class="cbx used" checked="checked">
+                                          <label for="{{group.GroupName}}" class="lbl notrobot"> 
+                                            </label>
+                                          </div>
+                                  
                                 </div>
                                 
                                 

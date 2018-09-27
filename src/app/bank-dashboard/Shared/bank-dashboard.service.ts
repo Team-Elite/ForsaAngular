@@ -19,6 +19,7 @@ userId:number=0;
 loggedInUser:UserModel;
 NewPassword:string='';
 ConfirmPassword:string='';
+lastGroupId:string='';
 //baseURL:string='http://localhost:60744/';
 //baseURL:string='http://elitecore.cloudapp.net:8081';
   constructor(private http:Http,public authenticateServiceService:AuthenticateServiceService) { }

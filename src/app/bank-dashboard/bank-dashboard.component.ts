@@ -119,29 +119,61 @@ export class BankDashboardComponent implements OnInit {
  async GetUserGroupForSettingRateOfInterestVisibility(){
   this.spinner.show();
   await this.bankDashboardService.GetUserGroupForSettingRateOfInterestVisibility();
+  // Checking if only one group is left checked or not.
+    // If true then disabling control from getting unchecked.
+    this.IfLastGroupLeftThenDisablingControl();
   this.spinner.hide();
   }
 
   GroupCheckUnCheck(event,group){
-    debugger;
+//    debugger;
     let groupsString:string='';
+    var ifNoneIsSelected:boolean=true;
+
+    // Making string of group ids which are checked.
     for(var i=0;i<= this.bankDashboardService.listUserGroupForSettingRateOfInterestVisibility.length -1;i++){
       let obj:any= this.bankDashboardService.listUserGroupForSettingRateOfInterestVisibility[i];
       // if(obj.GroupName != group.GroupName && obj.IfRateWillBeVisible == true){
         if(obj.IfRateWillBeVisible == true){
-        groupsString=groupsString+obj.GroupId+',';
+          ifNoneIsSelected=false;
+          groupsString=groupsString+obj.GroupId+',';  
       }
     }
+
+    
     groupsString = groupsString.substring(0,groupsString.length-1);
-    // if(event == true){
-    //   groupsString=groupsString+group.GroupId+',';
-    // }
+    
+    // Checking if none is selected then not saving last remaining grous value in db.
+    if(!ifNoneIsSelected){
     this.spinner.show();
     this.bankDashboardService.UpdateUserGroupAgainstBankWhomRateOfInterestWillBeVisible(groupsString).subscribe(data=>{
       this.spinner.hide();
     this.toastr.success("Saved successfully.","Dashboard");
+
+    // Checking if only one group is left checked or not.
+    // If true then disabling control from getting unchecked.
+      this.IfLastGroupLeftThenDisablingControl();
   })
+}
   }
+
+  
+IfLastGroupLeftThenDisablingControl(){
+  var numberOfGroupsChecked=0;
+  for(var i=0;i<= this.bankDashboardService.listUserGroupForSettingRateOfInterestVisibility.length -1;i++){
+    let obj:any= this.bankDashboardService.listUserGroupForSettingRateOfInterestVisibility[i];
+    if(obj.IfRateWillBeVisible){
+      this.bankDashboardService.lastGroupId=obj.GroupName;
+      numberOfGroupsChecked++;
+    }
+  }
+  if(numberOfGroupsChecked == 1){
+
+  }
+  else{
+    this.bankDashboardService.lastGroupId='';
+  }
+}
 
   Logout(){
     //if(confirm("Are you sure you want to log out?")){

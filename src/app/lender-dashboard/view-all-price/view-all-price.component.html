@@ -10666,7 +10666,7 @@ direction: ltr;
                        </form>
                        </ul>
                    </div>
-                   <ngb-pagination [collectionSize]="70" pageSize="10" (pageChange)="test($event)" [(page)]="page" aria-label="Default pagination"></ngb-pagination>
+                   <ngb-pagination [collectionSize]="viewAllPriceService.toatlBanksCount" pageSize="15" (pageChange)="pageChange($event)" [(page)]="viewAllPriceService.selectedPageNumber" aria-label="Default pagination"></ngb-pagination>
                </div>
                  
                

@@ -16,6 +16,8 @@ export class ViewAllPriceService {
     listViewAllPrice3:any[]=[];
     listAllBanks:any[]=[];
     count:number=0;
+    selectedPageNumber:number=1;
+    toatlBanksCount:number;
 
     HighestRateTN:string;
   HighestRateW1:string;
@@ -39,7 +41,8 @@ export class ViewAllPriceService {
   HighestRateY5:string;
 
     async GetAllBanksWithStatusIsDeselected(){
-    const response= await this.http.get(this.lenderDashboardService.baseURL+'/api/LenderDashboard/GetAllBanksWithStatusIsDeselected?userId='+this.lenderDashboardService.userId).toPromise();
+    const response= await this.http.get(this.lenderDashboardService.baseURL+'/api/LenderDashboard/GetAllBanksWithStatusIsDeselected?userId='+this.lenderDashboardService.userId
+    +'&PageNumber='+this.selectedPageNumber).toPromise();
     return response.json();
     }
 

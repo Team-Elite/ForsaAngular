@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
     ,public lenderDashboardService:LenderDashboardService) { }
 
 
-  IfVerificationDone:boolean=false;
+  IfVerificationDone:boolean=true;
   IfShowPassword:boolean=false;
   public resolved(captchaResponse: string) {
     if(captchaResponse != undefined && captchaResponse != null && captchaResponse.trim().length !=0){

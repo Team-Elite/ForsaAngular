@@ -13,7 +13,6 @@ export class ViewAllPriceComponent implements OnInit {
   constructor(public viewAllPriceService:ViewAllPriceService,public spinner:NgxSpinnerService
     , public toastr:ToastrService) { }
 
-  page:number=2;
   previousPage: any;
 
   ngOnInit() {
@@ -27,14 +26,20 @@ export class ViewAllPriceComponent implements OnInit {
   async GetAllBanksWithStatusIsDeselected(){
     debugger;
     this.viewAllPriceService.count=0;
+    this.viewAllPriceService.listViewAllPrice1=[];
+    this.viewAllPriceService.listViewAllPrice2=[];
+    this.viewAllPriceService.listViewAllPrice3=[];
     this.spinner.show();
     let rates= await this.viewAllPriceService.GetAllBanksWithStatusIsDeselected();
     this.viewAllPriceService.listViewAllPrice=JSON.parse(rates.data);
+    if(this.viewAllPriceService.listViewAllPrice != undefined && this.viewAllPriceService.listViewAllPrice != null && this.viewAllPriceService.listViewAllPrice.length!=0){
+      this.viewAllPriceService.toatlBanksCount=this.viewAllPriceService.listViewAllPrice[0].Count;
+    }
     for(var i=0;i<=this.viewAllPriceService.listViewAllPrice.length-1;i++){
-      if(this.viewAllPriceService.count>16){
+      if(this.viewAllPriceService.count>9){
         this.viewAllPriceService.listViewAllPrice3[this.viewAllPriceService.listViewAllPrice3.length]=this.viewAllPriceService.listViewAllPrice[i];
       }
-      else if(this.viewAllPriceService.count>7){
+      else if(this.viewAllPriceService.count>4){
         this.viewAllPriceService.listViewAllPrice2[this.viewAllPriceService.listViewAllPrice2.length]=this.viewAllPriceService.listViewAllPrice[i];
       }
       else{
@@ -201,11 +206,10 @@ export class ViewAllPriceComponent implements OnInit {
         this.spinner.hide();
        }
 
-  test(page: number) {
-        debugger;
+  pageChange(page: number) {
         if (page !== this.previousPage) {
-          this.previousPage = page;
-          alert(page);
+          this.viewAllPriceService.selectedPageNumber =page;
+          this.GetAllBanksWithStatusIsDeselected();
         }
       }
 }
