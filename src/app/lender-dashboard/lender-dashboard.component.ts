@@ -4,7 +4,7 @@ import {AuthenticateServiceService} from '../Shared/authenticate-service.service
 import {Router} from '@angular/router';
 import { ToastrService  } from 'ngx-toastr';
 import {LenderDashboardService} from './Shared/lender-dashboard.service';
-
+import {StartPageModel} from './Shared/start-page-model.class';
 
 
 @Component({
@@ -18,6 +18,13 @@ export class LenderDashboardComponent implements OnInit {
     ,public authenticateServiceService:AuthenticateServiceService, public router:Router, public  toastr: ToastrService) { }
 
     copyLoggedInUser:any;
+    SelectedStartPage:any;
+    listPagesForStartingPage:StartPageModel[];
+    testList=[{Id:1,Value:'Test1'},
+    {Id:2,Value:'Test2'},
+    {Id:3,Value:'Test3'},
+    {Id:4,Value:'Test4'},
+    {Id:5,Value:'Test5'}];
     
 
   ngOnInit() {
@@ -27,6 +34,9 @@ export class LenderDashboardComponent implements OnInit {
     this.lenderDashboardService.userId = this.authenticateServiceService.GetUserId();
     this.lenderDashboardService.loggedInUser= this.authenticateServiceService.GetUserDetail();
     this.copyLoggedInUser = Object.assign({}, this.lenderDashboardService.loggedInUser);
+    this.GetPagesForLenderSettingStartPage();
+    debugger;
+    this.SelectedStartPage=this.testList[0].Id;
     //this.GetLenderStartPage();
     
   }
@@ -132,7 +142,7 @@ export class LenderDashboardComponent implements OnInit {
     
     }
 
-    ShowUpdateProfileModal(){
+  ShowUpdateProfileModal(){
       this.lenderDashboardService.NewPassword='';
       this.lenderDashboardService.ConfirmPassword='';
        this.copyLoggedInUser = Object.assign({}, this.lenderDashboardService.loggedInUser);
@@ -151,4 +161,38 @@ export class LenderDashboardComponent implements OnInit {
       this.router.navigate(['lenderDashboard/ViewAllPrice']);
     }
   }
+
+async GetPagesForLenderSettingStartPage(){
+  this.spinner.show();
+ var response=await this.lenderDashboardService.GetPagesForLenderSettingStartPage();
+ this.listPagesForStartingPage=JSON.parse(response.data);
+ if(this.listPagesForStartingPage !=undefined && this.listPagesForStartingPage.length!=0){
+   for(var i=0; this.listPagesForStartingPage.length-1;i++){
+     if(this.listPagesForStartingPage[i].IsStartPage == true){
+       debugger;
+        this.SelectedStartPage=this.listPagesForStartingPage[i].PageId;
+        break;
+     }
+   }
+ }
+ this.spinner.hide();
+}
+
+async LenderSaveStartPage(){
+  this.spinner.show();
+var response=await this.lenderDashboardService.LenderSaveStartPage(this.SelectedStartPage);
+if(response.IsSuccess)
+{
+this.toastr.success("Start page updated successfully.","Dashboard");
+var element= document.getElementById('btnCloseSetStartPageModal');
+    element.click();
+}
+else{
+this.toastr.error("Something went wrong");
+}
+this.spinner.hide();
+
+ }
+
+
 }

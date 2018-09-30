@@ -10440,6 +10440,17 @@
    width: 375px;
    max-width: 100%;
   }
+
+  .admin-modal input#AcceptRequest {
+   width: 375px;
+   max-width: 100%;
+  }
+
+
+  .admin-modal input#RejectRequest {
+   width: 375px;
+   max-width: 100%;
+  }
   .bd-example-modal-lg-setting-page select#setting_start_page {
    background: #37383d;
    border-radius: 0px;
@@ -10512,7 +10523,7 @@
    color: #fff;
   }
   
-  #lendrequestbody #sendRequest{
+  #lendrequestbody #sendRequest #AcceptRequest #RejectRequest{
   background-color: #8636d7;
    border: #8636d7;
    border-bottom: 1px solid grey !important;
@@ -10535,7 +10546,7 @@
   @media screen and (max-width: 991px) {
   #lendrequestbody table tbody tr td input {
    width: 225px;}
-  .admin-modal input#sendRequest {
+  .admin-modal input#sendRequest #AcceptRequest #RejectRequest {
    width: 225px;
   }
   
@@ -10664,7 +10675,8 @@
                   <!-- modal start-->
                                                <!-- Large modal -->
                                                <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Large modal</button> -->
-  
+                                               <button Id="ShowSendRequestPopup" type="button" style="display:none;" class="btn w-100 active" data-toggle="modal" data-target=".bd-example-modal-lg">Lend</button>
+
                                                <div id="modalSendRequest" class="modal fade bd-example-modal-lg dashboard-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                                                  <div class="modal-dialog modal-lg">
                                                    <div class="modal-content">
@@ -10678,18 +10690,22 @@
                                                      <div class="modal-body" id="lendrequestbody">
                                                       <table><tbody><tr><th>LENDER</th><td>{{bestPriceViewService.lenderSendRequestModel.LenderName}}</td></tr>
         <tr><th>BORROWER</th><td>{{bestPriceViewService.lenderSendRequestModel.BorrowerName}}</td></tr>
-        <tr><th>AMOUNT</th><td><input (keypress)="numberOnly($event)" #Amount="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.Amount" name="Amount" type="text"  id="amount" class="form-control requestamount"></td></tr>
-        <tr><th>START-DATE </th><td><input (change)="CalculateNumberOfDays()" #StartDate="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.StartDate" name="StartDate" type="date" id="datepicker" class="form-control hasDatepicker datepicker"></td></tr>
-        <tr><th>END-DATE</th><td><input (change)="CalculateNumberOfDays()" #EndDate="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.EndDate" name="EndDate" type="date" id="datepicker1" class="form-control hasDatepicker datepicker1"></td></tr>
+        <tr><th>AMOUNT</th><td><input [disabled]="IfBankResponseFound" (keypress)="numberOnly($event)" #Amount="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.Amount" name="Amount" type="text"  id="amount" class="form-control requestamount"></td></tr>
+        <tr><th>START-DATE </th><td><input [disabled]="IfBankResponseFound" (change)="CalculateNumberOfDays()" #StartDate="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.StartDate" name="StartDate" type="date" id="datepicker" class="form-control hasDatepicker datepicker"></td></tr>
+        <tr><th>END-DATE</th><td><input [disabled]="IfBankResponseFound" (change)="CalculateNumberOfDays()" #EndDate="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.EndDate" name="EndDate" type="date" id="datepicker1" class="form-control hasDatepicker datepicker1"></td></tr>
         <tr><th>NR. OF DAYS&nbsp;&nbsp;</th><td id="no_of_days">{{bestPriceViewService.lenderSendRequestModel.NoOfDays}}</td></tr>
         <tr><th>INTEREST CONVENTION</th><td>
-          <select [disabled]="1==1" #InterestConvention="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.InterestConvention" name="InterestConvention"  class="form-control" id="interest">
+          <select [disabled]="1==1 || IfBankResponseFound" #InterestConvention="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.InterestConvention" name="InterestConvention"  class="form-control" id="interest">
               
               <option *ngFor="let interest of bestPriceViewService.listInterestConvention" value="{{interest.Id}}">{{interest.Value}}</option></select></td></tr>
         <tr><th>PAYMENTS</th><td>
-          <select #Payments="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.Payments" name="Payments" [disabled]="1==1" class="form-control" id="payments">
+          <select #Payments="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.Payments" name="Payments" [disabled]="1==1 || IfBankResponseFound" class="form-control" id="payments">
               <option *ngFor="let payment of bestPriceViewService.listPayments" value="{{payment.Id}}">{{payment.Value}}</option></select></td></tr>
-        <tr><td><input type="button" (click)="SaveSendRequest()" class="btn btn-info btn-lg" id="sendRequest" value="SEND"></td></tr>
+              <tr *ngIf="IfBankResponseFound"><th>Rate Of Interest</th><td><input [disabled]="1==1" (keypress)="numberWithDecimalOnly($event)" #RateOfInterest="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.RateOfInterest" name="RateOfInterest" type="text"  id="RateOfInterest" class="form-control requestamount" maxlength="7"></td></tr>
+        <tr *ngIf="!IfBankResponseFound"><td><input type="button" (click)="SaveSendRequest()" class="btn btn-info btn-lg" id="sendRequest" value="SEND"></td></tr>
+        <tr *ngIf="IfBankResponseFound"><td><input type="button" (click)="AcceptLendedRequest()" class="btn btn-info btn-lg" id="AcceptRequest" value="ACCEPT"></td>
+            <td><input type="button" (click)="RejectLendedRequest()" class="btn btn-info btn-lg" id="RejectRequest" value="REJECT"></td>
+        </tr>
         </tbody></table>    
                                                          </div>
                                                         <div class="modal-footer">

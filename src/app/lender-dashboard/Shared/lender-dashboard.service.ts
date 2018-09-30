@@ -25,10 +25,21 @@ export class LenderDashboardService {
         return response.json();
     }
 
-    UpdateUserProfile(userModel:UserModel){
+  UpdateUserProfile(userModel:UserModel){
       var body=JSON.stringify(userModel);
       var headerOptions= new Headers({'Content-Type':'application/json'});
       var requestOptions=new RequestOptions({method:RequestMethod.Post,headers:headerOptions});
       return this.http.post(this.authenticateServiceService.baseURL+'/api/User/UpdateUser',body,requestOptions).map(x=> x.json());
-    }
+  }
+  
+  async GetPagesForLenderSettingStartPage(){
+      const response= await this.http.get(this.authenticateServiceService.baseURL+'/api/LenderDashboard/GetPagesForLenderSettingStartPage?userId='+this.userId).toPromise();
+          return response.json();
+  }
+
+  async LenderSaveStartPage(pageId:number){
+    const response= await this.http.get(this.authenticateServiceService.baseURL+'/api/LenderDashboard/LenderSaveStartPage?userId='+this.userId
+    +"&pageId="+pageId.toString()).toPromise();
+        return response.json();
+}
 }

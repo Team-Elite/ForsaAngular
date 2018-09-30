@@ -7,6 +7,7 @@ import 'rxjs/add/operator/toPromise';
 import { GroupModel } from '../../Shared/group-model.class';
 import {AuthenticateServiceService} from '../../Shared/authenticate-service.service';
 import {UserModel} from '../../registration/Shared/user-model.model';
+import {LenderSendRequestModel} from '../../lender-dashboard/best-price-view/Shared/lender-send-request-model.class';
 
 @Injectable({
   providedIn: 'root'
@@ -20,8 +21,8 @@ loggedInUser:UserModel;
 NewPassword:string='';
 ConfirmPassword:string='';
 lastGroupId:string='';
-//baseURL:string='http://localhost:60744/';
-//baseURL:string='http://elitecore.cloudapp.net:8081';
+lenderSendRequestModel:LenderSendRequestModel;
+
   constructor(private http:Http,public authenticateServiceService:AuthenticateServiceService) { }
 
   async GetRateOfInterestOfBank(){
@@ -67,5 +68,18 @@ lastGroupId:string='';
     var headerOptions= new Headers({'Content-Type':'application/json'});
     var requestOptions=new RequestOptions({method:RequestMethod.Post,headers:headerOptions});
     return this.http.post(this.authenticateServiceService.baseURL+'/api/User/UpdateUser',body,requestOptions).map(x=> x.json());
+  }
+
+  async GetLenderSendRequestRequestdOnTheBasisOfBorrowerId(){
+    const response = await this.http.get(this.authenticateServiceService.baseURL+'/api/BankDashBoard'
+    +'/GetLenderSendRequestRequestdOnTheBasisOfBorrowerId?borrowerId='+this.userId).toPromise();
+  return response.json();
+  }
+
+  UpdateLenderSendRequestRateOfInterest(lenderSendRequestModel :any){
+    var body=JSON.stringify(lenderSendRequestModel);
+    var headerOptions= new Headers({'Content-Type':'application/json'});
+    var requestOptions=new RequestOptions({method:RequestMethod.Post,headers:headerOptions});
+    return this.http.post(this.authenticateServiceService.baseURL+'/api/BankDashBoard/UpdateRateOfInterest',body,requestOptions).map(x=> x.json());
   }
 }

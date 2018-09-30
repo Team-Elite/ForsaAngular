@@ -16,6 +16,7 @@ export class BestPriceViewComponent implements OnInit {
 
     p:any;
     selectedTimePeriod:number=null;
+    IfBankResponseFound:boolean=false;
   ngOnInit() {
     this.spinner.show();
     this.GetRatesByTimePeriod();
@@ -49,7 +50,12 @@ export class BestPriceViewComponent implements OnInit {
     InterestConventionName:'',
     LenderEmailId:'',
     PaymentsName:'',
+    IsAccepted:null,
+    IsRejected:null,
+    RateOfInterest:0.00
     }
+
+    this.GetLenderSendRequestPendingLendedRequestByLenderId();
   }
   
   CalculateNumberOfDays(){
@@ -97,6 +103,30 @@ numberOnly(event): boolean {
      debugger;
     //  document.getElementById('modalSendRequest').style.display='block';
     //  document.getElementById('modalSendRequest').style.display='block';
+    this.IfBankResponseFound=false;
+     this.bestPriceViewService.lenderSendRequestModel=this.bestPriceViewService.lenderSendRequestModel={
+      RequestId :0,
+      LenderId :0,
+      BorrowerId :0,
+      LenderName:'',
+      BorrowerName:'',
+      Amount :0.00,
+      StartDate :'',
+      EndDate :'',
+      NoOfDays :0,
+      InterestConvention :'',
+      Payments :'',
+      IsRequestAccepted :false,
+      DateCreated :new Date(),
+      DateModified :new Date(),
+      RequestCreatedBy :this.bestPriceViewService.lenderDashboardService.userId,
+      InterestConventionName:'',
+      LenderEmailId:'',
+      PaymentsName:'',
+      IsAccepted:null,
+      IsRejected:null,
+      RateOfInterest:0.00
+      };
      this.bestPriceViewService.lenderSendRequestModel.Amount=0;
      this.bestPriceViewService.lenderSendRequestModel.NoOfDays=0;
      this.bestPriceViewService.lenderSendRequestModel.BorrowerId=bank.UserId;
@@ -187,4 +217,45 @@ numberOnly(event): boolean {
 
     return true;
    }
+
+   async GetLenderSendRequestPendingLendedRequestByLenderId(){
+    debugger;
+    this.spinner.show();
+    var result = await this.bestPriceViewService.GetLenderSendRequestPendingLendedRequestByLenderId();
+    if(result.IsSuccess && result.IfDataFound == true){
+      this.IfBankResponseFound=true;
+      var element= document.getElementById('ShowSendRequestPopup');
+      element.click();
+      this.bestPriceViewService.lenderSendRequestModel=JSON.parse(result.data)[0];    
+    }
+    this.spinner.hide();
+  }
+
+  AcceptLendedRequest(){
+    debugger;
+    
+    this.spinner.show();
+    this.bestPriceViewService.lenderSendRequestModel.IsAccepted=true;
+    var result= this.bestPriceViewService.AcceptLendedRequest(this.bestPriceViewService.lenderSendRequestModel).subscribe(data =>{
+      this.toastr.success('Your deal is completed.','Dashboard');
+      this.spinner.hide();
+      var element= document.getElementById('closeSendRequestModal');
+   element.click();
+    });
+    
+  }
+
+  RejectLendedRequest(){
+    debugger;
+    
+    this.spinner.show();
+    this.bestPriceViewService.lenderSendRequestModel.IsRejected=true;
+    var result= this.bestPriceViewService.RejectLendedRequest(this.bestPriceViewService.lenderSendRequestModel).subscribe(data =>{
+      this.toastr.success('The Deal request has been declined.','Dashboard');
+      this.spinner.hide();
+      var element= document.getElementById('closeSendRequestModal');
+   element.click();
+    });
+    
+  }
 }

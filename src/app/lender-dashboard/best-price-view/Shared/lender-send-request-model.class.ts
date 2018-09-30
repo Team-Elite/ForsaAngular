@@ -17,5 +17,8 @@ export class LenderSendRequestModel {
     InterestConventionName:string;
     PaymentsName:string;
     LenderEmailId:string;
+    IsAccepted:boolean;
+    IsRejected:boolean;
+    RateOfInterest:number;
 
 }

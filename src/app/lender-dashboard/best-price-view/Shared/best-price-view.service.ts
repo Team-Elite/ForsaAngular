@@ -19,8 +19,8 @@ export class BestPriceViewService {
   listRatesByTimePeriod:LenderModel[];
   listBankByTimePeriod:LenderModel[];
   lenderSendRequestModel:LenderSendRequestModel;
-  listInterestConvention:any[];
-  listPayments:any[];
+  listInterestConvention:any[]=[{Id:1, Value:'act/360'}];
+  listPayments:any[]=[{Id:1, Value:'yearly payments'}];
 
   async GetRatesByTimePeriod(){
     const response= await this.http.get(this.lenderDashboardService.baseURL+'/api/LenderBestPriceView/GetRatesByTimePeriod?userId='+this.lenderDashboardService.userId).toPromise();
@@ -39,4 +39,26 @@ export class BestPriceViewService {
     var requestOptions=new RequestOptions({method:RequestMethod.Post,headers:headerOptions});
     return this.http.post(this.lenderDashboardService.baseURL+'/api/LenderBestPriceView/SaveSendRequest',body,requestOptions).map(x=> x.json());
     }      
+  
+    async GetLenderSendRequestPendingLendedRequestByLenderId(){
+      const response = await this.http.get(this.lenderDashboardService.authenticateServiceService.baseURL+'/api/LenderDashboard'
+      +'/GetLenderSendRequestPendingLendedRequestByLenderId?lenderId='+this.lenderDashboardService.userId).toPromise();
+    return response.json();
+    }
+  
+    AcceptLendedRequest(lenderSendRequestModel:any){
+      var body=JSON.stringify(lenderSendRequestModel);
+      var headerOptions= new Headers({'Content-Type':'application/json'});
+      var requestOptions=new RequestOptions({method:RequestMethod.Post,headers:headerOptions});
+      return this.http.post(this.lenderDashboardService.authenticateServiceService.baseURL+'/api/LenderDashboard/AcceptLendedRequest',body,requestOptions).map(x=> x.json());
+    }  
+
+    RejectLendedRequest(lenderSendRequestModel:any){
+      var body=JSON.stringify(lenderSendRequestModel);
+      var headerOptions= new Headers({'Content-Type':'application/json'});
+      var requestOptions=new RequestOptions({method:RequestMethod.Post,headers:headerOptions});
+      return this.http.post(this.lenderDashboardService.authenticateServiceService.baseURL+'/api/LenderDashboard/RejectLendedRequest',body,requestOptions).map(x=> x.json());
+    } 
+
+    
 }

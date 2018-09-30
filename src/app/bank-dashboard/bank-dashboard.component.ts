@@ -4,6 +4,8 @@ import {AuthenticateServiceService} from '../Shared/authenticate-service.service
 import {Router} from '@angular/router';
 import { ToastrService  } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
+import {BestPriceViewService} from '../lender-dashboard/best-price-view/Shared/best-price-view.service';
+import {DatePipe} from '@angular/common';
 
 @Component({
   selector: 'app-bank-dashboard',
@@ -13,7 +15,8 @@ import { NgxSpinnerService } from 'ngx-spinner';
 export class BankDashboardComponent implements OnInit {
 
   constructor(public bankDashboardService:BankDashboardService, public authenticateServiceService:AuthenticateServiceService, public router: Router
-    , public  toastr: ToastrService, public spinner:NgxSpinnerService) { }
+    , public  toastr: ToastrService, public spinner:NgxSpinnerService, public bestPriceViewService:BestPriceViewService
+    , public pipe:DatePipe) { }
   IsPublished:boolean=false;
   copyLoggedInUser:any;
   testTrue:boolean=false;
@@ -27,7 +30,31 @@ export class BankDashboardComponent implements OnInit {
     this.GetUserGroupForSettingRateOfInterestVisibility();
     this.bankDashboardService.loggedInUser= this.authenticateServiceService.GetUserDetail();
     this.copyLoggedInUser = Object.assign({}, this.bankDashboardService.loggedInUser);
+    this.GetLenderSendRequestRequestdOnTheBasisOfBorrowerId();
     this.spinner.hide();
+    this.bestPriceViewService.lenderSendRequestModel={
+      RequestId :0,
+      LenderId :0,
+      BorrowerId :0,
+      LenderName:'',
+      BorrowerName:'',
+      Amount :0.00,
+      StartDate :'',
+      EndDate :'',
+      NoOfDays :0,
+      InterestConvention :'',
+      Payments :'',
+      IsRequestAccepted :false,
+      DateCreated :new Date(),
+      DateModified :new Date(),
+      RequestCreatedBy :this.bestPriceViewService.lenderDashboardService.userId,
+      InterestConventionName:'',
+      LenderEmailId:'',
+      PaymentsName:'',
+      IsAccepted:null,
+      IsRejected:null,
+      RateOfInterest:0.00
+      }
   }
 
   async GetRateOfInterestOfBank(){
@@ -271,4 +298,92 @@ ShowUpdateProfileModal(){
  this.bankDashboardService.ConfirmPassword='';
   this.copyLoggedInUser = Object.assign({}, this.bankDashboardService.loggedInUser);
 }
+
+async GetLenderSendRequestRequestdOnTheBasisOfBorrowerId(){
+  debugger;
+  this.spinner.show();
+  var result = await this.bankDashboardService.GetLenderSendRequestRequestdOnTheBasisOfBorrowerId();
+  if(result.IsSuccess && result.IfDataFound == true){
+    var element= document.getElementById('ShowLendPopup');
+    element.click();
+    this.bestPriceViewService.lenderSendRequestModel=JSON.parse(result.data)[0];    
+  }
+  this.spinner.hide();
+}
+
+UpdateLenderSendRequestRateOfInterest(){
+  debugger;
+  if(!this.ValidateSendRequest(this.bestPriceViewService.lenderSendRequestModel)){
+    return false;
+  }
+  this.spinner.show();
+  var result= this.bankDashboardService.UpdateLenderSendRequestRateOfInterest(this.bestPriceViewService.lenderSendRequestModel).subscribe(data =>{
+    this.toastr.success('Rate of interest saved successfully.','Dashboard');
+    this.spinner.hide();
+    var element= document.getElementById('closeSendRequestModal');
+ element.click();
+  });
+  
+}
+
+ValidateSendRequest(requestModel:any){
+
+  if(requestModel.RateOfInterest == undefined || requestModel.RateOfInterest == null || requestModel.RateOfInterest.length==0){
+    this.toastr.error("Please fill rate of interest.","Dashboard");
+    return false;
+  }
+  if(requestModel.RateOfInterest != undefined && requestModel.RateOfInterest != null && requestModel.RateOfInterest.length!=0){
+    try{
+      if(isNaN(Number(requestModel.RateOfInterest.toString())) == true ){
+        this.toastr.error("Rate of interest must be numeric.","Dashboard");
+        return false;  
+      }
+    }
+    catch{
+return false;
+    }
+  }
+
+  if(requestModel.RateOfInterest ==0){
+    this.toastr.error('Rate of interest can not be 0.');
+    return false;
+  }
+
+  return true;
+ }
+
+ //It checks if key pressed is integer or not if not then it returns false.
+numberWithDecimalOnly(event): boolean {
+  debugger;
+  const charCode = (event.which) ? event.which : event.keyCode;
+  if (charCode > 31 && (charCode < 48 || charCode > 57) && charCode != 46) {
+    return false;
+  }
+  if(this.bestPriceViewService.lenderSendRequestModel.RateOfInterest.toString().indexOf('.')>-1 && charCode ==46)
+  return false;
+  if(this.bestPriceViewService.lenderSendRequestModel.RateOfInterest.toString().split(".").length>1){
+    if(this.bestPriceViewService.lenderSendRequestModel.RateOfInterest.toString().split(".")[1].length==2)
+    return false;
+  }
+  return true;
+
+}
+
+ShowSendRequestModal(bank:any){
+  debugger;
+ //  document.getElementById('modalSendRequest').style.display='block';
+ //  document.getElementById('modalSendRequest').style.display='block';
+  // // // this.bestPriceViewService.lenderSendRequestModel.Amount=0;
+  // // // this.bestPriceViewService.lenderSendRequestModel.NoOfDays=0;
+  // // // this.bestPriceViewService.lenderSendRequestModel.BorrowerId=bank.UserId;
+  // // // this.bestPriceViewService.lenderSendRequestModel.LenderId=this.bestPriceViewService.lenderDashboardService.authenticateServiceService.GetUserId();
+  // // // this.bestPriceViewService.lenderSendRequestModel.BorrowerName=bank.Bank;
+  // // // this.bestPriceViewService.lenderSendRequestModel.LenderName=this.bestPriceViewService.lenderDashboardService.authenticateServiceService.GetLenderName();
+  // // // this.bestPriceViewService.lenderSendRequestModel.StartDate = this.pipe.transform(new Date(), 'yyyy-MM-dd');
+  // // // this.bestPriceViewService.lenderSendRequestModel.EndDate = this.pipe.transform(new Date(), 'yyyy-MM-dd');
+  // // // this.bestPriceViewService.lenderSendRequestModel.InterestConvention=this.bestPriceViewService.listInterestConvention[0].Id;
+  // // // this.bestPriceViewService.lenderSendRequestModel.Payments=this.bestPriceViewService.listPayments[0].Id;
+  // // // this.bestPriceViewService.lenderSendRequestModel.LenderEmailId=this.bestPriceViewService.lenderDashboardService.authenticateServiceService.GetEmailId();
+}
+
 }

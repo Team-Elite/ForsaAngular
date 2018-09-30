@@ -10448,14 +10448,14 @@ color: #fff !important;
     width: 375px;
     max-width: 100%;
 }
-.bd-example-modal-lg-setting-page select#setting_start_page {
+.bd-example-modal-lg-setting-page select#SelectedStartPage {
     background: #37383d;
     border-radius: 0px;
     border-bottom: 1px solid grey !important;
     border: none;
     color: #fff;
 }
-.bd-example-modal-lg-setting-page select#setting_start_page:focus {
+.bd-example-modal-lg-setting-page select#SelectedStartPage:focus {
     outline: none;
     box-shadow: none;
 }
@@ -10805,6 +10805,7 @@ font-size: 12px;
         </div>
 
         <div class="modal fade bd-example-modal-lg-setting-page dashboard-modal setting-popup2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
+         
                                                  <div class="modal-dialog modal-lg">
                                                    <div class="modal-content">
                                                      <div class="modal-header">
@@ -10815,16 +10816,15 @@ font-size: 12px;
                                                      </div>
   
                                                      <div class="modal-body" id="lendrequestbody">
-                                                      <select class="form-control" id="setting_start_page">
-                                                            <option value="">--Select Start Page--</option>
-                                                            <option value="viewall">VIEW ALL PRICE</option>
-                                                            <option value="bestprice">BEST PRICE VIEW</option>
-                                                            <option value="lendersetting" selected="">LENDER  SETTINGS</option>
+                                                      
+                                                      <select class="form-control" [(ngModel)]="SelectedStartPage" name="SelectedStartPage" id="SelectedStartPage" (change)="LenderSaveStartPage()">
+                                                            <option *ngFor="let page of listPagesForStartingPage" [value]="page.PageId" >{{page.PageName}}</option>
                                                           </select>
           
                                                          </div>
                                                         <div class="modal-footer">
                                                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                          <button type="button" style="display:none;" id="btnCloseSetStartPageModal" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                                           
                                                         </div>
   
