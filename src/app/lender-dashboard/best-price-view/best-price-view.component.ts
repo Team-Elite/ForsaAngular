@@ -52,7 +52,8 @@ export class BestPriceViewComponent implements OnInit {
     PaymentsName:'',
     IsAccepted:null,
     IsRejected:null,
-    RateOfInterest:0.00
+    RateOfInterest:0.00,
+    BorrowerEmailId:''
     }
 
     this.GetLenderSendRequestPendingLendedRequestByLenderId();
@@ -125,7 +126,8 @@ numberOnly(event): boolean {
       PaymentsName:'',
       IsAccepted:null,
       IsRejected:null,
-      RateOfInterest:0.00
+      RateOfInterest:0.00,
+      BorrowerEmailId:''
       };
      this.bestPriceViewService.lenderSendRequestModel.Amount=0;
      this.bestPriceViewService.lenderSendRequestModel.NoOfDays=0;
@@ -233,6 +235,20 @@ numberOnly(event): boolean {
 
   AcceptLendedRequest(){
     debugger;
+
+    for(var i =0; i<= this.bestPriceViewService.listInterestConvention.length-1;i++){
+      if(this.bestPriceViewService.lenderSendRequestModel.InterestConvention == this.bestPriceViewService.listInterestConvention[i].Id){
+       this.bestPriceViewService.lenderSendRequestModel.InterestConventionName=this.bestPriceViewService.listInterestConvention[i].Value;
+       break;
+      }
+    }
+
+    for(var i =0; i<= this.bestPriceViewService.listPayments.length-1;i++){
+     if(this.bestPriceViewService.lenderSendRequestModel.Payments == this.bestPriceViewService.listPayments[i].Id){
+      this.bestPriceViewService.lenderSendRequestModel.PaymentsName=this.bestPriceViewService.listPayments[i].Value;
+      break;
+     }
+   }
     
     this.spinner.show();
     this.bestPriceViewService.lenderSendRequestModel.IsAccepted=true;
@@ -247,6 +263,20 @@ numberOnly(event): boolean {
 
   RejectLendedRequest(){
     debugger;
+
+    for(var i =0; i<= this.bestPriceViewService.listInterestConvention.length-1;i++){
+      if(this.bestPriceViewService.lenderSendRequestModel.InterestConvention == this.bestPriceViewService.listInterestConvention[i].Id){
+       this.bestPriceViewService.lenderSendRequestModel.InterestConventionName=this.bestPriceViewService.listInterestConvention[i].Value;
+       break;
+      }
+    }
+
+    for(var i =0; i<= this.bestPriceViewService.listPayments.length-1;i++){
+     if(this.bestPriceViewService.lenderSendRequestModel.Payments == this.bestPriceViewService.listPayments[i].Id){
+      this.bestPriceViewService.lenderSendRequestModel.PaymentsName=this.bestPriceViewService.listPayments[i].Value;
+      break;
+     }
+   }
     
     this.spinner.show();
     this.bestPriceViewService.lenderSendRequestModel.IsRejected=true;

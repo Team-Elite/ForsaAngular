@@ -53,7 +53,8 @@ export class BankDashboardComponent implements OnInit {
       PaymentsName:'',
       IsAccepted:null,
       IsRejected:null,
-      RateOfInterest:0.00
+      RateOfInterest:0.00,
+      BorrowerEmailId:''
       }
   }
 

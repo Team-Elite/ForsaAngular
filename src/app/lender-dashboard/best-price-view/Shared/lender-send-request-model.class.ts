@@ -20,5 +20,6 @@ export class LenderSendRequestModel {
     IsAccepted:boolean;
     IsRejected:boolean;
     RateOfInterest:number;
+    BorrowerEmailId:string;
 
 }

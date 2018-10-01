@@ -10669,7 +10669,7 @@ font-size: 12px;
 
                                        <!-- modal end-->
 
-                                       <button Id="ShowLendPopup" type="button" style="display:none;" (click)="ShowSendRequestModal(bank)" class="btn w-100 active" data-toggle="modal" data-target=".bd-example-modal-lg">Lend</button>
+                                       <button Id="ShowLendPopup" type="button" style="display:none;" class="btn w-100 active" data-toggle="modal" data-target=".bd-example-modal-lg">Lend</button>
 <!-- STARTS Here Modal Lender Send Request                                        -->
                                        <div id="modalSendRequest" class="modal fade bd-example-modal-lg dashboard-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-lg">
@@ -10684,9 +10684,9 @@ font-size: 12px;
                                             <div class="modal-body" id="lendrequestbody">
                                              <table><tbody><tr><th>LENDER</th><td>{{bestPriceViewService.lenderSendRequestModel.LenderName}}</td></tr>
 <tr><th>BORROWER</th><td>{{bestPriceViewService.lenderSendRequestModel.BorrowerName}}</td></tr>
-<tr><th>AMOUNT</th><td><input [disabled]="1==1" (keypress)="numberOnly($event)" #Amount="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.Amount" name="Amount" type="text"  id="amount" class="form-control requestamount" maxlength="7"></td></tr>
-<tr><th>START-DATE </th><td><input [disabled]="1==1" (change)="CalculateNumberOfDays()" #StartDate="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.StartDate" name="StartDate" type="date" id="datepicker" class="form-control hasDatepicker datepicker"></td></tr>
-<tr><th>END-DATE</th><td><input [disabled]="1==1" (change)="CalculateNumberOfDays()" #EndDate="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.EndDate" name="EndDate" type="date" id="datepicker1" class="form-control hasDatepicker datepicker1"></td></tr>
+<tr><th>AMOUNT</th><td><input [disabled]="1==1" #Amount="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.Amount" name="Amount" type="text"  id="amount" class="form-control requestamount" maxlength="7"></td></tr>
+<tr><th>START-DATE </th><td><input [disabled]="1==1"  #StartDate="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.StartDate" name="StartDate" type="date" id="datepicker" class="form-control hasDatepicker datepicker"></td></tr>
+<tr><th>END-DATE</th><td><input [disabled]="1==1"  #EndDate="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.EndDate" name="EndDate" type="date" id="datepicker1" class="form-control hasDatepicker datepicker1"></td></tr>
 <tr><th>NR. OF DAYS&nbsp;&nbsp;</th><td id="no_of_days">{{bestPriceViewService.lenderSendRequestModel.NoOfDays}}</td></tr>
 <tr><th>INTEREST CONVENTION</th><td>
  <select [disabled]="1==1" #InterestConvention="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.InterestConvention" name="InterestConvention"  class="form-control" id="interest">
