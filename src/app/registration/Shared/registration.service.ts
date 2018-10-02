@@ -18,6 +18,7 @@ import {GroupModel} from '../../Shared/group-model.class';
   providedIn: 'root'
 })
 export class RegistrationService {
+  userId:number;
   CountryList:Country[];
   languageList:Language[];
   userModel:UserModel;
@@ -113,4 +114,9 @@ export class RegistrationService {
      const response= await this.http.get(this.authenticateServiceService.baseURL+'/api/User/IfEmailIdIsRegistered?emailId='+emailId).toPromise();
      return response.json();
     }
+
+    async GetUserDetailByUserId(){
+      const response= await this.http.get(this.authenticateServiceService.baseURL+'/api/User/GetUserDetailByUserId?userId='+this.userId).toPromise();
+      return response.json();
+      }
 }

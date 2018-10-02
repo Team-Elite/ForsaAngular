@@ -57,6 +57,7 @@ this.registrationService.GetGroupList();
 this.registrationService.ShowSection3=false;
 this.registrationService.ShowSection2=false;
 this.resetForm();
+this.GetUserDetailByUserId();
   }
 
 
@@ -500,6 +501,18 @@ this.registrationService.ShowSection3=false;
 errorMessage=errorMessage.substring(0,errorMessage.length-1);
 this.toastr.error(errorMessage,"Registration");
 }
+}
+
+async GetUserDetailByUserId(form?: NgForm){
+  debugger;
+  this.registrationService.userId=74;
+  this.spinner.show();
+var result=await this.registrationService.GetUserDetailByUserId();
+if(result.IsSuccess){
+this.registrationService.userModel= JSON.parse(result.data);
+//form.value=this.registrationService.userModel;
+}
+this.spinner.hide();
 }
 }
 

@@ -55,8 +55,10 @@ export class BestPriceViewComponent implements OnInit {
     RateOfInterest:0.00,
     BorrowerEmailId:''
     }
-
-    this.GetLenderSendRequestPendingLendedRequestByLenderId();
+setTimeout(() => {
+  this.GetLenderSendRequestPendingLendedRequestByLenderId();
+}, 30000);
+    
   }
   
   CalculateNumberOfDays(){
@@ -222,7 +224,7 @@ numberOnly(event): boolean {
 
    async GetLenderSendRequestPendingLendedRequestByLenderId(){
     debugger;
-    this.spinner.show();
+    //this.spinner.show();
     var result = await this.bestPriceViewService.GetLenderSendRequestPendingLendedRequestByLenderId();
     if(result.IsSuccess && result.IfDataFound == true){
       this.IfBankResponseFound=true;
@@ -230,7 +232,7 @@ numberOnly(event): boolean {
       element.click();
       this.bestPriceViewService.lenderSendRequestModel=JSON.parse(result.data)[0];    
     }
-    this.spinner.hide();
+    //this.spinner.hide();
   }
 
   AcceptLendedRequest(){

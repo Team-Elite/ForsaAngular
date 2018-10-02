@@ -30,7 +30,10 @@ export class BankDashboardComponent implements OnInit {
     this.GetUserGroupForSettingRateOfInterestVisibility();
     this.bankDashboardService.loggedInUser= this.authenticateServiceService.GetUserDetail();
     this.copyLoggedInUser = Object.assign({}, this.bankDashboardService.loggedInUser);
-    this.GetLenderSendRequestRequestdOnTheBasisOfBorrowerId();
+    setTimeout(() => {
+      this.GetLenderSendRequestRequestdOnTheBasisOfBorrowerId();  
+    }, 30000);
+    
     this.spinner.hide();
     this.bestPriceViewService.lenderSendRequestModel={
       RequestId :0,
@@ -302,14 +305,14 @@ ShowUpdateProfileModal(){
 
 async GetLenderSendRequestRequestdOnTheBasisOfBorrowerId(){
   debugger;
-  this.spinner.show();
+  //this.spinner.show();
   var result = await this.bankDashboardService.GetLenderSendRequestRequestdOnTheBasisOfBorrowerId();
   if(result.IsSuccess && result.IfDataFound == true){
     var element= document.getElementById('ShowLendPopup');
     element.click();
     this.bestPriceViewService.lenderSendRequestModel=JSON.parse(result.data)[0];    
   }
-  this.spinner.hide();
+  //this.spinner.hide();
 }
 
 UpdateLenderSendRequestRateOfInterest(){

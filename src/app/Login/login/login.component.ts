@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
     ,public lenderDashboardService:LenderDashboardService) { }
 
 
-  IfVerificationDone:boolean=false;
+  IfVerificationDone:boolean=true;
   IfShowPassword:boolean=false;
   public resolved(captchaResponse: string) {
     if(captchaResponse != undefined && captchaResponse != null && captchaResponse.trim().length !=0){
@@ -76,6 +76,9 @@ if(form.value.UserName.indexOf('@')>-1){
       this.authenticateServiceService.SaveSession(user.data);
       if(JSON.parse(user.data)[0].UserTypeId==4){
       this.router.navigate(['/bankDashBoard']);
+    }
+    else if(JSON.parse(user.data)[0].UserTypeId==6){
+      this.router.navigate(['/KontactDashBoard']);
     }
     else if(JSON.parse(user.data)[0].UserTypeId==5){
       

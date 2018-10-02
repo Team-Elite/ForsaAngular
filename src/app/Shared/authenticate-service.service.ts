@@ -33,7 +33,7 @@ export class AuthenticateServiceService {
       this.router.navigate(['/login']);
     }
      if((new Date().getTime()-new Date(sessionDate).getTime())> 7200000){
-      alert("Session expired. Please login again.")
+      //alert("Session expired. Please login again.")
       this.router.navigate(['/login']);
     }
     }
