@@ -121,7 +121,11 @@ this.GetUserDetailByUserId();
   }
 
 async registerUser(form:NgForm){
-debugger;
+  debugger;
+  if(form.value.UserId != undefined && form.value.UserId != null && form.value.UserId >0){
+    this.UpdateUserDetails(form);
+    return;
+  }
 form.value.DateCreated=new Date();
 form.value.DateModified=new Date();
 form.value.CreatedBy=-1;  
@@ -270,10 +274,13 @@ if(form.value.EmailAddress == undefined || form.value.EmailAddress ==  null || f
   numberOfErrorFound++;
   errorMessage=errorMessage+" Mail Address,";
 }
+debugger;
+if(form.value.UserId == undefined || form.value.UserId == null || form.value.UserId==0){
 if(form.value.UserName == undefined || form.value.UserName ==  null || form.value.UserName.trim().length ==0){
   IfErrorFound=true;
   numberOfErrorFound++;
   errorMessage=errorMessage+" User Name,";
+}
 }
 if(form.value.UserTypeId ==4 && (form.value.DepositInsurance == undefined || form.value.DepositInsurance ==  null || form.value.DepositInsurance ==0)){
   IfErrorFound=true;
@@ -484,10 +491,13 @@ if(form.value.EmailAddress == undefined || form.value.EmailAddress ==  null || f
   numberOfErrorFound++;
   errorMessage=errorMessage+" Mail Address,";
 }
+debugger;
+if(form.value.UserId == undefined || form.value.UserId == null || form.value.UserId==0){
 if(form.value.UserName == undefined || form.value.UserName ==  null || form.value.UserName.trim().length ==0){
   IfErrorFound=true;
   numberOfErrorFound++;
   errorMessage=errorMessage+" User Name,";
+}
 }
 if(form.value.UserTypeId ==4 && (form.value.DepositInsurance == undefined || form.value.DepositInsurance ==  null || form.value.DepositInsurance ==0)){
   IfErrorFound=true;
@@ -509,11 +519,78 @@ async GetUserDetailByUserId(form?: NgForm){
   this.spinner.show();
 var result=await this.registrationService.GetUserDetailByUserId();
 if(result.IsSuccess){
-this.registrationService.userModel= JSON.parse(result.data);
+this.registrationService.userModel= JSON.parse(result.data)[0];
 //form.value=this.registrationService.userModel;
 }
 this.spinner.hide();
 }
-}
 
 
+async UpdateUserDetails(form:NgForm){
+  debugger;
+  form.value.DateCreated=new Date();
+  form.value.DateModified=new Date();
+  form.value.CreatedBy=-1;  
+  if(!this.ValidateUserForm(form)){
+  return false;
+  }
+  
+  this.spinner.show();
+  // // Checking ifUserExist
+  // let userExist= await this.registrationService.CheckIfUserNameIsAvailable(form.value.UserName);
+  // debugger;
+  // if(userExist == true){
+  //   this.spinner.hide();
+  //   this.toastr.error("User name not available.","Registration");
+  //   this.registrationService.userModelExist=null;
+  //   return;
+  // }
+  
+  // Checking if email already registered
+  let ifEmailIdAlreadyRegistered= await this.registrationService.CheckIfEmailIdIsRegistered(form.value.EmailAddress);
+  debugger;
+  if(ifEmailIdAlreadyRegistered == true){
+    this.spinner.hide();
+    this.toastr.error("This email id is already registered.","Registration");
+    //this.registrationService.userModelExist=null;
+    return;
+  }
+  
+  this.spinner.hide();
+  if(form.value.rdbBank){
+    form.value.GroupIds='';
+    if(form.value.GroupCommunities)
+    form.value.GroupIds="4,";
+    if(form.value.GroupCompanyGMBH)
+    form.value.GroupIds=form.value.GroupIds+"2,";
+    if(form.value.GroupCompany)
+    form.value.GroupIds=form.value.GroupIds+"3,";
+    form.value.GroupIds =form.value.GroupIds.substring(0,form.value.GroupIds.length-1);  
+  }
+  else{
+    form.value.GroupIds="";
+  }
+  
+  
+  form.value.UserTypeId='';
+  if(form.value.rdbBank)
+  form.value.UserTypeId='4,';
+  if(form.value.rdbNonBank)
+  form.value.UserTypeId=form.value.UserTypeId+'5,';
+  form.value.UserTypeId= form.value.UserTypeId.substring(0,form.value.UserTypeId.length-1);
+  
+  this.spinner.show();
+  // Updating user..
+  this.registrationService.UpdateUserDetails(form.value).subscribe(data =>{
+    this.resetForm(form);
+    this.spinner.hide();
+    setTimeout(() => {
+      /** spinner ends after 5 seconds */
+      this.router.navigate(['/login']);
+  }, 5000);
+    this.toastr.success("Registration is successfull. An email is sent to registered email id. This email have your login credentails.","Registration");
+    //location.reload();
+    
+  })
+    }
+  }

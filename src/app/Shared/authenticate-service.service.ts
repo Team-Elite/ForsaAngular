@@ -9,7 +9,7 @@ export class AuthenticateServiceService {
   userValue:string='userValue';
   sessionCreatedAt:string='sessionCreatedAt';
   selectedBestPriceId:string='selectedBestPriceId';
-  baseURL:string='http://elitecore.cloudapp.net:8081';
+  baseURL:string='http://forsaapi.elitewebdemo.com';
   //baseURL:string='http://localhost:60744/';
   constructor(@Inject(LOCAL_STORAGE) private storage: StorageService, public router: Router) { }
 
