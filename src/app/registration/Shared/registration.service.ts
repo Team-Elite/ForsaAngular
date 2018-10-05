@@ -99,7 +99,14 @@ export class RegistrationService {
     return this.http.post(this.authenticateServiceService.baseURL+'/api/User/PosttblUser',body,requestOptions).map(x=> x.json());
     }
 
-    async CheckIfUserNameIsAvailable(userName:string){
+  UpdateUserDetails(user:UserModel){
+      var body=JSON.stringify(user);
+      var headerOptions= new Headers({'Content-Type':'application/json'});
+      var requestOptions=new RequestOptions({method:RequestMethod.Post,headers:headerOptions});
+      return this.http.post(this.authenticateServiceService.baseURL+'/api/User/UpdateUserDetails',body,requestOptions).map(x=> x.json());
+}
+
+  async CheckIfUserNameIsAvailable(userName:string){
     
       // this.http.get(this.baseURL+'/api/User/IfUserNameAvailable?userName='+userName).map((data:Response) => {return data.json() as UserModel
       // }).toPromise().then( x=>{
@@ -110,12 +117,12 @@ export class RegistrationService {
       return response.json();
     }
 
-    async CheckIfEmailIdIsRegistered(emailId:string){
+  async CheckIfEmailIdIsRegistered(emailId:string){
      const response= await this.http.get(this.authenticateServiceService.baseURL+'/api/User/IfEmailIdIsRegistered?emailId='+emailId).toPromise();
      return response.json();
     }
 
-    async GetUserDetailByUserId(){
+  async GetUserDetailByUserId(){
       const response= await this.http.get(this.authenticateServiceService.baseURL+'/api/User/GetUserDetailByUserId?userId='+this.userId).toPromise();
       return response.json();
       }

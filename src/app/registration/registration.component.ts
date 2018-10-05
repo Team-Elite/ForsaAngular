@@ -25,7 +25,7 @@ export class RegistrationComponent implements OnInit {
 //  ,public formBuilder:FormBuilder, public formGroup:FormGroup
 ) { }
 
-IfVerificationDone:boolean=false;
+IfVerificationDone:boolean=true;
   public resolved(captchaResponse: string) {
     if(captchaResponse != undefined && captchaResponse != null && captchaResponse.trim().length !=0){
       this.IfVerificationDone=true;
@@ -269,10 +269,12 @@ if(form.value.ContactNumber == undefined || form.value.ContactNumber ==  null ||
   numberOfErrorFound++;
   errorMessage=errorMessage+" Contact Number,";
 }
+if(form.value.UserId == undefined || form.value.UserId == null || form.value.UserId==0){
 if(form.value.EmailAddress == undefined || form.value.EmailAddress ==  null || form.value.EmailAddress.trim().length ==0){
   IfErrorFound=true;
   numberOfErrorFound++;
   errorMessage=errorMessage+" Mail Address,";
+}
 }
 debugger;
 if(form.value.UserId == undefined || form.value.UserId == null || form.value.UserId==0){
@@ -356,10 +358,13 @@ if(IfErrorFound){
 return false;
     }
   }
+
+  if(form.value.UserId == undefined || form.value.UserId == null || form.value.UserId==0){
   if(form.value.EmailAddress == undefined || form.value.EmailAddress ==  null || form.value.EmailAddress.length ==0){
     this.toastr.error("Email address is required.","Registration");
   return false;
   }
+
 
   let expression: RegExp ;
 expression =new RegExp(/^[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}/)
@@ -369,6 +374,7 @@ if(!expression.test(form.value.EmailAddress)){
   return false;
 }
 }
+  }
 
 // if(form.value.EmailAddress!= undefined && form.value.EmailAddress !=  null && form.value.EmailAddress.length !=0){
 //   if(form.value.confirmEmailAddress == undefined || form.value.confirmEmailAddress ==  null || form.value.confirmEmailAddress.length ==0 ||form.value.confirmEmailAddress!=form.value.EmailAddress ){
@@ -445,8 +451,8 @@ if(form.value.SubGroupId == undefined || form.value.SubGroupId ==  null || form.
   numberOfErrorFound++;
   errorMessage=errorMessage+" Sub group,";
 }
-
-if(form.value.rdbBank ==false && form.value.rdbNonBank == false){
+debugger;
+if((form.value.rdbBank == undefined && form.value.rdbNonBank== undefined) || (form.value.rdbBank ==false && form.value.rdbNonBank == false)){
   this.toastr.error("Please select is it Borrower or Lender.","Registration");
 return false;  
 }
@@ -486,10 +492,12 @@ if(form.value.ContactNumber == undefined || form.value.ContactNumber ==  null ||
   numberOfErrorFound++;
   errorMessage=errorMessage+" Contact Number,";
 }
+if(form.value.UserId == undefined || form.value.UserId == null || form.value.UserId==0){
 if(form.value.EmailAddress == undefined || form.value.EmailAddress ==  null || form.value.EmailAddress.trim().length ==0){
   IfErrorFound=true;
   numberOfErrorFound++;
   errorMessage=errorMessage+" Mail Address,";
+}
 }
 debugger;
 if(form.value.UserId == undefined || form.value.UserId == null || form.value.UserId==0){
@@ -520,10 +528,11 @@ async GetUserDetailByUserId(form?: NgForm){
 var result=await this.registrationService.GetUserDetailByUserId();
 if(result.IsSuccess){
 this.registrationService.userModel= JSON.parse(result.data)[0];
+this.registrationService.userModel.UserTypeId='0';
 //form.value=this.registrationService.userModel;
 }
 this.spinner.hide();
-}
+} 
 
 
 async UpdateUserDetails(form:NgForm){
@@ -547,14 +556,14 @@ async UpdateUserDetails(form:NgForm){
   // }
   
   // Checking if email already registered
-  let ifEmailIdAlreadyRegistered= await this.registrationService.CheckIfEmailIdIsRegistered(form.value.EmailAddress);
-  debugger;
-  if(ifEmailIdAlreadyRegistered == true){
-    this.spinner.hide();
-    this.toastr.error("This email id is already registered.","Registration");
-    //this.registrationService.userModelExist=null;
-    return;
-  }
+  // // // let ifEmailIdAlreadyRegistered= await this.registrationService.CheckIfEmailIdIsRegistered(form.value.EmailAddress);
+  // // // debugger;
+  // // // if(ifEmailIdAlreadyRegistered == true){
+  // // //   this.spinner.hide();
+  // // //   this.toastr.error("This email id is already registered.","Registration");
+  // // //   //this.registrationService.userModelExist=null;
+  // // //   return;
+  // // // }
   
   this.spinner.hide();
   if(form.value.rdbBank){
@@ -581,6 +590,8 @@ async UpdateUserDetails(form:NgForm){
   
   this.spinner.show();
   // Updating user..
+  form.value.UserName=this.registrationService.userModel.UserName;
+  form.value.EmailAddress=this.registrationService.userModel.EmailAddress;
   this.registrationService.UpdateUserDetails(form.value).subscribe(data =>{
     this.resetForm(form);
     this.spinner.hide();

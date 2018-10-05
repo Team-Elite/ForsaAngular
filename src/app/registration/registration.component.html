@@ -338,7 +338,7 @@
   
                             <div class="form-group form-md-line-input has-error">
                                 <div class="group input-group">
-                                    <input email pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" #EmailAddress="ngModel" [(ngModel)]="registrationService.userModel.EmailAddress" name="EmailAddress" type="email" class="used">
+                                    <input [disabled]="registrationService.userModel.UserId != null && registrationService.userModel.UserId != 0" email pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" #EmailAddress="ngModel" [(ngModel)]="registrationService.userModel.EmailAddress" name="EmailAddress" type="email" class="used">
                                     <span class="highlight"></span>
                                     <span class="bar"></span>
                                     <label>Email Address*</label>
