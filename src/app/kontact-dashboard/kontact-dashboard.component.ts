@@ -17,7 +17,8 @@ export class KontactDashboardComponent implements OnInit {
     , public toastr:ToastrService
     ,public lenderDashboardService:LenderDashboardService
     ,public authenticateServiceService:AuthenticateServiceService
-    ,public router: Router) { }
+    ,public router: Router
+    ) { }
 
   ngOnInit() {
     this.authenticateServiceService.AuthenticateSession();
@@ -165,7 +166,7 @@ debugger;
    }
    RegisterAsPartner(){
     this.authenticateServiceService.ClearSession();
-    this.router.navigate(['/registration']);
+    this.router.navigate(['/registration/',this.lenderDashboardService.userId]);
    }
    Logout(){
     //if(confirm("Are you sure you want to log out?")){

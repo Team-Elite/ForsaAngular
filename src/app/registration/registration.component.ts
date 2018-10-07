@@ -2,7 +2,7 @@ import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { RegistrationService } from './Shared/registration.service';
 import {CustomValidationServiceService} from '../Shared/custom-validation-service.service';
-import {Router} from '@angular/router';
+import {Router,ActivatedRoute} from '@angular/router';
 //import {NgbModal, ModalDismissReasons, NgbModalConfig} from '@ng-bootstrap/ng-bootstrap'
 //import { $$ } from '../../../node_modules/protractor';
 //import { NgbdModalBasic } from './Shared/modal-basic';
@@ -22,10 +22,11 @@ export class RegistrationComponent implements OnInit {
 
   constructor(public registrationService:RegistrationService,public customValidationServiceService:CustomValidationServiceService
     , public router: Router, public  toastr: ToastrService, public spinner:NgxSpinnerService
+    ,public activatedRoute:ActivatedRoute
 //  ,public formBuilder:FormBuilder, public formGroup:FormGroup
 ) { }
 
-IfVerificationDone:boolean=true;
+IfVerificationDone:boolean=false;
   public resolved(captchaResponse: string) {
     if(captchaResponse != undefined && captchaResponse != null && captchaResponse.trim().length !=0){
       this.IfVerificationDone=true;
@@ -57,7 +58,13 @@ this.registrationService.GetGroupList();
 this.registrationService.ShowSection3=false;
 this.registrationService.ShowSection2=false;
 this.resetForm();
-this.GetUserDetailByUserId();
+this.activatedRoute.params.subscribe( x => {console.log(x["uId"]); 
+  debugger;
+  if(x["uId"] != undefined && x["uId"] != null){
+  debugger;
+  this.registrationService.userId=x["uId"];
+  this.GetUserDetailByUserId();
+}});
   }
 
 
@@ -523,7 +530,7 @@ this.toastr.error(errorMessage,"Registration");
 
 async GetUserDetailByUserId(form?: NgForm){
   debugger;
-  this.registrationService.userId=74;
+  //this.registrationService.userId=74;
   this.spinner.show();
 var result=await this.registrationService.GetUserDetailByUserId();
 if(result.IsSuccess){
