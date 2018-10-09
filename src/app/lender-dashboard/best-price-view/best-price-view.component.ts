@@ -58,15 +58,11 @@ export class BestPriceViewComponent implements OnInit {
     MessageForForsa:'',
     IsMessageSentToForsa:false
     }
-this.SetTimeInterval();
+
     
   }
   
-  SetTimeInterval(){
-    this.timer= setInterval(() => {
-      this.GetLenderSendRequestPendingLendedRequestByLenderId();
-    }, 5000);
-  }
+  
 
   CalculateNumberOfDays(){
     debugger; 
@@ -231,91 +227,5 @@ numberOnly(event): boolean {
     return true;
    }
 
-   async GetLenderSendRequestPendingLendedRequestByLenderId(){
-    debugger;
-    //this.spinner.show();
-    var result = await this.bestPriceViewService.GetLenderSendRequestPendingLendedRequestByLenderId();
-    if(result.IsSuccess && result.IfDataFound == true){
-      clearInterval(this.timer);
-      this.IfBankResponseFound=true;
-      var element= document.getElementById('ShowSendRequestPopup');
-      element.click();
-      this.bestPriceViewService.lenderSendRequestModel=JSON.parse(result.data)[0];    
-    }
-    //this.spinner.hide();
-  }
-
-  AcceptLendedRequest(){
-    debugger;
-
-    for(var i =0; i<= this.bestPriceViewService.listInterestConvention.length-1;i++){
-      if(this.bestPriceViewService.lenderSendRequestModel.InterestConvention == this.bestPriceViewService.listInterestConvention[i].Id){
-       this.bestPriceViewService.lenderSendRequestModel.InterestConventionName=this.bestPriceViewService.listInterestConvention[i].Value;
-       break;
-      }
-    }
-
-    for(var i =0; i<= this.bestPriceViewService.listPayments.length-1;i++){
-     if(this.bestPriceViewService.lenderSendRequestModel.Payments == this.bestPriceViewService.listPayments[i].Id){
-      this.bestPriceViewService.lenderSendRequestModel.PaymentsName=this.bestPriceViewService.listPayments[i].Value;
-      break;
-     }
-   }
-    
-    this.spinner.show();
-    this.bestPriceViewService.lenderSendRequestModel.IsAccepted=true;
-    var result= this.bestPriceViewService.AcceptLendedRequest(this.bestPriceViewService.lenderSendRequestModel).subscribe(data =>{
-      this.toastr.success('Your deal is completed.','Dashboard');
-      this.spinner.hide();
-      this.SetTimeInterval();
-      var element= document.getElementById('closeSendRequestModal');
-   element.click();
-    });
-    
-  }
-
-  RejectLendedRequest(){
-    debugger;
-
-    for(var i =0; i<= this.bestPriceViewService.listInterestConvention.length-1;i++){
-      if(this.bestPriceViewService.lenderSendRequestModel.InterestConvention == this.bestPriceViewService.listInterestConvention[i].Id){
-       this.bestPriceViewService.lenderSendRequestModel.InterestConventionName=this.bestPriceViewService.listInterestConvention[i].Value;
-       break;
-      }
-    }
-
-    for(var i =0; i<= this.bestPriceViewService.listPayments.length-1;i++){
-     if(this.bestPriceViewService.lenderSendRequestModel.Payments == this.bestPriceViewService.listPayments[i].Id){
-      this.bestPriceViewService.lenderSendRequestModel.PaymentsName=this.bestPriceViewService.listPayments[i].Value;
-      break;
-     }
-   }
-    
-    this.spinner.show();
-    this.bestPriceViewService.lenderSendRequestModel.IsRejected=true;
-    var result= this.bestPriceViewService.RejectLendedRequest(this.bestPriceViewService.lenderSendRequestModel).subscribe(data =>{
-      this.toastr.success('The Deal request has been declined.','Dashboard');
-      this.spinner.hide();
-      var element= document.getElementById('closeSendRequestModal');
-      this.SetTimeInterval();
-   element.click();
-    });
-    
-  }
-
-  SaveForsaMessage(){
-    if(this.bestPriceViewService.lenderSendRequestModel.MessageForForsa == undefined || this.bestPriceViewService.lenderSendRequestModel.MessageForForsa == null|| this.bestPriceViewService.lenderSendRequestModel.MessageForForsa.toString().trim().length==0){
-      this.toastr.error("Please enter message","Dashbaord");
-      return;
-    }
-    this.spinner.show(); 
-    this.bestPriceViewService.lenderSendRequestModel.IsMessageSentToForsa=true;
-    this.bestPriceViewService.SaveForsaMessage(this.bestPriceViewService.lenderSendRequestModel).subscribe(data=>{
-      this.spinner.hide(); 
-      this.toastr.success("Message sent to Forsa","Dashboard");
-      this.SetTimeInterval();
-    var element= document.getElementById('closeSendRequestModal');
-    element.click();
-    });
-  }
+  
 }

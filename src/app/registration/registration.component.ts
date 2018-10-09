@@ -534,6 +534,13 @@ async GetUserDetailByUserId(form?: NgForm){
   this.spinner.show();
 var result=await this.registrationService.GetUserDetailByUserId();
 if(result.IsSuccess){
+  if(JSON.parse(result.data)[0].UserTypeId !=6){
+    this.toastr.error('No information found.','Registration');
+    this.spinner.hide();
+    this.resetForm();
+    this.registrationService.userId=undefined;
+    return;
+  }
 this.registrationService.userModel= JSON.parse(result.data)[0];
 this.registrationService.userModel.UserTypeId='0';
 //form.value=this.registrationService.userModel;

@@ -33,7 +33,8 @@ import { KontactDashboardComponent } from './kontact-dashboard/kontact-dashboard
 
 const appRoutes: Routes=[{path:'login',component:LoginComponent},
                          {path:'registration',component:RegistrationComponent},
-                         {path:'registration/:uId',component:RegistrationComponent},
+                        //  {path:'registration/:uId',component:RegistrationComponent},
+                        {path:'registration/:uId/:uRole',component:RegistrationComponent},
                          {path:'',redirectTo:'login', pathMatch:'full'},
                          {path:'bankDashBoard',component:BankDashboardComponent},
                          {path:'KontactDashBoard',component:KontactDashboardComponent},

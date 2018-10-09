@@ -10684,7 +10684,7 @@
                                       <button type="button" class="btn w-100">{{bank.RateOfInterest}}</button>
                                   </div>
                                    <div class="col-md-3 pr-1">
-                                      <button type="button" (click)="ShowSendRequestModal(bank)" class="btn w-100 active" data-toggle="modal" data-target=".bd-example-modal-lg">Lend</button>
+                                      <button type="button" (click)="ShowSendRequestModal(bank)" class="btn w-100 active" data-toggle="modal" data-target=".BestPriceViewModal">Lend</button>
                                   </div>
                               </div>
                               
@@ -10704,85 +10704,42 @@
                   <!-- modal start-->
                                                <!-- Large modal -->
                                                <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Large modal</button> -->
-                                               <button Id="ShowSendRequestPopup" type="button" style="display:none;" class="btn w-100 active" data-toggle="modal" data-target=".bd-example-modal-lg">Lend</button>
+                                               <button Id="ShowSendRequestPopup" type="button" style="display:none;" class="btn w-100 active" data-toggle="modal" data-target=".BestPriceViewModal">Lend</button>
 
-                                               <div id="modalSendRequest" class="modal fade bd-example-modal-lg dashboard-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                              <!-- modal second-->
+                                              <div id="modalSendRequest" class="modal fade bd-example-modal-lg dashboard-modal BestPriceViewModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                                                  <div class="modal-dialog modal-lg">
                                                    <div class="modal-content">
                                                      <div class="modal-header">
                                                        <h5 class="modal-title" id="exampleModalLongTitle">SEND REQUEST</h5>
-                                                       <button (click)="SetTimeInterval();" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                       <button  type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                          <span aria-hidden="true">×</span>
                                                        </button>
                                                      </div>
   
                                                      <div class="modal-body" id="lendrequestbody">
                                                       <table><tbody>
-                                                      <tr style="display:none;"><th>LENDER</th><td>{{bestPriceViewService.lenderSendRequestModel.LenderName}}</td></tr>
-        <tr style="display:none;"><th>BORROWER</th><td>{{bestPriceViewService.lenderSendRequestModel.BorrowerName}}</td></tr>
-        <tr style="display:none;"><th>AMOUNT</th><td><input [disabled]="IfBankResponseFound" (keypress)="numberOnly($event)" #Amount="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.Amount" name="Amount" type="text"  id="amount" class="form-control requestamount"></td></tr>
-        <tr><th>START-DATE </th><td><input [disabled]="IfBankResponseFound" (change)="CalculateNumberOfDays()" #StartDate="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.StartDate" name="StartDate" type="date" id="datepicker" class="form-control hasDatepicker datepicker"></td></tr>
-        <tr><th>END-DATE</th><td><input [disabled]="IfBankResponseFound" (change)="CalculateNumberOfDays()" #EndDate="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.EndDate" name="EndDate" type="date" id="datepicker1" class="form-control hasDatepicker datepicker1"></td></tr>
+                                                      <tr><th>LENDER</th><td>{{bestPriceViewService.lenderSendRequestModel.LenderName}}</td></tr>
+        <tr><th>BORROWER</th><td>{{bestPriceViewService.lenderSendRequestModel.BorrowerName}}</td></tr>
+        <tr><th>AMOUNT</th><td><input  (keypress)="numberOnly($event)" #Amount="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.Amount" name="Amount" type="text"  id="amount" class="form-control requestamount"></td></tr>
+        <tr><th>START-DATE </th><td><input  (change)="CalculateNumberOfDays()" #StartDate="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.StartDate" name="StartDate" type="date" id="datepicker" class="form-control hasDatepicker datepicker"></td></tr>
+        <tr><th>END-DATE</th><td><input  (change)="CalculateNumberOfDays()" #EndDate="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.EndDate" name="EndDate" type="date" id="datepicker1" class="form-control hasDatepicker datepicker1"></td></tr>
         <tr><th>NR. OF DAYS&nbsp;&nbsp;</th><td id="no_of_days">{{bestPriceViewService.lenderSendRequestModel.NoOfDays}}</td></tr>
         <tr><th>INTEREST CONVENTION</th><td>
-          <select [disabled]="1==1 || IfBankResponseFound" #InterestConvention="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.InterestConvention" name="InterestConvention"  class="form-control" id="interest">
+          <select [disabled]="1==1" #InterestConvention="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.InterestConvention" name="InterestConvention"  class="form-control" id="interest">
               
               <option *ngFor="let interest of bestPriceViewService.listInterestConvention" value="{{interest.Id}}">{{interest.Value}}</option></select></td></tr>
         <tr><th>PAYMENTS</th><td>
-          <select #Payments="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.Payments" name="Payments" [disabled]="1==1 || IfBankResponseFound" class="form-control" id="payments">
+          <select #Payments="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.Payments" name="Payments" [disabled]="1==1 " class="form-control" id="payments">
               <option *ngFor="let payment of bestPriceViewService.listPayments" value="{{payment.Id}}">{{payment.Value}}</option></select></td></tr>
               <tr *ngIf="IfBankResponseFound"><th>Rate Of Interest</th><td><input [disabled]="1==1" (keypress)="numberWithDecimalOnly($event)" #RateOfInterest="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.RateOfInterest" name="RateOfInterest" type="text"  id="RateOfInterest" class="form-control requestamount" maxlength="7"></td></tr>
-        <tr *ngIf="!IfBankResponseFound"><td><input type="button" (click)="SaveSendRequest()" class="btn btn-info btn-lg" id="sendRequest" value="SEND"></td></tr>
-        <tr *ngIf="IfBankResponseFound"><td><input type="button" (click)="AcceptLendedRequest()" class="btn btn-info btn-lg" id="AcceptRequest" value="ACCEPT"></td>
-            <td><input type="button" (click)="RejectLendedRequest()" class="btn btn-info btn-lg" id="RejectRequest" value="REJECT"></td>
-        </tr>
-        <tr>
-        <td><input type="button" (click)="SaveForsaMessage()" class="btn btn-info btn-lg" id="RejectRequest" value="CHAT WITH FORSA"></td>
-        <td></td>
-        </tr>
-        <tr>
-            <th>Message</th>
-        <td>
-        <input type="text" #MessageForForsa="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.MessageForForsa" name="MessageForForsa" class="form-control" id="MessageForForsa">
-        </td></tr>
+        <tr ><td><input type="button" (click)="SaveSendRequest()" class="btn btn-info btn-lg" id="sendRequest" value="SEND"></td></tr>
+        
         </tbody></table>    
                                                          </div>
                                                         <div class="modal-footer">
-                                                          <button type="button" (click)="SetTimeInterval();" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                          <button type="button"  class="btn btn-secondary" data-dismiss="modal">Close</button>
                                                           <button id="closeSendRequestModal" style="display:none;" type="button" data-dismiss="modal" class="btn btn-secondary">Close 12</button>
-                                                          
-                                                        </div>
-  
-                                                   </div>
-                                                 </div>
-                                               </div>
-                                              
-                                              <!-- modal second-->
-                                               <div class="modal fade bd-example-modal-lg-2 dashboard-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                                                 <div class="modal-dialog modal-lg">
-                                                   <div class="modal-content">
-                                                     <div class="modal-header">
-                                                       <h5 class="modal-title" id="exampleModalLongTitle">SEND REQUEST</h5>
-                                                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                         <span aria-hidden="true">×</span>
-                                                       </button>
-                                                     </div>
-  
-                                                     <div class="modal-body" id="lendrequestbody">
-                                                      <table><tbody><tr><th>LENDER</th><td>Stadt Singen</td></tr>
-        <tr><th>BORROWER</th><td>Mainz Bank</td></tr>
-        <tr><th>AMOUNT</th><td><input type="number" id="amount" class="form-control requestamount"></td></tr>
-        <tr><th>START-DATE</th><td><input type="date" id="datepicker" class="form-control hasDatepicker datepicker"></td></tr>
-        <tr><th>END-DATE</th><td><input type="date" id="datepicker1" class="form-control hasDatepicker datepicker1"></td></tr>
-        <tr><th>NR. OF DAYS&nbsp;&nbsp;</th><td id="no_of_days"></td></tr>
-        <tr><th>INTEREST CONVENTION</th><td><select class="form-control" id="interest"><option value="act360">act/360</option></select></td></tr>
-        <tr><th>PAYMENTS</th><td><select class="form-control" id="payments"><option value="yearly payments">yearly payments</option></select></td></tr>
-        <tr><td><input type="button" class="btn btn-info btn-lg" id="sendRequest" value="SEND"></td></tr>
-        </tbody></table>    
-          
-                                                         </div>
-                                                        <div class="modal-footer">
-                                                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                                           
                                                         </div>
   

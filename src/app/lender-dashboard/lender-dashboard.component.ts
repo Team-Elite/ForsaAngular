@@ -5,7 +5,7 @@ import {Router} from '@angular/router';
 import { ToastrService  } from 'ngx-toastr';
 import {LenderDashboardService} from './Shared/lender-dashboard.service';
 import {StartPageModel} from './Shared/start-page-model.class';
-
+import {BestPriceViewService} from '../lender-dashboard/best-price-view/Shared/best-price-view.service';
 
 @Component({
   selector: 'app-lender-dashboard',
@@ -15,7 +15,9 @@ import {StartPageModel} from './Shared/start-page-model.class';
 export class LenderDashboardComponent implements OnInit {
 
   constructor(public lenderDashboardService:LenderDashboardService, public spinner:NgxSpinnerService
-    ,public authenticateServiceService:AuthenticateServiceService, public router:Router, public  toastr: ToastrService) { }
+    ,public authenticateServiceService:AuthenticateServiceService, public router:Router
+    , public  toastr: ToastrService
+    , public bestPriceViewService:BestPriceViewService) { }
 
     copyLoggedInUser:any;
     SelectedStartPage:any;
@@ -25,7 +27,8 @@ export class LenderDashboardComponent implements OnInit {
     {Id:3,Value:'Test3'},
     {Id:4,Value:'Test4'},
     {Id:5,Value:'Test5'}];
-    
+    timer:any;
+    IfBankResponseFound:boolean=false;
 
   ngOnInit() {
     this.spinner.show();
@@ -38,7 +41,127 @@ export class LenderDashboardComponent implements OnInit {
     debugger;
     this.SelectedStartPage=this.testList[0].Id;
     //this.GetLenderStartPage();
+    this.bestPriceViewService.lenderSendRequestModel2={
+      RequestId :0,
+      LenderId :0,
+      BorrowerId :0,
+      LenderName:'',
+      BorrowerName:'',
+      Amount :0.00,
+      StartDate :'',
+      EndDate :'',
+      NoOfDays :0,
+      InterestConvention :'',
+      Payments :'',
+      IsRequestAccepted :false,
+      DateCreated :new Date(),
+      DateModified :new Date(),
+      RequestCreatedBy :this.bestPriceViewService.lenderDashboardService.userId,
+      InterestConventionName:'',
+      LenderEmailId:'',
+      PaymentsName:'',
+      IsAccepted:null,
+      IsRejected:null,
+      RateOfInterest:0.00,
+      BorrowerEmailId:'',
+      MessageForForsa:'',
+      IsMessageSentToForsa:false
+      }
+      this.SetTimeInterval();
+  }
+
+  SetTimeInterval(){
+    this.timer= setInterval(() => {
+      this.GetLenderSendRequestPendingLendedRequestByLenderId();
+    }, 5000);
+  }
+
+  AcceptLendedRequest(){
+    debugger;
+
+    for(var i =0; i<= this.bestPriceViewService.listInterestConvention.length-1;i++){
+      if(this.bestPriceViewService.lenderSendRequestModel2.InterestConvention == this.bestPriceViewService.listInterestConvention[i].Id){
+       this.bestPriceViewService.lenderSendRequestModel2.InterestConventionName=this.bestPriceViewService.listInterestConvention[i].Value;
+       break;
+      }
+    }
+
+    for(var i =0; i<= this.bestPriceViewService.listPayments.length-1;i++){
+     if(this.bestPriceViewService.lenderSendRequestModel2.Payments == this.bestPriceViewService.listPayments[i].Id){
+      this.bestPriceViewService.lenderSendRequestModel2.PaymentsName=this.bestPriceViewService.listPayments[i].Value;
+      break;
+     }
+   }
     
+    this.spinner.show();
+    this.bestPriceViewService.lenderSendRequestModel2.IsAccepted=true;
+    var result= this.bestPriceViewService.AcceptLendedRequest(this.bestPriceViewService.lenderSendRequestModel2).subscribe(data =>{
+      this.toastr.success('Your deal is completed.','Dashboard');
+      this.spinner.hide();
+      this.SetTimeInterval();
+      var element= document.getElementById('closeSendRequestModalLender');
+      element.click();
+    });
+    
+  }
+
+  RejectLendedRequest(){
+    debugger;
+
+    for(var i =0; i<= this.bestPriceViewService.listInterestConvention.length-1;i++){
+      if(this.bestPriceViewService.lenderSendRequestModel2.InterestConvention == this.bestPriceViewService.listInterestConvention[i].Id){
+       this.bestPriceViewService.lenderSendRequestModel2.InterestConventionName=this.bestPriceViewService.listInterestConvention[i].Value;
+       break;
+      }
+    }
+
+    for(var i =0; i<= this.bestPriceViewService.listPayments.length-1;i++){
+     if(this.bestPriceViewService.lenderSendRequestModel2.Payments == this.bestPriceViewService.listPayments[i].Id){
+      this.bestPriceViewService.lenderSendRequestModel2.PaymentsName=this.bestPriceViewService.listPayments[i].Value;
+      break;
+     }
+   }
+    
+    this.spinner.show();
+    this.bestPriceViewService.lenderSendRequestModel2.IsRejected=true;
+    var result= this.bestPriceViewService.RejectLendedRequest(this.bestPriceViewService.lenderSendRequestModel2).subscribe(data =>{
+      this.toastr.success('The Deal request has been declined.','Dashboard');
+      this.spinner.hide();
+      var element= document.getElementById('closeSendRequestModalLender');
+      element.click();
+      this.SetTimeInterval();
+    });
+    
+  }
+
+  SaveForsaMessage(){
+    if(this.bestPriceViewService.lenderSendRequestModel2.MessageForForsa == undefined || this.bestPriceViewService.lenderSendRequestModel2.MessageForForsa == null|| this.bestPriceViewService.lenderSendRequestModel2.MessageForForsa.toString().trim().length==0){
+      this.toastr.error("Please enter message","Dashbaord");
+      return;
+    }
+    this.spinner.show(); 
+    this.bestPriceViewService.lenderSendRequestModel2.IsMessageSentToForsa=true;
+    this.bestPriceViewService.SaveForsaMessage(this.bestPriceViewService.lenderSendRequestModel2).subscribe(data=>{
+      this.spinner.hide(); 
+      this.toastr.success("Message sent to Forsa","Dashboard");
+      this.SetTimeInterval();
+    var element= document.getElementById('closeSendRequestModalLender');
+    element.click();
+    });
+  }
+
+  async GetLenderSendRequestPendingLendedRequestByLenderId(){
+    
+    //this.spinner.show();
+    var result = await this.bestPriceViewService.GetLenderSendRequestPendingLendedRequestByLenderId();
+    if(result.IsSuccess && result.IfDataFound == true){
+      clearInterval(this.timer);
+      this.IfBankResponseFound=true;
+      var element= document.getElementById('ShowSendRequestLDPopup');
+      element.click();
+      this.bestPriceViewService.lenderSendRequestModel2=JSON.parse(result.data)[0];    
+    }
+    //this.spinner.hide();
   }
 
   async GetLenderStartPage(){

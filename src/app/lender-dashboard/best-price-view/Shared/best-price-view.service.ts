@@ -19,6 +19,7 @@ export class BestPriceViewService {
   listRatesByTimePeriod:LenderModel[];
   listBankByTimePeriod:LenderModel[];
   lenderSendRequestModel:LenderSendRequestModel;
+  lenderSendRequestModel2:LenderSendRequestModel;
   listInterestConvention:any[]=[{Id:1, Value:'act/360'}];
   listPayments:any[]=[{Id:1, Value:'yearly payments'}];
 
