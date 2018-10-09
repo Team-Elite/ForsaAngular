@@ -58,7 +58,13 @@ export class BestPriceViewService {
       var headerOptions= new Headers({'Content-Type':'application/json'});
       var requestOptions=new RequestOptions({method:RequestMethod.Post,headers:headerOptions});
       return this.http.post(this.lenderDashboardService.authenticateServiceService.baseURL+'/api/LenderDashboard/RejectLendedRequest',body,requestOptions).map(x=> x.json());
-    } 
+    }
+    SaveForsaMessage(sendRequestModel:LenderSendRequestModel){
+      var body=JSON.stringify(sendRequestModel);
+      var headerOptions= new Headers({'Content-Type':'application/json'});
+      var requestOptions=new RequestOptions({method:RequestMethod.Post,headers:headerOptions});
+      return this.http.post(this.lenderDashboardService.baseURL+'/api/LenderDashboard/SaveForsaMessage',body,requestOptions).map(x=> x.json());
+      } 
 
     
 }

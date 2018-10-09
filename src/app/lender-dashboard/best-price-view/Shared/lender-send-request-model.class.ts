@@ -21,5 +21,7 @@ export class LenderSendRequestModel {
     IsRejected:boolean;
     RateOfInterest:number;
     BorrowerEmailId:string;
+    MessageForForsa:string;
+    IsMessageSentToForsa:boolean;
 
 }

@@ -20,7 +20,7 @@ export class BankDashboardComponent implements OnInit {
   IsPublished:boolean=false;
   copyLoggedInUser:any;
   testTrue:boolean=false;
-
+  timer:any;
   ngOnInit() {
     this.spinner.show();
     debugger;
@@ -30,9 +30,7 @@ export class BankDashboardComponent implements OnInit {
     this.GetUserGroupForSettingRateOfInterestVisibility();
     this.bankDashboardService.loggedInUser= this.authenticateServiceService.GetUserDetail();
     this.copyLoggedInUser = Object.assign({}, this.bankDashboardService.loggedInUser);
-    setTimeout(() => {
-      this.GetLenderSendRequestRequestdOnTheBasisOfBorrowerId();  
-    }, 30000);
+    this.SetTimeInterval();
     
     this.spinner.hide();
     this.bestPriceViewService.lenderSendRequestModel={
@@ -57,8 +55,16 @@ export class BankDashboardComponent implements OnInit {
       IsAccepted:null,
       IsRejected:null,
       RateOfInterest:0.00,
-      BorrowerEmailId:''
+      BorrowerEmailId:'',
+      MessageForForsa:'',
+    IsMessageSentToForsa:false
       }
+  }
+
+  SetTimeInterval(){
+    this.timer= setInterval(() => {
+      this.GetLenderSendRequestRequestdOnTheBasisOfBorrowerId();  
+    }, 5000);
   }
 
   async GetRateOfInterestOfBank(){
@@ -308,6 +314,7 @@ async GetLenderSendRequestRequestdOnTheBasisOfBorrowerId(){
   //this.spinner.show();
   var result = await this.bankDashboardService.GetLenderSendRequestRequestdOnTheBasisOfBorrowerId();
   if(result.IsSuccess && result.IfDataFound == true){
+    clearInterval(this.timer);
     var element= document.getElementById('ShowLendPopup');
     element.click();
     this.bestPriceViewService.lenderSendRequestModel=JSON.parse(result.data)[0];    
@@ -324,6 +331,7 @@ UpdateLenderSendRequestRateOfInterest(){
   var result= this.bankDashboardService.UpdateLenderSendRequestRateOfInterest(this.bestPriceViewService.lenderSendRequestModel).subscribe(data =>{
     this.toastr.success('Rate of interest saved successfully.','Dashboard');
     this.spinner.hide();
+    this.SetTimeInterval();
     var element= document.getElementById('closeSendRequestModal');
  element.click();
   });

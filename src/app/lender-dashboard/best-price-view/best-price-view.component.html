@@ -10711,15 +10711,16 @@
                                                    <div class="modal-content">
                                                      <div class="modal-header">
                                                        <h5 class="modal-title" id="exampleModalLongTitle">SEND REQUEST</h5>
-                                                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                       <button (click)="SetTimeInterval();" type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                          <span aria-hidden="true">×</span>
                                                        </button>
                                                      </div>
   
                                                      <div class="modal-body" id="lendrequestbody">
-                                                      <table><tbody><tr><th>LENDER</th><td>{{bestPriceViewService.lenderSendRequestModel.LenderName}}</td></tr>
-        <tr><th>BORROWER</th><td>{{bestPriceViewService.lenderSendRequestModel.BorrowerName}}</td></tr>
-        <tr><th>AMOUNT</th><td><input [disabled]="IfBankResponseFound" (keypress)="numberOnly($event)" #Amount="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.Amount" name="Amount" type="text"  id="amount" class="form-control requestamount"></td></tr>
+                                                      <table><tbody>
+                                                      <tr style="display:none;"><th>LENDER</th><td>{{bestPriceViewService.lenderSendRequestModel.LenderName}}</td></tr>
+        <tr style="display:none;"><th>BORROWER</th><td>{{bestPriceViewService.lenderSendRequestModel.BorrowerName}}</td></tr>
+        <tr style="display:none;"><th>AMOUNT</th><td><input [disabled]="IfBankResponseFound" (keypress)="numberOnly($event)" #Amount="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.Amount" name="Amount" type="text"  id="amount" class="form-control requestamount"></td></tr>
         <tr><th>START-DATE </th><td><input [disabled]="IfBankResponseFound" (change)="CalculateNumberOfDays()" #StartDate="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.StartDate" name="StartDate" type="date" id="datepicker" class="form-control hasDatepicker datepicker"></td></tr>
         <tr><th>END-DATE</th><td><input [disabled]="IfBankResponseFound" (change)="CalculateNumberOfDays()" #EndDate="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.EndDate" name="EndDate" type="date" id="datepicker1" class="form-control hasDatepicker datepicker1"></td></tr>
         <tr><th>NR. OF DAYS&nbsp;&nbsp;</th><td id="no_of_days">{{bestPriceViewService.lenderSendRequestModel.NoOfDays}}</td></tr>
@@ -10735,10 +10736,19 @@
         <tr *ngIf="IfBankResponseFound"><td><input type="button" (click)="AcceptLendedRequest()" class="btn btn-info btn-lg" id="AcceptRequest" value="ACCEPT"></td>
             <td><input type="button" (click)="RejectLendedRequest()" class="btn btn-info btn-lg" id="RejectRequest" value="REJECT"></td>
         </tr>
+        <tr>
+        <td><input type="button" (click)="SaveForsaMessage()" class="btn btn-info btn-lg" id="RejectRequest" value="CHAT WITH FORSA"></td>
+        <td></td>
+        </tr>
+        <tr>
+            <th>Message</th>
+        <td>
+        <input type="text" #MessageForForsa="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.MessageForForsa" name="MessageForForsa" class="form-control" id="MessageForForsa">
+        </td></tr>
         </tbody></table>    
                                                          </div>
                                                         <div class="modal-footer">
-                                                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                          <button type="button" (click)="SetTimeInterval();" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                                           <button id="closeSendRequestModal" style="display:none;" type="button" data-dismiss="modal" class="btn btn-secondary">Close 12</button>
                                                           
                                                         </div>
