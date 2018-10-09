@@ -3,8 +3,7 @@ import{Http,Response,Headers,RequestOptions,RequestMethod} from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 import {LoginModel} from './login-model.model';
-import {AuthenticateServiceService} from '../../Shared/authenticate-service.service';
-
+import { AuthenticateServiceService } from '../../Shared/authenticate-service.service';
 
 @Injectable({
   providedIn: 'root'

@@ -1,9 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, Component } from '@angular/core';
+import { NgModule, Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import {HttpModule} from '@angular/http';
-import{FormsModule} from '@angular/forms';
-
-
+import { FormsModule } from '@angular/forms';
+import { HttpClient, HttpClientModule } from '@angular/common/http'
+import { ForsaLanguageComponent } from './multi-language/forsalanguage.component';
 import { AppComponent } from './app.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { BlockPasteDirective } from './Shared/block-paste.directive';
@@ -19,7 +19,7 @@ import {} from './test/test.component';
 import { ToastrModule } from 'ngx-toastr';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbdModalBasic } from './registration/Shared/modal-basic';
-import { NgbModalBackdrop } from '../../node_modules/@ng-bootstrap/ng-bootstrap/modal/modal-backdrop';
+//import { NgbModalBackdrop } from '../../node_modules/@ng-bootstrap/ng-bootstrap/modal/modal-backdrop';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { LenderDashboardComponent } from './lender-dashboard/lender-dashboard.component';
@@ -29,7 +29,12 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import { ViewAllPriceComponent } from './lender-dashboard/view-all-price/view-all-price.component';
 import { AllBanksComponent } from './lender-dashboard/all-banks/all-banks.component';
 import { KontactDashboardComponent } from './kontact-dashboard/kontact-dashboard.component'; // <-- import the module
-
+//import { HttpClient } from 'selenium-webdriver/http';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+export function HttpLoaderFactory(httpClient: HttpClient) {
+    return new TranslateHttpLoader(httpClient);
+}
 
 const appRoutes: Routes=[{path:'login',component:LoginComponent},
                          {path:'registration',component:RegistrationComponent},
@@ -40,7 +45,9 @@ const appRoutes: Routes=[{path:'login',component:LoginComponent},
                          {path:'lenderDashboard',component:LenderDashboardComponent,
                children:[{path:"BestPriceView",component:BestPriceViewComponent},
                          {path:"ViewAllPrice",component:ViewAllPriceComponent} ,
-                         {path:'AllBanks',component:AllBanksComponent}           
+                   { path: 'AllBanks', component: AllBanksComponent },
+                   { path: 'Applanguage', component: ForsaLanguageComponent },
+                         
               ]}
                         //  {path:'BestPriceView', component:BestPriceViewComponent}
                         // {path:'',redirectTo:'bankDashBoard', pathMatch:'full'},
@@ -59,7 +66,7 @@ const appRoutes: Routes=[{path:'login',component:LoginComponent},
     ViewAllPriceComponent,
     AllBanksComponent,
     KontactDashboardComponent,
-    
+      ForsaLanguageComponent
   ],
   imports: [
     BrowserModule,
@@ -72,12 +79,22 @@ const appRoutes: Routes=[{path:'login',component:LoginComponent},
     NgbModule,
     BrowserAnimationsModule,
     NgxSpinnerModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+      TranslateModule.forRoot({
+          loader: {
+              provide: TranslateLoader,
+              useFactory: HttpLoaderFactory,
+              deps: [HttpClient]
+          }
+      }),
+      HttpClientModule,
+      
   ],
   providers: [
     NgbdModalBasic,
     DatePipe
-  ],
+    ],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA] ,
   
   bootstrap: [AppComponent]
 })
