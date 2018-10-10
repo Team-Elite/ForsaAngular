@@ -10383,10 +10383,10 @@ font-size: 12px;
                             <li class="identity" title="Logout">
                               <a href="javascript:void(0);" (click)="Logout()"><i class="material-icons">logout</i></a>
                             </li>
-                            <!-- <li class="settings">
-                                <a href="javascript:void(0);"><i class="material-icons icon-position">settings
-                                </i></a>
-                            </li> -->
+                            <li *ngIf="IfBothUserTypeFound" class="settings" title="Switch Screen">
+                              <a href="javascript:void(0);" (click)="SwitchScreen()"><i class="material-icons icon-position">settings
+                              </i></a>
+                          </li>
                         </ul>
 
                     </div>

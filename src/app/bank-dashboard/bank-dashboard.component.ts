@@ -6,6 +6,7 @@ import { ToastrService  } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
 import {BestPriceViewService} from '../lender-dashboard/best-price-view/Shared/best-price-view.service';
 import {DatePipe} from '@angular/common';
+import {LenderDashboardService} from '../lender-dashboard/Shared/lender-dashboard.service';
 
 @Component({
   selector: 'app-bank-dashboard',
@@ -16,15 +17,18 @@ export class BankDashboardComponent implements OnInit {
 
   constructor(public bankDashboardService:BankDashboardService, public authenticateServiceService:AuthenticateServiceService, public router: Router
     , public  toastr: ToastrService, public spinner:NgxSpinnerService, public bestPriceViewService:BestPriceViewService
-    , public pipe:DatePipe) { }
+    , public pipe:DatePipe,public lenderDashboardService:LenderDashboardService) { }
   IsPublished:boolean=false;
   copyLoggedInUser:any;
   testTrue:boolean=false;
   timer:any;
+  IfBothUserTypeFound:boolean=false;
   ngOnInit() {
     this.spinner.show();
     debugger;
     this.authenticateServiceService.AuthenticateSession();
+    debugger;
+    this.IfBothUserTypeFound = this.authenticateServiceService.GetIfBothUserTypeFound() ==( undefined || null) ? false: true;
     this.bankDashboardService.userId = this.authenticateServiceService.GetUserId();
     this.GetRateOfInterestOfBank();
     this.GetUserGroupForSettingRateOfInterestVisibility();
@@ -396,6 +400,21 @@ ShowSendRequestModal(bank:any){
   // // // this.bestPriceViewService.lenderSendRequestModel.InterestConvention=this.bestPriceViewService.listInterestConvention[0].Id;
   // // // this.bestPriceViewService.lenderSendRequestModel.Payments=this.bestPriceViewService.listPayments[0].Id;
   // // // this.bestPriceViewService.lenderSendRequestModel.LenderEmailId=this.bestPriceViewService.lenderDashboardService.authenticateServiceService.GetEmailId();
+}
+
+async SwitchScreen(){
+  this.lenderDashboardService.userId = this.authenticateServiceService.GetUserId();
+  let startPage= await this.lenderDashboardService.GetLenderStartPage();
+  this.lenderDashboardService.StartingScreen=JSON.parse(startPage.data);
+  if(this.lenderDashboardService.StartingScreen[0].PageName == "Best Price View"){
+  this.router.navigate(['lenderDashboard/BestPriceView']);
+   }
+   else if(this.lenderDashboardService.StartingScreen[0].PageName == "View All Price"){
+    this.router.navigate(['lenderDashboard/ViewAllPrice']);
+   }
+   else if(this.lenderDashboardService.StartingScreen[0].PageName == "All Banks"){
+    this.router.navigate(['lenderDashboard/AllBanks']);
+   }
 }
 
 }

@@ -10676,8 +10676,8 @@ font-size: 12px;
                                 <a href="javascript:void(0);" (click)="ShowUpdateProfileModal()" data-toggle="modal" data-target=".admin-modal"><i class="material-icons">perm_identity</i>
                                 </a>
                             </li>
-                            <li class="settings" style="display:none;">
-                                <a href="http://mysandbox.online/forsa/index.html#"><i class="material-icons icon-position">settings
+                            <li *ngIf="IfBothUserTypeFound" class="settings" title="Switch Screen">
+                                <a href="javascript:void(0);" (click)="SwitchScreen()"><i class="material-icons icon-position">settings
                                 </i></a>
                             </li>
                             <li class="identity" title="Logout">

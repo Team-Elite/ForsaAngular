@@ -74,7 +74,11 @@ if(form.value.UserName.indexOf('@')>-1){
     if(user.IsSuccess == true){
       debugger;
       this.authenticateServiceService.SaveSession(user.data);
-      if(JSON.parse(user.data)[0].UserTypeId==4){
+      var IfBothUserTypeFound = JSON.parse(user.data)[0].UserTypeId.split(',').length >1 ? true: false;
+      if(IfBothUserTypeFound){
+      this.authenticateServiceService.SaveIfBothUserTypeFound(IfBothUserTypeFound);
+      }
+      if(JSON.parse(user.data)[0].UserTypeId==4 || IfBothUserTypeFound){
       this.router.navigate(['/bankDashBoard']);
     }
     else if(JSON.parse(user.data)[0].UserTypeId==6){

@@ -23,12 +23,12 @@ export class KontactDashboardComponent implements OnInit {
   ngOnInit() {
     this.authenticateServiceService.AuthenticateSession();
     this.lenderDashboardService.userId = this.authenticateServiceService.GetUserId();
-    this.GetAllBanksWithInterestRateHorizontaly();
+    this.GetAllBanksWithInterestRateHorizontaly('bank');
   }
-  async GetAllBanksWithInterestRateHorizontaly(){
+  async GetAllBanksWithInterestRateHorizontaly(orderBy:string){
     debugger;
     this.spinner.show();
-    let rates= await this.allBanksService.GetAllBanksWithInterestRateHorizontaly();
+    let rates= await this.allBanksService.GetAllBanksWithInterestRateHorizontalyForKontactUser(orderBy);
     this.allBanksService.listAllBanks=JSON.parse(rates.data);
     this.GetHighestRates();
     this.spinner.hide();

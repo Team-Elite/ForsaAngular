@@ -9,6 +9,7 @@ export class AuthenticateServiceService {
   userValue:string='userValue';
   sessionCreatedAt:string='sessionCreatedAt';
   selectedBestPriceId:string='selectedBestPriceId';
+  ifBothUserTypeFound:string='ifBothUserTypeFound';
   baseURL:string='http://forsaapi.elitewebdemo.com';
   //baseURL:string='http://localhost:60744/';
   constructor(@Inject(LOCAL_STORAGE) private storage: StorageService, public router: Router) { }
@@ -73,6 +74,7 @@ export class AuthenticateServiceService {
       this.storage.remove(this.userValue);
       this.storage.remove(this.selectedBestPriceId);
       this.storage.remove(this.sessionCreatedAt);
+      this.storage.remove(this.ifBothUserTypeFound);
     }
 
     SaveSelectedTimePeriodId(value:any){
@@ -84,4 +86,14 @@ export class AuthenticateServiceService {
         let Id =this.storage.get(this.selectedBestPriceId);
         return Id;
       }
+
+      SaveIfBothUserTypeFound(value:any){
+        this.storage.set(this.ifBothUserTypeFound,value);
+        }
+
+        GetIfBothUserTypeFound(){
+          debugger;
+          let Id =this.storage.get(this.ifBothUserTypeFound);
+          return Id;
+        }
 }

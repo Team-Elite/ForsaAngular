@@ -43,4 +43,9 @@ export class AllBanksService {
       +'&orderBy='+orderByColumn).toPromise();
       return response.json();
     }
+
+    async GetAllBanksWithInterestRateHorizontalyForKontactUser(orderBy:string){
+      const response= await this.http.get(this.lenderDashboardService.baseURL+'/api/LenderDashboard/GetAllBanksWithInterestRateHorizontalyForKontactUser?orderBy='+orderBy).toPromise();
+      return response.json();
+      }
 }

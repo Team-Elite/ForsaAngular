@@ -29,12 +29,14 @@ export class LenderDashboardComponent implements OnInit {
     {Id:5,Value:'Test5'}];
     timer:any;
     IfBankResponseFound:boolean=false;
+    IfBothUserTypeFound:boolean=false;
 
   ngOnInit() {
     this.spinner.show();
     debugger;
     this.authenticateServiceService.AuthenticateSession();
     this.lenderDashboardService.userId = this.authenticateServiceService.GetUserId();
+    this.IfBothUserTypeFound = this.authenticateServiceService.GetIfBothUserTypeFound() ==( undefined || null) ? false: true;
     this.lenderDashboardService.loggedInUser= this.authenticateServiceService.GetUserDetail();
     this.copyLoggedInUser = Object.assign({}, this.lenderDashboardService.loggedInUser);
     this.GetPagesForLenderSettingStartPage();
@@ -317,5 +319,8 @@ this.spinner.hide();
 
  }
 
+ async SwitchScreen(){
+  this.router.navigate(['/bankDashBoard']);
+}
 
 }
