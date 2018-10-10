@@ -9,7 +9,7 @@ import {Router} from '@angular/router';
 import { ToastrService  } from 'ngx-toastr';
 //import {FormBuilder, FormGroup, Validators} from '@angular/forms'; 
 import { NgxSpinnerService } from 'ngx-spinner';
- 
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: '[app-registration]',
   templateUrl: './registration.component.html',

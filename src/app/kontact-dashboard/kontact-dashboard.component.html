@@ -10344,23 +10344,23 @@ font-size: 12px;
                         </div>
                     </div>
                     <div class="col-lg-8 col-md-8">
+                        <ul>   <app-forsa-languages></app-forsa-languages></ul>
+                       
                         <ul class="in-lang text-right">
-                            <app-language></app-language>
-
                             <li>
-                                <p>{{'kontact.DashBoard.Account'|translate}}</p>
+                                {{'Lender.Kontact.Account'|translate}}
                             </li>
                             <li class="account">
                                 <div class="form-group form-md-line-input has-error">
                                     <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
 
                                         <select class="mdl-selectfield__select" name="LogicRoom" id="logicroom">
-                                            {{'kontact.DashBoard.expand_more'|translate}}
+                                            {{'Lender.Kontact.expand_more'|translate}}
                                             <option value="" disabled="" selected="">Kontact</option>
                                             <!-- <option value="logicroom1">1</option>
-                    <option value="logicroom2">2</option>
-                    <option value="logicroom3">3</option>
-                    <option value="logicroom4">4</option> -->
+    <option value="logicroom2">2</option>
+    <option value="logicroom3">3</option>
+    <option value="logicroom4">4</option> -->
                                         </select>
                                     </div>
 
@@ -10368,22 +10368,22 @@ font-size: 12px;
 
                             </li>
                             <!-- <li>
-        <a href="javascript:void(0);"><i class="material-icons icon-position">search</i></a>
-    </li> -->
+            <a href="javascript:void(0);"><i class="material-icons icon-position">search</i></a>
+        </li> -->
                             <li>
-                                <a href="javascript:void(0);"><i class="material-icons icon-position">{{'kontact.DashBoard.forum'|translate}}</i></a>
+                                <a href="javascript:void(0);"><i class="material-icons icon-position"></i>{{'Lender.Kontact.forum'|translate}}</a>
                             </li>
                             <li class="identity">
                                 <!-- <a href="javascript:void(0);" (click)="ShowUpdateProfileModal()" data-toggle="modal" data-target=".admin-modal" ><i class="material-icons">perm_identity</i>
-        </a> -->
+            </a> -->
                             </li>
                             <li class="identity" title="Logout">
-                                <a href="javascript:void(0);" (click)="Logout()"><i class="material-icons">{{'kontact.DashBoard.logout'|translate}}</i></a>
+                                <a href="javascript:void(0);" (click)="Logout()"><i class="material-icons"></i>{{'Lender.Kontact.logout'|translate}}</a>
                             </li>
                             <!-- <li class="settings">
-        <a href="javascript:void(0);"><i class="material-icons icon-position">settings
-        </i></a>
-    </li> -->
+            <a href="javascript:void(0);"><i class="material-icons icon-position">settings
+            </i></a>
+        </li> -->
                         </ul>
 
                     </div>
@@ -10432,27 +10432,27 @@ font-size: 12px;
       <div class="col-lg-12">
           <table class="table table-bordered table-responsive">
               <tbody><tr>
-                         <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontaly()">{{'kontact.DashBoard.GeneralOverview'|translate}}</th>
-                         <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('TN')">{{'kontact.DashBoard.Tag'|translate}}</th>
-                         <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Week1')">{{'kontact.DashBoard.Week1'|translate}}</th>
-                         <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Week2')">{{'kontact.DashBoard.Week2'|translate}}</th>
-                         <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Week3')">{{'kontact.DashBoard.Week3'|translate}}</th>
-                         <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Month1')">{{'kontact.DashBoard.Month1'|translate}}</th>
-                         <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Month2')">{{'kontact.DashBoard.Month2'|translate}}</th>
-                         <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Month3')">{{'kontact.DashBoard.Month3'|translate}}</th>
-                         <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Month4')">{{'kontact.DashBoard.Month4'|translate}}</th>
-                         <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Month5')">{{'kontact.DashBoard.Month5'|translate}}</th>
-                         <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Month6')">{{'kontact.DashBoard.Month6'|translate}}</th>
-                         <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Month7')">{{'kontact.DashBoard.Month7'|translate}}</th>
-                         <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Month8')">{{'kontact.DashBoard.Month8'|translate}}</th>
-                         <th (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Month9')">{{'kontact.DashBoard.Month9'|translate}}</th>
-                         <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Month10')">{{'kontact.DashBoard.Month10'|translate}}</th>
-                         <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Month11')">{{'kontact.DashBoard.Month11'|translate}}</th>
-                         <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Month12')">{{'kontact.DashBoard.Month12'|translate}}</th>
-                         <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Year2')">{{'kontact.DashBoard.Year2'|translate}}</th>
-                         <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Year3')">{{'kontact.DashBoard.Year3'|translate}}</th>
-                         <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Year4')">{{'kontact.DashBoard.Year4'|translate}}</th>
-                         <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Year5')">{{'kontact.DashBoard.Year5'|translate}}</th>
+                         <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontaly()">{{'Lender.Kontact.GeneralOverview'|translate}}</th>
+                         <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('TN')">{{'Lender.Kontact.Tag'|translate}}</th>
+                         <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Week1')">{{'Lender.Kontact.Week1'|translate}}</th>
+                         <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Week2')">{{'Lender.Kontact.Week2'|translate}}</th>
+                         <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Week3')">{{'Lender.Kontact.Week3'|translate}}</th>
+                         <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Month1')">{{'Lender.Kontact.Month1'|translate}}</th>
+                         <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Month2')">{{'Lender.Kontact.Month2'|translate}}</th>
+                         <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Month3')">{{'Lender.Kontact.Month3'|translate}}</th>
+                         <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Month4')">{{'Lender.Kontact.Month4'|translate}}</th>
+                         <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Month5')">{{'Lender.Kontact.Month5'|translate}}</th>
+                         <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Month6')">{{'Lender.Kontact.Month6'|translate}}</th>
+                         <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Month7')">{{'Lender.Kontact.Month7'|translate}}</th>
+                         <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Month8')">{{'Lender.Kontact.Month8'|translate}}</th>
+                         <th (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Month9')">{{'Lender.Kontact.Month9'|translate}}</th>
+                         <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Month10')">{{'Lender.Kontact.Month10'|translate}}</th>
+                         <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Month11')">{{'Lender.Kontact.Month11'|translate}}</th>
+                         <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Month12')">{{'Lender.Kontact.Month12'|translate}}</th>
+                         <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Year2')">{{'Lender.Kontact.Year2'|translate}}</th>
+                         <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Year3')">{{'Lender.Kontact.Year3'|translate}}</th>
+                         <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Year4')">{{'Lender.Kontact.Year4'|translate}}</th>
+                         <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Year5')">{{'Lender.Kontact.Year5'|translate}}</th>
               </tr>
               <tr *ngFor="let bank of allBanksService.listAllBanks">
                      <td >{{bank.Bank}}</td>
@@ -10479,7 +10479,7 @@ font-size: 12px;
                      
                  </tr>
           </tbody></table>
-          <button (click)="RegisterAsPartner()" class="btn btn-secondary green-btn" type="button">{{'kontact.DashBoard.RegisterasPartner'|translate}}</button>
+          <button (click)="RegisterAsPartner()" class="btn btn-secondary green-btn" type="button">{{'Lender.Kontact.RegisterasPartner'|translate}}</button>
       </div>
   </div>
 </div>                                    

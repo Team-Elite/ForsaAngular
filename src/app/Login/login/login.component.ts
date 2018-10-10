@@ -7,6 +7,8 @@ import { ToastrService  } from 'ngx-toastr';
 import { UserModel } from '../../registration/Shared/user-model.model';
 import { NgxSpinnerService } from 'ngx-spinner';
 import {LenderDashboardService} from '../../lender-dashboard/Shared/lender-dashboard.service';
+import { TranslateService } from '@ngx-translate/core';
+//import { } from '../../multi-language/forsalanguage.component.html';
 
 @Component({
   selector: 'app-login',
@@ -14,11 +16,12 @@ import {LenderDashboardService} from '../../lender-dashboard/Shared/lender-dashb
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  constructor(public loginService:LoginService, public authenticateServiceService:AuthenticateServiceService
+    constructor(public loginService: LoginService, public translate: TranslateService,public authenticateServiceService:AuthenticateServiceService
     , public router: Router,public  toastr: ToastrService
     ,public spinner: NgxSpinnerService
-    ,public lenderDashboardService:LenderDashboardService) { }
-
+      , public lenderDashboardService: LenderDashboardService,) {
+    }
+  
 
   IfVerificationDone:boolean=true;
   IfShowPassword:boolean=false;
@@ -41,7 +44,7 @@ export class LoginComponent implements OnInit {
   }
 
   async ValidateUser(form : NgForm){
-    debugger;
+   // debugger;
 
       if(form !=null){
       if(form.value.UserName == undefined || form.value.UserName == null || form.value.UserName.trim().length == 0){
@@ -65,10 +68,10 @@ if(form.value.UserName.indexOf('@')>-1){
         return false;
       }
       
-    if(!this.IfVerificationDone){
-      this.toastr.error("Please verify captcha.","Login");
-      return false;
-    }
+    //if(!this.IfVerificationDone){
+    //  this.toastr.error("Please verify captcha.","Login");
+    //  return false;
+    //}
     this.spinner.show();
     let user= await this.loginService.ValidateUser(form.value);
     if(user.IsSuccess == true){

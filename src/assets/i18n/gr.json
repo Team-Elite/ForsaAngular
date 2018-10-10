@@ -5,6 +5,7 @@
     "ButtonSubmit": "einreichen",
     "ButtonClose": "schließen",
     "ButtonSendRequest": "Anfrage senden",
+    "ButtonLogout": "Ausloggen"
   },
   "Login": {
     "Title": "Anmeldung",
@@ -75,7 +76,7 @@
       "forum": "Forum",
       "PermIdentity": "perm_identität",
       "Settings": "die Einstellungen",
-      "Logout": "Ausloggen",
+
       "SettingStartPage": "SettingStartPage",
       "LenderSettings": "LENDEREINSTELLUNGEN",
       "BestPriceView": "Beste Preisansicht",
@@ -167,8 +168,67 @@
       "Year4": "4 Y",
       "Year5": "5 Y"
 
+    },
+    "BankDashboard": {
+      "menutext": "Speisekarte",
+      "Account": "Konto",
+      "expand_more": "expandiere mehr",
+      "Borrower": "Kreditnehmer",
+      "forum": "forum",
+      "PermIdentity": "Perm Identität",
+      "logout": "Ausloggen",
+      "SettingStartPage": "Startseiteeinstellen",
+      "LenderSettings": "LENDEREINSTELLUNGEN",
+      "BestPriceView": "Beste Preisansicht",
+      "ViewAllPrice": "ALLE PREISE ANSEHEN",
+      "UpdateProfile": "Profil aktualisieren",
+      "EditDetails": "Details bearbeiten",
+      "FirstName": "Vorname",
+      "SurName": "Auf Name",
+      "CompanyName": "Name der Firma",
+      "ChangePassword": "Ändere das Passwort",
+      "OldPassword": "Altes Passwort",
+      "NewPassword": "Neues Kennwort",
+      "ConfirmPassword": "Bestätige das Passwort",
+      "Lender": "DARLEHENSGEBER",
+      "Amount": "MENGE",
+      "StartDate": "ANFANGSDATUM",
+      "Endate": "ENDTERMIN",
+      "NrOfDays": "NR. DER TAGE",
+      "InterestConvention": "INTERESSEKONVENTION",
+      "Payments": "ZAHLUNGEN",
+      "RateOfInterest": "Zinssatz"
+    },
+    "Kontact": {
+      "menutext": "Speisekarte",
+      "Account": "Konto",
+      "expand_more": "expandiere mehr",
+      "forum": "forum",
+      "logout": "Ausloggen",
+      "GeneralOverview": "GESAMTÜBERSICHT",
+      "Tag": "Etikett",
+      "Week1": "1 W",
+      "Week2": "2 W",
+      "Week3": "3 W",
+      "Month1": "1 M",
+      "Month2": "2 M",
+      "Month3": "3 M",
+      "Month4": "4 M",
+      "Month5": "5 M",
+      "Month6": "6 M",
+      "Month7": "7 M",
+      "Month8": "8 M",
+      "Month9": "9 M",
+      "Month10": "10 M",
+      "Month11": "11 M",
+      "Month12": "12 M",
+      "Year2": "2 Y",
+      "Year3": "3 Y",
+      "Year4": "4 Y",
+      "Year5": "5 Y",
+      "RegisterasPartner": "Registrieren Sie sich als Partner"
     }
-    
+
 
   }
 }

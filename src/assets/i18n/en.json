@@ -5,6 +5,7 @@
     "ButtonSubmit": "Submit",
     "ButtonClose": "Close",
     "ButtonSendRequest": "SEND REQUEST",
+    "ButtonLogout": "Logout"
   },
   "Login": {
     "Title": "Log in",
@@ -75,7 +76,7 @@
       "forum": "forum",
       "PermIdentity": "perm_identity",
       "Settings": "Settings",
-      "Logout": "Logout",
+      
       "SettingStartPage": "SettingStartPage",
       "LenderSettings": "LENDER  SETTINGS",
       "BestPriceView": "BEST PRICE VIEW",
@@ -204,7 +205,7 @@
       "expand_more": "expand_more",
       "forum": "forum",
       "logout": "logout",
-      "GeneralOverview": "GESAMTÜBERSICHT",
+      "GeneralOverview": "General Overview",
       "Tag": "Tag",
       "Week1": "1 W",
       "Week2": "2 W",

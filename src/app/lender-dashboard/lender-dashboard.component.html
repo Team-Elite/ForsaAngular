@@ -19365,15 +19365,9 @@
                     </div>
                     <div class="col-lg-8 col-md-8">
                         <ul class="in-lang text-right">
-                            <li class="active lang-icon">
-                                <a href="http://mysandbox.online/forsa/index.html#">EN</a>
-                            </li>
-                            <li class="french lang-icon">
-                                <a href="http://mysandbox.online/forsa/index.html#">FR</a>
-                            </li>
-                            <li class="lang-icon">
-                                <a href="http://mysandbox.online/forsa/index.html#">DE</a>
-                            </li>
+                            <!--<app-language></app-language>-->
+                            <app-forsa-languages></app-forsa-languages>
+
                             <li>
                                 <p>Account:</p>
                             </li>
@@ -19412,8 +19406,8 @@
                                     </i>
                                 </a>
                             </li>
-                            <li class="identity" title="Logout">
-                                <a href="javascript:void(0);" (click)="Logout()"><i class="material-icons">  {{'Lender.DashBoard.Logout'|translate}}</i></a>
+                            <li  title="Logout">
+                                <a href="javascript:void(0);" (click)="Logout()"><i class="material-icons">{{'Button.ButtonLogout'|translate}}</i></a>
                             </li>
                         </ul>
 

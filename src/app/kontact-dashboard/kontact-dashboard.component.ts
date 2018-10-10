@@ -25,7 +25,7 @@ export class KontactDashboardComponent implements OnInit {
     this.GetAllBanksWithInterestRateHorizontaly();
   }
   async GetAllBanksWithInterestRateHorizontaly(){
-    debugger;
+    
     this.spinner.show();
     let rates= await this.allBanksService.GetAllBanksWithInterestRateHorizontaly();
     this.allBanksService.listAllBanks=JSON.parse(rates.data);
@@ -34,7 +34,7 @@ export class KontactDashboardComponent implements OnInit {
    }
 
    async GetAllBanksWithInterestRateHorizontalyOrderByColumnName(columnName:string){
-    debugger;
+    
     this.spinner.show();
     let rates= await this.allBanksService.GetAllBanksWithInterestRateHorizontalyOrderByColumnName(columnName);
     this.allBanksService.listAllBanks=JSON.parse(rates.data);
@@ -43,7 +43,7 @@ export class KontactDashboardComponent implements OnInit {
    }
 
    GetHighestRates(){
-debugger;
+
      if(this.allBanksService.listAllBanks!=undefined &&this.allBanksService.listAllBanks!= null && this.allBanksService.listAllBanks.length !=0){
       var HighestRateTN:string, HighestRateW1:string, HighestRateW2:string,  HighestRateW3:string
       , HighestRateM1:string

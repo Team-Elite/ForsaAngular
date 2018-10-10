@@ -9,24 +9,24 @@ export class AuthenticateServiceService {
   userValue:string='userValue';
   sessionCreatedAt:string='sessionCreatedAt';
   selectedBestPriceId:string='selectedBestPriceId';
-  //baseURL:string='http://forsaapi.elitewebdemo.com';
-  baseURL:string='http://localhost:60744/';
+  baseURL:string='http://forsaapi.elitewebdemo.com';
+  //baseURL:string='http://localhost:60744/';
   constructor(@Inject(LOCAL_STORAGE) private storage: StorageService, public router: Router) { }
 
   SaveSession(value:any){
-    debugger;
+    
   this.storage.set(this.userValue,value);
   this.storage.set(this.sessionCreatedAt,new Date());
   }
 
   UpdateSession(value:any){
-    debugger;
+    
   this.storage.set(this.userValue,value);
   this.storage.set(this.sessionCreatedAt,new Date());
   }
 
   AuthenticateSession(){
-    debugger;
+    
     let val= this.storage.get(this.userValue);
     let sessionDate=this.storage.get(this.sessionCreatedAt);
     if(val == undefined || val== null){
@@ -39,37 +39,37 @@ export class AuthenticateServiceService {
     }
 
     GetUserId(){
-      debugger;
+      
       let userId =this.storage.get(this.userValue);
       return JSON.parse(userId)[0].UserId;
     }
 
     GetLenderName(){
-      debugger;
+      
       let userId =this.storage.get(this.userValue);
       return JSON.parse(userId)[0].NameOfCompany;
     }
 
     GetEmailId(){
-      debugger;
+      
       let userId =this.storage.get(this.userValue);
       return JSON.parse(userId)[0].EmailAddress;
     }
 
     GetBorrowerName(){
-      debugger;
+      
       let userId =this.storage.get(this.userValue);
       return JSON.parse(userId)[0].Bank;
     }
 
     GetUserDetail(){
-      debugger;
+      
       let userId =this.storage.get(this.userValue);
       return JSON.parse(userId)[0];
     }
 
     ClearSession(){
-      debugger;
+      
       this.storage.remove(this.userValue);
       this.storage.remove(this.selectedBestPriceId);
       this.storage.remove(this.sessionCreatedAt);
@@ -80,7 +80,7 @@ export class AuthenticateServiceService {
       }
   
       GetSavedSelectedTimePeriodId(){
-        debugger;
+        
         let Id =this.storage.get(this.selectedBestPriceId);
         return Id;
       }

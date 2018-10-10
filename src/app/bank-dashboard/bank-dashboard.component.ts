@@ -23,7 +23,7 @@ export class BankDashboardComponent implements OnInit {
 
   ngOnInit() {
     this.spinner.show();
-    debugger;
+
     this.authenticateServiceService.AuthenticateSession();
     this.bankDashboardService.userId = this.authenticateServiceService.GetUserId();
     this.GetRateOfInterestOfBank();
@@ -62,10 +62,10 @@ export class BankDashboardComponent implements OnInit {
   }
 
   async GetRateOfInterestOfBank(){
-    debugger;
+
    let rateList= await this.bankDashboardService.GetRateOfInterestOfBank();
    this.bankDashboardService.listRateOfInterestOfBankModel=JSON.parse(rateList.data);
-   debugger;
+   
     if(this.bankDashboardService.listRateOfInterestOfBankModel != undefined && this.bankDashboardService.listRateOfInterestOfBankModel != null
     && this.bankDashboardService.listRateOfInterestOfBankModel.length!=0){
       this.IsPublished=this.bankDashboardService.listRateOfInterestOfBankModel[0].IsPublished;
@@ -106,7 +106,7 @@ export class BankDashboardComponent implements OnInit {
       this.toastr.error("Rate must be entered.","Dashboard");
       return;
     }
-    debugger;
+
     if(rate.RateOfInterest>=9999.99){
       this.toastr.error("Interest rate can not be greater than 9999.99","Dashboard");
       return;
@@ -157,7 +157,7 @@ export class BankDashboardComponent implements OnInit {
   }
 
   GroupCheckUnCheck(event,group){
-//    debugger;
+//
     let groupsString:string='';
     var ifNoneIsSelected:boolean=true;
 
@@ -214,7 +214,7 @@ IfLastGroupLeftThenDisablingControl(){
   }
 
   UpdateUserProfile(){
-    debugger;
+
 
     /* Validating controls */
     if(this.ValidateUserPfrofileFields(this.copyLoggedInUser,this.bankDashboardService.NewPassword,this.bankDashboardService.ConfirmPassword)){
@@ -224,7 +224,7 @@ IfLastGroupLeftThenDisablingControl(){
       this.bankDashboardService.UpdateUserProfile(this.copyLoggedInUser).subscribe(data=>{
         this.spinner.hide();
       if(data !=undefined && data !=null){
-        debugger;
+    
         if(data.IsSuccess == false){
           this.toastr.error("Old password is not correct.","Dashboard");
           return;
@@ -304,7 +304,7 @@ ShowUpdateProfileModal(){
 }
 
 async GetLenderSendRequestRequestdOnTheBasisOfBorrowerId(){
-  debugger;
+  
   //this.spinner.show();
   var result = await this.bankDashboardService.GetLenderSendRequestRequestdOnTheBasisOfBorrowerId();
   if(result.IsSuccess && result.IfDataFound == true){
@@ -316,7 +316,7 @@ async GetLenderSendRequestRequestdOnTheBasisOfBorrowerId(){
 }
 
 UpdateLenderSendRequestRateOfInterest(){
-  debugger;
+  
   if(!this.ValidateSendRequest(this.bestPriceViewService.lenderSendRequestModel)){
     return false;
   }
@@ -358,7 +358,7 @@ return false;
 
  //It checks if key pressed is integer or not if not then it returns false.
 numberWithDecimalOnly(event): boolean {
-  debugger;
+  
   const charCode = (event.which) ? event.which : event.keyCode;
   if (charCode > 31 && (charCode < 48 || charCode > 57) && charCode != 46) {
     return false;
@@ -374,7 +374,7 @@ numberWithDecimalOnly(event): boolean {
 }
 
 ShowSendRequestModal(bank:any){
-  debugger;
+  
  //  document.getElementById('modalSendRequest').style.display='block';
  //  document.getElementById('modalSendRequest').style.display='block';
   // // // this.bestPriceViewService.lenderSendRequestModel.Amount=0;

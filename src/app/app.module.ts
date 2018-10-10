@@ -1,9 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule, Component, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import {HttpModule} from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http'
-import { ForsaLanguageComponent } from './multi-language/forsalanguage.component';
+//import { ForsaLanguageComponent } from './multi-language/forsalanguage.component';
 import { AppComponent } from './app.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { BlockPasteDirective } from './Shared/block-paste.directive';
@@ -32,9 +32,13 @@ import { KontactDashboardComponent } from './kontact-dashboard/kontact-dashboard
 //import { HttpClient } from 'selenium-webdriver/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { ForsaLanguagesComponent } from './forsa-languages/forsa-languages.component';
 export function HttpLoaderFactory(httpClient: HttpClient) {
     return new TranslateHttpLoader(httpClient);
+    //return new TranslateHttpLoader(httpClient, './assets/i18n/', '.json')
 }
+
+
 
 const appRoutes: Routes=[{path:'login',component:LoginComponent},
                          {path:'registration',component:RegistrationComponent},
@@ -46,7 +50,7 @@ const appRoutes: Routes=[{path:'login',component:LoginComponent},
                children:[{path:"BestPriceView",component:BestPriceViewComponent},
                          {path:"ViewAllPrice",component:ViewAllPriceComponent} ,
                    { path: 'AllBanks', component: AllBanksComponent },
-                   { path: 'Applanguage', component: ForsaLanguageComponent },
+                  // { path: 'Applanguage', component: ForsaLanguageComponent },
                          
               ]}
                         //  {path:'BestPriceView', component:BestPriceViewComponent}
@@ -66,7 +70,9 @@ const appRoutes: Routes=[{path:'login',component:LoginComponent},
     ViewAllPriceComponent,
     AllBanksComponent,
     KontactDashboardComponent,
-      ForsaLanguageComponent
+      //ForsaLanguageComponent,
+      ForsaLanguagesComponent,
+     
   ],
   imports: [
     BrowserModule,
@@ -88,6 +94,7 @@ const appRoutes: Routes=[{path:'login',component:LoginComponent},
           }
       }),
       HttpClientModule,
+    
       
   ],
   providers: [

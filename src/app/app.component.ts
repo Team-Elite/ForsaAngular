@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewContainerRef } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 
 
@@ -8,5 +9,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'ForsaWebApp';
+    title = 'ForsaWebApp';
+    constructor( public viewContainerRef: ViewContainerRef) {
+      
+        
+    }
+     
 }
