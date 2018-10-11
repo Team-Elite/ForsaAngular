@@ -3,6 +3,7 @@ import {BestPriceViewService} from './Shared/best-price-view.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService  } from 'ngx-toastr';
 import {DatePipe} from '@angular/common';
+import {LenderDashboardService} from '../Shared/lender-dashboard.service';
 
 @Component({
   selector: 'app-best-price-view',
@@ -12,7 +13,8 @@ import {DatePipe} from '@angular/common';
 export class BestPriceViewComponent implements OnInit {
 
   constructor(public bestPriceViewService:BestPriceViewService,public spinner:NgxSpinnerService
-    , public toastr:ToastrService, public pipe:DatePipe) { }
+    , public toastr:ToastrService, public pipe:DatePipe
+    , public lenderDashboardService:LenderDashboardService) { }
 
     p:any;
     selectedTimePeriod:number=null;
@@ -78,7 +80,13 @@ export class BestPriceViewComponent implements OnInit {
 
   async GetRatesByTimePeriod(){
     debugger;
-    let rates= await this.bestPriceViewService.GetRatesByTimePeriod();
+    let rates:any;
+    if(this.lenderDashboardService.UserTypeId ==5){
+    rates= await this.bestPriceViewService.GetRatesByTimePeriod();
+    }
+    if(this.lenderDashboardService.UserTypeId ==6){
+    rates= await this.bestPriceViewService.GetRatesByTimePeriodK();
+    }
     this.bestPriceViewService.listRatesByTimePeriod=JSON.parse(rates.data);
     this.spinner.hide();
    }
@@ -91,7 +99,13 @@ export class BestPriceViewComponent implements OnInit {
     this.bestPriceViewService.timePeriod=timePeriodId;
     this.bestPriceViewService.pageNumber=1;
     this.spinner.show();
-    let rates= await this.bestPriceViewService.GetBanksByTimePeriod();
+    let rates:any;
+    if(this.lenderDashboardService.UserTypeId ==5){
+    rates= await this.bestPriceViewService.GetBanksByTimePeriod();
+    }
+    if(this.lenderDashboardService.UserTypeId ==6){
+      rates= await this.bestPriceViewService.GetBanksByTimePeriodK();
+      }
     this.bestPriceViewService.listBankByTimePeriod=JSON.parse(rates.data);
     this.spinner.hide();
    }

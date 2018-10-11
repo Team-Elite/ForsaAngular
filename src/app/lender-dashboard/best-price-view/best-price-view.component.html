@@ -10684,7 +10684,7 @@
                                       <button type="button" class="btn w-100">{{bank.RateOfInterest}}</button>
                                   </div>
                                    <div class="col-md-3 pr-1">
-                                      <button type="button" (click)="ShowSendRequestModal(bank)" class="btn w-100 active" data-toggle="modal" data-target=".BestPriceViewModal">Lend</button>
+                                      <button [disabled]="lenderDashboardService.UserTypeId == 6" type="button" (click)="ShowSendRequestModal(bank)" class="btn w-100 active" data-toggle="modal" data-target=".BestPriceViewModal">Lend</button>
                                   </div>
                               </div>
                               

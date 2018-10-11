@@ -28,11 +28,22 @@ export class BestPriceViewService {
         return response.json();
     }
 
+    async GetRatesByTimePeriodK(){
+      const response= await this.http.get(this.lenderDashboardService.baseURL+'/api/LenderBestPriceView/GetRatesByTimePeriodK').toPromise();
+          return response.json();
+      }
+
     async GetBanksByTimePeriod(){
       const response= await this.http.get(this.lenderDashboardService.baseURL+'/api/LenderBestPriceView/GetBanksByTimePeriod?userId='
       +this.lenderDashboardService.userId+'&timePeriod='+this.timePeriod+'&pageNumber='+this.pageNumber).toPromise();
           return response.json();
       }
+
+      async GetBanksByTimePeriodK(){
+        const response= await this.http.get(this.lenderDashboardService.baseURL+'/api/LenderBestPriceView/GetBanksByTimePeriodK?'
+        +'timePeriod='+this.timePeriod+'&pageNumber='+this.pageNumber).toPromise();
+            return response.json();
+        }
 
   SaveSendRequest(sendRequestModel:LenderSendRequestModel){
     var body=JSON.stringify(sendRequestModel);

@@ -19,6 +19,7 @@ export class LenderDashboardService {
   NewPassword:string;
   ConfirmPassword:string;
   CurrentPageName:string;
+  UserTypeId:any=5;
 
   async GetLenderStartPage(){
     const response= await this.http.get(this.authenticateServiceService.baseURL+'/api/LenderStartPage/GetLenderStartPage?userId='+this.userId).toPromise();

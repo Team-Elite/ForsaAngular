@@ -81,10 +81,10 @@ if(form.value.UserName.indexOf('@')>-1){
       if(JSON.parse(user.data)[0].UserTypeId==4 || IfBothUserTypeFound){
       this.router.navigate(['/bankDashBoard']);
     }
-    else if(JSON.parse(user.data)[0].UserTypeId==6){
-      this.router.navigate(['/KontactDashBoard']);
-    }
-    else if(JSON.parse(user.data)[0].UserTypeId==5){
+    // else if(JSON.parse(user.data)[0].UserTypeId==6){
+    //   this.router.navigate(['/KontactDashBoard']);
+    // }
+    else if(JSON.parse(user.data)[0].UserTypeId==5 || JSON.parse(user.data)[0].UserTypeId==6){
       
   this.lenderDashboardService.userId = this.authenticateServiceService.GetUserId();
   let startPage= await this.lenderDashboardService.GetLenderStartPage();

@@ -28,7 +28,8 @@ import {DatePipe} from '@angular/common';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { ViewAllPriceComponent } from './lender-dashboard/view-all-price/view-all-price.component';
 import { AllBanksComponent } from './lender-dashboard/all-banks/all-banks.component';
-import { KontactDashboardComponent } from './kontact-dashboard/kontact-dashboard.component'; // <-- import the module
+import { KontactDashboardComponent } from './kontact-dashboard/kontact-dashboard.component';
+import { KontactDashboardLComponent } from './lender-dashboard/kontact-dashboard-l/kontact-dashboard-l.component'; // <-- import the module
 
 
 const appRoutes: Routes=[{path:'login',component:LoginComponent},
@@ -42,7 +43,8 @@ const appRoutes: Routes=[{path:'login',component:LoginComponent},
                          {path:'lenderDashboard',component:LenderDashboardComponent,
                children:[{path:"BestPriceView",component:BestPriceViewComponent},
                          {path:"ViewAllPrice",component:ViewAllPriceComponent} ,
-                         {path:'AllBanks',component:AllBanksComponent}           
+                         {path:'AllBanks',component:AllBanksComponent},
+                         {path:'AllBanksK',component:KontactDashboardLComponent}           
               ]}
                         //  {path:'BestPriceView', component:BestPriceViewComponent}
                         // {path:'',redirectTo:'bankDashBoard', pathMatch:'full'},
@@ -61,6 +63,7 @@ const appRoutes: Routes=[{path:'login',component:LoginComponent},
     ViewAllPriceComponent,
     AllBanksComponent,
     KontactDashboardComponent,
+    KontactDashboardLComponent,
     
   ],
   imports: [

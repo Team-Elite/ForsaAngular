@@ -10724,8 +10724,13 @@ color: #fff;
                             <a href="javascript:void(0);" (click)="SetCurrentPage('View All Price')">VIEW ALL PRICE<span class="align-middle input-group-icon "><i class="material-icons ">view_list</i></span>
                                                 </a>
                         </li>
-                        <li>
+                        <li *ngIf="lenderDashboardService.UserTypeId == 5">
                             <a href="javascript:void(0);" (click)="SetCurrentPage('All Banks')">ALL BANKS<span class="align-middle input-group-icon "><i class="material-icons ">view_list</i></span>
+                                                    </a>
+                        </li>
+
+                        <li *ngIf="lenderDashboardService.UserTypeId == 6">
+                            <a href="javascript:void(0);" (click)="SetCurrentPage('Kontact Dashboard')">ALL BANKS<span class="align-middle input-group-icon "><i class="material-icons ">view_list</i></span>
                                                     </a>
                         </li>
                         <!-- <li>

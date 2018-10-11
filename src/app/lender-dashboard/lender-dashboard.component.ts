@@ -35,6 +35,7 @@ export class LenderDashboardComponent implements OnInit {
     this.spinner.show();
     debugger;
     this.authenticateServiceService.AuthenticateSession();
+    this.lenderDashboardService.UserTypeId=this.authenticateServiceService.GetUserTypeId();
     this.lenderDashboardService.userId = this.authenticateServiceService.GetUserId();
     this.IfBothUserTypeFound = this.authenticateServiceService.GetIfBothUserTypeFound() ==( undefined || null) ? false: true;
     this.lenderDashboardService.loggedInUser= this.authenticateServiceService.GetUserDetail();
@@ -289,6 +290,9 @@ chtforse(){
     }
     else if(pageName=='View All Price'){
       this.router.navigate(['lenderDashboard/ViewAllPrice']);
+    }
+    else if(pageName == 'Kontact Dashboard'){
+      this.router.navigate(['lenderDashboard/AllBanksK']);
     }
   }
 
