@@ -147,11 +147,16 @@ export class LenderDashboardComponent implements OnInit {
       this.spinner.hide(); 
       this.toastr.success("Message sent to Forsa","Dashboard");
       this.SetTimeInterval();
-    var element= document.getElementById('closeSendRequestModalLender');
-    element.click();
+    var element= document.getElementById('closeSendChatModalLender');
+   element.click();
     });
   }
-
+///
+chtforse(){
+     var element= document.getElementById('closeSendRequestModalLender');
+    element.click();
+}	
+///	
   async GetLenderSendRequestPendingLendedRequestByLenderId(){
     
     //this.spinner.show();
