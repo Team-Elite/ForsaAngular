@@ -16,7 +16,7 @@ export class ForsaLanguagesComponent implements OnInit {
         translate.use(localStorage.getItem("language"));
     }
     changeLang(lang) {
-        alert();
+        
         this.translate.use(lang);
         localStorage.setItem("language", lang);
     }
