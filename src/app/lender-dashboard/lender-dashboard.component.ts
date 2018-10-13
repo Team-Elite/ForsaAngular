@@ -70,6 +70,7 @@ export class LenderDashboardComponent implements OnInit {
       MessageForForsa:'',
       IsMessageSentToForsa:false
       }
+
       this.SetTimeInterval();
   }
 

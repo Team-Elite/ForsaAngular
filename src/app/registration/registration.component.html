@@ -1,644 +1,648 @@
 <!-- <form class="emp-form" #registrationForm="ngForm" (ngSubmit)="onSubmit(registrationForm)"> -->
-  <form  class="emp-form" #registrationForm="ngForm" (ngSubmit)="registerUser(registrationForm)">
-        <ngx-spinner bdColor = "rgba(51, 51, 51, 0.8)" size = "large"color = "#fff" type = "ball-clip-rotate" >
-            </ngx-spinner>
-  <body class="instibg" cz-shortcut-listen="true">
-    <!-- <link rel="stylesheet" href="../assets/css/common.css">
-<link rel="stylesheet" href="../assets/css/login_register.css"> -->
-      <!-- Wrapper for the Whole Application -->
-      <div id="wrapper">
-          <!-- Header Starts Here -->
-          <header>
-              <div class="container">
-                  <div class="row">
-                      <div class="col-lg-4 col-md-4">
-                          <div class="instimatch-logo">
-                              <img alt="Insimatch Logo" src="./assets/images/instimatch-logo.jpg">
-                          </div>
-                      </div>
-                      <div class="col-lg-8 col-md-6">
-                          <ul class="in-lang text-right">
-                              <li class="active">
-                                  <a href="javascript:void(0);">EN</a>
-                              </li>
-                              <!-- <li>
-                                  <a href="javascript:void(0);">FR</a>
-                              </li> -->
-                              <li>
-                                  <a href="javascript:void(0);">DE</a>
-                              </li>
-                              
-                              <!-- <li class="in-header-user text-right" style="border: none;">
-                                  <a href="javascript:void(0);">
-                                      <i class="material-icons whitebg"> supervisor_account </i>
-                                  </a>
-                              </li> -->
-                              <li class="in-header-user text-right" style="border: none;">
-                                    <a title="login" routerLink="/login" >
+<form class="emp-form" #registrationForm="ngForm">
+    <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="large" color="#fff" type="ball-clip-rotate">
+    </ngx-spinner>
+    <body class="instibg" cz-shortcut-listen="true">
+        <!-- <link rel="stylesheet" href="../assets/css/common.css">
+        <link rel="stylesheet" href="../assets/css/login_register.css"> -->
+        <!-- Wrapper for the Whole Application -->
+        <div id="wrapper">
+            <!-- Header Starts Here -->
+            <header>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4">
+                            <div class="instimatch-logo">
+                                <img alt="Insimatch Logo" src="./assets/images/instimatch-logo.jpg">
+                            </div>
+                        </div>
+                        <div class="col-lg-8 col-md-6">
+                            <ul class="in-lang text-right">
+                                <app-forsa-languages></app-forsa-languages>
+                                <!--<li class="active">
+                                    <a href="javascript:void(0);">EN</a>
+                                </li>-->
+                                <!-- <li>
+                                    <a href="javascript:void(0);">FR</a>
+                                </li> -->
+                                <!--<li>
+                                    <a href="javascript:void(0);">DE</a>
+                                </li>-->
+                                <!-- <li class="in-header-user text-right" style="border: none;">
+                                    <a href="javascript:void(0);">
+                                        <i class="material-icons whitebg"> supervisor_account </i>
+                                    </a>
+                                </li> -->
+                                <li class="in-header-user text-right" style="border: none;">
+                                    <a title="login" routerLink="/login">
                                         <i class="material-icons whitebg"> input</i>
                                     </a>
                                 </li>
-                          </ul>
-  
-                      </div>
-  
-                  </div>
-              </div>
-          </header>
-          <!-- Header Ends Here -->
-  
-          <div class="container gutter">
-              <div class="row row-eq-height eqwrap">
-                  <section id="step1-reg" class="in-register col-lg-4 col-md-12">
-                      <div class="in-register-form">
-                          <h2 class="text-left">Register</h2>
+                            </ul>
+
+                        </div>
+
+                    </div>
+                </div>
+            </header>
+            <!-- Header Ends Here -->
+
+            <div class="container gutter">
+                <div class="row row-eq-height eqwrap">
+                    <section id="step1-reg" class="in-register col-lg-4 col-md-12">
+                        <div class="in-register-form">
+                            <h2 class="text-left">{{'Register.section1.Title'|translate}}</h2>
                             <!-- <form class="register-form"> -->
-                                    <div class="register-form">
-  
-                              <div id="radiogroup " class="fiftypercent">
-  
-                                  <div class="md-radio md-radio-inline ">
-                                      <!-- <input [value]="2" #rdbBank="ngModel" [(ngModel)]="registrationService.userModel.UserTypeId" name="UserTypeId" id="3" type="radio" checked=""> Bank
-                                      <label for="3"></label> -->
-                                    <input #UserId="ngModel" [(ngModel)]="registrationService.userModel.UserId" name="UserId" id="UserId" type="hidden"  />
-                                      <input #rdbBank="ngModel" [(ngModel)]="registrationService.userModel.rdbBank" name="rdbBank" id="rdbBank" type="checkbox" class="cbx used">
-                                          <label for="rdbBank" class="lbl"> Borrower </label>
-                                  </div>
-                                  <div class="md-radio md-radio-inline">
-                                      <!-- <input [value]="3" #rdbNonBank="ngModel" [(ngModel)]="registrationService.userModel.UserTypeId" name="UserTypeId" id="4" type="radio"> Non-Bank
-                                      <label for="4"> </label> -->
-                                      <input #rdbNonBank="ngModel" [(ngModel)]="registrationService.userModel.rdbNonBank" name="rdbNonBank" id="rdbNonBank" type="checkbox" class="cbx used">
-                                          <label for="rdbNonBank" class="lbl"> Lender </label>
-                                  </div>
-                              </div>
+                            <div class="register-form">
 
-                              <div class="form-group form-md-line-input has-error">
-                                <div class="group input-group">
-                                    <input #NameOfCompany="ngModel" [(ngModel)]="registrationService.userModel.NameOfCompany" name="NameOfCompany" autofocus="" type="text" class="used">
-                                    <span class="highlight"></span>
-                                    <span class="bar"></span>
-                                    <label>Name of Company *</label>
-                                </div>
-                            </div>
+                                <div id="radiogroup " class="fiftypercent">
 
-                            <div class="form-group form-md-line-input has-error">
-                                <div class="group input-group">
-                                    <input #Street="ngModel" [(ngModel)]="registrationService.userModel.Street" name="Street" type="text" class="used">
-                                    <span class="highlight"></span>
-                                    <span class="bar"></span>
-                                    <label>Street *</label>
+                                    <div class="md-radio md-radio-inline ">
+                                        <!-- <input [value]="2" #rdbBank="ngModel" [(ngModel)]="registrationService.userModel.UserTypeId" name="UserTypeId" id="3" type="radio" checked=""> Bank
+                                        <label for="3"></label> -->
+                                        <input #UserId="ngModel" [(ngModel)]="registrationService.userModel.UserId" name="UserId" id="UserId" type="hidden" />
+                                        <input #rdbBank="ngModel" [(ngModel)]="registrationService.userModel.rdbBank" name="rdbBank" id="rdbBank" type="checkbox" class="cbx used">
+                                        <label for="rdbBank" class="lbl"> {{'Register.section1.Borrower'|translate}} </label>
                                     </div>
-                            </div>
-
-                            <div class="form-group form-md-line-input has-error">
-                                <div class="group input-group">
-                                    <input #PostalCode="ngModel" [(ngModel)]="registrationService.userModel.PostalCode" name="PostalCode" type="text" class="used">
-                                    <span class="highlight"></span>
-                                    <span class="bar"></span>
-                                    <label>Postal Code *</label>
-                                   </div>
-                            </div>
-
-                            <div class="form-group form-md-line-input has-error">
-                                <div class="group input-group">
-                                    <input #Place="ngModel" [(ngModel)]="registrationService.userModel.Place" name="Place" type="text" class="used">
-                                    <span class="highlight"></span>
-                                    <span class="bar"></span>
-                                    <label>Place *</label>
-                                   </div>
-                            </div>
-
-                            <div class="form-group form-md-line-input has-error">
-                                <div class="group input-group">
-                                    <input #AccountHolder="ngModel" [(ngModel)]="registrationService.userModel.AccountHolder" name="AccountHolder" type="text" class="used">
-                                    <span class="highlight"></span>
-                                    <span class="bar"></span>
-                                    <label>Account Holder *</label>
-                                   </div>
-                            </div>
-
-                              <div class="form-group form-md-line-input has-error">
-                                  <div class="group input-group">
-                                      <input #Bank="ngModel" [(ngModel)]="registrationService.userModel.Bank" name="Bank" type="text"  class="used">
-                                      <span class="highlight"></span>
-                                      <span class="bar"></span>
-                                      <label>Bank *</label>
-                                      <span class="input-group-icon">
-                      <i class="material-icons">account_circle</i>
-                    </span>
-  
-                                  </div>
-                              </div>
-
-                              <div class="form-group form-md-line-input has-error">
-                                <div class="group input-group">
-                                    <input #IBAN="ngModel" [(ngModel)]="registrationService.userModel.IBAN" name="IBAN" type="text" class="used">
-                                    <span class="highlight"></span>
-                                    <span class="bar"></span>
-                                    <label>IBAN *</label>
-                                   </div>
-                            </div>
-
-                            <div class="form-group form-md-line-input has-error">
-                                <div class="group input-group">
-                                    <input #BICCode="ngModel" [(ngModel)]="registrationService.userModel.BICCode" name="BICCode" type="text" class="used">
-                                    <span class="highlight"></span>
-                                    <span class="bar"></span>
-                                    <label>BICCode *</label>
-                                   </div>
-                            </div>
-
-                            <div class="form-group form-md-line-input has-error">
-                                <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
-                                  <label>Client Group *</label>
-                                    <select #ClientGroupId="ngModel" [(ngModel)]="registrationService.userModel.ClientGroupId" class="mdl-selectfield__select" name="ClientGroupId" id="ClientGroupId" >expand_more
-                                        <option value="0" disabled="" selected="">Client Group*</option>
-                                        <option *ngFor="let group of registrationService.listGroupModel" value="{{group.GroupId}}">{{group.GroupName}}</option>
-                                     </select>
+                                    <div class="md-radio md-radio-inline">
+                                        <!-- <input [value]="3" #rdbNonBank="ngModel" [(ngModel)]="registrationService.userModel.UserTypeId" name="UserTypeId" id="4" type="radio"> Non-Bank
+                                        <label for="4"> </label> -->
+                                        <input #rdbNonBank="ngModel" [(ngModel)]="registrationService.userModel.rdbNonBank" name="rdbNonBank" id="rdbNonBank" type="checkbox" class="cbx used">
+                                        <label for="rdbNonBank" class="lbl"> {{'Register.section1.Lender'|translate}} </label>
+                                    </div>
                                 </div>
-                              </div>
 
-                              <div class="form-group form-md-line-input has-error">
-                                <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
-                                  <label>Client Sub Group</label>
-                                    <select #SubGroupId="ngModel" [(ngModel)]="registrationService.userModel.SubGroupId" class="mdl-selectfield__select" name="SubGroupId" id="SubGroupId" >expand_more
-                                        <option value="0" disabled="" selected="">Client Sub Group*</option>
-                                        <option *ngFor="let subGroup of registrationService.listSubGroupModel" value="{{subGroup.SubGroupId}}">{{subGroup.SubGroupName}}</option>
-                                     </select>
+                                <div class="form-group form-md-line-input has-error">
+                                    <div class="group input-group">
+                                        <input #NameOfCompany="ngModel" [(ngModel)]="registrationService.userModel.NameOfCompany" name="NameOfCompany" autofocus="" type="text" class="used">
+                                        <span class="highlight"></span>
+                                        <span class="bar"></span>
+                                        <label>{{'Register.section1.NameofCompany'|translate}}  *</label>
+                                    </div>
                                 </div>
-                              </div>
 
-                              <div class="form-group form-md-line-input has-error">
-                                <div class="group input-group">
-                                    <input #LEINumber="ngModel" [(ngModel)]="registrationService.userModel.LEINumber" name="LEINumber" type="text" class="used">
-                                    <span class="highlight"></span>
-                                    <span class="bar"></span>
-                                    <label>LEI Number</label>
-                                   </div>
-                            </div>
+                                <div class="form-group form-md-line-input has-error">
+                                    <div class="group input-group">
+                                        <input #Street="ngModel" [(ngModel)]="registrationService.userModel.Street" name="Street" type="text" class="used">
+                                        <span class="highlight"></span>
+                                        <span class="bar"></span>
+                                        <label>{{'Register.section1.Street'|translate}} *</label>
+                                    </div>
+                                </div>
 
-                            <div class="form-group form-md-line-input has-error">
-                                <div class="group input-group">
-                                    <input #FurtherField4="ngModel" [(ngModel)]="registrationService.userModel.FurtherField4" name="FurtherField4" type="text" class="used">
-                                    <span class="highlight"></span>
-                                    <span class="bar"></span>
-                                    <label>Further Field 4</label>
-                                   </div>
-                            </div>
-                            
-                              <!-- <div class="form-group form-md-line-input has-error">
-                                  <div class="group input-group">
-                                      <input #Address="ngModel" [(ngModel)]="registrationService.userModel.Address" name="Address" type="text" class="used">
-                                      <span class="highlight"></span>
-                                      <span class="bar"></span>
-                                      <label>Address</label>
-                                      <span class="input-group-icon">
-                      <i class="material-icons">home</i>
-                    </span>
-  
-                                  </div>
-                              </div>
-  
-  
-                              <div class="form-group form-md-line-input has-error">
-                                  <div class="group input-group">
-                                      <input #ZipCode="ngModel" [(ngModel)]="registrationService.userModel.ZipCode" name="ZipCode" type="text" class="used">
-                                      <span class="highlight"></span>
-                                      <span class="bar"></span>
-                                      <label>Zip Code</label>
-  
-  
-                                  </div>
-                              </div>
-  
-                              <div class="form-group form-md-line-input has-error">
-                                  <div class="group input-group">
-                                      <input #City="ngModel" [(ngModel)]="registrationService.userModel.City" name="City" type="text" class="used">
-                                      <span class="highlight"></span>
-                                      <span class="bar"></span>
-                                      <label>City</label>
-  
-  
-                                  </div>
-                              </div> -->
-  
-                              <!-- <div class="form-group form-md-line-input has-error">
-                                  <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
-                                    <label>Country</label>
-                                      <select #CountryId="ngModel" [(ngModel)]="registrationService.userModel.CountryId" class="mdl-selectfield__select" name="CountryId" id="userCountry" >expand_more
-                                          <option value="0" disabled="" selected="">Country</option>
-                                          <option *ngFor="let country of registrationService.CountryList" value="{{country.CountryId}}">{{country.Country}}</option>
-                                       </select>
-                                  </div>
-                                </div> -->
+                                <div class="form-group form-md-line-input has-error">
+                                    <div class="group input-group">
+                                        <input #PostalCode="ngModel" [(ngModel)]="registrationService.userModel.PostalCode" name="PostalCode" type="text" class="used">
+                                        <span class="highlight"></span>
+                                        <span class="bar"></span>
+                                        <label>{{'Register.section1.PostalCode'|translate}} *</label>
+                                    </div>
+                                </div>
 
-                              <!-- <div class="form-group form-md-line-input">
-                                  <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
-                                      <select #LanguageId="ngModel" [(ngModel)]="registrationService.userModel.LanguageId" class="mdl-selectfield__select" id="preferredLanguage" name="LanguageId">
-                                      <option value="0" disabled="" selected=""> Language</option>
-                                      <option *ngFor="let language of registrationService.languageList"  value="{{language.LanguageId}}">{{language.LanguageCode}}</option>
-                                    </select>
-                                  </div>
-                              </div> -->
-  
-                              <div class="login-margin"></div>
-                              <button (click)="Section2Visible(registrationForm)" type="button" class="button btn">
-                                  <div class="ripples buttonRipples" id="next-reg-2">
-                                      <span class="ripplesCircle" style="top: 17.2813px; left: 167.313px;"></span>
-                                  </div>
-                              Next
-                                  <i class="material-icons">
-                                      keyboard_arrow_right
-                                  </i>
-                              </button>
-                              <!-- <button >animation target</button> -->
-  
-                            </div>
-                          <div class="form-circles text-center">
-                              <a href="javascript:void(0);" class="dot active"></a>
-                              <a href="javascript:void(0);" class="dot"></a>
-  
-                              <a href="javascript:void(0);" class="dot"></a>
-                          </div>
-                      </div>
-                  </section>
-  
-  
-  
-                  <section *ngIf="registrationService.ShowSection2" id="step2-reg" class="in-register  col-lg-4 col-md-4 col-sm-12" style="display: block;">
-                      <div class="in-register-form">
-                          <!-- <form class="register-form"> -->
-                                <div  class="register-form">
-  
-  
-  
-  
-                              <div id="goback">
-                                  <a href="javascript():void(0)" (click)="registrationService.ShowSection2=false">
-                    <i class="material-icons">arrow_back</i>
-                                  </a>
-                              </div>
-  
-  
-                              <!-- <mat-form-field class="col-sm-12"> -->
-  
+                                <div class="form-group form-md-line-input has-error">
+                                    <div class="group input-group">
+                                        <input #Place="ngModel" [(ngModel)]="registrationService.userModel.Place" name="Place" type="text" class="used">
+                                        <span class="highlight"></span>
+                                        <span class="bar"></span>
+                                        <label>{{'Register.section1.Place'|translate}} *</label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-md-line-input has-error">
+                                    <div class="group input-group">
+                                        <input #AccountHolder="ngModel" [(ngModel)]="registrationService.userModel.AccountHolder" name="AccountHolder" type="text" class="used">
+                                        <span class="highlight"></span>
+                                        <span class="bar"></span>
+                                        <label>{{'Register.section1.AccountHolder'|translate}}*</label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-md-line-input has-error">
+                                    <div class="group input-group">
+                                        <input #Bank="ngModel" [(ngModel)]="registrationService.userModel.Bank" name="Bank" type="text" class="used">
+                                        <span class="highlight"></span>
+                                        <span class="bar"></span>
+                                        <label>{{'Register.section1.Bank'|translate}}  *</label>
+                                        <span class="input-group-icon">
+                                            <i class="material-icons">account_circle</i>
+                                        </span>
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-md-line-input has-error">
+                                    <div class="group input-group">
+                                        <input #IBAN="ngModel" [(ngModel)]="registrationService.userModel.IBAN" name="IBAN" type="text" class="used">
+                                        <span class="highlight"></span>
+                                        <span class="bar"></span>
+                                        <label>{{'Register.section1.IBAN'|translate}} *</label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-md-line-input has-error">
+                                    <div class="group input-group">
+                                        <input #BICCode="ngModel" [(ngModel)]="registrationService.userModel.BICCode" name="BICCode" type="text" class="used">
+                                        <span class="highlight"></span>
+                                        <span class="bar"></span>
+                                        <label>{{'Register.section1.BICCode'|translate}} *</label>
+                                    </div>
+                                </div>
+
                                 <div class="form-group form-md-line-input has-error">
                                     <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
-                                      <label>Salutation *</label>
-                                        <select #Salutation="ngModel" [(ngModel)]="registrationService.userModel.Salutation" class="mdl-selectfield__select" name="Salutation" id="Salutation" >expand_more
-                                            <option value="0" disabled="" selected="">Salutation*</option>
-                                            <option *ngFor="let saluatationObj of registrationService.listSalutationModel" value="{{saluatationObj.SalutationId}}">{{saluatationObj.Salutation}}</option>
+                                        <label>{{'Register.section1.ClientGroup'|translate}} *</label>
+                                        <select #ClientGroupId="ngModel" [(ngModel)]="registrationService.userModel.ClientGroupId" class="mdl-selectfield__select" name="ClientGroupId" id="ClientGroupId">
+                                            expand_more
+                                            <option value="0" disabled="" selected="">{{'Register.section1.ClientGroup'|translate}}*</option>
+                                            <option *ngFor="let group of registrationService.listGroupModel" value="{{group.GroupId}}">{{group.GroupName}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-md-line-input has-error">
+                                    <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
+                                        <label>{{'Register.section1.ClientSubGroup'|translate}}</label>
+                                        <select #SubGroupId="ngModel" [(ngModel)]="registrationService.userModel.SubGroupId" class="mdl-selectfield__select" name="SubGroupId" id="SubGroupId">
+                                            expand_more
+                                            <option value="0" disabled="" selected="">{{'Register.section1.ClientSubGroup'|translate}}*</option>
+                                            <option *ngFor="let subGroup of registrationService.listSubGroupModel" value="{{subGroup.SubGroupId}}">{{subGroup.SubGroupName}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-md-line-input has-error">
+                                    <div class="group input-group">
+                                        <input #LEINumber="ngModel" [(ngModel)]="registrationService.userModel.LEINumber" name="LEINumber" type="text" class="used">
+                                        <span class="highlight"></span>
+                                        <span class="bar"></span>
+                                        <label>{{'Register.section1.LEINumber'|translate}}</label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-md-line-input has-error">
+                                    <div class="group input-group">
+                                        <input #FurtherField4="ngModel" [(ngModel)]="registrationService.userModel.FurtherField4" name="FurtherField4" type="text" class="used">
+                                        <span class="highlight"></span>
+                                        <span class="bar"></span>
+                                        <label>{{'Register.section1.FurtherField4'|translate}}</label>
+                                    </div>
+                                </div>
+
+                                <!-- <div class="form-group form-md-line-input has-error">
+                                              <div class="group input-group">
+                                                  <input #Address="ngModel" [(ngModel)]="registrationService.userModel.Address" name="Address" type="text" class="used">
+                                                  <span class="highlight"></span>
+                                                  <span class="bar"></span>
+                                                  <label>Address</label>
+                                                  <span class="input-group-icon">
+                                  <i class="material-icons">home</i>
+                                </span>
+
+                                              </div>
+                                          </div>
+
+
+                                          <div class="form-group form-md-line-input has-error">
+                                              <div class="group input-group">
+                                                  <input #ZipCode="ngModel" [(ngModel)]="registrationService.userModel.ZipCode" name="ZipCode" type="text" class="used">
+                                                  <span class="highlight"></span>
+                                                  <span class="bar"></span>
+                                                  <label>Zip Code</label>
+
+
+                                              </div>
+                                          </div>
+
+                                          <div class="form-group form-md-line-input has-error">
+                                              <div class="group input-group">
+                                                  <input #City="ngModel" [(ngModel)]="registrationService.userModel.City" name="City" type="text" class="used">
+                                                  <span class="highlight"></span>
+                                                  <span class="bar"></span>
+                                                  <label>City</label>
+
+
+                                              </div>
+                                          </div> -->
+                                <!-- <div class="form-group form-md-line-input has-error">
+                                    <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
+                                      <label>Country</label>
+                                        <select #CountryId="ngModel" [(ngModel)]="registrationService.userModel.CountryId" class="mdl-selectfield__select" name="CountryId" id="userCountry" >expand_more
+                                            <option value="0" disabled="" selected="">Country</option>
+                                            <option *ngFor="let country of registrationService.CountryList" value="{{country.CountryId}}">{{country.Country}}</option>
                                          </select>
                                     </div>
-                                  </div>
+                                  </div> -->
+                                <!-- <div class="form-group form-md-line-input">
+                                    <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
+                                        <select #LanguageId="ngModel" [(ngModel)]="registrationService.userModel.LanguageId" class="mdl-selectfield__select" id="preferredLanguage" name="LanguageId">
+                                        <option value="0" disabled="" selected=""> Language</option>
+                                        <option *ngFor="let language of registrationService.languageList"  value="{{language.LanguageId}}">{{language.LanguageCode}}</option>
+                                      </select>
+                                    </div>
+                                </div> -->
+
+                                <div class="login-margin"></div>
+
+                                <button (click)="Section2Visible(registrationForm)" type="button" class="button btn">
+                                    <div class="ripples buttonRipples" id="next-reg-2">
+                                        <span class="ripplesCircle" style="top: 17.2813px; left: 167.313px;"></span>
+                                    </div>
+                                    {{'Button.ButtonNext'|translate}}
+                                    <i class="material-icons">
+                                        keyboard_arrow_right
+                                    </i>
+                                </button>
+                                <!-- <button >animation target</button> -->
+
+                            </div>
+                            <div class="form-circles text-center">
+                                <a href="javascript:void(0);" class="dot active"></a>
+                                <a href="javascript:void(0);" class="dot"></a>
+
+                                <a href="javascript:void(0);" class="dot"></a>
+                            </div>
+                        </div>
+                    </section>
+
+
+
+                    <section *ngIf="registrationService.ShowSection2" id="step2-reg" class="in-register  col-lg-4 col-md-4 col-sm-12" style="display: block;">
+                        <div class="in-register-form">
+                            <!-- <form class="register-form"> -->
+                            <div class="register-form">
+
+
+
+
+                                <div id="goback">
+                                    <a href="javascript():void(0)" (click)="registrationService.ShowSection2=false">
+                                        <i class="material-icons">arrow_back</i>
+                                    </a>
+                                </div>
+
+
+                                <!-- <mat-form-field class="col-sm-12"> -->
+
+                                <div class="form-group form-md-line-input has-error">
+                                    <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
+                                        <label>{{'Register.section2.Salutation'|translate}} *</label>
+                                        <select #Salutation="ngModel" [(ngModel)]="registrationService.userModel.Salutation" class="mdl-selectfield__select" name="Salutation" id="Salutation">
+                                            expand_more
+                                            <option value="0" disabled="" selected="">{{'Register.section2.Salutation'|translate}}*</option>
+                                            <option *ngFor="let saluatationObj of registrationService.listSalutationModel" value="{{saluatationObj.SalutationId}}">{{saluatationObj.Salutation}}</option>
+                                        </select>
+                                    </div>
+                                </div>
 
                                 <div class="form-group form-md-line-input has-error">
                                     <div class="group input-group">
                                         <input #Title="ngModel" [(ngModel)]="registrationService.userModel.Title" name="Title" type="text" class="used">
                                         <span class="highlight"></span>
                                         <span class="bar"></span>
-                                        <label>Title</label>
-                                       </div>
+                                        <label>{{'Register.section2.Title'|translate}}</label>
+                                    </div>
                                 </div>
 
-                              <div class="form-group form-md-line-input has-error">
-                                  <div class="group input-group">
-                                      <input #FirstName="ngModel" [(ngModel)]="registrationService.userModel.FirstName" name="FirstName" type="text" class="used">
-                                      <span class="highlight"></span>
-                                      <span class="bar"></span>
-                                      <label>First Name *</label>
-                                      <span class="input-group-icon">
-                      <i class="material-icons">account_circle</i>
-                    </span>
-  
-                                  </div>
-                              </div>
-  
-                              <div class="form-group form-md-line-input has-error">
-                                  <div class="group input-group">
-                                      <input #SurName="ngModel" [(ngModel)]="registrationService.userModel.SurName" name="SurName" type="text" class="used">
-                                      <span class="highlight"></span>
-                                      <span class="bar"></span>
-                                      <label>SurName *</label>
-                                  </div>
-                              </div>
-  
-                              <div class="form-group form-md-line-input has-error">
-                                <div class="group input-group">
-                                    <input (keypress)="numberOnly($event)" appBlockPaste maxlength="10" #ContactNumber="ngModel" [(ngModel)]="registrationService.userModel.ContactNumber" name="ContactNumber" type="text"  class="used"> 
-                                    <span class="highlight"></span>
-                                    <span class="bar"></span>
-                                    <label>Telephone No. *</label>
-                                    <span class="input-group-icon">
-                    <i class="material-icons">phone</i>
-                  </span>
+                                <div class="form-group form-md-line-input has-error">
+                                    <div class="group input-group">
+                                        <input #FirstName="ngModel" [(ngModel)]="registrationService.userModel.FirstName" name="FirstName" type="text" class="used">
+                                        <span class="highlight"></span>
+                                        <span class="bar"></span>
+                                        <label>{{'Register.section2.FirstName'|translate}} *</label>
+                                        <span class="input-group-icon">
+                                            <i class="material-icons">account_circle</i>
+                                        </span>
 
+                                    </div>
                                 </div>
+
+                                <div class="form-group form-md-line-input has-error">
+                                    <div class="group input-group">
+                                        <input #SurName="ngModel" [(ngModel)]="registrationService.userModel.SurName" name="SurName" type="text" class="used">
+                                        <span class="highlight"></span>
+                                        <span class="bar"></span>
+                                        <label>{{'Register.section2.SurName'|translate}} *</label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-md-line-input has-error">
+                                    <div class="group input-group">
+                                        <input (keypress)="numberOnly($event)" appBlockPaste maxlength="10" #ContactNumber="ngModel" [(ngModel)]="registrationService.userModel.ContactNumber" name="ContactNumber" type="text" class="used">
+                                        <span class="highlight"></span>
+                                        <span class="bar"></span>
+                                        <label>{{'Register.section2.TelephoneNo'|translate}} *</label>
+                                        <span class="input-group-icon">
+                                            <i class="material-icons">phone</i>
+                                        </span>
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-md-line-input has-error">
+                                    <div class="group input-group">
+                                        <input [disabled]="registrationService.userModel.UserId != null && registrationService.userModel.UserId != 0" email pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" #EmailAddress="ngModel" [(ngModel)]="registrationService.userModel.EmailAddress" name="EmailAddress" type="email" class="used">
+                                        <span class="highlight"></span>
+                                        <span class="bar"></span>
+                                        <label>{{'Register.section2.EmailAddress'|translate}}*</label>
+                                        <span class="input-group-icon">
+                                            <i class="material-icons">email</i>
+                                        </span>
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-md-line-input has-error">
+                                    <div class="group input-group">
+                                        <input [disabled]="registrationService.userModel.UserId != null && registrationService.userModel.UserId != 0" #UserName="ngModel" [(ngModel)]="registrationService.userModel.UserName" name="UserName" type="text" class="used">
+                                        <span class="highlight"></span>
+                                        <span class="bar"></span>
+                                        <label>{{'Register.section2.CreateUsername'|translate}}*</label>
+                                        <span class="input-group-icon">
+                                            <i class="material-icons">mode_edit</i>
+                                        </span>
+
+                                    </div>
+                                </div>
+
+
+                                <!-- <div class="form-group form-md-line-input has-error">
+                                              <div class="group input-group">
+                                                  <input #confirmEmailAddress="ngModel" [(ngModel)]="registrationService.confirmEmailAddress" name="confirmEmailAddress" type="email" class="used">
+                                                  <span class="highlight"></span>
+                                                  <span class="bar"></span>
+                                                  <label>Confirm Email</label>
+                                                  <span class="input-group-icon">
+                                  <i class="material-icons">email</i>
+                                </span>
+
+                                              </div>
+                                          </div> -->
+
+                                <div class="form-group form-md-line-input has-error">
+                                    <div class="group input-group">
+                                        <input #FurtherField1="ngModel" [(ngModel)]="registrationService.userModel.FurtherField1" name="FurtherField1" type="text" class="used">
+                                        <span class="highlight"></span>
+                                        <span class="bar"></span>
+                                        <label>{{'Register.section2.FurtherField1'|translate}}</label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-md-line-input has-error">
+                                    <div class="group input-group">
+                                        <input #FurtherField2="ngModel" [(ngModel)]="registrationService.userModel.FurtherField2" name="FurtherField2" type="text" class="used">
+                                        <span class="highlight"></span>
+                                        <span class="bar"></span>
+                                        <label>{{'Register.section2.FurtherField2'|translate}}</label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-md-line-input has-error">
+                                    <div class="group input-group">
+                                        <input #FurtherField3="ngModel" [(ngModel)]="registrationService.userModel.FurtherField3" name="FurtherField3" type="text" class="used">
+                                        <span class="highlight"></span>
+                                        <span class="bar"></span>
+                                        <label>{{'Register.section2.FurtherField3'|translate}}</label>
+                                    </div>
+                                </div>
+
+                                <div *ngIf="registrationService.userModel.rdbBank" class="form-group form-md-line-input has-error">
+                                    <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
+                                        <label>{{'Register.section2.RatingAgentur1'|translate}} </label>
+                                        <select #RatingAgentur1="ngModel" [(ngModel)]="registrationService.userModel.RatingAgentur1" class="mdl-selectfield__select" name="RatingAgentur1" id="RatingAgentur1">
+                                            expand_more
+                                            <option value="0" disabled="" selected="">RatingAgentur1</option>
+                                            <option *ngFor="let objNturModel of registrationService.listRatingAgeNturModel1" value="{{objNturModel.RatingAgeNturId}}">{{objNturModel.RatingAgeNtur}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div *ngIf="registrationService.userModel.rdbBank" class="form-group form-md-line-input has-error">
+                                    <div class="group input-group">
+                                        <input #RatingAgenturValue1="ngModel" [(ngModel)]="registrationService.userModel.RatingAgenturValue1" name="RatingAgenturValue1" type="text" class="used">
+                                        <span class="highlight"></span>
+                                        <span class="bar"></span>
+                                        <label></label>
+                                    </div>
+                                </div>
+
+                                <div *ngIf="registrationService.userModel.rdbBank" class="form-group form-md-line-input has-error">
+                                    <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
+                                        <label>{{'Register.section2.RatingAgentur2'|translate}} </label>
+                                        <select #RatingAgentur2="ngModel" [(ngModel)]="registrationService.userModel.RatingAgentur2" class="mdl-selectfield__select" name="RatingAgentur2" id="RatingAgentur2">
+                                            expand_more
+                                            <option value="0" disabled="" selected="">RatingAgentur2</option>
+                                            <option *ngFor="let objNturModel of registrationService.listRatingAgeNturModel2" value="{{objNturModel.RatingAgeNturId}}">{{objNturModel.RatingAgeNtur}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div *ngIf="registrationService.userModel.rdbBank" class="form-group form-md-line-input has-error">
+                                    <div class="group input-group">
+                                        <input #RatingAgenturValue2="ngModel" [(ngModel)]="registrationService.userModel.RatingAgenturValue2" name="RatingAgenturValue2" type="text" class="used">
+                                        <span class="highlight"></span>
+                                        <span class="bar"></span>
+                                        <label></label>
+                                    </div>
+                                </div>
+
+                                <div *ngIf="registrationService.userModel.rdbBank" class="form-group form-md-line-input has-error">
+                                    <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
+                                        <label>{{'Register.section2.DepositInsurance'|translate}} </label>
+                                        <select #DepositInsurance="ngModel" [(ngModel)]="registrationService.userModel.DepositInsurance" class="mdl-selectfield__select" name="DepositInsurance" id="DepositInsurance">
+                                            expand_more
+                                            <option value="0" disabled="" selected="">Deposit Insurance*</option>
+                                            <option *ngFor="let objDeposit of registrationService.listDepositInsurance" value="{{objDeposit.DepositInsuranceId}}">{{objDeposit.DepositInsurance}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="login-margin"></div>
+                                <button (click)="Section3Visible(registrationForm)" type="button" class="button btn" id="next-reg-3">
+                                    <div class="ripples buttonRipples">
+                                        <span class="ripplesCircle" style="top: 25.7969px; left: 201.313px;"></span>
+                                    </div>
+                                    {{'Button.ButtonNext'|translate}}
+                                    <i class="material-icons">
+                                        keyboard_arrow_right
+                                    </i>
+                                </button>
+                                <!-- <button >animation target</button> -->
+
                             </div>
-  
-                            <div class="form-group form-md-line-input has-error">
-                                <div class="group input-group">
-                                    <input [disabled]="registrationService.userModel.UserId != null && registrationService.userModel.UserId != 0" email pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" #EmailAddress="ngModel" [(ngModel)]="registrationService.userModel.EmailAddress" name="EmailAddress" type="email" class="used">
-                                    <span class="highlight"></span>
-                                    <span class="bar"></span>
-                                    <label>Email Address*</label>
-                                    <span class="input-group-icon">
-                    <i class="material-icons">email</i>
-                  </span>
+                            <div class="form-circles text-center">
+                                <a href="javascript:void(0);" class="dot"></a>
+                                <a href="javascript:void(0);" class="dot active"></a>
 
-                                </div>
+                                <a href="javascript:void(0);" class="dot"></a>
                             </div>
+                        </div>
 
-                              <div class="form-group form-md-line-input has-error">
-                                  <div class="group input-group">
-                                      <input [disabled]="registrationService.userModel.UserId != null && registrationService.userModel.UserId != 0" #UserName="ngModel" [(ngModel)]="registrationService.userModel.UserName" name="UserName" type="text" class="used">
-                                      <span class="highlight"></span>
-                                      <span class="bar"></span>
-                                      <label>Create Username*</label>
-                                      <span class="input-group-icon">
-                      <i class="material-icons">mode_edit</i>
-                    </span>
-  
-                                  </div>
-                              </div>
-  
-  
-                              <!-- <div class="form-group form-md-line-input has-error">
-                                  <div class="group input-group">
-                                      <input #confirmEmailAddress="ngModel" [(ngModel)]="registrationService.confirmEmailAddress" name="confirmEmailAddress" type="email" class="used">
-                                      <span class="highlight"></span>
-                                      <span class="bar"></span>
-                                      <label>Confirm Email</label>
-                                      <span class="input-group-icon">
-                      <i class="material-icons">email</i>
-                    </span>
-  
-                                  </div>
-                              </div> -->
+                    </section>
 
-                              <div class="form-group form-md-line-input has-error">
-                                <div class="group input-group">
-                                    <input #FurtherField1="ngModel" [(ngModel)]="registrationService.userModel.FurtherField1" name="FurtherField1" type="text" class="used">
-                                    <span class="highlight"></span>
-                                    <span class="bar"></span>
-                                    <label>Further Field 1</label>
+
+
+                    <section *ngIf="registrationService.ShowSection3" class="in-register col-lg-4 col-md-4 col-sm-12" id="step3-reg" style="display: block;">
+                        <div class="in-register-form">
+                            <div class="register-form">
+
+
+
+
+                                <div id="goback">
+                                    <a href="javascript():void(0)" (click)="registrationService.ShowSection3=false">
+                                        <i class="material-icons">arrow_back</i>
+                                    </a>
                                 </div>
-                            </div>
 
-                            <div class="form-group form-md-line-input has-error">
-                                <div class="group input-group">
-                                    <input #FurtherField2="ngModel" [(ngModel)]="registrationService.userModel.FurtherField2" name="FurtherField2" type="text" class="used">
-                                    <span class="highlight"></span>
-                                    <span class="bar"></span>
-                                    <label>Further Field 2</label>
-                                </div>
-                            </div>
 
-                            <div class="form-group form-md-line-input has-error">
-                                <div class="group input-group">
-                                    <input #FurtherField3="ngModel" [(ngModel)]="registrationService.userModel.FurtherField3" name="FurtherField3" type="text" class="used">
-                                    <span class="highlight"></span>
-                                    <span class="bar"></span>
-                                    <label>Further Field 3</label>
-                                </div>
-                            </div>
+                                <!-- <mat-form-field class="col-sm-12"> -->
 
-                            <div *ngIf="registrationService.userModel.rdbBank" class="form-group form-md-line-input has-error">
-                                <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
-                                  <label>RatingAgentur1 </label>
-                                    <select #RatingAgentur1="ngModel" [(ngModel)]="registrationService.userModel.RatingAgentur1" class="mdl-selectfield__select" name="RatingAgentur1" id="RatingAgentur1" >expand_more
-                                        <option value="0" disabled="" selected="">RatingAgentur1</option>
-                                        <option *ngFor="let objNturModel of registrationService.listRatingAgeNturModel1" value="{{objNturModel.RatingAgeNturId}}">{{objNturModel.RatingAgeNtur}}</option>
-                                     </select>
-                                </div>
-                              </div>
 
-                            <div *ngIf="registrationService.userModel.rdbBank" class="form-group form-md-line-input has-error">
-                                <div class="group input-group">
-                                    <input #RatingAgenturValue1="ngModel" [(ngModel)]="registrationService.userModel.RatingAgenturValue1" name="RatingAgenturValue1" type="text" class="used">
-                                    <span class="highlight"></span>
-                                    <span class="bar"></span>
-                                    <label></label>
-                                   </div>
-                            </div>
-
-                            <div *ngIf="registrationService.userModel.rdbBank" class="form-group form-md-line-input has-error">
-                                <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
-                                  <label>RatingAgentur2 </label>
-                                    <select #RatingAgentur2="ngModel" [(ngModel)]="registrationService.userModel.RatingAgentur2" class="mdl-selectfield__select" name="RatingAgentur2" id="RatingAgentur2" >expand_more
-                                        <option value="0" disabled="" selected="">RatingAgentur2</option>
-                                        <option *ngFor="let objNturModel of registrationService.listRatingAgeNturModel2" value="{{objNturModel.RatingAgeNturId}}">{{objNturModel.RatingAgeNtur}}</option>
-                                     </select>
-                                </div>
-                              </div>
-
-                            <div *ngIf="registrationService.userModel.rdbBank" class="form-group form-md-line-input has-error">
-                                <div class="group input-group">
-                                    <input #RatingAgenturValue2="ngModel" [(ngModel)]="registrationService.userModel.RatingAgenturValue2" name="RatingAgenturValue2" type="text" class="used">
-                                    <span class="highlight"></span>
-                                    <span class="bar"></span>
-                                    <label></label>
-                                   </div>
-                            </div>
-
-                            <div *ngIf="registrationService.userModel.rdbBank" class="form-group form-md-line-input has-error">
-                                <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
-                                  <label>DepositInsurance </label>
-                                    <select #DepositInsurance="ngModel" [(ngModel)]="registrationService.userModel.DepositInsurance" class="mdl-selectfield__select" name="DepositInsurance" id="DepositInsurance" >expand_more
-                                        <option value="0" disabled="" selected="">Deposit Insurance*</option>
-                                        <option *ngFor="let objDeposit of registrationService.listDepositInsurance" value="{{objDeposit.DepositInsuranceId}}">{{objDeposit.DepositInsurance}}</option>
-                                     </select>
-                                </div>
-                              </div>
-
-                              <div class="login-margin"></div>
-                              <button (click)="Section3Visible(registrationForm)" type="button" class="button btn" id="next-reg-3">
-                  <div class="ripples buttonRipples">
-                    <span class="ripplesCircle" style="top: 25.7969px; left: 201.313px;"></span>
-                  </div>
-                  Next
-                  <i class="material-icons">
-                    keyboard_arrow_right
-                  </i>
-                </button>
-                              <!-- <button >animation target</button> -->
-  
-                                </div>
-                          <div class="form-circles text-center">
-                              <a href="javascript:void(0);" class="dot"></a>
-                              <a href="javascript:void(0);" class="dot active"></a>
-  
-                              <a href="javascript:void(0);" class="dot"></a>
-                          </div>
-                      </div>
-  
-                  </section>
-  
-  
-  
-                  <section *ngIf="registrationService.ShowSection3" class="in-register col-lg-4 col-md-4 col-sm-12" id="step3-reg" style="display: block;">
-                      <div class="in-register-form">
-                          <div class="register-form">
-  
-  
-  
-  
-                              <div id="goback">
-                                  <a href="javascript():void(0)" (click)="registrationService.ShowSection3=false">
-                    <i class="material-icons">arrow_back</i>
-                                  </a>
-                              </div>
-  
-  
-                              <!-- <mat-form-field class="col-sm-12"> -->
-  
-                                
 
 
                                 <div *ngIf="registrationService.userModel.rdbBank" class="in-ad-access">
                                     <h6>Prices are shown For customer group * </h6>
-    
+
                                     <div class="d-flex align-items-end flex-column">
-    
-    
+
+
                                         <p>
                                             <input #GroupCommunities="ngModel" [(ngModel)]="registrationService.userModel.GroupCommunities" name="GroupCommunities" id="GroupCommunities" type="checkbox" class="cbx used">
-                                            <label for="GroupCommunities" class="lbl"> Communities </label>
+                                            <label for="GroupCommunities" class="lbl"> {{'Register.GroupCommunities'|translate}}Communities </label>
                                         </p>
                                         <p>
                                             <input #GroupCompanyGMBH="ngModel" [(ngModel)]="registrationService.userModel.GroupCompanyGMBH" name="GroupCompanyGMBH" id="GroupCompanyGMBH" type="checkbox" class="cbx used">
-                                            <label for="GroupCompanyGMBH" class="lbl"> Company GmbH </label>
+                                            <label for="GroupCompanyGMBH" class="lbl">{{'Register.Section3.GroupCompanyGMBH'|translate}}  Company GmbH </label>
                                         </p>
                                         <p>
                                             <input #GroupCompany="ngModel" [(ngModel)]="registrationService.userModel.GroupCompany" name="GroupCompany" id="GroupCompany" type="checkbox" class="cbx used">
-                                            <label for="GroupCompany" class="lbl"> Company (AöR, KdöR) </label>
+                                            <label for="GroupCompany" class="lbl"> {{'Register.Section3.GroupCompany'|translate}}Company (AöR, KdöR) </label>
                                         </p>
-    
+
                                     </div>
                                 </div>
-  
-                              <!-- <div class="form-group form-md-line-input has-error">
-                                  <div class="group input-group">
-                                      <input #LongTermRatingAgency="ngModel" [(ngModel)]="registrationService.userModel.LongTermRatingAgency" name="LongTermRatingAgency" type="text" class="used">
-                                      <span class="highlight"></span>
-                                      <span class="bar"></span>
-                                      <label>Long Term Rating Agency</label>
-                                      <span class="input-group-icon">
-                      <i class="material-icons">user</i>
-                    </span>
-  
-                                  </div>
-                              </div>
-  
-                              <div class="form-group form-md-line-input has-error">
-                                  <div class="group input-group">
-                                      <input #LongTermRating="ngModel" [(ngModel)]="registrationService.userModel.LongTermRating" name="LongTermRating" type="text" class="used">
-                                      <span class="highlight"></span>
-                                      <span class="bar"></span>
-                                      <label>Long Term Rating</label>
-                                      <span class="input-group-icon">
-                      <i class="material-icons">trending_up
-                      </i>
-                    </span>
-  
-                                  </div>
-                              </div>
-  
-  
-                              <div class="form-group form-md-line-input has-error">
-                                  <div class="group input-group">
-                                      <input #ShortTermRatingAgency="ngModel" [(ngModel)]="registrationService.userModel.ShortTermRatingAgency" name="ShortTermRatingAgency" type="text" class="used">
-                                      <span class="highlight"></span>
-                                      <span class="bar"></span>
-                                      <label>Short Term Rating Agency</label>
-                                      <span class="input-group-icon">
-                      <i class="material-icons">pincode</i>
-                    </span>
-  
-                                  </div>
-                              </div>
-  
-                              <div class="form-group form-md-line-input has-error">
-                                  <div class="group input-group">
-                                      <input #ShortTermRating="ngModel" [(ngModel)]="registrationService.userModel.ShortTermRating" name="ShortTermRating" type="text" class="used">
-                                      <span class="highlight"></span>
-                                      <span class="bar"></span>
-                                      <label>Short Term Rating</label>
-                                      <span class="input-group-icon">
-                                          <i class="material-icons">trending_up
-                                          </i>
-                                        </span>
-  
-                                  </div>
-                              </div> -->
-                              <div class="in-ad-access">
-                                  <h6>Request Additional Access *</h6>
-  
-                                  <div class="d-flex align-items-end flex-column">
-  
-  
-                                      <p *ngIf="registrationService.userModel.rdbBank">
-                                          <input #AgreeToThePrivacyPolicy="ngModel" [(ngModel)]="registrationService.userModel.AgreeToThePrivacyPolicy" name="AgreeToThePrivacyPolicy" id="cbx1" type="checkbox" class="cbx used">
-                                          <label for="cbx1" class="lbl"> I agree to the Privacy Policy</label>
-                                      </p>
-                                      <p *ngIf="registrationService.userModel.rdbBank">
-                                          <input #AgreeToTheRatingsMayPublish="ngModel" [(ngModel)]="registrationService.userModel.AgreeToTheRatingsMayPublish" name="AgreeToTheRatingsMayPublish" id="cbx2" type="checkbox" class="cbx used">
-                                          <label for="cbx2" class="lbl"> I agree that ratings may be published on our company </label>
-                                      </p>
-                                      <p *ngIf="registrationService.userModel.rdbBank">
-                                          <input #AgreeThatInformationOfCompanyMayBePublished="ngModel" [(ngModel)]="registrationService.userModel.AgreeThatInformationOfCompanyMayBePublished" name="AgreeThatInformationOfCompanyMayBePublished" id="cbx4" type="checkbox" class="cbx used">
-                                          <label for="cbx4" class="lbl"> that information about our company may be published on the platform </label>
-                                      </p>
-  
-                                      <p>
-                                          <input #AcceptAGBS="ngModel" [(ngModel)]="registrationService.userModel.AcceptAGBS" name="AcceptAGBS" id="cbx3" type="checkbox" class="cbx used">
-                                          <label for="cbx3" class="lbl"> I accept the AGBs </label>
-                                      </p>
-  
-                                  </div>
-                              </div>
-                              <br/>
-                              <br/>
-                              <div class="form-group form-md-line-input has-error">
-                              <div class=" input-group">
-                                <re-captcha
-                                  (resolved)="resolved($event)"
-                                  siteKey="6Le8MW0UAAAAAAFbblL5_3hdpX6HgvbcXsCs8LMF"></re-captcha>
-                              
-                            <!-- <span class="line"> I am not a robot</span>
-                            <input id="cbx3" type="checkbox" class="cbx used">
-                            <label for="cbx3" class="lbl notrobot"> 
-        </label> -->
-                        </div>
+
+                                <!-- <div class="form-group form-md-line-input has-error">
+                                              <div class="group input-group">
+                                                  <input #LongTermRatingAgency="ngModel" [(ngModel)]="registrationService.userModel.LongTermRatingAgency" name="LongTermRatingAgency" type="text" class="used">
+                                                  <span class="highlight"></span>
+                                                  <span class="bar"></span>
+                                                  <label>Long Term Rating Agency</label>
+                                                  <span class="input-group-icon">
+                                  <i class="material-icons">user</i>
+                                </span>
+
+                                              </div>
+                                          </div>
+
+                                          <div class="form-group form-md-line-input has-error">
+                                              <div class="group input-group">
+                                                  <input #LongTermRating="ngModel" [(ngModel)]="registrationService.userModel.LongTermRating" name="LongTermRating" type="text" class="used">
+                                                  <span class="highlight"></span>
+                                                  <span class="bar"></span>
+                                                  <label>Long Term Rating</label>
+                                                  <span class="input-group-icon">
+                                  <i class="material-icons">trending_up
+                                  </i>
+                                </span>
+
+                                              </div>
+                                          </div>
+
+
+                                          <div class="form-group form-md-line-input has-error">
+                                              <div class="group input-group">
+                                                  <input #ShortTermRatingAgency="ngModel" [(ngModel)]="registrationService.userModel.ShortTermRatingAgency" name="ShortTermRatingAgency" type="text" class="used">
+                                                  <span class="highlight"></span>
+                                                  <span class="bar"></span>
+                                                  <label>Short Term Rating Agency</label>
+                                                  <span class="input-group-icon">
+                                  <i class="material-icons">pincode</i>
+                                </span>
+
+                                              </div>
+                                          </div>
+
+                                          <div class="form-group form-md-line-input has-error">
+                                              <div class="group input-group">
+                                                  <input #ShortTermRating="ngModel" [(ngModel)]="registrationService.userModel.ShortTermRating" name="ShortTermRating" type="text" class="used">
+                                                  <span class="highlight"></span>
+                                                  <span class="bar"></span>
+                                                  <label>Short Term Rating</label>
+                                                  <span class="input-group-icon">
+                                                      <i class="material-icons">trending_up
+                                                      </i>
+                                                    </span>
+
+                                              </div>
+                                          </div> -->
+                                <div class="in-ad-access">
+                                    <h6>{{'Register.Section4.RequestAdditionalAccess'|translate}}*</h6>
+
+                                    <div class="d-flex align-items-end flex-column">
+
+
+                                        <p *ngIf="registrationService.userModel.rdbBank">
+                                            <input #AgreeToThePrivacyPolicy="ngModel" [(ngModel)]="registrationService.userModel.AgreeToThePrivacyPolicy" name="AgreeToThePrivacyPolicy" id="cbx1" type="checkbox" class="cbx used">
+                                            <label for="cbx1" class="lbl">{{'Register.Section4.cbx1'|translate}}</label>
+                                        </p>
+                                        <p *ngIf="registrationService.userModel.rdbBank">
+                                            <input #AgreeToTheRatingsMayPublish="ngModel" [(ngModel)]="registrationService.userModel.AgreeToTheRatingsMayPublish" name="AgreeToTheRatingsMayPublish" id="cbx2" type="checkbox" class="cbx used">
+                                            <label for="cbx2" class="lbl"> {{'Register.Section4.cbx2'|translate}} </label>
+                                        </p>
+                                        <p *ngIf="registrationService.userModel.rdbBank">
+                                            <input #AgreeThatInformationOfCompanyMayBePublished="ngModel" [(ngModel)]="registrationService.userModel.AgreeThatInformationOfCompanyMayBePublished" name="AgreeThatInformationOfCompanyMayBePublished" id="cbx4" type="checkbox" class="cbx used">
+                                            <label for="cbx4" class="lbl"> {{'Register.Section4.cbx4'|translate}} </label>
+                                        </p>
+
+                                        <p>
+                                            <input #AcceptAGBS="ngModel" [(ngModel)]="registrationService.userModel.AcceptAGBS" name="AcceptAGBS" id="cbx3" type="checkbox" class="cbx used">
+                                            <label for="cbx3" class="lbl"> {{'Register.Section4.cbx3'|translate}}</label>
+                                        </p>
+
+                                    </div>
+                                </div>
+                                <br />
+                                <br />
+                                <div class="form-group form-md-line-input has-error">
+                                    <div class=" input-group">
+                                        <re-captcha (resolved)="resolved($event)"
+                                                    siteKey="6LeEvXQUAAAAAB-OKLgegg5U2L0UoWVWgNOWHP3a"></re-captcha>
+
+                                        <!-- <span class="line"> I am not a robot</span>
+                                                            <input id="cbx3" type="checkbox" class="cbx used">
+                                                            <label for="cbx3" class="lbl notrobot">
+                                        </label> -->
+                                    </div>
+                                </div>
+
+                                <div class="login-margin"></div>
+                                <button type="submit" class="button btn">
+                                    <div class="ripples buttonRipples">
+                                        <span class="ripplesCircle" style="top: 20.7969px; left: 211.313px;"></span>
+                                    </div>
+                                    {{'Button.ButtonSubmit'|translate}}
+                                    <i class="material-icons">
+                                        keyboard_arrow_right
+                                    </i>
+                                </button>
+                                <!-- <button >animation target</button> -->
+
+                            </div>
+                            <div class="form-circles text-center">
+                                <a href="javascript:void(0);" class="dot"></a>
+                                <a href="javascript:void(0);" class="dot"></a>
+
+                                <a href="javascript:void(0);" class="dot active"></a>
+                            </div>
                         </div>
 
-                              <div class="login-margin"></div>
-                              <button  type="submit" class="button btn">
-                  <div class="ripples buttonRipples">
-                    <span class="ripplesCircle" style="top: 20.7969px; left: 211.313px;"></span>
-                  </div>
-                  Submit
-                  <i class="material-icons">
-                    keyboard_arrow_right
-                  </i>
-                </button>
-                              <!-- <button >animation target</button> -->
-  
-                          </div>
-                          <div class="form-circles text-center">
-                              <a href="javascript:void(0);" class="dot"></a>
-                              <a href="javascript:void(0);" class="dot"></a>
-  
-                              <a href="javascript:void(0);" class="dot active"></a>
-                          </div>
-                      </div>
-  
-                  </section>
-  
-              </div>
-              
-          </div>
-      </div>  
-      <script src="./Instimatch Registeration Form_files/index.js"></script>
-  </body>
+                    </section>
+
+                </div>
+
+            </div>
+        </div>
+        <script src="./Instimatch Registeration Form_files/index.js"></script>
+    </body>
 </form>
