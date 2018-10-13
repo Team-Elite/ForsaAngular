@@ -10610,55 +10610,57 @@ direction: ltr;
   <div class="row dashboard-price-list">
       <div class="col-lg-12">
           <table class="table table-bordered table-responsive">
-              <tbody><tr>
-                  <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontaly('bank')" >GESAMTÜBERSICHT</th>
-                  <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontaly('TN')">Tag</th>
-                  <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontaly('Week1')">1 W</th>
-                  <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontaly('Week2')">2 W</th>
-                  <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontaly('Week3')">3 W</th>
-                  <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontaly('Month1')">1 M</th>
-                  <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontaly('Month2')">2 M</th>
-                  <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontaly('Month3')">3 M</th>
-                  <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontaly('Month4')">4 M</th>
-                  <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontaly('Month5')">5 M</th>
-                  <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontaly('Month6')">6 M</th>
-                  <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontaly('Month7')">7 M</th>
-                  <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontaly('Month8')">8 M</th>
-                  <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontaly('Month9')">9 M</th>
-                  <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontaly('Month10')">10 M</th>
-                  <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontaly('Month11')">11 M</th>
-                  <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontaly('Month12')">12 M</th>
-                  <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontaly('Year2')">2 Y</th>
-                  <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontaly('Year3')">3 Y</th>
-                  <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontaly('Year4')">4 Y</th>
-                  <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontaly('Year5')">5 Y</th>
-              </tr>
-              <tr *ngFor="let bank of allBanksService.listAllBanks">
-                     <td >{{bank.Bank}}</td>
-                     <td [ngClass]="{'active':allBanksService.HighestRateTN===bank.TN}">{{bank.TN}}</td>
-                     <td [ngClass]="{'active':allBanksService.HighestRateW1===bank.Week1}">{{bank.Week1}}</td>
-                     <td [ngClass]="{'active':allBanksService.HighestRateW2===bank.Week2}">{{bank.Week2}}</td>
-                     <td [ngClass]="{'active':allBanksService.HighestRateW3===bank.Week3}">{{bank.Week3}}</td>
-                     <td [ngClass]="{'active':allBanksService.HighestRateM1===bank.Month1}">{{bank.Month1}}</td>
-                     <td [ngClass]="{'active':allBanksService.HighestRateM2===bank.Month2}">{{bank.Month2}}</td>
-                     <td [ngClass]="{'active':allBanksService.HighestRateM3===bank.Month3}">{{bank.Month3}}</td>
-                     <td [ngClass]="{'active':allBanksService.HighestRateM4===bank.Month4}">{{bank.Month4}}</td>
-                     <td [ngClass]="{'active':allBanksService.HighestRateM5===bank.Month5}">{{bank.Month5}}</td>
-                     <td [ngClass]="{'active':allBanksService.HighestRateM6===bank.Month6}">{{bank.Month6}}</td>
-                     <td [ngClass]="{'active':allBanksService.HighestRateM7===bank.Month7}">{{bank.Month7}}</td>
-                     <td [ngClass]="{'active':allBanksService.HighestRateM8===bank.Month8}">{{bank.Month8}}</td>
-                     <td [ngClass]="{'active':allBanksService.HighestRateM9===bank.Month9}">{{bank.Month9}}</td>
-                     <td [ngClass]="{'active':allBanksService.HighestRateM10===bank.Month10}">{{bank.Month10}}</td>
-                     <td [ngClass]="{'active':allBanksService.HighestRateM11===bank.Month11}">{{bank.Month11}}</td>
-                     <td [ngClass]="{'active':allBanksService.HighestRateM12===bank.Month12}">{{bank.Month12}}</td>
-                     <td [ngClass]="{'active':allBanksService.HighestRateY2===bank.Year2}">{{bank.Year2}}</td>
-                     <td [ngClass]="{'active':allBanksService.HighestRateY3===bank.Year3}">{{bank.Year3}}</td>
-                     <td [ngClass]="{'active':allBanksService.HighestRateY4===bank.Year4}">{{bank.Year4}}</td>
-                     <td [ngClass]="{'active':allBanksService.HighestRateY5===bank.Year5}">{{bank.Year5}}</td>
-                     
-                 </tr>
-          </tbody></table>
-          <button (click)="RegisterAsPartner()" class="btn btn-secondary green-btn" type="button">Register as Partner</button>
+              <tbody>
+                  <tr>
+                      <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontaly('bank')">{{'Kontact.GeneralOverview'|translate}}</th>
+                      <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('TN')">{{'Kontact.Tag'|translate}}</th>
+                      <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Week1')">{{'Kontact.Week1'|translate}}</th>
+                      <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Week2')">{{'Kontact.Week2'|translate}}</th>
+                      <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Week3')">{{'Kontact.Week3'|translate}}</th>
+                      <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Month1')">{{'Kontact.Month1'|translate}}</th>
+                      <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Month2')">{{'Kontact.Month2'|translate}}</th>
+                      <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Month3')">{{'Kontact.Month3'|translate}}</th>
+                      <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Month4')">{{'Kontact.Month4'|translate}}</th>
+                      <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Month5')">{{'Kontact.Month5'|translate}}</th>
+                      <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Month6')">{{'Kontact.Month6'|translate}}</th>
+                      <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Month7')">{{'Kontact.Month7'|translate}}</th>
+                      <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Month8')">{{'Kontact.Month8'|translate}}</th>
+                      <th (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Month9')">{{'Kontact.Month9'|translate}}</th>
+                      <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Month10')">{{'Kontact.Month10'|translate}}</th>
+                      <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Month11')">{{'Kontact.Month11'|translate}}</th>
+                      <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Month12')">{{'Kontact.Month12'|translate}}</th>
+                      <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Year2')">{{'Kontact.Year2'|translate}}</th>
+                      <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Year3')">{{'Kontact.Year3'|translate}}</th>
+                      <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Year4')">{{'Kontact.Year4'|translate}}</th>
+                      <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Year5')">{{'Kontact.Year5'|translate}}</th>
+
+                  </tr>
+                  <tr *ngFor="let bank of allBanksService.listAllBanks">
+                      <td>{{bank.Bank}}</td>
+                      <td [ngClass]="{'active':allBanksService.HighestRateTN===bank.TN}">{{bank.TN}}</td>
+                      <td [ngClass]="{'active':allBanksService.HighestRateW1===bank.Week1}">{{bank.Week1}}</td>
+                      <td [ngClass]="{'active':allBanksService.HighestRateW2===bank.Week2}">{{bank.Week2}}</td>
+                      <td [ngClass]="{'active':allBanksService.HighestRateW3===bank.Week3}">{{bank.Week3}}</td>
+                      <td [ngClass]="{'active':allBanksService.HighestRateM1===bank.Month1}">{{bank.Month1}}</td>
+                      <td [ngClass]="{'active':allBanksService.HighestRateM2===bank.Month2}">{{bank.Month2}}</td>
+                      <td [ngClass]="{'active':allBanksService.HighestRateM3===bank.Month3}">{{bank.Month3}}</td>
+                      <td [ngClass]="{'active':allBanksService.HighestRateM4===bank.Month4}">{{bank.Month4}}</td>
+                      <td [ngClass]="{'active':allBanksService.HighestRateM5===bank.Month5}">{{bank.Month5}}</td>
+                      <td [ngClass]="{'active':allBanksService.HighestRateM6===bank.Month6}">{{bank.Month6}}</td>
+                      <td [ngClass]="{'active':allBanksService.HighestRateM7===bank.Month7}">{{bank.Month7}}</td>
+                      <td [ngClass]="{'active':allBanksService.HighestRateM8===bank.Month8}">{{bank.Month8}}</td>
+                      <td [ngClass]="{'active':allBanksService.HighestRateM9===bank.Month9}">{{bank.Month9}}</td>
+                      <td [ngClass]="{'active':allBanksService.HighestRateM10===bank.Month10}">{{bank.Month10}}</td>
+                      <td [ngClass]="{'active':allBanksService.HighestRateM11===bank.Month11}">{{bank.Month11}}</td>
+                      <td [ngClass]="{'active':allBanksService.HighestRateM12===bank.Month12}">{{bank.Month12}}</td>
+                      <td [ngClass]="{'active':allBanksService.HighestRateY2===bank.Year2}">{{bank.Year2}}</td>
+                      <td [ngClass]="{'active':allBanksService.HighestRateY3===bank.Year3}">{{bank.Year3}}</td>
+                      <td [ngClass]="{'active':allBanksService.HighestRateY4===bank.Year4}">{{bank.Year4}}</td>
+                      <td [ngClass]="{'active':allBanksService.HighestRateY5===bank.Year5}">{{bank.Year5}}</td>
+
+                  </tr>
+              </tbody></table>
+          <button (click)="RegisterAsPartner()" class="btn btn-secondary green-btn" type="button">{{'Button.ButtonRegisterasPartner'|translate}}</button>
       </div>
   </div>
 </div>  

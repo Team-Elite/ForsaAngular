@@ -1,0 +1,331 @@
+.in-login,
+.in-register {
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+}
+
+#step2-reg {
+    display: none;
+}
+
+#step3-reg {
+    display: none;
+}
+
+
+/* For LoginHeader, RegisterHeader Css starts here */
+
+ul.in-lang li:last-child {
+    border: none;
+    padding-left: 30px;
+}
+
+#wrapper ul.in-lang li:hover:last-child {
+    background: transparent;
+}
+
+.in-header-user a {
+    background: #8636d7;
+    border: 1px solid #9f3fff;
+    color: #fff;
+    padding: 0.8em 0.4em 0.7em;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    border-radius: 3px;
+}
+
+.in-header-user a i {
+    top: 7px;
+    position: relative;
+}
+
+
+/* For LoginHeader, RegisterHeader Css ends here */
+
+
+/* For login Page css starts here */
+
+.in-login,
+.in-register {
+    width: 350px;
+}
+
+.in-login .in-login-form,
+.in-login .in-register-form,
+.in-register .in-login-form,
+.in-register .in-register-form {
+    background: #1f2024;
+    padding: 2em 2em;
+    opacity: 0.9;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    border-radius: 5px;
+    border: 1px solid #fff;
+    flex-wrap: wrap;
+    color: #fff;
+    font-size: 0.9em;
+    height: 100%;
+}
+
+.login-form label {
+    font-size: 1em;
+}
+
+.in-login,
+.in-register {
+    width: 320px;
+}
+
+.in-register .fiftypercent .md-radio.md-radio-inline {
+    width: 49%;
+}
+
+.in-login .in-login-form button,
+.in-login .in-register-form button,
+.in-register .in-login-form button,
+.in-register .in-register-form button {
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    border-radius: 3px;
+    background: rgba(159, 63, 255, 0.4);
+    font-size: 14px;
+    font-weight: lighter;
+    margin: 0 auto;
+    text-align: center;
+    width: 100%;
+    color: #fff;
+    text-transform: capitalize;
+    border: 1px solid #7e2cb8;
+    cursor: pointer;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    text-transform: uppercase;
+}
+
+.in-login .in-login-form button:focus,
+.in-login .in-register-form button:focus,
+.in-register .in-login-form button:focus,
+.in-register .in-register-form button:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.in-login .in-login-form .login-margin,
+.in-register .in-register-form .login-margin {
+    min-height: 150px;
+}
+
+.in-login .in-login-form h2,
+.in-login .in-register-form h2,
+.in-register .in-login-form h2,
+.in-register .in-register-form h2 {
+    color: #fff;
+    font-size: 16px;
+    margin-bottom: 0rem;
+    margin-top: 0px;
+}
+
+.forgot-pass.form-group.form-md-line-input {
+    margin-top: -11px;
+    text-decoration: underline;
+    color: #9f3fff;
+}
+
+.forgot-pass a {
+    font-size: 0.9em;
+    cursor: pointer;
+}
+
+.in-register-text a {
+    text-decoration: underline !important;
+}
+
+span.in-success-message {
+    font-size: 1.2em;
+}
+
+
+/* For login Page css ends here */
+
+
+/* For Register Page Css starts here */
+
+.in-register .in-register-form .register-form {
+    color: #fff;
+}
+
+.in-register .in-register-form .form-circles a.dot {
+    height: 12px;
+    width: 12px;
+    background: rgba(159, 63, 255, 0.2);
+    border-radius: 50%;
+    display: inline-block;
+    margin: 20px 6px;
+    border: 1px solid #7e2cb8;
+}
+
+.in-register .in-register-form .form-circles a.active,
+.in-register .in-register-form .form-circles a:hover {
+    background: #8636d7;
+}
+
+#userCountry,
+#preferredLanguage,
+#ClientGroupId, #SubGroupId,#Salutation,#RatingAgentur1,#RatingAgentur2,#DepositInsurance {
+    background: #1f2024;
+    font-size: 13px;
+}
+
+select.form-control {
+    border-radius: 0px;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.in-ad-access h6 {
+    text-align: left;
+    border-bottom: 1px solid #fff;
+    font-size: 12px;
+    padding-left: 7px;
+    width: 60%;
+}
+
+.in-ad-access p {
+    margin-bottom: 0px;
+}
+
+.in-ad-access p:last-child {
+    margin-top: 20px;
+}
+
+
+/* forgot Pass Modal css starts*/
+
+#in-forgot-password .modal-content {
+    background: #000;
+}
+
+#in-forgot-password .modal-footer,
+#in-forgot-password .modal-header {
+    border: none;
+}
+
+.instibg .modal-backdrop {
+    z-index: -1;
+}
+
+#in-forgot-password .form-group label {
+    z-index: 1;
+}
+
+#in-forgot-password button.close {
+    background: transparent;
+    border: none;
+    margin: inherit;
+    width: auto;
+}
+
+
+/* For Register Page Css ends here */
+
+
+/*************for selectbox****************/
+
+.in-register select {
+    font-family: inherit;
+    background-color: transparent;
+    width: 100%;
+    padding: 4px 0;
+    font-size: 16px;
+    color: #fff;
+    border: none;
+    border-bottom: 1px solid #fff
+}
+
+
+/* Remove focus */
+
+.in-register select:focus {
+    outline: none;
+}
+
+
+/* Button modifiers */
+
+.buttonBlue {
+    background: #4a89dc;
+    text-shadow: 1px 1px 0 rgba(39, 110, 204, .5);
+}
+
+.buttonBlue:hover {
+    background: #357bd8;
+}
+
+.in-login .in-login-form p.in-register-text,
+.in-login .in-register-form p.in-register-text,
+.in-register .in-login-form p.in-register-text,
+.in-register .in-register-form p.in-register-text {
+    margin-top: 1.0em;
+    font-size: 80%;
+}
+
+.modal-backdrop {
+    z-index: -1;
+}
+
+
+/* Media Queries for Mobile */
+
+@media (max-width: 1024px) {
+    .in-login .in-login-form .login-margin,
+    .in-register .in-register-form .login-margin {
+        min-height: 50px;
+    }
+}
+
+@media (max-width: 768px) {
+    .in-login {
+        margin: 0 auto;
+    }
+    .in-login .in-login-form p.in-register-text,
+    .in-login .in-register-form p.in-register-text,
+    .in-register .in-login-form p.in-register-text,
+    .in-register .in-register-form p.in-register-text {
+        font-size: 100%;
+    }
+}
+
+@media (max-width: 425px) {
+    .in-login .in-login-form {
+        padding: 2em 1em;
+    }
+    #wrapper .in-lang {
+        text-align: center !important;
+        padding: 0px;
+    }
+    .instimatch-logo {
+        text-align: center;
+        margin-bottom: 10px;
+    }
+    .in-login,
+    .in-register {
+        width: 350px;
+        margin: 0 auto;
+    }
+    section#step1-reg,
+    section#step2-reg,
+    section#step3-reg {
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width: 375px) {
+    .in-login,
+    .in-register {
+        width: 280px;
+    }
+}

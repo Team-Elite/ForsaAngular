@@ -5,7 +5,11 @@
     "ButtonSubmit": "einreichen",
     "ButtonClose": "schließen",
     "ButtonSendRequest": "Anfrage senden",
-    "ButtonLogout": "Logout"
+    "ButtonLogout": "Logout",
+    "ButtonEurTN": "EUR (T/N)",
+    "ButtonInfo": "INFO",
+    "ButtonLend": "Verleihen",
+    "ButtonRegisterasPartner": "Registrieren Sie sich als Partner"
   },
   "Login": {
     "Title": "Anmeldung",
@@ -134,8 +138,8 @@
     "Year2": "2 Y",
     "Year3": "3 Y",
     "Year4": "4 Y",
-    "Year5": "5 Y",
-    "RegisterasPartner": "Registrieren Sie sich als Partner"
+    "Year5": "5 Y"
+    
   },
   "Lender": {
     "DashBoard": {
@@ -199,9 +203,7 @@
       }
     },
     "BestPriceView": {
-      "EurTN": "EUR (T/N)",
-      "Info": "INFO",
-      "Lend": "Verleihen",
+      
       "Lender": "DARLEHENSGEBER",
       "Borrower": "KREDITNEHMER",
       "Amount": "MENGE",
