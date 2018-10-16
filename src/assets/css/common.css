@@ -264,7 +264,6 @@ label.lbl.notrobot {
 
 ul.in-lang li {
     display: inline-block;
-    border: 1px solid #9f3fff;
     margin-left: 14px;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
@@ -291,14 +290,12 @@ ul.in-lang li a:hover {
 
 #wrapper ul.in-lang li:hover>a {
     color: #fff;
-    background: #8636d7;
 }
 
 #wrapper ul.in-lang li.active a,
 #wrapper ul.in-lang li:hover,
 #wrapper ul.in-lang li a:hover {
     color: #fff;
-    background: #8636d7;
 }
 
 .fiftypercent .md-radio label {
@@ -583,4 +580,29 @@ input:focus~.highlight {
         padding-bottom: 200%;
         opacity: 0;
     }
+}
+.in-lang{ float:right; }
+.in-lang .lang-nav{
+    padding:0px !important;
+    margin:0px;
+}
+.identity{
+    border:0px !important;
+    color:#fff;
+ }
+.account-style{
+    border:0px !important;
+    color:#fff;  
+}
+.account-style:hover{
+    background-color:transparent !important;
+}
+#main-panel {
+    position: relative;
+    float: right;
+    width: calc(100% - 320px);
+    color: #fff;
+    padding: 2em 5em;
+    margin: 1%;
+    background: #25272e;
 }

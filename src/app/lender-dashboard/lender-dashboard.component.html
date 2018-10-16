@@ -19395,7 +19395,7 @@
 
                                         <select class="mdl-selectfield__select" name="LogicRoom" id="logicroom">
                                             {{'Lender.DashBoard.ExpandMore'|translate}}
-                                            <option value="" disabled="" selected="">Lender Dashboard</option>
+                                            <option value="" disabled="" selected="">Lender DashBoard </option>
                                             <option value="logicroom1">1</option>
                                             <option value="logicroom2">2</option>
                                             <option value="logicroom3">3</option>
@@ -19440,13 +19440,12 @@
                 <div class="sidebar ">
 
                     <ul class="sidebar-nav ">
-
                         <li>
-                            <a href="javascript:void(0);" data-toggle="modal" data-target=".setting-popup2">SETTING START PAGE<span class="align-middle input-group-icon "><i class="material-icons ">dashboard</i></span></a>
+                            <a href="javascript:void(0);" data-toggle="modal" data-target=".setting-popup2">{{'Lender.DashBoard.SettingStartPage'|translate}}<span class="align-middle input-group-icon "><i class="material-icons ">dashboard</i></span></a>
                         </li>
                         <li style="display: none;">
                             <a href="javascript:void(0);" (click)="SetCurrentPage('Lender Settings')">
-                                LENDER  SETTINGS<span class="align-middle input-group-icon ">
+                                {{'Lender.DashBoard.LenderSettings'|translate}}<span class="align-middle input-group-icon ">
                                     <i class="material-icons ">
                                         speaker_notes
                                     </i>
@@ -19454,24 +19453,32 @@
                             </a>
                         </li>
                         <li>
-                            <a href="javascript:void(0);" (click)="SetCurrentPage('Best Price View')">BEST PRICE VIEW<span class="align-middle input-group-icon "><i class="material-icons ">settings</i></span></a>
+                            <a href="javascript:void(0);" (click)="SetCurrentPage('Best Price View')">{{'Lender.DashBoard.BestPriceView'|translate}}<span class="align-middle input-group-icon "><i class="material-icons ">settings</i></span></a>
                         </li>
                         <li>
                             <a href="javascript:void(0);" (click)="SetCurrentPage('View All Price')">
-                                VIEW ALL PRICE<span class="align-middle input-group-icon "><i class="material-icons ">view_list</i></span>
+                                {{'Lender.DashBoard.ViewAllPrice'|translate}}<span class="align-middle input-group-icon "><i class="material-icons ">view_list</i></span>
                             </a>
                         </li>
                         <li *ngIf="lenderDashboardService.UserTypeId == 5">
                             <a href="javascript:void(0);" (click)="SetCurrentPage('All Banks')">
-                                ALL BANKS<span class="align-middle input-group-icon "><i class="material-icons ">view_list</i></span>
+                                {{'Lender.DashBoard.AllBanks'|translate}}<span class="align-middle input-group-icon "><i class="material-icons ">view_list</i></span>
                             </a>
                         </li>
 
                         <li *ngIf="lenderDashboardService.UserTypeId == 6">
+                         
                             <a href="javascript:void(0);" (click)="SetCurrentPage('Kontact Dashboard')">
                                 ALL BANKS<span class="align-middle input-group-icon "><i class="material-icons ">view_list</i></span>
                             </a>
                         </li>
+                        <!--<li>
+                            
+                        <button (click)="RegisterAsPartner()" class="btn btn-secondary green-btn" type="button">{{'Button.ButtonRegisterasPartner'|translate}}</button>
+
+                        </li>-->
+
+
                         <!-- <li>
                             <a href="# ">FAQ's<span class="align-middle input-group-icon "><i class="material-icons ">view_list</i></span>
                                                         </a>
@@ -19731,11 +19738,11 @@
         });
 
 
-                // if (document.documentElement.clientWidth < 900) {
-                //     $('#navbar-toggle').click(function() {
-                //         $("html").addClass("open-nav")
-                //     })
-                // }
+                    // if (document.documentElement.clientWidth < 900) {
+                    //     $('#navbar-toggle').click(function() {
+                    //         $("html").addClass("open-nav")
+                    //     })
+                    // }
     </script>
 
 

@@ -15,12 +15,16 @@ export class ViewAllPriceComponent implements OnInit {
 
     previousPage: any;
     timer: any;
+    timer1: any;
     ngOnInit() {
         this.viewAllPriceService.listViewAllPrice1 = [];
         this.viewAllPriceService.listViewAllPrice2 = [];
         this.viewAllPriceService.listViewAllPrice3 = [];
         this.GetAllBanksWithStatusIsDeselected();
-        this.GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected();
+        this.spinner.show();
+        this.SetTimeInterval();
+        this.spinner.hide();
+       
     }
 
     async GetAllBanksWithStatusIsDeselected() {
@@ -63,25 +67,33 @@ export class ViewAllPriceComponent implements OnInit {
     }
 
     async GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected() {
-        this.spinner.show();
+       
         let rates = await this.viewAllPriceService.GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected();
         if (rates.IfDataFound) {
             this.viewAllPriceService.listAllBanks = JSON.parse(rates.data);
-            this.SetTimeInterval();
-            // this.GetHighestRatesViewAllPrice();
+           
+           this.GetHighestRatesViewAllPrice();
+          
         }
         else {
             this.viewAllPriceService.listAllBanks = [];
+
         }
-        this.spinner.hide();
+       
+     
+       
     }
 
     SetTimeInterval() {
         this.timer = setInterval(() => {
+            this.GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected(); 
+        }, 5000);
+    }
+    SetHighestRatesTimeInterval() {
+        this.timer1 = setInterval(() => {
             this.GetHighestRatesViewAllPrice();
         }, 5000);
     }
-
 
     GetHighestRatesViewAllPrice() {
 
@@ -202,7 +214,7 @@ export class ViewAllPriceComponent implements OnInit {
             this.viewAllPriceService.HighestRateY4 = this.viewAllPriceService.listAllBanks[HighestRateY4Index].Year4;
             this.viewAllPriceService.HighestRateY5 = this.viewAllPriceService.listAllBanks[HighestRateY5Index].Year5;
         }
-
+       
     }
 
     async GetAllBanksWithInterestRateHorizontalyOrderByColumnName(columnName: string) {
@@ -210,7 +222,9 @@ export class ViewAllPriceComponent implements OnInit {
         this.spinner.show();
         let rates = await this.viewAllPriceService.GetAllBanksWithInterestRateHorizontalyOrderByColumnName(columnName);
         this.viewAllPriceService.listAllBanks = JSON.parse(rates.data);
-        this.GetHighestRatesViewAllPrice();
+       // this.GetHighestRatesViewAllPrice();
+        //this.SetHighestRatesTimeInterval();
+       
         this.spinner.hide();
     }
 

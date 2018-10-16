@@ -15,20 +15,24 @@ export class BestPriceViewComponent implements OnInit {
   constructor(public bestPriceViewService:BestPriceViewService,public spinner:NgxSpinnerService
     , public toastr:ToastrService, public pipe:DatePipe
     , public lenderDashboardService:LenderDashboardService) { }
-
+    Selectedbank: any;
     p:any;
     selectedTimePeriod:number=null;
     IfBankResponseFound:boolean=false;
     timer:any;
   ngOnInit() {
-    this.spinner.show();
-    this.GetRatesByTimePeriod();
+      this.spinner.show();
+      this.SetTimeInterval();
+      this.SetBankRateTimeInterval();
+      
+    //this.GetRatesByTimePeriod();
     this.bestPriceViewService.listBankByTimePeriod=[];
     var selectedTimePeriodId= undefined;
     selectedTimePeriodId =this.bestPriceViewService.lenderDashboardService.authenticateServiceService.GetSavedSelectedTimePeriodId();
     if(selectedTimePeriodId != undefined){
       this.selectedTimePeriod=selectedTimePeriodId;
-      this.GetBanksByTimePeriod(selectedTimePeriodId);
+        this.GetBanksByTimePeriod(selectedTimePeriodId);
+
     }
 
     this.bestPriceViewService.listInterestConvention=[{Id:1, Value:'act/360'}];
@@ -64,10 +68,19 @@ export class BestPriceViewComponent implements OnInit {
     
   }
   
-  
-
+    SetTimeInterval() {
+        this.timer = setInterval(() => {
+            this.GetRatesByTimePeriod();
+        }, 5000);
+    }
+    SetBankRateTimeInterval() {
+        this.timer = setInterval(() => {
+           this.ShowSendRequestModal('bank');
+            //this.ShowSendRequestModal('bank');
+        }, 5000);
+    }
   CalculateNumberOfDays(){
-    debugger; 
+     
     let fromDate: any=new Date(this.bestPriceViewService.lenderSendRequestModel.StartDate);
     let toDate: any =new Date(this.bestPriceViewService.lenderSendRequestModel.EndDate);
     if(this.bestPriceViewService.lenderSendRequestModel.StartDate != "" && this.bestPriceViewService.lenderSendRequestModel.EndDate !=""){
@@ -79,7 +92,7 @@ export class BestPriceViewComponent implements OnInit {
   }
 
   async GetRatesByTimePeriod(){
-    debugger;
+    
     let rates:any;
     if(this.lenderDashboardService.UserTypeId ==5){
     rates= await this.bestPriceViewService.GetRatesByTimePeriod();
@@ -92,7 +105,7 @@ export class BestPriceViewComponent implements OnInit {
    }
 
    async GetBanksByTimePeriod(timePeriodId:number){
-    debugger;
+    
     //document.getElementById(timePeriodId.toString());
     this.selectedTimePeriod=timePeriodId;
     this.bestPriceViewService.lenderDashboardService.authenticateServiceService.SaveSelectedTimePeriodId(timePeriodId);
@@ -120,7 +133,7 @@ numberOnly(event): boolean {
 
 }
    ShowSendRequestModal(bank:any){
-     debugger;
+     
     //  document.getElementById('modalSendRequest').style.display='block';
     //  document.getElementById('modalSendRequest').style.display='block';
     this.IfBankResponseFound=false;
@@ -160,11 +173,12 @@ numberOnly(event): boolean {
      this.bestPriceViewService.lenderSendRequestModel.EndDate = this.pipe.transform(new Date(), 'yyyy-MM-dd');
      this.bestPriceViewService.lenderSendRequestModel.InterestConvention=this.bestPriceViewService.listInterestConvention[0].Id;
      this.bestPriceViewService.lenderSendRequestModel.Payments=this.bestPriceViewService.listPayments[0].Id;
-     this.bestPriceViewService.lenderSendRequestModel.LenderEmailId=this.bestPriceViewService.lenderDashboardService.authenticateServiceService.GetEmailId();
+       this.bestPriceViewService.lenderSendRequestModel.LenderEmailId = this.bestPriceViewService.lenderDashboardService.authenticateServiceService.GetEmailId();
+       
    }
 
    SaveSendRequest(){
-     debugger;
+     
      for(var i =0; i<= this.bestPriceViewService.listInterestConvention.length-1;i++){
        if(this.bestPriceViewService.lenderSendRequestModel.InterestConvention == this.bestPriceViewService.listInterestConvention[i].Id){
         this.bestPriceViewService.lenderSendRequestModel.InterestConventionName=this.bestPriceViewService.listInterestConvention[i].Value;

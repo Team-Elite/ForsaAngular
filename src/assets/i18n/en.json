@@ -8,7 +8,8 @@
     "ButtonLogout": "Logout",
     "ButtonEurTN": "EUR (T/N)",
     "ButtonInfo": "INFO",
-    "ButtinLend": "Lend"
+    "ButtinLend": "Lend",
+    "ButtonRegisterasPartner": "Register as a Partner"
   },
   "Login": {
     "Title": "Log in",
@@ -112,6 +113,12 @@
     }
   },
   "Kontact": {
+    "SettingStartPage": "SettingStartPage",
+    "LenderSettings": "LENDER  SETTINGS",
+    "BestPriceView": "BEST PRICE VIEW",
+    "ViewAllPrice": "VIEW ALL PRICE",
+    "AllBanks": "ALL BANKS",
+    "LenderDashBoard": "Contact User",
     "menutext": "menu",
     "Account": "Account",
     "expand_more": "expand_more",
@@ -142,6 +149,7 @@
   },
   "Lender": {
     "DashBoard": {
+      "LenderDashBoard": "Contact User",
       "menu": "menu",
       "ExpandMore": "expand_more",
       "search": "search",
@@ -202,7 +210,7 @@
       }
     },
     "BestPriceView": {
-     
+
       "Lender": "LENDER",
       "Borrower": "BORROWER",
       "Amount": "AMOUNT",
@@ -241,5 +249,10 @@
     }
 
 
+  },
+  "left": {
+    "SettingStartPage": "SettingStartPage",
+    "LenderSettings": "LenderSettings",
+    "ViewAllPrice": "ViewAllPrice"
   }
 }

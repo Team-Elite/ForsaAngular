@@ -1,0 +1,54 @@
+
+    <aside>
+        <div class="sidebar ">
+
+            <ul class="sidebar-nav ">
+
+                <li>
+                    <a href="javascript:void(0);" data-toggle="modal" data-target=".setting-popup2">{{'left.SettingStartPage'|translate}}<span class="align-middle input-group-icon "><i class="material-icons ">dashboard</i></span></a>
+                </li>
+                <li style="display: none;">
+                    <a href="javascript:void(0);" (click)="SetCurrentPage('Lender Settings')">
+                        {{'left.LenderSettings'|translate}}<span class="align-middle input-group-icon ">
+                            <i class="material-icons ">
+                                speaker_notes
+                            </i>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0);" (click)="SetCurrentPage('Best Price View')">{{'left.BestPriceView'|translate}}<span class="align-middle input-group-icon "><i class="material-icons ">settings</i></span></a>
+                </li>
+                <li>
+                    <a href="javascript:void(0);" (click)="SetCurrentPage('View All Price')">
+                        {{'left.ViewAllPrice'|translate}}<span class="align-middle input-group-icon "><i class="material-icons ">view_list</i></span>
+                    </a>
+                </li>
+                <li *ngIf="lenderDashboardService.UserTypeId == 5">
+                    <a href="javascript:void(0);" (click)="SetCurrentPage('All Banks')">
+                        {{'left.AllBanks'|translate}}<span class="align-middle input-group-icon "><i class="material-icons ">view_list</i></span>
+                    </a>
+                </li>
+
+                <li *ngIf="lenderDashboardService.UserTypeId == 6">
+                 
+                    <a href="javascript:void(0);" (click)="SetCurrentPage('Kontact Dashboard')">
+                        AllBanks<span class="align-middle input-group-icon "><i class="material-icons ">view_list</i></span>
+                    </a>
+                </li>
+                <!--<li>
+
+                <button (click)="RegisterAsPartner()" class="btn btn-secondary green-btn" type="button">{{'Button.ButtonRegisterasPartner'|translate}}</button>
+
+                </li>-->
+                <!-- <li>
+                    <a href="# ">FAQ's<span class="align-middle input-group-icon "><i class="material-icons ">view_list</i></span>
+                                                </a>
+                </li>
+                <li>
+                    <a href="# ">Support<span class="align-middle input-group-icon "><i class="material-icons ">people</i></span>
+                                                    </a>
+                </li> -->
+            </ul>
+        </div>
+    </aside>

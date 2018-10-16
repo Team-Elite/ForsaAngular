@@ -11,7 +11,7 @@ export class AuthenticateServiceService {
   selectedBestPriceId:string='selectedBestPriceId';
   ifBothUserTypeFound:string='ifBothUserTypeFound';
   UserTypeId:string='UserTypeId';
-  baseURL:string='http://forsaapi.elitewebdemo.com';
+    baseURL: string ='http://40.74.232.172';
   //baseURL:string='http://localhost:60744/';
   constructor(@Inject(LOCAL_STORAGE) private storage: StorageService, public router: Router) { }
 

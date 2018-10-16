@@ -10,7 +10,7 @@
     "ButtonInfo": "INFO",
     "ButtonLend": "Verleihen",
     "ButtonRegisterasPartner": "Registrieren Sie sich als Partner"
-  },
+  },  
   "Login": {
     "Title": "Anmeldung",
     "UserLabel": "Name/Email Id",
@@ -76,6 +76,7 @@
   },
   "Borrower": {
     "BankDashboard": {
+     
       "menutext": "Speisekarte",
       "Account": "Konto",
       "expand_more": "expandiere mehr",
@@ -113,11 +114,17 @@
     }
   },
   "Kontact": {
+    "SettingStartPage": "SettingStartPage",
+    "LenderSettings": "LENDEREINSTELLUNGEN",
+    "BestPriceView": "Beste Preisansicht",
+    "ViewAllPrice": "ALLEPREISEANSEHEN",
+    "AllBanks": "ALLEBANKEN",
+    "LenderDashBoard": "Kontakte User",
     "menutext": "Speisekarte",
     "Account": "Konto",
     "expand_more": "expandiere mehr",
     "forum": "forum",
-    "logout": "Ausloggen",
+    "logout": "logout",
     "GeneralOverview": "GESAMTÜBERSICHT",
     "Tag": "Etikett",
     "Week1": "1 W",
@@ -139,10 +146,11 @@
     "Year3": "3 Y",
     "Year4": "4 Y",
     "Year5": "5 Y"
-    
+
   },
   "Lender": {
     "DashBoard": {
+      "LenderDashBoard": "Kontakte User",
       "menu": "Speisekarte",
       "ExpandMore": "expand_more",
       "search": "Suche",
@@ -203,7 +211,7 @@
       }
     },
     "BestPriceView": {
-      
+
       "Lender": "DARLEHENSGEBER",
       "Borrower": "KREDITNEHMER",
       "Amount": "MENGE",
@@ -244,5 +252,10 @@
 
 
 
+  },
+  "left": {
+    "SettingStartPage": "SettingStartPage",
+    "LenderSettings": "LenderSettings",
+    "ViewAllPrice": "ViewAllPrice"
   }
 }

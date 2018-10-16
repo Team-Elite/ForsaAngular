@@ -22,14 +22,14 @@ export class LoginComponent implements OnInit {
 
   IfVerificationDone:boolean=false;
   IfShowPassword:boolean=false;
-  public resolved(captchaResponse: string) {
-    if(captchaResponse != undefined && captchaResponse != null && captchaResponse.trim().length !=0){
-      this.IfVerificationDone=true;
-    }
-    else{
-      this.IfVerificationDone=false;
-    }
-  }
+  //public resolved(captchaResponse: string) {
+  //  if(captchaResponse != undefined && captchaResponse != null && captchaResponse.trim().length !=0){
+  //    this.IfVerificationDone=true;
+  //  }
+  //  else{
+  //    this.IfVerificationDone=false;
+  //  }
+  //}
 
   ngOnInit() {
     this.loginService.loginModel={
@@ -65,10 +65,10 @@ if(form.value.UserName.indexOf('@')>-1){
         return false;
       }
       
-    if(!this.IfVerificationDone){
-       this.toastr.error("Please verify captcha.","Login");
-       return false;
-    }
+    //if(!this.IfVerificationDone){
+    //   this.toastr.error("Please verify captcha.","Login");
+    //   return false;
+    //}
     this.spinner.show();
     let user= await this.loginService.ValidateUser(form.value);
     if(user.IsSuccess == true){
@@ -81,9 +81,10 @@ if(form.value.UserName.indexOf('@')>-1){
       if(JSON.parse(user.data)[0].UserTypeId==4 || IfBothUserTypeFound){
       this.router.navigate(['/bankDashBoard']);
     }
-    // else if(JSON.parse(user.data)[0].UserTypeId==6){
-    //   this.router.navigate(['/KontactDashBoard']);
-    // }
+      else if (JSON.parse(user.data)[0].UserTypeId == 6) {
+          this.router.navigate(['/KontactDashBoard']);
+        
+     }
     else if(JSON.parse(user.data)[0].UserTypeId==5 || JSON.parse(user.data)[0].UserTypeId==6){
       
   this.lenderDashboardService.userId = this.authenticateServiceService.GetUserId();
