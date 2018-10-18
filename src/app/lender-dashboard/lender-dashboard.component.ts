@@ -13,11 +13,14 @@ import {BestPriceViewService} from '../lender-dashboard/best-price-view/Shared/b
   styleUrls: ['./lender-dashboard.component.css']
 })
 export class LenderDashboardComponent implements OnInit {
-
+  userId:any
   constructor(public lenderDashboardService:LenderDashboardService, public spinner:NgxSpinnerService
     ,public authenticateServiceService:AuthenticateServiceService, public router:Router
     , public  toastr: ToastrService
-    , public bestPriceViewService:BestPriceViewService) { }
+    , public bestPriceViewService:BestPriceViewService) { 
+
+
+    }
 
     copyLoggedInUser:any;
     SelectedStartPage:any;
@@ -36,6 +39,7 @@ export class LenderDashboardComponent implements OnInit {
     debugger;
     this.authenticateServiceService.AuthenticateSession();
     this.lenderDashboardService.UserTypeId=this.authenticateServiceService.GetUserTypeId();
+    console.log("this.lenderDashboardService.UserTypeId",this.lenderDashboardService.UserTypeId)
     this.lenderDashboardService.userId = this.authenticateServiceService.GetUserId();
     this.IfBothUserTypeFound = this.authenticateServiceService.GetIfBothUserTypeFound() ==( undefined || null) ? false: true;
     this.lenderDashboardService.loggedInUser= this.authenticateServiceService.GetUserDetail();
@@ -332,5 +336,9 @@ this.spinner.hide();
  async SwitchScreen(){
   this.router.navigate(['/bankDashBoard']);
 }
+RegisterAsPartner(){
+  this.authenticateServiceService.ClearSession();
+  this.router.navigate(['/registration/',this.lenderDashboardService.userId,'KT']);
+ }
 
 }

@@ -65,10 +65,10 @@ if(form.value.UserName.indexOf('@')>-1){
         return false;
       }
       
-    if(!this.IfVerificationDone){
-       this.toastr.error("Please verify captcha.","Login");
-       return false;
-    }
+    // if(!this.IfVerificationDone){
+    //    this.toastr.error("Please verify captcha.","Login");
+    //    return false;
+    // }
     this.spinner.show();
     let user= await this.loginService.ValidateUser(form.value);
     if(user.IsSuccess == true){

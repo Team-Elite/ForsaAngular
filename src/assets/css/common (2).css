@@ -1,0 +1,594 @@
+* {
+    box-sizing: border-box;
+}
+
+html body {
+    font-family: Helvetica;
+    -webkit-font-smoothing: antialiased;
+    background: #18191d !important; font-family:Roboto, Helvetica, Arial, sans-serif !important;
+}
+
+body.instibg {
+    background: #18191d;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+}
+
+select:focus {
+    outline: none;
+}
+
+hgroup {
+    text-align: center;
+    margin-top: 4em;
+}
+
+#wrapper a {
+    color: #9f3fff;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#wrapper {
+    max-width: 1400px;
+    margin: 0px auto;
+background: url('../images/insti-bg.png') no-repeat;
+}
+
+#wrapper.wrapper-full {
+    width: 100%;
+    max-width: 100%;
+    padding: 1.5em 0em;
+    background: none;
+}
+
+.mb-2,
+.my-2 {
+    margin-bottom: .5rem !important;
+}
+
+.group {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.fillwhite {
+    background-color: #fff;
+}
+
+.eqWrap {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.equalHW {
+    flex: 1;
+}
+
+div#goback {
+    margin: 1em 0 1.5em 0;
+}
+
+.list {
+    margin: .5rem;
+}
+
+.list__item {
+    margin: 0 0 .5rem 0;
+    padding: 0;
+}
+
+i.material-icons.whitebg {
+    color: white;
+}
+
+span.line {
+    border-bottom: 1px solid #fff;
+    width: 100%;
+    padding-bottom: 10px;
+}
+
+label.lbl.notrobot {
+    position: absolute !important;
+    right: 0px;
+    top: -5px;
+    z-index: 9999;
+}
+
+.form-group input:focus~label.notrobot,
+.form-group input.used~label.notrobot {
+    transform: scale(1);
+}
+
+#wrapper btn:focus,
+#wrapper .btn.focus {
+    outline: 0;
+    box-shadow: none;
+}
+
+#wrapper input[type="checkbox"]+label {
+    cursor: pointer;
+    position: relative;
+    margin-right: 20px;
+    display: inline-block;
+    padding-right: 10px;
+    margin-top: 14px;
+}
+
+#wrapper input[type="checkbox"] {
+    position: absolute;
+    left: -9999px;
+}
+
+
+/* the checkbox
+-----------------------------------------------*/
+
+#wrapper input[type="checkbox"]+label::after {
+    content: '';
+    border: 2px solid #fff;
+    border-radius: 2px;
+    background: transparent;
+    position: absolute;
+    top: 50%;
+    right: -40px;
+    transform: translate(-20px, -50%);
+    box-sizing: border-box;
+    width: 20px;
+    height: 20px;
+}
+
+
+/* the checkbox -- checked
+-----------------------------------------------*/
+
+#wrapper input[type="checkbox"]:checked+label::after {
+    border: 2px solid #fff;
+    background: transparent;
+    transition: background-color 1s;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUAQMAAAC3R49OAAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAAAFiS0dEAIgFHUgAAAAJcEhZcwAACxMAAAsTAQCanBgAAAAHdElNRQfgBwEQARzBMMQpAAAAN0lEQVQI12NgQAEHGBgYHzAwMAMxO5DN38AgIM/AYGHHwFBTw8Bg94OBQf4DUBgqzdwAVI5qAACbXgn3nmfmHgAAAABJRU5ErkJggg==);
+    background-position: -2px -1px;
+}
+
+
+/* the checkbox -- disabled
+-----------------------------------------------*/
+
+#wrapper input[type="checkbox"]:disabled+label::after {
+    border: 2px solid rgba(0, 0, 0, .1);
+    background-color: rgba(0, 0, 0, .05);
+    background-image: none;
+}
+
+
+/* the focus ripple
+-----------------------------------------------*/
+
+#wrapper input[type="checkbox"]+label::before {
+    content: '';
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, .1);
+    position: absolute;
+    box-sizing: border-box;
+    top: 50%;
+    right: -10px;
+    transform: translate(-50%, -50%) scale(0);
+    width: 1.8px;
+    height: 1.8px;
+}
+
+#wrapper input[type="checkbox"]:focus+label::before {
+    animation: checkboxripple 1s ease-out;
+}
+
+@keyframes checkboxripple {
+    0% {
+        transform: scale(0, 0);
+        opacity: 1;
+    }
+    20% {
+        transform: scale(25, 25);
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: scale(40, 40);
+    }
+}
+
+.md-radio {
+    margin: 16px 0;
+}
+
+.md-radio.md-radio-inline {
+    display: inline-block;
+}
+
+.md-radio input[type="radio"] {
+    display: none;
+}
+
+.md-radio input[type="radio"]:checked+label:before {
+    border-color: #fff;
+    animation: radioripple 0.2s linear forwards;
+}
+
+.md-radio input[type="radio"]:checked+label:after {
+    transform: scale(1);
+}
+
+.md-radio label {
+    display: inline-block;
+    height: 25px;
+    position: relative;
+    padding: 0 30px;
+    margin-bottom: 0;
+    cursor: pointer;
+    vertical-align: baseline;
+}
+
+.md-radio label:before,
+.md-radio label:after {
+    position: absolute;
+    content: '';
+    border-radius: 50%;
+    transition: all .3s ease;
+    transition-property: transform, border-color;
+}
+
+.md-radio label:before {
+    left: 0;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #fff;
+}
+
+.md-radio label:after {
+    top: 5px;
+    left: 5px;
+    width: 10px;
+    height: 10px;
+    transform: scale(0);
+    background: #fff;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+.container {
+    padding: 1.5em 0em;
+}
+
+ul.in-lang li {
+    display: inline-block;
+    margin-left: 14px;
+}
+
+ul.in-lang li {
+    /*padding: 0.3em 0.6em;*/
+}
+
+#wrapper ul.in-lang li a {
+    color: #fff;
+}
+
+ul.in-lang li a:hover {
+    color: #fff;
+}
+
+#wrapper ul.in-lang li.active {
+    background: #8636d7;
+}
+
+#wrapper ul.in-lang li a:hover {
+    color: #fff;
+    background: #8636d7;
+}
+
+#wrapper ul.in-lang li.active a,
+#wrapper ul.in-lang li a:hover {
+    color: #fff;
+    background: #8636d7;
+}
+
+.fiftypercent .md-radio label {
+    margin-left: 20%;
+    padding: 0 10px;
+}
+
+input {
+    font-size: 0.9em;
+    padding: 10px 10px 10px 5px;
+    -webkit-appearance: none;
+    display: block;
+    background: transparent;
+    color: #ffffff;
+    width: 100%;
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid #fff;
+}
+
+.input-group-icon {
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    color: #fff;
+}
+
+input:focus {
+    outline: none;
+}
+
+
+/* Label */
+
+.form-group.form-md-line-input {
+    position: relative;
+    margin: 0 0 15px;
+}
+
+label {
+    color: #fff;
+    font-weight: normal;
+    position: absolute;
+    left: 5px;
+    top: 10px;
+    transition: all 0.2s ease;
+}
+
+.form-group label {
+    z-index: -1;
+    ;
+}
+
+
+/* Hide label */
+
+.mdl-selectfield label {
+    display: none;
+}
+
+
+/* Use custom arrow */
+
+.mdl-selectfield select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.mdl-selectfield {
+    font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+    position: relative;
+}
+
+.mdl-selectfield:after {
+    position: absolute;
+    top: 0.75em;
+    right: 0.5em;
+    /* Styling the down arrow */
+    width: 0;
+    height: 0;
+    padding: 0;
+    content: '';
+    border-left: .25em solid transparent;
+    border-right: .25em solid transparent;
+    border-top: 0.375em solid rgba(0, 0, 0, 0.12);
+    pointer-events: none;
+}
+
+
+/* active */
+
+.form-group input:focus~label,
+.form-group input.used~label {
+    top: -5px;
+    -webkit-transform: scale(.75);
+    transform: scale(.75);
+    left: -2px;
+    /* font-size: 14px; */
+    color: #9f3fff;
+}
+
+
+/* Underline */
+
+.bar {
+    position: relative;
+    display: block;
+    width: 100%;
+}
+
+.bar:before,
+.bar:after {
+    content: '';
+    height: 2px;
+    width: 0;
+    bottom: 0px;
+    position: absolute;
+    background: #9f3fff;
+    transition: all 0.2s ease;
+}
+
+.bar:before {
+    left: 50%;
+}
+
+.bar:after {
+    right: 50%;
+}
+
+
+/* active */
+
+input:focus~.bar:before,
+input:focus~.bar:after {
+    width: 50%;
+}
+
+
+/* Highlight */
+
+.highlight {
+    position: absolute;
+    height: 60%;
+    width: 100px;
+    top: 25%;
+    left: 0;
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+
+/* active */
+
+input:focus~.highlight {
+    -webkit-animation: inputHighlighter 0.3s ease;
+    animation: inputHighlighter 0.3s ease;
+}
+
+
+/* Animations */
+
+@-webkit-keyframes inputHighlighter {
+    from {
+        background: #4a89dc;
+    }
+    to {
+        width: 0;
+        background: transparent;
+    }
+}
+
+@keyframes inputHighlighter {
+    from {
+        background: #4a89dc;
+    }
+    to {
+        width: 0;
+        background: transparent;
+    }
+}
+
+
+/* Button */
+
+.button {
+    position: relative;
+    display: inline-block;
+    padding: 4px 24px;
+    margin: .3em 0 1em 0;
+    width: 100%;
+    vertical-align: middle;
+    color: #fff;
+    font-size: 16px;
+    line-height: 20px;
+    -webkit-font-smoothing: antialiased;
+    text-align: center;
+    letter-spacing: 1px;
+    background: transparent;
+    border: 0;
+    border-bottom: 2px solid #3160B6;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.button:focus {
+    outline: 0;
+}
+
+@keyframes radioripple {
+    0% {
+        box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0);
+    }
+    50% {
+        box-shadow: 0px 0px 0px 15px rgba(0, 0, 0, 0.1);
+    }
+    100% {
+        box-shadow: 0px 0px 0px 15px rgba(0, 0, 0, 0);
+    }
+}
+
+
+/* Ripples container */
+
+.ripples {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: transparent;
+}
+
+
+/* Ripples circle */
+
+.ripplesCircle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.ripples.is-active .ripplesCircle {
+    -webkit-animation: ripples .4s ease-in;
+    animation: ripples .4s ease-in;
+}
+
+
+/* Ripples animation */
+
+@-webkit-keyframes ripples {
+    0% {
+        opacity: 0;
+    }
+    25% {
+        opacity: 1;
+    }
+    100% {
+        width: 200%;
+        padding-bottom: 200%;
+        opacity: 0;
+    }
+}
+
+@keyframes ripples {
+    0% {
+        opacity: 0;
+    }
+    25% {
+        opacity: 1;
+    }
+    100% {
+        width: 200%;
+        padding-bottom: 200%;
+        opacity: 0;
+    }
+}
+.pull-right{ float:right;}
+ul.in-lang li:last-child{ padding-left:0px;}
+.account-style{ 
+   border:0px !important;
+   color:#fff;
+}
+.account-style:hover {
+    border: 0px !important;
+    color: #fff;
+    background-color:transparent !important;
+}
+.account:hover{
+    background-color:transparent !important; 
+}
+.logout{ padding:4px 10px 1px 10px !important; margin-top:5px !important;}

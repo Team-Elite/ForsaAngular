@@ -163,10 +163,7 @@ export class KontactDashboardLComponent implements OnInit {
        }
        
      }
-     RegisterAsPartner(){
-      this.authenticateServiceService.ClearSession();
-      this.router.navigate(['/registration/',this.lenderDashboardService.userId,'KT']);
-     }
+     
      Logout(){
       //if(confirm("Are you sure you want to log out?")){
       this.authenticateServiceService.ClearSession();

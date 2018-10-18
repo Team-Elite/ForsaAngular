@@ -1,0 +1,908 @@
+* {
+    box-sizing: border-box;
+}
+
+html body {
+    font-family: Helvetica;
+    -webkit-font-smoothing: antialiased;
+}
+
+body.instibg {
+    background: #18191d;
+}
+
+hgroup {
+    text-align: center;
+    margin-top: 4em;
+}
+
+#wrapper a {
+    color: #9f3fff;
+    text-decoration: none;
+}
+
+#wrapper {
+    max-width: 1400px;
+    margin: 0px auto;
+    background: url('../images/insti-bg.png') no-repeat;
+}
+
+#step2-reg {
+    display: none;
+}
+
+#step3-reg {
+    display: none;
+}
+
+.mb-2,
+.my-2 {
+    margin-bottom: .5rem!important;
+}
+
+.group {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.fillwhite {
+    background-color: #fff;
+}
+
+.eqWrap {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.equalHW {
+    flex: 1;
+}
+
+div#goback {
+    margin: 1em 0 1.5em 0;
+}
+
+.list {
+    margin: .5rem;
+}
+
+.list__item {
+    margin: 0 0 .5rem 0;
+    padding: 0;
+}
+
+i.material-icons.whitebg {
+    color: white;
+}
+
+span.line {
+    border-bottom: 1px solid #fff;
+    width: 100%;
+    padding-bottom: 10px;
+}
+
+label.lbl.notrobot {
+    position: absolute !important;
+    right: 0px;
+    top: -5px;
+    z-index: 9999;
+}
+
+.form-group input:focus~label.notrobot,
+.form-group input.used~label.notrobot {
+    transform: scale(1);
+}
+
+#wrapper btn:focus,
+#wrapper .btn.focus {
+    outline: 0;
+    box-shadow: none;
+}
+
+#wrapper input[type="checkbox"]+label {
+    cursor: pointer;
+    position: relative;
+    margin-right: 20px;
+    display: inline-block;
+    padding-right: 10px;
+    margin-top: 14px;
+}
+
+#wrapper input[type="checkbox"] {
+    position: absolute;
+    left: -9999px;
+}
+
+.forgot-pass a {
+    font-size: 0.9em;
+    cursor: pointer;
+}
+
+
+/* the checkbox
+-----------------------------------------------*/
+
+#wrapper input[type="checkbox"]+label::after {
+    content: '';
+    border: 2px solid #fff;
+    border-radius: 2px;
+    background: transparent;
+    position: absolute;
+    top: 50%;
+    right: -40px;
+    transform: translate(-20px, -50%);
+    box-sizing: border-box;
+    width: 20px;
+    height: 20px;
+}
+
+
+/* the checkbox -- checked
+-----------------------------------------------*/
+
+#wrapper input[type="checkbox"]:checked+label::after {
+    border: 2px solid #fff;
+    background: transparent;
+    transition: background-color 1s;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUAQMAAAC3R49OAAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAAAFiS0dEAIgFHUgAAAAJcEhZcwAACxMAAAsTAQCanBgAAAAHdElNRQfgBwEQARzBMMQpAAAAN0lEQVQI12NgQAEHGBgYHzAwMAMxO5DN38AgIM/AYGHHwFBTw8Bg94OBQf4DUBgqzdwAVI5qAACbXgn3nmfmHgAAAABJRU5ErkJggg==);
+    background-position: -2px -1px;
+}
+
+
+/* the checkbox -- disabled
+-----------------------------------------------*/
+
+#wrapper input[type="checkbox"]:disabled+label::after {
+    border: 2px solid rgba(0, 0, 0, .1);
+    background-color: rgba(0, 0, 0, .05);
+    background-image: none;
+}
+
+
+/* the focus ripple
+-----------------------------------------------*/
+
+#wrapper input[type="checkbox"]+label::before {
+    content: '';
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, .1);
+    position: absolute;
+    box-sizing: border-box;
+    top: 50%;
+    right: -10px;
+    transform: translate(-50%, -50%) scale(0);
+    width: 1.8px;
+    height: 1.8px;
+}
+
+#wrapper input[type="checkbox"]:focus+label::before {
+    animation: checkboxripple 1s ease-out;
+}
+
+@keyframes checkboxripple {
+    0% {
+        transform: scale(0, 0);
+        opacity: 1;
+    }
+    20% {
+        transform: scale(25, 25);
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: scale(40, 40);
+    }
+}
+
+.md-radio {
+    margin: 16px 0;
+}
+
+.md-radio.md-radio-inline {
+    display: inline-block;
+}
+
+.md-radio input[type="radio"] {
+    display: none;
+}
+
+.md-radio input[type="radio"]:checked+label:before {
+    border-color: #fff;
+    animation: radioripple 0.2s linear forwards;
+}
+
+.md-radio input[type="radio"]:checked+label:after {
+    transform: scale(1);
+}
+
+.md-radio label {
+    display: inline-block;
+    height: 25px;
+    position: relative;
+    padding: 0 30px;
+    margin-bottom: 0;
+    cursor: pointer;
+    vertical-align: baseline;
+}
+
+.md-radio label:before,
+.md-radio label:after {
+    position: absolute;
+    content: '';
+    border-radius: 50%;
+    transition: all .3s ease;
+    transition-property: transform, border-color;
+}
+
+.md-radio label:before {
+    left: 0;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #fff;
+}
+
+.md-radio label:after {
+    top: 5px;
+    left: 5px;
+    width: 10px;
+    height: 10px;
+    transform: scale(0);
+    background: #fff;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+ul.in-lang li a:hover {
+    color: #fff;
+}
+
+
+/* For LoginHeader Css starts here */
+
+.container {
+    padding: 2em 0em;
+}
+
+ul.in-lang li {
+    display: inline-block;
+    border: 1px solid #9f3fff;
+    margin-left: 14px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    border-radius: 3px;
+    font-size: 0.9em;
+}
+
+ul.in-lang li {
+    padding: 0.3em 0.6em;
+}
+
+ul.in-lang li:last-child {
+    border: none;
+    padding-left: 30px;
+}
+
+#wrapper ul.in-lang li:hover>a {
+    color: #fff;
+    background: #8636d7;
+}
+
+#wrapper ul.in-lang li.active {
+    background: #8636d7;
+}
+
+#wrapper ul.in-lang li.active a,
+#wrapper ul.in-lang li:hover,
+#wrapper ul.in-lang li a:hover {
+    color: #fff;
+    background: #8636d7;
+}
+
+#wrapper ul.in-lang li a {
+    color: #fff;
+}
+
+.in-header-user a {
+    background: #8636d7;
+    border: 1px solid #9f3fff;
+    color: #fff;
+    padding: 0.7em 0.4em 0.6em;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    border-radius: 3px;
+}
+
+.in-header-user a i {
+    top: 5px;
+    position: relative;
+}
+
+
+/* For LoginHeader Css ends here */
+
+
+/* For login Page css starts here */
+
+.in-login,
+.in-register {
+    width: 350px;
+}
+
+.in-login .in-login-form,
+.in-login .in-register-form,
+.in-register .in-login-form,
+.in-register .in-register-form {
+    background: #1f2024;
+    padding: 2em 2em;
+    opacity: 0.9;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    border-radius: 5px;
+    border: 1px solid #fff;
+    flex-wrap: wrap;
+    color: #fff;
+    font-size: 0.9em;
+    height: 100%;
+}
+
+.login-form label {
+    font-size: 1em;
+}
+
+.in-login,
+.in-register {
+    width: 320px;
+}
+
+.in-register .fiftypercent .md-radio.md-radio-inline {
+    width: 49%;
+}
+
+.fiftypercent .md-radio label {
+    margin-left: 20%;
+    padding: 0 10px;
+}
+
+input {
+    font-size: 18px;
+    padding: 10px 10px 10px 5px;
+    -webkit-appearance: none;
+    display: block;
+    background: transparent;
+    color: #ffffff;
+    width: 100%;
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid #fff;
+}
+
+.in-login .in-login-form button,
+.in-login .in-register-form button,
+.in-register .in-login-form button,
+.in-register .in-register-form button {
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    border-radius: 3px;
+    background: rgba(159, 63, 255, 0.4);
+    font-size: 14px;
+    font-weight: lighter;
+    margin: 0 auto;
+    text-align: center;
+    width: 100%;
+    color: #fff;
+    text-transform: capitalize;
+    border: 1px solid #7e2cb8;
+    cursor: pointer;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    text-transform: uppercase;
+}
+
+.in-login .in-login-form button:focus,
+.in-login .in-register-form button:focus,
+.in-register .in-login-form button:focus,
+.in-register .in-register-form button:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.in-login .in-login-form .login-margin,
+.in-login .in-register-form .login-margin,
+.in-register .in-login-form .login-margin,
+.in-register .in-register-form .login-margin {
+    min-height: 150px;
+}
+
+.in-login .in-login-form h2,
+.in-login .in-register-form h2,
+.in-register .in-login-form h2,
+.in-register .in-register-form h2 {
+    color: #fff;
+    font-size: 16px;
+    margin-bottom: 2rem;
+}
+
+.forgot-pass.form-group.form-md-line-input {
+    margin-top: -11px;
+    text-decoration: underline;
+}
+
+.in-register-text a {
+    text-decoration: underline !important;
+}
+
+
+/* For login Page css ends here */
+
+
+/* For Register Page Css starts here */
+
+.in-register .in-register-form .register-form .mat-radio-outer-circle {
+    border-color: #fff;
+}
+
+.in-register .in-register-form .register-form .mat-radio-inner-circle {
+    background-color: #fff;
+}
+
+.in-register .in-register-form .register-form .mat-radio-label-content,
+.in-register .in-register-form .register-form .mat-select-arrow,
+.in-register .in-register-form .register-form .mat-select-value-text {
+    color: #fff;
+}
+
+.in-register .in-register-form .register-form .mat-radio-label {
+    padding-right: 3em;
+}
+
+.in-register .in-register-form .register-form .mat-form-field {
+    width: 100%;
+}
+
+.in-register .in-register-form .register-form .mat-form-field-label {
+    font-size: 13px;
+}
+
+.in-register .in-register-form .form-circles a.dot {
+    height: 12px;
+    width: 12px;
+    background: rgba(159, 63, 255, 0.2);
+    border-radius: 50%;
+    display: inline-block;
+    margin: 20px 6px;
+    border: 1px solid #7e2cb8;
+}
+
+.in-register .in-register-form .form-circles a.active,
+.in-register .in-register-form .form-circles a:hover {
+    background: #8636d7;
+}
+
+select#countries {
+    background: #1f2024;
+    font-size: 13px;
+}
+
+
+/* forgot Pass Modal css starts*/
+
+#in-forgot-password .modal-content {
+    background: #000;
+}
+
+#in-forgot-password .modal-footer,
+#in-forgot-password .modal-header {
+    border: none;
+}
+
+.instibg .modal-backdrop {
+    z-index: -1;
+}
+
+#in-forgot-password .form-group label {
+    z-index: 1;
+}
+
+#in-forgot-password button.close {
+    background: transparent;
+    border: none;
+    margin: inherit;
+    width: auto;
+}
+
+
+/* For Register Page Css ends here */
+
+.input-group-icon {
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+}
+
+input:focus {
+    outline: none;
+}
+
+
+/* Label */
+
+.form-group.form-md-line-input {
+    position: relative;
+    margin: 0 0 15px;
+}
+
+label {
+    color: #fff;
+    font-weight: normal;
+    position: absolute;
+    left: 5px;
+    top: 10px;
+    transition: all 0.2s ease;
+}
+
+.form-group label {
+    z-index: -1;
+    ;
+}
+
+
+/*************for selectbox****************/
+
+.in-register select {
+    font-family: inherit;
+    background-color: transparent;
+    width: 100%;
+    padding: 4px 0;
+    font-size: 16px;
+    color: #fff;
+    border: none;
+    border-bottom: 1px solid #fff
+}
+
+
+/* Remove focus */
+
+.in-register select:focus {
+    outline: none;
+}
+
+
+/* Hide label */
+
+.mdl-selectfield label {
+    display: none;
+}
+
+
+/* Use custom arrow */
+
+.mdl-selectfield select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.mdl-selectfield {
+    font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+    position: relative;
+}
+
+.mdl-selectfield:after {
+    position: absolute;
+    top: 0.75em;
+    right: 0.5em;
+    /* Styling the down arrow */
+    width: 0;
+    height: 0;
+    padding: 0;
+    content: '';
+    border-left: .25em solid transparent;
+    border-right: .25em solid transparent;
+    border-top: 0.375em solid rgba(0, 0, 0, 0.12);
+    pointer-events: none;
+}
+
+
+/* active */
+
+.form-group input:focus~label,
+.form-group input.used~label {
+    top: -5px;
+    -webkit-transform: scale(.75);
+    transform: scale(.75);
+    left: -2px;
+    /* font-size: 14px; */
+    color: #9f3fff;
+}
+
+
+/* Underline */
+
+.bar {
+    position: relative;
+    display: block;
+    width: 100%;
+}
+
+.bar:before,
+.bar:after {
+    content: '';
+    height: 2px;
+    width: 0;
+    bottom: 0px;
+    position: absolute;
+    background: #9f3fff;
+    transition: all 0.2s ease;
+}
+
+.bar:before {
+    left: 50%;
+}
+
+.bar:after {
+    right: 50%;
+}
+
+
+/* active */
+
+input:focus~.bar:before,
+input:focus~.bar:after {
+    width: 50%;
+}
+
+
+/* Highlight */
+
+.highlight {
+    position: absolute;
+    height: 60%;
+    width: 100px;
+    top: 25%;
+    left: 0;
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+
+/* active */
+
+input:focus~.highlight {
+    -webkit-animation: inputHighlighter 0.3s ease;
+    animation: inputHighlighter 0.3s ease;
+}
+
+
+/* Animations */
+
+@-webkit-keyframes inputHighlighter {
+    from {
+        background: #4a89dc;
+    }
+    to {
+        width: 0;
+        background: transparent;
+    }
+}
+
+@keyframes inputHighlighter {
+    from {
+        background: #4a89dc;
+    }
+    to {
+        width: 0;
+        background: transparent;
+    }
+}
+
+
+/* Button */
+
+.button {
+    position: relative;
+    display: inline-block;
+    padding: 4px 24px;
+    margin: .3em 0 1em 0;
+    width: 100%;
+    vertical-align: middle;
+    color: #fff;
+    font-size: 16px;
+    line-height: 20px;
+    -webkit-font-smoothing: antialiased;
+    text-align: center;
+    letter-spacing: 1px;
+    background: transparent;
+    border: 0;
+    border-bottom: 2px solid #3160B6;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.button:focus {
+    outline: 0;
+}
+
+
+/* Button modifiers */
+
+.buttonBlue {
+    background: #4a89dc;
+    text-shadow: 1px 1px 0 rgba(39, 110, 204, .5);
+}
+
+.buttonBlue:hover {
+    background: #357bd8;
+}
+
+.in-login .in-login-form p.in-register-text,
+.in-login .in-register-form p.in-register-text,
+.in-register .in-login-form p.in-register-text,
+.in-register .in-register-form p.in-register-text {
+    margin-top: 1.0em;
+    font-size: 80%;
+}
+
+@keyframes radioripple {
+    0% {
+        box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0);
+    }
+    50% {
+        box-shadow: 0px 0px 0px 15px rgba(0, 0, 0, 0.1);
+    }
+    100% {
+        box-shadow: 0px 0px 0px 15px rgba(0, 0, 0, 0);
+    }
+}
+
+
+/* Ripples container */
+
+.ripples {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: transparent;
+}
+
+
+/* Ripples circle */
+
+.ripplesCircle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.ripples.is-active .ripplesCircle {
+    -webkit-animation: ripples .4s ease-in;
+    animation: ripples .4s ease-in;
+}
+
+
+/* Ripples animation */
+
+@-webkit-keyframes ripples {
+    0% {
+        opacity: 0;
+    }
+    25% {
+        opacity: 1;
+    }
+    100% {
+        width: 200%;
+        padding-bottom: 200%;
+        opacity: 0;
+    }
+}
+
+@keyframes ripples {
+    0% {
+        opacity: 0;
+    }
+    25% {
+        opacity: 1;
+    }
+    100% {
+        width: 200%;
+        padding-bottom: 200%;
+        opacity: 0;
+    }
+}
+
+footer {
+    text-align: center;
+}
+
+footer p {
+    color: #888;
+    font-size: 13px;
+    letter-spacing: .4px;
+}
+
+footer a {
+    color: #4a89dc;
+    text-decoration: none;
+    transition: all .2s ease;
+}
+
+footer a:hover {
+    color: #666;
+    text-decoration: underline;
+}
+
+footer img {
+    width: 80px;
+    transition: all .2s ease;
+}
+
+footer img:hover {
+    opacity: .83;
+}
+
+footer img:focus,
+footer a:focus {
+    outline: none;
+}
+
+.modal-backdrop {
+    z-index: -1;
+}
+
+
+/* Media Queries for Mobile */
+
+@media (max-width: 768px) {
+    .in-login {
+        margin: 0 auto;
+    }
+    .in-login .in-login-form p.in-register-text,
+    .in-login .in-register-form p.in-register-text,
+    .in-register .in-login-form p.in-register-text,
+    .in-register .in-register-form p.in-register-text {
+        font-size: 100%;
+    }
+}
+
+@media (max-width: 425px) {
+    .in-login .in-login-form {
+        padding: 2em 1em;
+    }
+    .in-lang {
+        text-align: center !important;
+        padding: 0px;
+    }
+    .instimatch-logo {
+        text-align: center;
+        margin-bottom: 10px;
+    }
+    .in-login,
+    .in-register {
+        width: 350px;
+        margin: 0 auto;
+    }
+    section#step1-reg,
+    section#step2-reg,
+    section#step3-reg {
+        margin-bottom: 30px;
+    }
+}

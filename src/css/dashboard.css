@@ -1,0 +1,1088 @@
+/* Dashboard Page css starts here */
+
+select#logicroom {
+    background: #8636d7;
+    border: 1px solid #9f3fff !important;
+    color: #fff;
+    padding: 0.2em 2em;
+    border-radius: 3px;
+    font-size: 15px;
+}
+
+li.account {
+    border: none !important;
+}
+
+.full-header .instimatch-logo {
+    margin-left: 20%;
+}
+
+ul.in-lang li:nth-child(4),
+ul.in-lang li:nth-child(5) {
+    background: none !important;
+}
+
+ul.in-lang li:nth-child(n+5) {
+    padding: 0.1em 0.6em;
+}
+
+ul.in-lang li:nth-child(4) {
+    border: none;
+    color: #fff;
+}
+#wrapper ul.in-lang li.lang-icon {
+padding: 0.2em 0.8em 0.3em;
+    
+}
+.identity i.material-icons {
+    top: 3px;
+    position: relative;
+    font-size: 20px;
+}
+ul.in-lang li.french {
+    display: none;
+}
+i.icon-position {
+    position: relative;
+    top: 3px;
+    font-size: 20px;
+}
+
+/* header  css starts */
+@media screen and (max-width: 812px) {
+.full-header .instimatch-logo {
+    margin-left: 30vw;
+}
+.full-header .col-lg-8.col-md-8 {
+   max-width: 100% !important;
+    flex: inherit;
+   
+}
+.full-header ul.in-lang{
+    text-align: center !important;
+    margin-top: 20px;
+}
+.full-header ul.in-lang li{
+     margin-left: 10px;   
+}
+
+}
+@media screen and (max-width: 425px) {
+.full-header .instimatch-logo img {
+    width: 80%;
+    margin-top: 9px;
+}
+.full-header .instimatch-logo {
+    margin-left: 20%;
+}
+.full-header ul.in-lang{
+padding-left: 0px;
+}
+}
+
+@media screen and (max-width: 350px) {
+.full-header ul.in-lang li {
+    margin-left: 5px;
+}
+}
+/* header  css end */
+
+/* Sidebar Nav css starts */
+
+a#navbar-toggle {
+    position: absolute;
+    top: 0%;
+    border: 1px solid #fff;
+    height: auto;
+    width: auto;
+    margin-left: 2%;
+    padding: .5em 1em .2em;
+    margin-top: 1%;
+}
+
+a#navbar-toggle span {
+    width: 100%;
+    height: auto;
+    position: relative;
+}
+
+#main-panel,
+.sidebar-wrapper {
+    -webkit-transition-property: top, bottom, width;
+    transition-property: top, bottom, width;
+    -webkit-transition-duration: 1.5s, 1.5s, .1.5;
+    transition-duration: 1.5s, 1.5s, 1.5s;
+    -webkit-transition-timing-function: linear, linear, ease;
+    transition-timing-function: linear, linear, ease;
+    -webkit-overflow-scrolling: touch
+}
+
+.sidebar-mini #main-panel {
+    width: calc(100% - 160px);
+    background: #25272e;
+}
+
+#main-panel {
+    position: relative;
+    float: right;
+    width: calc(100% - 320px);
+    color: #fff;
+    padding: 2em 5em;
+    margin: 1%;
+    background: #25272e;
+}
+
+.sidebar {
+    position: fixed;
+    top: 97px;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+    width: 260px;
+    -webkit-transition: margin 2s;
+    transition: margin 2s;
+}
+
+#toggleView {
+    margin-left: 44px;
+}
+
+.menu-icon {
+    float: right;
+}
+
+.sidebar-nav {
+    display: block;
+    float: left;
+    width: 100%;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.sidebar span.input-group-icon {
+    position: inherit;
+    float: right;
+}
+
+#wrapper .sidebar-nav li a {
+    font-size: 12px;
+    text-decoration: none;
+    color: #FFF;
+    float: left;
+    text-decoration: none;
+    width: 100%;
+    height: 70px;
+    line-height: 25px;
+    padding: 30px 10px;
+}
+
+.sidebar-nav li a:hover {
+    background: #121213;
+    -webkit-transition: background 0.5s;
+    transition: background 0.5s;
+}
+@media screen and (max-width: 812px) {
+ #main-panel{
+  width: 100%;
+  margin: 0%;
+}
+
+ .nav-open .sidebar {
+    transform: translateZ(0);
+    margin-left: 0px !important;
+}
+.sidebar{
+    transform: translate3d(-260px,0,0);
+    position: absolute;
+}
+.nav-open .sidebar {
+    background: #18191d;
+}
+a#navbar-toggle{
+        padding: 5px 9px 1px;
+}
+.sidebar-mini #main-panel, .sidebar-mini .full-header .col-lg-8, .sidebar-mini .full-header .instimatch-logo {
+    opacity: .2;
+}   
+}
+
+/* Sidebar Nav css ends */
+
+/* Dashboard content css starts */
+.dashboard-left .link {
+    background: #37383d;
+    color: #fff;
+    border: none;
+    text-transform: uppercase;
+    border-bottom: 1px solid grey;
+    border-radius: 0px;
+    padding: 8px 5px;
+    margin-bottom: 6px;
+    cursor: pointer;
+    max-width: 100%;
+    width: 100%;
+}
+.dashboard-left .link .col-md-6 {
+    text-align: center;
+}
+.dashboard-left .link .col-md-6 a {
+    color: #fff !important;
+}
+.dashboard-left .link:focus-within {
+    background: #8c21d3;
+    outline: none;
+    box-shadow: none;
+    border-bottom-color: #c688ef;
+}
+.dashboard-left li {
+    list-style: none;
+    border-top: 1px solid #737375;
+    border-bottom: 1px solid #737375;
+    padding: 5px 0px;
+}
+
+.dashboard-left .col-lg-6.d-lg-inline {
+    margin-bottom: 6px;
+}
+.dashboard-left button {
+    /*width: 49.7%;*/
+    background: #37383d;
+    color: #fff;
+    border: none;
+    text-transform: uppercase;
+    border-bottom: 1px solid grey;
+    border-radius: 0px;
+    padding: 8px 5px;
+}
+
+.dashboard-left button.link.current {
+background: #8c21d3;
+outline: none;
+box-shadow: none;
+border-bottom-color: #c688ef;
+touch-action: auto;
+}
+.dashboard-right button.btn.w-100.bold-btn {
+    font-weight: bold;
+    padding: 15px 3px;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+.dashboard-right button.btn.w-100 {
+    padding: 10px 3px;
+    background: #37383d;
+    border-bottom: 1px solid grey;
+    border-radius: 0px;
+    margin-bottom: 4px;
+    color: #fff;
+}
+.dashboard-right button.btn.w-100.active{
+background: #8636d7 !important;
+border-bottom: 1px solid #9f3fff;
+}
+.dashboard-right button:focus {
+    outline: none;
+    /*background: #8636d7 !important;*/
+    box-shadow: none;
+}
+.green-btn {
+    background: #72af09 !important;
+    border: 1px solid #c4fd63 !important;
+}
+.dashboard-right ul.pagination {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+}
+.dashboard-right ul.pagination li a {
+    background-color: transparent;
+    border-color: #8636d7;
+    color: #fff !important;
+    font-size: 14px;
+    font-weight: 100;
+    padding: 6px 14px;
+    border-radius: 4px;
+    margin-right: 4px;
+}
+.dashboard-right ul.pagination li a:focus, .dashboard-right ul.pagination li a:hover {
+    background-color: #8636d7;
+    outline: none !important;
+        box-shadow: none;
+}
+
+/* Dashboard content css end */
+
+
+/*Media Queries*/
+
+@media(min-width:1024px) and (max-width:1440px) {
+    .sidebar-mini #main-panel {
+        width: calc(100% - 130px);
+    }
+}
+@media screen and (max-width: 1280px) {
+.dashboard-right button.btn.w-100{
+font-size: 12px;
+}
+}
+
+@media screen and (max-width: 1024px) {
+.dashboard-price-list table th{
+vertical-align: inherit;
+}
+.dashboard-right .row:first-child {
+    margin-bottom: 0px;
+}
+.dashboard-right button.btn.w-100.bold-btn{
+margin-bottom: 0px;
+}
+.dashboard-right .row {
+    margin-bottom: 8px;
+}
+.dashboard-right button.btn.w-100{
+font-size: 12px;
+}
+.dashboard-right .col-md-3.pr-1 {
+   max-width: 100%;
+  flex: auto;
+  padding-right: 0px !important;
+}
+}
+@media screen and (max-width: 991px) {
+    .nav-open .sidebar {
+        transform: translateZ(0);
+    }
+    .nav-open .main-panel {
+        right: 0;
+        transform: translate3d(260px, 0, 0);
+    }
+  
+}
+@media screen and (max-width: 812px) {
+.dashboard-left .pr-1 {
+    padding: 0px !important;
+}   
+.dashboard-left .col-lg-6.d-lg-inline.pr-1 {
+    padding-right: 0px !important;
+}
+.dashboard-right ul.pagination {
+    position: relative;
+   margin-top: 50px;
+    float: right;
+}
+.dashboard-right {
+    margin-top: 50px;
+}
+.dashboard-left .link.row {
+    margin: 0px;
+    margin-bottom: 6px;
+}
+}
+@media screen and (max-width: 736px) {
+.dashboard-right .row {
+    margin-bottom: 10px;
+}
+}
+@media screen and (max-width: 425px) {
+.dashboard-right ul.pagination {
+   margin-top: 35px;
+}
+.dashboard-left .link .col-md-6 {
+width: 50%;
+}
+.dashboard-left .link.row {
+    max-width: 100% !important;
+    margin: 0 auto 6px;
+}
+.dashboard-left .pr-1 {
+padding-left: 0px;
+}   
+}
+
+
+/* Dashboard Page css ends here */
+
+/* Dashboard price list content css start */
+.dashboard-price-list {
+    margin-bottom: 50px;
+}
+.dashboard-price-list table th {
+    background: #8636d7;
+}
+.dashboard-price-list table {
+    display: inline-table;
+}
+.dashboard-price-list table th {
+  background: #72af09;
+    border-bottom: 1px solid #c4fd63;
+    margin-right: 1px;
+    border-right: 1px solid #25272e;
+    border-top-color: transparent;
+}
+
+.dashboard-price-list .table-bordered td, .dashboard-price-list .table-bordered th {
+    padding: 6px 6px;
+    text-align: center;
+    border-left-color: transparent;
+}
+.dashboard-price-list .table-bordered td {
+    background: #37383d;
+    border-right-color: #25272e;
+    border-bottom-color: #25272e;
+    cursor: pointer;
+    vertical-align: inherit;
+}
+.dashboard-price-list .table-bordered td.active {
+    background: #8636d7;
+    border-bottom: 1px solid #9b45f1;
+    cursor: pointer;
+}
+.dashboard-price-list .table-bordered td:focus {
+    background: #8c21d3;
+    outline: none;
+    box-shadow: none;
+    border-bottom-color: #c688ef;
+}
+.dashboard-price-list .table-bordered td.add-col{
+    background: #8c21d3;
+   border-bottom-color: #c688ef;
+}
+/*Media Queries*/
+
+@media(max-width: 1440px) {
+   .dashboard-price-list table {
+    display: block;
+    border-color: grey;
+}
+}
+@media(max-width: 425px) {
+.dashboard-price-list table th{
+font-size: 10px;
+}
+.dashboard-price-list .table-bordered td{
+font-size: 10px;
+}
+}
+
+/* Dashboard price list content css end */
+
+/* Dashboard Lender setting css start */
+.lendersetting ul.pagination {
+    margin-top: 20px;
+}
+.lendersetting ul.pagination li a {
+    background-color: transparent;
+    border-color: #8636d7;
+    color: #fff !important;
+    font-size: 14px;
+    font-weight: 100;
+    padding: 6px 14px;
+    border-radius: 4px;
+    margin-right: 4px;
+}
+.lendersetting ul.pagination li a:focus, .lendersetting ul.pagination li a:hover{
+color: #fff;
+background: #8636d7;
+}
+.lendersetting .col-lg-4 ul {
+    padding-left: 0px;
+}
+.lendersetting li {
+    list-style: none;
+}
+.lendersetting li input[type="checkbox"]+label{
+margin-top: 25px !important;
+}
+.lendersetting li.heading {
+    background: #72af09;
+    border-bottom: 1px solid #c4fd63;
+    padding: 10px;
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+.lendersetting span.line{
+padding-top: 10px;
+}
+.lendersetting {
+    margin-bottom: 80px;
+}
+.counterparty-modal .modal-header {
+    background-color: #72af09;
+}
+.counterparty-modal .modal-header .modal-title {
+    margin: 0px;
+    color: #fff;
+}
+.counterparty-modal .modal-footer {
+    background: #25272e;
+    border-top: none;
+    padding-top: 0px;
+}
+.counterparty-modal button.close {
+    color: #fff;
+    opacity: 1;
+}
+.counterparty-modal .btn-secondary {
+    background-color: #72af09;
+    border-color: #72af09;
+}
+.counterparty-modal .input-group {
+    margin-bottom: 10px;
+}
+.counterparty-modal span.line {
+padding-bottom: 8px;
+}
+.counterparty-modal div#lendrequestbody {
+padding-top: 25px;
+}
+.application-sec input:focus {
+    color: #fff;
+    border: none;
+    box-shadow: none;
+    outline: none;
+}
+/* Dashboard Lender setting css end */
+/* Dashboard application page css start */
+.dashboard-right div.btn.w-100.active {
+    padding: 0px;
+    margin-bottom: 4px;
+    border-radius: 0px;
+    border-bottom: 1px solid #9f3fff;
+    background: #8636d7 !important;
+    height: 40px;
+}
+.dashboard-right div.btn.w-100.active input {
+    border-bottom: none;
+    margin-bottom: 0px;
+    -moz-appearance:textfield;
+    text-align: center;
+    font-weight: normal;
+}
+.application-sec div input:hover::-webkit-inner-spin-button, .application-sec div input:hover::-webkit-outer-spin-button, .application-sec div input:focus::-webkit-inner-spin-button, .application-sec button input:focus::-webkit-outer-spin-button{
+   opacity: 0; 
+}
+.application-sec button.btn.w-100 {
+    padding: 0px !important;
+  height: 40px;
+    vertical-align: middle;
+}
+.application-sec button.btn.w-100 a {
+    font-size: 25px;
+    color: #fff !important;
+}
+.application-sec button.btn.w-100 span {
+    font-size: 22px;
+}
+.application-sec input {
+    font-weight: bold;
+    padding: 10px 3px;
+    font-size: 15px;
+    margin-bottom: 10px;
+    color: #fff;
+    border-radius: 0px;
+}
+.application-right input {
+   /* font-size: 13px;*/
+    font-weight: normal;
+}
+.application-sec button input {
+    text-align: center;
+    font-weight: normal;
+    border-bottom: none;
+}
+/*.application-panel {
+    width: 100% !important;
+    max-width: 100%;
+}
+.app-pg a#navbar-toggle {
+    display: none;
+}*/
+
+@media screen and (max-width: 1440px) {
+.application-right input {
+    font-size: 11px;
+  }
+}
+@media screen and (max-width: 1280px) {
+.application-right .col-lg-3 {
+    max-width: 100%;
+}
+.application-sec input{
+font-size: 13px;
+}
+.application-sec button.btn.w-100 a {
+    font-size: 20px;
+}
+.application-sec button.btn.w-100 span {
+    font-size: 18px;
+}
+}
+@media screen and (max-width: 1024px) {
+.application-sec .row {
+    margin-bottom: 0px;
+}
+.application-sec input {
+    font-size: 12px;
+}
+.application-sec button.btn.w-100 a {
+    font-size: 18px;
+}
+.application-page .col-lg-6 {
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+.application-right {
+    margin-top: 40px;
+}
+}
+@media screen and (max-width: 767px) {
+.application-sec .row {
+    margin-bottom: 10px;
+}
+}
+@media screen and (max-width: 425px) {
+.counterparty-modal .modal-header .modal-title{
+font-size: 16px;
+}
+}
+
+/* Dashboard application page css end */
+.eigene-modal .modal-dialog.modal-lg {
+    max-width: 100%;
+    width: 70%;
+    margin: 0 auto;
+}
+.eigene-modal .modal-header .modal-title {
+    margin: 0px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+}
+.eigene-modal .modal-header .modal-title {
+    margin: 0px;
+    color: #fff;
+}
+.eigene-modal .modal-header {
+    background-color: #72af09;
+}
+.eigene-modal #eigeneBody {
+    width: 50%;
+    float: left;
+}
+.eigene-modal #eigenepdf {
+    width: 50%;
+    float: left;
+    padding-left: 20px;
+}
+.eigene-modal .modal-footer {
+    background: #25272e;
+    border-top: none;
+    padding-top: 0px;
+}
+.eigene-modal .btn-secondary {
+    background-color: #72af09;
+    border-color: #72af09;
+}
+.eigene-modal tr:last-child td input#updateuser, input.updateuser1 {
+    width: 50%;
+    background-color: #8636d7 !important;
+    border: #8636d7 !important;
+    border-bottom: 1px solid grey !important;
+    border-radius: 0px;
+    font-size: 15px;
+   padding: 8px 12px !important;
+    margin-top: 10px;
+    color: #fff;
+    width: 100%;
+   
+}
+.eigene-modal tr:last-child td input#updateuser:hover, input.updateuser1:hover{
+background: #7e2cb8 !important;
+}
+#showPdf div#pdfmodaldialog {
+    margin-top: 10%;
+}
+#showPdf .modal-header {
+    background-color: #72af09 !important;
+ }
+#showPdf .close, #LenderPdf .close {
+margin: -15px -15px -15px auto;
+}
+#LenderPdf div#pdfbody {
+    text-align: center;
+}
+#LenderPdf label.upload-pdf-btn {
+    background-color: #8636d7 !important;
+    border: #8636d7 !important;gfgfg
+    border-bottom: 1px solid grey !important;
+    border-radius: 0px;
+    font-size: 15px;
+    padding: 8px 15px;
+    left: -1px;
+    width: 64%;
+    max-width: 100%;
+}
+#LenderPdf label.upload-pdf-btn:hover, #LenderPdf #uploadpdf:hover{
+background: #7e2cb8 !important;
+}
+#LenderPdf #uploadpdf {
+    background-color: #8636d7 !important;
+    border: #8636d7 !important;
+    border-bottom: 1px solid grey !important;
+    border-radius: 0px;
+    font-size: 15px;
+    margin-top: 10px;
+}
+#showPdf h4.modal-title {
+    font-size: 16px;
+    font-weight: bold;
+}
+#LenderPdf div#pdfmodaldialog {
+    margin-top: 10%;
+}
+#LenderPdf .modal-header {
+    background-color: #72af09 !important;
+}
+.eigene-modal #lendrequestbody table tbody tr td input {
+    width: 338px;
+  
+    float: right;
+}
+.eigene-modal #eigeneBody table {
+    width: 100%;
+}
+
+.eigene-modal .showpdf {
+    margin-left: 10px;
+    color: #fff;
+}
+.eigene-modal button.close {
+    color: #fff;
+    opacity: 1;
+}
+.eigene-modal #lendrequestbody table tbody tr th {
+    width: 30%;
+}
+.eigene-modal td button.btn {
+    background-color: #8636d7;
+    border: #8636d7;
+    border-bottom: 1px solid grey !important;
+    border-radius: 0px;
+    font-size: 15px;
+    margin: 0px 15px 0px 0px;
+    margin-top: 10px;
+    color: #fff;
+    width: 100%;
+}
+.eigene-modal tr:last-child td {
+    width: 50%;
+}
+#eigenepdf .button-div input#eigenepdfBtn{
+background-color: #8636d7;
+    border: #8636d7;
+    border-bottom: 1px solid grey !important;
+    border-radius: 0px;
+    font-size: 15px;
+    margin: 0px 15px 0px 0px;
+    margin-top: 10px;
+    color: #fff;
+    width: 50%;
+    position: absolute;
+    bottom: 3px;
+    right: 33%;
+    padding: 7px 16px;
+}
+#eigenepdf .button-div input#eigenepdfBtn:hover{
+background: #7e2cb8;
+}
+input#btn_update {
+    width: 48%;
+    padding: 8px 15px;
+    background-color: #8636d7;
+    border: #8636d7;
+    border-bottom: 1px solid grey !important;
+    font-size: 15px;
+}
+input#btn_update:hover {
+    background: #7e2cb8;
+}
+.eigene-modal #lendrequestbody table tbody tr td select{
+width: 338px;
+    height: 35px;
+    float: right;
+}
+
+.modal-header .close:focus, input#btn_update:focus, .eigene-modal #lendrequestbody table tbody tr td input:focus, #eigenepdf .button-div input#eigenepdfBtn:focus, #LenderPdf label.upload-pdf-btn:focus, #LenderPdf #uploadpdf:focus
+ {
+    outline: none;
+    box-shadow: none;
+}
+#eigenepdf span.del-icon {
+    position: relative;
+    margin-left: 20px;
+    top: 6px;
+}
+#eigenepdf .button-div {
+    position: absolute;
+    bottom: 15px;
+    max-width: 100%;
+    width: 50%;
+}
+.cockpit-dropdown-div {
+    margin-top: -10px;
+}
+.cockpit-dropdown-div button.dropcockpit {
+color: #fff;
+background: #37383d !important;
+    border: none;
+    
+    text-align: left;
+    padding: 8px;
+    margin: 0px !important;
+    font-size: 11px !important;
+    text-transform: uppercase;
+    width: 100%;
+}
+.cockpit-dropdown-div button.dropcockpit:hover {
+    background: #8636d7 !important;
+}
+.cockpit-dropdown-div button.dropcockpit:focus {
+    outline: none;
+    background-color: #8636d7 !important;
+    border-top: #8636d7 !important;
+    border-bottom: #8636d7 !important;
+    
+}
+.cockpit-dropdown-div button#Ansehenund:focus {
+    border-bottom: 1px solid #c4fd63 !important;
+}
+
+.application-export-sec {
+    width: 100%;
+    max-width: 100%;
+    padding:  15px;
+}
+.application-export-sec table {
+    display: table;
+}
+.ticket-uppr-btn .btn {
+    padding: 10px 3px;
+    font-size: 15px;
+    margin-top: 0px !important;
+    color: #fff !important;
+    border-radius: 0px;
+    float: left;
+    width: 150px;
+    margin-bottom: 5px;
+}
+.application-export-sec ul.pagination li a {
+    background-color: transparent;
+    border-color: #8636d7;
+    color: #fff !important;
+    font-size: 14px;
+    font-weight: 100;
+    padding: 6px 14px;
+    border-radius: 4px;
+    margin-right: 4px;
+}
+.application-export-sec ul.pagination li a:hover {
+    background-color: #8636d7;
+    outline: none !important;
+    box-shadow: none;
+}
+.application-export-sec ul.pagination {
+    margin-top: 40px;
+}
+.ticket-uppr-btn .btn.excel-btn {
+    margin-left: 20px !important;
+}
+.cockpit-dropdown-div {
+    display: none;
+}
+.cockpit-btn:hover .cockpit-dropdown-div {
+    display: block !important;
+    
+}
+/* Dashboard applicaton pop up common  css end */
+
+/* Dashboard pop up common  css start */
+.admin-modal label {
+    position: relative;
+    top: 0px;
+}
+.admin-modal .modal-header {
+    background-color: #72af09;
+}
+.admin-modal button.close {
+    color: #fff;
+    opacity: 1;
+}
+.admin-modal .btn-secondary {
+    background-color: #72af09;
+    border-color: #72af09;
+}
+.admin-modal input {
+    margin-bottom: 10px;
+    border: none;
+    background: #37383d;
+    border-radius: 0px;
+    border-bottom: 1px solid grey !important;
+    color: #fff !important;
+    cursor: pointer;
+}
+.admin-modal input::placeholder{
+color: #fff !important;
+}
+.admin-modal .modal-header .modal-title {
+    margin: 0px;
+    color: #fff;
+}
+.admin-modal input.form-control:focus {
+    background: #37383d;
+    outline: none;
+    box-shadow: none;
+}
+.admin-modal .modal-footer {
+    background: #25272e;
+    border-top: none;
+}
+.admin-modal .col-md-6 {
+    float: left;
+}
+.admin-modal form {
+    max-width: 100%;
+    width: 100%;
+}
+.admin-modal input#sendRequest {
+    width: 375px;
+    max-width: 100%;
+}
+.bd-example-modal-lg-setting-page select#setting_start_page {
+    background: #37383d;
+    border-radius: 0px;
+    border-bottom: 1px solid grey !important;
+    border: none;
+    color: #fff;
+}
+.bd-example-modal-lg-setting-page select#setting_start_page:focus {
+    outline: none;
+    box-shadow: none;
+}
+#lendrequestbody table tbody tr td select:focus {
+    outline: none;
+    box-shadow: none;
+}
+.datepicker .datepicker-days table tr td.today {
+    background-color: #8636d7 !important;
+    color: #fff !important;
+    background-image: none !important;
+}
+#lendrequestbody table tbody tr td input:focus {
+    box-shadow: none;
+}
+.dashboard-modal .modal-header .modal-title {
+    margin: 0px;
+    color: #fff;
+}
+#lendrequestbody table tbody tr td {
+    color: #fff;
+}
+.dashboard-modal .modal-header {
+    background-color: #72af09;
+}
+.dashboard-modal button.close {
+    color: #fff;
+    opacity: 1;
+}
+.dashboard-modal .btn-secondary {
+ 
+    background-color: #72af09;
+    border-color: #72af09;
+}
+#lendrequestbody table tbody tr th {
+    width: 21%;
+    line-height: 2.5;
+    padding: 8px;
+    color: #fff;
+}
+#lendrequestbody table tbody tr td input {
+    width: 360px;
+}
+#lendrequestbody table tbody tr {
+    border-bottom: 1px solid grey;
+}
+#lendrequestbody table tbody tr td input {
+    width: 375px;
+    background: #37383d;
+    border-radius: 0px;
+    border-bottom: 1px solid grey !important;
+    border:none;
+    color: #fff;
+   
+}
+#lendrequestbody table tbody tr td select {
+    
+    background: #37383d;
+    border-radius: 0px;
+    border-bottom: 1px solid grey !important;
+    border: none;
+    color: #fff;
+}
+
+#lendrequestbody #sendRequest{
+  background-color: #8636d7;
+    border: #8636d7;
+    border-bottom: 1px solid grey !important;
+    border-radius: 0px;
+    font-size: 15px;
+    margin: 0px 15px 0px 0px;
+    margin-top: 10px;
+    float: left;   
+}
+div#lendrequestbody {
+    background: #25272e;
+}
+.dashboard-modal .modal-footer {
+    background: #25272e;
+    border-top: none;
+}
+#lendrequestbody table tbody tr:last-child {
+    border-bottom: none;
+}
+@media screen and (max-width: 991px) {
+   #lendrequestbody table tbody tr td input {
+    width: 225px;}
+.admin-modal input#sendRequest {
+    width: 225px;
+}
+
+}
+@media screen and (max-width: 425px) {
+#main-panel{
+padding:2em 2em;
+}    
+.dashboard-right ul.pagination {
+   margin-top: 35px;
+}    
+#lendrequestbody table tbody tr td input {
+    width: 177px;
+}
+#lendrequestbody table tbody tr th {
+    width: 15%;}
+    .full-header ul.in-lang li.account {
+    margin-left: 0px !important;
+    padding-left: 0px !important;
+        padding-right: 0px !important;
+}
+select#logicroom{
+font-size: 12px;
+}
+}
+@media screen and (max-width: 375px) {
+#lendrequestbody table tbody tr td input {
+    width: 154px;
+}
+
+}
+/* Dashboard pop up common  css end */

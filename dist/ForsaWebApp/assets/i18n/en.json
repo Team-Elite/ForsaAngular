@@ -5,7 +5,10 @@
     "ButtonSubmit": "Submit",
     "ButtonClose": "Close",
     "ButtonSendRequest": "SEND REQUEST",
-    "ButtonLogout": "Logout"
+    "ButtonLogout": "Logout",
+    "ButtonEurTN": "EUR (T/N)",
+    "ButtonInfo": "INFO",
+    "ButtinLend": "Lend"
   },
   "Login": {
     "Title": "Log in",
@@ -199,9 +202,7 @@
       }
     },
     "BestPriceView": {
-      "EurTN": "EUR (T/N)",
-      "Info": "INFO",
-      "Lend": "Lend",
+     
       "Lender": "LENDER",
       "Borrower": "BORROWER",
       "Amount": "AMOUNT",
