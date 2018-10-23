@@ -13,11 +13,14 @@ import {BestPriceViewService} from '../lender-dashboard/best-price-view/Shared/b
   styleUrls: ['./lender-dashboard.component.css']
 })
 export class LenderDashboardComponent implements OnInit {
-
+  userId:any
   constructor(public lenderDashboardService:LenderDashboardService, public spinner:NgxSpinnerService
     ,public authenticateServiceService:AuthenticateServiceService, public router:Router
     , public  toastr: ToastrService
-    , public bestPriceViewService:BestPriceViewService) { }
+    , public bestPriceViewService:BestPriceViewService) { 
+
+
+    }
 
     copyLoggedInUser:any;
     SelectedStartPage:any;
@@ -33,15 +36,16 @@ export class LenderDashboardComponent implements OnInit {
 
   ngOnInit() {
     this.spinner.show();
-    
+    debugger;
     this.authenticateServiceService.AuthenticateSession();
     this.lenderDashboardService.UserTypeId=this.authenticateServiceService.GetUserTypeId();
+    console.log("this.lenderDashboardService.UserTypeId",this.lenderDashboardService.UserTypeId)
     this.lenderDashboardService.userId = this.authenticateServiceService.GetUserId();
     this.IfBothUserTypeFound = this.authenticateServiceService.GetIfBothUserTypeFound() ==( undefined || null) ? false: true;
     this.lenderDashboardService.loggedInUser= this.authenticateServiceService.GetUserDetail();
     this.copyLoggedInUser = Object.assign({}, this.lenderDashboardService.loggedInUser);
     this.GetPagesForLenderSettingStartPage();
-    
+    debugger;
     this.SelectedStartPage=this.testList[0].Id;
     //this.GetLenderStartPage();
     this.bestPriceViewService.lenderSendRequestModel2={
@@ -81,7 +85,7 @@ export class LenderDashboardComponent implements OnInit {
   }
 
   AcceptLendedRequest(){
-    
+    debugger;
 
     for(var i =0; i<= this.bestPriceViewService.listInterestConvention.length-1;i++){
       if(this.bestPriceViewService.lenderSendRequestModel2.InterestConvention == this.bestPriceViewService.listInterestConvention[i].Id){
@@ -110,7 +114,7 @@ export class LenderDashboardComponent implements OnInit {
   }
 
   RejectLendedRequest(){
-    
+    debugger;
 
     for(var i =0; i<= this.bestPriceViewService.listInterestConvention.length-1;i++){
       if(this.bestPriceViewService.lenderSendRequestModel2.InterestConvention == this.bestPriceViewService.listInterestConvention[i].Id){
@@ -174,7 +178,7 @@ chtforse(){
   }
 
   async GetLenderStartPage(){
-   
+   debugger;
    let startPage= await this.lenderDashboardService.GetLenderStartPage();
    this.lenderDashboardService.StartingScreen=JSON.parse(startPage.data);
    this.spinner.hide();
@@ -192,7 +196,7 @@ chtforse(){
   }
 
   UpdateUserProfile(){
-    
+    debugger;
 
     /* Validating controls */
     if(this.ValidateUserPfrofileFields(this.copyLoggedInUser,this.lenderDashboardService.NewPassword,this.lenderDashboardService.ConfirmPassword)){
@@ -202,7 +206,7 @@ chtforse(){
       this.lenderDashboardService.UpdateUserProfile(this.copyLoggedInUser).subscribe(data=>{
         this.spinner.hide();
       if(data !=undefined && data !=null){
-        
+        debugger;
         if(data.IsSuccess == false){
           this.toastr.error("Old password is not correct.","Dashboard");
           return;
@@ -281,7 +285,7 @@ chtforse(){
      }
 
   SetCurrentPage(pageName:string){
-    
+    debugger;
     this.lenderDashboardService.CurrentPageName=pageName;
     if(pageName==="Best Price View"){
       this.router.navigate(['lenderDashboard/BestPriceView']);
@@ -292,7 +296,9 @@ chtforse(){
     else if(pageName=='View All Price'){
       this.router.navigate(['lenderDashboard/ViewAllPrice']);
     }
-   
+    else if(pageName == 'Kontact Dashboard'){
+      this.router.navigate(['lenderDashboard/AllBanksK']);
+    }
   }
 
 async GetPagesForLenderSettingStartPage(){
@@ -302,7 +308,7 @@ async GetPagesForLenderSettingStartPage(){
  if(this.listPagesForStartingPage !=undefined && this.listPagesForStartingPage.length!=0){
    for(var i=0; this.listPagesForStartingPage.length-1;i++){
      if(this.listPagesForStartingPage[i].IsStartPage == true){
-       
+       debugger;
         this.SelectedStartPage=this.listPagesForStartingPage[i].PageId;
         break;
      }
@@ -330,8 +336,9 @@ this.spinner.hide();
  async SwitchScreen(){
   this.router.navigate(['/bankDashBoard']);
 }
-    RegisterAsPartner() {
-        this.authenticateServiceService.ClearSession();
-        this.router.navigate(['/registration/', this.lenderDashboardService.userId, 'KT']);
-    }
+RegisterAsPartner(){
+  this.authenticateServiceService.ClearSession();
+  this.router.navigate(['/registration/',this.lenderDashboardService.userId,'KT']);
+ }
+
 }

@@ -3,6 +3,10 @@ import { ViewAllPriceService } from '../Shared/view-all-price.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+import { hubConnection, connection } from 'signalr-no-jquery';
+
+const connection = hubConnection('http://socket.elitewebdemo.com/signalr');
+const hubProxy = connection.createHubProxy('NgHub');
 @Component({
     selector: 'app-view-all-price',
     templateUrl: './view-all-price.component.html',
@@ -11,7 +15,19 @@ import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 export class ViewAllPriceComponent implements OnInit {
 
     constructor(public viewAllPriceService: ViewAllPriceService, public spinner: NgxSpinnerService
-        , public toastr: ToastrService) { }
+        , public toastr: ToastrService) {
+        // set up event listeners i.e. for incoming "message" event
+        hubProxy.on('sendBankRate', (data) => {
+            this.viewAllPriceService.listViewAllPrice1 = [];
+            this.viewAllPriceService.listViewAllPrice2 = [];
+            this.viewAllPriceService.listViewAllPrice3 = [];
+            this.GetAllBanksWithStatusIsDeselected();
+            this.GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected();
+        })
+        connection.start({ jsonp: true })
+            .done(function () { console.log('Now connected, connection ID=' + connection.id); })
+            .fail(function () { console.log('Could not connect'); });
+    }
 
     previousPage: any;
     timer: any;
