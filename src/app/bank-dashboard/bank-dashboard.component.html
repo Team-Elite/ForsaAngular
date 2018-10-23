@@ -40,17 +40,11 @@
                     </div>
                     <div class="col-lg-8 col-md-8">
                         <ul class="in-lang text-right">
-                            <li class="active lang-icon">
-                                <a href="#">EN</a>
-                            </li>
-                            <li class="french lang-icon">
-                                <a href="#">FR</a>
-                            </li>
-                            <li class="lang-icon">
-                                <a href="#">DE</a>
-                            </li>
-                            <li>
-                                <p>Account:</p>
+
+                            <app-forsa-languages></app-forsa-languages>
+
+                            <li class="identity account-style">
+                                {{'Lender.DashBoard.Account'|translate}}:
                             </li>
                             <li class="account">
                                 <div class="form-group form-md-line-input has-error">
@@ -58,7 +52,7 @@
 
                                         <select class="mdl-selectfield__select" name="LogicRoom" id="logicroom">
                                             <span class="input-group-icon">
-                                                <i class="material-icons">expand_more</i>
+                                                <i class="material-icons">{{'Borrower.BankDashboard.expand_more'|translate}}</i>
                                             </span>
                                             <option value="" disabled selected>LogicRoom</option>
                                             <option value="logicroom1">1</option>
@@ -88,7 +82,8 @@
                             </li>
                             <li class="settings">
                                 <a href="#">
-                                    <i class="material-icons icon-position">settings
+                                    <i class="material-icons icon-position">
+                                        settings
                                     </i>
                                 </a>
                             </li>
@@ -102,7 +97,6 @@
         <!-- Header Ends Here -->
         <div class="main-container">
             <!-- Dashboard Page main Content starts-->
-
             <!-- Aside Starts Here-->
             <aside>
                 <div class="sidebar ">
@@ -110,43 +104,61 @@
                     <ul class="sidebar-nav ">
 
                         <li>
-                            <a  data-toggle="modal" data-target=".bd-example-modal-lg-setting-page" (click)="PublishAndUnPublish(true);">PUBLISH
+                            <a (click)="PublishAndUnPublish(true);">
+
+                                {{
+'Borrower.BankDashboard.PUBLISH'|translate
+                                }}
                                 <span class="align-middle input-group-icon ">
                                     <img alt="Insimatch Logo" src="../assets/images/publish-icon.png">
                                 </span>
                             </a>
                         </li>
                         <li>
-                            <a  (click)="PublishAndUnPublish(false);">STOP PUBLIZIEREN
+                            <a (click)="PublishAndUnPublish(false);">
+                                {{'Borrower.BankDashboard.STOPPUBLISH'|translate}}
+
                                 <span class="align-middle input-group-icon ">
                                     <img alt="Insimatch Logo" src="../assets/images/stoppublish-icon.png">
                                 </span>
                             </a>
                         </li>
                         <li>
-                            <a>STATUS: ON
-                                <span class="align-middle input-group-icon ">
+                            <a *ngIf="IsPublished">
+                                {{'Borrower.BankDashboard.STATUSON'|translate}}  <span class="align-middle input-group-icon ">
                                     <img alt="Insimatch Logo" src="../assets/images/status-live-icon.png">
                                 </span>
                             </a>
+                            <a *ngIf="!IsPublished">
+                                {{'Borrower.BankDashboard.STATUSOFF'|translate}}<span class="align-middle input-group-icon ">
+                                    <img alt="Insimatch Logo" src="../assets/images/status-live-icon.png">
+                                </span>
+                            </a>
+
+
+
                         </li>
+
+
                         <li>
-                            <a  data-toggle="modal" data-target=".counterparty-modal">COUNTERPARTY CONFIGURATION
+                            <a data-toggle="modal" data-target=".counterparty-modal">
+                                {{'Borrower.BankDashboard.CounterpartyConfiguration'|translate}}
                                 <span class="align-middle input-group-icon ">
                                     <img alt="Insimatch Logo" src="../assets/images/coountryparty-icon.png">
                                 </span>
                             </a>
                         </li>
                         <li class="cockpit-btn">
-                            <a >COCKPIT
+                            <a>
+                                COCKPIT
                                 <span class="align-middle input-group-icon ">
                                     <i class="material-icons ">view_list</i>
                                 </span>
                             </a>
                             <div class="cockpit-dropdown-div">
-                                <button type="button" class="dropcockpit" id="eigene" data-toggle="modal" data-target=".bd-example-modal-lg-eigene-Stammdatenverwaltung">Eigene Stammdatenverwaltung</button>
-                                <button type="button" class="dropcockpit" id="Ansehen">Ansehen und downloaden eigene Fälligkeitsliste</button>
-                                <button type="button" class="dropcockpit" id="Ansehenund">Ansehen und downloaden in der Vergangenheit getätigter Geschäfte</button>
+                                <button type="button" class="dropcockpit" id="eigene" data-toggle="modal" data-target=".bd-example-modal-lg-eigene-Stammdatenverwaltung">{{'Borrower.BankDashboard.Ownmasterdatamanagement'|translate}}</button>
+                                <button type="button" class="dropcockpit" id="Ansehen">{{'Borrower.BankDashboard.Viewanddownloadyourownduelist'|translate}}</button>
+                                <button type="button" class="dropcockpit" id="Ansehenund">{{'Borrower.BankDashboard.Viewanddownloadinthepastdonebusiness'|translate}}</button>
                             </div>
                         </li>
 
@@ -176,7 +188,7 @@
                                 <div class="col-md-4 pr-1">
                                     <button type="button" (dblclick)="EnableTextBox(rate)" class="btn w-100 active">
                                         <input (blur)="UpdateRateOfInterest(rate)" type="number" [disabled]="!rate.IsDoubleTapped" #RateOfInterest="ngModel" [(ngModel)]="rate.RateOfInterest"
-                                            name="RateOfInterest">
+                                               name="RateOfInterest">
                                     </button>
 
                                 </div>
@@ -226,11 +238,11 @@
                                 <div class="col-lg-3 col-md-6 col-sm-12 pr-2">
                                     <input class="form-control green-btn" type="button" value="STATUS:ON" id="">
                                 </div>
-                                
+
                                 <div class="col-lg-3 col-md-6 col-sm-12 pr-2">
                                     <input class="form-control green-btn" type="button" value="Counterparty Configuration" id="" data-toggle="modal" data-target=".counterparty-modal">
                                 </div>
-                                
+
                                 <div class="col-lg-3 col-md-6 col-sm-12 pr-2 cockpit-btn">
                                     <input class="form-control green-btn " type="button" value="COCKPIT" id="" >
                                     <div class="cockpit-dropdown-div"><button type="button" class="dropcockpit" id="eigene" data-toggle="modal" data-target=".bd-example-modal-lg-eigene-Stammdatenverwaltung">Eigene Stammdatenverwaltung</button>
@@ -242,7 +254,7 @@
                                     <input class="form-control green-btn" type="button" value="Interest" id="">
                                 </div>
                             </div>
-                        
+
                     </div> -->
                 </div>
 
@@ -291,7 +303,7 @@
 
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{'Button.ButtonClose'|translate}}</button>
 
                             </div>
 
@@ -301,11 +313,11 @@
 
                 <!-- modal setting start page tab-->
                 <div class="modal fade bd-example-modal-lg-setting-page dashboard-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-                    aria-hidden="true">
+                     aria-hidden="true">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLongTitle">SETTING START PAGE</h5>
+                                <h5 class="modal-title" id="exampleModalLongTitle">{{'Borrower.BankDashboard.SettingStartPage'|translate}}</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -314,14 +326,14 @@
                             <div class="modal-body" id="lendrequestbody">
                                 <select class="form-control" id="setting_start_page">
                                     <option value="">--Select Start Page--</option>
-                                    <option value="viewall">VIEW ALL PRICE</option>
-                                    <option value="bestprice">BEST PRICE VIEW</option>
-                                    <option value="lendersetting" selected="">LENDER SETTINGS</option>
+                                    <option value="viewall">{{'Borrower.BankDashboard.ViewAllPrice'|translate}}</option>
+                                    <option value="bestprice">{{'Borrower.BankDashboard.BestPriceView'|translate}}</option>
+                                    <option value="lendersetting" selected="">{{'Borrower.BankDashboard.LenderSettings'|translate}}</option>
                                 </select>
 
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{'Button.ButtonClose'|translate}}</button>
 
                             </div>
 
@@ -332,11 +344,11 @@
 
                 <!--admin icon modal page tab-->
                 <div class="modal fade bd-example-modal-lg-setting-page admin-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-                    aria-hidden="true">
+                     aria-hidden="true">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLongTitle">Update Profile</h5>
+                                <h5 class="modal-title" id="exampleModalLongTitle">{{'Borrower.BankDashboard.UpdateProfile'|translate}}</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -347,21 +359,21 @@
                                     <div class="row">
 
                                         <div class="heading col-sm-12">
-                                            <h4>Edit Details</h4>
+                                            <h4>{{'Borrower.BankDashboard.EditDetails'|translate}}</h4>
                                             <hr>
                                         </div>
 
                                         <div class="col-md-6">
-                                            <label>First Name</label>
-                                            <input type="text" name="first" placeholder="mario" class="form-control" value="" / id="first_name">
+                                            <label>{{'Borrower.BankDashboard.FirstName'|translate}}</label>
+                                            <input type="text" name="first" placeholder="mario" class="form-control" value="" id="first_name">
                                         </div>
                                         <div class="col-md-6">
-                                            <label>Last Name</label>
-                                            <input type="text" name="last" placeholder="singer" class="form-control" value="" / id="last_name">
+                                            <label>{{'Borrower.BankDashboard.SurName'|translate}}</label>
+                                            <input type="text" name="last" placeholder="singer" class="form-control" value="" id="last_name">
                                         </div>
                                         <div class="col-md-12">
-                                            <label>Company Name</label>
-                                            <input type="text" name="company" placeholder="Stadt Singen" class="form-control" value="" / id="company_name">
+                                            <label>{{'Borrower.BankDashboard.CompanyName'|translate}}</label>
+                                            <input type="text" name="company" placeholder="Stadt Singen" class="form-control" value="" id="company_name">
                                         </div>
 
 
@@ -370,19 +382,19 @@
                                     <div class="row">
 
                                         <div class="heading col-sm-12">
-                                            <h4>Change Password</h4>
+                                            <h4>{{'Borrower.BankDashboard.ChangePassword'|translate}}</h4>
                                             <hr>
                                         </div>
                                         <div class="col-md-6">
-                                            <label>Old Password</label>
+                                            <label>{{'Borrower.BankDashboard.OldPassword'|translate}}</label>
                                             <input type="password" name="" class="form-control" value="">
                                         </div>
                                         <div class="col-md-6">
-                                            <label>New Password</label>
+                                            <label>{{'Borrower.BankDashboard.NewPassword'|translate}}</label>
                                             <input type="password" name="" class="form-control" value="">
                                         </div>
                                         <div class="col-md-12">
-                                            <label>Confirm Password</label>
+                                            <label>{{'Borrower.BankDashboard.ConfirmPassword'|translate}}</label>
                                             <input type="password" name="" class="form-control" value="">
                                         </div>
                                         <div class="col-md-12">
@@ -395,7 +407,7 @@
 
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{'Button.ButtonClose'|translate}}</button>
 
                             </div>
 
@@ -409,7 +421,7 @@
                 <!---modal Eigene start-->
 
                 <div class="modal fade bd-example-modal-lg-eigene-Stammdatenverwaltung eigene-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-                    aria-hidden="true">
+                     aria-hidden="true">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -424,42 +436,42 @@
                                     <div class="row">
                                         <div class="modal-body">
                                             <div id="eigeneBody">
-                                                    <table>
-                                                            <tbody>
-                                                                <tr><th>{{'Borrower.BankDashboard.Lender'|translate}}</th><td>{{bestPriceViewService.lenderSendRequestModel.LenderName}}</td></tr>
-                                                                <tr><th>{{'Borrower.BankDashboard.Borrower'|translate}}</th><td>{{bestPriceViewService.lenderSendRequestModel.BorrowerName}}</td></tr>
-                                                                <tr><th>{{'Borrower.BankDashboard.Amount'|translate}}</th><td><input [disabled]="1==1" #Amount="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.Amount" name="Amount" type="text" id="amount" class="form-control requestamount" maxlength="7"></td></tr>
-                                                                <tr><th>{{'Borrower.BankDashboard.StartDate'|translate}} </th><td><input [disabled]="1==1" #StartDate="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.StartDate" name="StartDate" type="date" id="datepicker" class="form-control hasDatepicker datepicker"></td></tr>
-                                                                <tr><th>{{'Borrower.BankDashboard.Endate'|translate}}</th><td><input [disabled]="1==1" #EndDate="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.EndDate" name="EndDate" type="date" id="datepicker1" class="form-control hasDatepicker datepicker1"></td></tr>
-                                                                <tr><th>{{'Borrower.BankDashboard.NrOfDays'|translate}}&nbsp;&nbsp;</th><td id="no_of_days">{{bestPriceViewService.lenderSendRequestModel.NoOfDays}}</td></tr>
-                                                                <tr>
-                                                                    <th>{{'Borrower.BankDashBoard.InterestConvention'|translate}}</th>
-                        
-                                                                    <td>
-                                                                        <select [disabled]="1==1" #InterestConvention="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.InterestConvention" name="InterestConvention" class="form-control" id="interest">
-                        
-                                                                            <option *ngFor="let interest of bestPriceViewService.listInterestConvention" value="{{interest.Id}}">{{interest.Value}}</option>
-                                                                        </select>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <th>{{'Borrower.BankDashBoard.Payments'|translate}}</th>
-                                                                    <td>
-                                                                        <select #Payments="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.Payments" name="Payments" [disabled]="1==1" class="form-control" id="payments">
-                                                                            <option *ngFor="let payment of bestPriceViewService.listPayments" value="{{payment.Id}}">{{payment.Value}}</option>
-                                                                        </select>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr><th>{{'Borrower.BankDashBoard.RateOfInterest'|translate}}</th><td><input (keypress)="numberWithDecimalOnly($event)" #RateOfInterest="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.RateOfInterest" name="RateOfInterest" type="text" id="RateOfInterest" class="form-control requestamount" maxlength="7"></td></tr>
-                                                                <tr><td><input type="button" (click)="UpdateLenderSendRequestRateOfInterest()" class="btn btn-info btn-lg" id="sendRequest" value="SEND"></td></tr>
-                                                            </tbody>
-                                                        </table>
+                                                <table>
+                                                    <tbody>
+                                                        <tr><th>{{'Borrower.BankDashboard.Lender'|translate}}</th><td>{{bestPriceViewService.lenderSendRequestModel.LenderName}}</td></tr>
+                                                        <tr><th>{{'Borrower.BankDashboard.Borrower'|translate}}</th><td>{{bestPriceViewService.lenderSendRequestModel.BorrowerName}}</td></tr>
+                                                        <tr><th>{{'Borrower.BankDashboard.Amount'|translate}}</th><td><input [disabled]="1==1" #Amount="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.Amount" name="Amount" type="text" id="amount" class="form-control requestamount" maxlength="7"></td></tr>
+                                                        <tr><th>{{'Borrower.BankDashboard.StartDate'|translate}} </th><td><input [disabled]="1==1" #StartDate="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.StartDate" name="StartDate" type="date" id="datepicker" class="form-control hasDatepicker datepicker"></td></tr>
+                                                        <tr><th>{{'Borrower.BankDashboard.Endate'|translate}}</th><td><input [disabled]="1==1" #EndDate="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.EndDate" name="EndDate" type="date" id="datepicker1" class="form-control hasDatepicker datepicker1"></td></tr>
+                                                        <tr><th>{{'Borrower.BankDashboard.NrOfDays'|translate}}&nbsp;&nbsp;</th><td id="no_of_days">{{bestPriceViewService.lenderSendRequestModel.NoOfDays}}</td></tr>
+                                                        <tr>
+                                                            <th>{{'Borrower.BankDashboard.InterestConvention'|translate}}</th>
+
+                                                            <td>
+                                                                <select [disabled]="1==1" #InterestConvention="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.InterestConvention" name="InterestConvention" class="form-control" id="interest">
+
+                                                                    <option *ngFor="let interest of bestPriceViewService.listInterestConvention" value="{{interest.Id}}">{{interest.Value}}</option>
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>{{'Borrower.BankDashboard.Payments'|translate}}</th>
+                                                            <td>
+                                                                <select #Payments="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.Payments" name="Payments" [disabled]="1==1" class="form-control" id="payments">
+                                                                    <option *ngFor="let payment of bestPriceViewService.listPayments" value="{{payment.Id}}">{{payment.Value}}</option>
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                        <tr><th>{{'Borrower.BankDashboard.RateOfInterest'|translate}}</th><td><input (keypress)="numberWithDecimalOnly($event)" #RateOfInterest="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.RateOfInterest" name="RateOfInterest" type="text" id="RateOfInterest" class="form-control requestamount" maxlength="7"></td></tr>
+                                                        <tr><td><input type="button" (click)="UpdateLenderSendRequestRateOfInterest()" class="btn btn-info btn-lg" id="sendRequest" value="SEND"></td></tr>
+                                                    </tbody>
+                                                </table>
                                             </div>
                                             <div id="eigenepdf">
 
                                                 <div class="showpdf">
                                                     <div class="pdffile" data-id="2018-08-01 16_38_10-28 Aug 2018 15:46:44.pdf"
-                                                        data-toggle="modal" data-target=".bd-example-modal-lg-cockpit-pdf">
+                                                         data-toggle="modal" data-target=".bd-example-modal-lg-cockpit-pdf">
                                                         <span>
                                                             <i class="fa fa-file-pdf-o" style="font-size:20px;color:red"></i>
                                                         </span> 2018-08-01 16_38_10-28 Aug 2018 15:46:44.pdf
@@ -480,7 +492,7 @@
 
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{'Button.ButtonClose'|translate}}</button>
 
                             </div>
 
@@ -492,7 +504,7 @@
                 <!---pdf modal -->
 
                 <div class="modal fade bd-example-modal-lg-cockpit-pdf admin-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-                    aria-hidden="true">
+                     aria-hidden="true">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -507,7 +519,7 @@
 
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{'Button.ButtonClose'|translate}}</button>
 
                             </div>
 
@@ -693,7 +705,7 @@
     <script src="js/index.js "></script>
     <script>
         var state = "expanded ";
-        //Check if navbar is expanded or minimized and handle 
+        //Check if navbar is expanded or minimized and handle
         $('#navbar-toggle').click(function () {
             if (state == "expanded ") {
                 $('.sidebar').css('margin-left', '-182px');
@@ -724,11 +736,11 @@
         });
 
 
-        // if (document.documentElement.clientWidth < 900) {
-        //     $('#navbar-toggle').click(function() {
-        //         $("html").addClass("open-nav")
-        //     })
-        // }
+                // if (document.documentElement.clientWidth < 900) {
+                //     $('#navbar-toggle').click(function() {
+                //         $("html").addClass("open-nav")
+                //     })
+                // }
     </script>
 
 </body>

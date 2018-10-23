@@ -19395,7 +19395,7 @@
 
                                         <select class="mdl-selectfield__select" name="LogicRoom" id="logicroom">
                                             {{'Lender.DashBoard.ExpandMore'|translate}}
-                                            <option value="" disabled="" selected="">Lender Dashboard</option>
+                                            <option value="" disabled="" selected="">{{'Lender.DashBoard.LenderDashboard'|translate}}</option>
                                             <option value="logicroom1">1</option>
                                             <option value="logicroom2">2</option>
                                             <option value="logicroom3">3</option>
@@ -19409,7 +19409,7 @@
 
                                         <select class="mdl-selectfield__select" name="LogicRoom" id="logicroom">
                                             {{'Lender.DashBoard.ExpandMore'|translate}}
-                                            <option value="" disabled="" selected="">Contact Dashboard</option>
+                                            <option value="" disabled="" selected="">{{'Lender.DashBoard.ContactDashboard'|translate}}</option>
                                             <option value="logicroom1">1</option>
                                             <option value="logicroom2">2</option>
                                             <option value="logicroom3">3</option>
@@ -19431,7 +19431,8 @@
                                     <i class="material-icons">{{'Lender.DashBoard.PermIdentity'|translate}}</i>
                                 </a>
                             </li>
-                            <li *ngIf="IfBothUserTypeFound" class="settings" title="Switch Screen">
+                          
+                            <li *ngIf="IfBothUserTypeFound"   class="settings" title="Switch Screen">
                                 <a href="javascript:void(0);" (click)="SwitchScreen()">
                                     <i class="material-icons icon-position"></i>{{'Lender.DashBoard.Settings'|translate}}
                                 </a>
@@ -19456,11 +19457,11 @@
                     <ul class="sidebar-nav ">
 
                         <li>
-                            <a href="javascript:void(0);" data-toggle="modal" data-target=".setting-popup2">SETTING START PAGE<span class="align-middle input-group-icon "><i class="material-icons ">dashboard</i></span></a>
+                            <a href="javascript:void(0);" data-toggle="modal" data-target=".setting-popup2">{{'Lender.DashBoard.SettingStartPage'|translate}}<span class="align-middle input-group-icon "><i class="material-icons ">dashboard</i></span></a>
                         </li>
                         <li style="display: none;">
                             <a href="javascript:void(0);" (click)="SetCurrentPage('Lender Settings')">
-                                LENDER  SETTINGS<span class="align-middle input-group-icon ">
+                                {{'Lender.DashBoard.LenderSettings'|translate}}<span class="align-middle input-group-icon ">
                                     <i class="material-icons ">
                                         speaker_notes
                                     </i>
@@ -19468,22 +19469,22 @@
                             </a>
                         </li>
                         <li>
-                            <a href="javascript:void(0);" (click)="SetCurrentPage('Best Price View')">BEST PRICE VIEW<span class="align-middle input-group-icon "><i class="material-icons ">settings</i></span></a>
+                            <a href="javascript:void(0);" (click)="SetCurrentPage('Best Price View')">{{'Lender.DashBoard.BestPriceView'|translate}}<span class="align-middle input-group-icon "><i class="material-icons ">settings</i></span></a>
                         </li>
                         <li>
                             <a href="javascript:void(0);" (click)="SetCurrentPage('View All Price')">
-                                VIEW ALL PRICE<span class="align-middle input-group-icon "><i class="material-icons ">view_list</i></span>
+                                {{'Lender.DashBoard.ViewAllPrice'|translate}}<span class="align-middle input-group-icon "><i class="material-icons ">view_list</i></span>
                             </a>
                         </li>
                         <li *ngIf="lenderDashboardService.UserTypeId == 5">
                             <a href="javascript:void(0);" (click)="SetCurrentPage('All Banks')">
-                                ALL BANKS<span class="align-middle input-group-icon "><i class="material-icons ">view_list</i></span>
+                                {{'Lender.DashBoard.AllBanks'|translate}}<span class="align-middle input-group-icon "><i class="material-icons ">view_list</i></span>
                             </a>
                         </li>
 
                         <li *ngIf="lenderDashboardService.UserTypeId == 6">
                             <a href="javascript:void(0);" (click)="SetCurrentPage('Kontact Dashboard')">
-                                ALL BANKS<span class="align-middle input-group-icon "><i class="material-icons ">view_list</i></span>
+                                {{'Lender.DashBoard.AllBanks'|translate}}<span class="align-middle input-group-icon "><i class="material-icons ">view_list</i></span>
                             </a>
                         </li>
                       <!-- <li>
@@ -19507,7 +19508,7 @@
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLongTitle">Update Profile</h5>
+                            <h5 class="modal-title" id="exampleModalLongTitle">  {{'Lender.DashBoard.UpdateProfile'|translate}}</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">×</span>
                             </button>
@@ -19518,20 +19519,20 @@
                                 <div class="row">
 
                                     <div class="heading col-sm-12">
-                                        <h4>Edit Details</h4>
+                                        <h4>{{'Lender.DashBoard.EditDetails'|translate}}</h4>
                                         <hr>
                                     </div>
 
                                     <div class="col-md-6">
-                                        <label>First Name *</label>
+                                        <label>{{'Lender.DashBoard.FirstName'|translate}} *</label>
                                         <input #FirstName="ngModel" [disabled]="1==1" [(ngModel)]="copyLoggedInUser.FirstName" name="FirstName" type="text" placeholder="" class="form-control" id="first_name">
                                     </div>
                                     <div class="col-md-6">
-                                        <label>Sur Name *</label>
+                                        <label>{{'Lender.DashBoard.SurName'|translate}} *</label>
                                         <input [disabled]="1==1" #SurName="ngModel" [(ngModel)]="copyLoggedInUser.SurName" name="SurName" type="text" placeholder="" class="form-control" id="last_name">
                                     </div>
                                     <div class="col-md-12">
-                                        <label>Company Name *</label>
+                                        <label>{{'Lender.DashBoard.CompanyName'|translate}} *</label>
                                         <input [disabled]="1==1" #NameOfCompany="ngModel" [(ngModel)]="copyLoggedInUser.NameOfCompany" name="NameOfCompany" type="text" placeholder="" class="form-control" id="company_name">
                                     </div>
 
@@ -19540,17 +19541,17 @@
 
                                 <div class="row">
 
-                                    <div class="heading col-sm-12"><h4>Change Password</h4><hr></div>
+                                    <div class="heading col-sm-12"><h4>{{'Lender.DashBoard.ChangePassword'|translate}}</h4><hr></div>
                                     <div class="col-md-6">
-                                        <label>Old Password *</label>
+                                        <label>{{'Lender.DashBoard.OldPassword'|translate}} *</label>
                                         <input #Password="ngModel" [(ngModel)]="copyLoggedInUser.Password" type="password" name="Password" class="form-control">
                                     </div>
                                     <div class="col-md-6">
-                                        <label>New Password *</label>
+                                        <label>{{'Lender.DashBoard.NewPassword'|translate}} *</label>
                                         <input #NewPassword="ngModel" [(ngModel)]="lenderDashboardService.NewPassword" type="password" name="NewPassword" class="form-control">
                                     </div>
                                     <div class="col-md-12">
-                                        <label>Confirm Password *</label>
+                                        <label>{{'Lender.DashBoard.ConfirmPassword'|translate}} *</label>
                                         <input #ConfirmPassword="ngModel" [(ngModel)]="lenderDashboardService.ConfirmPassword" type="password" name="ConfirmPassword" class="form-control">
                                     </div>
                                     <div class="col-md-12">
@@ -19564,7 +19565,7 @@
 
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">{{'Button.ButtonClose'|translate}}</button>
 
                         </div>
 
@@ -19604,8 +19605,8 @@
                         </table>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" (click)="SetTimeInterval();" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button id="closeSendChatModalLender" type="button" class="btn btn-secondary" data-dismiss="modal" style="display:none;">Close</button>
+                        <button type="button" (click)="SetTimeInterval();" class="btn btn-secondary" data-dismiss="modal">{{'Button.ButtonClose'|translate}}</button>
+                        <button id="closeSendChatModalLender" type="button" class="btn btn-secondary" data-dismiss="modal" style="display:none;">{{'Button.ButtonClose'|translate}}</button>
 
 
                     </div>
@@ -19618,7 +19619,7 @@
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">SEND REQUEST</h5>
+                        <h5 class="modal-title" id="exampleModalLongTitle">{{'Button.ButtonSendRequest'|translate}}</h5>
                         <button (click)="SetTimeInterval();" type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">×</span>
                         </button>
@@ -19668,8 +19669,8 @@
                         </table>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" (click)="SetTimeInterval();" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button id="closeSendRequestModalLender" type="button" class="btn btn-secondary" data-dismiss="modal" style="display:none;">Close</button>
+                        <button type="button" (click)="SetTimeInterval();" class="btn btn-secondary" data-dismiss="modal">{{'Button.ButtonClose'|translate}}</button>
+                        <button id="closeSendRequestModalLender" type="button" class="btn btn-secondary" data-dismiss="modal" style="display:none;">{{'Button.ButtonClose'|translate}}</button>
 
 
                     </div>
@@ -19684,7 +19685,7 @@
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">SETTING START PAGE</h5>
+                        <h5 class="modal-title" id="exampleModalLongTitle">{{'Lender.DashBoard.SettingStartPage'|translate}}</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">×</span>
                         </button>
@@ -19698,8 +19699,8 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" style="display:none;" id="btnCloseSetStartPageModal" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{'Button.ButtonClose'|translate}}</button>
+                        <button type="button" style="display:none;" id="btnCloseSetStartPageModal" class="btn btn-secondary" data-dismiss="modal">{{'Button.ButtonClose'|translate}}</button>
 
                     </div>
 

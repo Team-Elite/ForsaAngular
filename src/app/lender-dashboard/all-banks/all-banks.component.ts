@@ -22,9 +22,8 @@ export class AllBanksComponent implements OnInit {
     connection.start({ jsonp: true })
       .done(function () { console.log('Now connected, connection ID=' + connection.id); })
       .fail(function () { console.log('Could not connect'); });
-
   }
-  timer: any;
+  timer:any;
   ngOnInit() {
     this.spinner.show();
     //this.GetAllBanksWithInterestRateHorizontaly();
@@ -44,7 +43,6 @@ export class AllBanksComponent implements OnInit {
     this.GetHighestRates();
 
   }
-
   async GetAllBanksWithInterestRateHorizontalyOrderByColumnName(columnName: string) {
 
     this.spinner.show();
@@ -53,7 +51,6 @@ export class AllBanksComponent implements OnInit {
     this.GetHighestRates();
     this.spinner.hide();
   }
-
   GetHighestRates() {
 
     if (this.allBanksService.listAllBanks != undefined && this.allBanksService.listAllBanks != null && this.allBanksService.listAllBanks.length != 0) {

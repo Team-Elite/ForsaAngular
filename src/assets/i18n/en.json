@@ -8,7 +8,8 @@
     "ButtonLogout": "Logout",
     "ButtonEurTN": "EUR (T/N)",
     "ButtonInfo": "INFO",
-    "ButtinLend": "Lend"
+    "ButtinLend": "Lend",
+    "ButtonRegisterasPartner": "Register as a Partner"
   },
   "Login": {
     "Title": "Log in",
@@ -82,8 +83,8 @@
       "forum": "forum",
       "PermIdentity": "perm_identity",
       "logout": "logout",
-      "SettingStartPage": "SettingStartPage",
-      "LenderSettings": "LENDER  SETTINGS",
+      "SettingStartPage": "Setting Start Page",
+      "LenderSettings": "LENDER SETTINGS",
       "BestPriceView": "BEST PRICE VIEW",
       "ViewAllPrice": "VIEW ALL PRICE",
       "UpdateProfile": "Update Profile",
@@ -105,10 +106,14 @@
       "Payments": "PAYMENTS",
       "RateOfInterest": "Rate Of Interest",
       "PUBLISH": "PUBLISH",
+      "Viewanddownloadinthepastdonebusiness": "View and download in the past done business",
+      "Viewanddownloadyourownduelist": "View and download your own due list",
+      "Ownmasterdatamanagement": "Own master data management",
       "STOPPUBLISH": "STOP PUBLISH",
       "STATUSON": "STATUS:ON",
       "STATUSOFF": "STATUS:OFF",
-      "CounterpartyConfiguration": "Counterparty Configuration"
+      "CounterpartyConfiguration": "COUNTERPARTY CONFIGURATION"
+
     }
   },
   "Kontact": {
@@ -142,14 +147,16 @@
   },
   "Lender": {
     "DashBoard": {
+      "LenderDashboard": "Lender Dashboard",
+      "ContactDashboard": "Contact Dashboard",
       "menu": "menu",
       "ExpandMore": "expand_more",
       "search": "search",
       "forum": "forum",
       "PermIdentity": "perm_identity",
-      "Settings": "Settings",
+      "Settings": "Bildschirm wechseln",
       "Account": "Account",
-      "SettingStartPage": "SettingStartPage",
+      "SettingStartPage": "Setting Start Page",
       "LenderSettings": "LENDER  SETTINGS",
       "BestPriceView": "BEST PRICE VIEW",
       "ViewAllPrice": "VIEW ALL PRICE",
@@ -202,7 +209,7 @@
       }
     },
     "BestPriceView": {
-     
+
       "Lender": "LENDER",
       "Borrower": "BORROWER",
       "Amount": "AMOUNT",
