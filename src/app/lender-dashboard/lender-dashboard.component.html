@@ -19433,7 +19433,7 @@
                             </li>
                           
                             <li *ngIf="IfBothUserTypeFound"   class="settings" title="Switch Screen">
-                                <a href="javascript:void(0);" (click)="SwitchScreen()">
+                                <a  href="javascript:void(0);" (click)="SwitchScreen()">
                                     <i class="material-icons icon-position"></i>{{'Lender.DashBoard.Settings'|translate}}
                                 </a>
                             </li>
@@ -19469,7 +19469,8 @@
                             </a>
                         </li>
                         <li>
-                            <a href="javascript:void(0);" (click)="SetCurrentPage('Best Price View')">{{'Lender.DashBoard.BestPriceView'|translate}}<span class="align-middle input-group-icon "><i class="material-icons ">settings</i></span></a>
+                            <a href="javascript:void(0);" (click)="SetCurrentPage('Best Price View')">
+                            {{'Lender.DashBoard.BestPriceView'|translate}}<span class="align-middle input-group-icon "><i class="material-icons ">settings</i></span></a>
                         </li>
                         <li>
                             <a href="javascript:void(0);" (click)="SetCurrentPage('View All Price')">
@@ -19481,20 +19482,25 @@
                                 {{'Lender.DashBoard.AllBanks'|translate}}<span class="align-middle input-group-icon "><i class="material-icons ">view_list</i></span>
                             </a>
                         </li>
-
+                        
                         <li *ngIf="lenderDashboardService.UserTypeId == 6">
                             <a href="javascript:void(0);" (click)="SetCurrentPage('Kontact Dashboard')">
                                 {{'Lender.DashBoard.AllBanks'|translate}}<span class="align-middle input-group-icon "><i class="material-icons ">view_list</i></span>
                             </a>
                         </li>
-                      <!-- <li>
-                            <a href="# ">FAQ's<span class="align-middle input-group-icon "><i class="material-icons ">view_list</i></span>
-                                                        </a>
-                        </li> -->
+                        <li *ngIf="IfBothUserTypeFound">
+                            <a href="javascript:void(0);" (click)="SetCurrentPage('All Banks')">
+                                {{'Lender.DashBoard.AllBanks'|translate}}<span class="align-middle input-group-icon "><i class="material-icons ">view_list</i></span>
+                            </a>
+                        </li>
+                        <!-- <li>
+        <a href="# ">FAQ's<span class="align-middle input-group-icon "><i class="material-icons ">view_list</i></span>
+                                    </a>
+    </li> -->
                         <li>
                             <button *ngIf="lenderDashboardService.UserTypeId == 6" (click)="RegisterAsPartner()" class="btn btn-secondary green-btn" type="button">{{'Button.ButtonRegisterasPartner'|translate}}</button>
 
-                        </li> 
+                        </li>
                     </ul>
                 </div>
             </aside>

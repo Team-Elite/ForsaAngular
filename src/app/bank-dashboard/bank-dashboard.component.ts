@@ -311,17 +311,24 @@ ShowUpdateProfileModal(){
  this.bankDashboardService.NewPassword='';
  this.bankDashboardService.ConfirmPassword='';
   this.copyLoggedInUser = Object.assign({}, this.bankDashboardService.loggedInUser);
-}
+    }
 
-async GetLenderSendRequestRequestdOnTheBasisOfBorrowerId(){
-  
+
+
+    async GetLenderSendRequestRequestdOnTheBasisOfBorrowerId() {
+       
+          clearInterval(this.timer);
   //this.spinner.show();
-  var result = await this.bankDashboardService.GetLenderSendRequestRequestdOnTheBasisOfBorrowerId();
+        debugger;
+        var result = await this.bankDashboardService.GetLenderSendRequestRequestdOnTheBasisOfBorrowerId();
+  
   if(result.IsSuccess && result.IfDataFound == true){
-    clearInterval(this.timer);
-    var element= document.getElementById('ShowLendPopup');
-    element.click();
-    this.bestPriceViewService.lenderSendRequestModel=JSON.parse(result.data)[0];    
+
+       var element = document.getElementById('ShowLendPopup');
+      element.click();
+      this.bestPriceViewService.lenderSendRequestModel = JSON.parse(result.data)[0];
+     
+     // setInterval(this.timer);
   }
   //this.spinner.hide();
 }
@@ -337,7 +344,8 @@ UpdateLenderSendRequestRateOfInterest(){
     this.spinner.hide();
     this.SetTimeInterval();
     var element= document.getElementById('closeSendRequestModal');
- element.click();
+      element.click();
+      setInterval(this.GetLenderSendRequestRequestdOnTheBasisOfBorrowerId,5000);
   });
   
 }
@@ -402,7 +410,8 @@ ShowSendRequestModal(bank:any){
   // // // this.bestPriceViewService.lenderSendRequestModel.LenderEmailId=this.bestPriceViewService.lenderDashboardService.authenticateServiceService.GetEmailId();
 }
 
-async SwitchScreen(){
+    async SwitchScreen() {
+
   this.lenderDashboardService.userId = this.authenticateServiceService.GetUserId();
   let startPage= await this.lenderDashboardService.GetLenderStartPage();
   this.lenderDashboardService.StartingScreen=JSON.parse(startPage.data);

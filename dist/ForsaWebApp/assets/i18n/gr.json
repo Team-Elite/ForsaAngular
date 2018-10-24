@@ -83,6 +83,7 @@
       "forum": "forum",
       "PermIdentity": "perm_identity",
       "logout": "logout",
+      "Settings": "Wechseln Sie zu Kreditgeber",
       "SettingStartPage": "Startseiteeinstellen",
       "LenderSettings": "LENDEREINSTELLUNGEN",
       "BestPriceView": "Beste Preisansicht",
@@ -96,6 +97,7 @@
       "ChangePassword": "Ändere das Passwort",
       "OldPassword": "Altes Passwort",
       "NewPassword": "Neues Kennwort",
+      "PUBLISH": "publizieren",
       "ConfirmPassword": "Bestätige das Passwort",
       "Lender": "DARLEHENSGEBER",
       "Amount": "MENGE",
@@ -105,11 +107,14 @@
       "InterestConvention": "INTERESSEKONVENTION",
       "Payments": "ZAHLUNGEN",
       "RateOfInterest": "Zinssatz",
-      "PUBLISH": "VERÖFFENTLICHEN",
+      "Ownmasterdatamanagement": "Eigene Stammdatenverwaltung",
+      "Viewanddownloadyourownduelist": "Ansehen und downloaden eigene Fälligkeitsliste",
+      "Viewanddownloadinthepastdonebusiness": "Ansehen und downloaden in der Vergangenheit getätigter Geschäfte",
       "STOPPUBLISH": "STOPPEN VERÖFFENTLICHEN",
-      "STATUSON": "Status: Ein",
+      "STATUSON": "Status:Ein",
       "STATUSOFF": "STATUS: AUS",
-      "CounterpartyConfiguration": "Counterparty Konfiguration"
+      "CounterpartyConfiguration": "COUNTERPARTY KONFIGURATION"
+
     }
   },
   "Kontact": {
@@ -143,14 +148,16 @@
   },
   "Lender": {
     "DashBoard": {
+      "LenderDashboard": "Kreditgeber Dashboard",
+      "ContactDashboard": "Kontact Dashboard",
       "menu": "Speisekarte",
       "ExpandMore": "expand_more",
       "search": "Suche",
       "forum": "Forum",
       "PermIdentity": "perm_identity",
-      "Settings": "die Einstellungen",
+      "Settings": "Wechseln Sie zum Benutzer",
       "Account": "Konto",
-      "SettingStartPage": "SettingStartPage",
+      "SettingStartPage": "Startseiteeinstellen",
       "LenderSettings": "LENDEREINSTELLUNGEN",
       "BestPriceView": "Beste Preisansicht",
       "ViewAllPrice": "ALLEPREISEANSEHEN",

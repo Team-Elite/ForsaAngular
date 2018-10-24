@@ -333,7 +333,9 @@ this.spinner.hide();
 
  }
 
- async SwitchScreen(){
+    async SwitchScreen() {
+         
+      
   this.router.navigate(['/bankDashBoard']);
 }
 RegisterAsPartner(){
