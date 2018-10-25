@@ -27,8 +27,8 @@ export class AllBanksComponent implements OnInit {
   ngOnInit() {
     this.spinner.show();
     //this.GetAllBanksWithInterestRateHorizontaly();
-    this.SetTimeInterval();
-    // setInterval(this.GetAllBanksWithInterestRateHorizontaly, 5000);
+     this.SetTimeInterval();
+    //setInterval(this.GetAllBanksWithInterestRateHorizontaly, 5000);
     this.spinner.hide();
   }
   SetTimeInterval() {
@@ -36,8 +36,8 @@ export class AllBanksComponent implements OnInit {
       this.GetAllBanksWithInterestRateHorizontaly();
     }, 5000);
   }
-  async GetAllBanksWithInterestRateHorizontaly() {
-
+    async GetAllBanksWithInterestRateHorizontaly() {
+        
     let rates = await this.allBanksService.GetAllBanksWithInterestRateHorizontaly();
     this.allBanksService.listAllBanks = JSON.parse(rates.data);
     this.GetHighestRates();

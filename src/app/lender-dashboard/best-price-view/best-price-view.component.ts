@@ -74,7 +74,7 @@ export class BestPriceViewComponent implements OnInit {
             MessageForForsa: '',
             IsMessageSentToForsa: false
         }
-
+        this.spinner.hide();
 
     }
 

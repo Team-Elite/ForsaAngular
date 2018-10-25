@@ -352,7 +352,7 @@
                                 </button>
                             </div>
 
-                            <div class="modal-body" id="lendrequestbody">
+                            <div   class="modal-body" id="lendrequestbody">
                                 <table>
                                     <tbody>
                                         <tr><th>{{'Borrower.BankDashboard.Lender'|translate}}</th><td>{{bestPriceViewService.lenderSendRequestModel.LenderName}}</td></tr>
@@ -407,7 +407,7 @@
 
                             <div class="modal-body" id="lendrequestbody">
                                 <form>
-                                    <div class="row">
+                                    <div  class="row">
 
                                         <div class="heading col-sm-12">
                                             <h4>{{'Borrower.BankDashboard.EditDetails'|translate}}</h4>
@@ -416,15 +416,15 @@
 
                                         <div class="col-md-6">
                                             <label>{{'Borrower.BankDashboard.FirstName'|translate}}</label>
-                                            <input type="text" name="first" placeholder="mario" class="form-control" value="" id="first_name">
+                                            <input #FirstName="ngModel" [disabled]="1==1" [(ngModel)]="copyLoggedInUser.FirstName" name="FirstName" type="text" placeholder="" class="form-control" id="first_name">
                                         </div>
                                         <div class="col-md-6">
                                             <label>{{'Borrower.BankDashboard.SurName'|translate}}</label>
-                                            <input type="text" name="last" placeholder="singer" class="form-control" value="" id="last_name">
+                                            <input [disabled]="1==1" #SurName="ngModel" [(ngModel)]="copyLoggedInUser.SurName" name="SurName" type="text" placeholder="" class="form-control" id="last_name">
                                         </div>
                                         <div class="col-md-12">
                                             <label>{{'Borrower.BankDashboard.CompanyName'|translate}}</label>
-                                            <input type="text" name="company" placeholder="Stadt Singen" class="form-control" value="" id="company_name">
+                                            <input [disabled]="1==1" #NameOfCompany="ngModel" [(ngModel)]="copyLoggedInUser.NameOfCompany" name="NameOfCompany" type="text" placeholder="" class="form-control" id="company_name">
                                         </div>
 
 
@@ -491,7 +491,7 @@
                                                     <tbody>
                                                         <tr><th>{{'Borrower.BankDashboard.Lender'|translate}}</th><td>{{bestPriceViewService.lenderSendRequestModel.LenderName}}</td></tr>
                                                         <tr><th>{{'Borrower.BankDashboard.Borrower'|translate}}</th><td>{{bestPriceViewService.lenderSendRequestModel.BorrowerName}}</td></tr>
-                                                        <tr><th>{{'Borrower.BankDashboard.Amount'|translate}}</th><td><input [disabled]="1==1" #Amount="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.Amount" name="Amount" type="text" id="amount" class="form-control requestamount" maxlength="7"></td></tr>
+                                                        <tr><th>{{'Borrower.BankDashboard.Amount'|translate}}</th><td><input [disabled]="1==1" #Amount1="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.Amount" name="Amount" type="text" id="amount" class="form-control requestamount" maxlength="7"></td></tr>
                                                         <tr><th>{{'Borrower.BankDashboard.StartDate'|translate}} </th><td><input [disabled]="1==1" #StartDate="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.StartDate" name="StartDate" type="date" id="datepicker" class="form-control hasDatepicker datepicker"></td></tr>
                                                         <tr><th>{{'Borrower.BankDashboard.Endate'|translate}}</th><td><input [disabled]="1==1" #EndDate="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.EndDate" name="EndDate" type="date" id="datepicker1" class="form-control hasDatepicker datepicker1"></td></tr>
                                                         <tr><th>{{'Borrower.BankDashboard.NrOfDays'|translate}}&nbsp;&nbsp;</th><td id="no_of_days">{{bestPriceViewService.lenderSendRequestModel.NoOfDays}}</td></tr>

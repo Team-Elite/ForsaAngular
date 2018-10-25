@@ -583,3 +583,9 @@ input:focus~.highlight {
         opacity: 0;
     }
 }
+.modal-header {
+    background-color: #72af09 !important;
+}
+.modal-footer {
+    background-color: #72af09 !important;
+}

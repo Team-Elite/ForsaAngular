@@ -24,7 +24,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { LenderDashboardComponent } from './lender-dashboard/lender-dashboard.component';
 import { BestPriceViewComponent } from './lender-dashboard/best-price-view/best-price-view.component';
-import { DatePipe } from '@angular/common';
+import { DatePipe, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ViewAllPriceComponent } from './lender-dashboard/view-all-price/view-all-price.component';
 import { AllBanksComponent } from './lender-dashboard/all-banks/all-banks.component';
@@ -34,7 +34,6 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { ForsaLanguagesComponent } from './forsa-languages/forsa-languages.component';
-import {LeftMenuBarComponent} from './left-menu-bar/left-menu-bar.component';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
     return new TranslateHttpLoader(httpClient);
@@ -74,8 +73,8 @@ const appRoutes: Routes = [{ path: 'login', component: LoginComponent },
         AllBanksComponent,
         KontactDashboardComponent,
         KontactDashboardLComponent,
-        ForsaLanguagesComponent,
-       LeftMenuBarComponent
+        ForsaLanguagesComponent
+      
     ],
     imports: [
         BrowserModule,
@@ -101,6 +100,10 @@ const appRoutes: Routes = [{ path: 'login', component: LoginComponent },
     providers: [
         NgbdModalBasic,
         DatePipe
+        //{
+        //    provide: LocationStrategy, useClass: PathLocationStrategy
+
+        //}
     ],
 
     bootstrap: [AppComponent]

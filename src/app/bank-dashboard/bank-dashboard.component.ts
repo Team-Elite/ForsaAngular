@@ -317,7 +317,7 @@ ShowUpdateProfileModal(){
 
 
     async GetLenderSendRequestRequestdOnTheBasisOfBorrowerId() {
-        debugger;
+      
         var result = await this.bankDashboardService.GetLenderSendRequestRequestdOnTheBasisOfBorrowerId();
         if(result.IsSuccess && result.IfDataFound == true){
         clearInterval(this.timer);
@@ -327,7 +327,7 @@ ShowUpdateProfileModal(){
      
      // setInterval(this.timer);
   }
-  //this.spinner.hide();
+  this.spinner.hide();
 }
 
 UpdateLenderSendRequestRateOfInterest(){

@@ -72,7 +72,8 @@ lenderSendRequestModel:LenderSendRequestModel;
 
   async GetLenderSendRequestRequestdOnTheBasisOfBorrowerId(){
     const response = await this.http.get(this.authenticateServiceService.baseURL+'/api/BankDashBoard'
-    +'/GetLenderSendRequestRequestdOnTheBasisOfBorrowerId?borrowerId='+this.userId).toPromise();
+          + '/GetLenderSendRequestRequestdOnTheBasisOfBorrowerId?borrowerId=' + this.userId).toPromise();
+      
   return response.json();
   }
 
