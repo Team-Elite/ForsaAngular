@@ -310,7 +310,7 @@
                         </div>
                     </div>
                 </div>
-                <button Id="ShowLendPopup" type="button" style="display:none;" class="btn w-100 active" data-toggle="modal" data-target=".modalSendRequest">Lend</button>
+                <button Id="ShowLendPopup" type="button" style="display:none;" class="btn w-100 active" data-toggle="modal" data-target=".modalSendRequest" data-backdrop="static" data-keyboard="false">Lend</button>
 
                 <!-- modal setting start page tab-->
                 <div class="modal fade bd-example-modal-lg-setting-page dashboard-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
@@ -347,7 +347,7 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="exampleModalLongTitle">{{'Button.ButtonSendRequest'|translate}}</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <button type="button" (click)="SetTimeInterval();" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">×</span>
                                 </button>
                             </div>
@@ -384,7 +384,7 @@
                                 </table>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal" click="SetTimeInterval()">{{'Button.ButtonClose'|translate}}</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="SetTimeInterval()">{{'Button.ButtonClose'|translate}}</button>
                                 <button id="closeSendRequestModal" style="display:none;" type="button" data-dismiss="modal" class="btn btn-secondary">Close 12</button>
 
                             </div>

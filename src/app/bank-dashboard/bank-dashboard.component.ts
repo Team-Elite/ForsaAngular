@@ -66,6 +66,7 @@ export class BankDashboardComponent implements OnInit {
   }
 
   SetTimeInterval(){
+    debugger;
     this.timer= setInterval(() => {
       this.GetLenderSendRequestRequestdOnTheBasisOfBorrowerId();  
     }, 5000);
@@ -316,14 +317,10 @@ ShowUpdateProfileModal(){
 
 
     async GetLenderSendRequestRequestdOnTheBasisOfBorrowerId() {
-       
-          clearInterval(this.timer);
-  //this.spinner.show();
         debugger;
         var result = await this.bankDashboardService.GetLenderSendRequestRequestdOnTheBasisOfBorrowerId();
-  
-  if(result.IsSuccess && result.IfDataFound == true){
-
+        if(result.IsSuccess && result.IfDataFound == true){
+        clearInterval(this.timer);
        var element = document.getElementById('ShowLendPopup');
       element.click();
       this.bestPriceViewService.lenderSendRequestModel = JSON.parse(result.data)[0];
@@ -345,7 +342,7 @@ UpdateLenderSendRequestRateOfInterest(){
     this.SetTimeInterval();
     var element= document.getElementById('closeSendRequestModal');
       element.click();
-      setInterval(this.GetLenderSendRequestRequestdOnTheBasisOfBorrowerId,5000);
+      //setInterval(this.GetLenderSendRequestRequestdOnTheBasisOfBorrowerId,5000);
   });
   
 }

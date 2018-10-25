@@ -34,6 +34,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { ForsaLanguagesComponent } from './forsa-languages/forsa-languages.component';
+import {LeftMenuBarComponent} from './left-menu-bar/left-menu-bar.component';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
     return new TranslateHttpLoader(httpClient);
@@ -73,8 +74,8 @@ const appRoutes: Routes = [{ path: 'login', component: LoginComponent },
         AllBanksComponent,
         KontactDashboardComponent,
         KontactDashboardLComponent,
-        ForsaLanguagesComponent
-       
+        ForsaLanguagesComponent,
+       LeftMenuBarComponent
     ],
     imports: [
         BrowserModule,
