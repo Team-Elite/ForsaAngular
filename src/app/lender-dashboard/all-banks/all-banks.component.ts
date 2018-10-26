@@ -12,7 +12,7 @@ const hubProxy = connection.createHubProxy('NgHub');
   styleUrls: ['./all-banks.component.css']
 })
 export class AllBanksComponent implements OnInit {
-
+   
   constructor(public allBanksService: AllBanksService, public spinner: NgxSpinnerService
     , public toastr: ToastrService) {
     // set up event listeners i.e. for incoming "message" event
@@ -23,7 +23,9 @@ export class AllBanksComponent implements OnInit {
       .done(function () { console.log('Now connected, connection ID=' + connection.id); })
       .fail(function () { console.log('Could not connect'); });
   }
-  timer:any;
+ orderByColumn:string="Bank";
+
+ timer:any;
   ngOnInit() {
     this.spinner.show();
     //this.GetAllBanksWithInterestRateHorizontaly();
@@ -33,7 +35,8 @@ export class AllBanksComponent implements OnInit {
   }
   SetTimeInterval() {
     this.timer = setInterval(() => {
-      this.GetAllBanksWithInterestRateHorizontaly();
+  //this.GetAllBanksWithInterestRateHorizontaly();
+       this.GetAllBanksWithInterestRateHorizontalyOrderByColumnName(this.orderByColumn);
     }, 5000);
   }
     async GetAllBanksWithInterestRateHorizontaly() {
@@ -44,8 +47,8 @@ export class AllBanksComponent implements OnInit {
 
   }
   async GetAllBanksWithInterestRateHorizontalyOrderByColumnName(columnName: string) {
-
-    this.spinner.show();
+    this.orderByColumn=columnName;
+    //this.spinner.show();
     let rates = await this.allBanksService.GetAllBanksWithInterestRateHorizontalyOrderByColumnName(columnName);
     this.allBanksService.listAllBanks = JSON.parse(rates.data);
     this.GetHighestRates();
