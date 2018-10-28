@@ -17,19 +17,22 @@ export class AllBanksComponent implements OnInit {
     , public toastr: ToastrService) {
     // set up event listeners i.e. for incoming "message" event
     hubProxy.on('sendBankRate', (data) => {
-      this.GetAllBanksWithInterestRateHorizontaly()
+      //this.GetAllBanksWithInterestRateHorizontaly();
+      this.GetAllBanksWithInterestRateHorizontalyOrderByColumnName(this.orderByColumn);
     })
     connection.start({ jsonp: true })
       .done(function () { console.log('Now connected, connection ID=' + connection.id); })
       .fail(function () { console.log('Could not connect'); });
   }
  orderByColumn:string="Bank";
-
+ tmpList:any[];
  timer:any;
   ngOnInit() {
     this.spinner.show();
     //this.GetAllBanksWithInterestRateHorizontaly();
-     this.SetTimeInterval();
+    //this.GetAllBanksWithInterestRateHorizontaly();
+    this.GetAllBanksWithInterestRateHorizontalyOrderByColumnName(this.orderByColumn);
+     //this.SetTimeInterval();
     //setInterval(this.GetAllBanksWithInterestRateHorizontaly, 5000);
     this.spinner.hide();
   }
@@ -40,12 +43,25 @@ export class AllBanksComponent implements OnInit {
     }, 5000);
   }
     async GetAllBanksWithInterestRateHorizontaly() {
-        
+        debugger;
     let rates = await this.allBanksService.GetAllBanksWithInterestRateHorizontaly();
+    //this.tmpList=JSON.parse(rates.data);
+   // this.sortProduct(this.orderByColumn,"DESC");
     this.allBanksService.listAllBanks = JSON.parse(rates.data);
     this.GetHighestRates();
 
   }
+
+//   sortProduct<T>(propName: any, order: "ASC" | "DESC"): void {
+//     this.tmpList.sort((a, b) => {
+//         if (a[propName] < b[propName])
+//             return -1;
+//         if (a[propName] > b[propName])
+//             return 1;
+//         return 0;
+//     });
+// } 
+
   async GetAllBanksWithInterestRateHorizontalyOrderByColumnName(columnName: string) {
     this.orderByColumn=columnName;
     //this.spinner.show();

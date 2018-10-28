@@ -606,3 +606,10 @@ input:focus~.highlight {
     margin: 1%;
     background: #25272e;
 }
+.modal-header {
+    background-color: #72af09 !important;
+}
+
+.modal-footer {
+    background-color: #72af09 !important;
+}
