@@ -2,8 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, Component } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
-
-
 import { AppComponent } from './app.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { BlockPasteDirective } from './Shared/block-paste.directive';
@@ -30,15 +28,23 @@ import { ViewAllPriceComponent } from './lender-dashboard/view-all-price/view-al
 import { AllBanksComponent } from './lender-dashboard/all-banks/all-banks.component';
 import { KontactDashboardComponent } from './kontact-dashboard/kontact-dashboard.component';
 import { KontactDashboardLComponent } from './lender-dashboard/kontact-dashboard-l/kontact-dashboard-l.component'; // <-- import the module
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { ForsaLanguagesComponent } from './forsa-languages/forsa-languages.component';
+import { TokenService } from './token-service';
+//import { JwtHelperService} from '@auth0/angular-jwt';
+
+
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
     return new TranslateHttpLoader(httpClient);
-    //return new TranslateHttpLoader(httpClient, './assets/i18n/', '.json')
 }
+ //return new TranslateHttpLoader(httpClient, './assets/i18n/', '.json')
+
+
+
+
 const appRoutes: Routes = [{ path: 'login', component: LoginComponent },
 { path: 'registration', component: RegistrationComponent },
 //  {path:'registration/:uId',component:RegistrationComponent},
@@ -89,7 +95,7 @@ const appRoutes: Routes = [{ path: 'login', component: LoginComponent },
         NgxSpinnerModule,
         NgxPaginationModule,
         TranslateModule.forRoot({
-            loader: {
+            loader:{
                 provide: TranslateLoader,
                 useFactory: HttpLoaderFactory,
                 deps: [HttpClient]
@@ -99,11 +105,8 @@ const appRoutes: Routes = [{ path: 'login', component: LoginComponent },
     ],
     providers: [
         NgbdModalBasic,
-        DatePipe
-        //{
-        //    provide: LocationStrategy, useClass: PathLocationStrategy
-
-        //}
+        DatePipe,
+      
     ],
 
     bootstrap: [AppComponent]

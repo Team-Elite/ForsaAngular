@@ -17,7 +17,7 @@ export class LoginService {
   constructor(public http: Http, public authenticateServiceService :AuthenticateServiceService) {}
 
  async ValidateUser(loginModel:LoginModel){
-   debugger;
+ 
     var body=JSON.stringify(loginModel);
     var headerOptions= new Headers({'Content-Type':'application/json'});
     var requestOptions=new RequestOptions({method:RequestMethod.Post,headers:headerOptions});
@@ -26,7 +26,7 @@ export class LoginService {
   }
 
   async ForgotPassword(loginModel:LoginModel){
-    debugger;
+  
      var body=JSON.stringify(loginModel);
      var headerOptions= new Headers({'Content-Type':'application/json'});
      var requestOptions=new RequestOptions({method:RequestMethod.Post,headers:headerOptions});

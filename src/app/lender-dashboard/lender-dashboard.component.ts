@@ -39,7 +39,7 @@ export class LenderDashboardComponent implements OnInit {
     debugger;
     this.authenticateServiceService.AuthenticateSession();
     this.lenderDashboardService.UserTypeId=this.authenticateServiceService.GetUserTypeId();
-    console.log("this.lenderDashboardService.UserTypeId",this.lenderDashboardService.UserTypeId)
+    //console.log("this.lenderDashboardService.UserTypeId",this.lenderDashboardService.UserTypeId)
     this.lenderDashboardService.userId = this.authenticateServiceService.GetUserId();
     this.IfBothUserTypeFound = this.authenticateServiceService.GetIfBothUserTypeFound() ==( undefined || null) ? false: true;
     this.lenderDashboardService.loggedInUser= this.authenticateServiceService.GetUserDetail();
@@ -75,7 +75,7 @@ export class LenderDashboardComponent implements OnInit {
       IsMessageSentToForsa:false
       }
 
-      this.SetTimeInterval();
+     // this.SetTimeInterval();
   }
 
   SetTimeInterval(){

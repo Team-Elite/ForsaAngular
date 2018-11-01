@@ -31,7 +31,7 @@ export class AllBanksComponent implements OnInit {
     this.spinner.show();
     //this.GetAllBanksWithInterestRateHorizontaly();
     //this.GetAllBanksWithInterestRateHorizontaly();
-    this.GetAllBanksWithInterestRateHorizontalyOrderByColumnName(this.orderByColumn);
+    //this.GetAllBanksWithInterestRateHorizontalyOrderByColumnName(this.orderByColumn);
      //this.SetTimeInterval();
     //setInterval(this.GetAllBanksWithInterestRateHorizontaly, 5000);
     this.spinner.hide();
