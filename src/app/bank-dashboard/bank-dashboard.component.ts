@@ -34,7 +34,7 @@ export class BankDashboardComponent implements OnInit {
     this.GetUserGroupForSettingRateOfInterestVisibility();
     this.bankDashboardService.loggedInUser= this.authenticateServiceService.GetUserDetail();
     this.copyLoggedInUser = Object.assign({}, this.bankDashboardService.loggedInUser);
-    this.SetTimeInterval();
+   // this.SetTimeInterval();
     
     this.spinner.hide();
     this.bestPriceViewService.lenderSendRequestModel={

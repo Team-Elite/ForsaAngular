@@ -16,25 +16,25 @@ export class AllBanksComponent implements OnInit {
   constructor(public allBanksService: AllBanksService, public spinner: NgxSpinnerService
     , public toastr: ToastrService) {
     // set up event listeners i.e. for incoming "message" event
-    hubProxy.on('sendBankRate', (data) => {
+   // hubProxy.on('sendBankRate', (data) => {
       //this.GetAllBanksWithInterestRateHorizontaly();
-      this.GetAllBanksWithInterestRateHorizontalyOrderByColumnName(this.orderByColumn);
-    })
-    connection.start({ jsonp: true })
-      .done(function () { console.log('Now connected, connection ID=' + connection.id); })
-      .fail(function () { console.log('Could not connect'); });
+      //this.GetAllBanksWithInterestRateHorizontalyOrderByColumnName(this.orderByColumn);
+   // })
+    //connection.start({ jsonp: true })
+    //  .done(function () { console.log('Now connected, connection ID=' + connection.id); })
+    //  .fail(function () { console.log('Could not connect'); });
   }
  orderByColumn:string="Bank";
  tmpList:any[];
  timer:any;
   ngOnInit() {
-    this.spinner.show();
+   // this.spinner.show();
     //this.GetAllBanksWithInterestRateHorizontaly();
     //this.GetAllBanksWithInterestRateHorizontaly();
     //this.GetAllBanksWithInterestRateHorizontalyOrderByColumnName(this.orderByColumn);
      //this.SetTimeInterval();
     //setInterval(this.GetAllBanksWithInterestRateHorizontaly, 5000);
-    this.spinner.hide();
+    //this.spinner.hide();
   }
   SetTimeInterval() {
     this.timer = setInterval(() => {

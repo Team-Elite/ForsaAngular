@@ -1,7 +1,6 @@
 import { Inject, Injectable } from '@angular/core';
 import { LOCAL_STORAGE, StorageService } from 'angular-webstorage-service';
 import { Router } from '@angular/router'
-import { JwtHelperService } from '@auth0/angular-jwt';
 import { TokenService } from '../token-service';
 
 
@@ -15,9 +14,14 @@ export class AuthenticateServiceService {
     ifBothUserTypeFound: string = 'ifBothUserTypeFound';
     UserTypeId: string = 'UserTypeId';
     baseURL: string = 'http://localhost:60744';
+    tokenService: any = new TokenService;
+    Usertoken: any = this.storage.get(this.userValue);
+    Userdata: any;
     //baseURL:string='http://localhost:60744/';
-    constructor(@Inject(LOCAL_STORAGE) public storage: StorageService, public tokenService: TokenService, public router: Router) { }
-
+    constructor(@Inject(LOCAL_STORAGE) public storage: StorageService, public router: Router) { 
+        
+        this.Userdata= this.tokenService.jwtdecrypt(this.Usertoken);
+    }
     SaveSession(value: any) {
 
         this.storage.set(this.userValue, value);
@@ -32,9 +36,9 @@ export class AuthenticateServiceService {
 
     AuthenticateSession() {
 
-        let val = this.storage.get(this.userValue);
+       // let val = this.storage.get(this.userValue);
         let sessionDate = this.storage.get(this.sessionCreatedAt);
-        if (val == undefined || val == null) {
+        if (this.Userdata == undefined || this.Userdata == null) {
             this.router.navigate(['/login']);
         }
         if ((new Date().getTime() - new Date(sessionDate).getTime()) > 7200000) {
@@ -44,40 +48,38 @@ export class AuthenticateServiceService {
     }
 
     GetUserId() {
-        
-        let token = this.storage.get(this.userValue);
-        var data = this.tokenService.jwtdecrypt(token);
-        return JSON.parse(data.unique_name)[0].UserId;
+        //var data = this.tokenService.jwtdecrypt(this.Usertoken);
+        return JSON.parse(this.Userdata.unique_name)[0].UserId;
     }
 
     GetLenderName() {
-
-        let userId = this.storage.get(this.userValue);
-        return JSON.parse(userId)[0].NameOfCompany;
+       
+        //let userId = this.storage.get(this.userValue);
+        return JSON.parse(this.Userdata.unique_name)[0].NameOfCompany;
     }
 
     GetEmailId() {
 
-        let userId = this.storage.get(this.userValue);
-        return JSON.parse(userId)[0].EmailAddress;
+        //let userId = this.storage.get(this.userValue);
+        return JSON.parse(this.Userdata.unique_name)[0].EmailAddress;
     }
 
     GetBorrowerName() {
 
-        let userId = this.storage.get(this.userValue);
-        return JSON.parse(userId)[0].Bank;
+       // let userId = this.storage.get(this.userValue);
+        return JSON.parse(this.Userdata.unique_name)[0].Bank;
     }
 
     GetUserTypeId() {
 
-        let userId = this.storage.get(this.userValue);
-        return JSON.parse(userId)[0].UserTypeId;
+       // let userId = this.storage.get(this.userValue);
+        return JSON.parse(this.Userdata.unique_name)[0].UserTypeId;
     }
 
     GetUserDetail() {
 
-        let userId = this.storage.get(this.userValue);
-        return JSON.parse(userId)[0];
+       // let userId = this.storage.get(this.userValue);
+        return JSON.parse(this.Userdata.unique_name)[0];
     }
 
     ClearSession() {
@@ -107,11 +109,6 @@ export class AuthenticateServiceService {
         let Id = this.storage.get(this.ifBothUserTypeFound);
         return Id;
     }
-    //public jwtdecrypt(token) {
-
-    //    const helper = new JwtHelperService();
-    //    return helper.decodeToken(token);
-
-    //}
+   
 
 }

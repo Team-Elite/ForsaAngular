@@ -19356,8 +19356,8 @@
             color: #fff;
         }
     </style>
-    /*
-    <script src="./Instimatch Dashboard_files/prefixfree.min.js"></script> */
+   
+    <!--<script src="./Instimatch Dashboard_files/prefixfree.min.js"></script>--> 
     <script src="assets/scripts/prefixfree.min.js"></script>
 
 
@@ -19470,7 +19470,8 @@
                         </li>
                         <li>
                             <a href="javascript:void(0);" (click)="SetCurrentPage('Best Price View')">
-                            {{'Lender.DashBoard.BestPriceView'|translate}}<span class="align-middle input-group-icon "><i class="material-icons ">settings</i></span></a>
+                                {{'Lender.DashBoard.BestPriceView'|translate}}<span class="align-middle input-group-icon "><i class="material-icons ">settings</i></span>
+                            </a>
                         </li>
                         <li>
                             <a href="javascript:void(0);" (click)="SetCurrentPage('View All Price')">
@@ -19478,11 +19479,11 @@
                             </a>
                         </li>
                         <li *ngIf="lenderDashboardService.UserTypeId == 5">
-                            <a href="javascript:void(0);" (click)="SetCurrentPage('All Banks')">
+                            <a href="javascript:void(0);">
                                 {{'Lender.DashBoard.AllBanks'|translate}}<span class="align-middle input-group-icon "><i class="material-icons ">view_list</i></span>
                             </a>
                         </li>
-                        
+
                         <li *ngIf="lenderDashboardService.UserTypeId == 6">
                             <a href="javascript:void(0);" (click)="SetCurrentPage('Kontact Dashboard')">
                                 {{'Lender.DashBoard.AllBanks'|translate}}<span class="align-middle input-group-icon "><i class="material-icons ">view_list</i></span>
@@ -19493,7 +19494,7 @@
                                 {{'Lender.DashBoard.AllBanks'|translate}}<span class="align-middle input-group-icon "><i class="material-icons ">view_list</i></span>
                             </a>
                         </li>
-                        <!-- <li>
+                        <!-- <li>  (click)="SetCurrentPage('All Banks')"
         <a href="# ">FAQ's<span class="align-middle input-group-icon "><i class="material-icons ">view_list</i></span>
                                     </a>
     </li> -->

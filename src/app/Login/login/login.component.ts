@@ -4,7 +4,6 @@ import { NgForm } from '@angular/forms';
 import { AuthenticateServiceService } from '../../Shared/authenticate-service.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { UserModel } from '../../registration/Shared/user-model.model';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { LenderDashboardService } from '../../lender-dashboard/Shared/lender-dashboard.service';
 import { TokenService } from '../../token-service';
@@ -14,11 +13,14 @@ import { TokenService } from '../../token-service';
     styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-    constructor(public loginService: LoginService, public tokenService: TokenService, public authenticateServiceService: AuthenticateServiceService
+    tokenService: TokenService = new TokenService;
+    constructor(public loginService: LoginService,  public authenticateServiceService: AuthenticateServiceService
         , public router: Router, public toastr: ToastrService
         , public spinner: NgxSpinnerService
-        , public lenderDashboardService: LenderDashboardService) { }
-
+        , public lenderDashboardService: LenderDashboardService
+        
+    ) { }
+  
 
     IfVerificationDone: boolean = false;
     IfShowPassword: boolean = false;
@@ -32,6 +34,7 @@ export class LoginComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.authenticateServiceService.ClearSession();
         this.loginService.loginModel = {
             UserName: '',
             UserPassword: '',
@@ -72,6 +75,7 @@ export class LoginComponent implements OnInit {
             this.spinner.show();
             let user = await this.loginService.ValidateUser(form.value);
             if (user.IsSuccess == true) {
+               
                 this.authenticateServiceService.SaveSession(user.data);
                 let token = this.authenticateServiceService.storage.get(this.authenticateServiceService.userValue);
                 var data = this.tokenService.jwtdecrypt(token);
@@ -84,6 +88,7 @@ export class LoginComponent implements OnInit {
                 // else if(user.UserTypeId==6){
                 //   this.router.navigate(['/KontactDashBoard']);
                 // }
+                debugger;
                 if (user.UserTypeId === "5" || user.UserTypeId === "6") {
 
                     this.lenderDashboardService.userId = user.UserId; //this.authenticateServiceService.GetUserId();

@@ -11,8 +11,8 @@ import { TokenService } from '../../token-service';
 })
 export class LenderDashboardService {
 
-    constructor(public http: Http, public authenticateServiceService: AuthenticateServiceService, public tokenService: TokenService) { }
-
+    constructor(public http: Http, public authenticateServiceService: AuthenticateServiceService) { }
+    tokenService: TokenService = new TokenService;
     userId: number;
     StartingScreen: any[];
     baseURL: string = this.authenticateServiceService.baseURL;
@@ -22,8 +22,9 @@ export class LenderDashboardService {
     CurrentPageName: string;
     UserTypeId: any = 5;
 
-    async GetLenderStartPage() {
-        const token = await this.http.get(this.authenticateServiceService.baseURL + '/api/LenderStartPage/GetLenderStartPage?id=' + this.userId).map((response) => response.json()).toPromise();
+    GetLenderStartPage() {
+        debugger;
+        const token = this.http.get(this.authenticateServiceService.baseURL + '/api/LenderStartPage/GetLenderStartPage?id=' + this.userId).map((response) => response.json()).toPromise();
         //const token = this.http.get(this.authenticateServiceService.baseURL + '/api/LenderStartPage/GetLenderStartPage?id=' + this.userId);//.toPromise();
         var response;
         if (token != undefined) response = JSON.parse(this.tokenService.jwtdecrypt(token).unique_name)[0];
