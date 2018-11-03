@@ -28,25 +28,18 @@ export class AllBanksComponent implements OnInit {
  tmpList:any[];
  timer:any;
   ngOnInit() {
-   // this.spinner.show();
-    //this.GetAllBanksWithInterestRateHorizontaly();
-    //this.GetAllBanksWithInterestRateHorizontaly();
-    //this.GetAllBanksWithInterestRateHorizontalyOrderByColumnName(this.orderByColumn);
-     //this.SetTimeInterval();
-    //setInterval(this.GetAllBanksWithInterestRateHorizontaly, 5000);
-    //this.spinner.hide();
+    this.spinner.show();
+    this.SetTimeInterval();
+    this.spinner.hide();
   }
   SetTimeInterval() {
     this.timer = setInterval(() => {
-  //this.GetAllBanksWithInterestRateHorizontaly();
        this.GetAllBanksWithInterestRateHorizontalyOrderByColumnName(this.orderByColumn);
     }, 5000);
   }
     async GetAllBanksWithInterestRateHorizontaly() {
-        debugger;
+      
     let rates = await this.allBanksService.GetAllBanksWithInterestRateHorizontaly();
-    //this.tmpList=JSON.parse(rates.data);
-   // this.sortProduct(this.orderByColumn,"DESC");
     this.allBanksService.listAllBanks = JSON.parse(rates.data);
     this.GetHighestRates();
 
@@ -66,7 +59,7 @@ export class AllBanksComponent implements OnInit {
     this.orderByColumn=columnName;
     //this.spinner.show();
     let rates = await this.allBanksService.GetAllBanksWithInterestRateHorizontalyOrderByColumnName(columnName);
-    this.allBanksService.listAllBanks = JSON.parse(rates.data);
+    this.allBanksService.listAllBanks = rates;
     this.GetHighestRates();
     this.spinner.hide();
   }

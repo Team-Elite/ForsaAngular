@@ -5,6 +5,7 @@ import 'rxjs/add/operator/toPromise';
 import {LenderDashboardService} from '../../Shared/lender-dashboard.service';
 import {LenderModel} from '../../Shared/lender-model.class';
 import {LenderSendRequestModel} from '../Shared/lender-send-request-model.class';
+import { TokenService } from '../../../token-service';
 
 
 @Injectable({
@@ -12,6 +13,7 @@ import {LenderSendRequestModel} from '../Shared/lender-send-request-model.class'
 })
 export class BestPriceViewService {
 
+    tokenService: TokenService = new TokenService;
   constructor(public http:Http, public lenderDashboardService:LenderDashboardService) { }
   
   timePeriod:number;
@@ -24,25 +26,43 @@ export class BestPriceViewService {
   listPayments:any[]=[{Id:1, Value:'yearly payments'}];
 
   async GetRatesByTimePeriod(){
-    const response= await this.http.get(this.lenderDashboardService.baseURL+'/api/LenderBestPriceView/GetRatesByTimePeriod?userId='+this.lenderDashboardService.userId).toPromise();
-        return response.json();
+    let token= await this.http.get(this.lenderDashboardService.baseURL+'/api/LenderBestPriceView/GetRatesByTimePeriod?id='+this.lenderDashboardService.userId).toPromise();
+      var response;
+      if (token != undefined) {
+          token = token.json().data;
+          response = JSON.parse(this.tokenService.jwtdecrypt(token).unique_name);
+      }
+      return response;
     }
 
     async GetRatesByTimePeriodK(){
-      const response= await this.http.get(this.lenderDashboardService.baseURL+'/api/LenderBestPriceView/GetRatesByTimePeriodK').toPromise();
-          return response.json();
+        let token= await this.http.get(this.lenderDashboardService.baseURL+'/api/LenderBestPriceView/GetRatesByTimePeriodK').toPromise();
+        var response;
+        if (token != undefined) {
+            token = token.json().data;
+            response = JSON.parse(this.tokenService.jwtdecrypt(token).unique_name);
+        }
+        return response;
       }
 
     async GetBanksByTimePeriod(){
-      const response= await this.http.get(this.lenderDashboardService.baseURL+'/api/LenderBestPriceView/GetBanksByTimePeriod?userId='
-      +this.lenderDashboardService.userId+'&timePeriod='+this.timePeriod+'&pageNumber='+this.pageNumber).toPromise();
-          return response.json();
+        let token= await this.http.get(this.lenderDashboardService.baseURL+'/api/LenderBestPriceView/GetBanksByTimePeriod?id='      +this.lenderDashboardService.userId+'&timePeriod='+this.timePeriod+'&pageNumber='+this.pageNumber).toPromise();
+        var response;
+        if (token != undefined) {
+            token = token.json().data;
+            response = JSON.parse(this.tokenService.jwtdecrypt(token).unique_name);
+        }
+        return response;
       }
 
       async GetBanksByTimePeriodK(){
-        const response= await this.http.get(this.lenderDashboardService.baseURL+'/api/LenderBestPriceView/GetBanksByTimePeriodK?'
-        +'timePeriod='+this.timePeriod+'&pageNumber='+this.pageNumber).toPromise();
-            return response.json();
+          let token= await this.http.get(this.lenderDashboardService.baseURL+'/api/LenderBestPriceView/GetBanksByTimePeriodK?timePeriod='+this.timePeriod+'&pageNumber='+this.pageNumber).toPromise();
+          var response;
+          if (token != undefined) {
+              token = token.json().data;
+              response = JSON.parse(this.tokenService.jwtdecrypt(token).unique_name);
+          }
+          return response;
         }
 
   SaveSendRequest(sendRequestModel:LenderSendRequestModel){
@@ -53,9 +73,13 @@ export class BestPriceViewService {
     }      
   
     async GetLenderSendRequestPendingLendedRequestByLenderId(){
-      const response = await this.http.get(this.lenderDashboardService.authenticateServiceService.baseURL+'/api/LenderDashboard'
-      +'/GetLenderSendRequestPendingLendedRequestByLenderId?lenderId='+this.lenderDashboardService.userId).toPromise();
-    return response.json();
+        let token = await this.http.get(this.lenderDashboardService.authenticateServiceService.baseURL+'/api/LenderDashboard/GetLenderSendRequestPendingLendedRequestByLenderId?Id='+this.lenderDashboardService.userId).toPromise();
+        var response;
+        if (token != undefined) {
+            token = token.json().data;
+            response = this.tokenService.jwtdecrypt(token).unique_name == "[]" ? [] : JSON.parse(this.tokenService.jwtdecrypt(token).unique_name);
+        }
+        return response;
     }
   
     AcceptLendedRequest(lenderSendRequestModel:any){

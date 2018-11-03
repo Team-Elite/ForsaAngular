@@ -36,7 +36,7 @@ export class LenderDashboardComponent implements OnInit {
 
   ngOnInit() {
     this.spinner.show();
-    debugger;
+   
     this.authenticateServiceService.AuthenticateSession();
     this.lenderDashboardService.UserTypeId=this.authenticateServiceService.GetUserTypeId();
     //console.log("this.lenderDashboardService.UserTypeId",this.lenderDashboardService.UserTypeId)
@@ -45,7 +45,7 @@ export class LenderDashboardComponent implements OnInit {
     this.lenderDashboardService.loggedInUser= this.authenticateServiceService.GetUserDetail();
     this.copyLoggedInUser = Object.assign({}, this.lenderDashboardService.loggedInUser);
     this.GetPagesForLenderSettingStartPage();
-    debugger;
+   
     this.SelectedStartPage=this.testList[0].Id;
     //this.GetLenderStartPage();
     this.bestPriceViewService.lenderSendRequestModel2={
@@ -75,7 +75,8 @@ export class LenderDashboardComponent implements OnInit {
       IsMessageSentToForsa:false
       }
 
-     // this.SetTimeInterval();
+      this.SetTimeInterval();
+      this.spinner.hide();
   }
 
   SetTimeInterval(){
@@ -85,9 +86,7 @@ export class LenderDashboardComponent implements OnInit {
   }
 
   AcceptLendedRequest(){
-    debugger;
-
-    for(var i =0; i<= this.bestPriceViewService.listInterestConvention.length-1;i++){
+      for(var i =0; i<= this.bestPriceViewService.listInterestConvention.length-1;i++){
       if(this.bestPriceViewService.lenderSendRequestModel2.InterestConvention == this.bestPriceViewService.listInterestConvention[i].Id){
        this.bestPriceViewService.lenderSendRequestModel2.InterestConventionName=this.bestPriceViewService.listInterestConvention[i].Value;
        break;
@@ -172,7 +171,7 @@ chtforse(){
       this.IfBankResponseFound=true;
       var element= document.getElementById('ShowSendRequestLDPopup');
       element.click();
-      this.bestPriceViewService.lenderSendRequestModel2=JSON.parse(result.data)[0];    
+      this.bestPriceViewService.lenderSendRequestModel2=JSON.parse(result)[0];    
     }
     //this.spinner.hide();
   }
@@ -180,7 +179,7 @@ chtforse(){
   async GetLenderStartPage(){
    debugger;
    let startPage= await this.lenderDashboardService.GetLenderStartPage();
-   this.lenderDashboardService.StartingScreen=JSON.parse(startPage.data);
+   this.lenderDashboardService.StartingScreen=JSON.parse(startPage);
    this.spinner.hide();
    if(this.lenderDashboardService.StartingScreen[0].PageName == "Best Price View"){
     //this.lenderDashboardService.CurrentPageName="Best Price View";

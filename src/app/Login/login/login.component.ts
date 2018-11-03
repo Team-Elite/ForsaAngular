@@ -88,20 +88,20 @@ export class LoginComponent implements OnInit {
                 // else if(user.UserTypeId==6){
                 //   this.router.navigate(['/KontactDashBoard']);
                 // }
-                debugger;
+              
                 if (user.UserTypeId === "5" || user.UserTypeId === "6") {
 
                     this.lenderDashboardService.userId = user.UserId; //this.authenticateServiceService.GetUserId();
                     let startPage = await this.lenderDashboardService.GetLenderStartPage();
                     if (startPage != undefined) {
-                        this.lenderDashboardService.StartingScreen = JSON.parse(startPage.data);
-                        if (this.lenderDashboardService.StartingScreen[0].PageName == "Best Price View") {
+                        this.lenderDashboardService.StartingScreen = startPage.PageName;
+                        if (this.lenderDashboardService.StartingScreen == "Best Price View") {
                             this.router.navigate(['lenderDashboard/BestPriceView']);
                         }
-                        else if (this.lenderDashboardService.StartingScreen[0].PageName == "View All Price") {
+                        else if (this.lenderDashboardService.StartingScreen == "View All Price") {
                             this.router.navigate(['lenderDashboard/ViewAllPrice']);
                         }
-                        else if (this.lenderDashboardService.StartingScreen[0].PageName == "All Banks") {
+                        else if (this.lenderDashboardService.StartingScreen == "All Banks") {
                             this.router.navigate(['lenderDashboard/AllBanks']);
                         }
                     }

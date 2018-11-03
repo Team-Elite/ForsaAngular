@@ -107,7 +107,7 @@ export class BestPriceViewComponent implements OnInit {
         }
 
 
-        this.bestPriceViewService.listRatesByTimePeriod = JSON.parse(rates.data);
+        this.bestPriceViewService.listRatesByTimePeriod = rates;
         this.spinner.hide();
     }
 
@@ -131,7 +131,7 @@ export class BestPriceViewComponent implements OnInit {
         }
       
 
-        this.bestPriceViewService.listBankByTimePeriod = JSON.parse(rates.data);
+        this.bestPriceViewService.listBankByTimePeriod = rates.data;
         this.spinner.hide();
     }
 

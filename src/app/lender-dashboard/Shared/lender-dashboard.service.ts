@@ -14,7 +14,7 @@ export class LenderDashboardService {
     constructor(public http: Http, public authenticateServiceService: AuthenticateServiceService) { }
     tokenService: TokenService = new TokenService;
     userId: number;
-    StartingScreen: any[];
+    StartingScreen: any;
     baseURL: string = this.authenticateServiceService.baseURL;
     loggedInUser: UserModel;
     NewPassword: string;
@@ -22,12 +22,15 @@ export class LenderDashboardService {
     CurrentPageName: string;
     UserTypeId: any = 5;
 
-    GetLenderStartPage() {
-        debugger;
-        const token = this.http.get(this.authenticateServiceService.baseURL + '/api/LenderStartPage/GetLenderStartPage?id=' + this.userId).map((response) => response.json()).toPromise();
+    async GetLenderStartPage() {
+        
+        let token = await this.http.get(this.authenticateServiceService.baseURL + '/api/LenderStartPage/GetLenderStartPage?id=' + this.userId).toPromise();
         //const token = this.http.get(this.authenticateServiceService.baseURL + '/api/LenderStartPage/GetLenderStartPage?id=' + this.userId);//.toPromise();
         var response;
-        if (token != undefined) response = JSON.parse(this.tokenService.jwtdecrypt(token).unique_name)[0];
+        if (token != undefined) {
+            token = token.json().data;
+            response = JSON.parse(this.tokenService.jwtdecrypt(token).unique_name)[0];
+        }
         return response;
     }
 
@@ -39,12 +42,17 @@ export class LenderDashboardService {
     }
 
     async GetPagesForLenderSettingStartPage() {
-        const response = await this.http.get(this.authenticateServiceService.baseURL + '/api/LenderDashboard/GetPagesForLenderSettingStartPage?userId=' + this.userId).toPromise();
-        return response.json();
+        let token = await this.http.get(this.authenticateServiceService.baseURL + '/api/LenderDashboard/GetPagesForLenderSettingStartPage?id=' + this.userId).toPromise();
+        var response;
+        if (token != undefined) {
+            token = token.json().data;
+            response = JSON.parse(this.tokenService.jwtdecrypt(token).unique_name);
+        }
+        return response;
     }
 
     async LenderSaveStartPage(pageId: number) {
-        const response = await this.http.get(this.authenticateServiceService.baseURL + '/api/LenderDashboard/LenderSaveStartPage?userId=' + this.userId
+        const response = await this.http.get(this.authenticateServiceService.baseURL + '/api/LenderDashboard/LenderSaveStartPage?id=' + this.userId
             + "&pageId=" + pageId.toString()).toPromise();
         return response.json();
     }

@@ -10,7 +10,7 @@ export class TokenService  {
     public jwtdecrypt(token) {
         if (token == undefined || token == null) return;
         const helper = new JwtHelperService();
-        return helper.decodeToken(token);
-       
+        var result= helper.decodeToken(token);
+        return result;
     }
 }

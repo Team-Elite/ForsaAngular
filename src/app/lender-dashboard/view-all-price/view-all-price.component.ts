@@ -55,7 +55,7 @@ export class ViewAllPriceComponent implements OnInit {
         this.viewAllPriceService.listViewAllPrice3 = [];
         this.spinner.show();
         let rates = await this.viewAllPriceService.GetAllBanksWithStatusIsDeselected();
-        this.viewAllPriceService.listViewAllPrice = JSON.parse(rates.data);
+        this.viewAllPriceService.listViewAllPrice = rates;
         if (this.viewAllPriceService.listViewAllPrice != undefined && this.viewAllPriceService.listViewAllPrice != null && this.viewAllPriceService.listViewAllPrice.length != 0) {
             this.viewAllPriceService.toatlBanksCount = this.viewAllPriceService.listViewAllPrice[0].Count;
         }
@@ -91,7 +91,7 @@ export class ViewAllPriceComponent implements OnInit {
        
         let rates = await this.viewAllPriceService.GetAllBanksWithInterestRateHorizontalyOrderByColumnName(this.orderByColumn);
         if (rates.IfDataFound) {
-            this.viewAllPriceService.listAllBanks = JSON.parse(rates.data);
+            this.viewAllPriceService.listAllBanks = rates;
            
            this.GetHighestRatesViewAllPrice();
           
@@ -242,7 +242,7 @@ export class ViewAllPriceComponent implements OnInit {
         this.orderByColumn=columnName;
         this.spinner.show();
         let rates = await this.viewAllPriceService.GetAllBanksWithInterestRateHorizontalyOrderByColumnName(columnName);
-        this.viewAllPriceService.listAllBanks = JSON.parse(rates.data);
+        this.viewAllPriceService.listAllBanks = rates;
         this.GetHighestRatesViewAllPrice();
         //this.SetHighestRatesTimeInterval();
        
