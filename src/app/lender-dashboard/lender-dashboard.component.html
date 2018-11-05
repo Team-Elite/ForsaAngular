@@ -19479,7 +19479,7 @@
                             </a>
                         </li>
                         <li *ngIf="lenderDashboardService.UserTypeId == 5">
-                            <a href="javascript:void(0);">
+                            <a href="javascript:void(0);" (click)="SetCurrentPage('All Banks')">
                                 {{'Lender.DashBoard.AllBanks'|translate}}<span class="align-middle input-group-icon "><i class="material-icons ">view_list</i></span>
                             </a>
                         </li>

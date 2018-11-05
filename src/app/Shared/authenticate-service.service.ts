@@ -19,7 +19,7 @@ export class AuthenticateServiceService {
     Userdata: any;
     //baseURL:string='http://localhost:60744/';
     constructor(@Inject(LOCAL_STORAGE) public storage: StorageService, public router: Router) { 
-        
+        debugger;
         this.Userdata= this.tokenService.jwtdecrypt(this.Usertoken);
     }
     SaveSession(value: any) {
@@ -40,11 +40,18 @@ export class AuthenticateServiceService {
         let sessionDate = this.storage.get(this.sessionCreatedAt);
         if (this.Userdata == undefined || this.Userdata == null) {
             this.router.navigate(['/login']);
+            return;
+        }
+        else {
+
         }
         if ((new Date().getTime() - new Date(sessionDate).getTime()) > 7200000) {
             //alert("Session expired. Please login again.")
             this.router.navigate(['/login']);
+            return;
         }
+
+
     }
 
     GetUserId() {

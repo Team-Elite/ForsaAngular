@@ -36,7 +36,7 @@ export class LenderDashboardComponent implements OnInit {
 
   ngOnInit() {
     this.spinner.show();
-   
+      debugger;
     this.authenticateServiceService.AuthenticateSession();
     this.lenderDashboardService.UserTypeId=this.authenticateServiceService.GetUserTypeId();
     //console.log("this.lenderDashboardService.UserTypeId",this.lenderDashboardService.UserTypeId)
@@ -177,7 +177,7 @@ chtforse(){
   }
 
   async GetLenderStartPage(){
-   debugger;
+   
    let startPage= await this.lenderDashboardService.GetLenderStartPage();
    this.lenderDashboardService.StartingScreen=JSON.parse(startPage);
    this.spinner.hide();
@@ -195,7 +195,7 @@ chtforse(){
   }
 
   UpdateUserProfile(){
-    debugger;
+  
 
     /* Validating controls */
     if(this.ValidateUserPfrofileFields(this.copyLoggedInUser,this.lenderDashboardService.NewPassword,this.lenderDashboardService.ConfirmPassword)){
@@ -303,7 +303,7 @@ chtforse(){
 async GetPagesForLenderSettingStartPage(){
   this.spinner.show();
  var response=await this.lenderDashboardService.GetPagesForLenderSettingStartPage();
- this.listPagesForStartingPage=JSON.parse(response.data);
+ this.listPagesForStartingPage=response;
  if(this.listPagesForStartingPage !=undefined && this.listPagesForStartingPage.length!=0){
    for(var i=0; this.listPagesForStartingPage.length-1;i++){
      if(this.listPagesForStartingPage[i].IsStartPage == true){

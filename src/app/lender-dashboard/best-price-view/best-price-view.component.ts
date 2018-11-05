@@ -36,6 +36,7 @@ export class BestPriceViewComponent implements OnInit {
     }
     getData() {
         this.spinner.show();
+        debugger;
         this.GetRatesByTimePeriod();
         this.bestPriceViewService.listBankByTimePeriod = [];
         var selectedTimePeriodId = undefined;
@@ -131,7 +132,7 @@ export class BestPriceViewComponent implements OnInit {
         }
       
 
-        this.bestPriceViewService.listBankByTimePeriod = rates.data;
+        this.bestPriceViewService.listBankByTimePeriod = rates;
         this.spinner.hide();
     }
 
