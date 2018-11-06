@@ -16,13 +16,13 @@ export class AllBanksComponent implements OnInit {
   constructor(public allBanksService: AllBanksService, public spinner: NgxSpinnerService
     , public toastr: ToastrService) {
     // set up event listeners i.e. for incoming "message" event
-   // hubProxy.on('sendBankRate', (data) => {
+    hubProxy.on('sendBankRate', (data) => {
       //this.GetAllBanksWithInterestRateHorizontaly();
-      //this.GetAllBanksWithInterestRateHorizontalyOrderByColumnName(this.orderByColumn);
-   // })
-    //connection.start({ jsonp: true })
-    //  .done(function () { console.log('Now connected, connection ID=' + connection.id); })
-    //  .fail(function () { console.log('Could not connect'); });
+      this.GetAllBanksWithInterestRateHorizontalyOrderByColumnName(this.orderByColumn);
+    })
+    connection.start({ jsonp: true })
+      .done(function () { console.log('Now connected, connection ID=' + connection.id); })
+      .fail(function () { console.log('Could not connect'); });
   }
  orderByColumn:string="Bank";
  tmpList:any[];
@@ -40,7 +40,7 @@ export class AllBanksComponent implements OnInit {
     async GetAllBanksWithInterestRateHorizontaly() {
       
     let rates = await this.allBanksService.GetAllBanksWithInterestRateHorizontaly();
-    this.allBanksService.listAllBanks = JSON.parse(rates.data);
+    this.allBanksService.listAllBanks = rates;
     this.GetHighestRates();
 
   }
@@ -55,13 +55,13 @@ export class AllBanksComponent implements OnInit {
 //     });
 // } 
 
-  async GetAllBanksWithInterestRateHorizontalyOrderByColumnName(columnName: string) {
+    async GetAllBanksWithInterestRateHorizontalyOrderByColumnName(columnName: string) {
+      
     this.orderByColumn=columnName;
-    //this.spinner.show();
     let rates = await this.allBanksService.GetAllBanksWithInterestRateHorizontalyOrderByColumnName(columnName);
     this.allBanksService.listAllBanks = rates;
     this.GetHighestRates();
-    this.spinner.hide();
+   
   }
   GetHighestRates() {
 

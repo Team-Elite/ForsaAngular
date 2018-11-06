@@ -19,8 +19,7 @@ export class AuthenticateServiceService {
     Userdata: any;
     //baseURL:string='http://localhost:60744/';
     constructor(@Inject(LOCAL_STORAGE) public storage: StorageService, public router: Router) { 
-        debugger;
-        this.Userdata= this.tokenService.jwtdecrypt(this.Usertoken);
+     
     }
     SaveSession(value: any) {
 
@@ -33,6 +32,13 @@ export class AuthenticateServiceService {
         this.storage.set(this.userValue, value);
         this.storage.set(this.sessionCreatedAt, new Date());
     }
+    GetUserSession() {
+        this.Usertoken = this.storage.get(this.userValue);
+        this.Userdata = this.tokenService.jwtdecrypt(this.Usertoken);
+
+
+    }
+
 
     AuthenticateSession() {
 

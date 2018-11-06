@@ -23,7 +23,7 @@ export class LenderDashboardService {
     UserTypeId: any = 5;
 
     async GetLenderStartPage() {
-        
+        if (this.userId === undefined) return null;
         let token = await this.http.get(this.authenticateServiceService.baseURL + '/api/LenderStartPage/GetLenderStartPage?id=' + this.userId).toPromise();
         //const token = this.http.get(this.authenticateServiceService.baseURL + '/api/LenderStartPage/GetLenderStartPage?id=' + this.userId);//.toPromise();
         var response;
@@ -42,17 +42,19 @@ export class LenderDashboardService {
     }
 
     async GetPagesForLenderSettingStartPage() {
+        if (this.userId === undefined) return null;
         let token = await this.http.get(this.authenticateServiceService.baseURL + '/api/LenderDashboard/GetPagesForLenderSettingStartPage?id=' + this.userId).toPromise();
         var response;
         if (token != undefined) {
             token = token.json().data;
             response = JSON.parse(this.tokenService.jwtdecrypt(token).unique_name);
         }
-        debugger;
+       
         return response;
     }
 
     async LenderSaveStartPage(pageId: number) {
+        if (this.userId === undefined) return null;
         const response = await this.http.get(this.authenticateServiceService.baseURL + '/api/LenderDashboard/LenderSaveStartPage?id=' + this.userId
             + "&pageId=" + pageId.toString()).toPromise();
         return response.json();
