@@ -8,14 +8,15 @@ import { GroupModel } from '../../Shared/group-model.class';
 import {AuthenticateServiceService} from '../../Shared/authenticate-service.service';
 import {UserModel} from '../../registration/Shared/user-model.model';
 import {LenderSendRequestModel} from '../../lender-dashboard/best-price-view/Shared/lender-send-request-model.class';
-
+import { TokenService } from '../../token-service';
 @Injectable({
   providedIn: 'root'
 })
 export class BankDashboardService {
 selectedRateOfInterestOfBankModel:RateOfInterestOfBankModel;
 listRateOfInterestOfBankModel:RateOfInterestOfBankModel[];
-listUserGroupForSettingRateOfInterestVisibility:GroupModel[];
+    listUserGroupForSettingRateOfInterestVisibility: GroupModel[];
+    tokenService: TokenService = new TokenService;
 userId:number=0;
 loggedInUser:UserModel;
 NewPassword:string='';
@@ -30,8 +31,14 @@ lenderSendRequestModel:LenderSendRequestModel;
   // }).toPromise().then(x=>{
   // this.listRateOfInterestOfBankModel=x;
 
-  const response= await this.http.get(this.authenticateServiceService.baseURL+'/api/BankDashBoard/GetRateOfInterestOfBank?userId='+this.userId).toPromise();
-      return response.json();
+      let token = await this.http.get(this.authenticateServiceService.baseURL + '/api/BankDashBoard/GetRateOfInterestOfBank?userId=' + this.userId).toPromise();
+      var response;
+      if (token != undefined) {
+          token = token.json().data;
+          response = JSON.parse(this.tokenService.jwtdecrypt(token).unique_name)[0];
+      }
+      return response;
+     
   // })
   }
 
@@ -70,11 +77,17 @@ lenderSendRequestModel:LenderSendRequestModel;
     return this.http.post(this.authenticateServiceService.baseURL+'/api/User/UpdateUser',body,requestOptions).map(x=> x.json());
   }
 
-  async GetLenderSendRequestRequestdOnTheBasisOfBorrowerId(){
-    const response = await this.http.get(this.authenticateServiceService.baseURL+'/api/BankDashBoard'
+    async GetLenderSendRequestRequestdOnTheBasisOfBorrowerId() {
+
+    let token = await this.http.get(this.authenticateServiceService.baseURL+'/api/BankDashBoard'
           + '/GetLenderSendRequestRequestdOnTheBasisOfBorrowerId?borrowerId=' + this.userId).toPromise();
-      
-  return response.json();
+        var response;
+        if (token != undefined) {
+            token = token.json().data;
+            response = JSON.parse(this.tokenService.jwtdecrypt(token).unique_name)[0];
+        }
+        return response;
+  //return response.json();
   }
 
   UpdateLenderSendRequestRateOfInterest(lenderSendRequestModel :any){

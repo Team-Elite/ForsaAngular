@@ -3,7 +3,6 @@ import{Http,Response,Headers,RequestOptions,RequestMethod} from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 import {AuthenticateServiceService} from '../../Shared/authenticate-service.service';
-
 import { Language } from './language.model';
 import { Country } from './country.model';
 // import {UserModel} from './UserModel.model';
@@ -12,12 +11,14 @@ import {DepositInsuranceModel} from '../../Shared/deposit-insurance-model.class'
 import {RatingAgeNturModel} from '../../Shared/rating-age-ntur-model.class';
 import {SubGroupModel} from '../../Shared/sub-group-model.class';
 import {SalutationModel} from '../../Shared/salutation-model.class';
-import {GroupModel} from '../../Shared/group-model.class';
+import { GroupModel } from '../../Shared/group-model.class';
+import { TokenService } from '../../token-service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RegistrationService {
+    tokenService: TokenService = new TokenService;
   userId:number;
   CountryList:Country[];
   languageList:Language[];
@@ -113,17 +114,38 @@ export class RegistrationService {
       //     this.userModelExist=x;
       // });
 
-      const response= await this.http.get(this.authenticateServiceService.baseURL+'/api/User/IfUserNameAvailable?userName='+userName).toPromise();
-      return response.json();
+      let token = await this.http.get(this.authenticateServiceService.baseURL + '/api/User/IfUserNameAvailable?userName=' + userName).toPromise();
+      var response;
+      if (token != undefined) {
+          token = token.json().data;
+          response = JSON.parse(this.tokenService.jwtdecrypt(token).unique_name);
+      }
+
+      return response;
+     // return response.json();
     }
 
   async CheckIfEmailIdIsRegistered(emailId:string){
-     const response= await this.http.get(this.authenticateServiceService.baseURL+'/api/User/IfEmailIdIsRegistered?emailId='+emailId).toPromise();
-     return response.json();
+      let token= await this.http.get(this.authenticateServiceService.baseURL+'/api/User/IfEmailIdIsRegistered?emailId='+emailId).toPromise();
+      var response;
+      if (token != undefined) {
+          token = token.json().data;
+          response = JSON.parse(this.tokenService.jwtdecrypt(token).unique_name);
+      }
+
+      return response;
+      //return response.json();
     }
 
   async GetUserDetailByUserId(){
-      const response= await this.http.get(this.authenticateServiceService.baseURL+'/api/User/GetUserDetailByUserId?userId='+this.userId).toPromise();
-      return response.json();
+      let token= await this.http.get(this.authenticateServiceService.baseURL+'/api/User/GetUserDetailByUserId?userId='+this.userId).toPromise();
+      var response;
+      if (token != undefined) {
+          token = token.json().data;
+          response = JSON.parse(this.tokenService.jwtdecrypt(token).unique_name);
+      }
+
+      return response;
+      //return response.json();
       }
 }

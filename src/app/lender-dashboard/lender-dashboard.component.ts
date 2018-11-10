@@ -37,10 +37,11 @@ export class LenderDashboardComponent implements OnInit {
     IfBothUserTypeFound: boolean = false;
 
     ngOnInit() {
+        debugger;
         this.spinner.show();
         this._authenticateServiceService.GetUserSession();
         this._authenticateServiceService.AuthenticateSession();
-
+      
         this.lenderDashboardService.UserTypeId = this._authenticateServiceService.GetUserTypeId();
         //console.log("this.lenderDashboardService.UserTypeId",this.lenderDashboardService.UserTypeId)
         this.lenderDashboardService.userId = this._authenticateServiceService.GetUserId();
@@ -302,7 +303,7 @@ export class LenderDashboardComponent implements OnInit {
     }
 
     async GetPagesForLenderSettingStartPage() {
-      
+        debugger;
         var response = await this.lenderDashboardService.GetPagesForLenderSettingStartPage();
         this.listPagesForStartingPage = response;
         if (this.listPagesForStartingPage != undefined && this.listPagesForStartingPage.length != 0) {
