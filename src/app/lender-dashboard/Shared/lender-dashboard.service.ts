@@ -22,7 +22,7 @@ export class LenderDashboardService {
     CurrentPageName: string;
     UserTypeId: any = 5;
 
-    async GetLenderStartPage() {
+   public async GetLenderStartPage() {
         if (this.userId === undefined) return null;
         let token = await this.http.get(this.authenticateServiceService.baseURL + '/api/LenderStartPage/GetLenderStartPage?id=' + this.userId).toPromise();
         //const token = this.http.get(this.authenticateServiceService.baseURL + '/api/LenderStartPage/GetLenderStartPage?id=' + this.userId);//.toPromise();
@@ -41,7 +41,7 @@ export class LenderDashboardService {
         return this.http.post(this.authenticateServiceService.baseURL + '/api/User/UpdateUser', body, requestOptions).map(x => x.json());
     }
 
-    async GetPagesForLenderSettingStartPage() {
+    public async GetPagesForLenderSettingStartPage() {
         debugger;
         if (this.userId === undefined) return null;
         let token = await this.http.get(this.authenticateServiceService.baseURL + '/api/LenderDashboard/GetPagesForLenderSettingStartPage?id=' + this.userId).toPromise();

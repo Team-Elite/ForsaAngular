@@ -16,7 +16,7 @@ import { LOCAL_STORAGE } from 'angular-webstorage-service';
 export class LenderDashboardComponent implements OnInit {
     userId: any
     _authenticateServiceService: AuthenticateServiceService
-    constructor(@Inject(LOCAL_STORAGE) public lenderDashboardService: LenderDashboardService, public spinner: NgxSpinnerService
+    constructor( public lenderDashboardService: LenderDashboardService, public spinner: NgxSpinnerService
         , public authenticateServiceService: AuthenticateServiceService, public router: Router
         , public toastr: ToastrService
         , public bestPriceViewService: BestPriceViewService) {
@@ -37,7 +37,7 @@ export class LenderDashboardComponent implements OnInit {
     IfBothUserTypeFound: boolean = false;
 
     ngOnInit() {
-        debugger;
+
         this.spinner.show();
         this._authenticateServiceService.GetUserSession();
         this._authenticateServiceService.AuthenticateSession();

@@ -32,35 +32,36 @@ export class AllBanksService {
     HighestRateY5: string;
     constructor(public http: Http, public lenderDashboardService: LenderDashboardService) { }
     async GetAllBanksWithInterestRateHorizontaly() {
-        let token = await this.http.get(this.lenderDashboardService.baseURL + '/api/LenderDashboard/GetAllBanksWithInterestRateHorizontaly?Id=' + this.lenderDashboardService.userId).map((response) => response.json()).toPromise();
-
         var response;
-        if (token != undefined) {
-            token = token.json().data;
-            response = JSON.parse(this.tokenService.jwtdecrypt(token).unique_name);
-        }
+        if (this.lenderDashboardService.userId === undefined) { return response; }
+        await this.http.get(this.lenderDashboardService.baseURL + '/api/LenderDashboard/GetAllBanksWithInterestRateHorizontaly?Id=' + this.lenderDashboardService.userId)
+            .map((data: Response) => { return data.json() })
+            .toPromise().then(token => {
+                response = JSON.parse(this.tokenService.jwtdecrypt(token.data).unique_name)
+            });
         return response;
 
 
     }
 
     async GetAllBanksWithInterestRateHorizontalyOrderByColumnName(orderByColumn: string) {
-        let token = await this.http.get(this.lenderDashboardService.baseURL + '/api/LenderDashboard/GetAllBanksWithInterestRateHorizontalyOrderByColumnName?Id=' + this.lenderDashboardService.userId + '&orderBy=' + orderByColumn).toPromise();
         var response;
-        if (token != undefined) {
-            token = token.json().data;
-            response = JSON.parse(this.tokenService.jwtdecrypt(token).unique_name);
-        }
+        if (this.lenderDashboardService.userId === undefined) { return response; }
+        await this.http.get(this.lenderDashboardService.baseURL + '/api/LenderDashboard/GetAllBanksWithInterestRateHorizontalyOrderByColumnName?Id=' + this.lenderDashboardService.userId + '&orderBy=' + orderByColumn)
+            .map((data: Response) => { return data.json() })
+            .toPromise().then(token => {
+                response = JSON.parse(this.tokenService.jwtdecrypt(token.data).unique_name)
+            });
         return response;
     }
 
     async GetAllBanksWithInterestRateHorizontalyForKontactUser(orderBy: string) {
-        let token = await this.http.get(this.lenderDashboardService.baseURL + '/api/LenderDashboard/GetAllBanksWithInterestRateHorizontalyForKontactUser?orderBy=' + orderBy).map((response) => response.json()).toPromise();
         var response;
-        if (token != undefined) {
-            token = token.json().data;
-            response = JSON.parse(this.tokenService.jwtdecrypt(token).unique_name);
-        }
+        if (this.lenderDashboardService.userId === undefined) { return response; }
+        await this.http.get(this.lenderDashboardService.baseURL + '/api/LenderDashboard/GetAllBanksWithInterestRateHorizontalyForKontactUser?orderBy=' + orderBy)
+            .map((data: Response) => { return data.json() }).toPromise().then(token => {
+                response = JSON.parse(this.tokenService.jwtdecrypt(token.data).unique_name)
+            });
         return response;
     }
 }

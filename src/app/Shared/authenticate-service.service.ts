@@ -43,6 +43,7 @@ export class AuthenticateServiceService {
     AuthenticateSession() {
 
        // let val = this.storage.get(this.userValue);
+        this.GetUserSession();
         let sessionDate = this.storage.get(this.sessionCreatedAt);
         if (this.Userdata == undefined || this.Userdata == null) {
             this.router.navigate(['/login']);
@@ -62,6 +63,7 @@ export class AuthenticateServiceService {
 
     GetUserId() {
         //var data = this.tokenService.jwtdecrypt(this.Usertoken);
+        this.GetUserSession();
         return JSON.parse(this.Userdata.unique_name)[0].UserId;
     }
 
@@ -78,19 +80,19 @@ export class AuthenticateServiceService {
     }
 
     GetBorrowerName() {
-
+        this.GetUserSession();
        // let userId = this.storage.get(this.userValue);
         return JSON.parse(this.Userdata.unique_name)[0].Bank;
     }
 
     GetUserTypeId() {
-
+        this.GetUserSession();
        // let userId = this.storage.get(this.userValue);
         return JSON.parse(this.Userdata.unique_name)[0].UserTypeId;
     }
 
     GetUserDetail() {
-
+        this.GetUserSession();
        // let userId = this.storage.get(this.userValue);
         return JSON.parse(this.Userdata.unique_name)[0];
     }

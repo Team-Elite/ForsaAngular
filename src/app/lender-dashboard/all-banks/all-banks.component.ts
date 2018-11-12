@@ -56,7 +56,7 @@ export class AllBanksComponent implements OnInit {
 // } 
 
     async GetAllBanksWithInterestRateHorizontalyOrderByColumnName(columnName: string) {
-      
+       
     this.orderByColumn=columnName;
     let rates = await this.allBanksService.GetAllBanksWithInterestRateHorizontalyOrderByColumnName(columnName);
     this.allBanksService.listAllBanks = rates;
