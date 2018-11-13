@@ -128,7 +128,6 @@ this.activatedRoute.params.subscribe( x => {console.log(x["uId"]);
   }
 
 async registerUser(form:NgForm){
-  debugger;
   if(form.value.UserId != undefined && form.value.UserId != null && form.value.UserId >0){
     this.UpdateUserDetails(form);
     return;
