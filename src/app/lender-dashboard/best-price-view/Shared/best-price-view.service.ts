@@ -12,10 +12,11 @@ import { TokenService } from '../../../token-service';
     providedIn: 'root'
 })
 export class BestPriceViewService {
-
+    headerOptions = new Headers({ 'Content-Type': 'application/json' });
+    requestOptions = new RequestOptions({ method: RequestMethod.Post, headers: this.headerOptions });
     tokenService: TokenService = new TokenService;
     constructor(public http: Http, public lenderDashboardService: LenderDashboardService) { }
-
+    userId: number;
     timePeriod: number;
     pageNumber: number;
     listRatesByTimePeriod: LenderModel[];
@@ -27,7 +28,9 @@ export class BestPriceViewService {
 
     async GetRatesByTimePeriod() {
         if (this.lenderDashboardService.userId === undefined) return null;
-        let token = await this.http.get(this.lenderDashboardService.baseURL + '/api/LenderBestPriceView/GetRatesByTimePeriod?id=' + this.lenderDashboardService.userId).toPromise();
+        var webtoken = { data: this.tokenService.jwtencrypt({ userId: this.lenderDashboardService.userId }) };
+        let token = await this.http.post(this.lenderDashboardService.baseURL + '/api/LenderBestPriceView/GetRatesByTimePeriod', webtoken, this.requestOptions ).toPromise();
+        //let token = await this.http.get(this.lenderDashboardService.baseURL + '/api/LenderBestPriceView/GetRatesByTimePeriod?id=' + this.lenderDashboardService.userId).toPromise();
         var response;
         if (token != undefined) {
             token = token.json().data;
@@ -37,7 +40,11 @@ export class BestPriceViewService {
     }
 
     async GetRatesByTimePeriodK() {
-        let token = await this.http.get(this.lenderDashboardService.baseURL + '/api/LenderBestPriceView/GetRatesByTimePeriodK').toPromise();
+       
+        var webtoken = { data: this.tokenService.jwtencrypt({ userId: this.userId }) };
+        let token = await this.http.post(this.lenderDashboardService.baseURL + '/api/LenderBestPriceView/GetRatesByTimePeriodK', webtoken, this.requestOptions).toPromise();
+        //let token = await this.http.get(this.lenderDashboardService.baseURL + '/api/LenderBestPriceView/GetRatesByTimePeriodK').toPromise();
+
         var response;
         if (token != undefined) {
             token = token.json().data;
@@ -48,7 +55,10 @@ export class BestPriceViewService {
 
     async GetBanksByTimePeriod() {
         if (this.lenderDashboardService.userId === undefined) return null;
-        let token = await this.http.get(this.lenderDashboardService.baseURL + '/api/LenderBestPriceView/GetBanksByTimePeriod?id=' + this.lenderDashboardService.userId + '&timePeriod=' + this.timePeriod + '&pageNumber=' + this.pageNumber).toPromise();
+        var webtoken = { data: this.tokenService.jwtencrypt({ userId: this.lenderDashboardService.userId, timePeriod: this.timePeriod, pageNumber: this.pageNumber}) };
+        let token = await this.http.post(this.lenderDashboardService.baseURL + '/api/LenderBestPriceView/GetBanksByTimePeriod', webtoken, this.requestOptions).toPromise();
+
+       // let token = await this.http.get(this.lenderDashboardService.baseURL + '/api/LenderBestPriceView/GetBanksByTimePeriod?id=' + this.lenderDashboardService.userId + '&timePeriod=' + this.timePeriod + '&pageNumber=' + this.pageNumber).toPromise();
         var response;
         if (token != undefined) {
             token = token.json().data;
@@ -58,7 +68,10 @@ export class BestPriceViewService {
     }
 
     async GetBanksByTimePeriodK() {
-        let token = await this.http.get(this.lenderDashboardService.baseURL + '/api/LenderBestPriceView/GetBanksByTimePeriodK?timePeriod=' + this.timePeriod + '&pageNumber=' + this.pageNumber).toPromise();
+        var webtoken = { data: this.tokenService.jwtencrypt({timePeriod: this.timePeriod, pageNumber: this.pageNumber }) };
+        let token = await this.http.post(this.lenderDashboardService.baseURL + '/api/LenderBestPriceView/GetBanksByTimePeriodK', webtoken, this.requestOptions ).toPromise();
+
+        //let token = await this.http.get(this.lenderDashboardService.baseURL + '/api/LenderBestPriceView/GetBanksByTimePeriodK?timePeriod=' + this.timePeriod + '&pageNumber=' + this.pageNumber).toPromise();
         var response;
         if (token != undefined) {
             token = token.json().data;
@@ -77,8 +90,10 @@ export class BestPriceViewService {
     async GetLenderSendRequestPendingLendedRequestByLenderId() {
         if (this.lenderDashboardService.userId === undefined) return null;
         var response;
+        var webtoken = { data: this.tokenService.jwtencrypt({ userId: this.lenderDashboardService.userId }) };
+        let token = await this.http.post(this.lenderDashboardService.authenticateServiceService.baseURL + '/api/LenderDashboard/GetLenderSendRequestPendingLendedRequestByLenderId', webtoken, this.requestOptions).toPromise();
 
-        let token = await this.http.get(this.lenderDashboardService.authenticateServiceService.baseURL + '/api/LenderDashboard/GetLenderSendRequestPendingLendedRequestByLenderId?Id=' + this.lenderDashboardService.userId).toPromise();
+       // let token = await this.http.get(this.lenderDashboardService.authenticateServiceService.baseURL + '/api/LenderDashboard/GetLenderSendRequestPendingLendedRequestByLenderId?Id=' + this.lenderDashboardService.userId).toPromise();
 
         if (token != undefined) {
             token = token.json().data;

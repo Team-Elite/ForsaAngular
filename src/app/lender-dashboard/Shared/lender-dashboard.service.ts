@@ -21,10 +21,13 @@ export class LenderDashboardService {
     ConfirmPassword: string;
     CurrentPageName: string;
     UserTypeId: any = 5;
-
+    headerOptions = new Headers({ 'Content-Type': 'application/json' });
+    requestOptions = new RequestOptions({ method: RequestMethod.Post, headers: this.headerOptions });
    public async GetLenderStartPage() {
-        if (this.userId === undefined) return null;
-        let token = await this.http.get(this.authenticateServiceService.baseURL + '/api/LenderStartPage/GetLenderStartPage?id=' + this.userId).toPromise();
+       if (this.userId === undefined) return null;
+       var webtoken = { data: this.tokenService.jwtencrypt({ userId: this.userId }) };
+       let token = await this.http.put(this.authenticateServiceService.baseURL + '/api/LenderStartPage/GetLenderStartPage', webtoken, this.requestOptions).toPromise();
+        //let token = await this.http.get(this.authenticateServiceService.baseURL + '/api/LenderStartPage/GetLenderStartPage?id=' + this.userId).toPromise();
         //const token = this.http.get(this.authenticateServiceService.baseURL + '/api/LenderStartPage/GetLenderStartPage?id=' + this.userId);//.toPromise();
         var response;
         if (token != undefined) {
@@ -44,7 +47,9 @@ export class LenderDashboardService {
     public async GetPagesForLenderSettingStartPage() {
         debugger;
         if (this.userId === undefined) return null;
-        let token = await this.http.get(this.authenticateServiceService.baseURL + '/api/LenderDashboard/GetPagesForLenderSettingStartPage?id=' + this.userId).toPromise();
+        var webtoken = { data: this.tokenService.jwtencrypt({ userId: this.userId }) };
+        let token = await this.http.post(this.authenticateServiceService.baseURL + '/api/LenderDashboard/GetPagesForLenderSettingStartPage', webtoken, this.requestOptions).toPromise();
+        //let token = await this.http.get(this.authenticateServiceService.baseURL + '/api/LenderDashboard/GetPagesForLenderSettingStartPage?id=' + this.userId).toPromise();
         var response;
         if (token != undefined) {
             token = token.json().data;
@@ -56,8 +61,9 @@ export class LenderDashboardService {
 
     async LenderSaveStartPage(pageId: number) {
         if (this.userId === undefined) return null;
-        let token = await this.http.get(this.authenticateServiceService.baseURL + '/api/LenderDashboard/LenderSaveStartPage?id=' + this.userId
-            + "&pageId=" + pageId.toString()).toPromise();
+        var webtoken = { data: this.tokenService.jwtencrypt({ userId: this.userId, pageId: pageId }) };
+        let token = await this.http.post(this.authenticateServiceService.baseURL + '/api/LenderDashboard/LenderSaveStartPage', webtoken, this.requestOptions).toPromise();
+       // let token = await this.http.get(this.authenticateServiceService.baseURL + '/api/LenderDashboard/LenderSaveStartPage?id=' + this.userId  + "&pageId=" + pageId.toString()).toPromise();
         var response;
         if (token != undefined) {
             token = token.json().data;

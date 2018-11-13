@@ -141,9 +141,9 @@ export class LoginComponent implements OnInit {
             this.toastr.success("Password sent.", "Login - Forgot Password");
         }
         else {
-            this.spinner.hide();
+            
             this.toastr.error("Email id is wrong.", "Login - Forgot Password");
-        }
+        }this.spinner.hide();
     }
 
     keydown(event) {

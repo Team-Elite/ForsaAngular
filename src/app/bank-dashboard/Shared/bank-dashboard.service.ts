@@ -23,34 +23,38 @@ export class BankDashboardService {
     ConfirmPassword: string = '';
     lastGroupId: string = '';
     lenderSendRequestModel: LenderSendRequestModel;
-
+    headerOptions = new Headers({ 'Content-Type': 'application/json' });
+    requestOptions = new RequestOptions({ method: RequestMethod.Post, headers: this.headerOptions });
     constructor(private http: Http, public authenticateServiceService: AuthenticateServiceService) { }
 
     async GetRateOfInterestOfBank() {
-      
-        let token = await this.http.get(this.authenticateServiceService.baseURL + '/api/BankDashBoard/GetRateOfInterestOfBank?id=' + this.userId).map((data: Response) => {
+        var webtoken = { data: this.tokenService.jwtencrypt({ userId: this.userId }) };
+        let token = await this.http.put(this.authenticateServiceService.baseURL + '/api/BankDashBoard/GetRateOfInterestOfBank', webtoken, this.requestOptions).map((data: Response) => {
             return data.json();
         }).toPromise().then(token => this.listRateOfInterestOfBankModel = JSON.parse(this.tokenService.jwtdecrypt(token.data).unique_name));
-       
+
     }
 
     UpdateRateOfInterest(rateModel: RateOfInterestOfBankModel) {
-        var body = JSON.stringify(rateModel);
-        var headerOptions = new Headers({ 'Content-Type': 'application/json' });
-        var requestOptions = new RequestOptions({ method: RequestMethod.Post, headers: headerOptions });
-        return this.http.post(this.authenticateServiceService.baseURL + '/api/BankDashBoard/UpdateRateOfInterestOfBank', body, requestOptions).map(x => x.json());
+        // var body = JSON.stringify(rateModel);
+        var webtoken = { data: this.tokenService.jwtencrypt({ userId: this.userId }) };
+        return this.http.post(this.authenticateServiceService.baseURL + '/api/BankDashBoard/UpdateRateOfInterestOfBank', webtoken, this.requestOptions).map(x => x.json());
     }
 
     PublishAndUnPublish(IsPublished: boolean) {
         //var body=JSON.stringify(rateModel);
-        var headerOptions = new Headers({ 'Content-Type': 'application/text' });
-        var requestOptions = new RequestOptions({ method: RequestMethod.Post, headers: headerOptions });
-        return this.http.post(this.authenticateServiceService.baseURL + '/api/BankDashBoard/PublishAndUnPublish?IsPublished=' + IsPublished + "&id=" + this.userId, requestOptions).map(x => x.json());
+        var data = { IsPublished: IsPublished, id: this.userId };
+        var webtoken = { data: this.tokenService.jwtencrypt(data) };
+        return this.http.post(this.authenticateServiceService.baseURL + '/api/BankDashBoard/PublishAndUnPublish', webtoken, this.requestOptions).map(x => x.json());
+        // return this.http.post(this.authenticateServiceService.baseURL + '/api/BankDashBoard/PublishAndUnPublish?IsPublished=' + IsPublished + "&id=" + , requestOptions).map(x => x.json());//
     }
 
     async GetUserGroupForSettingRateOfInterestVisibility() {
-        await this.http.get(this.authenticateServiceService.baseURL + '/api/BankDashBoard/GetUserGroupForSettingRateOfInterestVisibility?id=' + this.userId).map((data: Response) => {
-            return data.json() ;
+
+        var webtoken = { data: this.tokenService.jwtencrypt({ userId: this.userId }) };
+        //await this.http.get(this.authenticateServiceService.baseURL + '/api/BankDashBoard/GetUserGroupForSettingRateOfInterestVisibility?id=' + this.userId).map((data: Response) => {
+        await this.http.post(this.authenticateServiceService.baseURL + '/api/BankDashBoard/GetUserGroupForSettingRateOfInterestVisibility', webtoken, this.requestOptions).map((data: Response) => {
+            return data.json();
         }).toPromise().then(x => {
             this.listUserGroupForSettingRateOfInterestVisibility = JSON.parse(this.tokenService.jwtdecrypt(x).unique_name);
         })
@@ -58,22 +62,27 @@ export class BankDashboardService {
 
     UpdateUserGroupAgainstBankWhomRateOfInterestWillBeVisible(GroupIds: string) {
         //var body=JSON.stringify(rateModel);
-        var headerOptions = new Headers({ 'Content-Type': 'application/text' });
-        var requestOptions = new RequestOptions({ method: RequestMethod.Post, headers: headerOptions });
-        return this.http.post(this.authenticateServiceService.baseURL + '/api/BankDashBoard/UpdateUserGroupAgainstBankWhomRateOfInterestWillBeVisible?GroupIds=' + GroupIds + "&id=" + this.userId, requestOptions).map(x => x.json());
+        var data = { GroupIds: GroupIds, id: this.userId };
+        var webtoken = { data: this.tokenService.jwtencrypt(data) };
+        return this.http.post(this.authenticateServiceService.baseURL + '/api/BankDashBoard/UpdateUserGroupAgainstBankWhomRateOfInterestWillBeVisible', webtoken, this.requestOptions).map(x => x.json());
+        //    return this.http.post(this.authenticateServiceService.baseURL + '/api/BankDashBoard/UpdateUserGroupAgainstBankWhomRateOfInterestWillBeVisible?GroupIds=' + GroupIds + "&id=" + this.userId, requestOptions).map(x => x.json());
+
     }
 
     UpdateUserProfile(userModel: UserModel) {
-        var body = JSON.stringify(userModel);
-        var headerOptions = new Headers({ 'Content-Type': 'application/json' });
-        var requestOptions = new RequestOptions({ method: RequestMethod.Post, headers: headerOptions });
-        return this.http.post(this.authenticateServiceService.baseURL + '/api/User/UpdateUser', body, requestOptions).map(x => x.json());
+        // var body = JSON.stringify(userModel);
+        var webtoken = { data: this.tokenService.jwtencrypt(userModel) };
+        return this.http.post(this.authenticateServiceService.baseURL + '/api/User/UpdateUser', webtoken, this.requestOptions).map(x => x.json());
+        //return this.http.post(this.authenticateServiceService.baseURL + '/api/User/UpdateUser', body, requestOptions).map(x => x.json());
     }
 
     async GetLenderSendRequestRequestdOnTheBasisOfBorrowerId() {
 
-        let token = await this.http.get(this.authenticateServiceService.baseURL + '/api/BankDashBoard'
-            + '/GetLenderSendRequestRequestdOnTheBasisOfBorrowerId?borrowerId=' + this.userId).toPromise();
+        var webtoken = { data: this.tokenService.jwtencrypt({ userId: this.userId }) };
+        let token = await this.http.post(this.authenticateServiceService.baseURL + '/api/BankDashBoard'
+            + '/GetLenderSendRequestRequestdOnTheBasisOfBorrowerId', webtoken, this.requestOptions).toPromise();
+        var response;
+        //let token = await this.http.get(this.authenticateServiceService.baseURL + '/api/BankDashBoard' + '/GetLenderSendRequestRequestdOnTheBasisOfBorrowerId?borrowerId=' + this.userId).toPromise();
         var response;
         if (token != undefined) {
             token = token.json().data;
@@ -84,9 +93,8 @@ export class BankDashboardService {
     }
 
     UpdateLenderSendRequestRateOfInterest(lenderSendRequestModel: any) {
-        var body = JSON.stringify(lenderSendRequestModel);
-        var headerOptions = new Headers({ 'Content-Type': 'application/json' });
-        var requestOptions = new RequestOptions({ method: RequestMethod.Post, headers: headerOptions });
-        return this.http.post(this.authenticateServiceService.baseURL + '/api/BankDashBoard/UpdateRateOfInterest', body, requestOptions).map(x => x.json());
+        //var body = JSON.stringify(lenderSendRequestModel);
+        var webtoken = { data: this.tokenService.jwtencrypt(lenderSendRequestModel) };
+        return this.http.post(this.authenticateServiceService.baseURL + '/api/BankDashBoard/UpdateRateOfInterest', webtoken, this.requestOptions).map(x => x.json());
     }
 }

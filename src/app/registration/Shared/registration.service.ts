@@ -49,70 +49,70 @@ export class RegistrationService {
 
     getDepositInsuranceList() {
         this.http.get(this.authenticateServiceService.baseURL + '/api/DepositInsurance/GetDepositInsurance').map((data: Response) => {
-            return data.json() as DepositInsuranceModel[];
+            return data.json().data;
         }).toPromise().then(x => {
-            this.listDepositInsurance = x;
+            this.listDepositInsurance = JSON.parse(this.tokenService.jwtdecrypt(x).unique_name);
         })
     }
 
     GetRatingAgeNturList() {
         this.http.get(this.authenticateServiceService.baseURL + '/api/RatingAgeNtur/GetRatingAgeNtur').map((data: Response) => {
-            return data.json() as RatingAgeNturModel[];
+            return data.json().data;
         }).toPromise().then(x => {
-            this.listRatingAgeNturModel1 = x;
+            this.listRatingAgeNturModel1 = JSON.parse(this.tokenService.jwtdecrypt(x).unique_name);
         })
     }
 
     GetRatingAgeNturList2() {
         this.http.get(this.authenticateServiceService.baseURL + '/api/RatingAgeNtur/GetRatingAgeNtur').map((data: Response) => {
-            return data.json() as RatingAgeNturModel[];
+            return data.json().data;
         }).toPromise().then(x => {
-            this.listRatingAgeNturModel2 = x;
+            this.listRatingAgeNturModel2 = JSON.parse(this.tokenService.jwtdecrypt(x).unique_name);
         })
     }
 
     GetSubGroupList() {
         this.http.get(this.authenticateServiceService.baseURL + '/api/SubGroup/GetSubGroup').map((data: Response) => {
-            return data.json() as SubGroupModel[];
+            return data.json().data ;
         }).toPromise().then(x => {
-            this.listSubGroupModel = x;
+            this.listSubGroupModel = JSON.parse(this.tokenService.jwtdecrypt(x).unique_name);
         })
     }
 
     GetSalutationList() {
         this.http.get(this.authenticateServiceService.baseURL + '/api/Salutation/GetSalutation').map((data: Response) => {
-            return data.json() as SalutationModel[];
+            return data.json().data;
         }).toPromise().then(x => {
-            this.listSalutationModel = x;
+            this.listSalutationModel = JSON.parse(this.tokenService.jwtdecrypt(x).unique_name);
         })
     }
 
     GetGroupList() {
         this.http.get(this.authenticateServiceService.baseURL + '/api/Group/GetGroup').map((data: Response) => {
-            return data.json() as GroupModel[];
+            return data.json().data;
         }).toPromise().then(x => {
-            this.listGroupModel = x;
+            this.listGroupModel = JSON.parse(this.tokenService.jwtdecrypt(x).unique_name);
         })
     }
 
     getLanguageList() {
 
-        this.http.get(this.authenticateServiceService.baseURL + '/api/Language/GettblLanguages').map((data: Response) => { return data.json() as Language[]; }).toPromise().then(
-            x => { this.languageList = x; })
+        this.http.get(this.authenticateServiceService.baseURL + '/api/Language/GettblLanguages').map((data: Response) => { return data.json().data;}).toPromise().then(
+            x => { this.languageList = JSON.parse(this.tokenService.jwtdecrypt(x).unique_name); })
     }
 
-    async RegisterUser(user: UserModel) {
+    RegisterUser(user: UserModel) {
         // var body=JSON.stringify(user);
         var webtoken = { data: this.tokenService.jwtencrypt(user) };
 
         return this.http.post(this.authenticateServiceService.baseURL + '/api/User/RegisterUser', webtoken, this.requestOptions).map(x => x.json());
     }
 
-    async UpdateUserDetails(user: UserModel) {
+    UpdateUserDetails(user: UserModel) {
         var webtoken = { data: this.tokenService.jwtencrypt(user) };
         // var body=JSON.stringify(user);
        
-        return await this.http.put(this.authenticateServiceService.baseURL + '/api/User/UpdateUserDetails', webtoken, this.requestOptions).map(x => x.json());
+        return  this.http.put(this.authenticateServiceService.baseURL + '/api/User/UpdateUserDetails', webtoken, this.requestOptions).map(x => x.json());
     }
 
     async CheckIfUserNameIsAvailable(userName: string) {

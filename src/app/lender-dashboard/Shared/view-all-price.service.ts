@@ -8,6 +8,9 @@ import { TokenService } from '../../token-service';
     providedIn: 'root'
 })
 export class ViewAllPriceService {
+    headerOptions = new Headers({ 'Content-Type': 'application/json' });
+    requestOptions = new RequestOptions({ method: RequestMethod.Post, headers: this.headerOptions });
+
     tokenService : TokenService= new TokenService;
     constructor(public http: Http, public lenderDashboardService: LenderDashboardService) { }
 
@@ -42,7 +45,11 @@ export class ViewAllPriceService {
     HighestRateY5: string;
 
     async GetAllBanksWithStatusIsDeselected() {
-        let token = await this.http.get(this.lenderDashboardService.baseURL + '/api/LenderDashboard/GetAllBanksWithStatusIsDeselected?Id=' + this.lenderDashboardService.userId + '&PageNumber=' + this.selectedPageNumber).toPromise();
+
+        var webtoken = { data: this.tokenService.jwtencrypt({ userId: this.lenderDashboardService.userId }), PageNumber:this.selectedPageNumber  };
+        let token = await this.http.post(this.lenderDashboardService.baseURL + '/api/LenderDashboard/GetAllBanksWithStatusIsDeselected', webtoken, this.requestOptions ).toPromise();
+
+       // let token = await this.http.get(this.lenderDashboardService.baseURL + '/api/LenderDashboard/GetAllBanksWithStatusIsDeselected?Id=' + this.lenderDashboardService.userId + '&PageNumber=' + this.selectedPageNumber).toPromise();
         var response;
         if (token != undefined) {
             token = token.json().data;
@@ -52,7 +59,10 @@ export class ViewAllPriceService {
     }
 
     async GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected() {
-        let token = await this.http.get(this.lenderDashboardService.baseURL + '/api/LenderDashboard/GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected?Id=' + this.lenderDashboardService.userId).toPromise();
+        var webtoken = { data: this.tokenService.jwtencrypt({ userId: this.lenderDashboardService.userId }) };
+        let token = await this.http.post(this.lenderDashboardService.baseURL + '/api/LenderDashboard/GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected', webtoken, this.requestOptions  ).toPromise();
+
+       // let token = await this.http.get(this.lenderDashboardService.baseURL + '/api/LenderDashboard/GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected?Id=' + this.lenderDashboardService.userId).toPromise();
         var response;
         if (token != undefined) {
             token = token.json().data;
@@ -62,7 +72,11 @@ export class ViewAllPriceService {
     }
 
     async GetAllBanksWithInterestRateHorizontalyOrderByColumnName(orderByColumn: string) {
-        let token = await this.http.get(this.lenderDashboardService.baseURL + '/api/LenderDashboard/GetAllBanksWithInterestRateHorizontalyOrderByColumnName?Id=' + this.lenderDashboardService.userId + '&orderBy=' + orderByColumn).toPromise();
+       
+        var webtoken = { data: this.tokenService.jwtencrypt({ userId: this.lenderDashboardService.userId }), orderBy: orderByColumn };
+        let token = await this.http.post(this.lenderDashboardService.baseURL + '/api/LenderDashboard/GetAllBanksWithInterestRateHorizontalyOrderByColumnName', webtoken, this.requestOptions).toPromise();
+
+      //  let token = await this.http.get(this.lenderDashboardService.baseURL + '/api/LenderDashboard/GetAllBanksWithInterestRateHorizontalyOrderByColumnName?Id=' + this.lenderDashboardService.userId + '&orderBy=' + orderByColumn).toPromise();
         var response;
         if (token != undefined) {
             token = token.json().data;
@@ -72,7 +86,10 @@ export class ViewAllPriceService {
     }
 
     async DeselectSelectBank(bankId: number, IsSelected: Boolean) {
-        let token = await this.http.get(this.lenderDashboardService.baseURL + '/api/LenderDashboard/DeselectBank?userId=' + this.lenderDashboardService.userId + "&bankId=" + bankId + "&IsSelected=" + IsSelected).toPromise();
+        var webtoken = { data: this.tokenService.jwtencrypt({ userId: this.lenderDashboardService.userId }), IsSelected: IsSelected  };
+        let token = await this.http.post(this.lenderDashboardService.baseURL + '/api/LenderDashboard/DeselectBank', webtoken, this.requestOptions).toPromise();
+
+       // let token = await this.http.get(this.lenderDashboardService.baseURL + '/api/LenderDashboard/DeselectBank?userId=' + this.lenderDashboardService.userId + "&bankId=" + bankId + "&IsSelected=" + IsSelected).toPromise();
         var response;
         if (token != undefined) {
             token = token.json().data;
