@@ -56,6 +56,7 @@ export class RegistrationService {
     }
 
     GetRatingAgeNturList() {
+
         this.http.get(this.authenticateServiceService.baseURL + '/api/RatingAgeNtur/GetRatingAgeNtur').map((data: Response) => {
             return data.json().data;
         }).toPromise().then(x => {
@@ -121,34 +122,24 @@ export class RegistrationService {
         // }).toPromise().then( x=>{
         //     this.userModelExist=x;
         // });
-        var webtoken = { data: this.tokenService.jwtencrypt(userName) };
+        var webtoken = { data: this.tokenService.jwtencrypt({ userName: userName }) };
 
-        let token = await this.http.post(this.authenticateServiceService.baseURL + '/api/User/IfUserNameAvailable', webtoken, this.requestOptions).toPromise();
-        var response;
-        if (token != undefined) {
-            token = token.json().data;
-            response = JSON.parse(this.tokenService.jwtdecrypt(token).unique_name);
-        }
-
-        return response;
-        // return response.json();
+        return await this.http.post(this.authenticateServiceService.baseURL + '/api/User/IfUserNameAvailable', webtoken, this.requestOptions).toPromise().then(x=>x.json().data);
+      
+       
     }
 
     async CheckIfEmailIdIsRegistered(emailId: string) {
-        var webtoken = { data: this.tokenService.jwtencrypt(emailId) };
-        let token = await this.http.post(this.authenticateServiceService.baseURL + '/api/User/IfEmailIdIsRegistered',webtoken,this.requestOptions).toPromise();
-        var response;
-        if (token != undefined) {
-            token = token.json().data;
-            response = JSON.parse(this.tokenService.jwtdecrypt(token).unique_name);
-        }
-
-        return response;
-        //return response.json();
+        var webtoken = { data: this.tokenService.jwtencrypt({ EmailAddress: emailId }) };
+        return await this.http.post(this.authenticateServiceService.baseURL + '/api/User/IfEmailIdIsRegistered', webtoken, this.requestOptions).toPromise().then(x => x.json().data);
+       
     }
 
     async GetUserDetailByUserId() {
-        var webtoken = { data: this.tokenService.jwtencrypt(this.userId) };
+       
+        var webtoken = null;
+        if (this.userId != undefined || this.userId == null) webtoken={ data: this.tokenService.jwtencrypt({ userId: this.userId }) };
+     
         let token = await this.http.post(this.authenticateServiceService.baseURL + '/api/User/GetUserDetailByUserId', webtoken, this.requestOptions).toPromise();
         var response;
         if (token != undefined) {

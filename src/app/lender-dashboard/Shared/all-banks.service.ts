@@ -68,10 +68,10 @@ export class AllBanksService {
     async GetAllBanksWithInterestRateHorizontalyForKontactUser(orderBy: string) {
         var response;
         if (this.lenderDashboardService.userId === undefined) { return response; }
-        var webtoken = { data: this.tokenService.jwtencrypt({ userId: this.lenderDashboardService.userId }), orderBy: orderBy };
-        await this.http.post(this.lenderDashboardService.baseURL + '/api/LenderDashboard/GetAllBanksWithInterestRateHorizontalyForKontactUser', webtoken, this.requestOptions)
+        //var webtoken = { data: this.tokenService.jwtencrypt({ userId: this.lenderDashboardService.userId }), orderBy: orderBy };
+       // await this.http.post(this.lenderDashboardService.baseURL + '/api/LenderDashboard/GetAllBanksWithInterestRateHorizontalyForKontactUser', webtoken, this.requestOptions)
 
-        //await this.http.get(this.lenderDashboardService.baseURL + '/api/LenderDashboard/GetAllBanksWithInterestRateHorizontalyForKontactUser?orderBy=' + orderBy)
+        await this.http.get(this.lenderDashboardService.baseURL + '/api/LenderDashboard/GetAllBanksWithInterestRateHorizontalyForKontactUser?orderBy=' + orderBy)
             .map((data: Response) => { return data.json() }).toPromise().then(token => {
                 response = JSON.parse(this.tokenService.jwtdecrypt(token.data).unique_name)
             });

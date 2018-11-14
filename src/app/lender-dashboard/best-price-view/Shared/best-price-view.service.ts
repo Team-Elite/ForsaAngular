@@ -41,9 +41,9 @@ export class BestPriceViewService {
 
     async GetRatesByTimePeriodK() {
        
-        var webtoken = { data: this.tokenService.jwtencrypt({ userId: this.userId }) };
-        let token = await this.http.post(this.lenderDashboardService.baseURL + '/api/LenderBestPriceView/GetRatesByTimePeriodK', webtoken, this.requestOptions).toPromise();
-        //let token = await this.http.get(this.lenderDashboardService.baseURL + '/api/LenderBestPriceView/GetRatesByTimePeriodK').toPromise();
+        //var webtoken = { data: this.tokenService.jwtencrypt({ userId: this.userId }) };
+       // let token = await this.http.get(this.lenderDashboardService.baseURL + '/api/LenderBestPriceView/GetRatesByTimePeriodK', webtoken, this.requestOptions).toPromise();
+        let token = await this.http.get(this.lenderDashboardService.baseURL + '/api/LenderBestPriceView/GetRatesByTimePeriodK').toPromise();
 
         var response;
         if (token != undefined) {

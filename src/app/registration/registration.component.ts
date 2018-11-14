@@ -47,6 +47,7 @@ export class RegistrationComponent implements OnInit {
     }
 
     ngOnInit() {
+        debugger;
         this.registrationService.getCountryList();
         this.registrationService.getLanguageList();
         this.registrationService.getDepositInsuranceList();
@@ -59,6 +60,7 @@ export class RegistrationComponent implements OnInit {
         this.registrationService.ShowSection2 = false;
         this.resetForm();
         this.activatedRoute.params.subscribe(x => {
+           
             if (x["uId"] != undefined && x["uId"] != null) {
                 this.registrationService.userId = x["uId"];
                 this.GetUserDetailByUserId();
@@ -548,7 +550,7 @@ export class RegistrationComponent implements OnInit {
 
 
     async UpdateUserDetails(form: NgForm) {
-        debugger;
+      
         form.value.DateCreated = new Date();
         form.value.DateModified = new Date();
         form.value.CreatedBy = -1;
