@@ -26,7 +26,7 @@ export class LenderDashboardService {
    public async GetLenderStartPage() {
        if (this.userId === undefined) return null;
        var webtoken = { data: this.tokenService.jwtencrypt({ userId: this.userId }) };
-       let token = await this.http.put(this.authenticateServiceService.baseURL + '/api/LenderStartPage/GetLenderStartPage', webtoken, this.requestOptions).toPromise();
+       let token = await this.http.post(this.authenticateServiceService.baseURL + '/api/LenderStartPage/GetLenderStartPage', webtoken, this.requestOptions).toPromise();
         //let token = await this.http.get(this.authenticateServiceService.baseURL + '/api/LenderStartPage/GetLenderStartPage?id=' + this.userId).toPromise();
         //const token = this.http.get(this.authenticateServiceService.baseURL + '/api/LenderStartPage/GetLenderStartPage?id=' + this.userId);//.toPromise();
         var response;

@@ -47,7 +47,7 @@ export class RegistrationComponent implements OnInit {
     }
 
     ngOnInit() {
-        debugger;
+       
         this.registrationService.getCountryList();
         this.registrationService.getLanguageList();
         this.registrationService.getDepositInsuranceList();
@@ -395,10 +395,10 @@ export class RegistrationComponent implements OnInit {
             this.toastr.error("Please accept AGBs.", "Registration");
             return false;
         }
-        //if (!this.IfVerificationDone) {
-        //    this.toastr.error("Please verify captcha.", "Registration");
-        //    return false;
-        //}
+        if (!this.IfVerificationDone) {
+            this.toastr.error("Please verify captcha.", "Registration");
+            return false;
+        }
         return true;
     }
 
@@ -458,7 +458,7 @@ export class RegistrationComponent implements OnInit {
             numberOfErrorFound++;
             errorMessage = errorMessage + " Sub group,";
         }
-        debugger;
+       
         if ((form.value.rdbBank == undefined && form.value.rdbNonBank == undefined) || (form.value.rdbBank == false && form.value.rdbNonBank == false)) {
             this.toastr.error("Please select is it Borrower or Lender.", "Registration");
             return false;
@@ -506,7 +506,7 @@ export class RegistrationComponent implements OnInit {
                 errorMessage = errorMessage + " Mail Address,";
             }
         }
-        debugger;
+       
         if (form.value.UserId == undefined || form.value.UserId == null || form.value.UserId == 0) {
             if (form.value.UserName == undefined || form.value.UserName == null || form.value.UserName.trim().length == 0) {
                 IfErrorFound = true;
@@ -529,7 +529,7 @@ export class RegistrationComponent implements OnInit {
     }
 
     async GetUserDetailByUserId(form?: NgForm) {
-        debugger;
+       
         //this.registrationService.userId=74;
         this.spinner.show();
         var result = await this.registrationService.GetUserDetailByUserId();
@@ -561,7 +561,7 @@ export class RegistrationComponent implements OnInit {
         this.spinner.show();
         // // Checking ifUserExist
         // let userExist= await this.registrationService.CheckIfUserNameIsAvailable(form.value.UserName);
-        // debugger;
+        //
         // if(userExist == true){
         //   this.spinner.hide();
         //   this.toastr.error("User name not available.","Registration");
@@ -571,7 +571,7 @@ export class RegistrationComponent implements OnInit {
 
         // Checking if email already registered
         // // // let ifEmailIdAlreadyRegistered= await this.registrationService.CheckIfEmailIdIsRegistered(form.value.EmailAddress);
-        // // // debugger;
+        // // //
         // // // if(ifEmailIdAlreadyRegistered == true){
         // // //   this.spinner.hide();
         // // //   this.toastr.error("This email id is already registered.","Registration");
@@ -618,4 +618,6 @@ export class RegistrationComponent implements OnInit {
 
         })
     }
+
+  
 }

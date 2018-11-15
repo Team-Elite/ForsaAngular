@@ -56,7 +56,8 @@ export class BankDashboardService {
         await this.http.post(this.authenticateServiceService.baseURL + '/api/BankDashBoard/GetUserGroupForSettingRateOfInterestVisibility', webtoken, this.requestOptions).map((data: Response) => {
             return data.json();
         }).toPromise().then(x => {
-            this.listUserGroupForSettingRateOfInterestVisibility = JSON.parse(this.tokenService.jwtdecrypt(x).unique_name);
+            debugger;
+            this.listUserGroupForSettingRateOfInterestVisibility = JSON.parse(this.tokenService.jwtdecrypt(x.data).unique_name);
         })
     }
 
