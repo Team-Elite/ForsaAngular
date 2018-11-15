@@ -10,7 +10,8 @@ import { TokenService } from '../../token-service';
     providedIn: 'root'
 })
 export class LenderDashboardService {
-
+    headerOptions = new Headers({ 'Content-Type': 'application/json' });
+    requestOptions = new RequestOptions({ method: RequestMethod.Post, headers: this.headerOptions });
     constructor(public http: Http, public authenticateServiceService: AuthenticateServiceService) { }
     tokenService: TokenService = new TokenService;
     userId: number;
@@ -21,8 +22,7 @@ export class LenderDashboardService {
     ConfirmPassword: string;
     CurrentPageName: string;
     UserTypeId: any = 5;
-    headerOptions = new Headers({ 'Content-Type': 'application/json' });
-    requestOptions = new RequestOptions({ method: RequestMethod.Post, headers: this.headerOptions });
+    
    public async GetLenderStartPage() {
        if (this.userId === undefined) return null;
        var webtoken = { data: this.tokenService.jwtencrypt({ userId: this.userId }) };
@@ -38,10 +38,9 @@ export class LenderDashboardService {
     }
 
     UpdateUserProfile(userModel: UserModel) {
-        var body = JSON.stringify(userModel);
-        var headerOptions = new Headers({ 'Content-Type': 'application/json' });
-        var requestOptions = new RequestOptions({ method: RequestMethod.Post, headers: headerOptions });
-        return this.http.post(this.authenticateServiceService.baseURL + '/api/User/UpdateUser', body, requestOptions).map(x => x.json());
+        var webtoken = { data: this.tokenService.jwtencrypt(userModel) };
+        
+        return this.http.post(this.authenticateServiceService.baseURL + '/api/User/UpdateUser', webtoken, this.requestOptions).map(x => x.json());
     }
 
     public async GetPagesForLenderSettingStartPage() {

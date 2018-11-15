@@ -75,7 +75,7 @@ export class LoginComponent implements OnInit {
             this.spinner.show();
             let user = await this.loginService.ValidateUser(form.value);
             if (user.IsSuccess == true) {
-                debugger;
+                
                 this.authenticateServiceService.SaveSession(user.data);
                 let token = this.authenticateServiceService.storage.get(this.authenticateServiceService.userValue);
                 var data = this.tokenService.jwtdecrypt(token);

@@ -90,6 +90,7 @@ export class LenderDashboardComponent implements OnInit {
     }
 
     AcceptLendedRequest() {
+        debugger;
         for (var i = 0; i <= this.bestPriceViewService.listInterestConvention.length - 1; i++) {
             if (this.bestPriceViewService.lenderSendRequestModel2.InterestConvention == this.bestPriceViewService.listInterestConvention[i].Id) {
                 this.bestPriceViewService.lenderSendRequestModel2.InterestConventionName = this.bestPriceViewService.listInterestConvention[i].Value;
@@ -303,7 +304,7 @@ export class LenderDashboardComponent implements OnInit {
     }
 
     async GetPagesForLenderSettingStartPage() {
-        debugger;
+       
         var response = await this.lenderDashboardService.GetPagesForLenderSettingStartPage();
         this.listPagesForStartingPage = response;
         if (this.listPagesForStartingPage != undefined && this.listPagesForStartingPage.length != 0) {

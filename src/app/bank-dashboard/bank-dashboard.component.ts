@@ -70,7 +70,7 @@ export class BankDashboardComponent implements OnInit {
     }
 
     SetTimeInterval() {
-        debugger;
+       
         this.timer = setInterval(() => {
             this.GetLenderSendRequestRequestdOnTheBasisOfBorrowerId();
         }, 5000);

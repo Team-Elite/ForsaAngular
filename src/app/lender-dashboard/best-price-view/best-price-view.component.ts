@@ -36,7 +36,7 @@ export class BestPriceViewComponent implements OnInit {
     }
     getData() {
         this.spinner.show();
-        debugger;
+        
         this.GetRatesByTimePeriod();
         this.bestPriceViewService.listBankByTimePeriod = [];
         var selectedTimePeriodId = undefined;
@@ -82,7 +82,7 @@ export class BestPriceViewComponent implements OnInit {
 
 
     CalculateNumberOfDays() {
-        debugger;
+        
         let fromDate: any = new Date(this.bestPriceViewService.lenderSendRequestModel.StartDate);
         let toDate: any = new Date(this.bestPriceViewService.lenderSendRequestModel.EndDate);
         if (this.bestPriceViewService.lenderSendRequestModel.StartDate != "" && this.bestPriceViewService.lenderSendRequestModel.EndDate != "") {
@@ -113,7 +113,7 @@ export class BestPriceViewComponent implements OnInit {
     }
 
     async GetBanksByTimePeriod(timePeriodId: number) {
-        debugger;
+        
         //document.getElementById(timePeriodId.toString());
         this.selectedTimePeriod = timePeriodId;
         this.bestPriceViewService.lenderDashboardService.authenticateServiceService.SaveSelectedTimePeriodId(timePeriodId);
@@ -146,7 +146,7 @@ export class BestPriceViewComponent implements OnInit {
 
     }
     ShowSendRequestModal(bank: any) {
-        debugger;
+        
         //  document.getElementById('modalSendRequest').style.display='block';
         //  document.getElementById('modalSendRequest').style.display='block';
         this.IfBankResponseFound = false;
@@ -190,7 +190,7 @@ export class BestPriceViewComponent implements OnInit {
     }
 
     SaveSendRequest() {
-        debugger;
+        
         for (var i = 0; i <= this.bestPriceViewService.listInterestConvention.length - 1; i++) {
             if (this.bestPriceViewService.lenderSendRequestModel.InterestConvention == this.bestPriceViewService.listInterestConvention[i].Id) {
                 this.bestPriceViewService.lenderSendRequestModel.InterestConventionName = this.bestPriceViewService.listInterestConvention[i].Value;
