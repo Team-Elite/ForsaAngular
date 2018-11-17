@@ -310,7 +310,16 @@ export class BankDashboardComponent implements OnInit {
         this.bankDashboardService.ConfirmPassword = '';
         this.copyLoggedInUser = Object.assign({}, this.bankDashboardService.loggedInUser);
     }
+    ShowMaturity(history:boolean) {
+        this.spinner.show();
+       
+        if (history) {
+            this.router.navigate(['bankDashboard/MaurityView/history=' + history]);
+        }
+     
+        this.spinner.hide();
 
+    }
 
 
     async GetLenderSendRequestRequestdOnTheBasisOfBorrowerId() {

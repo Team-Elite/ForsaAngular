@@ -160,7 +160,9 @@
                                 <button type="button" class="dropcockpit" id="eigene" data-toggle="modal" data-target=".bd-example-modal-lg-eigene-Stammdatenverwaltung">{{'Borrower.BankDashboard.Ownmasterdatamanagement'|translate}}</button>
                                 <button type="button" class="dropcockpit" id="Ansehen">{{'Borrower.BankDashboard.Viewanddownloadyourownduelist'|translate}}</button>
                                 <button type="button" class="dropcockpit" id="Ansehenund">{{'Borrower.BankDashboard.Viewanddownloadinthepastdonebusiness'|translate}}</button>
-                                <app-maturity-list></app-maturity-list>
+                                <button type="button" class="dropcockpit"  (click)="ShowMaturity(false)">Maturity List</button>
+                                <button type="button" class="dropcockpit" (click)="ShowMaturity(true)" > History Maturity List</button>
+
                             </div>
                            
                         </li>
@@ -670,7 +672,7 @@
 
 
 
-                <div class="row ansehen-sec">
+                <!--<div class="row ansehen-sec">
                     <div class="row dashboard-price-list application-export-sec">
                         <div class="col-lg-12">
                             <div class="ticket-uppr-btn">
@@ -823,7 +825,7 @@
                             </nav>
                         </div>
                     </div>
-                </div>
+                </div>-->
 
 
                 <!--MODAL mATURITY-->
@@ -841,110 +843,27 @@
                             </div>
 
                             <div class="modal-body" id="lendrequestbody">
-                                <div class="row  ansehen-sec">
-                                   
-                                    <div class="row dashboard-price-list application-export-sec">
-                                        <div class="col-lg-12">
-                                           
-                                            <div class="ticket-uppr-btn">
-                                                
-                                                <a href="https://dev.instimatch.com/forsa/applications/instimatch/Borrowerpdfmaturities" id="" class="btn export-btn green-btn ">
 
-                                                    Export PDF
+                                <div id="eigenepdf">
 
-                                                </a>
-                                             
-
-                                                <input type="button" id="" value="Export Excel" class="btn excel-btn green-btn">
-                                            </div>
-                                           
-                                            <table class="table table-bordered table-responsive">
-                                                <tbody>
-                                                    <tr>
-                                                      
-                                                        <th>Ticket Number</th>
-                                                        <th>Trading Date</th>
-                                                        <th>Lender</th>
-                                                        <th>Borrower</th>
-                                                        <th>Amount</th>
-                                                        <th>Start Date</th>
-                                                        <th>Maturity Date</th>
-                                                        <th>Rate</th>
-                                                    </tr>
-                                                   
-                                                    <tr>
-                                                        <td>2018000018202</td>
-                                                        <td>29 Aug 2018</td>
-                                                        <td>Stadt Singen</td>
-                                                        <td>Commerzbank</td>
-                                                        <td>10.000.000</td>
-                                                        <td>29/08/2018</td>
-                                                        <td>29/08/2019</td>
-                                                        <td>5.01</td>
-
-                                                    </tr>
-                                            
-                                                </tbody>
-                                            </table>
-
-                                            <nav aria-label="Page navigation example" class="pagination-links">
-                                                <ul class="pagination">
-                                                    <li class="page-item">
-                                                        <a class="page-link" aria-label="Previous">
-                                                          
-                                                            <span aria-hidden="true">«</span>
-                                                           
-                                                            <span class="sr-only">Previous</span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="page-item">
-                                                        <a class="page-link" aria-label="Previous">
-                                                            <span aria-hidden="true">&lt;</span>
-                                                            <span class="sr-only">Previous</span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="page-item">
-                                                        <a class="page-link">1</a>
-                                                    </li>
-                                                    <li class="page-item">
-                                                        <a class="page-link">2</a>
-                                                    </li>
-                                                    <li class="page-item">
-                                                        <a class="page-link" aria-label="Previous">
-                                                            <span aria-hidden="true"> &gt;</span>
-                                                            <span class="sr-only">Next</span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="page-item">
-                                                        <a class="page-link" aria-label="Next">
-                                                            <span aria-hidden="true">»</span>
-                                                            <span class="sr-only">Next</span>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </nav>
+                                    <div class="showpdf">
+                                        <div class="pdffile" data-id="2018-08-01 16_38_10-28 Aug 2018 15:46:44.pdf"
+                                             data-toggle="modal" data-target=".bd-example-modal-lg-cockpit-pdf">
+                                            <span>
+                                                <i class="fa fa-file-pdf-o" style="font-size:20px;color:red"></i>
+                                            </span> 2018-08-01 16_38_10-28 Aug 2018 15:46:44.pdf
+                                            <span class="del-icon">
+                                                <i class="material-icons">delete_outline</i>
+                                            </span>
                                         </div>
                                     </div>
-                                </div>
-
-                            </div>
-                            <div id="eigenepdf">
-
-                                <div class="showpdf">
-                                    <div class="pdffile" data-id="2018-08-01 16_38_10-28 Aug 2018 15:46:44.pdf"
-                                         data-toggle="modal" data-target=".bd-example-modal-lg-cockpit-pdf">
-                                        <span>
-                                            <i class="fa fa-file-pdf-o" style="font-size:20px;color:red"></i>
-                                        </span> 2018-08-01 16_38_10-28 Aug 2018 15:46:44.pdf
-                                        <span class="del-icon">
-                                            <i class="material-icons">delete_outline</i>
-                                        </span>
+                                    <div class="button-div">
+                                        <input class="btn " type="button" value="Datei hochladen" id="eigenepdfBtn">
                                     </div>
                                 </div>
-                                <div class="button-div">
-                                    <input class="btn " type="button" value="Datei hochladen" id="eigenepdfBtn">
-                                </div>
+
                             </div>
+                           
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">{{'Button.ButtonClose'|translate}}</button>
 
@@ -1013,5 +932,5 @@
     </script>
 
 </body>
-
+co
 </html>

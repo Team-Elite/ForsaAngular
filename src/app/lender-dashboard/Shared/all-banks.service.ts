@@ -60,7 +60,7 @@ export class AllBanksService {
         //await this.http.get(this.lenderDashboardService.baseURL + '/api/LenderDashboard/GetAllBanksWithInterestRateHorizontalyOrderByColumnName?Id=' + this.lenderDashboardService.userId + '&orderBy=' + orderByColumn)
             .map((data: Response) => { return data.json() })
             .toPromise().then(token => {
-                response = JSON.parse(this.tokenService.jwtdecrypt(token.data).unique_name)
+                response =(token.isSuccess == false) ? token.isSuccess :  JSON.parse(this.tokenService.jwtdecrypt(token.data).unique_name)
             });
         return response;
     }
