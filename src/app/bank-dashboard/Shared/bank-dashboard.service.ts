@@ -15,6 +15,7 @@ import { TokenService } from '../../token-service';
 export class BankDashboardService {
     selectedRateOfInterestOfBankModel: RateOfInterestOfBankModel;
     listRateOfInterestOfBankModel: RateOfInterestOfBankModel[];
+
     listUserGroupForSettingRateOfInterestVisibility: GroupModel[];
     tokenService: TokenService = new TokenService;
     userId: number = 0;
@@ -25,13 +26,14 @@ export class BankDashboardService {
     lenderSendRequestModel: LenderSendRequestModel;
     headerOptions = new Headers({ 'Content-Type': 'application/json' });
     requestOptions = new RequestOptions({ method: RequestMethod.Post, headers: this.headerOptions });
+    BorrowerMaturityList: any;
     constructor(private http: Http, public authenticateServiceService: AuthenticateServiceService) { }
 
-    async GetBorrowerMaturityList() {
-        var webtoken = { data: this.tokenService.jwtencrypt({ userId: this.userId }) };
+    async GetBorrowerMaturityList(history:boolean) {
+        var webtoken = { data: this.tokenService.jwtencrypt({ BorrowerId: this.userId, History: history }) };
         return  await this.http.put(this.authenticateServiceService.baseURL + 'api/BankDashBoard/GetBorrowerMaturityList', webtoken, this.requestOptions).map((data: Response) => {
             return data.json();
-        }).toPromise().then(token => this.listRateOfInterestOfBankModel = JSON.parse(this.tokenService.jwtdecrypt(token.data).unique_name));
+        }).toPromise().then(token => this.BorrowerMaturityList = JSON.parse(this.tokenService.jwtdecrypt(token.data).unique_name));
 
     }
 
