@@ -33,7 +33,7 @@
       "NameofCompany": "Name of Company",
       "Street": "Street",
       "PostalCode": "Postal Code",
-      "PlaceLabel": "Place",
+      "Place": "Place",
       "AccountHolder": "Account Holder",
       "Bank": "Bank",
       "IBAN": "IBAN",
@@ -113,7 +113,11 @@
       "STOPPUBLISH": "STOP PUBLISH",
       "STATUSON": "STATUS:ON",
       "STATUSOFF": "STATUS:OFF",
-      "CounterpartyConfiguration": "COUNTERPARTY CONFIGURATION"
+      "CounterpartyConfiguration": "COUNTERPARTY CONFIGURATION",
+      "TicketNumber": "Ticket Number",
+      "TradingDate": "Trading Date",
+      "MaturityDate": "Maturity Date",
+      "Rate": "Rate"
 
     }
   },

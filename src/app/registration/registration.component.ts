@@ -46,6 +46,7 @@ export class RegistrationComponent implements OnInit {
 
     }
 
+
     ngOnInit() {
        
         this.registrationService.getCountryList();
@@ -68,7 +69,21 @@ export class RegistrationComponent implements OnInit {
         });
     }
 
+   
+    myFiles: string[] = [];
+    sMsg: string = '';
+    getFileDetails(e) {
+        //console.log (e.target.files);
+        for (var i = 0; i < e.target.files.length; i++) {
+            this.myFiles.push(e.target.files[i]); } }
+    uploadFiles() {
+       
+        const frmData = new FormData();
+        for (var i = 0; i < this.myFiles.length; i++) {
+            frmData.append("fileUpload", this.myFiles[i]);   }   }
+     
 
+ 
 
     resetForm(form?: NgForm) {
         if (form != null) {
@@ -220,6 +235,9 @@ export class RegistrationComponent implements OnInit {
             numberOfErrorFound++;
             errorMessage = errorMessage + " Postal Code,";
         }
+      
+
+
         if (form.value.Place == undefined || form.value.Place == null || form.value.Place.length == 0) {
             IfErrorFound = true;
             numberOfErrorFound++;
@@ -422,6 +440,7 @@ export class RegistrationComponent implements OnInit {
             numberOfErrorFound++;
             errorMessage = errorMessage + " Postal Code,";
         }
+       
         if (form.value.Place == undefined || form.value.Place == null || form.value.Place.length == 0) {
             IfErrorFound = true;
             numberOfErrorFound++;
