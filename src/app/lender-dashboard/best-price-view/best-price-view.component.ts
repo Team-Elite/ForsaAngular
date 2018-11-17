@@ -6,7 +6,7 @@ import { DatePipe } from '@angular/common';
 import { LenderDashboardService } from '../Shared/lender-dashboard.service';
 import { hubConnection, connection } from 'signalr-no-jquery';
 
-const connection = hubConnection('http://socket.elitewebdemo.com/signalr');
+const connection = hubConnection('http://40.89.139.123:4044/');
 const hubProxy = connection.createHubProxy('NgHub');
 @Component({
     selector: 'app-best-price-view',
