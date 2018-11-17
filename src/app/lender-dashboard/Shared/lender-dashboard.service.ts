@@ -24,7 +24,7 @@ export class LenderDashboardService {
     CurrentPageName: string;
     UserTypeId: any = 5;
     async GetBorrowerMaturityList(history: boolean) {
-        var webtoken = { data: this.tokenService.jwtencrypt({ BorrowerId: this.userId, History: history }) };
+        var webtoken = { data: this.tokenService.jwtencrypt({ lenderId: this.userId, History: history }) };
         return await this.http.put(this.authenticateServiceService.baseURL + 'api/LenderDashBoard/GetBorrowerMaturityList', webtoken, this.requestOptions).map((data: Response) => {
             return data.json();
         }).toPromise().then(token => this.lenderMaturityList = JSON.parse(this.tokenService.jwtdecrypt(token.data).unique_name));
