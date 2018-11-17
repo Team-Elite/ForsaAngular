@@ -30,17 +30,17 @@
       "Title": "Registrieren",
       "Borrower": "Kreditnehmer",
       "Lender": "Darlehensgeber",
-      "NameofCompany": "Name der Firma",
-      "Street": "Straße",
+      "NameofCompany": "Name Unternehmen ",
+      "Street": "Strasse ",
       "PostalCode": "Postleitzahl",
-      "PlaceLabel": "Ort",
+       "Place": "Ort",
       "AccountHolder": "Kontoinhaber",
       "Bank": "Bank",
       "IBAN": "IBAN",
       "BICCode": "BICCode",
       "ClientGroup": "Kundengruppe",
       "ClientSubGroup": "Client-Untergruppe",
-      "LEINumber": "LEI Number",
+      "LEINumber": "LEI Nummer",
       "FurtherField4": "Weiteres Feld 4"
     },
 
@@ -51,7 +51,7 @@
       "SurName": "Nachname",
       "TelephoneNo": "Telefonnummer",
       "EmailAddress": "E-Mail-Addresse",
-      "CreateUsername": "Erstelle einen Benutzernamen",
+      "CreateUsername": "Benutzername (nach eigener Wahl)",
       "FurtherField1": "Weiteres Feld 1",
       "FurtherField2": "Weiteres Feld 2",
       "expand_more": "expand_more",
@@ -113,7 +113,11 @@
       "STOPPUBLISH": "STOPPEN VERÖFFENTLICHEN",
       "STATUSON": "Status:Ein",
       "STATUSOFF": "STATUS: AUS",
-      "CounterpartyConfiguration": "COUNTERPARTY KONFIGURATION"
+      "CounterpartyConfiguration": "COUNTERPARTY KONFIGURATION",
+      "TicketNumber": "Ticket Number",
+      "TradingDate": "Trading Date",
+      "MaturityDate": "Maturity Date",
+      "Rate": "Rate"
 
     }
   },

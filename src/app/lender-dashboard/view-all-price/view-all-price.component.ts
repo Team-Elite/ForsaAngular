@@ -78,6 +78,7 @@ export class ViewAllPriceComponent implements OnInit {
 
         this.spinner.show();
         var result = await this.viewAllPriceService.DeselectSelectBank(bank.UserId, bank.IsSelected);
+     
         if (JSON.parse(result.IsSuccess)) {
             //this.GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected();
             this.GetAllBanksWithInterestRateHorizontalyOrderByColumnName(this.orderByColumn);
@@ -88,7 +89,7 @@ export class ViewAllPriceComponent implements OnInit {
     }
 
     async GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected() {
-       
+      
         let rates = await this.viewAllPriceService.GetAllBanksWithInterestRateHorizontalyOrderByColumnName(this.orderByColumn);
         if (rates.IfDataFound) {
             this.viewAllPriceService.listAllBanks = rates;

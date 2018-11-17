@@ -33,6 +33,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { ForsaLanguagesComponent } from './forsa-languages/forsa-languages.component';
 import { TokenService } from './token-service';
+import { MaturityListComponent } from './maturity-list/maturity-list.component';
 //import { JwtHelperService} from '@auth0/angular-jwt';
 
 
@@ -79,7 +80,8 @@ const appRoutes: Routes = [{ path: 'login', component: LoginComponent },
         AllBanksComponent,
         KontactDashboardComponent,
         KontactDashboardLComponent,
-        ForsaLanguagesComponent
+        ForsaLanguagesComponent,
+        MaturityListComponent
       
     ],
     imports: [

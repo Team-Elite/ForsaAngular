@@ -160,7 +160,9 @@
                                 <button type="button" class="dropcockpit" id="eigene" data-toggle="modal" data-target=".bd-example-modal-lg-eigene-Stammdatenverwaltung">{{'Borrower.BankDashboard.Ownmasterdatamanagement'|translate}}</button>
                                 <button type="button" class="dropcockpit" id="Ansehen">{{'Borrower.BankDashboard.Viewanddownloadyourownduelist'|translate}}</button>
                                 <button type="button" class="dropcockpit" id="Ansehenund">{{'Borrower.BankDashboard.Viewanddownloadinthepastdonebusiness'|translate}}</button>
+                                <app-maturity-list></app-maturity-list>
                             </div>
+                           
                         </li>
 
 
@@ -188,7 +190,7 @@
                                 </div>
                                 <div class="col-md-4 pr-1">
                                     <button type="button" (dblclick)="EnableTextBox(rate)" class="btn w-100 active">
-                                        <input (blur)="UpdateRateOfInterest(rate)" type="number" [disabled]="!rate.IsDoubleTapped" #RateOfInterest="ngModel" [(ngModel)]="rate.RateOfInterest"  name="RateOfInterest"/>
+                                        <input (blur)="UpdateRateOfInterest(rate)" type="number" [disabled]="!rate.IsDoubleTapped" #RateOfInterest="ngModel" [(ngModel)]="rate.RateOfInterest" name="RateOfInterest" />
                                     </button>
 
                                 </div>
@@ -352,7 +354,7 @@
                                 </button>
                             </div>
 
-                            <div   class="modal-body" id="lendrequestbody">
+                            <div class="modal-body" id="lendrequestbody">
                                 <table>
                                     <tbody>
                                         <tr><th>{{'Borrower.BankDashboard.Lender'|translate}}</th><td>{{bestPriceViewService.lenderSendRequestModel.LenderName}}</td></tr>
@@ -407,7 +409,7 @@
 
                             <div class="modal-body" id="lendrequestbody">
                                 <form>
-                                    <div  class="row">
+                                    <div class="row">
 
                                         <div class="heading col-sm-12">
                                             <h4>{{'Borrower.BankDashboard.EditDetails'|translate}}</h4>
@@ -466,9 +468,93 @@
                     </div>
                 </div>
 
+     
 
+                <div class="modal fade bd-example-modal-lg-eigene-Stammdatenverwaltung admin-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+                     aria-hidden="true">
+                    <div _ngcontent-c1="" class="modal-dialog modal-lg">
+                        <div _ngcontent-c1="" class="modal-content">
+                            <div _ngcontent-c1="" class="modal-header">
+                                <h5 _ngcontent-c1="" class="modal-title" id="exampleModalLongTitle"> Eigene Stammdatenverwaltung</h5>
+                                <button _ngcontent-c1="" aria-label="Close" class="close" data-dismiss="modal" type="button"><span _ngcontent-c1="" aria-hidden="true">×</span></button>
+                            </div>
+                            <div _ngcontent-c1="" class="modal-body" id="lendrequestbody">
+                                <form _ngcontent-c1="" novalidate="" class="ng-untouched ng-pristine ng-valid">
+                                    <div _ngcontent-c1="" class="row">
+                                        <div _ngcontent-c1="" class="col-md-6">
+                                            <div class="full-width">
+                                                <label _ngcontent-c1="">Name Unternehmen</label><input _ngcontent-c1="" class="form-control ng-untouched ng-pristine" id="first_name" name="FirstName" placeholder="" type="text" disabled="">
+                                            </div>
+                                            <div class="full-width">
+                                                <label _ngcontent-c1="">Strasse</label><input _ngcontent-c1="" class="form-control ng-untouched ng-pristine" id="first_name" name="FirstName" placeholder="" type="text" disabled="">
+                                            </div>
+                                            <div class="full-width">
+                                                <label _ngcontent-c1="">Postleitzahl</label><input _ngcontent-c1="" class="form-control ng-untouched ng-pristine" id="first_name" name="FirstName" placeholder="" type="text" disabled="">
+                                            </div>
+                                            <div class="full-width">
+                                                <label _ngcontent-c1="">Ort</label><input _ngcontent-c1="" class="form-control ng-untouched ng-pristine" id="first_name" name="FirstName" placeholder="" type="text" disabled="">
+                                            </div>
+                                            <div class="full-width">
+                                                <label _ngcontent-c1="">Kontoinhaber</label><input _ngcontent-c1="" class="form-control ng-untouched ng-pristine" id="first_name" name="FirstName" placeholder="" type="text" disabled="">
+                                            </div>
+                                            <div class="full-width">
+                                                <label _ngcontent-c1="">Bank</label><input _ngcontent-c1="" class="form-control ng-untouched ng-pristine" id="first_name" name="FirstName" placeholder="" type="text" disabled="">
+                                            </div>
+                                            <div class="full-width">
+                                                <label _ngcontent-c1="">IBAN Number</label><input _ngcontent-c1="" class="form-control ng-untouched ng-pristine" id="first_name" name="FirstName" placeholder="" type="text" disabled="">
+                                            </div>
+                                            <div class="full-width">
+                                                <label _ngcontent-c1="">BIC Code</label><input _ngcontent-c1="" class="form-control ng-untouched ng-pristine" id="first_name" name="FirstName" placeholder="" type="text" disabled="">
+                                            </div>
+                                            <div class="full-width">
+                                                <label _ngcontent-c1="">Anrede</label><input _ngcontent-c1="" class="form-control ng-untouched ng-pristine" id="first_name" name="FirstName" placeholder="" type="text" disabled="">
+                                            </div>
+                                            <div class="full-width">
+                                                <label _ngcontent-c1="">Titel</label><input _ngcontent-c1="" class="form-control ng-untouched ng-pristine" id="first_name" name="FirstName" placeholder="" type="text" disabled="">
+                                            </div>
+                                            <div class="full-width">
+                                                <label _ngcontent-c1="">Vorname</label><input _ngcontent-c1="" class="form-control ng-untouched ng-pristine" id="first_name" name="FirstName" placeholder="" type="text" disabled="">
+                                            </div>
+                                            <div class="full-width">
+                                                <label _ngcontent-c1="">Nachname</label><input _ngcontent-c1="" class="form-control ng-untouched ng-pristine" id="first_name" name="FirstName" placeholder="" type="text" disabled="">
+                                            </div>
+                                            <div class="full-width">
+                                                <label _ngcontent-c1="">Mail-Adresse</label><input _ngcontent-c1="" class="form-control ng-untouched ng-pristine" id="first_name" name="FirstName" placeholder="" type="text" disabled="">
+                                            </div>
+                                            <div class="full-width">
+                                                <label _ngcontent-c1="">Benutzertyp</label><input _ngcontent-c1="" class="form-control ng-untouched ng-pristine" id="first_name" name="FirstName" placeholder="" type="text" disabled="">
+                                            </div>
+                                            <div class="full-width">
+                                                <label _ngcontent-c1="">Telefonnummer</label><input _ngcontent-c1="" class="form-control ng-untouched ng-pristine" id="first_name" name="FirstName" placeholder="" type="text" disabled="">
+                                            </div>
+                                            <div class="full-width">
+                                                <label _ngcontent-c1="">Kundengruppe</label><input _ngcontent-c1="" class="form-control ng-untouched ng-pristine" id="first_name" name="FirstName" placeholder="" type="text" disabled="">
+                                            </div>
+                                            <div class="full-width">
+                                                <label _ngcontent-c1="">Mindest-Volumen</label><input _ngcontent-c1="" class="form-control ng-untouched ng-pristine" id="first_name" name="FirstName" placeholder="" type="text" disabled="">
+                                            </div>
+                                            <div class="full-width">
+                                                <label _ngcontent-c1="">RATING</label><input _ngcontent-c1="" class="form-control ng-untouched ng-pristine" id="first_name" name="FirstName" placeholder="" type="text" disabled="">
+                                            </div>
+                                        </div>
 
+                                        <div class="col-6">
+                                            <div class="full-width">
+                                                <label _ngcontent-c1=""> WEITERE INFORMATIONEN-12 Sep 2018 19:30:28.pdf</label>
+                                            </div>
+                                        </div>
+                                    </div>
 
+                                </form>
+                            </div>
+                            <div _ngcontent-c1="" class="modal-footer">
+                                <button _ngcontent-c1="" class="btn btn-secondary" data-dismiss="modal" type="button">Hochladen</button>
+                                <button _ngcontent-c1="" class="btn btn-secondary" data-dismiss="modal" type="button">Passwort ändern</button>
+                                <button _ngcontent-c1="" class="btn btn-secondary" data-dismiss="modal" type="button">Datei hochladen</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <!---modal Eigene start-->
 
                 <div class="modal fade bd-example-modal-lg-eigene-Stammdatenverwaltung eigene-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
@@ -605,14 +691,16 @@
                                     </tr>
                                     <tr>
 
-                                        <td>2018000018202</td>
-                                        <td>29 Aug 2018</td>
-                                        <td>Stadt Singen</td>
-                                        <td>Commerzbank</td>
-                                        <td>10.000.000</td>
-                                        <td>29/08/2018</td>
-                                        <td>29/08/2019</td>
-                                        <td>5.01</td>
+                                       
+
+                                        <td>2018000018202</td> 
+                                        <td>29 Aug 2018</td>  
+                                        <td>Stadt Singen</td>  
+                                          <td>Commerzbank </td>
+                                          <td>10.000.000</td> 
+                                        <td>29/08/2018  </td>
+                                       <td>29/08/2019</td>  
+                                        <td>5.01td</td>    
 
                                     </tr>
                                     <tr>
@@ -702,22 +790,22 @@
                             <nav aria-label="Page navigation example" class="pagination-links">
                                 <ul class="pagination">
                                     <li class="page-item">
-                                        <a class="page-link"  aria-label="Previous">
+                                        <a class="page-link" aria-label="Previous">
                                             <span aria-hidden="true">«</span>
                                             <span class="sr-only">Previous</span>
                                         </a>
                                     </li>
                                     <li class="page-item">
-                                        <a class="page-link"  aria-label="Previous">
+                                        <a class="page-link" aria-label="Previous">
                                             <span aria-hidden="true">&lt;</span>
                                             <span class="sr-only">Previous</span>
                                         </a>
                                     </li>
                                     <li class="page-item">
-                                        <a class="page-link" >1</a>
+                                        <a class="page-link">1</a>
                                     </li>
                                     <li class="page-item">
-                                        <a class="page-link" >2</a>
+                                        <a class="page-link">2</a>
                                     </li>
                                     <li class="page-item">
                                         <a class="page-link" aria-label="Previous">
@@ -726,7 +814,7 @@
                                         </a>
                                     </li>
                                     <li class="page-item">
-                                        <a class="page-link"  aria-label="Next">
+                                        <a class="page-link" aria-label="Next">
                                             <span aria-hidden="true">»</span>
                                             <span class="sr-only">Next</span>
                                         </a>
@@ -736,6 +824,136 @@
                         </div>
                     </div>
                 </div>
+
+
+                <!--MODAL mATURITY-->
+                <button type="button" class="dropcockpit menudrpSet" data-toggle="modal" data-target=".maturity-modal" id="eigene">Maturity List</button>
+                <!--<button type="button" class="dropcockpit menudrpSet" id="eigene" data-toggle="modal"> History Maturity List</button>-->
+                <div class="modal fade maturity-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle">Maturity List</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+
+                            <div class="modal-body" id="lendrequestbody">
+                                <div class="row  ansehen-sec">
+                                   
+                                    <div class="row dashboard-price-list application-export-sec">
+                                        <div class="col-lg-12">
+                                           
+                                            <div class="ticket-uppr-btn">
+                                                
+                                                <a href="https://dev.instimatch.com/forsa/applications/instimatch/Borrowerpdfmaturities" id="" class="btn export-btn green-btn ">
+
+                                                    Export PDF
+
+                                                </a>
+                                             
+
+                                                <input type="button" id="" value="Export Excel" class="btn excel-btn green-btn">
+                                            </div>
+                                           
+                                            <table class="table table-bordered table-responsive">
+                                                <tbody>
+                                                    <tr>
+                                                      
+                                                        <th>Ticket Number</th>
+                                                        <th>Trading Date</th>
+                                                        <th>Lender</th>
+                                                        <th>Borrower</th>
+                                                        <th>Amount</th>
+                                                        <th>Start Date</th>
+                                                        <th>Maturity Date</th>
+                                                        <th>Rate</th>
+                                                    </tr>
+                                                   
+                                                    <tr>
+                                                        <td>2018000018202</td>
+                                                        <td>29 Aug 2018</td>
+                                                        <td>Stadt Singen</td>
+                                                        <td>Commerzbank</td>
+                                                        <td>10.000.000</td>
+                                                        <td>29/08/2018</td>
+                                                        <td>29/08/2019</td>
+                                                        <td>5.01</td>
+
+                                                    </tr>
+                                            
+                                                </tbody>
+                                            </table>
+
+                                            <nav aria-label="Page navigation example" class="pagination-links">
+                                                <ul class="pagination">
+                                                    <li class="page-item">
+                                                        <a class="page-link" aria-label="Previous">
+                                                          
+                                                            <span aria-hidden="true">«</span>
+                                                           
+                                                            <span class="sr-only">Previous</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="page-item">
+                                                        <a class="page-link" aria-label="Previous">
+                                                            <span aria-hidden="true">&lt;</span>
+                                                            <span class="sr-only">Previous</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="page-item">
+                                                        <a class="page-link">1</a>
+                                                    </li>
+                                                    <li class="page-item">
+                                                        <a class="page-link">2</a>
+                                                    </li>
+                                                    <li class="page-item">
+                                                        <a class="page-link" aria-label="Previous">
+                                                            <span aria-hidden="true"> &gt;</span>
+                                                            <span class="sr-only">Next</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="page-item">
+                                                        <a class="page-link" aria-label="Next">
+                                                            <span aria-hidden="true">»</span>
+                                                            <span class="sr-only">Next</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </nav>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div id="eigenepdf">
+
+                                <div class="showpdf">
+                                    <div class="pdffile" data-id="2018-08-01 16_38_10-28 Aug 2018 15:46:44.pdf"
+                                         data-toggle="modal" data-target=".bd-example-modal-lg-cockpit-pdf">
+                                        <span>
+                                            <i class="fa fa-file-pdf-o" style="font-size:20px;color:red"></i>
+                                        </span> 2018-08-01 16_38_10-28 Aug 2018 15:46:44.pdf
+                                        <span class="del-icon">
+                                            <i class="material-icons">delete_outline</i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="button-div">
+                                    <input class="btn " type="button" value="Datei hochladen" id="eigenepdfBtn">
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{'Button.ButtonClose'|translate}}</button>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- mODAL eND-->
             </div>
 
 

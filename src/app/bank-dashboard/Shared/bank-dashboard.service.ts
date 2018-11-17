@@ -27,13 +27,27 @@ export class BankDashboardService {
     requestOptions = new RequestOptions({ method: RequestMethod.Post, headers: this.headerOptions });
     constructor(private http: Http, public authenticateServiceService: AuthenticateServiceService) { }
 
-    async GetRateOfInterestOfBank() {
+    async GetBorrowerMaturityList() {
         var webtoken = { data: this.tokenService.jwtencrypt({ userId: this.userId }) };
-        let token = await this.http.put(this.authenticateServiceService.baseURL + '/api/BankDashBoard/GetRateOfInterestOfBank', webtoken, this.requestOptions).map((data: Response) => {
+        return  await this.http.put(this.authenticateServiceService.baseURL + 'api/BankDashBoard/GetBorrowerMaturityList', webtoken, this.requestOptions).map((data: Response) => {
             return data.json();
         }).toPromise().then(token => this.listRateOfInterestOfBankModel = JSON.parse(this.tokenService.jwtdecrypt(token.data).unique_name));
 
     }
+
+
+    async GetRateOfInterestOfBank() {
+        var webtoken = { data: this.tokenService.jwtencrypt({ userId: this.userId }) };
+       return await this.http.put(this.authenticateServiceService.baseURL + '/api/BankDashBoard/GetRateOfInterestOfBank', webtoken, this.requestOptions).map((data: Response) => {
+            return data.json();
+        }).toPromise().then(token => this.listRateOfInterestOfBankModel = JSON.parse(this.tokenService.jwtdecrypt(token.data).unique_name));
+
+    }
+
+
+
+
+
 
     UpdateRateOfInterest(rateModel: RateOfInterestOfBankModel) {
         // var body = JSON.stringify(rateModel);

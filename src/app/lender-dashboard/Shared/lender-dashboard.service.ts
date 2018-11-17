@@ -44,7 +44,7 @@ export class LenderDashboardService {
     }
 
     public async GetPagesForLenderSettingStartPage() {
-        debugger;
+     
         if (this.userId === undefined) return null;
         var webtoken = { data: this.tokenService.jwtencrypt({ userId: this.userId }) };
         let token = await this.http.post(this.authenticateServiceService.baseURL + '/api/LenderDashboard/GetPagesForLenderSettingStartPage', webtoken, this.requestOptions).toPromise();

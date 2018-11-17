@@ -92,8 +92,8 @@ export class ViewAllPriceService {
        // let token = await this.http.get(this.lenderDashboardService.baseURL + '/api/LenderDashboard/DeselectBank?userId=' + this.lenderDashboardService.userId + "&bankId=" + bankId + "&IsSelected=" + IsSelected).toPromise();
         var response;
         if (token != undefined) {
-            token = token.json().data;
-            response = JSON.parse(this.tokenService.jwtdecrypt(token).unique_name);
+            token = token.json();
+            response = token;
         }
         return response;
     }
