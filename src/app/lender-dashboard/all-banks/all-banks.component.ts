@@ -4,7 +4,8 @@ import { ToastrService } from 'ngx-toastr';
 import { AllBanksService } from '../Shared/all-banks.service';
 import { hubConnection, connection } from 'signalr-no-jquery';
 
-const connection = hubConnection('http://40.89.139.123:4044');
+const socketurl = 'http://localhost:61088/'; //'http://40.89.139.123:4044/'
+const connection = hubConnection(socketurl);
 
 const hubProxy = connection.createHubProxy('NgHub');
 @Component({

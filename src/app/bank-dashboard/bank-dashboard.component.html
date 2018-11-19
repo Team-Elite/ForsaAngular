@@ -160,8 +160,8 @@
                                 <button type="button" class="dropcockpit" id="eigene" data-toggle="modal" data-target=".bd-example-modal-lg-eigene-Stammdatenverwaltung">{{'Borrower.BankDashboard.Ownmasterdatamanagement'|translate}}</button>
                                 <button type="button" class="dropcockpit" id="Ansehen">{{'Borrower.BankDashboard.Viewanddownloadyourownduelist'|translate}}</button>
                                 <button type="button" class="dropcockpit" id="Ansehenund">{{'Borrower.BankDashboard.Viewanddownloadinthepastdonebusiness'|translate}}</button>
-                                <button type="button" class="dropcockpit"  (click)="ShowMaturity(false)">Maturity List</button>
-                                <button type="button" class="dropcockpit" (click)="ShowMaturity(true)" > History Maturity List</button>
+                                <button type="button" class="dropcockpit" (click)="ShowScreen('Mreport');">Maturity List</button>
+                                <button type="button" class="dropcockpit" (click)="ShowScreen('HMreport');"> History Maturity List</button>
 
                             </div>
                            
@@ -177,89 +177,83 @@
                 <div class="row application-page">
                     <div class="col-lg-8 col-md-12">
                         <div class="dashboard-right application-sec">
-                            <!--  <div class="in-buttons no-gutters row">
-                    <div class="col-sm-4">
-                        <input class="form-control green-btn" type="button" value="PUBLISH" id="publish">
-                    </div>
-                    <div class="col-sm-4"></div>
-                    <div class="col-sm-4 pr-1">
-                        <input class="form-control green-btn" type="button" value="STOP PUBLISH" id="publish">
-                    </div>
-                </div> -->
-                            <div *ngFor="let rate of bankDashboardService.listRateOfInterestOfBankModel" class=" no-gutters row">
-                                <div class="col-md-4 pr-1">
-                                    <button type="button" class="btn w-100 ">{{rate.TimePeriod}}</button>
-                                </div>
-                                <div class="col-md-4 pr-1">
-                                    <button type="button" (dblclick)="EnableTextBox(rate)" class="btn w-100 active">
-                                        <input (blur)="UpdateRateOfInterest(rate)" type="number" [disabled]="!rate.IsDoubleTapped" #RateOfInterest="ngModel" [(ngModel)]="rate.RateOfInterest" name="RateOfInterest" />
-                                    </button>
+                            <div *ngIf="IfShowBankDashBoard" id="Rate-Panel">
+                                <div *ngFor="let rate of bankDashboardService.listRateOfInterestOfBankModel" class=" no-gutters row">
+                                    <div class="col-md-4 pr-1">
+                                        <button type="button" class="btn w-100 ">{{rate.TimePeriod}}</button>
+                                    </div>
+                                    <div class="col-md-4 pr-1">
+                                        <button type="button" (dblclick)="EnableTextBox(rate)" class="btn w-100 active">
+                                            <input (blur)="UpdateRateOfInterest(rate)" type="number" [disabled]="!rate.IsDoubleTapped" #RateOfInterest="ngModel" [(ngModel)]="rate.RateOfInterest" name="RateOfInterest" />
+                                        </button>
+
+                                    </div>
+                                    <div class="col-md-4 pr-1">
+                                        <button type="button" class="btn w-100">
+                                            <a (click)="IncreaseRateOfInterest(rate)">+</a>
+                                            <span>/</span>
+                                            <a (click)="DecreaseRateOfInterest(rate)">-</a>
+                                        </button>
+                                    </div>
 
                                 </div>
-                                <div class="col-md-4 pr-1">
-                                    <button type="button" class="btn w-100">
-                                        <a (click)="IncreaseRateOfInterest(rate)">+</a>
-                                        <span>/</span>
-                                        <a (click)="DecreaseRateOfInterest(rate)">-</a>
-                                    </button>
+                            </div>
+
+                            <!-- Maturity List -->
+                            <div *ngIf="!IfShowBankDashBoard" id="Mautrity-Panel">
+
+                                <div class="row dashboard-price-list">
+                                    <div class="col-lg-12">
+                                        <table class="table table-bordered table-responsive">
+                                            <tbody>
+                                                <tr>
+                                                    <!--<th style="cursor:pointer;">RequestId</th>-->
+                                                    <!--<th style="cursor:pointer;">LenderId</th>-->
+                                                    <th style="cursor:pointer;">Lender</th>
+                                                    <!--<th style="cursor:pointer;">BorrowerId</th>-->
+                                                    <th style="cursor:pointer;">Borrower</th>
+                                                    <th style="cursor:pointer;">Amount</th>
+                                                    <th style="cursor:pointer;">StartDate</th>
+                                                    <th style="cursor:pointer;">EndDate</th>
+                                                    <th style="cursor:pointer;">NoOfDays</th>
+                                                    <th style="cursor:pointer;">InterestConvention</th>
+                                                    <th style="cursor:pointer;">Payments</th>
+                                                    <!--<th style="cursor:pointer;">IsRequestAccepted</th>-->
+                                                    <!--<th style="cursor:pointer;">RequestCreatedBy</th>-->
+                                                    <th style="cursor:pointer;">RateOfInterestOfferred</th>
+                                                    <th style="cursor:pointer;">OfferredOn</th>
+                                                </tr>
+                                                <tr *ngFor="let bank of _MaturityList">
+                                                    <!--<td>{{bank.RequestId}}</td>-->
+                                                    <!--<td>{{bank.LenderId}}</td>-->
+                                                    <td>{{bank.Lender}}</td>
+                                                    <!--<td>{{bank.BorrowerId}}</td>-->
+                                                    <td>{{bank.Borrower}}</td>
+                                                    <td>{{bank.Amount}}</td>
+                                                    <td>{{bank.StartDate}}</td>
+                                                    <td>{{bank.EndDate}}</td>
+                                                    <td>{{bank.NoOfDays}}</td>
+                                                    <td>{{bank.InterestConvention}}</td>
+                                                    <td>{{bank.Payments}}</td>
+                                                    <!--<td>{{bank.IsRequestAccepted}}</td>
+                                                    <td>{{bank.RequestCreatedBy}}</td>-->
+                                                    <td>{{bank.RateOfInterestOfferred}}</td>
+                                                    <td>{{bankOfferredOn}}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
+                                <input type="button" (click)="ExportToPDF()" class="btn btn-info btn-lg" id="btnExportToPDF" value="Export to PDF">
+                                <input type="button" (click)="ExportToExcel()" class="btn btn-info btn-lg" id="btnExportToExcel" value="Export To Excel">
 
                             </div>
-                            <!-- <nav aria-label="Page navigation example" class="pagination-links">
-                    <ul class="pagination">
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                        <span class="sr-only">Previous</span>
-                        </a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Previous">
-                        <span aria-hidden="true">&lt;</span>
-                        <span class="sr-only">Previous</span>
-                        </a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                     <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Previous">
-                        <span aria-hidden="true">   &gt;</span>
-                        <span class="sr-only">Next</span>
-                        </a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                        <span class="sr-only">Next</span>
-                        </a>
-                    </li>
-                    </ul>
-                </nav> -->
+                            <!-- Maturity End -->
+
+
                         </div>
                     </div>
-                    <!--  <div class="col-lg-6 col-md-12 application-sec application-right">
-            <div class="in-buttons no-gutters row">
-                    <div class="col-lg-3 col-md-6 col-sm-12 pr-2">
-                        <input class="form-control green-btn" type="button" value="STATUS:ON" id="">
-                    </div>
-
-                    <div class="col-lg-3 col-md-6 col-sm-12 pr-2">
-                        <input class="form-control green-btn" type="button" value="Counterparty Configuration" id="" data-toggle="modal" data-target=".counterparty-modal">
-                    </div>
-
-                    <div class="col-lg-3 col-md-6 col-sm-12 pr-2 cockpit-btn">
-                        <input class="form-control green-btn " type="button" value="COCKPIT" id="" >
-                        <div class="cockpit-dropdown-div"><button type="button" class="dropcockpit" id="eigene" data-toggle="modal" data-target=".bd-example-modal-lg-eigene-Stammdatenverwaltung">Eigene Stammdatenverwaltung</button>
-                            <button type="button" class="dropcockpit" id="Ansehen">Ansehen und downloaden eigene Fälligkeitsliste</button>
-                            <button type="button" class="dropcockpit" id="Ansehenund">Ansehen und downloaden in der Vergangenheit getätigter Geschäfte</button>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-12 pr-2">
-                        <input class="form-control green-btn" type="button" value="Interest" id="">
-                    </div>
-                </div>
-
-        </div> -->
+                    
                 </div>
 
                 <!-- modal start-->
@@ -470,7 +464,7 @@
                     </div>
                 </div>
 
-     
+
 
                 <div class="modal fade bd-example-modal-lg-eigene-Stammdatenverwaltung admin-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
                      aria-hidden="true">
@@ -669,167 +663,10 @@
 
 
                 <!-- modal end-->
-
-
-
-                <!--<div class="row ansehen-sec">
-                    <div class="row dashboard-price-list application-export-sec">
-                        <div class="col-lg-12">
-                            <div class="ticket-uppr-btn">
-                                <a href="https://dev.instimatch.com/forsa/applications/instimatch/Borrowerpdfmaturities" id="" class="btn export-btn green-btn ">Export PDF</a>
-                                <input type="button" id="" value="Export Excel" class="btn excel-btn green-btn">
-                            </div>
-                            <table class="table table-bordered table-responsive">
-                                <tbody>
-                                    <tr>
-                                        <th>Ticket Number</th>
-                                        <th>Trading Date</th>
-                                        <th>Lender</th>
-                                        <th>Borrower</th>
-                                        <th>Amount</th>
-                                        <th>Start Date</th>
-                                        <th>Maturity Date</th>
-                                        <th>Rate</th>
-                                    </tr>
-                                    <tr>
-
-                                       
-
-                                        <td>2018000018202</td> 
-                                        <td>29 Aug 2018</td>  
-                                        <td>Stadt Singen</td>  
-                                          <td>Commerzbank </td>
-                                          <td>10.000.000</td> 
-                                        <td>29/08/2018  </td>
-                                       <td>29/08/2019</td>  
-                                        <td>5.01td</td>    
-
-                                    </tr>
-                                    <tr>
-                                        <td>2018000018202</td>
-                                        <td>29 Aug 2018</td>
-                                        <td>Stadt Singen</td>
-                                        <td>Commerzbank</td>
-                                        <td>10.000.000</td>
-                                        <td>29/08/2018</td>
-                                        <td>29/08/2019</td>
-                                        <td>5.01</td>
-
-                                    </tr>
-                                    <tr>
-                                        <td>2018000018202</td>
-                                        <td>29 Aug 2018</td>
-                                        <td>Stadt Singen</td>
-                                        <td>Commerzbank</td>
-                                        <td>10.000.000</td>
-                                        <td>29/08/2018</td>
-                                        <td>29/08/2019</td>
-                                        <td>5.01</td>
-
-                                    </tr>
-                                    <tr>
-                                        <td>2018000018202</td>
-                                        <td>29 Aug 2018</td>
-                                        <td>Stadt Singen</td>
-                                        <td>Commerzbank</td>
-                                        <td>10.000.000</td>
-                                        <td>29/08/2018</td>
-                                        <td>29/08/2019</td>
-                                        <td>5.01</td>
-
-                                    </tr>
-                                    <tr>
-                                        <td>2018000018202</td>
-                                        <td>29 Aug 2018</td>
-                                        <td>Stadt Singen</td>
-                                        <td>Commerzbank</td>
-                                        <td>10.000.000</td>
-                                        <td>29/08/2018</td>
-                                        <td>29/08/2019</td>
-                                        <td>5.01</td>
-
-                                    </tr>
-
-
-                                    <tr>
-                                        <td>2018000018202</td>
-                                        <td>29 Aug 2018</td>
-                                        <td>Stadt Singen</td>
-                                        <td>Commerzbank</td>
-                                        <td>10.000.000</td>
-                                        <td>29/08/2018</td>
-                                        <td>29/08/2019</td>
-                                        <td>5.01</td>
-
-                                    </tr>
-
-                                    <tr>
-                                        <td>2018000018202</td>
-                                        <td>29 Aug 2018</td>
-                                        <td>Stadt Singen</td>
-                                        <td>Commerzbank</td>
-                                        <td>10.000.000</td>
-                                        <td>29/08/2018</td>
-                                        <td>29/08/2019</td>
-                                        <td>5.01</td>
-
-
-                                    </tr>
-                                    <tr>
-                                        <td>2018000018202</td>
-                                        <td>29 Aug 2018</td>
-                                        <td>Stadt Singen</td>
-                                        <td>Commerzbank</td>
-                                        <td>10.000.000</td>
-                                        <td>29/08/2018</td>
-                                        <td>29/08/2019</td>
-                                        <td>5.01</td>
-
-                                    </tr>
-                                </tbody>
-                            </table>
-
-                            <nav aria-label="Page navigation example" class="pagination-links">
-                                <ul class="pagination">
-                                    <li class="page-item">
-                                        <a class="page-link" aria-label="Previous">
-                                            <span aria-hidden="true">«</span>
-                                            <span class="sr-only">Previous</span>
-                                        </a>
-                                    </li>
-                                    <li class="page-item">
-                                        <a class="page-link" aria-label="Previous">
-                                            <span aria-hidden="true">&lt;</span>
-                                            <span class="sr-only">Previous</span>
-                                        </a>
-                                    </li>
-                                    <li class="page-item">
-                                        <a class="page-link">1</a>
-                                    </li>
-                                    <li class="page-item">
-                                        <a class="page-link">2</a>
-                                    </li>
-                                    <li class="page-item">
-                                        <a class="page-link" aria-label="Previous">
-                                            <span aria-hidden="true"> &gt;</span>
-                                            <span class="sr-only">Next</span>
-                                        </a>
-                                    </li>
-                                    <li class="page-item">
-                                        <a class="page-link" aria-label="Next">
-                                            <span aria-hidden="true">»</span>
-                                            <span class="sr-only">Next</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
-                </div>-->
-
-
+              
+               
                 <!--MODAL mATURITY-->
-                <button type="button" class="dropcockpit menudrpSet" data-toggle="modal" data-target=".maturity-modal" id="eigene">Maturity List</button>
+                <!--<button type="button" class ="dropcockpit menudrpSet" data-toggle="modal" data-target=".maturity-modal" id="eigene">Maturity List</button>-->
                 <!--<button type="button" class="dropcockpit menudrpSet" id="eigene" data-toggle="modal"> History Maturity List</button>-->
                 <div class="modal fade maturity-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
                      aria-hidden="true">
@@ -863,7 +700,7 @@
                                 </div>
 
                             </div>
-                           
+
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">{{'Button.ButtonClose'|translate}}</button>
 

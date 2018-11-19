@@ -13,11 +13,11 @@ export class AuthenticateServiceService {
     selectedBestPriceId: string = 'selectedBestPriceId';
     ifBothUserTypeFound: string = 'ifBothUserTypeFound';
     UserTypeId: string = 'UserTypeId';
-    baseURL: string = 'http://40.89.139.123:4043';
+   // baseURL: string = 'http://40.89.139.123:4043';
     tokenService: any = new TokenService;
     Usertoken: any = this.storage.get(this.userValue);
     Userdata: any;
-    //baseURL:string='http://localhost:60744/';
+    baseURL:string='http://localhost:60744/';
     constructor(@Inject(LOCAL_STORAGE) public storage: StorageService, public router: Router) { 
      
     }

@@ -7,13 +7,15 @@ import { LenderDashboardService } from './Shared/lender-dashboard.service';
 import { StartPageModel } from './Shared/start-page-model.class';
 import { BestPriceViewService } from '../lender-dashboard/best-price-view/Shared/best-price-view.service';
 import { LOCAL_STORAGE } from 'angular-webstorage-service';
-
+import { Http, Response, Headers, RequestOptions, RequestMethod } from '@angular/http';
 @Component({
     selector: 'app-lender-dashboard',
     templateUrl: './lender-dashboard.component.html',
     styleUrls: ['./lender-dashboard.component.css']
 })
 export class LenderDashboardComponent implements OnInit {
+    http: any;
+    tokenService: any;
     userId: any
     _authenticateServiceService: AuthenticateServiceService
     constructor( public lenderDashboardService: LenderDashboardService, public spinner: NgxSpinnerService
@@ -35,7 +37,9 @@ export class LenderDashboardComponent implements OnInit {
     timer: any;
     IfBankResponseFound: boolean = false;
     IfBothUserTypeFound: boolean = false;
-
+    headerOptions = new Headers({ 'Content-Type': 'application/json' });
+    requestOptions = new RequestOptions({ method: RequestMethod.Post, headers: this.headerOptions });
+  _MaturityList: any;
     ngOnInit() {
 
         this.spinner.show();
@@ -88,7 +92,7 @@ export class LenderDashboardComponent implements OnInit {
             this.GetLenderSendRequestPendingLendedRequestByLenderId();
         }, 5000);
     }
-
+   
     AcceptLendedRequest() {
         debugger;
         for (var i = 0; i <= this.bestPriceViewService.listInterestConvention.length - 1; i++) {

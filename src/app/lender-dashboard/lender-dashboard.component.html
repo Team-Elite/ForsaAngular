@@ -19484,7 +19484,11 @@
                                 {{'Lender.DashBoard.AllBanks'|translate}}<span class="align-middle input-group-icon "><i class="material-icons ">view_list</i></span>
                             </a>
                         </li>
+                        <!--<li *ngIf="lenderDashboardService.UserTypeId == 5 || lenderDashboardService.UserTypeId == '4,5'">
+                            <button type="button" class="dropcockpit" (click)="ShowScreen('Mreport');">Maturity List</button>
+                            <button type="button" class="dropcockpit" (click)="ShowScreen('HMreport');"> History Maturity List</button>
 
+                        </li>-->
                         <li *ngIf="lenderDashboardService.UserTypeId == 6">
                             <a href="javascript:void(0);" (click)="SetCurrentPage('Kontact Dashboard')">
                                 {{'Lender.DashBoard.AllBanks'|translate}}<span class="align-middle input-group-icon "><i class="material-icons ">view_list</i></span>
@@ -19495,6 +19499,23 @@
                                 {{'Lender.DashBoard.AllBanks'|translate}}<span class="align-middle input-group-icon "><i class="material-icons ">view_list</i></span>
                             </a>
                         </li>
+
+                        <li class="cockpit-btn">
+                            <a>
+                                COCKPIT
+                                <span class="align-middle input-group-icon ">
+                                    <i class="material-icons ">view_list</i>
+                                </span>
+                            </a>
+                            <div class="cockpit-dropdown-div">
+                                
+                                <button type="button" class="dropcockpit" (click)="ShowScreen('Mreport');">Maturity List</button>
+                                <button type="button" class="dropcockpit" (click)="ShowScreen('HMreport');"> History Maturity List</button>
+
+                            </div>
+
+                        </li>
+
                         <!-- <li>  (click)="SetCurrentPage('All Banks')"
         <a href="# ">FAQ's<span class="align-middle input-group-icon "><i class="material-icons ">view_list</i></span>
                                     </a>
