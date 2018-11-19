@@ -4,8 +4,8 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { hubConnection, connection } from 'signalr-no-jquery';
-
-const connection = hubConnection('http://40.89.139.123:4044');
+const baseURL = 'http://localhost:60744';//'http://40.89.139.123:4044'
+const connection = hubConnection(baseURL);
 const hubProxy = connection.createHubProxy('NgHub');
 @Component({
     selector: 'app-view-all-price',

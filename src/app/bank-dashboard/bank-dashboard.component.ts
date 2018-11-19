@@ -105,8 +105,9 @@ export class BankDashboardComponent implements OnInit {
             this.toastr.error("Interest rate can not be less than -9999.99", "Dashboard");
             return;
         }
-        rate.IsDoubleTapped = false;
         rate.ModifiedBy = this.bankDashboardService.userId;
+        rate.IsDoubleTapped = false;
+       
         rate.RateOfInterest = rate.RateOfInterest.toFixed(2);
         this.spinner.show();
         this.bankDashboardService.UpdateRateOfInterest(rate).subscribe(data => {
@@ -124,9 +125,10 @@ export class BankDashboardComponent implements OnInit {
             this.toastr.error("Interest rate can not be greater than 9999.99", "Dashboard");
             return;
         }
+        rate.ModifiedBy = this.bankDashboardService.userId;
         rate.RateOfInterest = parseFloat(rate.RateOfInterest) + .01;
         rate.RateOfInterest = parseFloat(rate.RateOfInterest).toFixed(2);
-        rate.ModifiedBy = this.bankDashboardService.userId;
+        
         this.spinner.show();
         this.bankDashboardService.UpdateRateOfInterest(rate).subscribe(data => {
             this.spinner.hide();

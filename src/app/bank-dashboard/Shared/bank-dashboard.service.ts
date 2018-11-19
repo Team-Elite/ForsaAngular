@@ -31,7 +31,7 @@ export class BankDashboardService {
 
     async GetBorrowerMaturityList(history:boolean) {
         var webtoken = { data: this.tokenService.jwtencrypt({ BorrowerId: this.userId, History: history }) };
-        return  await this.http.put(this.authenticateServiceService.baseURL + 'api/BankDashBoard/GetBorrowerMaturityList', webtoken, this.requestOptions).map((data: Response) => {
+        return  await this.http.post(this.authenticateServiceService.baseURL + 'api/BankDashBoard/GetBorrowerMaturityList', webtoken, this.requestOptions).map((data: Response) => {
             return data.json();
         }).toPromise().then(token => this.BorrowerMaturityList = JSON.parse(this.tokenService.jwtdecrypt(token.data).unique_name));
 
@@ -40,7 +40,7 @@ export class BankDashboardService {
 
     async GetRateOfInterestOfBank() {
         var webtoken = { data: this.tokenService.jwtencrypt({ userId: this.userId }) };
-       return await this.http.put(this.authenticateServiceService.baseURL + '/api/BankDashBoard/GetRateOfInterestOfBank', webtoken, this.requestOptions).map((data: Response) => {
+       return await this.http.post(this.authenticateServiceService.baseURL + '/api/BankDashBoard/GetRateOfInterestOfBank', webtoken, this.requestOptions).map((data: Response) => {
             return data.json();
         }).toPromise().then(token => this.listRateOfInterestOfBankModel = JSON.parse(this.tokenService.jwtdecrypt(token.data).unique_name));
 
@@ -53,7 +53,8 @@ export class BankDashboardService {
 
     UpdateRateOfInterest(rateModel: RateOfInterestOfBankModel) {
         // var body = JSON.stringify(rateModel);
-        var webtoken = { data: this.tokenService.jwtencrypt({ userId: this.userId }) };
+    
+        var webtoken = { data: this.tokenService.jwtencrypt(rateModel) };
         return this.http.post(this.authenticateServiceService.baseURL + '/api/BankDashBoard/UpdateRateOfInterestOfBank', webtoken, this.requestOptions).map(x => x.json());
     }
 
