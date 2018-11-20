@@ -201,7 +201,9 @@
 
                             <!-- Maturity List -->
                             <div *ngIf="!IfShowBankDashBoard" id="Mautrity-Panel">
-
+                                <input type="button" (click)="ExportToPDF()" class="btn btn-info btn-lg common-bt-1" id="btnExportToPDF" value="Export to PDF">
+                                <input type="button" (click)="ExportToExcel()" class="btn btn-info btn-lg common-bt-1" id="btnExportToExcel" value="Export To Excel">
+                                <div class="clearfix"></div>
                                 <div class="row dashboard-price-list">
                                     <div class="col-lg-12">
                                         <table class="table table-bordered table-responsive">
@@ -236,7 +238,7 @@
                                                     <td>{{bank.InterestConvention}}</td>
                                                     <td>{{bank.Payments}}</td>
                                                     <!--<td>{{bank.IsRequestAccepted}}</td>
-                                                    <td>{{bank.RequestCreatedBy}}</td>-->
+                        <td>{{bank.RequestCreatedBy}}</td>-->
                                                     <td>{{bank.RateOfInterestOfferred}}</td>
                                                     <td>{{bankOfferredOn}}</td>
                                                 </tr>
@@ -244,8 +246,7 @@
                                         </table>
                                     </div>
                                 </div>
-                                <input type="button" (click)="ExportToPDF()" class="btn btn-info btn-lg" id="btnExportToPDF" value="Export to PDF">
-                                <input type="button" (click)="ExportToExcel()" class="btn btn-info btn-lg" id="btnExportToExcel" value="Export To Excel">
+
 
                             </div>
                             <!-- Maturity End -->
@@ -377,11 +378,12 @@
                                             </td>
                                         </tr>
                                         <tr><th>{{'Borrower.BankDashboard.RateOfInterest'|translate}}</th><td><input (keypress)="numberWithDecimalOnly($event)" #RateOfInterest="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.RateOfInterest" name="RateOfInterest" type="text" id="RateOfInterest1" class="form-control requestamount" maxlength="7"></td></tr>
-                                        <tr><td><input type="button" (click)="UpdateLenderSendRequestRateOfInterest()" class="btn btn-info btn-lg" id="sendRequest" value="SEND"></td></tr>
+                                        <tr><td></td></tr>
                                     </tbody>
                                 </table>
                             </div>
                             <div class="modal-footer">
+  <input type="button" (click)="UpdateLenderSendRequestRateOfInterest()" class="btn btn-info btn-lg common-bt" id="sendRequest" value="SEND" >
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="SetTimeInterval()">{{'Button.ButtonClose'|translate}}</button>
                                 <button id="closeSendRequestModal" style="display:none;" type="button" data-dismiss="modal" class="btn btn-secondary">Close 12</button>
 
