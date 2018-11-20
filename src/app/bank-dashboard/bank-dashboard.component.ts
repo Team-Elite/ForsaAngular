@@ -348,9 +348,10 @@ export class BankDashboardComponent implements OnInit {
         var result = await this.bankDashboardService.GetLenderSendRequestRequestdOnTheBasisOfBorrowerId();
         if (result.IsSuccess ) {
             clearInterval(this.timer);
+           // this.bestPriceViewService.lenderSendRequestModel = result.data;
             var element = document.getElementById('ShowLendPopup');
             element.click();
-            this.bestPriceViewService.lenderSendRequestModel = result.data;
+            
 
             // setInterval(this.timer);
         }

@@ -72,7 +72,7 @@ export class BankDashboardService {
         await this.http.post(this.authenticateServiceService.baseURL + '/api/BankDashBoard/GetUserGroupForSettingRateOfInterestVisibility', webtoken, this.requestOptions).map((data: Response) => {
             return data.json();
         }).toPromise().then(x => {
-            debugger;
+           
             this.listUserGroupForSettingRateOfInterestVisibility = JSON.parse(this.tokenService.jwtdecrypt(x.data).unique_name);
         })
     }
@@ -100,14 +100,12 @@ export class BankDashboardService {
             + '/GetLenderSendRequestRequestdOnTheBasisOfBorrowerId', webtoken, this.requestOptions).map((data: Response) => {
                 return data.json();
             }).toPromise().then(token => {
-                if (token.IsSuccess) return { IsSuccess: token.IsSuccess , data: JSON.parse(this.tokenService.jwtdecrypt(token.data).unique_name) };
+                if (token.IsSuccess) this.lenderSendRequestModel = JSON.parse(this.tokenService.jwtdecrypt(token.data).unique_name);
+
+                    // return { IsSuccess: token.IsSuccess , data: JSON.parse(this.tokenService.jwtdecrypt(token.data).unique_name) };
                 return { IsSuccess: token.IsSuccess };
             });
-     
-        //let token = await this.http.get(this.authenticateServiceService.baseURL + '/api/BankDashBoard' + '/GetLenderSendRequestRequestdOnTheBasisOfBorrowerId?borrowerId=' + this.userId).toPromise();
-      
-       
-        //return response.json();
+   
     }
 
     UpdateLenderSendRequestRateOfInterest(lenderSendRequestModel: any) {

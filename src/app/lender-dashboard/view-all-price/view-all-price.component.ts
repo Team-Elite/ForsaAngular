@@ -16,6 +16,7 @@ const hubProxy = connection.createHubProxy('NgHub');
 export class ViewAllPriceComponent implements OnInit {
     temp_array = [];
     allChecked: boolean;
+    objBankInfo :any = { Bank: '', NameOfCompany: '', Place: '', Street: '' };
     obj = {
         class1: true,
         class2: true,
@@ -112,8 +113,8 @@ export class ViewAllPriceComponent implements OnInit {
         this.GetAllBanksWithStatusIsDeselected();
         this.spinner.show();
         //this.GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected();
-        this.GetAllBanksWithInterestRateHorizontalyOrderByColumnName(this.orderByColumn);
-        //this.SetTimeInterval();
+       // this.GetAllBanksWithInterestRateHorizontalyOrderByColumnName(this.orderByColumn);
+        this.SetTimeInterval();
         this.spinner.hide();
 
     }
@@ -126,7 +127,7 @@ export class ViewAllPriceComponent implements OnInit {
         this.viewAllPriceService.listViewAllPrice3 = [];
         this.spinner.show();
         let rates = await this.viewAllPriceService.GetAllBanksWithStatusIsDeselected();
-        this.viewAllPriceService.listViewAllPrice = JSON.parse(rates.data);
+        this.viewAllPriceService.listViewAllPrice = rates;
         if (this.viewAllPriceService.listViewAllPrice != undefined && this.viewAllPriceService.listViewAllPrice != null && this.viewAllPriceService.listViewAllPrice.length != 0) {
             this.viewAllPriceService.toatlBanksCount = this.viewAllPriceService.listViewAllPrice[0].Count;
         }
@@ -161,8 +162,8 @@ export class ViewAllPriceComponent implements OnInit {
     async GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected() {
 
         let rates = await this.viewAllPriceService.GetAllBanksWithInterestRateHorizontalyOrderByColumnName(this.orderByColumn);
-        if (rates.IfDataFound) {
-            this.viewAllPriceService.listAllBanks = JSON.parse(rates.data);
+        if (rates != null || rates != undefined) {
+            this.viewAllPriceService.listAllBanks = rates;
             console.log(this.viewAllPriceService.listAllBanks);
 
             this.GetHighestRatesViewAllPrice();
@@ -172,9 +173,6 @@ export class ViewAllPriceComponent implements OnInit {
             this.viewAllPriceService.listAllBanks = [];
 
         }
-
-
-
     }
 
     SetTimeInterval() {
@@ -456,6 +454,7 @@ export class ViewAllPriceComponent implements OnInit {
                 this.allChecked = false;
                 this.viewAllPriceService.listAllBanks.forEach((ele, i) => {
                     switch (index) {
+
                         case 1:
                             ele.class1 = false;
                             this.obj.class1 = false;
@@ -575,5 +574,11 @@ export class ViewAllPriceComponent implements OnInit {
             }
         }
 
+    }
+
+    ShowBankPopup(data: any) {
+        this.objBankInfo = data;
+        var element = document.getElementById('btnShowBankInfo');
+        element.click();
     }
 }
