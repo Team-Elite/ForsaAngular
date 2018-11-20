@@ -33,7 +33,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { ForsaLanguagesComponent } from './forsa-languages/forsa-languages.component';
 import { TokenService } from './token-service';
-import { MaturityListComponent } from './maturity-list/maturity-list.component';
+import { MaturitylistComponent } from './lender-dashboard/maturitylist/maturitylist.component';
 //import { JwtHelperService} from '@auth0/angular-jwt';
 
 
@@ -41,7 +41,7 @@ import { MaturityListComponent } from './maturity-list/maturity-list.component';
 export function HttpLoaderFactory(httpClient: HttpClient) {
     return new TranslateHttpLoader(httpClient);
 }
- //return new TranslateHttpLoader(httpClient, './assets/i18n/', '.json')
+//return new TranslateHttpLoader(httpClient, './assets/i18n/', '.json')
 
 
 
@@ -59,7 +59,8 @@ const appRoutes: Routes = [{ path: 'login', component: LoginComponent },
     children: [{ path: "BestPriceView", component: BestPriceViewComponent },
     { path: "ViewAllPrice", component: ViewAllPriceComponent },
     { path: 'AllBanks', component: AllBanksComponent },
-    { path: 'AllBanksK', component: KontactDashboardLComponent }
+    { path: 'AllBanksK', component: KontactDashboardLComponent },
+        { path: 'Maturitylist', component: MaturitylistComponent }
     ]
 }
     //  {path:'BestPriceView', component:BestPriceViewComponent}
@@ -81,8 +82,8 @@ const appRoutes: Routes = [{ path: 'login', component: LoginComponent },
         KontactDashboardComponent,
         KontactDashboardLComponent,
         ForsaLanguagesComponent,
-        MaturityListComponent
-      
+        MaturitylistComponent
+
     ],
     imports: [
         BrowserModule,
@@ -97,7 +98,7 @@ const appRoutes: Routes = [{ path: 'login', component: LoginComponent },
         NgxSpinnerModule,
         NgxPaginationModule,
         TranslateModule.forRoot({
-            loader:{
+            loader: {
                 provide: TranslateLoader,
                 useFactory: HttpLoaderFactory,
                 deps: [HttpClient]
@@ -108,7 +109,7 @@ const appRoutes: Routes = [{ path: 'login', component: LoginComponent },
     providers: [
         NgbdModalBasic,
         DatePipe,
-      
+
     ],
 
     bootstrap: [AppComponent]

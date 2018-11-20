@@ -289,6 +289,11 @@ export class LenderDashboardComponent implements OnInit {
         this.copyLoggedInUser = Object.assign({}, this.lenderDashboardService.loggedInUser);
     }
 
+    ShowMaturityList(History: boolean) {
+
+        this.router.navigate(['lenderDashboard/Maturitylist']);
+    }
+
     SetCurrentPage(pageName: string) {
         this.spinner.show();
         this.lenderDashboardService.CurrentPageName = pageName;

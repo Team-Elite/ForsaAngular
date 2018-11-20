@@ -139,7 +139,10 @@ export class RegistrationComponent implements OnInit {
             rdbBank: false,
             rdbNonBank: false,
             NewPassword: '',
-            //LEINumber2:''
+            //LEINumber2:'',
+            CommercialRegisterExtract: null,
+            IdentityCard:null
+
         }
     }
 

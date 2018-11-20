@@ -40,8 +40,8 @@ export class BankDashboardComponent implements OnInit {
         this.GetUserGroupForSettingRateOfInterestVisibility();
         this.bankDashboardService.loggedInUser = this._authenticateServiceService.GetUserDetail();
         this.copyLoggedInUser = Object.assign({}, this.bankDashboardService.loggedInUser);
-        this.SetTimeInterval();
-
+        //this.SetTimeInterval();
+       // this.GetLenderSendRequestRequestdOnTheBasisOfBorrowerId();
         this.spinner.hide();
         this.bestPriceViewService.lenderSendRequestModel = {
             RequestId: 0,
@@ -325,8 +325,7 @@ export class BankDashboardComponent implements OnInit {
     async GetLenderMaturityList(IfHistoryReportRequested: boolean) {
        
         this.spinner.show();
-        /*-- Uncoment below code for getting data from live sever. */
-         let maturityList = await this.bankDashboardService.GetBorrowerMaturityList(IfHistoryReportRequested);
+        let maturityList = await this.bankDashboardService.GetBorrowerMaturityList(IfHistoryReportRequested);
          this._MaturityList = maturityList;
          this.spinner.hide();
     }

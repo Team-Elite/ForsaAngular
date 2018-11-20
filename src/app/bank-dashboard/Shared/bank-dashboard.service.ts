@@ -31,7 +31,7 @@ export class BankDashboardService {
 
     async GetBorrowerMaturityList(history:boolean) {
         var webtoken = { data: this.tokenService.jwtencrypt({ userId: this.userId, History: history }) };
-        return await this.http.post(this.authenticateServiceService.baseURL + 'api/BankDashBoard/GetMaturityList', webtoken, this.requestOptions).map((data: Response) => {
+        return await this.http.post(this.authenticateServiceService.baseURL + '/api/BankDashBoard/GetMaturityList', webtoken, this.requestOptions).map((data: Response) => {
             return data.json();
         }).toPromise().then(token => this.BorrowerMaturityList = JSON.parse(this.tokenService.jwtdecrypt(token.data).unique_name));
 

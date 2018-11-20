@@ -238,7 +238,7 @@
                                                     <td>{{bank.InterestConvention}}</td>
                                                     <td>{{bank.Payments}}</td>
                                                     <!--<td>{{bank.IsRequestAccepted}}</td>
-                        <td>{{bank.RequestCreatedBy}}</td>-->
+                                                    <td>{{bank.RequestCreatedBy}}</td>-->
                                                     <td>{{bank.RateOfInterestOfferred}}</td>
                                                     <td>{{bankOfferredOn}}</td>
                                                 </tr>
@@ -310,7 +310,6 @@
                     </div>
                 </div>
                 <button Id="ShowLendPopup" type="button" style="display:none;" class="btn w-100 active" data-toggle="modal" data-target=".modalSendRequest" data-backdrop="static" data-keyboard="false">Lend</button>
-
                 <!-- modal setting start page tab-->
                 <div class="modal fade bd-example-modal-lg-setting-page dashboard-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
                      aria-hidden="true">
@@ -323,7 +322,7 @@
                                 </button>
                             </div>
 
-                            <div class="modal-body" id="lendrequestbody">
+                            <div class="modal-body" id="lendStartPagebody">
                                 <select class="form-control" id="setting_start_page">
                                     <option value="">--Select Start Page--</option>
                                     <option value="viewall">{{'Borrower.BankDashboard.ViewAllPrice'|translate}}</option>
@@ -383,7 +382,7 @@
                                 </table>
                             </div>
                             <div class="modal-footer">
-  <input type="button" (click)="UpdateLenderSendRequestRateOfInterest()" class="btn btn-info btn-lg common-bt" id="sendRequest" value="SEND" >
+                                <input type="button" (click)="UpdateLenderSendRequestRateOfInterest()" class="btn btn-info btn-lg common-bt" id="sendRequest" value="SEND">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="SetTimeInterval()">{{'Button.ButtonClose'|translate}}</button>
                                 <button id="closeSendRequestModal" style="display:none;" type="button" data-dismiss="modal" class="btn btn-secondary">Close 12</button>
 
@@ -405,7 +404,7 @@
                                 </button>
                             </div>
 
-                            <div class="modal-body" id="lendrequestbody">
+                            <div class="modal-body" id="lenderProfileEdittbody">
                                 <form>
                                     <div class="row">
 
@@ -566,7 +565,7 @@
                                 </button>
                             </div>
 
-                            <div class="modal-body" id="lendrequestbody">
+                            <div class="modal-body" id="lenderrequestbody">
                                 <form>
                                     <div class="row">
                                         <div class="modal-body">
@@ -637,7 +636,6 @@
 
 
                 <!---pdf modal -->
-
                 <div class="modal fade bd-example-modal-lg-cockpit-pdf admin-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
                      aria-hidden="true">
                     <div class="modal-dialog modal-lg">
@@ -661,59 +659,9 @@
                         </div>
                     </div>
                 </div>
-
-
-
                 <!-- modal end-->
-                <!--MODAL mATURITY-->
-                <!--<button type="button" class ="dropcockpit menudrpSet" data-toggle="modal" data-target=".maturity-modal" id="eigene">Maturity List</button>-->
-                <!--<button type="button" class="dropcockpit menudrpSet" id="eigene" data-toggle="modal"> History Maturity List</button>-->
-                <div class="modal fade maturity-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-                     aria-hidden="true">
-                    <div class="modal-dialog modal-lg">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLongTitle">Maturity List</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
 
-                            <div class="modal-body" id="lendrequestbody">
-
-                                <div id="eigenepdf">
-
-                                    <div class="showpdf">
-                                        <div class="pdffile" data-id="2018-08-01 16_38_10-28 Aug 2018 15:46:44.pdf"
-                                             data-toggle="modal" data-target=".bd-example-modal-lg-cockpit-pdf">
-                                            <span>
-                                                <i class="fa fa-file-pdf-o" style="font-size:20px;color:red"></i>
-                                            </span> 2018-08-01 16_38_10-28 Aug 2018 15:46:44.pdf
-                                            <span class="del-icon">
-                                                <i class="material-icons">delete_outline</i>
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div class="button-div">
-                                        <input class="btn " type="button" value="Datei hochladen" id="eigenepdfBtn">
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{'Button.ButtonClose'|translate}}</button>
-
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <!-- mODAL eND-->
             </div>
-
-
-
 
         </div>
 
@@ -761,11 +709,11 @@
         });
 
 
-                    // if (document.documentElement.clientWidth < 900) {
-                    //     $('#navbar-toggle').click(function() {
-                    //         $("html").addClass("open-nav")
-                    //     })
-                    // }
+                        // if (document.documentElement.clientWidth < 900) {
+                        //     $('#navbar-toggle').click(function() {
+                        //         $("html").addClass("open-nav")
+                        //     })
+                        // }
     </script>
 
 </body>
