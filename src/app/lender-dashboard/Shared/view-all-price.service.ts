@@ -81,9 +81,9 @@ export class ViewAllPriceService {
         return response;
     }
 
-    async DeselectSelectBank(bankId: number, IsSelected: Boolean) {
-        var webtoken = { data: this.tokenService.jwtencrypt({ userId: this.lenderDashboardService.userId }), bankId: bankId,  IsSelected: IsSelected  };
-        let token = await this.http.post(this.lenderDashboardService.baseURL + '/api/LenderDashboard/DeselectBank', webtoken, this.requestOptions).toPromise();
+    async DeselectSelectBank(bankId: number, IsSelected: any) {
+        var webtoken = { data: this.tokenService.jwtencrypt({ userId: this.lenderDashboardService.userId, bankId: bankId, IsSelected: (IsSelected)?1:0 }) };
+        let token = await this.http.put(this.lenderDashboardService.baseURL + '/api/LenderDashboard/DeselectBank', webtoken, this.requestOptions).toPromise();
 
        // let token = await this.http.get(this.lenderDashboardService.baseURL + '/api/LenderDashboard/DeselectBank?userId=' + this.lenderDashboardService.userId + "&bankId=" + bankId + "&IsSelected=" + IsSelected).toPromise();
         var response;
