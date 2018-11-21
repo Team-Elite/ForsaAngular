@@ -40,11 +40,31 @@ background: url('../images/insti-bg.png') no-repeat;
     padding: 1.5em 0em;
     background: none;
 }
-
-.mb-2,
-.my-2 {
-    margin-bottom: .5rem !important;
+.menudrpSet {
+    color: #fff;
+    background: #37383d !important;
+    border: none;
+    text-align: left;
+    padding: 8px;
+    margin: 0px !important;
+    font-size: 11px !important;
+    text-transform: uppercase;
+    width: 100%;
+    float:left;
+    display:block;
 }
+.menudrpSet:hover {
+        background-color: #8636d7 !important;
+    }
+#wrapper[_ngcontent-c1] .sidebar-nav[_ngcontent-c1] li[_ngcontent-c1] a[_ngcontent-c1] {
+    padding: 15px 10px !important;
+    height: 52px !important;
+}
+
+    .mb-2,
+    .my-2 {
+        margin-bottom: .5rem !important;
+    }
 
 .group {
     position: relative;

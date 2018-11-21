@@ -87,8 +87,14 @@ export class BankDashboardComponent implements OnInit {
         }
     }
 
-    EnableTextBox(rate) {
-        rate.IsDoubleTapped = true;
+    EnableTextBox(rate, type: number) {
+        debugger;
+        if (type == 1)
+            rate.IsDoubleTapped = true;
+        else if (type == 2)
+            rate.IsDoubleTapped2 = true;
+        else if (type == 3)
+            rate.IsDoubleTapped3 = true;
     }
     EnableTextBox2() {
         this.testTrue = true;
@@ -96,64 +102,148 @@ export class BankDashboardComponent implements OnInit {
 
     UpdateRateOfInterest(rate) {
         if (rate.RateOfInterest == undefined || rate.RateOfInterest == null || rate.RateOfInterest.length == 0) {
-            this.toastr.error("Rate must be entered.", "Dashboard");
+            this.toastr.error("Rate1 must be entered.", "Dashboard");
             return;
         }
         if (rate.RateOfInterest > 9999.99) {
-            this.toastr.error("Interest rate can not be greater than 9999.99", "Dashboard");
+            this.toastr.error("Interest rate1 can not be greater than 9999.99", "Dashboard");
             return;
         }
         if (rate.RateOfInterest < -9999.99) {
-            this.toastr.error("Interest rate can not be less than -9999.99", "Dashboard");
+            this.toastr.error("Interest rate1 can not be less than -9999.99", "Dashboard");
             return;
         }
-        rate.ModifiedBy = this.bankDashboardService.userId;
+
+        if (rate.RateOfInterest2 == undefined || rate.RateOfInterest2 == null || rate.RateOfInterest2.length == 0) {
+            this.toastr.error("Rate2 must be entered.", "Dashboard");
+            return;
+        }
+        if (rate.RateOfInterest2 > 9999.99) {
+            this.toastr.error("Interest rate2 can not be greater than 9999.99", "Dashboard");
+            return;
+        }
+        if (rate.RateOfInterest2 < -9999.99) {
+            this.toastr.error("Interest rate2 can not be less than -9999.99", "Dashboard");
+            return;
+        }
+
+        if (rate.RateOfInterest3 == undefined || rate.RateOfInterest3 == null || rate.RateOfInterest3.length == 0) {
+            this.toastr.error("Rate3 must be entered.", "Dashboard");
+            return;
+        }
+        if (rate.RateOfInterest3 > 9999.99) {
+            this.toastr.error("Interest rate3 can not be greater than 9999.99", "Dashboard");
+            return;
+        }
+        if (rate.RateOfInterest3 < -9999.99) {
+            this.toastr.error("Interest rate3 can not be less than -9999.99", "Dashboard");
+            return;
+        }
         rate.IsDoubleTapped = false;
-       
+        rate.ModifiedBy = this.bankDashboardService.userId;
         rate.RateOfInterest = rate.RateOfInterest.toFixed(2);
+        rate.RateOfInterest2 = rate.RateOfInterest2.toFixed(2);
+        rate.RateOfInterest3 = rate.RateOfInterest3.toFixed(2);
         this.spinner.show();
         this.bankDashboardService.UpdateRateOfInterest(rate).subscribe(data => {
             this.spinner.hide();
         })
     }
 
-    IncreaseRateOfInterest(rate) {
-        if (rate.RateOfInterest == undefined || rate.RateOfInterest == null || rate.RateOfInterest.length == 0) {
-            this.toastr.error("Rate must be entered.", "Dashboard");
-            return;
+    IncreaseRateOfInterest(rate, type: number) {
+        debugger;
+        if (type == 1) {
+            if (rate.RateOfInterest == undefined || rate.RateOfInterest == null || rate.RateOfInterest.length == 0) {
+                this.toastr.error("Rate must be entered.", "Dashboard");
+                return;
+            }
+
+            if (rate.RateOfInterest >= 9999.99) {
+                this.toastr.error("Interest rate can not be greater than 9999.99", "Dashboard");
+                return;
+            }
+            rate.RateOfInterest = parseFloat(rate.RateOfInterest) + .01;
+            rate.RateOfInterest = parseFloat(rate.RateOfInterest).toFixed(2);
+        }
+        else if (type == 2) {
+            if (rate.RateOfInterest2 == undefined || rate.RateOfInterest2 == null || rate.RateOfInterest2.length == 0) {
+                this.toastr.error("Rate2 must be entered.", "Dashboard");
+                return;
+            }
+
+            if (rate.RateOfInterest2 >= 9999.99) {
+                this.toastr.error("Interest rate2 can not be greater than 9999.99", "Dashboard");
+                return;
+            }
+            rate.RateOfInterest2 = parseFloat(rate.RateOfInterest2) + .01;
+            rate.RateOfInterest2 = parseFloat(rate.RateOfInterest2).toFixed(2);
+        }
+        else if (type == 3) {
+            if (rate.RateOfInterest3 == undefined || rate.RateOfInterest3 == null || rate.RateOfInterest3.length == 0) {
+                this.toastr.error("Rate3 must be entered.", "Dashboard");
+                return;
+            }
+
+            if (rate.RateOfInterest3 >= 9999.99) {
+                this.toastr.error("Interest rate3 can not be greater than 9999.99", "Dashboard");
+                return;
+            }
+            rate.RateOfInterest3 = parseFloat(rate.RateOfInterest3) + .01;
+            rate.RateOfInterest3 = parseFloat(rate.RateOfInterest3).toFixed(2);
         }
 
-        if (rate.RateOfInterest >= 9999.99) {
-            this.toastr.error("Interest rate can not be greater than 9999.99", "Dashboard");
-            return;
-        }
         rate.ModifiedBy = this.bankDashboardService.userId;
-        rate.RateOfInterest = parseFloat(rate.RateOfInterest) + .01;
-        rate.RateOfInterest = parseFloat(rate.RateOfInterest).toFixed(2);
-        
         this.spinner.show();
         this.bankDashboardService.UpdateRateOfInterest(rate).subscribe(data => {
             this.spinner.hide();
         })
     }
 
-    DecreaseRateOfInterest(rate) {
-        if (rate.RateOfInterest == undefined || rate.RateOfInterest == null || rate.RateOfInterest.length == 0) {
-            this.toastr.error("Rate must be entered.", "Dashboard");
-            return;
+    DecreaseRateOfInterest(rate, type: number) {
+        if (type == 1) {
+            if (rate.RateOfInterest == undefined || rate.RateOfInterest == null || rate.RateOfInterest.length == 0) {
+                this.toastr.error("Rate must be entered.", "Dashboard");
+                return;
+            }
+            if (rate.RateOfInterest <= -9999.99) {
+                this.toastr.error("Interest rate can not be less than -9999.99", "Dashboard");
+                return;
+            }
+            rate.RateOfInterest = parseFloat(rate.RateOfInterest) - .01;
+            rate.RateOfInterest = parseFloat(rate.RateOfInterest).toFixed(2);
         }
-        if (rate.RateOfInterest <= -9999.99) {
-            this.toastr.error("Interest rate can not be less than -9999.99", "Dashboard");
-            return;
+        else if (type == 2) {
+            if (rate.RateOfInterest2 == undefined || rate.RateOfInterest2 == null || rate.RateOfInterest2.length == 0) {
+                this.toastr.error("Rate2 must be entered.", "Dashboard");
+                return;
+            }
+            if (rate.RateOfInterest2 <= -9999.99) {
+                this.toastr.error("Interest rate2 can not be less than -9999.99", "Dashboard");
+                return;
+            }
+            rate.RateOfInterest2 = parseFloat(rate.RateOfInterest2) - .01;
+            rate.RateOfInterest2 = parseFloat(rate.RateOfInterest2).toFixed(2);
         }
-        rate.RateOfInterest = parseFloat(rate.RateOfInterest) - .01;
-        rate.RateOfInterest = parseFloat(rate.RateOfInterest).toFixed(2);
+        else if (type == 3) {
+            if (rate.RateOfInterest3 == undefined || rate.RateOfInterest3 == null || rate.RateOfInterest3.length == 0) {
+                this.toastr.error("Rate3 must be entered.", "Dashboard");
+                return;
+            }
+            if (rate.RateOfInterest3 <= -9999.99) {
+                this.toastr.error("Interest rate3 can not be less than -9999.99", "Dashboard");
+                return;
+            }
+            rate.RateOfInterest3 = parseFloat(rate.RateOfInterest3) - .01;
+            rate.RateOfInterest3 = parseFloat(rate.RateOfInterest3).toFixed(2);
+        }
+
         rate.ModifiedBy = this.bankDashboardService.userId;
         this.spinner.show();
         this.bankDashboardService.UpdateRateOfInterest(rate).subscribe(data => {
             this.spinner.hide();
         })
     }
+
 
     PublishAndUnPublish(value) {
         this.spinner.show();

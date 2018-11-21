@@ -34,6 +34,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { ForsaLanguagesComponent } from './forsa-languages/forsa-languages.component';
 import { TokenService } from './token-service';
 import { MaturitylistComponent } from './lender-dashboard/maturitylist/maturitylist.component';
+import { UserprofileComponent } from './userprofile/userprofile.component';
 //import { JwtHelperService} from '@auth0/angular-jwt';
 
 
@@ -47,7 +48,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
 
 
 const appRoutes: Routes = [{ path: 'login', component: LoginComponent },
-{ path: 'registration', component: RegistrationComponent },
+    { path: 'registration', component: RegistrationComponent },
+    { path: 'userprofile', component: UserprofileComponent },
 //  {path:'registration/:uId',component:RegistrationComponent},
 { path: 'registration/:uId/:uRole', component: RegistrationComponent },
 { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -82,7 +84,8 @@ const appRoutes: Routes = [{ path: 'login', component: LoginComponent },
         KontactDashboardComponent,
         KontactDashboardLComponent,
         ForsaLanguagesComponent,
-        MaturitylistComponent
+        MaturitylistComponent,
+        UserprofileComponent
 
     ],
     imports: [

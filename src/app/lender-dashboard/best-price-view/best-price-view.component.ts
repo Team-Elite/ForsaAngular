@@ -5,9 +5,10 @@ import { ToastrService } from 'ngx-toastr';
 import { DatePipe } from '@angular/common';
 import { LenderDashboardService } from '../Shared/lender-dashboard.service';
 import { hubConnection, connection } from 'signalr-no-jquery';
+import { environment } from '../../../environments/environment.prod';
 
-const baseURL = 'http://localhost:60744';//'http://40.89.139.123:4044'
-const connection = hubConnection(baseURL);
+const connection = (environment.production) ? hubConnection('http://40.89.139.123:4044/signalr') : hubConnection('http://localhost:61088/signalr');
+
 const hubProxy = connection.createHubProxy('NgHub');
 @Component({
     selector: 'app-best-price-view',

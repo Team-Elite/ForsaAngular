@@ -1,4 +1,9 @@
 ﻿{
+  "ClientGroup": {
+    "Group1":"Municipal Companies(GmbH)" ,
+    "Group2":  "Municipal Companies(KdöR-AöR)",
+    "Group3" : "communities"
+  },
   "Button": {
     "ButtonSend": "Send",
     "ButtonNext": "Next",
@@ -25,6 +30,31 @@
     "ForgotPassword": "Forgot Password",
     "Email": "Email"
   },
+  "UserProfile": {
+    "Title": "Title",
+    "NameofCompany": "Name of Company",
+    "Street": "Street",
+    "PostalCode": "Postal Code",
+    "Place": "Place",
+    "AccountHolder": "Account Holder",
+    "Bank": "Bank",
+    "IBAN": "IBAN",
+    "BICCode": "BICCode",
+    "ClientGroup": "Client Group",
+    "LEINumber": "LEI Number",
+    "FurtherField4": "Further Field 4",
+    "Salutation": "Salutation",
+    "FirstName": "First Name",
+    "SurName": "SurName",
+    "TelephoneNo": "Telephone No",
+    "EmailAddress": "Email Address",
+    "MinimumVolume": "Minimum Volume",
+    "Rating": "Rating",
+    "CommercialRegisterExtract": "Commercial Register Extract",
+    "IdentityCard": "IdentityCard"
+  },
+
+
   "Register": {
     "section1": {
       "Title": "Register",

@@ -16,7 +16,16 @@ body.instibg {
 select:focus {
     outline: none;
 }
+.w-100-px {
+    width: 100px !important;
+    float: left;
+}
 
+.text-centered {
+    text-align: center !important;
+    background-color: #72af09;
+    border: 1px solid #c4fd63;
+}
 hgroup {
     text-align: center;
     margin-top: 4em;
@@ -601,6 +610,7 @@ input:focus~.highlight {
         opacity: 0;
     }
 }
+.in-float-lf{ float:left;}
 .in-lang{ float:right; }
 .in-lang .lang-nav{
     padding:0px !important;

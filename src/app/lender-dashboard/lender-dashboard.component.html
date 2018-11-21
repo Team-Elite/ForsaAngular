@@ -19356,8 +19356,8 @@
             color: #fff;
         }
     </style>
-   
-    <!--<script src="./Instimatch Dashboard_files/prefixfree.min.js"></script>--> 
+
+    <!--<script src="./Instimatch Dashboard_files/prefixfree.min.js"></script>-->
     <script src="assets/scripts/prefixfree.min.js"></script>
 
 
@@ -19426,15 +19426,15 @@
                             <li style="display:none;">
                                 <a href=""><i class="material-icons icon-position">{{'Lender.DashBoard.forum'|translate}}</i></a>
                             </li>
-                            <li class="identity" >
-                                <a href="javascript:void(0);"  (click)="ShowUpdateProfileModal()" data-toggle="modal" data-target=".admin-modal">
+                            <li class="identity">
+                                <a href="javascript:void(0);" (click)="ShowUpdateProfileModal()" data-toggle="modal" data-target=".admin-modal">
                                     <i class="material-icons">{{'Lender.DashBoard.PermIdentity'|translate}}</i>
                                 </a>
                             </li>
 
-                          
-                            <li *ngIf="IfBothUserTypeFound"   class="settings" title="Switch Screen">
-                                <a  href="javascript:void(0);" (click)="SwitchScreen()">
+
+                            <li *ngIf="IfBothUserTypeFound" class="settings" title="Switch Screen">
+                                <a href="javascript:void(0);" (click)="SwitchScreen()">
                                     <i class="material-icons icon-position"></i>{{'Lender.DashBoard.Settings'|translate}}
                                 </a>
                             </li>
@@ -19456,10 +19456,25 @@
                 <div class="sidebar ">
 
                     <ul class="sidebar-nav ">
+                        <li class="cockpit-btn">
+                            <a>
+                                COCKPIT
+                                <span class="align-middle input-group-icon ">
+                                    <i class="material-icons ">view_list</i>
+                                </span>
+                            </a>
 
-                        <li>
-                            <a href="javascript:void(0);" data-toggle="modal" data-target=".setting-popup2">{{'Lender.DashBoard.SettingStartPage'|translate}}<span class="align-middle input-group-icon "><i class="material-icons ">dashboard</i></span></a>
+                            <div class="cockpit-dropdown-div">
+                                <button type="button" class="dropcockpit" id="eigene" data-toggle="modal" data-target=".setting-popup2">{{'Lender.DashBoard.SettingStartPage'|translate}}<span class="align-middle input-group-icon "><i class="material-icons ">dashboard</i></span></button>
+                                <button type="button" class="dropcockpit" (click)="ShowMaturityList(false);" id="Ansehen">{{'Borrower.BankDashboard.Viewanddownloadyourownduelist'|translate}}</button>
+                                <button type="button" class="dropcockpit" (click)="ShowMaturityList(true);" id="Ansehenund">{{'Borrower.BankDashboard.Viewanddownloadinthepastdonebusiness'|translate}}</button>
+                                <!--<button type="button" class="dropcockpit" >Maturity List</button>
+                                <button type="button" class="dropcockpit" > History Maturity List</button>-->
+
+                            </div>
                         </li>
+
+
                         <li style="display: none;">
                             <a href="javascript:void(0);" (click)="SetCurrentPage('Lender Settings')">
                                 {{'Lender.DashBoard.LenderSettings'|translate}}<span class="align-middle input-group-icon ">
@@ -19500,26 +19515,12 @@
                             </a>
                         </li>
 
-                        <li class="cockpit-btn">
-                            <a>
-                                COCKPIT
-                                <span class="align-middle input-group-icon ">
-                                    <i class="material-icons ">view_list</i>
-                                </span>
-                            </a>
-                            <div class="cockpit-dropdown-div">
-                                
-                                <button type="button" class="dropcockpit" (click)="ShowMaturityList(false);">Maturity List</button>
-                                <button type="button" class="dropcockpit" (click)="ShowMaturityList(true);"> History Maturity List</button>
 
-                            </div>
-
-                        </li>
 
                         <!-- <li>  (click)="SetCurrentPage('All Banks')"
-        <a href="# ">FAQ's<span class="align-middle input-group-icon "><i class="material-icons ">view_list</i></span>
-                                    </a>
-    </li> -->
+                            <a href="# ">FAQ's<span class="align-middle input-group-icon "><i class="material-icons ">view_list</i></span>
+                                                        </a>
+                        </li> -->
                         <li>
                             <button *ngIf="lenderDashboardService.UserTypeId == 6" (click)="RegisterAsPartner()" class="btn btn-secondary green-btn" type="button">{{'Button.ButtonRegisterasPartner'|translate}}</button>
 
@@ -19530,24 +19531,25 @@
             <!-- Aside Ends Here-->
 
             <router-outlet></router-outlet>
-
-
+            <div *ngIf="!IfShowBankDashBoard" id="Mautrity-Panel">
+                <app-maturitylist _history="ShowHistory"></app-maturitylist>
+            </div>
             <!--admin icon modal page tab-->
             <div class="modal fade bd-example-modal-lg-setting-page admin-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5  class="modal-title" id="exampleModalLongTitle">  {{'Lender.DashBoard.UpdateProfile'|translate}}</h5>
+                            <h5 class="modal-title" id="exampleModalLongTitle">  {{'Lender.DashBoard.UpdateProfile'|translate}}</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">×</span>
                             </button>
                         </div>
 
-                        <div class="modal-body"  id="lendrequestbody">
+                        <div class="modal-body" id="lendrequestbody">
                             <form>
                                 <div class="row">
 
-                                    <div  class="heading col-sm-12">
+                                    <div class="heading col-sm-12">
                                         <h4>{{'Lender.DashBoard.EditDetails'|translate}}</h4>
                                         <hr>
                                     </div>
@@ -19591,7 +19593,7 @@
 
                                 </div>
                             </form>
-                        
+
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">{{'Button.ButtonClose'|translate}}</button>
@@ -19776,11 +19778,11 @@
         });
 
 
-                // if (document.documentElement.clientWidth < 900) {
-                //     $('#navbar-toggle').click(function() {
-                //         $("html").addClass("open-nav")
-                //     })
-                // }
+                            // if (document.documentElement.clientWidth < 900) {
+                            //     $('#navbar-toggle').click(function() {
+                            //         $("html").addClass("open-nav")
+                            //     })
+                            // }
     </script>
 
 

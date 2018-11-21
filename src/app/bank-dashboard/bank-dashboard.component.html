@@ -105,7 +105,23 @@
                 <div class="sidebar ">
 
                     <ul class="sidebar-nav ">
+                        <li class="cockpit-btn">
+                            <a>
+                                COCKPIT
+                                <span class="align-middle input-group-icon ">
+                                    <i class="material-icons ">view_list</i>
+                                </span>
+                            </a>
+                            <div class="cockpit-dropdown-div">
+                                <button type="button" class="dropcockpit" id="eigene" data-toggle="modal" data-target=".bd-example-modal-lg-eigene-Stammdatenverwaltung">{{'Borrower.BankDashboard.Ownmasterdatamanagement'|translate}}</button>
+                                <button type="button" class="dropcockpit" (click)="ShowScreen('Mreport');" id="Ansehen">{{'Borrower.BankDashboard.Viewanddownloadyourownduelist'|translate}}</button>
+                                <button type="button" class="dropcockpit" (click)="ShowScreen('HMreport');" id="Ansehenund">{{'Borrower.BankDashboard.Viewanddownloadinthepastdonebusiness'|translate}}</button>
+                                <!--<button type="button" class="dropcockpit" >Maturity List</button>
+                                <button type="button" class="dropcockpit" > History Maturity List</button>-->
 
+                            </div>
+
+                        </li>
                         <li>
                             <a (click)="PublishAndUnPublish(true);">
                                 {{'Borrower.BankDashboard.PUBLISH'|translate}}
@@ -149,23 +165,7 @@
                                 </span>
                             </a>
                         </li>
-                        <li class="cockpit-btn">
-                            <a>
-                                COCKPIT
-                                <span class="align-middle input-group-icon ">
-                                    <i class="material-icons ">view_list</i>
-                                </span>
-                            </a>
-                            <div class="cockpit-dropdown-div">
-                                <button type="button" class="dropcockpit" id="eigene" data-toggle="modal" data-target=".bd-example-modal-lg-eigene-Stammdatenverwaltung">{{'Borrower.BankDashboard.Ownmasterdatamanagement'|translate}}</button>
-                                <button type="button" class="dropcockpit" id="Ansehen">{{'Borrower.BankDashboard.Viewanddownloadyourownduelist'|translate}}</button>
-                                <button type="button" class="dropcockpit" id="Ansehenund">{{'Borrower.BankDashboard.Viewanddownloadinthepastdonebusiness'|translate}}</button>
-                                <button type="button" class="dropcockpit" (click)="ShowScreen('Mreport');">Maturity List</button>
-                                <button type="button" class="dropcockpit" (click)="ShowScreen('HMreport');"> History Maturity List</button>
 
-                            </div>
-
-                        </li>
 
 
                     </ul>
@@ -175,27 +175,80 @@
 
             <div class="container-fluid application-panel" id="main-panel">
                 <div class="row application-page">
-                    <div class="col-lg-8 col-md-12">
+                    <div class="col-lg-12 col-md-12">
                         <div class="dashboard-right application-sec">
+
                             <div *ngIf="IfShowBankDashBoard" id="Rate-Panel">
+                                <div class="no-gutters row">
+                                    <div class="col-md-3 pr-1">
+
+                                    </div>
+
+                                    <div class="col-md-3 pr-1 text-centered">
+                                        <span class="modal-header w-100">{{'ClientGroup.Group1'|translate}}</span>
+                                    </div>
+                                    <div class="col-md-3 pr-1 text-centered">
+                                        <span class="modal-header">{{'ClientGroup.Group2'|translate}}</span>
+                                    </div>
+                                    <div class="col-md-3 pr-1 text-centered">
+                                        <span class="modal-header">{{'ClientGroup.Group3'|translate}}</span>
+                                    </div>
+
+                                </div>
+
+
                                 <div *ngFor="let rate of bankDashboardService.listRateOfInterestOfBankModel" class=" no-gutters row">
-                                    <div class="col-md-4 pr-1">
+                                    <div class="col-md-3 pr-1">
                                         <button type="button" class="btn w-100 ">{{rate.TimePeriod}}</button>
                                     </div>
-                                    <div class="col-md-4 pr-1">
-                                        <button type="button" (dblclick)="EnableTextBox(rate)" class="btn w-100 active">
-                                            <input (blur)="UpdateRateOfInterest(rate)" type="number" [disabled]="!rate.IsDoubleTapped" #RateOfInterest="ngModel" [(ngModel)]="rate.RateOfInterest" name="RateOfInterest" />
-                                        </button>
+                                    <div class="col-md-3 pr-1">
 
+                                      
+                                            <div class="col-md-6 pr-1 in-float-lf">
+                                                <button type="button" (dblclick)="EnableTextBox(rate,1)" class="btn w-100 w-100-px active">
+                                                    <input (blur)="UpdateRateOfInterest(rate)" type="number" [disabled]="!rate.IsDoubleTapped" #RateOfInterest="ngModel" [(ngModel)]="rate.RateOfInterest" name="RateOfInterest" />
+                                                </button>
+                                            </div>
+                                            <div class="col-md-6 pr-1 in-float-lf">
+                                                <button type="button" class="btn w-100 w-100-px">
+                                                    <a (click)="IncreaseRateOfInterest(rate,1)">+</a>
+                                                    <span>/</span>
+                                                    <a (click)="DecreaseRateOfInterest(rate,1)">-</a>
+                                                </button>
+                                            </div>
+                                        
+                                     
                                     </div>
-                                    <div class="col-md-4 pr-1">
-                                        <button type="button" class="btn w-100">
-                                            <a (click)="IncreaseRateOfInterest(rate)">+</a>
-                                            <span>/</span>
-                                            <a (click)="DecreaseRateOfInterest(rate)">-</a>
-                                        </button>
-                                    </div>
+                                    <div class="col-md-3 pr-1">
+                                        <div class="col-md-6 pr-1  in-float-lf">
+                                            <button type="button" (dblclick)="EnableTextBox(rate,2)" class="btn w-100 active">
+                                                <input (blur)="UpdateRateOfInterest(rate)" type="number" [disabled]="!rate.IsDoubleTapped2" #RateOfInterest2="ngModel" [(ngModel)]="rate.RateOfInterest2" name="RateOfInterest2" />
+                                            </button>
 
+                                        </div>
+                                        <div class="col-md-6 pr-1  in-float-lf">
+                                            <button type="button" class="btn w-100">
+                                                <a (click)="IncreaseRateOfInterest(rate,2)">+</a>
+                                                <span>/</span>
+                                                <a (click)="DecreaseRateOfInterest(rate,2)">-</a>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 pr-1">
+                                        <div class="col-md-6 pr-1  in-float-lf">
+                                            <button type="button" (dblclick)="EnableTextBox(rate,3)" class="btn w-100 active">
+                                                <input (blur)="UpdateRateOfInterest(rate)" type="number" [disabled]="!rate.IsDoubleTapped3" #RateOfInterest3="ngModel" [(ngModel)]="rate.RateOfInterest3" name="RateOfInterest3" />
+                                            </button>
+
+                                        </div>
+                                        <div class="col-md-6 pr-1  in-float-lf">
+                                            <button type="button" class="btn w-100">
+                                                <a (click)="IncreaseRateOfInterest(rate,3)">+</a>
+                                                <span>/</span>
+                                                <a (click)="DecreaseRateOfInterest(rate,3)">-</a>
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
@@ -224,6 +277,7 @@
                                                     <!--<th style="cursor:pointer;">RequestCreatedBy</th>-->
                                                     <th style="cursor:pointer;">RateOfInterestOfferred</th>
                                                     <th style="cursor:pointer;">OfferredOn</th>
+                                                    /t
                                                 </tr>
                                                 <tr *ngFor="let bank of _MaturityList">
                                                     <!--<td>{{bank.RequestId}}</td>-->
@@ -405,7 +459,8 @@
                             </div>
 
                             <div class="modal-body" id="lenderProfileEdittbody">
-                                <form>
+                                <app-userprofile></app-userprofile>
+                                <!--<form>
                                     <div class="row">
 
                                         <div class="heading col-sm-12">
@@ -453,7 +508,7 @@
 
 
                                     </div>
-                                </form>
+                                </form>-->
 
                             </div>
                             <div class="modal-footer">
@@ -476,73 +531,7 @@
                                 <button _ngcontent-c1="" aria-label="Close" class="close" data-dismiss="modal" type="button"><span _ngcontent-c1="" aria-hidden="true">×</span></button>
                             </div>
                             <div _ngcontent-c1="" class="modal-body" id="lendrequestbody">
-                                <form _ngcontent-c1="" novalidate="" class="ng-untouched ng-pristine ng-valid">
-                                    <div _ngcontent-c1="" class="row">
-                                        <div _ngcontent-c1="" class="col-md-6">
-                                            <div class="full-width">
-                                                <label _ngcontent-c1="">Name Unternehmen</label><input _ngcontent-c1="" class="form-control ng-untouched ng-pristine" id="first_name" name="FirstName" placeholder="" type="text" disabled="">
-                                            </div>
-                                            <div class="full-width">
-                                                <label _ngcontent-c1="">Strasse</label><input _ngcontent-c1="" class="form-control ng-untouched ng-pristine" id="first_name" name="FirstName" placeholder="" type="text" disabled="">
-                                            </div>
-                                            <div class="full-width">
-                                                <label _ngcontent-c1="">Postleitzahl</label><input _ngcontent-c1="" class="form-control ng-untouched ng-pristine" id="first_name" name="FirstName" placeholder="" type="text" disabled="">
-                                            </div>
-                                            <div class="full-width">
-                                                <label _ngcontent-c1="">Ort</label><input _ngcontent-c1="" class="form-control ng-untouched ng-pristine" id="first_name" name="FirstName" placeholder="" type="text" disabled="">
-                                            </div>
-                                            <div class="full-width">
-                                                <label _ngcontent-c1="">Kontoinhaber</label><input _ngcontent-c1="" class="form-control ng-untouched ng-pristine" id="first_name" name="FirstName" placeholder="" type="text" disabled="">
-                                            </div>
-                                            <div class="full-width">
-                                                <label _ngcontent-c1="">Bank</label><input _ngcontent-c1="" class="form-control ng-untouched ng-pristine" id="first_name" name="FirstName" placeholder="" type="text" disabled="">
-                                            </div>
-                                            <div class="full-width">
-                                                <label _ngcontent-c1="">IBAN Number</label><input _ngcontent-c1="" class="form-control ng-untouched ng-pristine" id="first_name" name="FirstName" placeholder="" type="text" disabled="">
-                                            </div>
-                                            <div class="full-width">
-                                                <label _ngcontent-c1="">BIC Code</label><input _ngcontent-c1="" class="form-control ng-untouched ng-pristine" id="first_name" name="FirstName" placeholder="" type="text" disabled="">
-                                            </div>
-                                            <div class="full-width">
-                                                <label _ngcontent-c1="">Anrede</label><input _ngcontent-c1="" class="form-control ng-untouched ng-pristine" id="first_name" name="FirstName" placeholder="" type="text" disabled="">
-                                            </div>
-                                            <div class="full-width">
-                                                <label _ngcontent-c1="">Titel</label><input _ngcontent-c1="" class="form-control ng-untouched ng-pristine" id="first_name" name="FirstName" placeholder="" type="text" disabled="">
-                                            </div>
-                                            <div class="full-width">
-                                                <label _ngcontent-c1="">Vorname</label><input _ngcontent-c1="" class="form-control ng-untouched ng-pristine" id="first_name" name="FirstName" placeholder="" type="text" disabled="">
-                                            </div>
-                                            <div class="full-width">
-                                                <label _ngcontent-c1="">Nachname</label><input _ngcontent-c1="" class="form-control ng-untouched ng-pristine" id="first_name" name="FirstName" placeholder="" type="text" disabled="">
-                                            </div>
-                                            <div class="full-width">
-                                                <label _ngcontent-c1="">Mail-Adresse</label><input _ngcontent-c1="" class="form-control ng-untouched ng-pristine" id="first_name" name="FirstName" placeholder="" type="text" disabled="">
-                                            </div>
-                                            <div class="full-width">
-                                                <label _ngcontent-c1="">Benutzertyp</label><input _ngcontent-c1="" class="form-control ng-untouched ng-pristine" id="first_name" name="FirstName" placeholder="" type="text" disabled="">
-                                            </div>
-                                            <div class="full-width">
-                                                <label _ngcontent-c1="">Telefonnummer</label><input _ngcontent-c1="" class="form-control ng-untouched ng-pristine" id="first_name" name="FirstName" placeholder="" type="text" disabled="">
-                                            </div>
-                                            <div class="full-width">
-                                                <label _ngcontent-c1="">Kundengruppe</label><input _ngcontent-c1="" class="form-control ng-untouched ng-pristine" id="first_name" name="FirstName" placeholder="" type="text" disabled="">
-                                            </div>
-                                            <div class="full-width">
-                                                <label _ngcontent-c1="">Mindest-Volumen</label><input _ngcontent-c1="" class="form-control ng-untouched ng-pristine" id="first_name" name="FirstName" placeholder="" type="text" disabled="">
-                                            </div>
-                                            <div class="full-width">
-                                                <label _ngcontent-c1="">RATING</label><input _ngcontent-c1="" class="form-control ng-untouched ng-pristine" id="first_name" name="FirstName" placeholder="" type="text" disabled="">
-                                            </div>
-                                        </div>
-
-                                        <div class="col-6">
-                                            <div class="full-width">
-                                                <label _ngcontent-c1=""> WEITERE INFORMATIONEN-12 Sep 2018 19:30:28.pdf</label>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </form>
+                             
                             </div>
                             <div _ngcontent-c1="" class="modal-footer">
                                 <button _ngcontent-c1="" class="btn btn-secondary" data-dismiss="modal" type="button">Hochladen</button>
@@ -709,11 +698,11 @@
         });
 
 
-                        // if (document.documentElement.clientWidth < 900) {
-                        //     $('#navbar-toggle').click(function() {
-                        //         $("html").addClass("open-nav")
-                        //     })
-                        // }
+                                    // if (document.documentElement.clientWidth < 900) {
+                                    //     $('#navbar-toggle').click(function() {
+                                    //         $("html").addClass("open-nav")
+                                    //     })
+                                    // }
     </script>
 
 </body>

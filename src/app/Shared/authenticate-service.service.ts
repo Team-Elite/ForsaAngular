@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@angular/core';
 import { LOCAL_STORAGE, StorageService } from 'angular-webstorage-service';
 import { Router } from '@angular/router'
 import { TokenService } from '../token-service';
-
+import { environment } from '../../environments/environment';
 
 @Injectable({
     providedIn: 'root'
@@ -13,13 +13,14 @@ export class AuthenticateServiceService {
     selectedBestPriceId: string = 'selectedBestPriceId';
     ifBothUserTypeFound: string = 'ifBothUserTypeFound';
     UserTypeId: string = 'UserTypeId';
-   //baseURL: string = 'http://40.89.139.123:4043';
+    baseURL: string;
     tokenService: any = new TokenService;
     Usertoken: any = this.storage.get(this.userValue);
     Userdata: any;
-   baseURL:string='http://localhost:60744';
-    constructor(@Inject(LOCAL_STORAGE) public storage: StorageService, public router: Router) { 
-     
+   
+    constructor(@Inject(LOCAL_STORAGE) public storage: StorageService, public router: Router) {
+        this.baseURL = (environment.production) ? 'http://40.89.139.123:4043' : 'http://localhost:60744';
+      
     }
     SaveSession(value: any) {
 

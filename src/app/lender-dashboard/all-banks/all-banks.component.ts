@@ -3,9 +3,10 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { AllBanksService } from '../Shared/all-banks.service';
 import { hubConnection, connection } from 'signalr-no-jquery';
+import { environment } from '../../../environments/environment.prod';
 
-const socketurl = 'http://localhost:61088/'; //'http://40.89.139.123:4044/'
-const connection = hubConnection(socketurl);
+
+const connection = (environment.production) ? hubConnection('http://40.89.139.123:4044/signalr') : hubConnection('http://localhost:61088/signalr');
 
 const hubProxy = connection.createHubProxy('NgHub');
 

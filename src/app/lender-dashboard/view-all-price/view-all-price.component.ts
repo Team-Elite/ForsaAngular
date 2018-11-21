@@ -5,8 +5,12 @@ import { ToastrService } from 'ngx-toastr';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { hubConnection, connection } from 'signalr-no-jquery';
 import * as _ from 'lodash';
+import { environment } from '../../../environments/environment.prod';
 
-const connection = hubConnection('http://socket.elitewebdemo.com/signalr');
+const connection = (environment.production) ? hubConnection('http://40.89.139.123:4044/signalr') : hubConnection('http://localhost:61088/signalr');
+
+
+
 const hubProxy = connection.createHubProxy('NgHub');
 @Component({
     selector: 'app-view-all-price',
