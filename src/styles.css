@@ -1,1 +1,19 @@
-/* You can add global styles to this file, and also import other style files */
+.common-bt-1 {
+    width:150px !important;
+    background-color: #8636d7 !important;
+    border: 0px !important;
+    border-radius: 5px !important;
+    padding: 8px 0 !important;
+    float:left;
+    margin-right:10px;
+
+}
+.common-bt {
+    width: 69px !important;
+    background-color: #8636d7 !important;
+    border: 0px !important;
+    border-radius: 5px !important;
+    padding: 8px 0 !important;
+    float: left;
+}
+

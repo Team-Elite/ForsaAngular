@@ -14,6 +14,8 @@ import { LenderDashboardService } from '../lender-dashboard/Shared/lender-dashbo
     styleUrls: ['./bank-dashboard.component.css']
 })
 export class BankDashboardComponent implements OnInit {
+    _MaturityList: any;
+    IfShowBankDashBoard: boolean;
     IsPublished: boolean = false;
     copyLoggedInUser: any;
     testTrue: boolean = false;
@@ -31,15 +33,15 @@ export class BankDashboardComponent implements OnInit {
         this.spinner.show();
 
         this.authenticateServiceService.AuthenticateSession();
-
+        this.IfShowBankDashBoard = true;
         this.IfBothUserTypeFound = this._authenticateServiceService.GetIfBothUserTypeFound() == (undefined || null) ? false : true;
         this.bankDashboardService.userId = this._authenticateServiceService.GetUserId();
         this.GetRateOfInterestOfBank();
         this.GetUserGroupForSettingRateOfInterestVisibility();
         this.bankDashboardService.loggedInUser = this._authenticateServiceService.GetUserDetail();
         this.copyLoggedInUser = Object.assign({}, this.bankDashboardService.loggedInUser);
-        // this.SetTimeInterval();
-
+        //this.SetTimeInterval();
+       // this.GetLenderSendRequestRequestdOnTheBasisOfBorrowerId();
         this.spinner.hide();
         this.bestPriceViewService.lenderSendRequestModel = {
             RequestId: 0,
@@ -322,16 +324,35 @@ export class BankDashboardComponent implements OnInit {
         this.spinner.hide();
 
     }
-
-
+    async GetLenderMaturityList(IfHistoryReportRequested: boolean) {
+       
+        this.spinner.show();
+        let maturityList = await this.bankDashboardService.GetBorrowerMaturityList(IfHistoryReportRequested);
+         this._MaturityList = maturityList;
+         this.spinner.hide();
+    }
+    ShowScreen(screen: string) {
+        if (screen == 'BankDashboard') {
+            this.IfShowBankDashBoard = true;
+        }
+        else if (screen == 'Mreport') {
+            this.GetLenderMaturityList(false);
+            this.IfShowBankDashBoard = false;
+        }
+        else if (screen == 'HMreport') {
+            this.GetLenderMaturityList(true);
+            this.IfShowBankDashBoard = false;
+        }
+    }
     async GetLenderSendRequestRequestdOnTheBasisOfBorrowerId() {
-
+       
         var result = await this.bankDashboardService.GetLenderSendRequestRequestdOnTheBasisOfBorrowerId();
-        if (result.IsSuccess && result.IfDataFound == true) {
+        if (result.IsSuccess ) {
             clearInterval(this.timer);
+           // this.bestPriceViewService.lenderSendRequestModel = result.data;
             var element = document.getElementById('ShowLendPopup');
             element.click();
-            this.bestPriceViewService.lenderSendRequestModel = JSON.parse(result.data)[0];
+            
 
             // setInterval(this.timer);
         }
