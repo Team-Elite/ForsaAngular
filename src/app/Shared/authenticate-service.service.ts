@@ -50,9 +50,7 @@ export class AuthenticateServiceService {
             this.router.navigate(['/login']);
             return;
         }
-        else {
-
-        }
+      
         if ((new Date().getTime() - new Date(sessionDate).getTime()) > 7200000) {
             //alert("Session expired. Please login again.")
             this.router.navigate(['/login']);
@@ -64,7 +62,7 @@ export class AuthenticateServiceService {
 
     GetUserId() {
         //var data = this.tokenService.jwtdecrypt(this.Usertoken);
-        this.GetUserSession();
+        this.AuthenticateSession();
         return JSON.parse(this.Userdata.unique_name)[0].UserId;
     }
 

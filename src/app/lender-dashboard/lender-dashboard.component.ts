@@ -14,10 +14,11 @@ import { Http, Response, Headers, RequestOptions, RequestMethod } from '@angular
     styleUrls: ['./lender-dashboard.component.css']
 })
 export class LenderDashboardComponent implements OnInit {
-    http: any;
-    tokenService: any;
-    userId: any
+    _http: any;
+  
+    _userId: any
     _authenticateServiceService: AuthenticateServiceService
+    ShowMaturity: boolean;
     constructor( public lenderDashboardService: LenderDashboardService, public spinner: NgxSpinnerService
         , public authenticateServiceService: AuthenticateServiceService, public router: Router
         , public toastr: ToastrService
@@ -174,9 +175,9 @@ export class LenderDashboardComponent implements OnInit {
     async GetLenderSendRequestPendingLendedRequestByLenderId() {
 
         //  this.spinner.show();
-        if (this.userId === undefined || this.timer == undefined) return;
+        if (this._userId === undefined || this.timer == undefined) return;
         var result = await this.bestPriceViewService.GetLenderSendRequestPendingLendedRequestByLenderId();
-        if (result.IsSuccess && result.IfDataFound == true) {
+        if (result.IsSuccess) {
             clearInterval(this.timer);
             this.IfBankResponseFound = true;
             var element = document.getElementById('ShowSendRequestLDPopup');
@@ -200,7 +201,7 @@ export class LenderDashboardComponent implements OnInit {
     Logout() {
         //if(confirm("Are you sure you want to log out?")){
         this.authenticateServiceService.ClearSession();
-        this.userId = undefined;
+        this._userId = undefined;
         this.timer = undefined;
         this.router.navigate(['/login']);
         //}
@@ -289,13 +290,20 @@ export class LenderDashboardComponent implements OnInit {
         this.copyLoggedInUser = Object.assign({}, this.lenderDashboardService.loggedInUser);
     }
 
-    ShowMaturityList(History: boolean) {
-
+    async ShowMaturityList(History: boolean) {
+        this.ShowMaturity = true;
+        this.lenderDashboardService.showhistory = History;
+       
         this.router.navigate(['lenderDashboard/Maturitylist']);
+        //await this.lenderDashboardService.GetlenderMaturityList(ShowMaturity);
     }
+
+  
+
 
     SetCurrentPage(pageName: string) {
         this.spinner.show();
+        this.ShowMaturity = false;
         this.lenderDashboardService.CurrentPageName = pageName;
         if (pageName === "Best Price View") {
             this.router.navigate(['lenderDashboard/BestPriceView']);

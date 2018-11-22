@@ -88,7 +88,7 @@ export class BankDashboardComponent implements OnInit {
     }
 
     EnableTextBox(rate, type: number) {
-        debugger;
+       
         if (type == 1)
             rate.IsDoubleTapped = true;
         else if (type == 2)
@@ -141,9 +141,9 @@ export class BankDashboardComponent implements OnInit {
         }
         rate.IsDoubleTapped = false;
         rate.ModifiedBy = this.bankDashboardService.userId;
-        rate.RateOfInterest = rate.RateOfInterest.toFixed(2);
-        rate.RateOfInterest2 = rate.RateOfInterest2.toFixed(2);
-        rate.RateOfInterest3 = rate.RateOfInterest3.toFixed(2);
+        rate.RateOfInterest = parseFloat( rate.RateOfInterest).toFixed(2);
+        rate.RateOfInterest2 = parseFloat(rate.RateOfInterest2).toFixed(2);
+        rate.RateOfInterest3 = parseFloat(rate.RateOfInterest3).toFixed(2);
         this.spinner.show();
         this.bankDashboardService.UpdateRateOfInterest(rate).subscribe(data => {
             this.spinner.hide();
