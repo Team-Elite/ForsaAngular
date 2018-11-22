@@ -8,6 +8,7 @@ import { StartPageModel } from './Shared/start-page-model.class';
 import { BestPriceViewService } from '../lender-dashboard/best-price-view/Shared/best-price-view.service';
 import { LOCAL_STORAGE } from 'angular-webstorage-service';
 import { Http, Response, Headers, RequestOptions, RequestMethod } from '@angular/http';
+import { UserProfileServiceService } from '../userprofile/Shared/user-profile-service.service';
 @Component({
     selector: 'app-lender-dashboard',
     templateUrl: './lender-dashboard.component.html',
@@ -19,15 +20,19 @@ export class LenderDashboardComponent implements OnInit {
     _userId: any
     _authenticateServiceService: AuthenticateServiceService
     ShowMaturity: boolean;
-    constructor( public lenderDashboardService: LenderDashboardService, public spinner: NgxSpinnerService
-        , public authenticateServiceService: AuthenticateServiceService, public router: Router
+    constructor( public lenderDashboardService: LenderDashboardService, public spinner: NgxSpinnerService,
+        //, public authenticateServiceService: AuthenticateServiceService,
+        public router: Router
         , public toastr: ToastrService
-        , public bestPriceViewService: BestPriceViewService) {
+        , public bestPriceViewService: BestPriceViewService,
+        public userProfileServiceService: UserProfileServiceService
+    ) {
 
-        this._authenticateServiceService = authenticateServiceService;
+        this._authenticateServiceService = userProfileServiceService.authenticateServiceService;
     }
 
     copyLoggedInUser: any;
+    userData: any;
     SelectedStartPage: any;
     listPagesForStartingPage: StartPageModel[];
     testList = [{ Id: 1, Value: 'Test1' },
@@ -53,6 +58,7 @@ export class LenderDashboardComponent implements OnInit {
         this.IfBothUserTypeFound = this._authenticateServiceService.GetIfBothUserTypeFound() == (undefined || null) ? false : true;
         this.lenderDashboardService.loggedInUser = this._authenticateServiceService.GetUserDetail();
         this.copyLoggedInUser = Object.assign({}, this.lenderDashboardService.loggedInUser);
+        this.userData = this.userProfileServiceService.GetUserProfile(); 
         this.GetPagesForLenderSettingStartPage();
 
         this.SelectedStartPage = this.testList[0].Id;
@@ -200,7 +206,7 @@ export class LenderDashboardComponent implements OnInit {
 
     Logout() {
         //if(confirm("Are you sure you want to log out?")){
-        this.authenticateServiceService.ClearSession();
+        this._authenticateServiceService.ClearSession();
         this._userId = undefined;
         this.timer = undefined;
         this.router.navigate(['/login']);
@@ -223,8 +229,8 @@ export class LenderDashboardComponent implements OnInit {
                         this.toastr.error("Old password is not correct.", "Dashboard");
                         return;
                     }
-                    this.authenticateServiceService.UpdateSession(data.data);
-                    this.lenderDashboardService.loggedInUser = this.authenticateServiceService.GetUserDetail();
+                    this._authenticateServiceService.UpdateSession(data.data);
+                    this.lenderDashboardService.loggedInUser = this._authenticateServiceService.GetUserDetail();
                     this.toastr.success("Updated successfully. An email has been sent to your email id.", "Dashboard");
                 }
 
@@ -356,7 +362,7 @@ export class LenderDashboardComponent implements OnInit {
         this.router.navigate(['/bankDashBoard']);
     }
     RegisterAsPartner() {
-        this.authenticateServiceService.ClearSession();
+        this._authenticateServiceService.ClearSession();
         this.router.navigate(['/registration/', this.lenderDashboardService.userId, 'KT']);
     }
 

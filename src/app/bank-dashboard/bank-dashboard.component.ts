@@ -7,6 +7,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { BestPriceViewService } from '../lender-dashboard/best-price-view/Shared/best-price-view.service';
 import { DatePipe } from '@angular/common';
 import { LenderDashboardService } from '../lender-dashboard/Shared/lender-dashboard.service';
+import { UserProfileServiceService } from '../userprofile/Shared/user-profile-service.service';
 
 @Component({
     selector: 'app-bank-dashboard',
@@ -17,6 +18,8 @@ export class BankDashboardComponent implements OnInit {
     _MaturityList: any;
     IfShowBankDashBoard: boolean;
     IsPublished: boolean = false;
+    
+    userData: any;
     copyLoggedInUser: any;
     testTrue: boolean = false;
     timer: any;
@@ -24,9 +27,11 @@ export class BankDashboardComponent implements OnInit {
     _authenticateServiceService: AuthenticateServiceService
     constructor(public bankDashboardService: BankDashboardService, public authenticateServiceService: AuthenticateServiceService, public router: Router
         , public toastr: ToastrService, public spinner: NgxSpinnerService, public bestPriceViewService: BestPriceViewService
-        , public pipe: DatePipe, public lenderDashboardService: LenderDashboardService) {
+        , public pipe: DatePipe, public lenderDashboardService: LenderDashboardService,
+        public userProfileServiceService: UserProfileServiceService
+    ) {
 
-        this._authenticateServiceService = authenticateServiceService;
+        this._authenticateServiceService = this.userProfileServiceService.authenticateServiceService;
     }
    
     ngOnInit() {
@@ -38,8 +43,10 @@ export class BankDashboardComponent implements OnInit {
         this.bankDashboardService.userId = this._authenticateServiceService.GetUserId();
         this.GetRateOfInterestOfBank();
         this.GetUserGroupForSettingRateOfInterestVisibility();
-        this.bankDashboardService.loggedInUser = this._authenticateServiceService.GetUserDetail();
+        this.bankDashboardService.loggedInUser = this.authenticateServiceService.GetUserDetail();
+        debugger;
         this.copyLoggedInUser = Object.assign({}, this.bankDashboardService.loggedInUser);
+        this.userData = this.userProfileServiceService.GetUserProfile(); 
         //this.SetTimeInterval();
        // this.GetLenderSendRequestRequestdOnTheBasisOfBorrowerId();
         this.spinner.hide();

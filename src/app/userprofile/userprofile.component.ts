@@ -17,7 +17,7 @@ export class UserprofileComponent implements OnInit {
     userProfileData: any;
     listOfFileUploaded: any = [];
     ngOnInit() {
-        this.userProfileData = this.authenticateServiceService.GetUserData();
+        this.userProfileData = this.userProfileServiceService.GetUserProfile();
     }
 
 

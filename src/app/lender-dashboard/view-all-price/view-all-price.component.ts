@@ -6,6 +6,8 @@ import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { hubConnection, connection } from 'signalr-no-jquery';
 import * as _ from 'lodash';
 import { environment } from '../../../environments/environment.prod';
+import { Router } from '@angular/router';
+
 
 const connection = (environment.production) ? hubConnection('http://40.89.139.123:4044/signalr') : hubConnection('http://localhost:61088/signalr');
 
@@ -18,6 +20,7 @@ const hubProxy = connection.createHubProxy('NgHub');
     styleUrls: ['./view-all-price.component.css']
 })
 export class ViewAllPriceComponent implements OnInit {
+   
     temp_array = [];
     allChecked: boolean;
     objBankInfo :any = { Bank: '', NameOfCompany: '', Place: '', Street: '' };
@@ -90,7 +93,7 @@ export class ViewAllPriceComponent implements OnInit {
     ];
 
     constructor(public viewAllPriceService: ViewAllPriceService, public spinner: NgxSpinnerService
-        , public toastr: ToastrService) {
+        , public toastr: ToastrService,public router:Router) {
         // set up event listeners i.e. for incoming "message" event
         hubProxy.on('sendBankRate', (data) => {
             this.viewAllPriceService.listViewAllPrice1 = [];
@@ -122,6 +125,12 @@ export class ViewAllPriceComponent implements OnInit {
         this.spinner.hide();
 
     }
+
+    SettingRateField() {
+        this.router.navigate(['lenderDashboard/Settingratefield']);
+
+    }
+
 
     async GetAllBanksWithStatusIsDeselected() {
 

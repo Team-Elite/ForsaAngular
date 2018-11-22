@@ -14,7 +14,8 @@
     "ButtonEurTN": "EUR (T/N)",
     "ButtonInfo": "INFO",
     "ButtinLend": "Lend",
-    "ButtonRegisterasPartner": "Register as a Partner"
+    "ButtonRegisterasPartner": "Register as a Partner",
+    "ButtonSettingRateField": "Setting Rate Field"
   },
   "Login": {
     "Title": "Log in",
