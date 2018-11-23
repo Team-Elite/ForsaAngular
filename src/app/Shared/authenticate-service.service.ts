@@ -13,17 +13,20 @@ export class AuthenticateServiceService {
     selectedBestPriceId: string = 'selectedBestPriceId';
     ifBothUserTypeFound: string = 'ifBothUserTypeFound';
     UserTypeId: string = 'UserTypeId';
-    baseURL: string;
+    baseURL: string = 'http://40.89.139.123:4043';
     tokenService: any = new TokenService;
     Usertoken: any = this.storage.get(this.userValue);
     Userdata: any;
+    requestedForReport: string='';
    
+    
+
     constructor(@Inject(LOCAL_STORAGE) public storage: StorageService, public router: Router) {
-        this.baseURL = (environment.production) ? 'http://40.89.139.123:4043' : 'http://localhost:60744';
+        // this.baseURL = (environment.production) ? 'http://40.89.139.123:4043' : 'http://localhost:60744';
       
     }
     SaveSession(value: any) {
-
+debugger;
         this.storage.set(this.userValue, value);
         this.storage.set(this.sessionCreatedAt, new Date());
     }
@@ -50,7 +53,9 @@ export class AuthenticateServiceService {
             this.router.navigate(['/login']);
             return;
         }
-      
+        else {
+
+        }
         if ((new Date().getTime() - new Date(sessionDate).getTime()) > 7200000) {
             //alert("Session expired. Please login again.")
             this.router.navigate(['/login']);
@@ -62,7 +67,7 @@ export class AuthenticateServiceService {
 
     GetUserId() {
         //var data = this.tokenService.jwtdecrypt(this.Usertoken);
-        this.AuthenticateSession();
+        this.GetUserSession();
         return JSON.parse(this.Userdata.unique_name)[0].UserId;
     }
 
@@ -124,5 +129,21 @@ export class AuthenticateServiceService {
         return Id;
     }
    
+    SaveReportRequestedFor(value: string) {
 
+        this.storage.set(this.requestedForReport, value);
+        this.storage.set(this.sessionCreatedAt, new Date());
+    }
+    GetReportRequestedFor() {
+
+        let requestedFor = this.storage.get(this.requestedForReport);
+        return requestedFor;
+    }
+
+    GetUserData() {
+        //var data = this.tokenService.jwtdecrypt(this.Usertoken);
+        this.GetUserSession();
+        return JSON.parse(this.Userdata.unique_name)[0];
+    }
+    
 }

@@ -34,8 +34,11 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { ForsaLanguagesComponent } from './forsa-languages/forsa-languages.component';
 import { TokenService } from './token-service';
 import { MaturitylistComponent } from './lender-dashboard/maturitylist/maturitylist.component';
+
+import {MaturityListLenderComponent} from './lender-dashboard/maturity-list-lender/maturity-list-lender.component';
+import {HistoryMaturityListLenderComponent} from './lender-dashboard/history-maturity-list-lender/history-maturity-list-lender.component';
 import { UserprofileComponent } from './userprofile/userprofile.component';
-import { SettingratefieldComponent } from './lender-dashboard/settingratefield/settingratefield.component';
+import { FileUploaderModule } from "ng4-file-upload";
 //import { JwtHelperService} from '@auth0/angular-jwt';
 
 
@@ -49,8 +52,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
 
 
 const appRoutes: Routes = [{ path: 'login', component: LoginComponent },
-{ path: 'registration', component: RegistrationComponent },
-{ path: 'userprofile', component: UserprofileComponent },
+    { path: 'registration', component: RegistrationComponent },
+    { path: 'userprofile', component: UserprofileComponent },
 //  {path:'registration/:uId',component:RegistrationComponent},
 { path: 'registration/:uId/:uRole', component: RegistrationComponent },
 { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -63,9 +66,7 @@ const appRoutes: Routes = [{ path: 'login', component: LoginComponent },
     { path: "ViewAllPrice", component: ViewAllPriceComponent },
     { path: 'AllBanks', component: AllBanksComponent },
     { path: 'AllBanksK', component: KontactDashboardLComponent },
-    { path: 'Maturitylist', component: MaturitylistComponent },
-    { path: 'Settingratefield', component: SettingratefieldComponent }
-
+        { path: 'Maturitylist', component: MaturitylistComponent }
     ]
 }
     //  {path:'BestPriceView', component:BestPriceViewComponent}
@@ -89,8 +90,8 @@ const appRoutes: Routes = [{ path: 'login', component: LoginComponent },
         ForsaLanguagesComponent,
         MaturitylistComponent,
         UserprofileComponent,
-        SettingratefieldComponent
-
+        MaturityListLenderComponent,
+        HistoryMaturityListLenderComponent
     ],
     imports: [
         BrowserModule,
@@ -112,6 +113,7 @@ const appRoutes: Routes = [{ path: 'login', component: LoginComponent },
             }
         }),
         HttpClientModule,
+        FileUploaderModule,
     ],
     providers: [
         NgbdModalBasic,

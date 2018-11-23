@@ -4,7 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { AllBanksService } from '../Shared/all-banks.service';
 import { hubConnection, connection } from 'signalr-no-jquery';
 import { environment } from '../../../environments/environment.prod';
-
+import {UserProfileServiceService} from '../../userprofile/Shared/user-profile-service.service';
 
 const connection = (environment.production) ? hubConnection('http://40.89.139.123:4044/signalr') : hubConnection('http://localhost:61088/signalr');
 
@@ -18,7 +18,8 @@ const hubProxy = connection.createHubProxy('NgHub');
 export class AllBanksComponent implements OnInit {
 
     constructor(public allBanksService: AllBanksService, public spinner: NgxSpinnerService
-        , public toastr: ToastrService) {
+        , public toastr: ToastrService
+        ,public userProfileServiceService:UserProfileServiceService) {
         // set up event listeners i.e. for incoming "message" event
         hubProxy.on('sendBankRate', (data) => {
             //this.GetAllBanksWithInterestRateHorizontaly();
@@ -190,7 +191,11 @@ export class AllBanksComponent implements OnInit {
         }
 
     }
-    ShowBankPopup(data: any) {
+    async ShowBankPopup(data: any) {
+        debugger;
+        this.spinner.show();
+        await this.userProfileServiceService.GetDocList(data.UserId);
+        this.spinner.hide();
         this.objBankInfo = data;
         var element = document.getElementById('btnShowBankInfo');
         element.click();

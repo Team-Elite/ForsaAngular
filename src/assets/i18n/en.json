@@ -47,6 +47,7 @@
     "Salutation": "Salutation",
     "FirstName": "First Name",
     "SurName": "SurName",
+    "Username": "User Name",
     "TelephoneNo": "Telephone No",
     "EmailAddress": "Email Address",
     "MinimumVolume": "Minimum Volume",

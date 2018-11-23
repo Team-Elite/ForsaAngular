@@ -7,7 +7,6 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { BestPriceViewService } from '../lender-dashboard/best-price-view/Shared/best-price-view.service';
 import { DatePipe } from '@angular/common';
 import { LenderDashboardService } from '../lender-dashboard/Shared/lender-dashboard.service';
-import { UserProfileServiceService } from '../userprofile/Shared/user-profile-service.service';
 
 @Component({
     selector: 'app-bank-dashboard',
@@ -18,8 +17,6 @@ export class BankDashboardComponent implements OnInit {
     _MaturityList: any;
     IfShowBankDashBoard: boolean;
     IsPublished: boolean = false;
-    
-    userData: any;
     copyLoggedInUser: any;
     testTrue: boolean = false;
     timer: any;
@@ -27,11 +24,9 @@ export class BankDashboardComponent implements OnInit {
     _authenticateServiceService: AuthenticateServiceService
     constructor(public bankDashboardService: BankDashboardService, public authenticateServiceService: AuthenticateServiceService, public router: Router
         , public toastr: ToastrService, public spinner: NgxSpinnerService, public bestPriceViewService: BestPriceViewService
-        , public pipe: DatePipe, public lenderDashboardService: LenderDashboardService,
-        public userProfileServiceService: UserProfileServiceService
-    ) {
+        , public pipe: DatePipe, public lenderDashboardService: LenderDashboardService) {
 
-        this._authenticateServiceService = this.userProfileServiceService.authenticateServiceService;
+        this._authenticateServiceService = authenticateServiceService;
     }
    
     ngOnInit() {
@@ -43,10 +38,8 @@ export class BankDashboardComponent implements OnInit {
         this.bankDashboardService.userId = this._authenticateServiceService.GetUserId();
         this.GetRateOfInterestOfBank();
         this.GetUserGroupForSettingRateOfInterestVisibility();
-        this.bankDashboardService.loggedInUser = this.authenticateServiceService.GetUserDetail();
-        debugger;
+        this.bankDashboardService.loggedInUser = this._authenticateServiceService.GetUserDetail();
         this.copyLoggedInUser = Object.assign({}, this.bankDashboardService.loggedInUser);
-        this.userData = this.userProfileServiceService.GetUserProfile(); 
         //this.SetTimeInterval();
        // this.GetLenderSendRequestRequestdOnTheBasisOfBorrowerId();
         this.spinner.hide();
@@ -95,7 +88,7 @@ export class BankDashboardComponent implements OnInit {
     }
 
     EnableTextBox(rate, type: number) {
-       
+        debugger;
         if (type == 1)
             rate.IsDoubleTapped = true;
         else if (type == 2)
@@ -148,9 +141,9 @@ export class BankDashboardComponent implements OnInit {
         }
         rate.IsDoubleTapped = false;
         rate.ModifiedBy = this.bankDashboardService.userId;
-        rate.RateOfInterest = parseFloat( rate.RateOfInterest).toFixed(2);
-        rate.RateOfInterest2 = parseFloat(rate.RateOfInterest2).toFixed(2);
-        rate.RateOfInterest3 = parseFloat(rate.RateOfInterest3).toFixed(2);
+        rate.RateOfInterest = rate.RateOfInterest.toFixed(2);
+        rate.RateOfInterest2 = rate.RateOfInterest2.toFixed(2);
+        rate.RateOfInterest3 = rate.RateOfInterest3.toFixed(2);
         this.spinner.show();
         this.bankDashboardService.UpdateRateOfInterest(rate).subscribe(data => {
             this.spinner.hide();
