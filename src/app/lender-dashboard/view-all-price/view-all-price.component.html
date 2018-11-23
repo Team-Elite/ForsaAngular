@@ -10666,7 +10666,12 @@ direction: ltr;
                  <!--</form>-->
              </ul>
          </div>
-         <ngb-pagination [collectionSize]="viewAllPriceService.toatlBanksCount" pageSize="15" (pageChange)="pageChange($event)" [(page)]="viewAllPriceService.selectedPageNumber" aria-label="Default pagination"></ngb-pagination>
+         <div class="col-lg-12 col-md-12 col-sm-12">
+             <ngb-pagination [collectionSize]="viewAllPriceService.toatlBanksCount" pageSize="15" (pageChange)="pageChange($event)" [(page)]="viewAllPriceService.selectedPageNumber" aria-label="Default pagination"></ngb-pagination>
+         </div>
+         <div class="col-lg-12 col-md-12 col-sm-12">
+             <button class="btn btn-primary" type="button" routerLink="/lenderDashboard/setting"> {{'Button.ButtonSettingRateField'|translate}}</button>
+         </div>
      </div>
 
      <div class="row dashboard-price-list">
@@ -10754,11 +10759,6 @@ direction: ltr;
                         <tr><th>Street</th><td>{{objBankInfo.Street}}</td></tr>
                     </tbody>
                 </table>
-                <ul style="color:white;"><strong>File(s) List</strong> 
-                    <li *ngFor="let file of userProfileServiceService.listOfFileUploaded">
-                  <span style="color:white;">{{file.name}}</span> 
-                    </li>
-                  </ul>
             </div>
             <div class="modal-footer">
                 <button style="display:none;" type="button" (click)="SetTimeInterval();" class="btn btn-secondary" data-dismiss="modal">{{'Button.ButtonClose'|translate}}</button>

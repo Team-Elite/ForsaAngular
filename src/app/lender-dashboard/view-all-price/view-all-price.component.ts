@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Inject, Component, OnInit } from '@angular/core';
 import { ViewAllPriceService } from '../Shared/view-all-price.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
@@ -6,9 +6,11 @@ import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { hubConnection, connection } from 'signalr-no-jquery';
 import * as _ from 'lodash';
 import { environment } from '../../../environments/environment.prod';
-import {UserProfileServiceService} from '../../userprofile/Shared/user-profile-service.service';
+// import {Storage} from '@ionic/storage';
+import { LOCAL_STORAGE, StorageService } from 'angular-webstorage-service';
 
 const connection = (environment.production) ? hubConnection('http://40.89.139.123:4044/signalr') : hubConnection('http://localhost:61088/signalr');
+
 
 
 
@@ -91,15 +93,14 @@ export class ViewAllPriceComponent implements OnInit {
     ];
 
     constructor(public viewAllPriceService: ViewAllPriceService, public spinner: NgxSpinnerService
-        , public toastr: ToastrService
-        ,public userProfileServiceService:UserProfileServiceService) {
+        , public toastr: ToastrService, @Inject(LOCAL_STORAGE) private storage: StorageService) {
         // set up event listeners i.e. for incoming "message" event
         hubProxy.on('sendBankRate', (data) => {
             this.viewAllPriceService.listViewAllPrice1 = [];
             this.viewAllPriceService.listViewAllPrice2 = [];
             this.viewAllPriceService.listViewAllPrice3 = [];
             this.GetAllBanksWithStatusIsDeselected();
-            //this.GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected();
+            // this.GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected();
             this.GetAllBanksWithInterestRateHorizontalyOrderByColumnName(this.orderByColumn);
         })
         connection.start({ jsonp: true })
@@ -118,39 +119,42 @@ export class ViewAllPriceComponent implements OnInit {
         this.viewAllPriceService.listViewAllPrice3 = [];
         this.GetAllBanksWithStatusIsDeselected();
         this.spinner.show();
-        //this.GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected();
-       // this.GetAllBanksWithInterestRateHorizontalyOrderByColumnName(this.orderByColumn);
-        this.SetTimeInterval();
+        // this.GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected();
+       this.GetAllBanksWithInterestRateHorizontalyOrderByColumnName(this.orderByColumn);
+        //this.SetTimeInterval();
         this.spinner.hide();
-
+        const self = this;
+        const result = this.storage.get('viewAllPrice');
+        if (result) this.obj = result.obj;
+        console.log(result);
     }
 
     async GetAllBanksWithStatusIsDeselected() {
 
-        this.viewAllPriceService.count = 0;
-        this.viewAllPriceService.listViewAllPrice1 = [];
-        this.viewAllPriceService.listViewAllPrice2 = [];
-        this.viewAllPriceService.listViewAllPrice3 = [];
-        this.spinner.show();
-        let rates = await this.viewAllPriceService.GetAllBanksWithStatusIsDeselected();
-        this.viewAllPriceService.listViewAllPrice = rates;
-        if (this.viewAllPriceService.listViewAllPrice != undefined && this.viewAllPriceService.listViewAllPrice != null && this.viewAllPriceService.listViewAllPrice.length != 0) {
-            this.viewAllPriceService.toatlBanksCount = this.viewAllPriceService.listViewAllPrice[0].Count;
-        }
-        for (var i = 0; i <= this.viewAllPriceService.listViewAllPrice.length - 1; i++) {
-            if (this.viewAllPriceService.count > 9) {
-                this.viewAllPriceService.listViewAllPrice3[this.viewAllPriceService.listViewAllPrice3.length] = this.viewAllPriceService.listViewAllPrice[i];
-            }
-            else if (this.viewAllPriceService.count > 4) {
-                this.viewAllPriceService.listViewAllPrice2[this.viewAllPriceService.listViewAllPrice2.length] = this.viewAllPriceService.listViewAllPrice[i];
-            }
-            else {
-                this.viewAllPriceService.listViewAllPrice1[i] = this.viewAllPriceService.listViewAllPrice[i];
-            }
-            this.viewAllPriceService.count++;
-        }
-        this.spinner.hide();
+    this.viewAllPriceService.count = 0;
+    this.viewAllPriceService.listViewAllPrice1 = [];
+    this.viewAllPriceService.listViewAllPrice2 = [];
+    this.viewAllPriceService.listViewAllPrice3 = [];
+    this.spinner.show();
+    let rates = await this.viewAllPriceService.GetAllBanksWithStatusIsDeselected();
+    this.viewAllPriceService.listViewAllPrice = rates;
+    if (this.viewAllPriceService.listViewAllPrice != undefined && this.viewAllPriceService.listViewAllPrice != null && this.viewAllPriceService.listViewAllPrice.length != 0) {
+    this.viewAllPriceService.toatlBanksCount = this.viewAllPriceService.listViewAllPrice[0].Count;
+}
+for (var i = 0; i <= this.viewAllPriceService.listViewAllPrice.length - 1; i++) {
+    if (this.viewAllPriceService.count > 9) {
+        this.viewAllPriceService.listViewAllPrice3[this.viewAllPriceService.listViewAllPrice3.length] = this.viewAllPriceService.listViewAllPrice[i];
     }
+    else if (this.viewAllPriceService.count > 4) {
+        this.viewAllPriceService.listViewAllPrice2[this.viewAllPriceService.listViewAllPrice2.length] = this.viewAllPriceService.listViewAllPrice[i];
+    }
+    else {
+        this.viewAllPriceService.listViewAllPrice1[i] = this.viewAllPriceService.listViewAllPrice[i];
+    }
+    this.viewAllPriceService.count++;
+}
+this.spinner.hide();
+}
 
     async DeselectSelectBank(bank: any) {
 
@@ -171,6 +175,28 @@ export class ViewAllPriceComponent implements OnInit {
         if (rates != null || rates != undefined) {
             this.viewAllPriceService.listAllBanks = rates;
             console.log(this.viewAllPriceService.listAllBanks);
+            this.viewAllPriceService.listAllBanks.forEach(ele => {
+                ele.class1 = this.obj.class1;
+                ele.class2 = this.obj.class2;
+                ele.class3 = this.obj.class3;
+                ele.class4 = this.obj.class4;
+                ele.class5 = this.obj.class5;
+                ele.class6 = this.obj.class6;
+                ele.class7 = this.obj.class7;
+                ele.class8 = this.obj.class8;
+                ele.class9 = this.obj.class9;
+                ele.class10 = this.obj.class10;
+                ele.class11 = this.obj.class11;
+                ele.class12 = this.obj.class12;
+                ele.class13 = this.obj.class13;
+                ele.class14 = this.obj.class14;
+                ele.class15 = this.obj.class15;
+                ele.class16 = this.obj.class16;
+                ele.class17 = this.obj.class17;
+                ele.class18 = this.obj.class18;
+                ele.class19 = this.obj.class19;
+                ele.class20 = this.obj.class20;
+            });
 
             this.GetHighestRatesViewAllPrice();
 
@@ -318,8 +344,9 @@ export class ViewAllPriceComponent implements OnInit {
         this.orderByColumn = columnName;
         this.spinner.show();
         let rates = await this.viewAllPriceService.GetAllBanksWithInterestRateHorizontalyOrderByColumnName(columnName);
-        this.viewAllPriceService.listAllBanks = JSON.parse(rates.data);
-        debugger;
+        console.log(rates);
+        this.viewAllPriceService.listAllBanks = rates;
+        console.log(this.viewAllPriceService.listAllBanks);
         this.viewAllPriceService.listAllBanks.forEach(ele => {
             ele.class1 = this.obj.class1;
             ele.class2 = this.obj.class2;
@@ -583,11 +610,7 @@ export class ViewAllPriceComponent implements OnInit {
 
     }
 
-    async ShowBankPopup(data: any) {
-        debugger;
-        this.spinner.show();
-        await this.userProfileServiceService.GetDocList(data.UserId);
-        this.spinner.hide();
+    ShowBankPopup(data: any) {
         this.objBankInfo = data;
         var element = document.getElementById('btnShowBankInfo');
         element.click();

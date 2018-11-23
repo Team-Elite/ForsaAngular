@@ -90,16 +90,15 @@ export class BankDashboardService {
     }
 
     async GetLenderSendRequestRequestdOnTheBasisOfBorrowerId() {
-
         var webtoken = { data: this.tokenService.jwtencrypt({ userId: this.userId }) };
        return await this.http.post(this.authenticateServiceService.baseURL + '/api/BankDashBoard'
             + '/GetLenderSendRequestRequestdOnTheBasisOfBorrowerId', webtoken, this.requestOptions).map((data: Response) => {
                 return data.json();
-            }).toPromise().then(token => {
-                if (token.IsSuccess) this.lenderSendRequestModel = JSON.parse(this.tokenService.jwtdecrypt(token.data).unique_name);
-
-                    // return { IsSuccess: token.IsSuccess , data: JSON.parse(this.tokenService.jwtdecrypt(token.data).unique_name) };
-                return { IsSuccess: token.IsSuccess };
+           }).toPromise().then(token => {
+               debugger;
+               if (token.IsSuccess)  return this.lenderSendRequestModel = JSON.parse(this.tokenService.jwtdecrypt(token.data).unique_name);
+                     //return { IsSuccess: token.IsSuccess , data: JSON.parse(this.tokenService.jwtdecrypt(token.data).unique_name) };
+                //return { IsSuccess: token.IsSuccess };
             });
    
     }

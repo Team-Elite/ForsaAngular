@@ -13,6 +13,7 @@ export class LenderDashboardService {
     headerOptions = new Headers({ 'Content-Type': 'application/json' });
     requestOptions = new RequestOptions({ method: RequestMethod.Post, headers: this.headerOptions });
     lenderMaturityList: any;
+    showhistory: boolean;
     constructor(public http: Http, public authenticateServiceService: AuthenticateServiceService) { }
     tokenService: TokenService = new TokenService;
     userId: number;
@@ -23,8 +24,9 @@ export class LenderDashboardService {
     ConfirmPassword: string;
     CurrentPageName: string;
     UserTypeId: any = 5;
-    async GetlenderMaturityList(history: boolean) {
-        var webtoken = { data: this.tokenService.jwtencrypt({ lenderId: this.userId, History: history }) };
+   
+    async GetlenderMaturityList() {
+        var webtoken = { data: this.tokenService.jwtencrypt({ lenderId: this.userId, History: this.showhistory }) };
         return await this.http.put(this.authenticateServiceService.baseURL + 'api/LenderDashBoard/GetBorrowerMaturityList', webtoken, this.requestOptions).map((data: Response) => {
             return data.json();
         }).toPromise().then(token => this.lenderMaturityList = JSON.parse(this.tokenService.jwtdecrypt(token.data).unique_name));

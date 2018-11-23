@@ -1,10 +1,10 @@
- <form class="emp-form" #registrationForm="ngForm" (ngSubmit)="registerUser(registrationForm)"> 
-
+<!-- <form class="emp-form" #registrationForm="ngForm" (ngSubmit)="onSubmit(registrationForm)"> -->
+<form class="emp-form" #registrationForm="ngForm">
     <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="large" color="#fff" type="ball-clip-rotate">
     </ngx-spinner>
     <body class="instibg" cz-shortcut-listen="true">
         <!-- <link rel="stylesheet" href="../assets/css/common.css">
-    <link rel="stylesheet" href="../assets/css/login_register.css"> -->
+        <link rel="stylesheet" href="../assets/css/login_register.css"> -->
         <!-- Wrapper for the Whole Application -->
         <div id="wrapper">
             <!-- Header Starts Here -->
@@ -20,19 +20,19 @@
                             <ul class="in-lang text-right">
                                 <app-forsa-languages></app-forsa-languages>
                                 <!--<li class="active">
-                                <a href="javascript:void(0);">EN</a>
-                            </li>-->
+                                    <a href="javascript:void(0);">EN</a>
+                                </li>-->
                                 <!-- <li>
-                                <a href="javascript:void(0);">FR</a>
-                            </li> -->
+                                    <a href="javascript:void(0);">FR</a>
+                                </li> -->
                                 <!--<li>
-                                <a href="javascript:void(0);">DE</a>
-                            </li>-->
+                                    <a href="javascript:void(0);">DE</a>
+                                </li>-->
                                 <!-- <li class="in-header-user text-right" style="border: none;">
-                                <a href="javascript:void(0);">
-                                    <i class="material-icons whitebg"> supervisor_account </i>
-                                </a>
-                            </li> -->
+                                    <a href="javascript:void(0);">
+                                        <i class="material-icons whitebg"> supervisor_account </i>
+                                    </a>
+                                </li> -->
                                 <li class="in-header-user text-right" style="border: none;">
                                     <a title="login" routerLink="/login">
                                         <i class="material-icons whitebg"> input</i>
@@ -59,14 +59,14 @@
 
                                     <div class="md-radio md-radio-inline ">
                                         <!-- <input [value]="2" #rdbBank="ngModel" [(ngModel)]="registrationService.userModel.UserTypeId" name="UserTypeId" id="3" type="radio" checked=""> Bank
-            <label for="3"></label> -->
+                                        <label for="3"></label> -->
                                         <input #UserId="ngModel" [(ngModel)]="registrationService.userModel.UserId" name="UserId" id="UserId" type="hidden" />
                                         <input #rdbBank="ngModel" [(ngModel)]="registrationService.userModel.rdbBank" name="rdbBank" id="rdbBank" type="checkbox" class="cbx used">
                                         <label for="rdbBank" class="lbl"> {{'Register.section1.Borrower'|translate}} </label>
                                     </div>
                                     <div class="md-radio md-radio-inline">
                                         <!-- <input [value]="3" #rdbNonBank="ngModel" [(ngModel)]="registrationService.userModel.UserTypeId" name="UserTypeId" id="4" type="radio"> Non-Bank
-            <label for="4"> </label> -->
+                                        <label for="4"> </label> -->
                                         <input #rdbNonBank="ngModel" [(ngModel)]="registrationService.userModel.rdbNonBank" name="rdbNonBank" id="rdbNonBank" type="checkbox" class="cbx used">
                                         <label for="rdbNonBank" class="lbl"> {{'Register.section1.Lender'|translate}} </label>
                                     </div>
@@ -98,7 +98,6 @@
                                         <label>{{'Register.section1.PostalCode'|translate}} *</label>
                                     </div>
                                 </div>
-                               
 
                                 <div class="form-group form-md-line-input has-error">
                                     <div class="group input-group">
@@ -190,57 +189,57 @@
                                 </div>
 
                                 <!-- <div class="form-group form-md-line-input has-error">
-                  <div class="group input-group">
-                      <input #Address="ngModel" [(ngModel)]="registrationService.userModel.Address" name="Address" type="text" class="used">
-                      <span class="highlight"></span>
-                      <span class="bar"></span>
-                      <label>Address</label>
-                      <span class="input-group-icon">
-      <i class="material-icons">home</i>
-    </span>
+                                              <div class="group input-group">
+                                                  <input #Address="ngModel" [(ngModel)]="registrationService.userModel.Address" name="Address" type="text" class="used">
+                                                  <span class="highlight"></span>
+                                                  <span class="bar"></span>
+                                                  <label>Address</label>
+                                                  <span class="input-group-icon">
+                                  <i class="material-icons">home</i>
+                                </span>
 
-                  </div>
-              </div>
-
-
-              <div class="form-group form-md-line-input has-error">
-                  <div class="group input-group">
-                      <input #ZipCode="ngModel" [(ngModel)]="registrationService.userModel.ZipCode" name="ZipCode" type="text" class="used">
-                      <span class="highlight"></span>
-                      <span class="bar"></span>
-                      <label>Zip Code</label>
+                                              </div>
+                                          </div>
 
 
-                  </div>
-              </div>
-
-              <div class="form-group form-md-line-input has-error">
-                  <div class="group input-group">
-                      <input #City="ngModel" [(ngModel)]="registrationService.userModel.City" name="City" type="text" class="used">
-                      <span class="highlight"></span>
-                      <span class="bar"></span>
-                      <label>City</label>
+                                          <div class="form-group form-md-line-input has-error">
+                                              <div class="group input-group">
+                                                  <input #ZipCode="ngModel" [(ngModel)]="registrationService.userModel.ZipCode" name="ZipCode" type="text" class="used">
+                                                  <span class="highlight"></span>
+                                                  <span class="bar"></span>
+                                                  <label>Zip Code</label>
 
 
-                  </div>
-              </div> -->
+                                              </div>
+                                          </div>
+
+                                          <div class="form-group form-md-line-input has-error">
+                                              <div class="group input-group">
+                                                  <input #City="ngModel" [(ngModel)]="registrationService.userModel.City" name="City" type="text" class="used">
+                                                  <span class="highlight"></span>
+                                                  <span class="bar"></span>
+                                                  <label>City</label>
+
+
+                                              </div>
+                                          </div> -->
                                 <!-- <div class="form-group form-md-line-input has-error">
-      <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
-        <label>Country</label>
-          <select #CountryId="ngModel" [(ngModel)]="registrationService.userModel.CountryId" class="mdl-selectfield__select" name="CountryId" id="userCountry" >expand_more
-              <option value="0" disabled="" selected="">Country</option>
-              <option *ngFor="let country of registrationService.CountryList" value="{{country.CountryId}}">{{country.Country}}</option>
-           </select>
-      </div>
-    </div> -->
+                                    <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
+                                      <label>Country</label>
+                                        <select #CountryId="ngModel" [(ngModel)]="registrationService.userModel.CountryId" class="mdl-selectfield__select" name="CountryId" id="userCountry" >expand_more
+                                            <option value="0" disabled="" selected="">Country</option>
+                                            <option *ngFor="let country of registrationService.CountryList" value="{{country.CountryId}}">{{country.Country}}</option>
+                                         </select>
+                                    </div>
+                                  </div> -->
                                 <!-- <div class="form-group form-md-line-input">
-        <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
-            <select #LanguageId="ngModel" [(ngModel)]="registrationService.userModel.LanguageId" class="mdl-selectfield__select" id="preferredLanguage" name="LanguageId">
-            <option value="0" disabled="" selected=""> Language</option>
-            <option *ngFor="let language of registrationService.languageList"  value="{{language.LanguageId}}">{{language.LanguageCode}}</option>
-          </select>
-        </div>
-    </div> -->
+                                    <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
+                                        <select #LanguageId="ngModel" [(ngModel)]="registrationService.userModel.LanguageId" class="mdl-selectfield__select" id="preferredLanguage" name="LanguageId">
+                                        <option value="0" disabled="" selected=""> Language</option>
+                                        <option *ngFor="let language of registrationService.languageList"  value="{{language.LanguageId}}">{{language.LanguageCode}}</option>
+                                      </select>
+                                    </div>
+                                </div> -->
 
                                 <div class="login-margin"></div>
 
@@ -364,51 +363,22 @@
 
                                     </div>
                                 </div>
-                                <div class="form-group form-md-line-input has-error">
-                                    <div class="group input-group">
-                                        <label> Daten zur Geldwäscheprüfung *</label>
-                                    </div>
-                                    <div class="group input-group">
-                                        <label> Hochladen Handelsregisterauszug</label>
-                                    </div>
-                                </div>
 
-                                <div class="form-group form-md-line-input has-error">
-
-                                    <div class="group input-group">
-
-                                        <label   >File Upload</label>
-                                        <input  type="file" />
-
-
-                                    </div>
-                                </div>
-                                <div class="group input-group">
-                                    <label> Hochladen Handelsregisterauszug</label>
-                                </div>
-                                <div class="form-group form-md-line-input has-error">
-                                    <div class="group input-group">
-                                        <label >File Upload</label>
-                                        <input  type="file" />
-
-
-                                    </div>
-                                </div>
 
                                 <!-- <div class="form-group form-md-line-input has-error">
-                  <div class="group input-group">
-                      <input #confirmEmailAddress="ngModel" [(ngModel)]="registrationService.confirmEmailAddress" name="confirmEmailAddress" type="email" class="used">
-                      <span class="highlight"></span>
-                      <span class="bar"></span>
-                      <label>Confirm Email</label>
-                      <span class="input-group-icon">
-      <i class="material-icons">email</i>
-    </span>
+                                              <div class="group input-group">
+                                                  <input #confirmEmailAddress="ngModel" [(ngModel)]="registrationService.confirmEmailAddress" name="confirmEmailAddress" type="email" class="used">
+                                                  <span class="highlight"></span>
+                                                  <span class="bar"></span>
+                                                  <label>Confirm Email</label>
+                                                  <span class="input-group-icon">
+                                  <i class="material-icons">email</i>
+                                </span>
 
-                  </div>
-              </div> -->
+                                              </div>
+                                          </div> -->
 
-                                <!--<div class="form-group form-md-line-input has-error">
+                                <div class="form-group form-md-line-input has-error">
                                     <div class="group input-group">
                                         <input #FurtherField1="ngModel" [(ngModel)]="registrationService.userModel.FurtherField1" name="FurtherField1" type="text" class="used">
                                         <span class="highlight"></span>
@@ -484,7 +454,28 @@
                                             <option *ngFor="let objDeposit of registrationService.listDepositInsurance" value="{{objDeposit.DepositInsuranceId}}">{{objDeposit.DepositInsurance}}</option>
                                         </select>
                                     </div>
-                                </div>-->
+                                </div>
+                                <div class="form-group form-md-line-input has-error">
+
+                                    <div class="group input-group">
+
+                                        <label   >File Upload</label>
+                                        <input type="file" (change)="isUploadOneSelected($event)" accept="application/pdf">
+
+
+                                    </div>
+                                </div>
+                                <div class="group input-group">
+                                    <label> Hochladen Handelsregisterauszug</label>
+                                </div>
+                                <div class="form-group form-md-line-input has-error">
+                                    <div class="group input-group">
+                                        <label >File Upload</label>
+                                        <input type="file" (change)="isUploadTwoSelected($event)" accept="application/pdf">
+
+
+                                    </div>
+                                </div>
 
                                 <div class="login-margin"></div>
                                 <button (click)="Section3Visible(registrationForm)" type="button" class="button btn" id="next-reg-3">
@@ -530,7 +521,7 @@
 
 
 
-                                <!--<div *ngIf="registrationService.userModel.rdbBank" class="in-ad-access">
+                                <div *ngIf="registrationService.userModel.rdbBank" class="in-ad-access">
                                     <h6>Prices are shown For customer group * </h6>
 
                                     <div class="d-flex align-items-end flex-column">
@@ -538,7 +529,7 @@
 
                                         <p>
                                             <input #GroupCommunities="ngModel" [(ngModel)]="registrationService.userModel.GroupCommunities" name="GroupCommunities" id="GroupCommunities" type="checkbox" class="cbx used">
-                                            <label for="GroupCommunities" class="lbl"> {{'Register.Section3.GroupCommunities'|translate}}Communities </label>
+                                            <label for="GroupCommunities" class="lbl"> {{'Register.GroupCommunities'|translate}}Communities </label>
                                         </p>
                                         <p>
                                             <input #GroupCompanyGMBH="ngModel" [(ngModel)]="registrationService.userModel.GroupCompanyGMBH" name="GroupCompanyGMBH" id="GroupCompanyGMBH" type="checkbox" class="cbx used">
@@ -550,69 +541,69 @@
                                         </p>
 
                                     </div>
-                                </div>-->
+                                </div>
 
                                 <!-- <div class="form-group form-md-line-input has-error">
-                                          <div class="group input-group">
-                                              <input #LongTermRatingAgency="ngModel" [(ngModel)]="registrationService.userModel.LongTermRatingAgency" name="LongTermRatingAgency" type="text" class="used">
-                                              <span class="highlight"></span>
-                                              <span class="bar"></span>
-                                              <label>Long Term Rating Agency</label>
-                                              <span class="input-group-icon">
-                              <i class="material-icons">user</i>
-                            </span>
+                                              <div class="group input-group">
+                                                  <input #LongTermRatingAgency="ngModel" [(ngModel)]="registrationService.userModel.LongTermRatingAgency" name="LongTermRatingAgency" type="text" class="used">
+                                                  <span class="highlight"></span>
+                                                  <span class="bar"></span>
+                                                  <label>Long Term Rating Agency</label>
+                                                  <span class="input-group-icon">
+                                  <i class="material-icons">user</i>
+                                </span>
 
+                                              </div>
                                           </div>
-                                      </div>
 
-                                      <div class="form-group form-md-line-input has-error">
-                                          <div class="group input-group">
-                                              <input #LongTermRating="ngModel" [(ngModel)]="registrationService.userModel.LongTermRating" name="LongTermRating" type="text" class="used">
-                                              <span class="highlight"></span>
-                                              <span class="bar"></span>
-                                              <label>Long Term Rating</label>
-                                              <span class="input-group-icon">
-                              <i class="material-icons">trending_up
-                              </i>
-                            </span>
+                                          <div class="form-group form-md-line-input has-error">
+                                              <div class="group input-group">
+                                                  <input #LongTermRating="ngModel" [(ngModel)]="registrationService.userModel.LongTermRating" name="LongTermRating" type="text" class="used">
+                                                  <span class="highlight"></span>
+                                                  <span class="bar"></span>
+                                                  <label>Long Term Rating</label>
+                                                  <span class="input-group-icon">
+                                  <i class="material-icons">trending_up
+                                  </i>
+                                </span>
 
+                                              </div>
                                           </div>
-                                      </div>
 
 
-                                      <div class="form-group form-md-line-input has-error">
-                                          <div class="group input-group">
-                                              <input #ShortTermRatingAgency="ngModel" [(ngModel)]="registrationService.userModel.ShortTermRatingAgency" name="ShortTermRatingAgency" type="text" class="used">
-                                              <span class="highlight"></span>
-                                              <span class="bar"></span>
-                                              <label>Short Term Rating Agency</label>
-                                              <span class="input-group-icon">
-                              <i class="material-icons">pincode</i>
-                            </span>
+                                          <div class="form-group form-md-line-input has-error">
+                                              <div class="group input-group">
+                                                  <input #ShortTermRatingAgency="ngModel" [(ngModel)]="registrationService.userModel.ShortTermRatingAgency" name="ShortTermRatingAgency" type="text" class="used">
+                                                  <span class="highlight"></span>
+                                                  <span class="bar"></span>
+                                                  <label>Short Term Rating Agency</label>
+                                                  <span class="input-group-icon">
+                                  <i class="material-icons">pincode</i>
+                                </span>
 
+                                              </div>
                                           </div>
-                                      </div>
 
-                                      <div class="form-group form-md-line-input has-error">
-                                          <div class="group input-group">
-                                              <input #ShortTermRating="ngModel" [(ngModel)]="registrationService.userModel.ShortTermRating" name="ShortTermRating" type="text" class="used">
-                                              <span class="highlight"></span>
-                                              <span class="bar"></span>
-                                              <label>Short Term Rating</label>
-                                              <span class="input-group-icon">
-                                                  <i class="material-icons">trending_up
-                                                  </i>
-                                                </span>
+                                          <div class="form-group form-md-line-input has-error">
+                                              <div class="group input-group">
+                                                  <input #ShortTermRating="ngModel" [(ngModel)]="registrationService.userModel.ShortTermRating" name="ShortTermRating" type="text" class="used">
+                                                  <span class="highlight"></span>
+                                                  <span class="bar"></span>
+                                                  <label>Short Term Rating</label>
+                                                  <span class="input-group-icon">
+                                                      <i class="material-icons">trending_up
+                                                      </i>
+                                                    </span>
 
-                                          </div>
-                                      </div> -->
+                                              </div>
+                                          </div> -->
                                 <div class="in-ad-access">
-                                    <!--<h6>{{'Register.Section4.RequestAdditionalAccess'|translate}}*</h6>-->
+                                    <h6>{{'Register.Section4.RequestAdditionalAccess'|translate}}*</h6>
 
                                     <div class="d-flex align-items-end flex-column">
 
 
-                                        <!--<p *ngIf="registrationService.userModel.rdbBank">
+                                        <p *ngIf="registrationService.userModel.rdbBank">
                                             <input #AgreeToThePrivacyPolicy="ngModel" [(ngModel)]="registrationService.userModel.AgreeToThePrivacyPolicy" name="AgreeToThePrivacyPolicy" id="cbx1" type="checkbox" class="cbx used">
                                             <label for="cbx1" class="lbl">{{'Register.Section4.cbx1'|translate}}</label>
                                         </p>
@@ -623,7 +614,7 @@
                                         <p *ngIf="registrationService.userModel.rdbBank">
                                             <input #AgreeThatInformationOfCompanyMayBePublished="ngModel" [(ngModel)]="registrationService.userModel.AgreeThatInformationOfCompanyMayBePublished" name="AgreeThatInformationOfCompanyMayBePublished" id="cbx4" type="checkbox" class="cbx used">
                                             <label for="cbx4" class="lbl"> {{'Register.Section4.cbx4'|translate}} </label>
-                                        </p>-->
+                                        </p>
 
                                         <p>
                                             <input #AcceptAGBS="ngModel" [(ngModel)]="registrationService.userModel.AcceptAGBS" name="AcceptAGBS" id="cbx3" type="checkbox" class="cbx used">
@@ -638,24 +629,24 @@
                                     <div class=" input-group">
                                         <re-captcha (resolved)="resolved($event)"
                                                     siteKey="6LcL6XoUAAAAAIyV8mXAkILN2BWehnY2b3VpLPZa"></re-captcha>
+
                                         <!-- <span class="line"> I am not a robot</span>
-                                                        <input id="cbx3" type="checkbox" class="cbx used">
-                                                        <label for="cbx3" class="lbl notrobot">
-                                    </label> -->
+                                                            <input id="cbx3" type="checkbox" class="cbx used">
+                                                            <label for="cbx3" class="lbl notrobot">
+                                        </label> -->
                                     </div>
                                 </div>
 
                                 <div class="login-margin"></div>
-                                <button type="submit" class="button btn"  >
+                                <button type="button" (click)="registerUser()" class="button btn">
                                     <div class="ripples buttonRipples">
                                         <span class="ripplesCircle" style="top: 20.7969px; left: 211.313px;"></span>
-                                   </div>
+                                    </div>
                                     {{'Button.ButtonSubmit'|translate}}
                                     <i class="material-icons">
                                         keyboard_arrow_right
                                     </i>
                                 </button>
-                              
                                 <!-- <button >animation target</button> -->
 
                             </div>
@@ -673,9 +664,6 @@
 
             </div>
         </div>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <script src="//kendo.cdn.telerik.com/2016.3.914/js/kendo.all.min.js"></script>
-
         <script src="./Instimatch Registeration Form_files/index.js"></script>
     </body>
 </form>

@@ -48,7 +48,7 @@
                 <input _ngcontent-c1="" class="form-control ng-untouched ng-pristine" id="FirstName" #FirstName="ngModel" [(ngModel)]="userProfileData.FirstName" name="FirstName" placeholder="" type="text" disabled="">
             </div>
             <div class="full-width">
-                <label _ngcontent-c1="">{{'UserProfile.SirName'|translate}}</label>
+                <label _ngcontent-c1="">{{'UserProfile.SurName'|translate}}</label>
                 <input _ngcontent-c1="" class="form-control ng-untouched ng-pristine" id="SirName" #SurName="ngModel" [(ngModel)]="userProfileData.SurName" name="SurName" placeholder="" type="text" disabled="">
             </div>
             <div class="full-width">
@@ -56,7 +56,7 @@
                 <input _ngcontent-c1="" class="form-control ng-untouched ng-pristine" id="EmailAddress" #EmailAddress="ngModel" [(ngModel)]="userProfileData.EmailAddress" name="EmailAddress" placeholder="" type="text" disabled="">
             </div>
             <div class="full-width">
-                <label _ngcontent-c1="">{{'UserProfile.CreateUsername'|translate}}</label>
+                <label _ngcontent-c1="">{{'UserProfile.Username'|translate}}</label>
                 <input _ngcontent-c1="" class="form-control ng-untouched ng-pristine" id="Username" #UserName="ngModel" [(ngModel)]="userProfileData.UserName" name="UserName" placeholder="" type="text" disabled="">
             </div>
             <div class="full-width">
@@ -75,22 +75,24 @@
         </div>
         <div class="col-6">
             <div class="full-width">
-                <label _ngcontent-c1="">{{'UserProfile.CommercialRegisterExtract'|translate}} </label><input _ngcontent-c1="" class="form-control ng-untouched ng-pristine" id="first_name" name="FirstName" placeholder="" type="text" disabled=""/>
-            </div> 
+                <label _ngcontent-c1="">{{'UserProfile.CommercialRegisterExtract'|translate}} </label><input _ngcontent-c1="" class="form-control ng-untouched ng-pristine" id="first_name" name="FirstName" placeholder="" type="text" disabled="" />
+            </div>
+            <div class="full-width">
+                <label _ngcontent-c1="">{{'UserProfile.IdentityCard'|translate}} </label><input _ngcontent-c1="" class="form-control ng-untouched ng-pristine" id="first_name" name="FirstName" placeholder="" type="text" disabled="" />
+            </div>
+
             <!-- Comment below div -->
             <div id="divtestUpload">
-                <file-uploader [maxSizeInKb]="110" [allowMultiple]="false" [fileType]="'application/pdf'" 
-        (onSelection)="fileuploaderFileChange($event)"  [required]="false"></file-uploader>
-        <ul>
-          <li *ngFor="let file of userProfileServiceService.listOfFileUploaded">
-        <span>{{file.name}}</span> <a (click)="DeleteDocument(file.name,file.docId)">x</a>
-          </li>
-        </ul>
+                <file-uploader [maxSizeInKb]="110" [allowMultiple]="false" [fileType]="'application/pdf'"
+                               (onSelection)="fileuploaderFileChange($event)" [required]="false"></file-uploader>
+                <ul>
+                    <li *ngFor="let file of userProfileServiceService.listOfFileUploaded">
+                        <span>{{file.name}}</span> <a (click)="DeleteDocument(file.name,file.docId)">x</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-        </div>
-        <div class="full-width">
-            <label _ngcontent-c1="">{{'UserProfile.IdendityCard'|translate}} </label><input _ngcontent-c1="" class="form-control ng-untouched ng-pristine" id="first_name" name="FirstName" placeholder="" type="text" disabled=""/>
-        </div>
+        
 
     </div>
 </form>

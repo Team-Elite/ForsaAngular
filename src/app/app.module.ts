@@ -39,6 +39,7 @@ import {MaturityListLenderComponent} from './lender-dashboard/maturity-list-lend
 import {HistoryMaturityListLenderComponent} from './lender-dashboard/history-maturity-list-lender/history-maturity-list-lender.component';
 import { UserprofileComponent } from './userprofile/userprofile.component';
 import { FileUploaderModule } from "ng4-file-upload";
+import { SettingPageComponent } from './lender-dashboard/setting-page/setting-page.component';
 //import { JwtHelperService} from '@auth0/angular-jwt';
 
 
@@ -65,7 +66,8 @@ const appRoutes: Routes = [{ path: 'login', component: LoginComponent },
     children: [{ path: "BestPriceView", component: BestPriceViewComponent },
     { path: "ViewAllPrice", component: ViewAllPriceComponent },
     { path: 'AllBanks', component: AllBanksComponent },
-    { path: 'AllBanksK', component: KontactDashboardLComponent },
+        { path: 'AllBanksK', component: KontactDashboardLComponent },
+        { path: 'setting', component: SettingPageComponent },
         { path: 'Maturitylist', component: MaturitylistComponent }
     ]
 }
@@ -91,13 +93,14 @@ const appRoutes: Routes = [{ path: 'login', component: LoginComponent },
         MaturitylistComponent,
         UserprofileComponent,
         MaturityListLenderComponent,
-        HistoryMaturityListLenderComponent
+        HistoryMaturityListLenderComponent,
+        SettingPageComponent
     ],
     imports: [
         BrowserModule,
         HttpModule,
         FormsModule,
-        RouterModule.forRoot(appRoutes, { useHash: true }),
+        RouterModule.forRoot(appRoutes, { useHash: false }),
         RecaptchaModule.forRoot(),
         StorageServiceModule,
         ToastrModule.forRoot(),

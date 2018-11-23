@@ -13,7 +13,7 @@ export class AuthenticateServiceService {
     selectedBestPriceId: string = 'selectedBestPriceId';
     ifBothUserTypeFound: string = 'ifBothUserTypeFound';
     UserTypeId: string = 'UserTypeId';
-    baseURL: string = 'http://40.89.139.123:4043';
+    baseURL: string;
     tokenService: any = new TokenService;
     Usertoken: any = this.storage.get(this.userValue);
     Userdata: any;
@@ -22,7 +22,7 @@ export class AuthenticateServiceService {
     
 
     constructor(@Inject(LOCAL_STORAGE) public storage: StorageService, public router: Router) {
-        // this.baseURL = (environment.production) ? 'http://40.89.139.123:4043' : 'http://localhost:60744';
+         this.baseURL = (environment.production) ? 'http://40.89.139.123:4043' : 'http://localhost:60744';
       
     }
     SaveSession(value: any) {

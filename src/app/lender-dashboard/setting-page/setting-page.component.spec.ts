@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SettingratefieldComponent } from './settingratefield.component';
+import { SettingPageComponent } from './setting-page.component';
 
-describe('SettingratefieldComponent', () => {
-  let component: SettingratefieldComponent;
-  let fixture: ComponentFixture<SettingratefieldComponent>;
+describe('SettingPageComponent', () => {
+  let component: SettingPageComponent;
+  let fixture: ComponentFixture<SettingPageComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SettingratefieldComponent ]
+      declarations: [ SettingPageComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SettingratefieldComponent);
+    fixture = TestBed.createComponent(SettingPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

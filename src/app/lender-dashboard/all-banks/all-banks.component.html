@@ -19446,11 +19446,6 @@
                         <tr><th>Street</th><td>{{objBankInfo.Street}}</td></tr>
                     </tbody>
                 </table>
-                <ul style="color:white;"><strong>File(s) List</strong> 
-                    <li *ngFor="let file of userProfileServiceService.listOfFileUploaded">
-                  <span style="color:white;">{{file.name}}</span> 
-                    </li>
-                  </ul>
             </div>
             <div class="modal-footer">
                 <button style="display:none;" type="button" (click)="SetTimeInterval();" class="btn btn-secondary" data-dismiss="modal">{{'Button.ButtonClose'|translate}}</button>

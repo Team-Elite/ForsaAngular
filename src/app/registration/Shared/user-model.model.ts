@@ -42,8 +42,7 @@ export class UserModel {
      ModifiedBy: number ;
      rdbNonBank:boolean;
      rdbBank:boolean;
-    NewPassword: string;
-    CommercialRegisterExtract: any;
-    IdentityCard :any
-
+     NewPassword:string;
+     CommercialRegisterExtract: any;
+     IdentityCard: any;
 }

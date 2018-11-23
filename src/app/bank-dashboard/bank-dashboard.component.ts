@@ -7,6 +7,8 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { BestPriceViewService } from '../lender-dashboard/best-price-view/Shared/best-price-view.service';
 import { DatePipe } from '@angular/common';
 import { LenderDashboardService } from '../lender-dashboard/Shared/lender-dashboard.service';
+import { LenderSendRequestModel } from '../lender-dashboard/best-price-view/Shared/lender-send-request-model.class';
+declare var $: any;
 
 @Component({
     selector: 'app-bank-dashboard',
@@ -21,6 +23,7 @@ export class BankDashboardComponent implements OnInit {
     testTrue: boolean = false;
     timer: any;
     IfBothUserTypeFound: boolean = false;
+    lenderSendRequestModel: LenderSendRequestModel;
     _authenticateServiceService: AuthenticateServiceService
     constructor(public bankDashboardService: BankDashboardService, public authenticateServiceService: AuthenticateServiceService, public router: Router
         , public toastr: ToastrService, public spinner: NgxSpinnerService, public bestPriceViewService: BestPriceViewService
@@ -40,7 +43,7 @@ export class BankDashboardComponent implements OnInit {
         this.GetUserGroupForSettingRateOfInterestVisibility();
         this.bankDashboardService.loggedInUser = this._authenticateServiceService.GetUserDetail();
         this.copyLoggedInUser = Object.assign({}, this.bankDashboardService.loggedInUser);
-        //this.SetTimeInterval();
+        this.SetTimeInterval();
        // this.GetLenderSendRequestRequestdOnTheBasisOfBorrowerId();
         this.spinner.hide();
         this.bestPriceViewService.lenderSendRequestModel = {
@@ -435,13 +438,16 @@ export class BankDashboardComponent implements OnInit {
         }
     }
     async GetLenderSendRequestRequestdOnTheBasisOfBorrowerId() {
-       
-        var result = await this.bankDashboardService.GetLenderSendRequestRequestdOnTheBasisOfBorrowerId();
-        if (result.IsSuccess ) {
+
+        this.lenderSendRequestModel = await this.bankDashboardService.GetLenderSendRequestRequestdOnTheBasisOfBorrowerId();
+        console.log(this.lenderSendRequestModel);
+        if (this.lenderSendRequestModel != undefined) {
+            this.lenderSendRequestModel = this.lenderSendRequestModel[0];
             clearInterval(this.timer);
-           // this.bestPriceViewService.lenderSendRequestModel = result.data;
-            var element = document.getElementById('ShowLendPopup');
-            element.click();
+            //this.bestPriceViewService.lenderSendRequestModel = result.data;
+            $('#modalSendRequest').modal('show');
+            //var element = document.getElementById('modalSendRequest');
+            //element.click();
             
 
             // setInterval(this.timer);
@@ -451,11 +457,11 @@ export class BankDashboardComponent implements OnInit {
 
     UpdateLenderSendRequestRateOfInterest() {
 
-        if (!this.ValidateSendRequest(this.bestPriceViewService.lenderSendRequestModel)) {
+        if (!this.ValidateSendRequest(this.lenderSendRequestModel)) {
             return false;
         }
         this.spinner.show();
-        var result = this.bankDashboardService.UpdateLenderSendRequestRateOfInterest(this.bestPriceViewService.lenderSendRequestModel).subscribe(data => {
+        var result = this.bankDashboardService.UpdateLenderSendRequestRateOfInterest(this.lenderSendRequestModel).subscribe(data => {
             this.toastr.success('Rate of interest saved successfully.', 'Dashboard');
             this.spinner.hide();
             this.SetTimeInterval();
@@ -499,10 +505,10 @@ export class BankDashboardComponent implements OnInit {
         if (charCode > 31 && (charCode < 48 || charCode > 57) && charCode != 46) {
             return false;
         }
-        if (this.bestPriceViewService.lenderSendRequestModel.RateOfInterest.toString().indexOf('.') > -1 && charCode == 46)
+        if (this.lenderSendRequestModel.RateOfInterest.toString().indexOf('.') > -1 && charCode == 46)
             return false;
-        if (this.bestPriceViewService.lenderSendRequestModel.RateOfInterest.toString().split(".").length > 1) {
-            if (this.bestPriceViewService.lenderSendRequestModel.RateOfInterest.toString().split(".")[1].length == 2)
+        if (this.lenderSendRequestModel.RateOfInterest.toString().split(".").length > 1) {
+            if (this.lenderSendRequestModel.RateOfInterest.toString().split(".")[1].length == 2)
                 return false;
         }
         return true;

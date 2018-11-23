@@ -14,10 +14,11 @@ import { Http, Response, Headers, RequestOptions, RequestMethod } from '@angular
     styleUrls: ['./lender-dashboard.component.css']
 })
 export class LenderDashboardComponent implements OnInit {
-    http: any;
-    tokenService: any;
-    userId: any
+    _http: any;
+  
+    _userId: any
     _authenticateServiceService: AuthenticateServiceService
+    ShowMaturity: boolean;
     constructor( public lenderDashboardService: LenderDashboardService, public spinner: NgxSpinnerService
         , public authenticateServiceService: AuthenticateServiceService, public router: Router
         , public toastr: ToastrService
@@ -173,15 +174,19 @@ export class LenderDashboardComponent implements OnInit {
     ///	
     async GetLenderSendRequestPendingLendedRequestByLenderId() {
 
+
         //  this.spinner.show();
-        if (this.userId === undefined || this.timer == undefined) return;
+        if (this.lenderDashboardService.userId === undefined || this.timer == undefined) {
+            return;
+        };
         var result = await this.bestPriceViewService.GetLenderSendRequestPendingLendedRequestByLenderId();
-        if (result.IsSuccess && result.IfDataFound == true) {
+        console.log(result);
+        if (result != undefined || !result.length) {
             clearInterval(this.timer);
             this.IfBankResponseFound = true;
             var element = document.getElementById('ShowSendRequestLDPopup');
             element.click();
-            this.bestPriceViewService.lenderSendRequestModel2 = JSON.parse(result)[0];
+            this.bestPriceViewService.lenderSendRequestModel2 = result[0];
         }
         //this.spinner.hide();
     }
@@ -200,7 +205,7 @@ export class LenderDashboardComponent implements OnInit {
     Logout() {
         //if(confirm("Are you sure you want to log out?")){
         this.authenticateServiceService.ClearSession();
-        this.userId = undefined;
+        this.lenderDashboardService.userId = undefined;
         this.timer = undefined;
         this.router.navigate(['/login']);
         //}
@@ -289,13 +294,20 @@ export class LenderDashboardComponent implements OnInit {
         this.copyLoggedInUser = Object.assign({}, this.lenderDashboardService.loggedInUser);
     }
 
-    ShowMaturityList(History: boolean) {
-
+    async ShowMaturityList(History: boolean) {
+        this.ShowMaturity = true;
+        this.lenderDashboardService.showhistory = History;
+       
         this.router.navigate(['lenderDashboard/Maturitylist']);
+        //await this.lenderDashboardService.GetlenderMaturityList(ShowMaturity);
     }
+
+  
+
 
     SetCurrentPage(pageName: string) {
         this.spinner.show();
+        this.ShowMaturity = false;
         this.lenderDashboardService.CurrentPageName = pageName;
         if (pageName === "Best Price View") {
             this.router.navigate(['lenderDashboard/BestPriceView']);
@@ -308,6 +320,9 @@ export class LenderDashboardComponent implements OnInit {
         }
         else if (pageName == 'Kontact Dashboard') {
             this.router.navigate(['lenderDashboard/AllBanksK']);
+        }
+        else if (pageName == 'Setting') {
+            this.router.navigate(['lenderDashboard/setting']);
         }
         this.spinner.hide();
     }
