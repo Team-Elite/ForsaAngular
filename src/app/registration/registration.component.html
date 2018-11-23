@@ -455,6 +455,27 @@
                                         </select>
                                     </div>
                                 </div>
+                                <div class="form-group form-md-line-input has-error">
+
+                                    <div class="group input-group">
+
+                                        <label   >File Upload</label>
+                                        <input type="file" (change)="isUploadOneSelected($event)" accept="application/pdf">
+
+
+                                    </div>
+                                </div>
+                                <div class="group input-group">
+                                    <label> Hochladen Handelsregisterauszug</label>
+                                </div>
+                                <div class="form-group form-md-line-input has-error">
+                                    <div class="group input-group">
+                                        <label >File Upload</label>
+                                        <input type="file" (change)="isUploadTwoSelected($event)" accept="application/pdf">
+
+
+                                    </div>
+                                </div>
 
                                 <div class="login-margin"></div>
                                 <button (click)="Section3Visible(registrationForm)" type="button" class="button btn" id="next-reg-3">
@@ -607,7 +628,7 @@
                                 <div class="form-group form-md-line-input has-error">
                                     <div class=" input-group">
                                         <re-captcha (resolved)="resolved($event)"
-                                                    siteKey="6LdL4nQUAAAAAA_HMmmVsEPsN8kgJerY2zs6t0b7"></re-captcha>
+                                                    siteKey="6LcL6XoUAAAAAIyV8mXAkILN2BWehnY2b3VpLPZa"></re-captcha>
 
                                         <!-- <span class="line"> I am not a robot</span>
                                                             <input id="cbx3" type="checkbox" class="cbx used">
@@ -617,7 +638,7 @@
                                 </div>
 
                                 <div class="login-margin"></div>
-                                <button type="submit" class="button btn">
+                                <button type="button" (click)="ValidateUserForm()" class="button btn">
                                     <div class="ripples buttonRipples">
                                         <span class="ripplesCircle" style="top: 20.7969px; left: 211.313px;"></span>
                                     </div>

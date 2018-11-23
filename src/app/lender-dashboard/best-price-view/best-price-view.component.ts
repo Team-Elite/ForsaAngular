@@ -5,8 +5,10 @@ import { ToastrService } from 'ngx-toastr';
 import { DatePipe } from '@angular/common';
 import { LenderDashboardService } from '../Shared/lender-dashboard.service';
 import { hubConnection, connection } from 'signalr-no-jquery';
+import { environment } from '../../../environments/environment.prod';
 
-const connection = hubConnection('http://socket.elitewebdemo.com/signalr');
+const connection = (environment.production) ? hubConnection('http://40.89.139.123:4044/signalr') : hubConnection('http://localhost:61088/signalr');
+
 const hubProxy = connection.createHubProxy('NgHub');
 @Component({
     selector: 'app-best-price-view',
@@ -36,6 +38,7 @@ export class BestPriceViewComponent implements OnInit {
     }
     getData() {
         this.spinner.show();
+        
         this.GetRatesByTimePeriod();
         this.bestPriceViewService.listBankByTimePeriod = [];
         var selectedTimePeriodId = undefined;
@@ -81,7 +84,7 @@ export class BestPriceViewComponent implements OnInit {
 
 
     CalculateNumberOfDays() {
-        debugger;
+        
         let fromDate: any = new Date(this.bestPriceViewService.lenderSendRequestModel.StartDate);
         let toDate: any = new Date(this.bestPriceViewService.lenderSendRequestModel.EndDate);
         if (this.bestPriceViewService.lenderSendRequestModel.StartDate != "" && this.bestPriceViewService.lenderSendRequestModel.EndDate != "") {
@@ -107,12 +110,12 @@ export class BestPriceViewComponent implements OnInit {
         }
 
 
-        this.bestPriceViewService.listRatesByTimePeriod = JSON.parse(rates.data);
+        this.bestPriceViewService.listRatesByTimePeriod = rates;
         this.spinner.hide();
     }
 
     async GetBanksByTimePeriod(timePeriodId: number) {
-        debugger;
+        
         //document.getElementById(timePeriodId.toString());
         this.selectedTimePeriod = timePeriodId;
         this.bestPriceViewService.lenderDashboardService.authenticateServiceService.SaveSelectedTimePeriodId(timePeriodId);
@@ -131,7 +134,7 @@ export class BestPriceViewComponent implements OnInit {
         }
       
 
-        this.bestPriceViewService.listBankByTimePeriod = JSON.parse(rates.data);
+        this.bestPriceViewService.listBankByTimePeriod = rates;
         this.spinner.hide();
     }
 
@@ -145,7 +148,7 @@ export class BestPriceViewComponent implements OnInit {
 
     }
     ShowSendRequestModal(bank: any) {
-        debugger;
+        
         //  document.getElementById('modalSendRequest').style.display='block';
         //  document.getElementById('modalSendRequest').style.display='block';
         this.IfBankResponseFound = false;
@@ -189,7 +192,7 @@ export class BestPriceViewComponent implements OnInit {
     }
 
     SaveSendRequest() {
-        debugger;
+        
         for (var i = 0; i <= this.bestPriceViewService.listInterestConvention.length - 1; i++) {
             if (this.bestPriceViewService.lenderSendRequestModel.InterestConvention == this.bestPriceViewService.listInterestConvention[i].Id) {
                 this.bestPriceViewService.lenderSendRequestModel.InterestConventionName = this.bestPriceViewService.listInterestConvention[i].Value;

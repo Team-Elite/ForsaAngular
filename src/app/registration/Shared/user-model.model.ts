@@ -43,4 +43,6 @@ export class UserModel {
      rdbNonBank:boolean;
      rdbBank:boolean;
      NewPassword:string;
+     CommercialRegisterExtract: any;
+     IdentityCard: any;
 }

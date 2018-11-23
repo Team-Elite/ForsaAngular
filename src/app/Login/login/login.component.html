@@ -104,14 +104,14 @@
                                                         <span class="bar"></span>
                                                         <label>{{'Forget.Email'|translate}}</label>
                                                         <span class="input-group-icon">
-                                                            <i class="material-icons">{{'Forget.Email'|translate}}</i>
+                                                            <i class="material-icons ">email</i>
                                                         </span>
 
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-primary" (click)="ForgotPassword(LoginForm)">{{'Login.ButtonSend'|translate}}</button>
+                                                <button type="button" class="btn btn-primary" (click)="ForgotPassword(LoginForm)">{{'Button.ButtonSend'|translate}}</button>
                                             </div>
                                         </div>
                                     </div>
@@ -119,8 +119,8 @@
 
                                 <div class="form-group form-md-line-input has-error">
                                     <div class=" input-group">
-                                        <!-- <re-captcha (resolved)="resolved($event)"
-                                                    siteKey="6LdL4nQUAAAAAA_HMmmVsEPsN8kgJerY2zs6t0b7"></re-captcha> -->
+                                         <re-captcha (resolved)="resolved($event)"
+                                                    siteKey="6LcL6XoUAAAAAIyV8mXAkILN2BWehnY2b3VpLPZa"></re-captcha> 
                                         <!-- <span class="line"> I am not a robot</span>
                                                             <input id="cbx3" type="checkbox" class="cbx used">
                                                             <label for="cbx3" class="lbl notrobot">

@@ -66,12 +66,12 @@
 
                             </li>
                             <li>
-                                <a >
+                                <a>
                                     <i class="material-icons icon-position">search</i>
                                 </a>
                             </li>
                             <li>
-                                <a >
+                                <a>
                                     <i class="material-icons icon-position">forum</i>
                                 </a>
                             </li>
@@ -80,11 +80,11 @@
                                     <i class="material-icons">perm_identity</i>
                                 </a>
                             </li>
-                            <li *ngIf="IfBothUserTypeFound" class="settings"   title="Switch Screen">
-                                <a href="javascript:void(0);"  (click)="SwitchScreen()">
+                            <li *ngIf="IfBothUserTypeFound" class="settings" title="Switch Screen">
+                                <a href="javascript:void(0);" (click)="SwitchScreen()">
                                     <i class="material-icons icon-position">
                                     </i>   {{'Borrower.BankDashboard.Settings'|translate}}
-                                   
+
                                 </a>
                             </li>
                             <li class="identity" title="Logout">
@@ -105,7 +105,23 @@
                 <div class="sidebar ">
 
                     <ul class="sidebar-nav ">
+                        <li class="cockpit-btn">
+                            <a>
+                                COCKPIT
+                                <span class="align-middle input-group-icon ">
+                                    <i class="material-icons ">view_list</i>
+                                </span>
+                            </a>
+                            <div class="cockpit-dropdown-div">
+                                <button type="button" class="dropcockpit" id="eigene" data-toggle="modal" data-target=".bd-example-modal-lg-eigene-Stammdatenverwaltung">{{'Borrower.BankDashboard.Ownmasterdatamanagement'|translate}}</button>
+                                <button type="button" class="dropcockpit" (click)="ShowScreen('Mreport');" id="Ansehen">{{'Borrower.BankDashboard.Viewanddownloadyourownduelist'|translate}}</button>
+                                <button type="button" class="dropcockpit" (click)="ShowScreen('HMreport');" id="Ansehenund">{{'Borrower.BankDashboard.Viewanddownloadinthepastdonebusiness'|translate}}</button>
+                                <!--<button type="button" class="dropcockpit" >Maturity List</button>
+                                <button type="button" class="dropcockpit" > History Maturity List</button>-->
 
+                            </div>
+
+                        </li>
                         <li>
                             <a (click)="PublishAndUnPublish(true);">
                                 {{'Borrower.BankDashboard.PUBLISH'|translate}}
@@ -149,19 +165,7 @@
                                 </span>
                             </a>
                         </li>
-                        <li class="cockpit-btn">
-                            <a>
-                                COCKPIT
-                                <span class="align-middle input-group-icon ">
-                                    <i class="material-icons ">view_list</i>
-                                </span>
-                            </a>
-                            <div class="cockpit-dropdown-div">
-                                <button type="button" class="dropcockpit" id="eigene" data-toggle="modal" data-target=".bd-example-modal-lg-eigene-Stammdatenverwaltung">{{'Borrower.BankDashboard.Ownmasterdatamanagement'|translate}}</button>
-                                <button type="button" class="dropcockpit" id="Ansehen">{{'Borrower.BankDashboard.Viewanddownloadyourownduelist'|translate}}</button>
-                                <button type="button" class="dropcockpit" id="Ansehenund">{{'Borrower.BankDashboard.Viewanddownloadinthepastdonebusiness'|translate}}</button>
-                            </div>
-                        </li>
+
 
 
                     </ul>
@@ -171,91 +175,140 @@
 
             <div class="container-fluid application-panel" id="main-panel">
                 <div class="row application-page">
-                    <div class="col-lg-8 col-md-12">
+                    <div class="col-lg-12 col-md-12">
                         <div class="dashboard-right application-sec">
-                            <!--  <div class="in-buttons no-gutters row">
-                    <div class="col-sm-4">
-                        <input class="form-control green-btn" type="button" value="PUBLISH" id="publish">
-                    </div>
-                    <div class="col-sm-4"></div>
-                    <div class="col-sm-4 pr-1">
-                        <input class="form-control green-btn" type="button" value="STOP PUBLISH" id="publish">
-                    </div>
-                </div> -->
-                            <div *ngFor="let rate of bankDashboardService.listRateOfInterestOfBankModel" class=" no-gutters row">
-                                <div class="col-md-4 pr-1">
-                                    <button type="button" class="btn w-100 ">{{rate.TimePeriod}}</button>
-                                </div>
-                                <div class="col-md-4 pr-1">
-                                    <button type="button" (dblclick)="EnableTextBox(rate)" class="btn w-100 active">
-                                        <input (blur)="UpdateRateOfInterest(rate)" type="number" [disabled]="!rate.IsDoubleTapped" #RateOfInterest="ngModel" [(ngModel)]="rate.RateOfInterest"  name="RateOfInterest">
-                                    </button>
+
+                            <div *ngIf="IfShowBankDashBoard" id="Rate-Panel">
+                                <div class="no-gutters row">
+                                    <div class="col-md-3 pr-1">
+
+                                    </div>
+
+                                    <div class="col-md-3 pr-1 text-centered">
+                                        <span class="modal-header w-100">{{'ClientGroup.Group1'|translate}}</span>
+                                    </div>
+                                    <div class="col-md-3 pr-1 text-centered">
+                                        <span class="modal-header">{{'ClientGroup.Group2'|translate}}</span>
+                                    </div>
+                                    <div class="col-md-3 pr-1 text-centered">
+                                        <span class="modal-header">{{'ClientGroup.Group3'|translate}}</span>
+                                    </div>
 
                                 </div>
-                                <div class="col-md-4 pr-1">
-                                    <button type="button" class="btn w-100">
-                                        <a (click)="IncreaseRateOfInterest(rate)">+</a>
-                                        <span>/</span>
-                                        <a (click)="DecreaseRateOfInterest(rate)">-</a>
-                                    </button>
+
+
+                                <div *ngFor="let rate of bankDashboardService.listRateOfInterestOfBankModel" class=" no-gutters row">
+                                    <div class="col-md-3 pr-1">
+                                        <button type="button" class="btn w-100 ">{{rate.TimePeriod}}</button>
+                                    </div>
+                                    <div class="col-md-3 pr-1">
+
+                                      
+                                            <div class="col-md-6 pr-1 in-float-lf">
+                                                <button type="button" (dblclick)="EnableTextBox(rate,1)" class="btn w-100 w-100-px active">
+                                                    <input (blur)="UpdateRateOfInterest(rate)" type="number" [disabled]="!rate.IsDoubleTapped" #RateOfInterest="ngModel" [(ngModel)]="rate.RateOfInterest" name="RateOfInterest" />
+                                                </button>
+                                            </div>
+                                            <div class="col-md-6 pr-1 in-float-lf">
+                                                <button type="button" class="btn w-100 w-100-px">
+                                                    <a (click)="IncreaseRateOfInterest(rate,1)">+</a>
+                                                    <span>/</span>
+                                                    <a (click)="DecreaseRateOfInterest(rate,1)">-</a>
+                                                </button>
+                                            </div>
+                                        
+                                     
+                                    </div>
+                                    <div class="col-md-3 pr-1">
+                                        <div class="col-md-6 pr-1  in-float-lf">
+                                            <button type="button" (dblclick)="EnableTextBox(rate,2)" class="btn w-100 active">
+                                                <input (blur)="UpdateRateOfInterest(rate)" type="number" [disabled]="!rate.IsDoubleTapped2" #RateOfInterest2="ngModel" [(ngModel)]="rate.RateOfInterest2" name="RateOfInterest2" />
+                                            </button>
+
+                                        </div>
+                                        <div class="col-md-6 pr-1  in-float-lf">
+                                            <button type="button" class="btn w-100">
+                                                <a (click)="IncreaseRateOfInterest(rate,2)">+</a>
+                                                <span>/</span>
+                                                <a (click)="DecreaseRateOfInterest(rate,2)">-</a>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 pr-1">
+                                        <div class="col-md-6 pr-1  in-float-lf">
+                                            <button type="button" (dblclick)="EnableTextBox(rate,3)" class="btn w-100 active">
+                                                <input (blur)="UpdateRateOfInterest(rate)" type="number" [disabled]="!rate.IsDoubleTapped3" #RateOfInterest3="ngModel" [(ngModel)]="rate.RateOfInterest3" name="RateOfInterest3" />
+                                            </button>
+
+                                        </div>
+                                        <div class="col-md-6 pr-1  in-float-lf">
+                                            <button type="button" class="btn w-100">
+                                                <a (click)="IncreaseRateOfInterest(rate,3)">+</a>
+                                                <span>/</span>
+                                                <a (click)="DecreaseRateOfInterest(rate,3)">-</a>
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
+                            </div>
+
+                            <!-- Maturity List -->
+                            <div *ngIf="!IfShowBankDashBoard" id="Mautrity-Panel">
+                                <input type="button" (click)="ExportToPDF()" class="btn btn-info btn-lg common-bt-1" id="btnExportToPDF" value="Export to PDF">
+                                <input type="button" (click)="ExportToExcel()" class="btn btn-info btn-lg common-bt-1" id="btnExportToExcel" value="Export To Excel">
+                                <div class="clearfix"></div>
+                                <div class="row dashboard-price-list">
+                                    <div class="col-lg-12">
+                                        <table class="table table-bordered table-responsive">
+                                            <tbody>
+                                                <tr>
+                                                    <!--<th style="cursor:pointer;">RequestId</th>-->
+                                                    <!--<th style="cursor:pointer;">LenderId</th>-->
+                                                    <th style="cursor:pointer;">Lender</th>
+                                                    <!--<th style="cursor:pointer;">BorrowerId</th>-->
+                                                    <th style="cursor:pointer;">Borrower</th>
+                                                    <th style="cursor:pointer;">Amount</th>
+                                                    <th style="cursor:pointer;">StartDate</th>
+                                                    <th style="cursor:pointer;">EndDate</th>
+                                                    <th style="cursor:pointer;">NoOfDays</th>
+                                                    <th style="cursor:pointer;">InterestConvention</th>
+                                                    <th style="cursor:pointer;">Payments</th>
+                                                    <!--<th style="cursor:pointer;">IsRequestAccepted</th>-->
+                                                    <!--<th style="cursor:pointer;">RequestCreatedBy</th>-->
+                                                    <th style="cursor:pointer;">RateOfInterestOfferred</th>
+                                                    <th style="cursor:pointer;">OfferredOn</th>
+                                                    /t
+                                                </tr>
+                                                <tr *ngFor="let bank of _MaturityList">
+                                                    <!--<td>{{bank.RequestId}}</td>-->
+                                                    <!--<td>{{bank.LenderId}}</td>-->
+                                                    <td>{{bank.Lender}}</td>
+                                                    <!--<td>{{bank.BorrowerId}}</td>-->
+                                                    <td>{{bank.Borrower}}</td>
+                                                    <td>{{bank.Amount}}</td>
+                                                    <td>{{bank.StartDate}}</td>
+                                                    <td>{{bank.EndDate}}</td>
+                                                    <td>{{bank.NoOfDays}}</td>
+                                                    <td>{{bank.InterestConvention}}</td>
+                                                    <td>{{bank.Payments}}</td>
+                                                    <!--<td>{{bank.IsRequestAccepted}}</td>
+                                                    <td>{{bank.RequestCreatedBy}}</td>-->
+                                                    <td>{{bank.RateOfInterestOfferred}}</td>
+                                                    <td>{{bankOfferredOn}}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
 
                             </div>
-                            <!-- <nav aria-label="Page navigation example" class="pagination-links">
-                    <ul class="pagination">
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                        <span class="sr-only">Previous</span>
-                        </a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Previous">
-                        <span aria-hidden="true">&lt;</span>
-                        <span class="sr-only">Previous</span>
-                        </a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                     <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Previous">
-                        <span aria-hidden="true">   &gt;</span>
-                        <span class="sr-only">Next</span>
-                        </a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                        <span class="sr-only">Next</span>
-                        </a>
-                    </li>
-                    </ul>
-                </nav> -->
+                            <!-- Maturity End -->
+
+
                         </div>
                     </div>
-                    <!--  <div class="col-lg-6 col-md-12 application-sec application-right">
-            <div class="in-buttons no-gutters row">
-                    <div class="col-lg-3 col-md-6 col-sm-12 pr-2">
-                        <input class="form-control green-btn" type="button" value="STATUS:ON" id="">
-                    </div>
 
-                    <div class="col-lg-3 col-md-6 col-sm-12 pr-2">
-                        <input class="form-control green-btn" type="button" value="Counterparty Configuration" id="" data-toggle="modal" data-target=".counterparty-modal">
-                    </div>
-
-                    <div class="col-lg-3 col-md-6 col-sm-12 pr-2 cockpit-btn">
-                        <input class="form-control green-btn " type="button" value="COCKPIT" id="" >
-                        <div class="cockpit-dropdown-div"><button type="button" class="dropcockpit" id="eigene" data-toggle="modal" data-target=".bd-example-modal-lg-eigene-Stammdatenverwaltung">Eigene Stammdatenverwaltung</button>
-                            <button type="button" class="dropcockpit" id="Ansehen">Ansehen und downloaden eigene Fälligkeitsliste</button>
-                            <button type="button" class="dropcockpit" id="Ansehenund">Ansehen und downloaden in der Vergangenheit getätigter Geschäfte</button>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-12 pr-2">
-                        <input class="form-control green-btn" type="button" value="Interest" id="">
-                    </div>
-                </div>
-
-        </div> -->
                 </div>
 
                 <!-- modal start-->
@@ -311,7 +364,6 @@
                     </div>
                 </div>
                 <button Id="ShowLendPopup" type="button" style="display:none;" class="btn w-100 active" data-toggle="modal" data-target=".modalSendRequest" data-backdrop="static" data-keyboard="false">Lend</button>
-
                 <!-- modal setting start page tab-->
                 <div class="modal fade bd-example-modal-lg-setting-page dashboard-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
                      aria-hidden="true">
@@ -324,7 +376,7 @@
                                 </button>
                             </div>
 
-                            <div class="modal-body" id="lendrequestbody">
+                            <div class="modal-body" id="lendStartPagebody">
                                 <select class="form-control" id="setting_start_page">
                                     <option value="">--Select Start Page--</option>
                                     <option value="viewall">{{'Borrower.BankDashboard.ViewAllPrice'|translate}}</option>
@@ -352,7 +404,7 @@
                                 </button>
                             </div>
 
-                            <div   class="modal-body" id="lendrequestbody">
+                            <div class="modal-body" id="lendrequestbody">
                                 <table>
                                     <tbody>
                                         <tr><th>{{'Borrower.BankDashboard.Lender'|translate}}</th><td>{{bestPriceViewService.lenderSendRequestModel.LenderName}}</td></tr>
@@ -379,11 +431,12 @@
                                             </td>
                                         </tr>
                                         <tr><th>{{'Borrower.BankDashboard.RateOfInterest'|translate}}</th><td><input (keypress)="numberWithDecimalOnly($event)" #RateOfInterest="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.RateOfInterest" name="RateOfInterest" type="text" id="RateOfInterest1" class="form-control requestamount" maxlength="7"></td></tr>
-                                        <tr><td><input type="button" (click)="UpdateLenderSendRequestRateOfInterest()" class="btn btn-info btn-lg" id="sendRequest" value="SEND"></td></tr>
+                                        <tr><td></td></tr>
                                     </tbody>
                                 </table>
                             </div>
                             <div class="modal-footer">
+                                <input type="button" (click)="UpdateLenderSendRequestRateOfInterest()" class="btn btn-info btn-lg common-bt" id="sendRequest" value="SEND">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="SetTimeInterval()">{{'Button.ButtonClose'|translate}}</button>
                                 <button id="closeSendRequestModal" style="display:none;" type="button" data-dismiss="modal" class="btn btn-secondary">Close 12</button>
 
@@ -405,9 +458,10 @@
                                 </button>
                             </div>
 
-                            <div class="modal-body" id="lendrequestbody">
+                            <div class="modal-body" id="lenderProfileEdittbody">
+                              
                                 <form>
-                                    <div  class="row">
+                                    <div class="row">
 
                                         <div class="heading col-sm-12">
                                             <h4>{{'Borrower.BankDashboard.EditDetails'|translate}}</h4>
@@ -468,7 +522,25 @@
 
 
 
-
+                <div class="modal fade bd-example-modal-lg-eigene-Stammdatenverwaltung admin-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+                     aria-hidden="true">
+                    <div _ngcontent-c1="" class="modal-dialog modal-lg">
+                        <div _ngcontent-c1="" class="modal-content">
+                            <div _ngcontent-c1="" class="modal-header">
+                                <h5 _ngcontent-c1="" class="modal-title" id="exampleModalLongTitle"> Eigene Stammdatenverwaltung</h5>
+                                <button _ngcontent-c1="" aria-label="Close" class="close" data-dismiss="modal" type="button"><span _ngcontent-c1="" aria-hidden="true">×</span></button>
+                            </div>
+                            <div _ngcontent-c1="" class="modal-body" id="lendrequestbody">
+                                <app-userprofile></app-userprofile>
+                            </div>
+                            <div _ngcontent-c1="" class="modal-footer">
+                                <button _ngcontent-c1="" class="btn btn-secondary" data-dismiss="modal" type="button">Hochladen</button>
+                                <button _ngcontent-c1="" class="btn btn-secondary" data-dismiss="modal" type="button">Passwort ändern</button>
+                                <button _ngcontent-c1="" class="btn btn-secondary" data-dismiss="modal" type="button">Datei hochladen</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <!---modal Eigene start-->
 
                 <div class="modal fade bd-example-modal-lg-eigene-Stammdatenverwaltung eigene-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
@@ -482,7 +554,7 @@
                                 </button>
                             </div>
 
-                            <div class="modal-body" id="lendrequestbody">
+                            <div class="modal-body" id="lenderrequestbody">
                                 <form>
                                     <div class="row">
                                         <div class="modal-body">
@@ -553,7 +625,6 @@
 
 
                 <!---pdf modal -->
-
                 <div class="modal fade bd-example-modal-lg-cockpit-pdf admin-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
                      aria-hidden="true">
                     <div class="modal-dialog modal-lg">
@@ -577,169 +648,9 @@
                         </div>
                     </div>
                 </div>
-
-
-
                 <!-- modal end-->
 
-
-
-                <div class="row ansehen-sec">
-                    <div class="row dashboard-price-list application-export-sec">
-                        <div class="col-lg-12">
-                            <div class="ticket-uppr-btn">
-                                <a href="https://dev.instimatch.com/forsa/applications/instimatch/Borrowerpdfmaturities" id="" class="btn export-btn green-btn ">Export PDF</a>
-                                <input type="button" id="" value="Export Excel" class="btn excel-btn green-btn">
-                            </div>
-                            <table class="table table-bordered table-responsive">
-                                <tbody>
-                                    <tr>
-                                        <th>Ticket Number</th>
-                                        <th>Trading Date</th>
-                                        <th>Lender</th>
-                                        <th>Borrower</th>
-                                        <th>Amount</th>
-                                        <th>Start Date</th>
-                                        <th>Maturity Date</th>
-                                        <th>Rate</th>
-                                    </tr>
-                                    <tr>
-
-                                        <td>2018000018202</td>
-                                        <td>29 Aug 2018</td>
-                                        <td>Stadt Singen</td>
-                                        <td>Commerzbank</td>
-                                        <td>10.000.000</td>
-                                        <td>29/08/2018</td>
-                                        <td>29/08/2019</td>
-                                        <td>5.01</td>
-
-                                    </tr>
-                                    <tr>
-                                        <td>2018000018202</td>
-                                        <td>29 Aug 2018</td>
-                                        <td>Stadt Singen</td>
-                                        <td>Commerzbank</td>
-                                        <td>10.000.000</td>
-                                        <td>29/08/2018</td>
-                                        <td>29/08/2019</td>
-                                        <td>5.01</td>
-
-                                    </tr>
-                                    <tr>
-                                        <td>2018000018202</td>
-                                        <td>29 Aug 2018</td>
-                                        <td>Stadt Singen</td>
-                                        <td>Commerzbank</td>
-                                        <td>10.000.000</td>
-                                        <td>29/08/2018</td>
-                                        <td>29/08/2019</td>
-                                        <td>5.01</td>
-
-                                    </tr>
-                                    <tr>
-                                        <td>2018000018202</td>
-                                        <td>29 Aug 2018</td>
-                                        <td>Stadt Singen</td>
-                                        <td>Commerzbank</td>
-                                        <td>10.000.000</td>
-                                        <td>29/08/2018</td>
-                                        <td>29/08/2019</td>
-                                        <td>5.01</td>
-
-                                    </tr>
-                                    <tr>
-                                        <td>2018000018202</td>
-                                        <td>29 Aug 2018</td>
-                                        <td>Stadt Singen</td>
-                                        <td>Commerzbank</td>
-                                        <td>10.000.000</td>
-                                        <td>29/08/2018</td>
-                                        <td>29/08/2019</td>
-                                        <td>5.01</td>
-
-                                    </tr>
-
-
-                                    <tr>
-                                        <td>2018000018202</td>
-                                        <td>29 Aug 2018</td>
-                                        <td>Stadt Singen</td>
-                                        <td>Commerzbank</td>
-                                        <td>10.000.000</td>
-                                        <td>29/08/2018</td>
-                                        <td>29/08/2019</td>
-                                        <td>5.01</td>
-
-                                    </tr>
-
-                                    <tr>
-                                        <td>2018000018202</td>
-                                        <td>29 Aug 2018</td>
-                                        <td>Stadt Singen</td>
-                                        <td>Commerzbank</td>
-                                        <td>10.000.000</td>
-                                        <td>29/08/2018</td>
-                                        <td>29/08/2019</td>
-                                        <td>5.01</td>
-
-
-                                    </tr>
-                                    <tr>
-                                        <td>2018000018202</td>
-                                        <td>29 Aug 2018</td>
-                                        <td>Stadt Singen</td>
-                                        <td>Commerzbank</td>
-                                        <td>10.000.000</td>
-                                        <td>29/08/2018</td>
-                                        <td>29/08/2019</td>
-                                        <td>5.01</td>
-
-                                    </tr>
-                                </tbody>
-                            </table>
-
-                            <nav aria-label="Page navigation example" class="pagination-links">
-                                <ul class="pagination">
-                                    <li class="page-item">
-                                        <a class="page-link" href="#" aria-label="Previous">
-                                            <span aria-hidden="true">«</span>
-                                            <span class="sr-only">Previous</span>
-                                        </a>
-                                    </li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#" aria-label="Previous">
-                                            <span aria-hidden="true">&lt;</span>
-                                            <span class="sr-only">Previous</span>
-                                        </a>
-                                    </li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#">1</a>
-                                    </li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#">2</a>
-                                    </li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#" aria-label="Previous">
-                                            <span aria-hidden="true"> &gt;</span>
-                                            <span class="sr-only">Next</span>
-                                        </a>
-                                    </li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#" aria-label="Next">
-                                            <span aria-hidden="true">»</span>
-                                            <span class="sr-only">Next</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
             </div>
-
-
-
 
         </div>
 
@@ -787,13 +698,13 @@
         });
 
 
-                // if (document.documentElement.clientWidth < 900) {
-                //     $('#navbar-toggle').click(function() {
-                //         $("html").addClass("open-nav")
-                //     })
-                // }
+                                    // if (document.documentElement.clientWidth < 900) {
+                                    //     $('#navbar-toggle').click(function() {
+                                    //         $("html").addClass("open-nav")
+                                    //     })
+                                    // }
     </script>
 
 </body>
-
+co
 </html>
