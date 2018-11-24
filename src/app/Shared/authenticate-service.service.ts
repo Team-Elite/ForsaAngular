@@ -20,7 +20,7 @@ export class AuthenticateServiceService {
     Usertoken: any = this.storage.get(this.userValue);
     Userdata: any;
     requestedForReport: string='';
-    baseURL: string = !(environment.production) ? 'http://40.89.139.123:4043' : 'http://localhost:60744';
+    baseURL: string = (environment.production) ? 'http://40.89.139.123:4043' : 'http://localhost:60744';
     headerOptions = new Headers({ 'Content-Type': 'application/json' });
     requestOptions = new RequestOptions({ method: RequestMethod.Post, headers: this.headerOptions });
 
@@ -142,18 +142,22 @@ export class AuthenticateServiceService {
         let requestedFor = this.storage.get(this.requestedForReport);
         return requestedFor;
     }
-
-      GetUserData() {
+    GetUserData() {
         //var data = this.tokenService.jwtdecrypt(this.Usertoken);
-        var userId = this.GetUserId();
-       
-        var webtoken = { data: this.tokenService.jwtencrypt({ userId: userId }) };
-        var data = this.http.put(this.baseURL + '/api/user/GetUserDetailByUserId', webtoken, this.requestOptions).map((data: Response) => {
-            return data.json();
-          }).toPromise().then(token => { return JSON.parse(this.tokenService.jwtdecrypt(token.data).unique_name) });
-          debugger;
-          return data;
-      
+        this.GetUserSession();
+        return JSON.parse(this.Userdata.unique_name)[0];
     }
+    //  GetUserData() {
+    //    //var data = this.tokenService.jwtdecrypt(this.Usertoken);
+    //    var userId = this.GetUserId();
+       
+    //    var webtoken = { data: this.tokenService.jwtencrypt({ userId: userId }) };
+    //    var data = this.http.put(this.baseURL + '/api/user/GetUserDetailByUserId', webtoken, this.requestOptions).map((data: Response) => {
+    //        return data.json();
+    //      }).toPromise().then(token => { return JSON.parse(this.tokenService.jwtdecrypt(token.data).unique_name) });
+    //      debugger;
+    //      return data;
+      
+    //}
     
 }

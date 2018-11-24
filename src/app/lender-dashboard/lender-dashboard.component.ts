@@ -180,8 +180,8 @@ export class LenderDashboardComponent implements OnInit {
             return;
         };
         var result = await this.bestPriceViewService.GetLenderSendRequestPendingLendedRequestByLenderId();
-        console.log(result);
-        if (result != undefined || !result.length) {
+        
+        if (result != undefined || result.length >=0) {
             clearInterval(this.timer);
             this.IfBankResponseFound = true;
             var element = document.getElementById('ShowSendRequestLDPopup');
