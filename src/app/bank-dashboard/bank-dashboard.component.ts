@@ -117,7 +117,7 @@ export class BankDashboardComponent implements OnInit {
 
     UpdateRateOfInterest(rate, group) {
         if (group == 1) {
-            debugger;
+         
             if (rate.RateOfInterest == undefined || rate.RateOfInterest == null || rate.RateOfInterest.length == 0) {
                 this.toastr.error("Rate1 must be entered.", "Dashboard");
                 return;

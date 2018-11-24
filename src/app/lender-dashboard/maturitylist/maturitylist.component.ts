@@ -18,21 +18,22 @@ export class MaturitylistComponent implements OnInit {
     _tokenService: TokenService;
     headerOptions = new Headers({ 'Content-Type': 'application/json' });
     requestOptions = new RequestOptions({ method: RequestMethod.Post, headers: this.headerOptions });
+    _landerdashboardservice: LenderDashboardService;
     _MaturityList: any;
     bankDashboardService: any;
-    _landerdashboardservice: LenderDashboardService;
+  
     constructor(public authenticateServiceService: AuthenticateServiceService, public landerdashboardservice: LenderDashboardService, private exportAsService: ExportAsService)
     {
         this._authenticateServiceService = authenticateServiceService;
         this._landerdashboardservice = landerdashboardservice;
-       
+        this._MaturityList = this._landerdashboardservice.GetlenderMaturityList();
     }
     config: ExportAsConfig = {
         type: 'pdf',
         elementId: 'mytable',
     };
     ngOnInit() {
-        this._MaturityList = this._landerdashboardservice.GetlenderMaturityList()
+       
     }
 
 
