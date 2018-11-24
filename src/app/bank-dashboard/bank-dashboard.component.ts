@@ -8,6 +8,7 @@ import { BestPriceViewService } from '../lender-dashboard/best-price-view/Shared
 import { DatePipe } from '@angular/common';
 import { LenderDashboardService } from '../lender-dashboard/Shared/lender-dashboard.service';
 import { LenderSendRequestModel } from '../lender-dashboard/best-price-view/Shared/lender-send-request-model.class';
+import { ExportAsService, ExportAsConfig } from 'ngx-export-as';
 declare var $: any;
 
 @Component({
@@ -27,9 +28,21 @@ export class BankDashboardComponent implements OnInit {
     _authenticateServiceService: AuthenticateServiceService
     constructor(public bankDashboardService: BankDashboardService, public authenticateServiceService: AuthenticateServiceService, public router: Router
         , public toastr: ToastrService, public spinner: NgxSpinnerService, public bestPriceViewService: BestPriceViewService
-        , public pipe: DatePipe, public lenderDashboardService: LenderDashboardService) {
+        , public pipe: DatePipe, public lenderDashboardService: LenderDashboardService, private exportAsService: ExportAsService) {
 
         this._authenticateServiceService = authenticateServiceService;
+    }
+
+    config: ExportAsConfig = {
+        type: 'pdf',
+        elementId: 'mytable',
+    };
+    exportAs(type) {
+        this.config.type = type;
+        this.exportAsService.save(this.config, 'myFile');
+        // this.exportAsService.get(this.config).subscribe(content => {
+        //   console.log(content);
+        // });
     }
    
     ngOnInit() {
@@ -91,7 +104,6 @@ export class BankDashboardComponent implements OnInit {
     }
 
     EnableTextBox(rate, type: number) {
-        debugger;
         if (type == 1)
             rate.IsDoubleTapped = true;
         else if (type == 2)
@@ -104,6 +116,8 @@ export class BankDashboardComponent implements OnInit {
     }
 
     UpdateRateOfInterest(rate) {
+
+        debugger;
         if (rate.RateOfInterest == undefined || rate.RateOfInterest == null || rate.RateOfInterest.length == 0) {
             this.toastr.error("Rate1 must be entered.", "Dashboard");
             return;
@@ -154,7 +168,6 @@ export class BankDashboardComponent implements OnInit {
     }
 
     IncreaseRateOfInterest(rate, type: number) {
-        debugger;
         if (type == 1) {
             if (rate.RateOfInterest == undefined || rate.RateOfInterest == null || rate.RateOfInterest.length == 0) {
                 this.toastr.error("Rate must be entered.", "Dashboard");

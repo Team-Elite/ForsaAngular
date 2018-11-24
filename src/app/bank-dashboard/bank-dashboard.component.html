@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿
+
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -237,7 +239,7 @@
                                     <div class="col-md-3 pr-1">
                                         <div class="col-md-6 pr-1  in-float-lf">
                                             <button type="button" (dblclick)="EnableTextBox(rate,3)" class="btn w-100 active">
-                                                <input (blur)="UpdateRateOfInterest(rate)" type="number" [disabled]="!rate.IsDoubleTapped3" #RateOfInterest3="ngModel" [(ngModel)]="rate.RateOfInterest3" name="RateOfInterest3" />
+                                                <input (blur)="UpdateRateOfInterest(this)" type="number" [disabled]="!rate.IsDoubleTapped3" #RateOfInterest3="ngModel" [(ngModel)]="rate.RateOfInterest3" name="RateOfInterest3" />
                                             </button>
 
                                         </div>
@@ -254,12 +256,15 @@
 
                             <!-- Maturity List -->
                             <div *ngIf="!IfShowBankDashBoard" id="Mautrity-Panel">
-                                <input type="button" (click)="ExportToPDF()" class="btn btn-info btn-lg common-bt-1" id="btnExportToPDF" value="Export to PDF">
-                                <input type="button" (click)="ExportToExcel()" class="btn btn-info btn-lg common-bt-1" id="btnExportToExcel" value="Export To Excel">
+                              
                                 <div class="clearfix"></div>
                                 <div class="row dashboard-price-list">
                                     <div class="col-lg-12">
-                                        <table class="table table-bordered table-responsive">
+                                        <button (click)="exportAs('pdf')" class="btn btn-info btn-lg common-bt-1">Export To Pdf</button>
+                                      
+                                        <button (click)="exportAs('xlsx')" class="btn btn-info btn-lg common-bt-1">Export to Excel</button>
+                            
+                                        <table class="table table-bordered table-responsive" id="mytable">
                                             <tbody>
                                                 <tr>
                                                     <!--<th style="cursor:pointer;">RequestId</th>-->
@@ -277,7 +282,7 @@
                                                     <!--<th style="cursor:pointer;">RequestCreatedBy</th>-->
                                                     <th style="cursor:pointer;">RateOfInterestOfferred</th>
                                                     <th style="cursor:pointer;">OfferredOn</th>
-                                                    
+
                                                 </tr>
                                                 <tr *ngFor="let bank of _MaturityList">
                                                     <!--<td>{{bank.RequestId}}</td>-->
@@ -292,7 +297,7 @@
                                                     <td>{{bank.InterestConvention}}</td>
                                                     <td>{{bank.Payments}}</td>
                                                     <!--<td>{{bank.IsRequestAccepted}}</td>
-                                                    <td>{{bank.RequestCreatedBy}}</td>-->
+                <td>{{bank.RequestCreatedBy}}</td>-->
                                                     <td>{{bank.RateOfInterestOfferred}}</td>
                                                     <td>{{bankOfferredOn}}</td>
                                                 </tr>

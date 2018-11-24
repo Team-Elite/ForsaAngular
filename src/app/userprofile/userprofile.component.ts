@@ -14,21 +14,25 @@ export class UserprofileComponent implements OnInit {
     constructor(public authenticateServiceService: AuthenticateServiceService, public userProfileServiceService:UserProfileServiceService
       , public spinner: NgxSpinnerService
         , public toastr: ToastrService) { }
-userProfileData: any;
+    userProfileData: any;
+    path: string;
+    ngOnInit() {
 
-ngOnInit() {
-this.userProfileData= this.authenticateServiceService.GetUserData();
+       
+       
+        this.path = this.authenticateServiceService.baseURL + "/Uploads/Docs/" + this.userProfileData.UserId + "/UserProfile/";
+        this.getUserData();
 this.GetDocList();
   }
-
+    getUserData() {  this.userProfileData =  this.authenticateServiceService.GetUserData();}
   
   fileuploaderFileChange(files: FileList){
-    debugger;
+ 
     this.spinner.show();
     const fileSelected: File = files[0];
     this.userProfileServiceService.uploadFile(fileSelected)
     .subscribe( (response) => {
-      debugger;
+    
       this.spinner.hide();
       this.userProfileServiceService.listOfFileUploaded[this.userProfileServiceService.listOfFileUploaded.length]={name:fileSelected.name, docId:parseInt(response.text())};
        console.log('set any success actions...');
@@ -42,7 +46,6 @@ this.GetDocList();
   }
 
   async DeleteDocument(fileName:string, docId:number){
-    debugger;
     this.spinner.show();
     let response = await this.userProfileServiceService.DeleteDocument(docId,fileName,0);
   //  var response = await this.userProfileServiceService.DeleteDocument(docId,fileName,0).subscribe(data => {
@@ -53,7 +56,6 @@ if(response!=undefined && response != null){
 }
    
    this.spinner.hide();
-   debugger;
   }
   async GetDocList() {
        

@@ -95,7 +95,6 @@ export class BankDashboardService {
             + '/GetLenderSendRequestRequestdOnTheBasisOfBorrowerId', webtoken, this.requestOptions).map((data: Response) => {
                 return data.json();
            }).toPromise().then(token => {
-               debugger;
                if (token.IsSuccess)  return this.lenderSendRequestModel = JSON.parse(this.tokenService.jwtdecrypt(token.data).unique_name);
                      //return { IsSuccess: token.IsSuccess , data: JSON.parse(this.tokenService.jwtdecrypt(token.data).unique_name) };
                 //return { IsSuccess: token.IsSuccess };

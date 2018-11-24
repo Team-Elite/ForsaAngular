@@ -3,30 +3,33 @@ import { LOCAL_STORAGE, StorageService } from 'angular-webstorage-service';
 import { Router } from '@angular/router'
 import { TokenService } from '../token-service';
 import { environment } from '../../environments/environment';
+import { Http, RequestOptions, RequestMethod,Response, Headers, } from '@angular/http';
 
 @Injectable({
     providedIn: 'root'
 })
 export class AuthenticateServiceService {
+    
     public userValue: string = 'userValue';
     sessionCreatedAt: string = 'sessionCreatedAt';
     selectedBestPriceId: string = 'selectedBestPriceId';
     ifBothUserTypeFound: string = 'ifBothUserTypeFound';
     UserTypeId: string = 'UserTypeId';
-    baseURL: string;
+
     tokenService: any = new TokenService;
     Usertoken: any = this.storage.get(this.userValue);
     Userdata: any;
     requestedForReport: string='';
-   
-    
+    baseURL: string = !(environment.production) ? 'http://40.89.139.123:4043' : 'http://localhost:60744';
+    headerOptions = new Headers({ 'Content-Type': 'application/json' });
+    requestOptions = new RequestOptions({ method: RequestMethod.Post, headers: this.headerOptions });
 
-    constructor(@Inject(LOCAL_STORAGE) public storage: StorageService, public router: Router) {
-         this.baseURL = (environment.production) ? 'http://40.89.139.123:4043' : 'http://localhost:60744';
+    constructor(@Inject(LOCAL_STORAGE) public storage: StorageService, public router: Router,public http: Http) {
+        
       
     }
     SaveSession(value: any) {
-debugger;
+
         this.storage.set(this.userValue, value);
         this.storage.set(this.sessionCreatedAt, new Date());
     }
@@ -140,10 +143,17 @@ debugger;
         return requestedFor;
     }
 
-    GetUserData() {
+      GetUserData() {
         //var data = this.tokenService.jwtdecrypt(this.Usertoken);
-        this.GetUserSession();
-        return JSON.parse(this.Userdata.unique_name)[0];
+        var userId = this.GetUserId();
+       
+        var webtoken = { data: this.tokenService.jwtencrypt({ userId: userId }) };
+        var data = this.http.put(this.baseURL + '/api/user/GetUserDetailByUserId', webtoken, this.requestOptions).map((data: Response) => {
+            return data.json();
+          }).toPromise().then(token => { return JSON.parse(this.tokenService.jwtdecrypt(token.data).unique_name) });
+          debugger;
+          return data;
+      
     }
     
 }
