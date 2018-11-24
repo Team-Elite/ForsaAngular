@@ -107,6 +107,9 @@
                 <div class="sidebar ">
 
                     <ul class="sidebar-nav ">
+                        <li>
+                            <a  (click)="ShowScreen('BankDashboard');">DASHBOARD</a>
+                        </li>
                         <li class="cockpit-btn">
                             <a>
                                 COCKPIT
@@ -208,7 +211,7 @@
                                       
                                             <div class="col-md-6 pr-1 in-float-lf">
                                                 <button type="button" (dblclick)="EnableTextBox(rate,1)" class="btn w-100 w-100-px active">
-                                                    <input (blur)="UpdateRateOfInterest(rate)" type="number" [disabled]="!rate.IsDoubleTapped" #RateOfInterest="ngModel" [(ngModel)]="rate.RateOfInterest" name="RateOfInterest" />
+                                                    <input (blur)="UpdateRateOfInterest(rate, 1)" type="number" [disabled]="!rate.IsDoubleTapped" #RateOfInterest="ngModel" [(ngModel)]="rate.RateOfInterest" name="RateOfInterest" />
                                                 </button>
                                             </div>
                                             <div class="col-md-6 pr-1 in-float-lf">
@@ -224,7 +227,7 @@
                                     <div class="col-md-3 pr-1">
                                         <div class="col-md-6 pr-1  in-float-lf">
                                             <button type="button" (dblclick)="EnableTextBox(rate,2)" class="btn w-100 active">
-                                                <input (blur)="UpdateRateOfInterest(rate)" type="number" [disabled]="!rate.IsDoubleTapped2" #RateOfInterest2="ngModel" [(ngModel)]="rate.RateOfInterest2" name="RateOfInterest2" />
+                                                <input (blur)="UpdateRateOfInterest(rate, 2)" type="number" [disabled]="!rate.IsDoubleTapped2" #RateOfInterest2="ngModel" [(ngModel)]="rate.RateOfInterest2" name="RateOfInterest2" />
                                             </button>
 
                                         </div>
@@ -239,7 +242,7 @@
                                     <div class="col-md-3 pr-1">
                                         <div class="col-md-6 pr-1  in-float-lf">
                                             <button type="button" (dblclick)="EnableTextBox(rate,3)" class="btn w-100 active">
-                                                <input (blur)="UpdateRateOfInterest(this)" type="number" [disabled]="!rate.IsDoubleTapped3" #RateOfInterest3="ngModel" [(ngModel)]="rate.RateOfInterest3" name="RateOfInterest3" />
+                                                <input (blur)="UpdateRateOfInterest(rate, 3)" type="number" [disabled]="!rate.IsDoubleTapped3" #RateOfInterest3="ngModel" [(ngModel)]="rate.RateOfInterest3" name="RateOfInterest3" />
                                             </button>
 
                                         </div>

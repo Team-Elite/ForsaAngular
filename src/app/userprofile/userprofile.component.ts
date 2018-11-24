@@ -19,9 +19,9 @@ export class UserprofileComponent implements OnInit {
     ngOnInit() {
 
        
-       
-        this.path = this.authenticateServiceService.baseURL + "/Uploads/Docs/" + this.userProfileData.UserId + "/UserProfile/";
         this.getUserData();
+        this.path = this.authenticateServiceService.baseURL + "/Uploads/Docs/" + this.userProfileData.UserId + "/UserProfile/";
+       
 this.GetDocList();
   }
     getUserData() {  this.userProfileData =  this.authenticateServiceService.GetUserData();}

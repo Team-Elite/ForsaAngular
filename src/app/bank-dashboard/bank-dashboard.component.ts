@@ -115,34 +115,39 @@ export class BankDashboardComponent implements OnInit {
         this.testTrue = true;
     }
 
-    UpdateRateOfInterest(rate) {
-
-        debugger;
-        if (rate.RateOfInterest == undefined || rate.RateOfInterest == null || rate.RateOfInterest.length == 0) {
-            this.toastr.error("Rate1 must be entered.", "Dashboard");
-            return;
+    UpdateRateOfInterest(rate, group) {
+        if (group == 1) {
+            debugger;
+            if (rate.RateOfInterest == undefined || rate.RateOfInterest == null || rate.RateOfInterest.length == 0) {
+                this.toastr.error("Rate1 must be entered.", "Dashboard");
+                return;
+            }
+            if (rate.RateOfInterest > 9999.99) {
+                this.toastr.error("Interest rate1 can not be greater than 9999.99", "Dashboard");
+                return;
+            }
+            if (rate.RateOfInterest < -9999.99) {
+                this.toastr.error("Interest rate1 can not be less than -9999.99", "Dashboard");
+                return;
+            }
+            rate.RateOfInterest = rate.RateOfInterest.toFixed(2);
         }
-        if (rate.RateOfInterest > 9999.99) {
-            this.toastr.error("Interest rate1 can not be greater than 9999.99", "Dashboard");
-            return;
+        else if (group == 2) {
+            if (rate.RateOfInterest2 == undefined || rate.RateOfInterest2 == null || rate.RateOfInterest2.length == 0) {
+                this.toastr.error("Rate2 must be entered.", "Dashboard");
+                return;
+            }
+            if (rate.RateOfInterest2 > 9999.99) {
+                this.toastr.error("Interest rate2 can not be greater than 9999.99", "Dashboard");
+                return;
+            }
+            if (rate.RateOfInterest2 < -9999.99) {
+                this.toastr.error("Interest rate2 can not be less than -9999.99", "Dashboard");
+                return;
+            }
+            rate.RateOfInterest2 = rate.RateOfInterest2.toFixed(2);
         }
-        if (rate.RateOfInterest < -9999.99) {
-            this.toastr.error("Interest rate1 can not be less than -9999.99", "Dashboard");
-            return;
-        }
-
-        if (rate.RateOfInterest2 == undefined || rate.RateOfInterest2 == null || rate.RateOfInterest2.length == 0) {
-            this.toastr.error("Rate2 must be entered.", "Dashboard");
-            return;
-        }
-        if (rate.RateOfInterest2 > 9999.99) {
-            this.toastr.error("Interest rate2 can not be greater than 9999.99", "Dashboard");
-            return;
-        }
-        if (rate.RateOfInterest2 < -9999.99) {
-            this.toastr.error("Interest rate2 can not be less than -9999.99", "Dashboard");
-            return;
-        }
+        else if (group == 3) {
 
         if (rate.RateOfInterest3 == undefined || rate.RateOfInterest3 == null || rate.RateOfInterest3.length == 0) {
             this.toastr.error("Rate3 must be entered.", "Dashboard");
@@ -155,12 +160,14 @@ export class BankDashboardComponent implements OnInit {
         if (rate.RateOfInterest3 < -9999.99) {
             this.toastr.error("Interest rate3 can not be less than -9999.99", "Dashboard");
             return;
+            }
+            rate.RateOfInterest3 = rate.RateOfInterest3.toFixed(2);
         }
         rate.IsDoubleTapped = false;
         rate.ModifiedBy = this.bankDashboardService.userId;
-        rate.RateOfInterest = rate.RateOfInterest.toFixed(2);
-        rate.RateOfInterest2 = rate.RateOfInterest2.toFixed(2);
-        rate.RateOfInterest3 = rate.RateOfInterest3.toFixed(2);
+      
+     
+      
         this.spinner.show();
         this.bankDashboardService.UpdateRateOfInterest(rate).subscribe(data => {
             this.spinner.hide();
