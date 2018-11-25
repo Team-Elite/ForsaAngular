@@ -20,7 +20,7 @@ export class UserprofileComponent implements OnInit {
 
        
         this.getUserData();
-        this.path = this.authenticateServiceService.baseURL + "/Uploads/Docs/" + this.userProfileData.UserId + "/UserProfile/";
+        this.path = this.authenticateServiceService.baseURL + "/Uploads/Docs/" + this.authenticateServiceService.GetUserId() + "/UserProfile/";
        
 this.GetDocList();
   }

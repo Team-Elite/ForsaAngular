@@ -26,21 +26,24 @@ export class MaturitylistComponent implements OnInit {
     {
         this._authenticateServiceService = authenticateServiceService;
         this._landerdashboardservice = landerdashboardservice;
-        this._MaturityList = this._landerdashboardservice.GetlenderMaturityList();
+       
+       
     }
     config: ExportAsConfig = {
         type: 'pdf',
         elementId: 'mytable',
     };
     ngOnInit() {
-       
+        this.GetMaturityList();
     }
-
+    async GetMaturityList() {
+        this._MaturityList =await this._landerdashboardservice.GetlenderMaturityList();
+    }
 
     exportAs(type) {
         this.config.type = type;
         this.exportAsService.save(this.config, 'myFile');
-        // this.exportAsService.get(this.config).subscribe(content => {
+         //this.exportAsService.get(this.config).subscribe(content => {
         //   console.log(content);
         // });
     }

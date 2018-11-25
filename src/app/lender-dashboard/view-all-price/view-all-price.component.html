@@ -10681,7 +10681,7 @@ direction: ltr;
                     
                      <tr>
                          <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected()">{{'Lender.ViewAllPrice.AllBanks'|translate}}</th>
-                         <th [hidden]="!obj.class1" style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('TN')">{{'Lender.ViewAllPrice.Tag'|translate}}</th>
+                         <!--<th [hidden]="!obj.class1" style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('TN')">{{'Lender.ViewAllPrice.Tag'|translate}}</th>-->
                          <th [hidden]="!obj.class2" style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Week1')">{{'Lender.ViewAllPrice.Week1'|translate}}</th>
                          <th [hidden]="!obj.class3" style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Week2')">{{'Lender.ViewAllPrice.Week2'|translate}}</th>
                          <th [hidden]="!obj.class4" style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Week3')">{{'Lender.ViewAllPrice.Week3'|translate}}</th>
@@ -10708,7 +10708,7 @@ direction: ltr;
                              {{bank.Bank}}
                              <span><i (click)="ShowBankPopup(bank)" class="material-icons">perm_info</i></span>
                          </td>
-                         <td [hidden]="!bank.class1" [ngClass]="{'active':viewAllPriceService.HighestRateTN===bank.TN}">{{bank.TN}}</td>
+                         <!--<td [hidden]="!bank.class1" [ngClass]="{'active':viewAllPriceService.HighestRateTN===bank.TN}">{{bank.TN}}</td>-->
                          <td [hidden]="!bank.class2" [ngClass]="{'active':viewAllPriceService.HighestRateW1===bank.Week1}">{{bank.Week1}}</td>
                          <td [hidden]="!bank.class3" [ngClass]="{'active':viewAllPriceService.HighestRateW2===bank.Week2}">{{bank.Week2}}</td>
                          <td [hidden]="!bank.class4" [ngClass]="{'active':viewAllPriceService.HighestRateW3===bank.Week3}">{{bank.Week3}}</td>
@@ -10759,6 +10759,14 @@ direction: ltr;
                         <tr><th>Street</th><td>{{objBankInfo.Street}}</td></tr>
                     </tbody>
                 </table>
+
+                <ul style="color:white;">
+                    <strong>File(s) List</strong>
+                    <li *ngFor="let file of userProfileServiceService.listOfFileUploaded">
+                        <a style="color:white;" href="{{path}}{{file.name}}">{{file.name}}</a>
+                    </li>
+                </ul>
+
             </div>
             <div class="modal-footer">
                 <button style="display:none;" type="button" (click)="SetTimeInterval();" class="btn btn-secondary" data-dismiss="modal">{{'Button.ButtonClose'|translate}}</button>

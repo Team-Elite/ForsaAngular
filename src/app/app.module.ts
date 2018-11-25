@@ -40,7 +40,7 @@ import {HistoryMaturityListLenderComponent} from './lender-dashboard/history-mat
 import { UserprofileComponent } from './userprofile/userprofile.component';
 import { FileUploaderModule } from "ng4-file-upload";
 import { SettingPageComponent } from './lender-dashboard/setting-page/setting-page.component';
-import { ExportAsModule } from 'ngx-export-as';
+//import { ExportAsModule } from 'ngx-export-as';
 //import { JwtHelperService} from '@auth0/angular-jwt';
 
 
@@ -99,7 +99,7 @@ const appRoutes: Routes = [{ path: 'login', component: LoginComponent },
     ],
     imports: [
         BrowserModule,
-        ExportAsModule,
+       // ExportAsModule,
         HttpModule,
         FormsModule,
         RouterModule.forRoot(appRoutes, { useHash: true }),

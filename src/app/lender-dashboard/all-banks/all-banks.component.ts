@@ -4,6 +4,8 @@ import { ToastrService } from 'ngx-toastr';
 import { AllBanksService } from '../Shared/all-banks.service';
 import { hubConnection, connection } from 'signalr-no-jquery';
 import { environment } from '../../../environments/environment.prod';
+import { AuthenticateServiceService } from '../../Shared/authenticate-service.service';
+import { UserProfileServiceService } from '../../userprofile/Shared/user-profile-service.service';
 
 
 const connection = (environment.production) ? hubConnection('http://40.89.139.123:4044/signalr') : hubConnection('http://localhost:61088/signalr');
@@ -16,9 +18,11 @@ const hubProxy = connection.createHubProxy('NgHub');
     styleUrls: ['./all-banks.component.css']
 })
 export class AllBanksComponent implements OnInit {
+    path: string;
+    ;
 
     constructor(public allBanksService: AllBanksService, public spinner: NgxSpinnerService
-        , public toastr: ToastrService) {
+        , public toastr: ToastrService, public authenticateServiceService: AuthenticateServiceService, public userProfileServiceService: UserProfileServiceService) {
         // set up event listeners i.e. for incoming "message" event
         hubProxy.on('sendBankRate', (data) => {
             //this.GetAllBanksWithInterestRateHorizontaly();
@@ -33,6 +37,7 @@ export class AllBanksComponent implements OnInit {
     tmpList: any[];
     timer: any;
     ngOnInit() {
+        this.path = this.authenticateServiceService.baseURL + "/Uploads/Docs/" + this.authenticateServiceService.GetUserId() + "/UserProfile/";
         this.spinner.show();
         this.SetTimeInterval();
         this.spinner.hide();
@@ -190,7 +195,11 @@ export class AllBanksComponent implements OnInit {
         }
 
     }
-    ShowBankPopup(data: any) {
+    async ShowBankPopup(data: any) {
+        debugger;
+        this.spinner.show();
+        await this.userProfileServiceService.GetDocList(data.UserId);
+        this.spinner.hide();
         this.objBankInfo = data;
         var element = document.getElementById('btnShowBankInfo');
         element.click();

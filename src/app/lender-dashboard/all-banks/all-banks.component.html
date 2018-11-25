@@ -19337,7 +19337,7 @@
                 <tbody>
                     <tr>
                         <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontaly()">{{'Lender.DashBoard.Pricelist.GENERALOVERVIEW'|translate}}</th>
-                        <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('TN')">{{'Lender.DashBoard.Pricelist.Tag'|translate}}</th>
+                        <!--<th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('TN')">{{'Lender.DashBoard.Pricelist.Tag'|translate}}</th>-->
                         <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Week1')">{{'Lender.DashBoard.Pricelist.Week1'|translate}}</th>
                         <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Week2')">{{'Lender.DashBoard.Pricelist.Week2'|translate}}</th>
                         <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Week3')">{{'Lender.DashBoard.Pricelist.Week3'|translate}}</th>
@@ -19360,10 +19360,9 @@
                     </tr>
                     <tr *ngFor="let bank of allBanksService.listAllBanks">
                         <td>
-                            {{bank.Bank}}
-                            <span><i (click)="ShowBankPopup(bank)" class="material-icons">perm_info</i></span>
+                            {{bank.Bank}}<span><i (click)="ShowBankPopup(bank)" class="material-icons">perm_info</i></span>
                         </td>
-                        <td [ngClass]="{'active':allBanksService.HighestRateTN===bank.TN}">{{bank.TN}}</td>
+                        <!--<td [ngClass]="{'active':allBanksService.HighestRateTN===bank.TN}">{{bank.TN}}</td>-->
                         <td [ngClass]="{'active':allBanksService.HighestRateW1===bank.Week1}">{{bank.Week1}}</td>
                         <td [ngClass]="{'active':allBanksService.HighestRateW2===bank.Week2}">{{bank.Week2}}</td>
                         <td [ngClass]="{'active':allBanksService.HighestRateW3===bank.Week3}">{{bank.Week3}}</td>
@@ -19426,6 +19425,7 @@
     </div>
 </div>
 
+
 <button Id="btnShowBankInfo" type="button" style="display:none;" class="btn w-100 active" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target=".chatWithForsaModal">Lend</button>
 <div id="modalSendRequest" class="modal fade bd-example-modal-lg dashboard-modal chatWithForsaModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -19446,6 +19446,14 @@
                         <tr><th>Street</th><td>{{objBankInfo.Street}}</td></tr>
                     </tbody>
                 </table>
+
+                <ul style="color:white;">
+                    <strong>File(s) List</strong>
+                    <li *ngFor="let file of userProfileServiceService.listOfFileUploaded">
+                        <a style="color:white;" href="{{path}}{{file.name}}">{{file.name}}</a>
+                    </li>
+                </ul>
+
             </div>
             <div class="modal-footer">
                 <button style="display:none;" type="button" (click)="SetTimeInterval();" class="btn btn-secondary" data-dismiss="modal">{{'Button.ButtonClose'|translate}}</button>
@@ -19457,3 +19465,4 @@
         </div>
     </div>
 </div>
+

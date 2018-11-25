@@ -19469,7 +19469,7 @@
                                 <button type="button" class="dropcockpit" (click)="ShowMaturityList(false);" id="Ansehen">{{'Borrower.BankDashboard.Viewanddownloadyourownduelist'|translate}}</button>
                                 <button type="button" class="dropcockpit" (click)="ShowMaturityList(true);" id="Ansehenund">{{'Borrower.BankDashboard.Viewanddownloadinthepastdonebusiness'|translate}}</button>
                                 <!--<button type="button" class="dropcockpit" >Maturity List</button>
-                                <button type="button" class="dropcockpit" > History Maturity List</button>-->
+                        <button type="button" class="dropcockpit" > History Maturity List</button>-->
 
                             </div>
                         </li>
@@ -19500,10 +19500,10 @@
                             </a>
                         </li>
                         <!--<li *ngIf="lenderDashboardService.UserTypeId == 5 || lenderDashboardService.UserTypeId == '4,5'">
-                            <button type="button" class="dropcockpit" (click)="ShowScreen('Mreport');">Maturity List</button>
-                            <button type="button" class="dropcockpit" (click)="ShowScreen('HMreport');"> History Maturity List</button>
+                    <button type="button" class="dropcockpit" (click)="ShowScreen('Mreport');">Maturity List</button>
+                    <button type="button" class="dropcockpit" (click)="ShowScreen('HMreport');"> History Maturity List</button>
 
-                        </li>-->
+                </li>-->
                         <li *ngIf="lenderDashboardService.UserTypeId == 6">
                             <a href="javascript:void(0);" (click)="SetCurrentPage('Kontact Dashboard')">
                                 {{'Lender.DashBoard.AllBanks'|translate}}<span class="align-middle input-group-icon "><i class="material-icons ">view_list</i></span>
@@ -19518,9 +19518,9 @@
 
 
                         <!-- <li>  (click)="SetCurrentPage('All Banks')"
-                            <a href="# ">FAQ's<span class="align-middle input-group-icon "><i class="material-icons ">view_list</i></span>
-                                                        </a>
-                        </li> -->
+                    <a href="# ">FAQ's<span class="align-middle input-group-icon "><i class="material-icons ">view_list</i></span>
+                                                </a>
+                </li> -->
                         <li>
                             <button *ngIf="lenderDashboardService.UserTypeId == 6" (click)="RegisterAsPartner()" class="btn btn-secondary green-btn" type="button">{{'Button.ButtonRegisterasPartner'|translate}}</button>
 
@@ -19531,7 +19531,7 @@
             <!-- Aside Ends Here-->
 
             <router-outlet></router-outlet>
-      
+       
             <!--admin icon modal page tab-->
             <div class="modal fade bd-example-modal-lg-setting-page admin-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg">

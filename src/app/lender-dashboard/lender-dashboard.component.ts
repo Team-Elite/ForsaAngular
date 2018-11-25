@@ -18,7 +18,7 @@ export class LenderDashboardComponent implements OnInit {
   
     _userId: any
     _authenticateServiceService: AuthenticateServiceService
-    ShowMaturity: boolean;
+    _showMaturity: boolean;
     constructor( public lenderDashboardService: LenderDashboardService, public spinner: NgxSpinnerService
         , public authenticateServiceService: AuthenticateServiceService, public router: Router
         , public toastr: ToastrService
@@ -95,7 +95,7 @@ export class LenderDashboardComponent implements OnInit {
     }
    
     AcceptLendedRequest() {
-        debugger;
+        
         for (var i = 0; i <= this.bestPriceViewService.listInterestConvention.length - 1; i++) {
             if (this.bestPriceViewService.lenderSendRequestModel2.InterestConvention == this.bestPriceViewService.listInterestConvention[i].Id) {
                 this.bestPriceViewService.lenderSendRequestModel2.InterestConventionName = this.bestPriceViewService.listInterestConvention[i].Value;
@@ -295,10 +295,12 @@ export class LenderDashboardComponent implements OnInit {
     }
 
     async ShowMaturityList(History: boolean) {
-        this.ShowMaturity = true;
+
+        this._showMaturity = true;
         this.lenderDashboardService.showhistory = History;
-       
-        this.router.navigate(['lenderDashboard/Maturitylist']);
+       // await this.lenderDashboardService.GetlenderMaturityList();
+        this.router.onSameUrlNavigation="reload";
+this.router.navigate(['lenderDashboard/Maturitylist']);
         //await this.lenderDashboardService.GetlenderMaturityList(ShowMaturity);
     }
 
@@ -307,7 +309,7 @@ export class LenderDashboardComponent implements OnInit {
 
     SetCurrentPage(pageName: string) {
         this.spinner.show();
-        this.ShowMaturity = false;
+        this._showMaturity = false;
         this.lenderDashboardService.CurrentPageName = pageName;
         if (pageName === "Best Price View") {
             this.router.navigate(['lenderDashboard/BestPriceView']);

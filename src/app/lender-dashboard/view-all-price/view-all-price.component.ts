@@ -8,6 +8,8 @@ import * as _ from 'lodash';
 import { environment } from '../../../environments/environment.prod';
 // import {Storage} from '@ionic/storage';
 import { LOCAL_STORAGE, StorageService } from 'angular-webstorage-service';
+import { AuthenticateServiceService } from '../../Shared/authenticate-service.service';
+import { UserProfileServiceService } from '../../userprofile/Shared/user-profile-service.service';
 
 const connection = (environment.production) ? hubConnection('http://40.89.139.123:4044/signalr') : hubConnection('http://localhost:61088/signalr');
 
@@ -91,9 +93,12 @@ export class ViewAllPriceComponent implements OnInit {
         { id: 'check20', active: true, class20: true },
         { id: 'check21', active: true, class21: true }
     ];
+ 
+    path: string;
+    
 
     constructor(public viewAllPriceService: ViewAllPriceService, public spinner: NgxSpinnerService
-        , public toastr: ToastrService, @Inject(LOCAL_STORAGE) private storage: StorageService) {
+        , public toastr: ToastrService, @Inject(LOCAL_STORAGE) private storage: StorageService, public authenticateServiceService: AuthenticateServiceService, public userProfileServiceService: UserProfileServiceService) {
         // set up event listeners i.e. for incoming "message" event
         hubProxy.on('sendBankRate', (data) => {
             this.viewAllPriceService.listViewAllPrice1 = [];
@@ -113,6 +118,7 @@ export class ViewAllPriceComponent implements OnInit {
     timer1: any;
     orderByColumn: string = "Bank";
     ngOnInit() {
+        this.path = this.authenticateServiceService.baseURL + "/Uploads/Docs/" + this.authenticateServiceService.GetUserId() + "/UserProfile/";
         this.allChecked = true;
         this.viewAllPriceService.listViewAllPrice1 = [];
         this.viewAllPriceService.listViewAllPrice2 = [];
@@ -610,7 +616,11 @@ this.spinner.hide();
 
     }
 
-    ShowBankPopup(data: any) {
+    async ShowBankPopup(data: any) {
+        debugger;
+        this.spinner.show();
+        await this.userProfileServiceService.GetDocList(data.UserId);
+        this.spinner.hide();
         this.objBankInfo = data;
         var element = document.getElementById('btnShowBankInfo');
         element.click();
