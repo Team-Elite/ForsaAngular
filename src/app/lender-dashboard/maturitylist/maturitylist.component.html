@@ -19331,34 +19331,37 @@
 </style>
 
 <div class="container-fluid" id="main-panel">
-
-    <input type="button" class="btn btn-info btn-lg common-bt-1" id="btnExportToPDF" value="Export to PDF">
-    <input type="button" class="btn btn-info btn-lg common-bt-1" id="btnExportToExcel" value="Export To Excel">
     <div class="clearfix"></div>
     <div class="row dashboard-price-list">
         <div class="col-lg-12">
-            <table class="table table-bordered table-responsive">
+            <button (click)="exportAs('pdf')" class="btn btn-info btn-lg common-bt-1">Export To Pdf</button>
+
+            <button (click)="exportAs('xlsx')" class="btn btn-info btn-lg common-bt-1">Export to Excel</button>
+
+            <table class="table table-bordered table-responsive" id="mytable">
                 <tbody>
                     <tr>
-                        <!--<th style="cursor:pointer;">RequestId</th>-->
+
+                        <th style="cursor:pointer;">Ticket No</th>
                         <!--<th style="cursor:pointer;">LenderId</th>-->
                         <th style="cursor:pointer;">Lender</th>
                         <!--<th style="cursor:pointer;">BorrowerId</th>-->
                         <th style="cursor:pointer;">Borrower</th>
                         <th style="cursor:pointer;">Amount</th>
-                        <th style="cursor:pointer;">StartDate</th>
-                        <th style="cursor:pointer;">EndDate</th>
-                        <th style="cursor:pointer;">NoOfDays</th>
-                        <th style="cursor:pointer;">InterestConvention</th>
+                        <th style="cursor:pointer;">Start Date</th>
+                        <th style="cursor:pointer;">End Date</th>
+                        <th style="cursor:pointer;">No Of Days</th>
+                        <th style="cursor:pointer;">Interest Convention</th>
                         <th style="cursor:pointer;">Payments</th>
                         <!--<th style="cursor:pointer;">IsRequestAccepted</th>-->
                         <!--<th style="cursor:pointer;">RequestCreatedBy</th>-->
-                        <th style="cursor:pointer;">RateOfInterestOfferred</th>
-                        <th style="cursor:pointer;">OfferredOn</th>
-                        
+                        <th style="cursor:pointer;">Rate Of Interest Offerred</th>
+                        <!--<th style="cursor:pointer;">Offerred Date</th>
+                        <th style="cursor:pointer;">Status</th>-->
+
                     </tr>
                     <tr *ngFor="let bank of _MaturityList">
-                        <!--<td>{{bank.RequestId}}</td>-->
+                        <td>{{bank.TicketNo}}</td>
                         <!--<td>{{bank.LenderId}}</td>-->
                         <td>{{bank.Lender}}</td>
                         <!--<td>{{bank.BorrowerId}}</td>-->
@@ -19372,7 +19375,20 @@
                         <!--<td>{{bank.IsRequestAccepted}}</td>
                         <td>{{bank.RequestCreatedBy}}</td>-->
                         <td>{{bank.RateOfInterestOfferred}}</td>
-                        <td>{{bankOfferredOn}}</td>
+
+                        <!--<td>{{bank.OfferredOn|date:mm/dd/yy}}</td>
+                        <td>
+                            IsAccepted:{{bank.IsAccepted}}
+                            <ng-container [ngSwitch]="true">
+                                <div *ngSwitchCase="bank.IsAccepted === 1">Accepted</div>
+                                <div *ngSwitchCase="bank.IsReject === 1">Reject</div>
+                                <div *ngSwitchCase="bank.IsMessageSentToForsa === 1">Sent to Forsa<br /> Message: {{bank.MessageForForsa}}  </div>
+                                <div *ngSwitchDefault>Processed</div>
+                            </ng-container>
+                            IsReject:{{bank.IsRejected}}
+                            {{bank.MessageForForsa}}
+
+                        </td>-->
                     </tr>
                 </tbody>
             </table>

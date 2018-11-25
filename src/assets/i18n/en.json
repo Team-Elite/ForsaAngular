@@ -1,8 +1,8 @@
 ﻿{
   "ClientGroup": {
-    "Group1":"Municipal Companies(GmbH)" ,
-    "Group2":  "Municipal Companies(KdöR-AöR)",
-    "Group3" : "communities"
+    "Group1": "Municipal Companies(GmbH)",
+    "Group2": "Municipal Companies(KdöR-AöR)",
+    "Group3": "communities"
   },
   "Button": {
     "ButtonSend": "Send",
@@ -58,8 +58,7 @@
     "CommercialRegisterExtract": "Commercial Register Extract",
     "IdentityCard": "IdentityCard"
   },
-
-
+  "ClientGroupAccess": { "Title": "Access given to Client Group Configuration" },
   "Register": {
     "section1": {
       "Title": "Register",

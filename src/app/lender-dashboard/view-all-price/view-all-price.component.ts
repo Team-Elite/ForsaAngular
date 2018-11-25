@@ -25,7 +25,7 @@ const hubProxy = connection.createHubProxy('NgHub');
 export class ViewAllPriceComponent implements OnInit {
     temp_array = [];
     allChecked: boolean;
-    objBankInfo :any = { Bank: '', NameOfCompany: '', Place: '', Street: '' };
+    objBankInfo: any = {  BankId:'', Bank: '', NameOfCompany: '', Place: '', Street: '' };
     obj = {
         class1: true,
         class2: true,
@@ -118,7 +118,7 @@ export class ViewAllPriceComponent implements OnInit {
     timer1: any;
     orderByColumn: string = "Bank";
     ngOnInit() {
-        this.path = this.authenticateServiceService.baseURL + "/Uploads/Docs/" + this.authenticateServiceService.GetUserId() + "/UserProfile/";
+        this.path = this.authenticateServiceService.baseURL + "/Uploads/Docs/";// + this.authenticateServiceService.GetUserId() + "/UserProfile/";
         this.allChecked = true;
         this.viewAllPriceService.listViewAllPrice1 = [];
         this.viewAllPriceService.listViewAllPrice2 = [];
@@ -617,12 +617,15 @@ this.spinner.hide();
     }
 
     async ShowBankPopup(data: any) {
-        debugger;
+        
         this.spinner.show();
         await this.userProfileServiceService.GetDocList(data.UserId);
         this.spinner.hide();
-        this.objBankInfo = data;
+        debugger;
+        this.objBankInfo = this.userProfileServiceService.listOfFileUploaded;
+    
         var element = document.getElementById('btnShowBankInfo');
         element.click();
+      
     }
 }

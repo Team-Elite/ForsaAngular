@@ -19450,7 +19450,8 @@
                 <ul style="color:white;">
                     <strong>File(s) List</strong>
                     <li *ngFor="let file of userProfileServiceService.listOfFileUploaded">
-                        <a style="color:white;" href="{{path}}{{file.name}}">{{file.name}}</a>
+                        bank:{{objBankInfo.bankId}}
+                        <a style="color:white;" target="_blank" href="{{path}}{{objBankInfo.bankId}}/UserProfile/{{file.name}}">{{file.name}}</a>
                     </li>
                 </ul>
 

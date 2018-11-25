@@ -33,13 +33,13 @@ export class AllBanksComponent implements OnInit {
             .fail(function () { console.log('Could not connect'); });
     }
     orderByColumn: string = "Bank";
-    objBankInfo: any = { Bank: '', NameOfCompany: '', Place: '', Street: '' };
+    objBankInfo: any = {BankId:'', Bank: '', NameOfCompany: '', Place: '', Street: '' };
     tmpList: any[];
     timer: any;
     ngOnInit() {
-        this.path = this.authenticateServiceService.baseURL + "/Uploads/Docs/" + this.authenticateServiceService.GetUserId() + "/UserProfile/";
+        this.path = this.authenticateServiceService.baseURL + "/Uploads/Docs/";// + this.authenticateServiceService.GetUserId() + "/UserProfile/";
         this.spinner.show();
-        this.SetTimeInterval();
+       this.SetTimeInterval();
         this.spinner.hide();
     }
     SetTimeInterval() {
@@ -196,12 +196,13 @@ export class AllBanksComponent implements OnInit {
 
     }
     async ShowBankPopup(data: any) {
-        debugger;
         this.spinner.show();
         await this.userProfileServiceService.GetDocList(data.UserId);
         this.spinner.hide();
-        this.objBankInfo = data;
+        debugger;
+        this.objBankInfo = this.userProfileServiceService.listOfFileUploaded;
         var element = document.getElementById('btnShowBankInfo');
         element.click();
+      
     }
 }

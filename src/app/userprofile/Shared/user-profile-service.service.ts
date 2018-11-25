@@ -24,7 +24,7 @@ export class UserProfileServiceService {
     listOfFileUploaded:any=[];
 
   public uploadFile(fileToUpload: File) {
-    debugger;
+    ;
     const _formData = new FormData();
     _formData.append('file', fileToUpload, fileToUpload.name);   
     _formData.append('userId',this.authenticateServiceService.GetUserId());

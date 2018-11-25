@@ -40,6 +40,15 @@ background: url('../images/insti-bg.png') no-repeat;
     padding: 1.5em 0em;
     background: none;
 }
+.form-control {
+    margin-bottom: 10px;
+    border: none;
+    background: #37383d;
+    border-radius: 0px;
+    border-bottom: 1px solid grey !important;
+    color: #fff !important;
+    cursor: pointer;
+}
 
 .mb-2,
 .my-2 {

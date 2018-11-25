@@ -19397,11 +19397,13 @@
                     <!--<div class="col-md-3 pr-1" id="popup">
                         <button type="button" class="btn w-100 active"  > {{'Button.ButtonInfo'|translate}}</button>
                     </div>-->
-                    <div class="col-md-4 pr-1">
-                        {{bank.Bank}}<i (click)="ShowBankPopup(bank)" class="material-icons">perm_info</i>
+                    <div class="col-md-4 pr-1 btn w-100 active line-h40">
+                        {{bank.Bank}}<i (click)="ShowBankPopup(bank)" class="material-icons icon-set-0">perm_info</i>
                     </div>
                     <div class="col-md-4 pr-1">
-                        {{bank.RateOfInterest}}
+                        <div class="black-set">
+                            {{bank.RateOfInterest}}
+                        </div>
                     </div>
                     <div class="col-md-4 pr-1">
                         <button [disabled]="lenderDashboardService.UserTypeId == 6" type="button" (click)="ShowSendRequestModal(bank)" class="btn w-100 active" data-toggle="modal" data-target=".BestPriceViewModal">{{'Button.ButtonLend'|translate}}</button>
@@ -19574,7 +19576,8 @@
                     <ul style="color:white;">
                         <strong>File(s) List</strong>
                         <li *ngFor="let file of userProfileServiceService.listOfFileUploaded">
-                            <a style="color:white;" href="{{path}}{{file.name}}">{{file.name}}</a>
+                            <a style="color:white;" target="_blank" href="{{path}}{{file.bankId}}/UserProfile/{{file.name}}">{{file.name}}</a>
+                            <!--<a style="color:white;" target="_blank" href="{{path}}{{file.name}}">{{file.name}}</a>-->
                         </li>
                     </ul>
 

@@ -18,7 +18,13 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
 
-
+    <style>
+        .full-width {
+            display: block;
+            float: left;
+            width: 100% !important;
+        }
+    </style>
 
 </head>
 
@@ -108,7 +114,7 @@
 
                     <ul class="sidebar-nav ">
                         <li>
-                            <a  (click)="ShowScreen('BankDashboard');">DASHBOARD</a>
+                            <a (click)="ShowScreen('BankDashboard');">DASHBOARD</a>
                         </li>
                         <li class="cockpit-btn">
                             <a>
@@ -185,110 +191,198 @@
 
                             <div *ngIf="IfShowBankDashBoard" id="Rate-Panel">
                                 <div class="no-gutters row">
-                                    <div class="col-md-3 pr-1">
-
+                                    <div class="col-md-1 pr-1 text-centered">
+                                        <span class="modal-header">running time</span>
                                     </div>
-
+                                    <div class="col-md-1 pr-1 text-centered">
+                                        <span class="modal-header">at least amount</span>
+                                    </div>
+                                    <div class="col-md-1 pr-1 text-centered">
+                                        <span class="modal-header">Max. Amount</span>
+                                    </div>
+                                    <div class="col-md-1 pr-1 text-centered">
+                                        <span class="modal-header">Base curve</span>
+                                    </div>
                                     <div class="col-md-3 pr-1 text-centered">
                                         <span class="modal-header w-100">{{'ClientGroup.Group1'|translate}}</span>
                                     </div>
                                     <div class="col-md-3 pr-1 text-centered">
                                         <span class="modal-header">{{'ClientGroup.Group2'|translate}}</span>
                                     </div>
-                                    <div class="col-md-3 pr-1 text-centered">
+                                    <div class="col-md-2 pr-1 text-centered">
                                         <span class="modal-header">{{'ClientGroup.Group3'|translate}}</span>
                                     </div>
 
                                 </div>
 
 
-                                <div *ngFor="let rate of bankDashboardService.listRateOfInterestOfBankModel" class=" no-gutters row">
-                                    <div class="col-md-3 pr-1">
-                                        <button type="button" class="btn w-100 ">{{rate.TimePeriod}}</button>
-                                    </div>
-                                    <div class="col-md-3 pr-1">
+                                <div *ngFor="let rate of listrateofinterstofbank,let i=index" class=" no-gutters row">
 
-                                      
-                                            <div class="col-md-6 pr-1 in-float-lf">
-                                                <button type="button" (dblclick)="EnableTextBox(rate,1)" class="btn w-100 w-100-px active">
-                                                    <input (blur)="UpdateRateOfInterest(rate, 1)" type="number" [disabled]="!rate.IsDoubleTapped" #RateOfInterest="ngModel" [(ngModel)]="rate.RateOfInterest" name="RateOfInterest" />
-                                                </button>
+                                    <div class="col-md-12 pr-1 row" style="display:block;padding:10px;cursor:pointer" (click)="iconChange(i)">
+                                        <span class="plus">
+                                            <i class="material-icons" aria-hidden="true" style="float: left;font-size:16px">
+                                                {{flagArray[i]?'remove':'add'}}
+                                            </i>
+                                        </span>
+                                    </div>
+
+                                    <div *ngIf="flagArray[i] == true" style="width:100%;">
+                                        <div *ngFor="let rate of rate.listintersteRate">
+                                            <div class="col-md-12 pr-1 row" *ngIf="rate.TimePeriod!=='(T/N)'">
+                                                <div class="col-md-1 pr-1">
+                                                    <button type="button" class="btn w-100 ">{{rate.TimePeriod}}</button>
+                                                </div>
+
+
+                                                <div class="col-md-1 pr-1">
+                                                    <button type="button" (dblclick)="EnableTextBox(rate,1)" class="btn w-100 w-100-px active">
+                                                        <input type="number"
+                                                               [disabled]="!rate.IsDoubleTapped1" #RateOfMinValue="ngModel"
+                                                               [(ngModel)]="rate.MinValue" name="RateOfMinValue" />
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-1 pr-1">
+                                                    <button type="button" (dblclick)="EnableTextBox(rate,2)" class="btn w-100 w-100-px active">
+                                                        <input type="number"
+                                                               [disabled]="!rate.IsDoubleTapped2" #MaxValue="ngModel"
+                                                               [(ngModel)]="rate.MaxValue" name="MaxValue" value="2" />
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-1 pr-1">
+                                                    <div class="col-md-6 pr-1 in-float-lf">
+                                                        <button type="button" (dblclick)="EnableTextBox(rate,3)" class="btn w-100 w-100-px active">
+                                                            <input (blur)="CalculateBaseCurve(rate)" type="number"
+                                                                   [disabled]="!rate.IsDoubleTapped3" #RateOfBaseCurave="ngModel"
+                                                                   [(ngModel)]="rate.BaseCurve" name="RateOfBaseCurave" value="3" />
+                                                        </button>
+                                                    </div>
+                                                    <div class="col-md-6 pr-1 in-float-lf">
+                                                        <button type="button" class="btn w-100 w-100-px">
+                                                            <a (click)="IncreaseRateOfInterest(rate,3)">+</a>
+                                                            <span>/</span>
+                                                            <a (click)="DecreaseRateOfInterest(rate,3)">-</a>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 pr-1">
+                                                    <div class="col-md-5 pr-1 in-float-lf">
+                                                        <button type="button" (dblclick)="EnableTextBox(rate,4)" class="btn w-100 w-100-px active">
+                                                            <input (blur)="UpdateRateOfInterest(rate)" type="number"
+                                                                   [disabled]="!rate.IsDoubleTapped4" #RateOfInterest="ngModel"
+                                                                   [(ngModel)]="rate.RateOfInterest" name="RateOfInterest" />
+                                                        </button>
+                                                    </div>
+                                                    <div class="col-md-3 pr-1 in-float-lf">
+                                                        <button type="button" class="btn w-100 w-100-px">
+                                                            <a (click)="IncreaseRateOfInterest(rate,4)">+</a>
+                                                            <span>/</span>
+                                                            <a (click)="DecreaseRateOfInterest(rate,4)">-</a>
+                                                        </button>
+                                                    </div>
+                                                    <div class="col-md-4 pr-1 in-float-lf">
+
+                                                        <button type="button" class="btn w-100 w-100-px">
+                                                            <label style="width: 100%;
+                                                                  text-align: center;">{{rate.FractionRate}}</label>
+                                                        </button>
+
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-md-2 pr-1">
+                                                    <div class="col-md-5 pr-1  in-float-lf">
+                                                        <button type="button" (dblclick)="EnableTextBox(rate,5)" class="btn w-100 active">
+                                                            <input (blur)="UpdateRateOfInterest(rate)" type="number"
+                                                                   [disabled]="!rate.IsDoubleTapped5" #RateOfInterest2="ngModel"
+                                                                   [(ngModel)]="rate.RateOfInterest2" name="RateOfInterest2" />
+                                                        </button>
+
+                                                    </div>
+                                                    <div class="col-md-3 pr-1  in-float-lf">
+                                                        <button type="button" class="btn w-100">
+                                                            <a (click)="IncreaseRateOfInterest(rate,5)">+</a>
+                                                            <span>/</span>
+                                                            <a (click)="DecreaseRateOfInterest(rate,5)">-</a>
+                                                        </button>
+                                                    </div>
+                                                    <div class="col-md-4 pr-1 in-float-lf">
+                                                        <button type="button" class="btn w-100 w-100-px">
+                                                            <label style="width: 100%;
+                                                                    text-align: center;">{{rate.FractionRate2}}</label>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 pr-1">
+                                                    <div class="col-md-5 pr-1  in-float-lf">
+                                                        <button type="button" (dblclick)="EnableTextBox(rate,6)" class="btn w-100 active">
+                                                            <input (blur)="UpdateRateOfInterest(rate)" type="number"
+                                                                   [disabled]="!rate.IsDoubleTapped6" #RateOfInterest3="ngModel"
+                                                                   [(ngModel)]="rate.RateOfInterest3" name="RateOfInterest3" />
+                                                        </button>
+
+                                                    </div>
+                                                    <div class="col-md-3 pr-1  in-float-lf">
+                                                        <button type="button" class="btn w-100">
+                                                            <a (click)="IncreaseRateOfInterest(rate,6)">+</a>
+                                                            <span>/</span>
+                                                            <a (click)="DecreaseRateOfInterest(rate,6)">-</a>
+                                                        </button>
+                                                    </div>
+                                                    <div class="col-md-4 pr-1 in-float-lf">
+                                                        <button type="button" class="btn w-100 w-100-px">
+                                                            <label style="width: 100%;
+                                                                    text-align: center;">{{rate.FractionRate3}}</label>
+                                                        </button>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="col-md-6 pr-1 in-float-lf">
-                                                <button type="button" class="btn w-100 w-100-px">
-                                                    <a (click)="IncreaseRateOfInterest(rate,1)">+</a>
-                                                    <span>/</span>
-                                                    <a (click)="DecreaseRateOfInterest(rate,1)">-</a>
-                                                </button>
-                                            </div>
-                                        
-                                     
-                                    </div>
-                                    <div class="col-md-3 pr-1">
-                                        <div class="col-md-6 pr-1  in-float-lf">
-                                            <button type="button" (dblclick)="EnableTextBox(rate,2)" class="btn w-100 active">
-                                                <input (blur)="UpdateRateOfInterest(rate, 2)" type="number" [disabled]="!rate.IsDoubleTapped2" #RateOfInterest2="ngModel" [(ngModel)]="rate.RateOfInterest2" name="RateOfInterest2" />
-                                            </button>
+                                        </div>
 
-                                        </div>
-                                        <div class="col-md-6 pr-1  in-float-lf">
-                                            <button type="button" class="btn w-100">
-                                                <a (click)="IncreaseRateOfInterest(rate,2)">+</a>
-                                                <span>/</span>
-                                                <a (click)="DecreaseRateOfInterest(rate,2)">-</a>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3 pr-1">
-                                        <div class="col-md-6 pr-1  in-float-lf">
-                                            <button type="button" (dblclick)="EnableTextBox(rate,3)" class="btn w-100 active">
-                                                <input (blur)="UpdateRateOfInterest(rate, 3)" type="number" [disabled]="!rate.IsDoubleTapped3" #RateOfInterest3="ngModel" [(ngModel)]="rate.RateOfInterest3" name="RateOfInterest3" />
-                                            </button>
 
-                                        </div>
-                                        <div class="col-md-6 pr-1  in-float-lf">
-                                            <button type="button" class="btn w-100">
-                                                <a (click)="IncreaseRateOfInterest(rate,3)">+</a>
-                                                <span>/</span>
-                                                <a (click)="DecreaseRateOfInterest(rate,3)">-</a>
-                                            </button>
-                                        </div>
                                     </div>
+
+                                </div>
+                                <div class="col-md-10"></div>
+                                <div class="col-md-2 pr-1">
+                                    <button type="button" class="btn w-100 w-100-px active">Update</button>
                                 </div>
                             </div>
 
+
                             <!-- Maturity List -->
                             <div *ngIf="!IfShowBankDashBoard" id="Mautrity-Panel">
-                              
+
                                 <div class="clearfix"></div>
                                 <div class="row dashboard-price-list">
                                     <div class="col-lg-12">
                                         <button (click)="exportAs('pdf')" class="btn btn-info btn-lg common-bt-1">Export To Pdf</button>
-                                      
+
                                         <button (click)="exportAs('xlsx')" class="btn btn-info btn-lg common-bt-1">Export to Excel</button>
-                            
+
                                         <table class="table table-bordered table-responsive" id="mytable">
                                             <tbody>
                                                 <tr>
-                                                    <!--<th style="cursor:pointer;">RequestId</th>-->
+
+                                                    <th style="cursor:pointer;">Ticket No</th>
                                                     <!--<th style="cursor:pointer;">LenderId</th>-->
                                                     <th style="cursor:pointer;">Lender</th>
                                                     <!--<th style="cursor:pointer;">BorrowerId</th>-->
                                                     <th style="cursor:pointer;">Borrower</th>
                                                     <th style="cursor:pointer;">Amount</th>
-                                                    <th style="cursor:pointer;">StartDate</th>
-                                                    <th style="cursor:pointer;">EndDate</th>
-                                                    <th style="cursor:pointer;">NoOfDays</th>
-                                                    <th style="cursor:pointer;">InterestConvention</th>
+                                                    <th style="cursor:pointer;">Start Date</th>
+                                                    <th style="cursor:pointer;">End Date</th>
+                                                    <th style="cursor:pointer;">No Of Days</th>
+                                                    <th style="cursor:pointer;">Interest Convention</th>
                                                     <th style="cursor:pointer;">Payments</th>
                                                     <!--<th style="cursor:pointer;">IsRequestAccepted</th>-->
                                                     <!--<th style="cursor:pointer;">RequestCreatedBy</th>-->
-                                                    <th style="cursor:pointer;">RateOfInterestOfferred</th>
-                                                    <th style="cursor:pointer;">OfferredOn</th>
+                                                    <th style="cursor:pointer;">Rate Of Interest Offerred</th>
+                                                    <!--<th style="cursor:pointer;">Offerred Date</th>
+                            <th style="cursor:pointer;">Status</th>-->
 
                                                 </tr>
                                                 <tr *ngFor="let bank of _MaturityList">
-                                                    <!--<td>{{bank.RequestId}}</td>-->
+                                                    <td>{{bank.TicketNo}}</td>
                                                     <!--<td>{{bank.LenderId}}</td>-->
                                                     <td>{{bank.Lender}}</td>
                                                     <!--<td>{{bank.BorrowerId}}</td>-->
@@ -300,9 +394,22 @@
                                                     <td>{{bank.InterestConvention}}</td>
                                                     <td>{{bank.Payments}}</td>
                                                     <!--<td>{{bank.IsRequestAccepted}}</td>
-                <td>{{bank.RequestCreatedBy}}</td>-->
+                            <td>{{bank.RequestCreatedBy}}</td>-->
                                                     <td>{{bank.RateOfInterestOfferred}}</td>
-                                                    <td>{{bankOfferredOn}}</td>
+
+                                                    <!--<td>{{bank.OfferredOn|date:mm/dd/yy}}</td>
+                            <td>
+                                IsAccepted:{{bank.IsAccepted}}
+                                <ng-container [ngSwitch]="true">
+                                    <div *ngSwitchCase="bank.IsAccepted === 1">Accepted</div>
+                                    <div *ngSwitchCase="bank.IsReject === 1">Reject</div>
+                                    <div *ngSwitchCase="bank.IsMessageSentToForsa === 1">Sent to Forsa<br /> Message: {{bank.MessageForForsa}}  </div>
+                                    <div *ngSwitchDefault>Processed</div>
+                                </ng-container>
+                                IsReject:{{bank.IsRejected}}
+                                {{bank.MessageForForsa}}
+
+                            </td>-->
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -325,7 +432,7 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLongTitle">Access given to Client group Konfiguration</h5>
+                                <h5 class="modal-title" id="exampleModalLongTitle">{{'ClientGroupAccess.Title'|translate}}</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -347,21 +454,14 @@
 
 
                                                     <span class="line">{{group.GroupName}}</span>
-                                                    <input id="{{group.GroupName}}" name="{{group.GroupName}}" [(ngModel)]="group.IfRateWillBeVisible" (ngModelChange)="GroupCheckUnCheck($event,group);" type="checkbox" class="cbx used" checked="checked">
+                                                    <input id="{{group.GroupName}}" name="{{group.GroupName}}" [(ngModel)]="group.RateVisible" (ngModelChange)="GroupCheckUnCheck($event,group);" type="checkbox" class="cbx used">
                                                     <label for="{{group.GroupName}}" class="lbl notrobot">
                                                     </label>
                                                 </div>
-
                                             </div>
-
-
                                         </div>
-
-
                                     </div>
-
                                 </form>
-
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">{{'Button.ButtonClose'|translate}}</button>
@@ -467,7 +567,7 @@
                             </div>
 
                             <div class="modal-body" id="lenderProfileEdittbody">
-                              
+
                                 <form>
                                     <div class="row">
 
@@ -546,7 +646,6 @@
                                     {{'Button.ButtonUpload'|translate}}
                                 </button>-->
                                 <button _ngcontent-c1="" class="btn btn-secondary" data-dismiss="modal" data-toggle="modal" data-target=".bd-example-modal-lg-editsetting-page" data- type="button">{{'Button.ButtonChangePassword'|translate}}</button>
-                                <button _ngcontent-c1="" class="btn btn-secondary" data-dismiss="modal" type="button">{{'Button.ButtonUpload'|translate}}</button>
                             </div>
                         </div>
                     </div>
@@ -569,36 +668,40 @@
                                             <div id="eigeneBody">
                                                 <table>
                                                     <tbody>
-                                                        <tr><th>{{'Borrower.BankDashboard.Lender'|translate
-                                    }}</th><td>{{bestPriceViewService.lenderSendRequestModel.LenderName}}</td></tr>
-                                    <tr><th>{{'Borrower.BankDashboard.Borrower'|translate}}</th><td>{{bestPriceViewService.lenderSendRequestModel.BorrowerName}}</td></tr>
-                                    <tr><th>{{'Borrower.BankDashboard.Amount'|translate}}</th><td><input [disabled]="1==1" #Amount1="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.Amount" name="Amount" type="text" id="amount" class="form-control requestamount" maxlength="7"></td></tr>
-                                    <tr><th>{{'Borrower.BankDashboard.StartDate'|translate}} </th><td><input [disabled]="1==1" #StartDate="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.StartDate" name="StartDate" type="date" id="datepicker" class="form-control hasDatepicker datepicker"></td></tr>
-                                    <tr><th>{{'Borrower.BankDashboard.Endate'|translate}}</th><td><input [disabled]="1==1" #EndDate="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.EndDate" name="EndDate" type="date" id="datepicker1" class="form-control hasDatepicker datepicker1"></td></tr>
-                                    <tr><th>{{'Borrower.BankDashboard.NrOfDays'|translate}}&nbsp;&nbsp;</th><td id="no_of_days">{{bestPriceViewService.lenderSendRequestModel.NoOfDays}}</td></tr>
-                                    <tr>
-                                        <th>{{'Borrower.BankDashboard.InterestConvention'|translate}}</th>
+                                                        <tr>
+                                                            <th>
+                                                                {{'Borrower.BankDashboard.Lender'|translate}}
+                                                            </th>
+                                                            <td>{{bestPriceViewService.lenderSendRequestModel.LenderName}}</td>
+                                                        </tr>
+                                                        <tr><th>{{'Borrower.BankDashboard.Borrower'|translate}}</th><td>{{bestPriceViewService.lenderSendRequestModel.BorrowerName}}</td></tr>
+                                                        <tr><th>{{'Borrower.BankDashboard.Amount'|translate}}</th><td><input [disabled]="1==1" #Amount1="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.Amount" name="Amount" type="text" id="amount" class="form-control requestamount" maxlength="7"></td></tr>
+                                                        <tr><th>{{'Borrower.BankDashboard.StartDate'|translate}} </th><td><input [disabled]="1==1" #StartDate="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.StartDate" name="StartDate" type="date" id="datepicker" class="form-control hasDatepicker datepicker"></td></tr>
+                                                        <tr><th>{{'Borrower.BankDashboard.Endate'|translate}}</th><td><input [disabled]="1==1" #EndDate="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.EndDate" name="EndDate" type="date" id="datepicker1" class="form-control hasDatepicker datepicker1"></td></tr>
+                                                        <tr><th>{{'Borrower.BankDashboard.NrOfDays'|translate}}&nbsp;&nbsp;</th><td id="no_of_days">{{bestPriceViewService.lenderSendRequestModel.NoOfDays}}</td></tr>
+                                                        <tr>
+                                                            <th>{{'Borrower.BankDashboard.InterestConvention'|translate}}</th>
 
-                                        <td>
-                                            <select [disabled]="1==1" #InterestConvention="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.InterestConvention" name="InterestConvention" class="form-control" id="interest">
+                                                            <td>
+                                                                <select [disabled]="1==1" #InterestConvention="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.InterestConvention" name="InterestConvention" class="form-control" id="interest">
 
-                                                <option *ngFor="let interest of bestPriceViewService.listInterestConvention" value="{{interest.Id}}">{{interest.Value}}</option>
-                                            </select>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>{{'Borrower.BankDashboard.Payments'|translate}}</th>
-                                        <td>
-                                            <select #Payments="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.Payments" name="Payments" [disabled]="1==1" class="form-control" id="payments">
-                                                <option *ngFor="let payment of bestPriceViewService.listPayments" value="{{payment.Id}}">{{payment.Value}}</option>
-                                            </select>
-                                        </td>
-                                    </tr>
-                                    <tr><th>{{'Borrower.BankDashboard.RateOfInterest'|translate}}</th><td><input (keypress)="numberWithDecimalOnly($event)" #RateOfInterest="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.RateOfInterest" name="RateOfInterest" type="text" id="RateOfInterest" class="form-control requestamount" maxlength="7"></td></tr>
-                                    <tr><td><input type="button" (click)="UpdateLenderSendRequestRateOfInterest()" class="btn btn-info btn-lg" id="lendRequestsend" value="SEND"></td></tr>
-                                    </tbody>
-                                    </table>
-</div>
+                                                                    <option *ngFor="let interest of bestPriceViewService.listInterestConvention" value="{{interest.Id}}">{{interest.Value}}</option>
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>{{'Borrower.BankDashboard.Payments'|translate}}</th>
+                                                            <td>
+                                                                <select #Payments="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.Payments" name="Payments" [disabled]="1==1" class="form-control" id="payments">
+                                                                    <option *ngFor="let payment of bestPriceViewService.listPayments" value="{{payment.Id}}">{{payment.Value}}</option>
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                        <tr><th>{{'Borrower.BankDashboard.RateOfInterest'|translate}}</th><td><input (keypress)="numberWithDecimalOnly($event)" #RateOfInterest="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.RateOfInterest" name="RateOfInterest" type="text" id="RateOfInterest" class="form-control requestamount" maxlength="7"></td></tr>
+                                                        <tr><td><input type="button" (click)="UpdateLenderSendRequestRateOfInterest()" class="btn btn-info btn-lg" id="lendRequestsend" value="SEND"></td></tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                             <div id="eigenepdf">
 
                                                 <div class="showpdf">
@@ -707,11 +810,11 @@
         });
 
 
-                                    // if (document.documentElement.clientWidth < 900) {
-                                    //     $('#navbar-toggle').click(function() {
-                                    //         $("html").addClass("open-nav")
-                                    //     })
-                                    // }
+                                            // if (document.documentElement.clientWidth < 900) {
+                                            //     $('#navbar-toggle').click(function() {
+                                            //         $("html").addClass("open-nav")
+                                            //     })
+                                            // }
     </script>
 
 </body>

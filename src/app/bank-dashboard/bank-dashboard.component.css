@@ -1676,3 +1676,19 @@ input:focus~.highlight {
 
 
 
+
+#divtestUpload .input-group-prepend .btn-primary {
+        margin: 0;
+        float: left;
+        display: block;
+        line-height: 25px;
+        padding: 6px 10px 0 10px;
+        height: 36px;
+    }
+
+#divtestUpload .form-control {
+    margin-top: 10px;
+    float: left;
+    display: block;
+    height: 36px;
+}

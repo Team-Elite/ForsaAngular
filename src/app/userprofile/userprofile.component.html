@@ -1,3 +1,11 @@
+<style>
+ #divtestUpload .input-group-prepend {
+        margin-top: -10px;
+        height: 32px;
+    }
+
+</style>
+
 <form _ngcontent-c1="" novalidate="" class="ng-untouched ng-pristine ng-valid">
         <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="large" color="#fff" type="ball-clip-rotate">
             </ngx-spinner>
@@ -76,24 +84,24 @@
         <div class="col-6">
             <div class="col-md-12">
                 <label _ngcontent-c1="">{{'UserProfile.CommercialRegisterExtract'|translate}} </label>
-                <div>
+                <div class="full-width" style="display:block; float:left; width:100%; margin-left:7px;">
                     <a href="{{path}}{{userProfileData.CommercialRegisterExtract}}" style="float: left;">{{userProfileData.CommercialRegisterExtract}}</a>
                 </div>
             </div>
-            <div class="col-md-12">
+            <div class="col-md-12" style="display:block; float:left; width:100%; margin-top:20px;">
                 <label _ngcontent-c1="">{{'UserProfile.IdentityCard'|translate}} </label>
-                <div >
+                <div class="full-width" style="display:block; float:left; width:100%; margin-left:7px;">
                     <a href="{{path}}{{userProfileData.IdentityCard}}" style="float: left;">{{userProfileData.IdentityCard}}</a>
                 </div>
             </div>
 
             <!-- Comment below div -->
-            <div class="col-md-12" id="divtestUpload">
+            <div class="col-md-12" id="divtestUpload" style="display: block;float: left; width: 100%;">
                 <file-uploader [maxSizeInKb]="110" [allowMultiple]="false" [fileType]="'application/pdf'"
                                (onSelection)="fileuploaderFileChange($event)" [required]="false"></file-uploader>
                 <ul style="margin:0px; padding:0px;">
                     <li *ngFor="let file of userProfileServiceService.listOfFileUploaded" style="width:100%; display:block; float:left; list-style-type:none; margin-bottom:5px;">
-                        <a href="{{path}}{{file.name}}" style="float: left;">{{file.name}}</a> <a (click)="DeleteDocument(file.name,file.docId)" style="float: left;"><i _ngcontent-c1="" class="material-icons " style="color: #fff;
+                        <a target="_blank" href="{{path}}{{file.name}}" style="float: left;">{{file.name}}</a> <a (click)="DeleteDocument(file.name,file.docId)" style="float: left;"><i _ngcontent-c1="" class="material-icons " style="color: #fff;
     margin-top: 6px; font-size:14px; float:left; margin-left:10px;">delete</i></a>
                     </li>
                 </ul>

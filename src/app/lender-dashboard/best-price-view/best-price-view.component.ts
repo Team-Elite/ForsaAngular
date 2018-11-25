@@ -7,6 +7,7 @@ import { LenderDashboardService } from '../Shared/lender-dashboard.service';
 import { hubConnection, connection } from 'signalr-no-jquery';
 import { environment } from '../../../environments/environment.prod';
 import { UserProfileServiceService } from '../../userprofile/Shared/user-profile-service.service';
+import { AuthenticateServiceService } from '../../Shared/authenticate-service.service';
 
 const connection = (environment.production) ? hubConnection('http://40.89.139.123:4044/signalr') : hubConnection('http://localhost:61088/signalr');
 
@@ -17,11 +18,13 @@ const hubProxy = connection.createHubProxy('NgHub');
     styleUrls: ['./best-price-view.component.css']
 })
 export class BestPriceViewComponent implements OnInit {
-    objBankInfo: any = { Bank: '', NameOfCompany: '', Place: '', Street: '' };
-
+   
+    path: string;
+    //objBankInfo: any = { Bank: '', NameOfCompany: '', Place: '', Street: '' };
+    objBankInfo: any = { BankId: '', Bank: '', NameOfCompany: '', Place: '', Street: '' };
     constructor(public bestPriceViewService: BestPriceViewService, public spinner: NgxSpinnerService
         , public toastr: ToastrService, public pipe: DatePipe
-        , public lenderDashboardService: LenderDashboardService, public userProfileServiceService: UserProfileServiceService) {
+        , public lenderDashboardService: LenderDashboardService, public userProfileServiceService: UserProfileServiceService, public authenticateServiceService: AuthenticateServiceService) {
 
         hubProxy.on('sendBankRate', (data) => {
             this.getData();
@@ -36,6 +39,8 @@ export class BestPriceViewComponent implements OnInit {
     IfBankResponseFound: boolean = false;
     timer: any;
     ngOnInit() {
+        this.path = this.authenticateServiceService.baseURL + "/Uploads/Docs/";// + this.authenticateServiceService.GetUserId() + "/UserProfile/";
+
         this.getData();
     }
 
@@ -281,9 +286,10 @@ export class BestPriceViewComponent implements OnInit {
         this.spinner.show();
         await this.userProfileServiceService.GetDocList(data.UserId);
         this.spinner.hide();
-        this.objBankInfo = data;
+        this.objBankInfo = this.userProfileServiceService.listOfFileUploaded;
+
         var element = document.getElementById('btnShowBankInfo');
-        element.click();
+        element.click(); 
     }
 
 }

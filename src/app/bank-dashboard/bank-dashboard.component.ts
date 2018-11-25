@@ -9,6 +9,7 @@ import { DatePipe } from '@angular/common';
 import { LenderDashboardService } from '../lender-dashboard/Shared/lender-dashboard.service';
 import { LenderSendRequestModel } from '../lender-dashboard/best-price-view/Shared/lender-send-request-model.class';
 import { ExportAsService, ExportAsConfig } from 'ngx-export-as';
+import { parse } from 'url';
 declare var $: any;
 
 @Component({
@@ -23,6 +24,12 @@ export class BankDashboardComponent implements OnInit {
     copyLoggedInUser: any;
     testTrue: boolean = false;
     timer: any;
+    listrateofinterstofbank: any = [];
+    flagArray = [];
+    Timeperiod = ['Week', 'Month', 'Year']
+    Week = [];
+    Month = [];
+    Year = [];
     IfBothUserTypeFound: boolean = false;
     lenderSendRequestModel: LenderSendRequestModel;
     _authenticateServiceService: AuthenticateServiceService
@@ -93,61 +100,109 @@ export class BankDashboardComponent implements OnInit {
             this.GetLenderSendRequestRequestdOnTheBasisOfBorrowerId();
         }, 5000);
     }
-
     async GetRateOfInterestOfBank() {
 
         await this.bankDashboardService.GetRateOfInterestOfBank();
-       if (this.bankDashboardService.listRateOfInterestOfBankModel != undefined && this.bankDashboardService.listRateOfInterestOfBankModel != null
+        if (this.bankDashboardService.listRateOfInterestOfBankModel != undefined && this.bankDashboardService.listRateOfInterestOfBankModel != null
             && this.bankDashboardService.listRateOfInterestOfBankModel.length != 0) {
             this.IsPublished = this.bankDashboardService.listRateOfInterestOfBankModel[0].IsPublished;
+
+            console.log(this.bankDashboardService.listRateOfInterestOfBankModel);
+
+            for (let i = 0; i < this.Timeperiod.length; i++) {
+                ;
+                let splitetimepriod = this.Timeperiod[i];
+
+                if (splitetimepriod == "Week") {
+                    for (let j = 0; j < this.bankDashboardService.listRateOfInterestOfBankModel.length; j++) {
+                        let splitetimepriod1 = this.bankDashboardService.listRateOfInterestOfBankModel[j].TimePeriod.split(" ");
+                        if (splitetimepriod1[1] == "Week") {
+                            this.Week.push(this.bankDashboardService.listRateOfInterestOfBankModel[j])
+                        }
+
+                    }
+
+
+                }
+                else if (splitetimepriod == "Month") {
+
+                    for (let j = 0; j < this.bankDashboardService.listRateOfInterestOfBankModel.length; j++) {
+                        let splitetimepriod1 = this.bankDashboardService.listRateOfInterestOfBankModel[j].TimePeriod.split(" ");
+                        if (splitetimepriod1[1] == "Month") {
+                            this.Month.push(this.bankDashboardService.listRateOfInterestOfBankModel[j])
+                        }
+                    }
+
+
+                }
+                else if (splitetimepriod == "Year") {
+                    for (let j = 0; j < this.bankDashboardService.listRateOfInterestOfBankModel.length; j++) {
+                        let splitetimepriod1 = this.bankDashboardService.listRateOfInterestOfBankModel[j].TimePeriod.split(" ");
+                        if (splitetimepriod1[1] == "Year") {
+                            this.Year.push(this.bankDashboardService.listRateOfInterestOfBankModel[j])
+                        }
+                    }
+
+                }
+                this.flagArray[i] = true;
+                // this.listrateofinterstofbank.push({})
+            }
+            this.listrateofinterstofbank.push({ timeprioed: "Week", listintersteRate: this.Week });
+            this.listrateofinterstofbank.push({ timeprioed: "Month", listintersteRate: this.Month });
+            this.listrateofinterstofbank.push({ timeprioed: "Year", listintersteRate: this.Year });
+            console.log(this.listrateofinterstofbank);
+
+            // this.listrateofinterstofbank=this.bankDashboardService.listRateOfInterestOfBankModel;
         }
     }
 
-    EnableTextBox(rate, type: number) {
-        if (type == 1)
-            rate.IsDoubleTapped = true;
-        else if (type == 2)
-            rate.IsDoubleTapped2 = true;
-        else if (type == 3)
-            rate.IsDoubleTapped3 = true;
-    }
     EnableTextBox2() {
         this.testTrue = true;
     }
 
-    UpdateRateOfInterest(rate, group) {
-        if (group == 1) {
-         
-            if (rate.RateOfInterest == undefined || rate.RateOfInterest == null || rate.RateOfInterest.length == 0) {
-                this.toastr.error("Rate1 must be entered.", "Dashboard");
-                return;
-            }
-            if (rate.RateOfInterest > 9999.99) {
-                this.toastr.error("Interest rate1 can not be greater than 9999.99", "Dashboard");
-                return;
-            }
-            if (rate.RateOfInterest < -9999.99) {
-                this.toastr.error("Interest rate1 can not be less than -9999.99", "Dashboard");
-                return;
-            }
-            rate.RateOfInterest = rate.RateOfInterest.toFixed(2);
+    UpdateRateOfInterest(rate) {
+
+        if (rate.BaseCurve == undefined || rate.BaseCurve == null || rate.BaseCurve.length == 0) {
+            this.toastr.error("Rate1 must be entered.", "Dashboard");
+            return;
         }
-        else if (group == 2) {
-            if (rate.RateOfInterest2 == undefined || rate.RateOfInterest2 == null || rate.RateOfInterest2.length == 0) {
-                this.toastr.error("Rate2 must be entered.", "Dashboard");
-                return;
-            }
-            if (rate.RateOfInterest2 > 9999.99) {
-                this.toastr.error("Interest rate2 can not be greater than 9999.99", "Dashboard");
-                return;
-            }
-            if (rate.RateOfInterest2 < -9999.99) {
-                this.toastr.error("Interest rate2 can not be less than -9999.99", "Dashboard");
-                return;
-            }
-            rate.RateOfInterest2 = rate.RateOfInterest2.toFixed(2);
+        if (rate.BaseCurve > 9999.99) {
+            this.toastr.error("Interest rate1 can not be greater than 9999.99", "Dashboard");
+            return;
         }
-        else if (group == 3) {
+        if (rate.BaseCurve < -9999.99) {
+            this.toastr.error("Interest rate1 can not be less than -9999.99", "Dashboard");
+            return;
+        }
+
+
+
+
+        if (rate.RateOfInterest == undefined || rate.RateOfInterest == null || rate.RateOfInterest.length == 0) {
+            this.toastr.error("Rate1 must be entered.", "Dashboard");
+            return;
+        }
+        if (rate.RateOfInterest > 9999.99) {
+            this.toastr.error("Interest rate1 can not be greater than 9999.99", "Dashboard");
+            return;
+        }
+        if (rate.RateOfInterest < -9999.99) {
+            this.toastr.error("Interest rate1 can not be less than -9999.99", "Dashboard");
+            return;
+        }
+
+        if (rate.RateOfInterest2 == undefined || rate.RateOfInterest2 == null || rate.RateOfInterest2.length == 0) {
+            this.toastr.error("Rate2 must be entered.", "Dashboard");
+            return;
+        }
+        if (rate.RateOfInterest2 > 9999.99) {
+            this.toastr.error("Interest rate2 can not be greater than 9999.99", "Dashboard");
+            return;
+        }
+        if (rate.RateOfInterest2 < -9999.99) {
+            this.toastr.error("Interest rate2 can not be less than -9999.99", "Dashboard");
+            return;
+        }
 
         if (rate.RateOfInterest3 == undefined || rate.RateOfInterest3 == null || rate.RateOfInterest3.length == 0) {
             this.toastr.error("Rate3 must be entered.", "Dashboard");
@@ -160,22 +215,42 @@ export class BankDashboardComponent implements OnInit {
         if (rate.RateOfInterest3 < -9999.99) {
             this.toastr.error("Interest rate3 can not be less than -9999.99", "Dashboard");
             return;
-            }
-            rate.RateOfInterest3 = rate.RateOfInterest3.toFixed(2);
         }
-        rate.IsDoubleTapped = false;
+        rate.IsDoubleTapped1 = false;
         rate.ModifiedBy = this.bankDashboardService.userId;
-      
-     
-      
-        this.spinner.show();
-        this.bankDashboardService.UpdateRateOfInterest(rate).subscribe(data => {
-            this.spinner.hide();
-        })
+        rate.RateOfInterest = rate.RateOfInterest.toFixed(2);
+        rate.RateOfInterest2 = rate.RateOfInterest2.toFixed(2);
+        rate.RateOfInterest3 = rate.RateOfInterest3.toFixed(2);
+        rate.BaseCurve = rate.BaseCurve.toFixed(2);
+        //this.spinner.show();
+        //this.bankDashboardService.UpdateRateOfInterest(rate).subscribe(data => {
+        //    this.spinner.hide();
+        //})
+    }
+    CalculateBaseCurve(rate) {
+       
+        rate.FractionRate = (parseFloat(rate.RateOfInterest) + parseFloat(rate.BaseCurve)).toFixed(2);
+        rate.FractionRate2 = (parseFloat(rate.RateOfInterest2) + parseFloat(rate.BaseCurve)).toFixed(2);;
+        rate.FractionRate3 = (parseFloat(rate.RateOfInterest3) + parseFloat(rate.BaseCurve)).toFixed(2);;
+        // this.UpdateRateOfInterest(rate);
     }
 
     IncreaseRateOfInterest(rate, type: number) {
-        if (type == 1) {
+        ;
+        if (type == 3) {
+            if (rate.BaseCurve == undefined || rate.BaseCurve == null || rate.BaseCurve.length == 0) {
+                this.toastr.error("Rate must be entered.", "Dashboard");
+                return;
+            }
+
+            if (rate.BaseCurve >= 9999.99) {
+                this.toastr.error("Interest rate can not be greater than 9999.99", "Dashboard");
+                return;
+            }
+            rate.BaseCurve = parseFloat(rate.BaseCurve) + .01;
+            rate.BaseCurve = parseFloat(rate.BaseCurve).toFixed(2);
+        }
+        else if (type == 4) {
             if (rate.RateOfInterest == undefined || rate.RateOfInterest == null || rate.RateOfInterest.length == 0) {
                 this.toastr.error("Rate must be entered.", "Dashboard");
                 return;
@@ -188,7 +263,7 @@ export class BankDashboardComponent implements OnInit {
             rate.RateOfInterest = parseFloat(rate.RateOfInterest) + .01;
             rate.RateOfInterest = parseFloat(rate.RateOfInterest).toFixed(2);
         }
-        else if (type == 2) {
+        else if (type == 5) {
             if (rate.RateOfInterest2 == undefined || rate.RateOfInterest2 == null || rate.RateOfInterest2.length == 0) {
                 this.toastr.error("Rate2 must be entered.", "Dashboard");
                 return;
@@ -201,7 +276,7 @@ export class BankDashboardComponent implements OnInit {
             rate.RateOfInterest2 = parseFloat(rate.RateOfInterest2) + .01;
             rate.RateOfInterest2 = parseFloat(rate.RateOfInterest2).toFixed(2);
         }
-        else if (type == 3) {
+        else if (type == 6) {
             if (rate.RateOfInterest3 == undefined || rate.RateOfInterest3 == null || rate.RateOfInterest3.length == 0) {
                 this.toastr.error("Rate3 must be entered.", "Dashboard");
                 return;
@@ -216,14 +291,28 @@ export class BankDashboardComponent implements OnInit {
         }
 
         rate.ModifiedBy = this.bankDashboardService.userId;
-        this.spinner.show();
-        this.bankDashboardService.UpdateRateOfInterest(rate).subscribe(data => {
-            this.spinner.hide();
-        })
+        //this.spinner.show();
+        //this.bankDashboardService.UpdateRateOfInterest(rate).subscribe(data => {
+        //    this.spinner.hide();
+        //})
+       this.CalculateBaseCurve(rate)
     }
 
     DecreaseRateOfInterest(rate, type: number) {
-        if (type == 1) {
+        if (type == 3) {
+            if (rate.BaseCurve == undefined || rate.BaseCurve == null || rate.BaseCurve.length == 0) {
+                this.toastr.error("Rate must be entered.", "Dashboard");
+                return;
+            }
+
+            if (rate.BaseCurve <= -9999.99) {
+                this.toastr.error("Interest rate can not be less than 9999.99", "Dashboard");
+                return;
+            }
+            rate.BaseCurve = parseFloat(rate.BaseCurve) - .01;
+            rate.BaseCurve = parseFloat(rate.BaseCurve).toFixed(2);
+        }
+        else if (type == 4) {
             if (rate.RateOfInterest == undefined || rate.RateOfInterest == null || rate.RateOfInterest.length == 0) {
                 this.toastr.error("Rate must be entered.", "Dashboard");
                 return;
@@ -235,7 +324,7 @@ export class BankDashboardComponent implements OnInit {
             rate.RateOfInterest = parseFloat(rate.RateOfInterest) - .01;
             rate.RateOfInterest = parseFloat(rate.RateOfInterest).toFixed(2);
         }
-        else if (type == 2) {
+        else if (type == 5) {
             if (rate.RateOfInterest2 == undefined || rate.RateOfInterest2 == null || rate.RateOfInterest2.length == 0) {
                 this.toastr.error("Rate2 must be entered.", "Dashboard");
                 return;
@@ -247,7 +336,7 @@ export class BankDashboardComponent implements OnInit {
             rate.RateOfInterest2 = parseFloat(rate.RateOfInterest2) - .01;
             rate.RateOfInterest2 = parseFloat(rate.RateOfInterest2).toFixed(2);
         }
-        else if (type == 3) {
+        else if (type == 6) {
             if (rate.RateOfInterest3 == undefined || rate.RateOfInterest3 == null || rate.RateOfInterest3.length == 0) {
                 this.toastr.error("Rate3 must be entered.", "Dashboard");
                 return;
@@ -261,10 +350,11 @@ export class BankDashboardComponent implements OnInit {
         }
 
         rate.ModifiedBy = this.bankDashboardService.userId;
-        this.spinner.show();
-        this.bankDashboardService.UpdateRateOfInterest(rate).subscribe(data => {
-            this.spinner.hide();
-        })
+        //this.spinner.show();
+        //this.bankDashboardService.UpdateRateOfInterest(rate).subscribe(data => {
+        //    this.spinner.hide();
+        //})
+        this.CalculateBaseCurve(rate);
     }
 
 
@@ -295,7 +385,7 @@ export class BankDashboardComponent implements OnInit {
         for (var i = 0; i <= this.bankDashboardService.listUserGroupForSettingRateOfInterestVisibility.length - 1; i++) {
             let obj: any = this.bankDashboardService.listUserGroupForSettingRateOfInterestVisibility[i];
             // if(obj.GroupName != group.GroupName && obj.IfRateWillBeVisible == true){
-            if (obj.IfRateWillBeVisible == true) {
+            if (obj.RateVisible == true) {
                 ifNoneIsSelected = false;
                 groupsString = groupsString + obj.GroupId + ',';
             }
@@ -323,7 +413,7 @@ export class BankDashboardComponent implements OnInit {
         var numberOfGroupsChecked = 0;
         for (var i = 0; i <= this.bankDashboardService.listUserGroupForSettingRateOfInterestVisibility.length - 1; i++) {
             let obj: any = this.bankDashboardService.listUserGroupForSettingRateOfInterestVisibility[i];
-            if (obj.IfRateWillBeVisible) {
+            if (obj.RateVisible) {
                 this.bankDashboardService.lastGroupId = obj.GroupName;
                 numberOfGroupsChecked++;
             }
@@ -474,7 +564,9 @@ export class BankDashboardComponent implements OnInit {
         }
         this.spinner.hide();
     }
-
+    iconChange(i: number) {
+        this.flagArray[i] = !this.flagArray[i];
+    }
     UpdateLenderSendRequestRateOfInterest() {
 
         if (!this.ValidateSendRequest(this.lenderSendRequestModel)) {

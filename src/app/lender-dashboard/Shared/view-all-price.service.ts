@@ -64,7 +64,7 @@ export class ViewAllPriceService {
 
        // let token = await this.http.get(this.lenderDashboardService.baseURL + '/api/LenderDashboard/GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected?Id=' + this.lenderDashboardService.userId).toPromise();
         var response;
-        if (token != undefined) {
+        if (token != undefined && token.json().data != undefined) {
             token = token.json().data;
             response = JSON.parse(this.tokenService.jwtdecrypt(token).unique_name);
         }

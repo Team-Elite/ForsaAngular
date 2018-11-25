@@ -83,8 +83,8 @@ export class LenderDashboardComponent implements OnInit {
             MessageForForsa: '',
             IsMessageSentToForsa: false
         }
-
-        this.SetTimeInterval();
+     //   this.GetLenderSendRequestPendingLendedRequestByLenderId()
+      this.SetTimeInterval();
         this.spinner.hide();
     }
 

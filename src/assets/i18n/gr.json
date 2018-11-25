@@ -58,6 +58,7 @@
     "CommercialRegisterExtract": "Handelsregisterauszug",
     "IdentityCard": "Personalausweis"
   },
+  "ClientGroupAccess": { "Title": "Zugriff aufdie Clientgruppenkonfiguration" },
   "Register": {
     "section1": {
       "Title": "Titel",
