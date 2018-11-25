@@ -74,13 +74,13 @@
         </div>-->
         </div>
         <div class="col-6">
-            <div class="full-width">
+            <div class="col-md-12">
                 <label _ngcontent-c1="">{{'UserProfile.CommercialRegisterExtract'|translate}} </label>
                 <div>
                     <a href="{{path}}{{userProfileData.CommercialRegisterExtract}}" style="float: left;">{{userProfileData.CommercialRegisterExtract}}</a>
                 </div>
             </div>
-            <div class="full-width">
+            <div class="col-md-12">
                 <label _ngcontent-c1="">{{'UserProfile.IdentityCard'|translate}} </label>
                 <div >
                     <a href="{{path}}{{userProfileData.IdentityCard}}" style="float: left;">{{userProfileData.IdentityCard}}</a>
@@ -88,7 +88,7 @@
             </div>
 
             <!-- Comment below div -->
-            <div id="divtestUpload">
+            <div class="col-md-12" id="divtestUpload">
                 <file-uploader [maxSizeInKb]="110" [allowMultiple]="false" [fileType]="'application/pdf'"
                                (onSelection)="fileuploaderFileChange($event)" [required]="false"></file-uploader>
                 <ul style="margin:0px; padding:0px;">

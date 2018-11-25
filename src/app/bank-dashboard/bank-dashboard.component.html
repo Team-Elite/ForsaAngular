@@ -535,22 +535,23 @@
                     <div _ngcontent-c1="" class="modal-dialog modal-lg">
                         <div _ngcontent-c1="" class="modal-content">
                             <div _ngcontent-c1="" class="modal-header">
-                                <h5 _ngcontent-c1="" class="modal-title" id="exampleModalLongTitle"> Eigene Stammdatenverwaltung</h5>
+                                <h5 _ngcontent-c1="" class="modal-title" id="exampleModalLongTitle">{{'UserProfile.FormTitle'|translate}}</h5>
                                 <button _ngcontent-c1="" aria-label="Close" class="close" data-dismiss="modal" type="button"><span _ngcontent-c1="" aria-hidden="true">×</span></button>
                             </div>
                             <div _ngcontent-c1="" class="modal-body" id="lendrequestbody">
                                 <app-userprofile></app-userprofile>
                             </div>
                             <div _ngcontent-c1="" class="modal-footer">
-                                <button _ngcontent-c1="" class="btn btn-secondary" data-dismiss="modal" type="button">Hochladen</button>
-                                <button _ngcontent-c1="" class="btn btn-secondary" data-dismiss="modal" data-toggle="modal" data-target=".bd-example-modal-lg-editsetting-page" data- type="button">Passwort ändern</button>
-                                <button _ngcontent-c1="" class="btn btn-secondary" data-dismiss="modal" type="button">Datei hochladen</button>
+                                <!--<button _ngcontent-c1="" class="btn btn-secondary" data-dismiss="modal" type="button">
+                                    {{'Button.ButtonUpload'|translate}}
+                                </button>-->
+                                <button _ngcontent-c1="" class="btn btn-secondary" data-dismiss="modal" data-toggle="modal" data-target=".bd-example-modal-lg-editsetting-page" data- type="button">{{'Button.ButtonChangePassword'|translate}}</button>
+                                <button _ngcontent-c1="" class="btn btn-secondary" data-dismiss="modal" type="button">{{'Button.ButtonUpload'|translate}}</button>
                             </div>
                         </div>
                     </div>
                 </div>
                 <!---modal Eigene start-->
-
                 <div class="modal fade bd-example-modal-lg-eigene-Stammdatenverwaltung eigene-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
                      aria-hidden="true">
                     <div class="modal-dialog modal-lg">
@@ -561,7 +562,6 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-
                             <div class="modal-body" id="lenderrequestbody">
                                 <form>
                                     <div class="row">
@@ -569,35 +569,36 @@
                                             <div id="eigeneBody">
                                                 <table>
                                                     <tbody>
-                                                        <tr><th>{{'Borrower.BankDashboard.Lender'|translate}}</th><td>{{bestPriceViewService.lenderSendRequestModel.LenderName}}</td></tr>
-                                                        <tr><th>{{'Borrower.BankDashboard.Borrower'|translate}}</th><td>{{bestPriceViewService.lenderSendRequestModel.BorrowerName}}</td></tr>
-                                                        <tr><th>{{'Borrower.BankDashboard.Amount'|translate}}</th><td><input [disabled]="1==1" #Amount1="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.Amount" name="Amount" type="text" id="amount" class="form-control requestamount" maxlength="7"></td></tr>
-                                                        <tr><th>{{'Borrower.BankDashboard.StartDate'|translate}} </th><td><input [disabled]="1==1" #StartDate="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.StartDate" name="StartDate" type="date" id="datepicker" class="form-control hasDatepicker datepicker"></td></tr>
-                                                        <tr><th>{{'Borrower.BankDashboard.Endate'|translate}}</th><td><input [disabled]="1==1" #EndDate="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.EndDate" name="EndDate" type="date" id="datepicker1" class="form-control hasDatepicker datepicker1"></td></tr>
-                                                        <tr><th>{{'Borrower.BankDashboard.NrOfDays'|translate}}&nbsp;&nbsp;</th><td id="no_of_days">{{bestPriceViewService.lenderSendRequestModel.NoOfDays}}</td></tr>
-                                                        <tr>
-                                                            <th>{{'Borrower.BankDashboard.InterestConvention'|translate}}</th>
+                                                        <tr><th>{{'Borrower.BankDashboard.Lender'|translate
+                                    }}</th><td>{{bestPriceViewService.lenderSendRequestModel.LenderName}}</td></tr>
+                                    <tr><th>{{'Borrower.BankDashboard.Borrower'|translate}}</th><td>{{bestPriceViewService.lenderSendRequestModel.BorrowerName}}</td></tr>
+                                    <tr><th>{{'Borrower.BankDashboard.Amount'|translate}}</th><td><input [disabled]="1==1" #Amount1="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.Amount" name="Amount" type="text" id="amount" class="form-control requestamount" maxlength="7"></td></tr>
+                                    <tr><th>{{'Borrower.BankDashboard.StartDate'|translate}} </th><td><input [disabled]="1==1" #StartDate="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.StartDate" name="StartDate" type="date" id="datepicker" class="form-control hasDatepicker datepicker"></td></tr>
+                                    <tr><th>{{'Borrower.BankDashboard.Endate'|translate}}</th><td><input [disabled]="1==1" #EndDate="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.EndDate" name="EndDate" type="date" id="datepicker1" class="form-control hasDatepicker datepicker1"></td></tr>
+                                    <tr><th>{{'Borrower.BankDashboard.NrOfDays'|translate}}&nbsp;&nbsp;</th><td id="no_of_days">{{bestPriceViewService.lenderSendRequestModel.NoOfDays}}</td></tr>
+                                    <tr>
+                                        <th>{{'Borrower.BankDashboard.InterestConvention'|translate}}</th>
 
-                                                            <td>
-                                                                <select [disabled]="1==1" #InterestConvention="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.InterestConvention" name="InterestConvention" class="form-control" id="interest">
+                                        <td>
+                                            <select [disabled]="1==1" #InterestConvention="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.InterestConvention" name="InterestConvention" class="form-control" id="interest">
 
-                                                                    <option *ngFor="let interest of bestPriceViewService.listInterestConvention" value="{{interest.Id}}">{{interest.Value}}</option>
-                                                                </select>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th>{{'Borrower.BankDashboard.Payments'|translate}}</th>
-                                                            <td>
-                                                                <select #Payments="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.Payments" name="Payments" [disabled]="1==1" class="form-control" id="payments">
-                                                                    <option *ngFor="let payment of bestPriceViewService.listPayments" value="{{payment.Id}}">{{payment.Value}}</option>
-                                                                </select>
-                                                            </td>
-                                                        </tr>
-                                                        <tr><th>{{'Borrower.BankDashboard.RateOfInterest'|translate}}</th><td><input (keypress)="numberWithDecimalOnly($event)" #RateOfInterest="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.RateOfInterest" name="RateOfInterest" type="text" id="RateOfInterest" class="form-control requestamount" maxlength="7"></td></tr>
-                                                        <tr><td><input type="button" (click)="UpdateLenderSendRequestRateOfInterest()" class="btn btn-info btn-lg" id="lendRequestsend" value="SEND"></td></tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
+                                                <option *ngFor="let interest of bestPriceViewService.listInterestConvention" value="{{interest.Id}}">{{interest.Value}}</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>{{'Borrower.BankDashboard.Payments'|translate}}</th>
+                                        <td>
+                                            <select #Payments="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.Payments" name="Payments" [disabled]="1==1" class="form-control" id="payments">
+                                                <option *ngFor="let payment of bestPriceViewService.listPayments" value="{{payment.Id}}">{{payment.Value}}</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr><th>{{'Borrower.BankDashboard.RateOfInterest'|translate}}</th><td><input (keypress)="numberWithDecimalOnly($event)" #RateOfInterest="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.RateOfInterest" name="RateOfInterest" type="text" id="RateOfInterest" class="form-control requestamount" maxlength="7"></td></tr>
+                                    <tr><td><input type="button" (click)="UpdateLenderSendRequestRateOfInterest()" class="btn btn-info btn-lg" id="lendRequestsend" value="SEND"></td></tr>
+                                    </tbody>
+                                    </table>
+</div>
                                             <div id="eigenepdf">
 
                                                 <div class="showpdf">

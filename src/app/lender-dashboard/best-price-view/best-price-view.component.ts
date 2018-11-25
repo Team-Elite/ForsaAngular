@@ -38,6 +38,12 @@ export class BestPriceViewComponent implements OnInit {
     ngOnInit() {
         this.getData();
     }
+
+    SetTimeInterval() {
+        this.timer = setInterval(() => {
+            this.getData();
+        }, 5000);
+    }
     getData() {
         this.spinner.show();
         
@@ -271,7 +277,7 @@ export class BestPriceViewComponent implements OnInit {
         return true;
     }
     async ShowBankPopup(data: any) {
-        debugger;
+        
         this.spinner.show();
         await this.userProfileServiceService.GetDocList(data.UserId);
         this.spinner.hide();

@@ -15,7 +15,9 @@
     "ButtonInfo": "INFO",
     "ButtonLend": "Verleihen",
     "ButtonRegisterasPartner": "Registrieren Sie sich als Partner",
-    "ButtonSettingRateField": "Setting Rate Field"
+    "ButtonSettingRateField": "Setting Rate Field",
+    "ButtonUpload": "Uplopad",
+    "ButtonChangePassword": "Change Password"
   },
   "Login": {
     "Title": "Anmeldung",
@@ -32,6 +34,7 @@
     "Email": "Email"
   },
   "UserProfile": {
+    "FormTitle": "Eigene Stammdatenverwaltung",
     "Title": "Title",
     "NameofCompany": "Name Unternehmen ",
     "Street": "Strasse",

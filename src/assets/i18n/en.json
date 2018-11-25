@@ -15,7 +15,9 @@
     "ButtonInfo": "INFO",
     "ButtinLend": "Lend",
     "ButtonRegisterasPartner": "Register as a Partner",
-    "ButtonSettingRateField": "Setting Rate Field"
+    "ButtonSettingRateField": "Setting Rate Field",
+    "ButtonUpload": "Uplopad",
+    "ButtonChangePassword": "Change Password"
   },
   "Login": {
     "Title": "Log in",
@@ -32,6 +34,7 @@
     "Email": "Email"
   },
   "UserProfile": {
+    "FormTitle": "Own Master Data Management",
     "Title": "Title",
     "NameofCompany": "Name of Company",
     "Street": "Street",
