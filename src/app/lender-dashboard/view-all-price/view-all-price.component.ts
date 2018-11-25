@@ -127,7 +127,7 @@ export class ViewAllPriceComponent implements OnInit {
         this.spinner.show();
         // this.GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected();
        this.GetAllBanksWithInterestRateHorizontalyOrderByColumnName(this.orderByColumn);
-        //this.SetTimeInterval();
+        this.SetTimeInterval();
         this.spinner.hide();
         const self = this;
         const result = this.storage.get('viewAllPrice');

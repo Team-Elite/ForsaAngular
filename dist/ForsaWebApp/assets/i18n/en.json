@@ -1,4 +1,9 @@
 ﻿{
+  "ClientGroup": {
+    "Group1":"Municipal Companies(GmbH)" ,
+    "Group2":  "Municipal Companies(KdöR-AöR)",
+    "Group3" : "communities"
+  },
   "Button": {
     "ButtonSend": "Send",
     "ButtonNext": "Next",
@@ -9,7 +14,10 @@
     "ButtonEurTN": "EUR (T/N)",
     "ButtonInfo": "INFO",
     "ButtinLend": "Lend",
-    "ButtonRegisterasPartner": "Register as a Partner"
+    "ButtonRegisterasPartner": "Register as a Partner",
+    "ButtonSettingRateField": "Setting Rate Field",
+    "ButtonUpload": "Uplopad",
+    "ButtonChangePassword": "Change Password"
   },
   "Login": {
     "Title": "Log in",
@@ -25,6 +33,33 @@
     "ForgotPassword": "Forgot Password",
     "Email": "Email"
   },
+  "UserProfile": {
+    "FormTitle": "Own Master Data Management",
+    "Title": "Title",
+    "NameofCompany": "Name of Company",
+    "Street": "Street",
+    "PostalCode": "Postal Code",
+    "Place": "Place",
+    "AccountHolder": "Account Holder",
+    "Bank": "Bank",
+    "IBAN": "IBAN",
+    "BICCode": "BICCode",
+    "ClientGroup": "Client Group",
+    "LEINumber": "LEI Number",
+    "FurtherField4": "Further Field 4",
+    "Salutation": "Salutation",
+    "FirstName": "First Name",
+    "SurName": "SurName",
+    "Username": "User Name",
+    "TelephoneNo": "Telephone No",
+    "EmailAddress": "Email Address",
+    "MinimumVolume": "Minimum Volume",
+    "Rating": "Rating",
+    "CommercialRegisterExtract": "Commercial Register Extract",
+    "IdentityCard": "IdentityCard"
+  },
+
+
   "Register": {
     "section1": {
       "Title": "Register",

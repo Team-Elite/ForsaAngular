@@ -1,16 +1,16 @@
 {
   "ExpandedNodes": [
     "",
-    "\\assets\\css",
-    "\\assets\\scripts",
     "\\src",
     "\\src\\app",
+    "\\src\\app\\bank-dashboard",
     "\\src\\app\\lender-dashboard",
-    "\\src\\app\\lender-dashboard\\maturitylist",
+    "\\src\\app\\lender-dashboard\\best-price-view",
+    "\\src\\app\\lender-dashboard\\setting-page",
+    "\\src\\app\\lender-dashboard\\Shared",
     "\\src\\app\\registration",
-    "\\src\\app\\registration\\Shared",
-    "\\src\\app\\Shared"
+    "\\src\\app\\userprofile"
   ],
-  "SelectedNode": "\\src\\app\\bank-dashboard\\bank-dashboard.component.html",
+  "SelectedNode": "\\src\\app\\lender-dashboard\\lender-dashboard.component.ts",
   "PreviewInSolutionExplorer": false
 }

@@ -1,4 +1,9 @@
 {
+  "ClientGroup": {
+    "Group1": "Kommunale Unternehmen (GmbH)",
+    "Group2": "Municipal Companies(KdöR-AöR)",
+    "Group3": "Gemeinschaften"
+  },
   "Button": {
     "ButtonSend": "senden",
     "ButtonNext": "Nächster",
@@ -9,7 +14,10 @@
     "ButtonEurTN": "EUR (T/N)",
     "ButtonInfo": "INFO",
     "ButtonLend": "Verleihen",
-    "ButtonRegisterasPartner": "Registrieren Sie sich als Partner"
+    "ButtonRegisterasPartner": "Registrieren Sie sich als Partner",
+    "ButtonSettingRateField": "Setting Rate Field",
+    "ButtonUpload": "Uplopad",
+    "ButtonChangePassword": "Change Password"
   },
   "Login": {
     "Title": "Anmeldung",
@@ -25,22 +33,47 @@
     "ForgotPassword": "Passwort vergessen",
     "Email": "Email"
   },
+  "UserProfile": {
+    "FormTitle": "Eigene Stammdatenverwaltung",
+    "Title": "Title",
+    "NameofCompany": "Name Unternehmen ",
+    "Street": "Strasse",
+    "PostalCode": "Postleitzahl",
+    "Place": "Ort",
+    "AccountHolder": "Kontoinhaber",
+    "Bank": "Bank",
+    "IBAN": "IBAN",
+    "BICCode": "Codigo BIC",
+    "ClientGroup": "Kundengruppe",
+    "LEINumber": "LEI Number",
+    "FurtherField4": "Further Field 4",
+    "Salutation": "Salutation",
+    "FirstName": "Vorname",
+    "SurName": "Nachname",
+    "Username": "Benutzername",
+    "TelephoneNo": "Telefonnummer",
+    "EmailAddress": "E-Mail-Addresse",
+    "MinimumVolume": "Minimum Volume",
+    "Rating": "Bewertung",
+    "CommercialRegisterExtract": "Handelsregisterauszug",
+    "IdentityCard": "Personalausweis"
+  },
   "Register": {
     "section1": {
-      "Title": "Registrieren",
+      "Title": "Titel",
       "Borrower": "Kreditnehmer",
       "Lender": "Darlehensgeber",
-      "NameofCompany": "Name Unternehmen ",
-      "Street": "Strasse ",
+      "NameofCompany": "Name Unternehmen",
+      "Street": "Strasse",
       "PostalCode": "Postleitzahl",
-       "Place": "Ort",
+      "Place": "Ort",
       "AccountHolder": "Kontoinhaber",
       "Bank": "Bank",
       "IBAN": "IBAN",
-      "BICCode": "BICCode",
+      "BICCode": "Codigo BIC",
       "ClientGroup": "Kundengruppe",
       "ClientSubGroup": "Client-Untergruppe",
-      "LEINumber": "LEI Nummer",
+      "LEINumber": "Número LEI",
       "FurtherField4": "Weiteres Feld 4"
     },
 
@@ -148,7 +181,7 @@
     "Year3": "3 Y",
     "Year4": "4 Y",
     "Year5": "5 Y"
-    
+
   },
   "Lender": {
     "DashBoard": {
@@ -214,7 +247,7 @@
       }
     },
     "BestPriceView": {
-      
+
       "Lender": "DARLEHENSGEBER",
       "Borrower": "KREDITNEHMER",
       "Amount": "MENGE",
