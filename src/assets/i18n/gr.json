@@ -1,8 +1,8 @@
 {
   "ClientGroup": {
-    "Group1": "Kommunale Unternehmen (GmbH)",
-    "Group2": "Municipal Companies(KdöR-AöR)",
-    "Group3": "Gemeinschaften"
+    "Group1": "Unternehmen / GmbH",
+    "Group2": "Unternehmen / AöR und KdöR",
+    "Group3": "Kommunen"
   },
   "Button": {
     "ButtonSend": "senden",
