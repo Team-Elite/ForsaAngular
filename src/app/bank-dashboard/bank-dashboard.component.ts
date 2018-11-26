@@ -156,9 +156,25 @@ export class BankDashboardComponent implements OnInit {
         }
     }
 
+    EnableTextBox(rate, type: number) {
+        
+        if (type == 1)
+            rate.IsDoubleTapped1 = true;
+        else if (type == 2)
+            rate.IsDoubleTapped2 = true;
+        else if (type == 3)
+            rate.IsDoubleTapped3 = true;
+        else if (type == 4)
+            rate.IsDoubleTapped4 = true;
+        else if (type == 5)
+            rate.IsDoubleTapped5 = true;
+        else if (type == 6)
+            rate.IsDoubleTapped6 = true;
+    }
     EnableTextBox2() {
         this.testTrue = true;
     }
+
 
     UpdateRateOfInterest(rate) {
 
@@ -218,14 +234,15 @@ export class BankDashboardComponent implements OnInit {
         }
         rate.IsDoubleTapped1 = false;
         rate.ModifiedBy = this.bankDashboardService.userId;
-        rate.RateOfInterest = rate.RateOfInterest.toFixed(2);
-        rate.RateOfInterest2 = rate.RateOfInterest2.toFixed(2);
-        rate.RateOfInterest3 = rate.RateOfInterest3.toFixed(2);
-        rate.BaseCurve = rate.BaseCurve.toFixed(2);
+        rate.RateOfInterest = parseFloat( rate.RateOfInterest).toFixed(2);
+        rate.RateOfInterest2 = parseFloat(rate.RateOfInterest2).toFixed(2);
+        rate.RateOfInterest3 = parseFloat( rate.RateOfInterest3).toFixed(2);
+        rate.BaseCurve = parseFloat(rate.BaseCurve).toFixed(2);
         //this.spinner.show();
         //this.bankDashboardService.UpdateRateOfInterest(rate).subscribe(data => {
         //    this.spinner.hide();
         //})
+        this.CalculateBaseCurve(rate)
     }
     CalculateBaseCurve(rate) {
        
