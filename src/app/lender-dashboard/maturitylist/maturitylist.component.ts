@@ -4,6 +4,8 @@ import { TokenService } from '../../token-service';
 import { Http, Response, Headers,RequestOptions, RequestMethod } from '@angular/http';
 import { LenderDashboardService } from '../Shared/lender-dashboard.service';
 import { ExportAsService, ExportAsConfig } from 'ngx-export-as';
+import { ActivatedRoute } from '@angular/router';
+import { BankDashboardService } from '../../bank-dashboard/Shared/bank-dashboard.service';
 @Component({
   selector: 'app-maturitylist',
   templateUrl: './maturitylist.component.html',
@@ -12,6 +14,10 @@ import { ExportAsService, ExportAsConfig } from 'ngx-export-as';
 
 export class MaturitylistComponent implements OnInit {
 
+    async GetMaturityList() {
+        if (window.location.hash.replace("#", "") === '/lenderDashboard/Maturitylist') this._MaturityList = await this._landerdashboardservice.GetlenderMaturityList(true, this._authenticateServiceService.GetUserId());
+        if (window.location.hash.replace("#", "") === '/lenderDashboard/historyMaturitylist') this._MaturityList = await this._landerdashboardservice.GetlenderMaturityList(false, this._authenticateServiceService.GetUserId());
+    }
     _history: boolean;
     http: any;
     _authenticateServiceService: AuthenticateServiceService;
@@ -22,7 +28,8 @@ export class MaturitylistComponent implements OnInit {
     _MaturityList: any;
     bankDashboardService: any;
   
-    constructor(public authenticateServiceService: AuthenticateServiceService, public landerdashboardservice: LenderDashboardService, private exportAsService: ExportAsService)
+    constructor(public authenticateServiceService: AuthenticateServiceService, public landerdashboardservice: LenderDashboardService, private exportAsService: ExportAsService,
+        private activeRoute: ActivatedRoute, private bankDashService: BankDashboardService)
     {
         this._authenticateServiceService = authenticateServiceService;
         this._landerdashboardservice = landerdashboardservice;
@@ -34,11 +41,17 @@ export class MaturitylistComponent implements OnInit {
         elementId: 'mytable',
     };
     ngOnInit() {
+        console.log(`${window.location.pathname}`);
+        
         this.GetMaturityList();
+
+      
+        //this.activeRoute.url.subscribe(url => {
+        //    console.log(url);
+        //})
+        //this.GetMaturityList();
     }
-    async GetMaturityList() {
-        this._MaturityList =await this._landerdashboardservice.GetlenderMaturityList();
-    }
+    
 
     exportAs(type) {
         this.config.type = type;

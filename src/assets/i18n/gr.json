@@ -151,7 +151,9 @@
       "TicketNumber": "Ticket Number",
       "TradingDate": "Trading Date",
       "MaturityDate": "Maturity Date",
-      "Rate": "Rate"
+      "Rate": "Rate",
+      "HistoryMaturityList": "Chronik-Fälligkeitsliste",
+      "MaturityList": "Fälligkeitsliste"
 
     }
   },

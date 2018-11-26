@@ -19465,11 +19465,12 @@
                             </a>
 
                             <div class="cockpit-dropdown-div">
+                                <button type="button" class="dropcockpit" id="eigene" data-toggle="modal" data-target=".bd-example-modal-lg-eigene-Stammdatenverwaltung">{{'Borrower.BankDashboard.Ownmasterdatamanagement'|translate}}</button>
                                 <button type="button" class="dropcockpit" id="eigene" data-toggle="modal" data-target=".setting-popup2">{{'Lender.DashBoard.SettingStartPage'|translate}}<span class="align-middle input-group-icon "><i class="material-icons ">dashboard</i></span></button>
                                 <button type="button" class="dropcockpit" (click)="ShowMaturityList(false);" id="Ansehen">{{'Borrower.BankDashboard.Viewanddownloadyourownduelist'|translate}}</button>
                                 <button type="button" class="dropcockpit" (click)="ShowMaturityList(true);" id="Ansehenund">{{'Borrower.BankDashboard.Viewanddownloadinthepastdonebusiness'|translate}}</button>
                                 <!--<button type="button" class="dropcockpit" >Maturity List</button>
-                        <button type="button" class="dropcockpit" > History Maturity List</button>-->
+            <button type="button" class="dropcockpit" > History Maturity List</button>-->
 
                             </div>
                         </li>
@@ -19499,11 +19500,17 @@
                                 {{'Lender.DashBoard.AllBanks'|translate}}<span class="align-middle input-group-icon "><i class="material-icons ">view_list</i></span>
                             </a>
                         </li>
+                        
+                        <!--<li>
+                            <a href="javascript:void(0);" routerLink="lenderDashboard/Maturitylist">
+                                {{'History Maturity List'}}<span class="align-middle input-group-icon "><i class="material-icons ">view_list</i></span>
+                            </a>
+                        </li>-->
                         <!--<li *ngIf="lenderDashboardService.UserTypeId == 5 || lenderDashboardService.UserTypeId == '4,5'">
-                    <button type="button" class="dropcockpit" (click)="ShowScreen('Mreport');">Maturity List</button>
-                    <button type="button" class="dropcockpit" (click)="ShowScreen('HMreport');"> History Maturity List</button>
+        <button type="button" class="dropcockpit" (click)="ShowScreen('Mreport');">Maturity List</button>
+        <button type="button" class="dropcockpit" (click)="ShowScreen('HMreport');"> History Maturity List</button>
 
-                </li>-->
+    </li>-->
                         <li *ngIf="lenderDashboardService.UserTypeId == 6">
                             <a href="javascript:void(0);" (click)="SetCurrentPage('Kontact Dashboard')">
                                 {{'Lender.DashBoard.AllBanks'|translate}}<span class="align-middle input-group-icon "><i class="material-icons ">view_list</i></span>
@@ -19514,13 +19521,23 @@
                                 {{'Lender.DashBoard.AllBanks'|translate}}<span class="align-middle input-group-icon "><i class="material-icons ">view_list</i></span>
                             </a>
                         </li>
+                        <li>
+                            <a href="javascript:void(0);" routerLink="/lenderDashboard/Maturitylist">
+                                {{'Maturity List'}}<span class="align-middle input-group-icon "><i class="material-icons ">view_list</i></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);" routerLink="/lenderDashboard/historyMaturitylist">
+                                {{'History Maturity List'}}<span class="align-middle input-group-icon "><i class="material-icons ">view_list</i></span>
+                            </a>
+                        </li>
 
 
 
                         <!-- <li>  (click)="SetCurrentPage('All Banks')"
-                    <a href="# ">FAQ's<span class="align-middle input-group-icon "><i class="material-icons ">view_list</i></span>
-                                                </a>
-                </li> -->
+        <a href="# ">FAQ's<span class="align-middle input-group-icon "><i class="material-icons ">view_list</i></span>
+                                    </a>
+    </li> -->
                         <li>
                             <button *ngIf="lenderDashboardService.UserTypeId == 6" (click)="RegisterAsPartner()" class="btn btn-secondary green-btn" type="button">{{'Button.ButtonRegisterasPartner'|translate}}</button>
 
@@ -19531,7 +19548,7 @@
             <!-- Aside Ends Here-->
 
             <router-outlet></router-outlet>
-       
+
             <!--admin icon modal page tab-->
             <div class="modal fade bd-example-modal-lg-setting-page admin-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
@@ -19740,6 +19757,27 @@
 
     </div>
 
+    <div class="modal fade bd-example-modal-lg-eigene-Stammdatenverwaltung admin-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+         aria-hidden="true">
+        <div _ngcontent-c1="" class="modal-dialog modal-lg">
+            <div _ngcontent-c1="" class="modal-content">
+                <div _ngcontent-c1="" class="modal-header">
+                    <h5 _ngcontent-c1="" class="modal-title" id="exampleModalLongTitle">{{'UserProfile.FormTitle'|translate}}</h5>
+                    <button _ngcontent-c1="" aria-label="Close" class="close" data-dismiss="modal" type="button"><span _ngcontent-c1="" aria-hidden="true">×</span></button>
+                </div>
+                <div _ngcontent-c1="" class="modal-body" id="lendrequestbody">
+                    <app-userprofile></app-userprofile>
+                </div>
+                <div _ngcontent-c1="" class="modal-footer">
+                    <!--<button _ngcontent-c1="" class="btn btn-secondary" data-dismiss="modal" type="button">
+                        {{'Button.ButtonUpload'|translate}}
+                    </button>-->
+                    <button _ngcontent-c1="" class="btn btn-secondary" data-dismiss="modal" data-toggle="modal" data-target=".bd-example-modal-lg-editsetting-page" data- type="button">{{'Button.ButtonChangePassword'|translate}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="assets/scripts/bootstrap-datepicker.min.js"></script>
     <script src="assets/scripts/LenderIndex.js"></script>
     <script src="assets/scripts/bootstrap-datepicker.min.js"></script>
@@ -19776,11 +19814,11 @@
         });
 
 
-                            // if (document.documentElement.clientWidth < 900) {
-                            //     $('#navbar-toggle').click(function() {
-                            //         $("html").addClass("open-nav")
-                            //     })
-                            // }
+                                // if (document.documentElement.clientWidth < 900) {
+                                //     $('#navbar-toggle').click(function() {
+                                //         $("html").addClass("open-nav")
+                                //     })
+                                // }
     </script>
 
 

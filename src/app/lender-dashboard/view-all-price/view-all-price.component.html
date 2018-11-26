@@ -10703,7 +10703,7 @@ direction: ltr;
                          <th [hidden]="!obj.class20" style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Year5')">{{'Lender.ViewAllPrice.Year5'|translate}}</th>
                      </tr>
 
-                     <tr *ngFor="let bank of viewAllPriceService.listAllBanks">
+                     <tr *ngFor="let bank of ratesOfIntrest">
                          <td>
                              {{bank.Bank}}
                              <span><i (click)="ShowBankPopup(bank)" class="material-icons">perm_info</i></span>

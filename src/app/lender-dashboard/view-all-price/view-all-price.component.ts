@@ -1,3 +1,7 @@
+
+
+
+
 import { Inject, Component, OnInit } from '@angular/core';
 import { ViewAllPriceService } from '../Shared/view-all-price.service';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -24,10 +28,11 @@ const hubProxy = connection.createHubProxy('NgHub');
 })
 export class ViewAllPriceComponent implements OnInit {
     temp_array = [];
+    ratesOfIntrest = [];
     allChecked: boolean;
     objBankInfo: any = {  BankId:'', Bank: '', NameOfCompany: '', Place: '', Street: '' };
     obj = {
-        class1: true,
+        class1: false,
         class2: true,
         class3: true,
         class4: true,
@@ -131,7 +136,10 @@ export class ViewAllPriceComponent implements OnInit {
         this.spinner.hide();
         const self = this;
         const result = this.storage.get('viewAllPrice');
-        if (result) this.obj = result.obj;
+        if (result) {
+            result.obj.class1 = false;
+            this.obj = result.obj;
+        }
         console.log(result);
     }
 
@@ -178,11 +186,11 @@ this.spinner.hide();
     async GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected() {
 
         let rates = await this.viewAllPriceService.GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected();
+        console.log(rates);
         if (rates != null || rates != undefined) {
-            this.viewAllPriceService.listAllBanks = rates;
-            console.log(this.viewAllPriceService.listAllBanks);
-            this.viewAllPriceService.listAllBanks.forEach(ele => {
-                ele.class1 = this.obj.class1;
+            console.log('cp => 1');
+            rates.forEach(ele => {
+                ele.class1 = false;
                 ele.class2 = this.obj.class2;
                 ele.class3 = this.obj.class3;
                 ele.class4 = this.obj.class4;
@@ -203,6 +211,10 @@ this.spinner.hide();
                 ele.class19 = this.obj.class19;
                 ele.class20 = this.obj.class20;
             });
+            console.log('cp => 2');
+            this.viewAllPriceService.listAllBanks = rates;
+            this.ratesOfIntrest = this.viewAllPriceService.listAllBanks
+            console.log(this.ratesOfIntrest);
 
             this.GetHighestRatesViewAllPrice();
 
@@ -216,7 +228,8 @@ this.spinner.hide();
     SetTimeInterval() {
         this.timer = setInterval(() => {
             this.GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected();
-        }, 5000);
+            //this.GetAllBanksWithInterestRateHorizontalyOrderByColumnName(this.orderByColumn);
+        }, 1000);
     }
     SetHighestRatesTimeInterval() {
         this.timer1 = setInterval(() => {
@@ -354,7 +367,7 @@ this.spinner.hide();
         this.viewAllPriceService.listAllBanks = rates;
         console.log(this.viewAllPriceService.listAllBanks);
         this.viewAllPriceService.listAllBanks.forEach(ele => {
-            ele.class1 = this.obj.class1;
+            ele.class1 = false;
             ele.class2 = this.obj.class2;
             ele.class3 = this.obj.class3;
             ele.class4 = this.obj.class4;
@@ -395,7 +408,7 @@ this.spinner.hide();
                     ele.active = true;
                 });
                 this.viewAllPriceService.listAllBanks.forEach((ele, i) => {
-                    ele.class1 = true;
+                    ele.class1 = false;
                     ele.class2 = true;
                     ele.class3 = true;
                     ele.class4 = true;
@@ -417,7 +430,7 @@ this.spinner.hide();
                     ele.class20 = true;
                 });
                 this.obj = {
-                    class1: true,
+                    class1: false,
                     class2: true,
                     class3: true,
                     class4: true,

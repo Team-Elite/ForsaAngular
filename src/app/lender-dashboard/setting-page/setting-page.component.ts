@@ -22,7 +22,7 @@ export class SettingPageComponent implements OnInit {
   allChecked: boolean;
     previousPage: any;
     obj = {
-        class1: true,
+        class1: false,
         class2: true,
         class3: true,
         class4: true,
@@ -99,13 +99,7 @@ export class SettingPageComponent implements OnInit {
         this.spinner.hide();
     }
   isSelected (val, type) {
-    if (type == 1) {
-      if (val) {
-        this.obj.class1 = true;
-      } else {
-          this.obj.class1 = false;
-      }
-    } else if (type == 2) {
+    if (type == 2) {
         if (val) {
             this.obj.class2 = true;
         } else {

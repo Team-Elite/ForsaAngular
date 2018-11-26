@@ -1,8 +1,8 @@
 {
   "ClientGroup": {
-    "Group1": "Kommunale Unternehmen (GmbH)",
-    "Group2": "Municipal Companies(KdöR-AöR)",
-    "Group3": "Gemeinschaften"
+    "Group1": "Unternehmen / GmbH",
+    "Group2": "Unternehmen / AöR und KdöR",
+    "Group3": "Kommunen"
   },
   "Button": {
     "ButtonSend": "senden",
@@ -58,6 +58,7 @@
     "CommercialRegisterExtract": "Handelsregisterauszug",
     "IdentityCard": "Personalausweis"
   },
+  "ClientGroupAccess": { "Title": "Zugriff aufdie Clientgruppenkonfiguration" },
   "Register": {
     "section1": {
       "Title": "Titel",
@@ -150,7 +151,9 @@
       "TicketNumber": "Ticket Number",
       "TradingDate": "Trading Date",
       "MaturityDate": "Maturity Date",
-      "Rate": "Rate"
+      "Rate": "Rate",
+      "HistoryMaturityList": "Chronik-Fälligkeitsliste",
+      "MaturityList": "Fälligkeitsliste"
 
     }
   },

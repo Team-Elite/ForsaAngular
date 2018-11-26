@@ -297,7 +297,7 @@ export class LenderDashboardComponent implements OnInit {
     async ShowMaturityList(History: boolean) {
 
         this._showMaturity = true;
-        this.lenderDashboardService.showhistory = History;
+      //  this.lenderDashboardService.showhistory = History;
        // await this.lenderDashboardService.GetlenderMaturityList();
         this.router.onSameUrlNavigation="reload";
 this.router.navigate(['lenderDashboard/Maturitylist']);

@@ -1,0 +1,143 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Enterprise\\Web\\External\\Node.exe',
+1 verbose cli   'C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Enterprise\\Web\\External\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'install' ]
+2 info using npm@3.3.4
+3 info using node@v5.4.1
+4 silly loadCurrentTree Starting
+5 silly install loadCurrentTree
+6 silly install readLocalPackageData
+7 silly install normalizeTree
+8 silly loadCurrentTree Finishing
+9 silly loadIdealTree Starting
+10 silly install loadIdealTree
+11 silly cloneCurrentTree Starting
+12 silly install cloneCurrentTreeToIdealTree
+13 silly cloneCurrentTree Finishing
+14 silly loadShrinkwrap Starting
+15 silly install loadShrinkwrap
+16 silly loadShrinkwrap Finishing
+17 silly loadAllDepsIntoIdealTree Starting
+18 silly install loadAllDepsIntoIdealTree
+19 silly fetchOtherPackageData angular-jwt@github:auth0/angular-jwt
+20 silly cache add args [ 'angular-jwt@github:auth0/angular-jwt', null ]
+21 verbose cache add spec angular-jwt@github:auth0/angular-jwt
+22 silly cache add parsed spec Result {
+22 silly cache add   raw: 'angular-jwt@github:auth0/angular-jwt',
+22 silly cache add   scope: null,
+22 silly cache add   name: 'angular-jwt',
+22 silly cache add   rawSpec: 'github:auth0/angular-jwt',
+22 silly cache add   spec: 'github:auth0/angular-jwt',
+22 silly cache add   type: 'hosted',
+22 silly cache add   hosted:
+22 silly cache add    { type: 'github',
+22 silly cache add      ssh: 'git@github.com:auth0/angular-jwt.git',
+22 silly cache add      sshUrl: 'git+ssh://git@github.com/auth0/angular-jwt.git',
+22 silly cache add      httpsUrl: 'git+https://github.com/auth0/angular-jwt.git',
+22 silly cache add      gitUrl: 'git://github.com/auth0/angular-jwt.git',
+22 silly cache add      shortcut: 'github:auth0/angular-jwt',
+22 silly cache add      directUrl: 'https://raw.githubusercontent.com/auth0/angular-jwt/master/package.json' } }
+23 verbose addRemoteGit caching github:auth0/angular-jwt
+24 verbose addRemoteGit auth0/angular-jwt is a repository hosted by github
+25 silly tryGitProto attempting to clone git://github.com/auth0/angular-jwt.git
+26 silly tryClone cloning auth0/angular-jwt via git://github.com/auth0/angular-jwt.git
+27 verbose tryClone git-github-com-auth0-angular-jwt-git-786cee5e7895f5d8074f82861e8bde0e not in flight; caching
+28 verbose makeDirectory C:\Users\Elite\AppData\Roaming\npm-cache\_git-remotes creation not in flight; initializing
+29 verbose makeCacheDir UID & GID are irrelevant on win32
+30 info git [ 'clone',
+30 info git   '--template=C:\\Users\\Elite\\AppData\\Roaming\\npm-cache\\_git-remotes\\_templates',
+30 info git   '--mirror',
+30 info git   'git://github.com/auth0/angular-jwt.git',
+30 info git   'C:\\Users\\Elite\\AppData\\Roaming\\npm-cache\\_git-remotes\\git-github-com-auth0-angular-jwt-git-786cee5e7895f5d8074f82861e8bde0e' ]
+31 verbose mirrorRemote auth0/angular-jwt git clone git://github.com/auth0/angular-jwt.git
+32 verbose setPermissions auth0/angular-jwt skipping chownr on Windows
+33 verbose resolveHead auth0/angular-jwt original treeish: master
+34 info git [ 'rev-list', '-n1', 'master' ]
+35 silly resolveHead auth0/angular-jwt resolved treeish: 37784391987360353435d14534c69859c59884aa
+36 verbose resolveHead auth0/angular-jwt resolved Git URL: git://github.com/auth0/angular-jwt.git#37784391987360353435d14534c69859c59884aa
+37 silly resolveHead Git working directory: C:\Users\Elite\AppData\Local\Temp\npm-10988-24105691\git-cache-e4bff8542cf1888949cc42408b0a30c6\37784391987360353435d14534c69859c59884aa
+38 info git [ 'clone',
+38 info git   'C:\\Users\\Elite\\AppData\\Roaming\\npm-cache\\_git-remotes\\git-github-com-auth0-angular-jwt-git-786cee5e7895f5d8074f82861e8bde0e',
+38 info git   'C:\\Users\\Elite\\AppData\\Local\\Temp\\npm-10988-24105691\\git-cache-e4bff8542cf1888949cc42408b0a30c6\\37784391987360353435d14534c69859c59884aa' ]
+39 error git clone C:\Users\Elite\AppData\Roaming\npm-cache\_git-remotes\git-github-com-auth0-angular-jwt-git-786cee5e7895f5d8074f82861e8bde0e C:\Users\Elite\AppData\Local\Temp\npm-10988-24105691\git-cache-e4bff8542cf1888949cc42408b0a30c6\37784391987360353435d14534c69859c59884aa: Cloning into 'C:\Users\Elite\AppData\Local\Temp\npm-10988-24105691\git-cache-e4bff8542cf1888949cc42408b0a30c6\37784391987360353435d14534c69859c59884aa'...
+39 error git clone C:\Users\Elite\AppData\Roaming\npm-cache\_git-remotes\git-github-com-auth0-angular-jwt-git-786cee5e7895f5d8074f82861e8bde0e C:\Users\Elite\AppData\Local\Temp\npm-10988-24105691\git-cache-e4bff8542cf1888949cc42408b0a30c6\37784391987360353435d14534c69859c59884aa: error: cannot spawn sh: No such file or directory
+39 error git clone C:\Users\Elite\AppData\Roaming\npm-cache\_git-remotes\git-github-com-auth0-angular-jwt-git-786cee5e7895f5d8074f82861e8bde0e C:\Users\Elite\AppData\Local\Temp\npm-10988-24105691\git-cache-e4bff8542cf1888949cc42408b0a30c6\37784391987360353435d14534c69859c59884aa: fatal: unable to fork
+40 silly tryHTTPS attempting to clone git+https://github.com/auth0/angular-jwt.git
+41 silly tryClone cloning auth0/angular-jwt via git+https://github.com/auth0/angular-jwt.git
+42 verbose tryClone git-https-github-com-auth0-angular-jwt-git-6d763afc5779cb8531f387e84ad867b1 not in flight; caching
+43 info git [ 'clone',
+43 info git   '--template=C:\\Users\\Elite\\AppData\\Roaming\\npm-cache\\_git-remotes\\_templates',
+43 info git   '--mirror',
+43 info git   'https://github.com/auth0/angular-jwt.git',
+43 info git   'C:\\Users\\Elite\\AppData\\Roaming\\npm-cache\\_git-remotes\\git-https-github-com-auth0-angular-jwt-git-6d763afc5779cb8531f387e84ad867b1' ]
+44 verbose mirrorRemote auth0/angular-jwt git clone https://github.com/auth0/angular-jwt.git
+45 verbose setPermissions auth0/angular-jwt skipping chownr on Windows
+46 verbose resolveHead auth0/angular-jwt original treeish: master
+47 info git [ 'rev-list', '-n1', 'master' ]
+48 silly resolveHead auth0/angular-jwt resolved treeish: 37784391987360353435d14534c69859c59884aa
+49 verbose resolveHead auth0/angular-jwt resolved Git URL: git+https://github.com/auth0/angular-jwt.git#37784391987360353435d14534c69859c59884aa
+50 silly resolveHead Git working directory: C:\Users\Elite\AppData\Local\Temp\npm-10988-24105691\git-cache-086ef9c538d0b4d9f5ccf0c9ee33b4b5\37784391987360353435d14534c69859c59884aa
+51 info git [ 'clone',
+51 info git   'C:\\Users\\Elite\\AppData\\Roaming\\npm-cache\\_git-remotes\\git-https-github-com-auth0-angular-jwt-git-6d763afc5779cb8531f387e84ad867b1',
+51 info git   'C:\\Users\\Elite\\AppData\\Local\\Temp\\npm-10988-24105691\\git-cache-086ef9c538d0b4d9f5ccf0c9ee33b4b5\\37784391987360353435d14534c69859c59884aa' ]
+52 error git clone C:\Users\Elite\AppData\Roaming\npm-cache\_git-remotes\git-https-github-com-auth0-angular-jwt-git-6d763afc5779cb8531f387e84ad867b1 C:\Users\Elite\AppData\Local\Temp\npm-10988-24105691\git-cache-086ef9c538d0b4d9f5ccf0c9ee33b4b5\37784391987360353435d14534c69859c59884aa: Cloning into 'C:\Users\Elite\AppData\Local\Temp\npm-10988-24105691\git-cache-086ef9c538d0b4d9f5ccf0c9ee33b4b5\37784391987360353435d14534c69859c59884aa'...
+52 error git clone C:\Users\Elite\AppData\Roaming\npm-cache\_git-remotes\git-https-github-com-auth0-angular-jwt-git-6d763afc5779cb8531f387e84ad867b1 C:\Users\Elite\AppData\Local\Temp\npm-10988-24105691\git-cache-086ef9c538d0b4d9f5ccf0c9ee33b4b5\37784391987360353435d14534c69859c59884aa: error: cannot spawn sh: No such file or directory
+52 error git clone C:\Users\Elite\AppData\Roaming\npm-cache\_git-remotes\git-https-github-com-auth0-angular-jwt-git-6d763afc5779cb8531f387e84ad867b1 C:\Users\Elite\AppData\Local\Temp\npm-10988-24105691\git-cache-086ef9c538d0b4d9f5ccf0c9ee33b4b5\37784391987360353435d14534c69859c59884aa: fatal: unable to fork
+53 silly trySSH attempting to clone git@github.com:auth0/angular-jwt.git
+54 silly tryClone cloning auth0/angular-jwt via git@github.com:auth0/angular-jwt.git
+55 verbose tryClone git-github-com-auth0-angular-jwt-git-5828799a9a2888796559647a750d5e1c not in flight; caching
+56 info git [ 'clone',
+56 info git   '--template=C:\\Users\\Elite\\AppData\\Roaming\\npm-cache\\_git-remotes\\_templates',
+56 info git   '--mirror',
+56 info git   'git@github.com:auth0/angular-jwt.git',
+56 info git   'C:\\Users\\Elite\\AppData\\Roaming\\npm-cache\\_git-remotes\\git-github-com-auth0-angular-jwt-git-5828799a9a2888796559647a750d5e1c' ]
+57 error git clone --template=C:\Users\Elite\AppData\Roaming\npm-cache\_git-remotes\_templates --mirror git@github.com:auth0/angular-jwt.git C:\Users\Elite\AppData\Roaming\npm-cache\_git-remotes\git-github-com-auth0-angular-jwt-git-5828799a9a2888796559647a750d5e1c: Cloning into bare repository 'C:\Users\Elite\AppData\Roaming\npm-cache\_git-remotes\git-github-com-auth0-angular-jwt-git-5828799a9a2888796559647a750d5e1c'...
+57 error git clone --template=C:\Users\Elite\AppData\Roaming\npm-cache\_git-remotes\_templates --mirror git@github.com:auth0/angular-jwt.git C:\Users\Elite\AppData\Roaming\npm-cache\_git-remotes\git-github-com-auth0-angular-jwt-git-5828799a9a2888796559647a750d5e1c: error: cannot spawn ssh: No such file or directory
+57 error git clone --template=C:\Users\Elite\AppData\Roaming\npm-cache\_git-remotes\_templates --mirror git@github.com:auth0/angular-jwt.git C:\Users\Elite\AppData\Roaming\npm-cache\_git-remotes\git-github-com-auth0-angular-jwt-git-5828799a9a2888796559647a750d5e1c: fatal: unable to fork
+58 silly fetchPackageMetaData Error: Command failed: git -c core.longpaths=true clone --template=C:\Users\Elite\AppData\Roaming\npm-cache\_git-remotes\_templates --mirror git@github.com:auth0/angular-jwt.git C:\Users\Elite\AppData\Roaming\npm-cache\_git-remotes\git-github-com-auth0-angular-jwt-git-5828799a9a2888796559647a750d5e1c
+58 silly fetchPackageMetaData Cloning into bare repository 'C:\Users\Elite\AppData\Roaming\npm-cache\_git-remotes\git-github-com-auth0-angular-jwt-git-5828799a9a2888796559647a750d5e1c'...
+58 silly fetchPackageMetaData error: cannot spawn ssh: No such file or directory
+58 silly fetchPackageMetaData fatal: unable to fork
+58 silly fetchPackageMetaData
+58 silly fetchPackageMetaData     at ChildProcess.exithandler (child_process.js:213:12)
+58 silly fetchPackageMetaData     at emitTwo (events.js:87:13)
+58 silly fetchPackageMetaData     at ChildProcess.emit (events.js:172:7)
+58 silly fetchPackageMetaData     at maybeClose (internal/child_process.js:821:16)
+58 silly fetchPackageMetaData     at Process.ChildProcess._handle.onexit (internal/child_process.js:211:5)
+58 silly fetchPackageMetaData  error for angular-jwt@github:auth0/angular-jwt { [Error: Command failed: git -c core.longpaths=true clone --template=C:\Users\Elite\AppData\Roaming\npm-cache\_git-remotes\_templates --mirror git@github.com:auth0/angular-jwt.git C:\Users\Elite\AppData\Roaming\npm-cache\_git-remotes\git-github-com-auth0-angular-jwt-git-5828799a9a2888796559647a750d5e1c
+58 silly fetchPackageMetaData Cloning into bare repository 'C:\Users\Elite\AppData\Roaming\npm-cache\_git-remotes\git-github-com-auth0-angular-jwt-git-5828799a9a2888796559647a750d5e1c'...
+58 silly fetchPackageMetaData error: cannot spawn ssh: No such file or directory
+58 silly fetchPackageMetaData fatal: unable to fork
+58 silly fetchPackageMetaData ]
+58 silly fetchPackageMetaData   killed: false,
+58 silly fetchPackageMetaData   code: 128,
+58 silly fetchPackageMetaData   signal: null,
+58 silly fetchPackageMetaData   cmd: 'git -c core.longpaths=true clone --template=C:\\Users\\Elite\\AppData\\Roaming\\npm-cache\\_git-remotes\\_templates --mirror git@github.com:auth0/angular-jwt.git C:\\Users\\Elite\\AppData\\Roaming\\npm-cache\\_git-remotes\\git-github-com-auth0-angular-jwt-git-5828799a9a2888796559647a750d5e1c' }
+59 silly rollbackFailedOptional Starting
+60 silly rollbackFailedOptional Finishing
+61 silly runTopLevelLifecycles Starting
+62 silly runTopLevelLifecycles Finishing
+63 silly install printInstalled
+64 verbose stack Error: Command failed: git -c core.longpaths=true clone --template=C:\Users\Elite\AppData\Roaming\npm-cache\_git-remotes\_templates --mirror git@github.com:auth0/angular-jwt.git C:\Users\Elite\AppData\Roaming\npm-cache\_git-remotes\git-github-com-auth0-angular-jwt-git-5828799a9a2888796559647a750d5e1c
+64 verbose stack Cloning into bare repository 'C:\Users\Elite\AppData\Roaming\npm-cache\_git-remotes\git-github-com-auth0-angular-jwt-git-5828799a9a2888796559647a750d5e1c'...
+64 verbose stack error: cannot spawn ssh: No such file or directory
+64 verbose stack fatal: unable to fork
+64 verbose stack
+64 verbose stack     at ChildProcess.exithandler (child_process.js:213:12)
+64 verbose stack     at emitTwo (events.js:87:13)
+64 verbose stack     at ChildProcess.emit (events.js:172:7)
+64 verbose stack     at maybeClose (internal/child_process.js:821:16)
+64 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:211:5)
+65 verbose cwd E:\Yogesh\Project\Forsa\Website
+66 error Windows_NT 10.0.10240
+67 error argv "C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Enterprise\\Web\\External\\Node.exe" "C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Enterprise\\Web\\External\\node_modules\\npm\\bin\\npm-cli.js" "install"
+68 error node v5.4.1
+69 error npm  v3.3.4
+70 error code 128
+71 error Command failed: git -c core.longpaths=true clone --template=C:\Users\Elite\AppData\Roaming\npm-cache\_git-remotes\_templates --mirror git@github.com:auth0/angular-jwt.git C:\Users\Elite\AppData\Roaming\npm-cache\_git-remotes\git-github-com-auth0-angular-jwt-git-5828799a9a2888796559647a750d5e1c
+71 error Cloning into bare repository 'C:\Users\Elite\AppData\Roaming\npm-cache\_git-remotes\git-github-com-auth0-angular-jwt-git-5828799a9a2888796559647a750d5e1c'...
+71 error error: cannot spawn ssh: No such file or directory
+71 error fatal: unable to fork
+72 error If you need help, you may report this error at:
+72 error     <https://github.com/npm/npm/issues>
+73 verbose exit [ 1, true ]

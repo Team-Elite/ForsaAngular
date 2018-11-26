@@ -2,7 +2,7 @@
   "ClientGroup": {
     "Group1": "Companies / GmbH",
     "Group2": "Companies / AIR And death",
-    "Group3": "communities"
+    "Group3": "Communities"
   },
   "Button": {
     "ButtonSend": "Send",
@@ -75,7 +75,7 @@
       "ClientGroup": "Client Group",
       "ClientSubGroup": "Client Sub Group",
       "LEINumber": "LEI Number",
-      "FurtherField4": "Further Field 4"
+      "FurtherField4": "Spare Section4"
     },
 
     "section2": {
@@ -151,7 +151,9 @@
       "TicketNumber": "Ticket Number",
       "TradingDate": "Trading Date",
       "MaturityDate": "Maturity Date",
-      "Rate": "Rate"
+      "Rate": "Rate",
+      "MaturityList": "Maturity List",
+      "HistoryMaturityList": "History Maturity List"
 
     }
   },
