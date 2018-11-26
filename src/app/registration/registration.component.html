@@ -108,25 +108,24 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group form-md-line-input has-error">
+                                <!--<div class="form-group form-md-line-input has-error">
                                     <div class="group input-group">
                                         <input #AccountHolder="ngModel" [(ngModel)]="registrationService.userModel.AccountHolder" name="AccountHolder" type="text" class="used">
                                         <span class="highlight"></span>
                                         <span class="bar"></span>
                                         <label>{{'Register.section1.AccountHolder'|translate}}*</label>
                                     </div>
-                                </div>
+                                </div>-->
 
                                 <div class="form-group form-md-line-input has-error">
                                     <div class="group input-group">
                                         <input #Bank="ngModel" [(ngModel)]="registrationService.userModel.Bank" name="Bank" type="text" class="used">
-                                        <span class="highlight"></span>
-                                        <span class="bar"></span>
-                                        <label>{{'Register.section1.Bank'|translate}}  *</label>
                                         <span class="input-group-icon">
                                             <i class="material-icons">account_circle</i>
                                         </span>
-
+                                        <span class="highlight"></span>
+                                        <span class="bar"></span>
+                                        <label>{{'Register.section1.Bank'|translate}}  *</label>
                                     </div>
                                 </div>
 
@@ -159,7 +158,7 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group form-md-line-input has-error">
+                                <!--<div class="form-group form-md-line-input has-error">
                                     <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
                                         <label>{{'Register.section1.ClientSubGroup'|translate}}</label>
                                         <select #SubGroupId="ngModel" [(ngModel)]="registrationService.userModel.SubGroupId" class="mdl-selectfield__select" name="SubGroupId" id="SubGroupId">
@@ -168,7 +167,7 @@
                                             <option *ngFor="let subGroup of registrationService.listSubGroupModel" value="{{subGroup.SubGroupId}}">{{subGroup.SubGroupName}}</option>
                                         </select>
                                     </div>
-                                </div>
+                                </div>-->
 
                                 <div class="form-group form-md-line-input has-error">
                                     <div class="group input-group">
@@ -529,15 +528,15 @@
 
                                         <p>
                                             <input #GroupCommunities="ngModel" [(ngModel)]="registrationService.userModel.GroupCommunities" name="GroupCommunities" id="GroupCommunities" type="checkbox" class="cbx used">
-                                            <label for="GroupCommunities" class="lbl"> {{'Register.GroupCommunities'|translate}}Communities </label>
+                                            <label for="GroupCommunities" class="lbl"> {{'ClientGroup.Group1'|translate}}</label>
                                         </p>
                                         <p>
                                             <input #GroupCompanyGMBH="ngModel" [(ngModel)]="registrationService.userModel.GroupCompanyGMBH" name="GroupCompanyGMBH" id="GroupCompanyGMBH" type="checkbox" class="cbx used">
-                                            <label for="GroupCompanyGMBH" class="lbl">{{'Register.Section3.GroupCompanyGMBH'|translate}}  Company GmbH </label>
+                                            <label for="GroupCompanyGMBH" class="lbl">{{'ClientGroup.Group2'|translate}}</label>
                                         </p>
                                         <p>
                                             <input #GroupCompany="ngModel" [(ngModel)]="registrationService.userModel.GroupCompany" name="GroupCompany" id="GroupCompany" type="checkbox" class="cbx used">
-                                            <label for="GroupCompany" class="lbl"> {{'Register.Section3.GroupCompany'|translate}}Company (AöR, KdöR) </label>
+                                            <label for="GroupCompany" class="lbl"> {{'ClientGroup.Group3'|translate}}</label>
                                         </p>
 
                                     </div>
