@@ -188,6 +188,7 @@
   },
   "Lender": {
     "DashBoard": {
+      "LogicRoom":"Logikraum",
       "LenderDashboard": "Kreditgeber Dashboard",
       "ContactDashboard": "Kontact Dashboard",
       "menu": "Speisekarte",

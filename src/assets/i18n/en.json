@@ -188,6 +188,7 @@
   },
   "Lender": {
     "DashBoard": {
+      "LogicRoom": "Logic Room",
       "LenderDashboard": "Lender Dashboard",
       "ContactDashboard": "Contact Dashboard",
       "menu": "menu",

@@ -439,8 +439,8 @@ export class RegistrationComponent implements OnInit {
         }
         if (form.value.Street == undefined || form.value.Street == null || form.value.Street.length == 0) {
             IfErrorFound = true;
-            numberOfErrorFound++;
-            errorMessage = errorMessage + " Street,";
+            //numberOfErrorFound++;
+            this._Message = this._Message + " Street,";
         }
         if (form.value.PostalCode == undefined || form.value.PostalCode == null || form.value.PostalCode.length == 0) {
             IfErrorFound = true;
