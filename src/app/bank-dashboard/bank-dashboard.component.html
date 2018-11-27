@@ -277,9 +277,9 @@
                                                     </div>
                                                     <div class="col-md-6 pr-1 in-float-lf">
                                                         <button type="button" class="btn w-100 w-100-px">
-                                                            <a (click)="IncreaseRateOfInterest(rate,3)">+</a>
+                                                            <a (click)="IncreaseRateOfInterest(rate,3)" class="valInc">+</a>
                                                             <span>/</span>
-                                                            <a (click)="DecreaseRateOfInterest(rate,3)">-</a>
+                                                            <a (click)="DecreaseRateOfInterest(rate,3)" class="valdec">-</a>
                                                         </button>
                                                     </div>
                                                 </div>
@@ -363,7 +363,7 @@
                                 </div>
                                 <div class="col-md-10"></div>
                                 <div class="col-md-2 pr-1">
-                                    <button type="button" class="btn w-100 w-100-px active" (click)="update(listrateofinterstofbank)">Update</button>
+                                    <button type="button" class="btn w-100 w-100-px update-active update" (click)="update(listrateofinterstofbank)">Update</button>
                                 </div>
                             </div>
 
