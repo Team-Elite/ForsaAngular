@@ -254,14 +254,14 @@
 
 
                                                 <div class="col-md-1 pr-1">
-                                                    <button type="button" (dblclick)="EnableTextBox(rate,1)" class="btn w-100 w-100-px active">
+                                                    <button type="button" (click)="EnableTextBox(rate,1)" class="btn w-100 w-100-px active">
                                                         <input type="number"
                                                                [disabled]="!rate.IsDoubleTapped1" #RateOfMinValue="ngModel"
                                                                [(ngModel)]="rate.MinValue" name="RateOfMinValue" />
                                                     </button>
                                                 </div>
                                                 <div class="col-md-1 pr-1">
-                                                    <button type="button" (dblclick)="EnableTextBox(rate,2)" class="btn w-100 w-100-px active">
+                                                    <button type="button" (click)="EnableTextBox(rate,2)" class="btn w-100 w-100-px active">
                                                         <input type="number"
                                                                [disabled]="!rate.IsDoubleTapped2" #MaxValue="ngModel"
                                                                [(ngModel)]="rate.MaxValue" name="MaxValue" value="2" />
@@ -269,7 +269,7 @@
                                                 </div>
                                                 <div class="col-md-2 pr-1">
                                                     <div class="col-md-6 pr-1 in-float-lf">
-                                                        <button type="button" (dblclick)="EnableTextBox(rate,3)" class="btn w-100 w-100-px active">
+                                                        <button type="button" (click)="EnableTextBox(rate,3)" class="btn w-100 w-100-px active">
                                                             <input (blur)="CalculateBaseCurve(rate)" type="number"
                                                                    [disabled]="!rate.IsDoubleTapped3" #RateOfBaseCurave="ngModel"
                                                                    [(ngModel)]="rate.BaseCurve" name="RateOfBaseCurave" value="3" style="text-align:center;" />
@@ -285,7 +285,7 @@
                                                 </div>
                                                 <div class="col-md-2 pr-1">
                                                     <div class="col-md-4 pr-1 in-float-lf">
-                                                        <button type="button" (dblclick)="EnableTextBox(rate,4)" class="btn w-100 w-100-px active">
+                                                        <button type="button" (click)="EnableTextBox(rate,4)" class="btn w-100 w-100-px active">
                                                             <input (blur)="UpdateRateOfInterest(rate)" type="number"
                                                                    [disabled]="!rate.IsDoubleTapped4" #RateOfInterest="ngModel"
                                                                    [(ngModel)]="rate.RateOfInterest" name="RateOfInterest" />
@@ -310,7 +310,7 @@
                                                 </div>
                                                 <div class="col-md-2 pr-1">
                                                     <div class="col-md-4 pr-1  in-float-lf">
-                                                        <button type="button" (dblclick)="EnableTextBox(rate,5)" class="btn w-100 active">
+                                                        <button type="button" (click)="EnableTextBox(rate,5)" class="btn w-100 active">
                                                             <input (blur)="UpdateRateOfInterest(rate)" type="number"
                                                                    [disabled]="!rate.IsDoubleTapped5" #RateOfInterest2="ngModel"
                                                                    [(ngModel)]="rate.RateOfInterest2" name="RateOfInterest2" />
@@ -333,7 +333,7 @@
                                                 </div>
                                                 <div class="col-md-2 pr-1">
                                                     <div class="col-md-4 pr-1  in-float-lf">
-                                                        <button type="button" (dblclick)="EnableTextBox(rate,6)" class="btn w-100 active">
+                                                        <button type="button" (click)="EnableTextBox(rate,6)" class="btn w-100 active">
                                                             <input (blur)="UpdateRateOfInterest(rate)" type="number"
                                                                    [disabled]="!rate.IsDoubleTapped6" #RateOfInterest3="ngModel"
                                                                    [(ngModel)]="rate.RateOfInterest3" name="RateOfInterest3" />
