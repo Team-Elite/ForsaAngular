@@ -18,6 +18,7 @@ declare var $: any;
     styleUrls: ['./bank-dashboard.component.css']
 })
 export class BankDashboardComponent implements OnInit {
+    bankRateOfinterst: any[];
     _MaturityList: any;
     IfShowBankDashBoard: boolean;
     IsPublished: boolean = false;
@@ -424,7 +425,21 @@ export class BankDashboardComponent implements OnInit {
             })
         }
     }
+    update(ratedata) {
+        this.bankRateOfinterst = [];
+        for (let i = 0; i < ratedata.length; i++) {
+            let ratebankdetail = ratedata[i].listintersteRate
+            for (let j = 0; j < ratebankdetail.length; j++) {
+                this.bankRateOfinterst.push(ratebankdetail[j])
+            }
+        }
+        this.spinner.show();
+        this.bankDashboardService.UpdateRateOfInterest(this.bankRateOfinterst).subscribe(data => {
+            this.spinner.hide();
+        })
 
+        console.log(this.bankRateOfinterst);
+    }
 
     IfLastGroupLeftThenDisablingControl() {
         var numberOfGroupsChecked = 0;
@@ -547,7 +562,7 @@ export class BankDashboardComponent implements OnInit {
     async GetLenderMaturityList(IfHistoryReportRequested: boolean) {
        
         this.spinner.show();
-        let maturityList = await this.bankDashboardService.GetBorrowerMaturityList(IfHistoryReportRequested);
+        let maturityList = await this.bankDashboardService.GetBorrowerMaturityList(IfHistoryReportRequested, this.bankDashboardService.loggedInUser.UserId);
          this._MaturityList = maturityList;
          this.spinner.hide();
     }

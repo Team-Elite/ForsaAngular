@@ -19367,8 +19367,8 @@
                         <!--<td>{{bank.BorrowerId}}</td>-->
                         <td>{{bank.Borrower}}</td>
                         <td>{{bank.Amount}}</td>
-                        <td>{{bank.StartDate}}</td>
-                        <td>{{bank.EndDate}}</td>
+                        <td>{{bank.StartDate|date:'MM-dd-yyyy'}}</td>
+                        <td>{{bank.EndDate|date:'MM-dd-yyyy'}}</td>
                         <td>{{bank.NoOfDays}}</td>
                         <td>{{bank.InterestConvention}}</td>
                         <td>{{bank.Payments}}</td>
@@ -19376,7 +19376,7 @@
                         <td>{{bank.RequestCreatedBy}}</td>-->
                         <td>{{bank.RateOfInterestOfferred}}</td>
 
-                        <!--<td>{{bank.OfferredOn|date:mm/dd/yy}}</td>
+                        <!--<td>{{bank.OfferredOn|date:'medium'}}</td>
                         <td>
                             IsAccepted:{{bank.IsAccepted}}
                             <ng-container [ngSwitch]="true">

@@ -125,10 +125,12 @@
                             </a>
                             <div class="cockpit-dropdown-div">
                                 <button type="button" class="dropcockpit" id="eigene" data-toggle="modal" data-target=".bd-example-modal-lg-eigene-Stammdatenverwaltung">{{'Borrower.BankDashboard.Ownmasterdatamanagement'|translate}}</button>
-                                <button type="button" class="dropcockpit" (click)="ShowScreen('Mreport');" id="Ansehen">{{'Borrower.BankDashboard.Viewanddownloadyourownduelist'|translate}}</button>
-                                <button type="button" class="dropcockpit" (click)="ShowScreen('HMreport');" id="Ansehenund">{{'Borrower.BankDashboard.Viewanddownloadinthepastdonebusiness'|translate}}</button>
+                                <!--<button type="button" class="dropcockpit" (click)="ShowScreen('Mreport');" id="Ansehen">{{'Borrower.BankDashboard.Viewanddownloadyourownduelist'|translate}}</button>
+            <button type="button" class="dropcockpit" (click)="ShowScreen('HMreport');" id="Ansehenund">{{'Borrower.BankDashboard.Viewanddownloadinthepastdonebusiness'|translate}}</button>-->
+                                <button type="button" class="dropcockpit" routerLink="/maturityList" id="Ansehen">{{'Borrower.BankDashboard.Viewanddownloadyourownduelist'|translate}}</button>
+                                <button type="button" class="dropcockpit" routerLink="/historyMaturityList" id="Ansehenund">{{'Borrower.BankDashboard.Viewanddownloadinthepastdonebusiness'|translate}}</button>
                                 <!--<button type="button" class="dropcockpit" >Maturity List</button>
-                                <button type="button" class="dropcockpit" > History Maturity List</button>-->
+            <button type="button" class="dropcockpit" > History Maturity List</button>-->
 
                             </div>
 
@@ -176,6 +178,22 @@
                                 </span>
                             </a>
                         </li>
+                        <li>
+                            <a routerLink="/maturityList">
+                                {{'Borrower.BankDashboard.MaturityList'|translate}}
+                                <span class="align-middle input-group-icon ">
+                                    <img alt="Insimatch Logo" src="../assets/images/coountryparty-icon.png">
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a routerLink="/historyMaturityList">
+                                {{'Borrower.BankDashboard.HistoryMaturityList'|translate}}
+                                <span class="align-middle input-group-icon ">
+                                    <img alt="Insimatch Logo" src="../assets/images/coountryparty-icon.png">
+                                </span>
+                            </a>
+                        </li>
 
 
 
@@ -185,13 +203,13 @@
             <!-- Aside Ends Here-->
 
             <div class="container-fluid application-panel" id="main-panel">
-                <div class="row application-page">
-                    <div class="col-lg-12 col-md-12">
-                        <div class="dashboard-right application-sec">
+                <div class="row application-page" style="overflow-x:scroll;">
+                    <div class="col-lg-12 col-md-12" style="width:1500px;">
+                        <div class="dashboard-right application-sec" style="width:1500px;">
 
                             <div *ngIf="IfShowBankDashBoard" id="Rate-Panel">
                                 <div class="no-gutters row">
-                                    <div class="col-md-1 pr-1 text-centered">
+                                    <div class="col-md-2 pr-1 text-centered">
                                         <span class="modal-header">running time</span>
                                     </div>
                                     <div class="col-md-1 pr-1 text-centered">
@@ -200,7 +218,7 @@
                                     <div class="col-md-1 pr-1 text-centered">
                                         <span class="modal-header">Max. Amount</span>
                                     </div>
-                                    <div class="col-md-1 pr-1 text-centered">
+                                    <div class="col-md-2 pr-1 text-centered">
                                         <span class="modal-header">Base curve</span>
                                     </div>
                                     <div class="col-md-2 pr-1 text-centered">
@@ -229,7 +247,7 @@
                                     <div *ngIf="flagArray[i] == true" style="width:100%;">
                                         <div *ngFor="let rate of rate.listintersteRate">
                                             <div class="col-md-12 pr-1 row" *ngIf="rate.TimePeriod!=='(T/N)'">
-                                                <div class="col-md-1 pr-1">
+                                                <div class="col-md-2 pr-1">
                                                     <button type="button" class="btn w-100 ">{{rate.TimePeriod}}</button>
                                                 </div>
 
@@ -248,12 +266,12 @@
                                                                [(ngModel)]="rate.MaxValue" name="MaxValue" value="2" />
                                                     </button>
                                                 </div>
-                                                <div class="col-md-1 pr-1">
+                                                <div class="col-md-2 pr-1">
                                                     <div class="col-md-6 pr-1 in-float-lf">
                                                         <button type="button" (dblclick)="EnableTextBox(rate,3)" class="btn w-100 w-100-px active">
                                                             <input (blur)="CalculateBaseCurve(rate)" type="number"
                                                                    [disabled]="!rate.IsDoubleTapped3" #RateOfBaseCurave="ngModel"
-                                                                   [(ngModel)]="rate.BaseCurve" name="RateOfBaseCurave" value="3" />
+                                                                   [(ngModel)]="rate.BaseCurve" name="RateOfBaseCurave" value="3" style="text-align:center;" />
                                                         </button>
                                                     </div>
                                                     <div class="col-md-6 pr-1 in-float-lf">
@@ -264,15 +282,15 @@
                                                         </button>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-3 pr-1">
-                                                    <div class="col-md-5 pr-1 in-float-lf">
+                                                <div class="col-md-2 pr-1">
+                                                    <div class="col-md-4 pr-1 in-float-lf">
                                                         <button type="button" (dblclick)="EnableTextBox(rate,4)" class="btn w-100 w-100-px active">
                                                             <input (blur)="UpdateRateOfInterest(rate)" type="number"
                                                                    [disabled]="!rate.IsDoubleTapped4" #RateOfInterest="ngModel"
                                                                    [(ngModel)]="rate.RateOfInterest" name="RateOfInterest" />
                                                         </button>
                                                     </div>
-                                                    <div class="col-md-3 pr-1 in-float-lf">
+                                                    <div class="col-md-4 pr-1 in-float-lf">
                                                         <button type="button" class="btn w-100 w-100-px">
                                                             <a (click)="IncreaseRateOfInterest(rate,4)">+</a>
                                                             <span>/</span>
@@ -290,7 +308,7 @@
 
                                                 </div>
                                                 <div class="col-md-2 pr-1">
-                                                    <div class="col-md-5 pr-1  in-float-lf">
+                                                    <div class="col-md-4 pr-1  in-float-lf">
                                                         <button type="button" (dblclick)="EnableTextBox(rate,5)" class="btn w-100 active">
                                                             <input (blur)="UpdateRateOfInterest(rate)" type="number"
                                                                    [disabled]="!rate.IsDoubleTapped5" #RateOfInterest2="ngModel"
@@ -298,7 +316,7 @@
                                                         </button>
 
                                                     </div>
-                                                    <div class="col-md-3 pr-1  in-float-lf">
+                                                    <div class="col-md-4 pr-1  in-float-lf">
                                                         <button type="button" class="btn w-100">
                                                             <a (click)="IncreaseRateOfInterest(rate,5)">+</a>
                                                             <span>/</span>
@@ -312,8 +330,8 @@
                                                         </button>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-3 pr-1">
-                                                    <div class="col-md-5 pr-1  in-float-lf">
+                                                <div class="col-md-2 pr-1">
+                                                    <div class="col-md-4 pr-1  in-float-lf">
                                                         <button type="button" (dblclick)="EnableTextBox(rate,6)" class="btn w-100 active">
                                                             <input (blur)="UpdateRateOfInterest(rate)" type="number"
                                                                    [disabled]="!rate.IsDoubleTapped6" #RateOfInterest3="ngModel"
@@ -321,7 +339,7 @@
                                                         </button>
 
                                                     </div>
-                                                    <div class="col-md-3 pr-1  in-float-lf">
+                                                    <div class="col-md-4 pr-1  in-float-lf">
                                                         <button type="button" class="btn w-100">
                                                             <a (click)="IncreaseRateOfInterest(rate,6)">+</a>
                                                             <span>/</span>
@@ -344,80 +362,10 @@
                                 </div>
                                 <div class="col-md-10"></div>
                                 <div class="col-md-2 pr-1">
-                                    <button type="button" class="btn w-100 w-100-px active">Update</button>
+                                    <button type="button" class="btn w-100 w-100-px active" (click)="update(listrateofinterstofbank)">Update</button>
                                 </div>
                             </div>
 
-
-                            <!-- Maturity List -->
-                            <div *ngIf="!IfShowBankDashBoard" id="Mautrity-Panel">
-
-                                <div class="clearfix"></div>
-                                <div class="row dashboard-price-list">
-                                    <div class="col-lg-12">
-                                        <button (click)="exportAs('pdf')" class="btn btn-info btn-lg common-bt-1">Export To Pdf</button>
-
-                                        <button (click)="exportAs('xlsx')" class="btn btn-info btn-lg common-bt-1">Export to Excel</button>
-
-                                        <table class="table table-bordered table-responsive" id="mytable">
-                                            <tbody>
-                                                <tr>
-
-                                                    <th style="cursor:pointer;">Ticket No</th>
-                                                    <!--<th style="cursor:pointer;">LenderId</th>-->
-                                                    <th style="cursor:pointer;">Lender</th>
-                                                    <!--<th style="cursor:pointer;">BorrowerId</th>-->
-                                                    <th style="cursor:pointer;">Borrower</th>
-                                                    <th style="cursor:pointer;">Amount</th>
-                                                    <th style="cursor:pointer;">Start Date</th>
-                                                    <th style="cursor:pointer;">End Date</th>
-                                                    <th style="cursor:pointer;">No Of Days</th>
-                                                    <th style="cursor:pointer;">Interest Convention</th>
-                                                    <th style="cursor:pointer;">Payments</th>
-                                                    <!--<th style="cursor:pointer;">IsRequestAccepted</th>-->
-                                                    <!--<th style="cursor:pointer;">RequestCreatedBy</th>-->
-                                                    <th style="cursor:pointer;">Rate Of Interest Offerred</th>
-                                                    <!--<th style="cursor:pointer;">Offerred Date</th>
-                            <th style="cursor:pointer;">Status</th>-->
-
-                                                </tr>
-                                                <tr *ngFor="let bank of _MaturityList">
-                                                    <td>{{bank.TicketNo}}</td>
-                                                    <!--<td>{{bank.LenderId}}</td>-->
-                                                    <td>{{bank.Lender}}</td>
-                                                    <!--<td>{{bank.BorrowerId}}</td>-->
-                                                    <td>{{bank.Borrower}}</td>
-                                                    <td>{{bank.Amount}}</td>
-                                                    <td>{{bank.StartDate}}</td>
-                                                    <td>{{bank.EndDate}}</td>
-                                                    <td>{{bank.NoOfDays}}</td>
-                                                    <td>{{bank.InterestConvention}}</td>
-                                                    <td>{{bank.Payments}}</td>
-                                                    <!--<td>{{bank.IsRequestAccepted}}</td>
-                            <td>{{bank.RequestCreatedBy}}</td>-->
-                                                    <td>{{bank.RateOfInterestOfferred}}</td>
-
-                                                    <!--<td>{{bank.OfferredOn|date:mm/dd/yy}}</td>
-                            <td>
-                                IsAccepted:{{bank.IsAccepted}}
-                                <ng-container [ngSwitch]="true">
-                                    <div *ngSwitchCase="bank.IsAccepted === 1">Accepted</div>
-                                    <div *ngSwitchCase="bank.IsReject === 1">Reject</div>
-                                    <div *ngSwitchCase="bank.IsMessageSentToForsa === 1">Sent to Forsa<br /> Message: {{bank.MessageForForsa}}  </div>
-                                    <div *ngSwitchDefault>Processed</div>
-                                </ng-container>
-                                IsReject:{{bank.IsRejected}}
-                                {{bank.MessageForForsa}}
-
-                            </td>-->
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-
-
-                            </div>
                             <!-- Maturity End -->
 
 
@@ -578,15 +526,15 @@
 
                                         <div class="col-md-6">
                                             <label>{{'Borrower.BankDashboard.FirstName'|translate}}</label>
-                                            <input #FirstName="ngModel" [disabled]="1==1" [(ngModel)]="copyLoggedInUser.FirstName" name="FirstName" type="text" placeholder="" class="form-control" id="first_name">
+                                            <input #FirstName="ngModel" [(ngModel)]="copyLoggedInUser.FirstName" name="FirstName" type="text" placeholder="" class="form-control" id="first_name">
                                         </div>
                                         <div class="col-md-6">
                                             <label>{{'Borrower.BankDashboard.SurName'|translate}}</label>
-                                            <input [disabled]="1==1" #SurName="ngModel" [(ngModel)]="copyLoggedInUser.SurName" name="SurName" type="text" placeholder="" class="form-control" id="last_name">
+                                            <input #SurName="ngModel" [(ngModel)]="copyLoggedInUser.SurName" name="SurName" type="text" placeholder="" class="form-control" id="last_name">
                                         </div>
                                         <div class="col-md-12">
                                             <label>{{'Borrower.BankDashboard.CompanyName'|translate}}</label>
-                                            <input [disabled]="1==1" #NameOfCompany="ngModel" [(ngModel)]="copyLoggedInUser.NameOfCompany" name="NameOfCompany" type="text" placeholder="" class="form-control" id="company_name">
+                                            <input #NameOfCompany="ngModel" [(ngModel)]="copyLoggedInUser.NameOfCompany" name="NameOfCompany" type="text" placeholder="" class="form-control" id="company_name">
                                         </div>
 
 

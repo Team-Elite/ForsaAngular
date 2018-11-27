@@ -29,12 +29,14 @@ export class BankDashboardService {
     BorrowerMaturityList: any;
     constructor(private http: Http, public authenticateServiceService: AuthenticateServiceService) { }
 
-    async GetBorrowerMaturityList(history:boolean) {
-        var webtoken = { data: this.tokenService.jwtencrypt({ userId: this.userId, History: history }) };
-        return await this.http.post(this.authenticateServiceService.baseURL + '/api/BankDashBoard/GetMaturityList', webtoken, this.requestOptions).map((data: Response) => {
+    async GetBorrowerMaturityList(history: boolean, userId) {
+        var webtoken = { data: this.tokenService.jwtencrypt({ userId: userId, History: history }) };
+        var result= await this.http.post(this.authenticateServiceService.baseURL + '/api/BankDashBoard/GetMaturityList', webtoken, this.requestOptions).map((data: Response) => {
             return data.json();
-        }).toPromise().then(token => this.BorrowerMaturityList = JSON.parse(this.tokenService.jwtdecrypt(token.data).unique_name));
-
+        }).toPromise().then(token => {  return this.tokenService.jwtdecrypt(token.data)});
+        debugger;
+        result = JSON.parse(result.unique_name);
+        return result;
     }
 
 
@@ -46,7 +48,7 @@ export class BankDashboardService {
 
     }
 
-     UpdateRateOfInterest(rateModel: RateOfInterestOfBankModel) {
+     UpdateRateOfInterest(rateModel: RateOfInterestOfBankModel[]) {
         // var body = JSON.stringify(rateModel);
         //rateModel.UserId=this.userId;
         var webtoken = { data: this.tokenService.jwtencrypt( rateModel) };

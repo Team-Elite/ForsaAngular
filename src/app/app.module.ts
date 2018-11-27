@@ -40,6 +40,7 @@ import {HistoryMaturityListLenderComponent} from './lender-dashboard/history-mat
 import { UserprofileComponent } from './userprofile/userprofile.component';
 import { FileUploaderModule } from "ng4-file-upload";
 import { SettingPageComponent } from './lender-dashboard/setting-page/setting-page.component';
+import { MaturityListComponent } from './maturity-list/maturity-list.component';
 //import { ExportAsModule } from 'ngx-export-as';
 //import { JwtHelperService} from '@auth0/angular-jwt';
 
@@ -59,7 +60,9 @@ const appRoutes: Routes = [{ path: 'login', component: LoginComponent },
 //  {path:'registration/:uId',component:RegistrationComponent},
 { path: 'registration/:uId/:uRole', component: RegistrationComponent },
 { path: '', redirectTo: 'login', pathMatch: 'full' },
-{ path: 'bankDashBoard', component: BankDashboardComponent },
+    { path: 'bankDashBoard', component: BankDashboardComponent },
+    { path: 'maturityList', component: MaturityListComponent },
+    { path: 'historyMaturityList', component: MaturityListComponent },
 { path: 'KontactDashBoard', component: KontactDashboardComponent },
 { path: 'test', component: TestComponent },
 {
@@ -69,7 +72,8 @@ const appRoutes: Routes = [{ path: 'login', component: LoginComponent },
     { path: 'AllBanks', component: AllBanksComponent },
         { path: 'AllBanksK', component: KontactDashboardLComponent },
         { path: 'setting', component: SettingPageComponent },
-        { path: 'Maturitylist', component: MaturitylistComponent }
+        { path: 'Maturitylist', component: MaturitylistComponent },
+        { path: 'historyMaturitylist', component: MaturitylistComponent }
     ]
 }
     //  {path:'BestPriceView', component:BestPriceViewComponent}
@@ -95,7 +99,8 @@ const appRoutes: Routes = [{ path: 'login', component: LoginComponent },
         UserprofileComponent,
         MaturityListLenderComponent,
         HistoryMaturityListLenderComponent,
-        SettingPageComponent
+        SettingPageComponent,
+        MaturityListComponent
     ],
     imports: [
         BrowserModule,
