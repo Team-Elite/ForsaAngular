@@ -27,7 +27,11 @@
     "ForgottenPasswordLabel": "Forgotten your password?",
     "DontHaveAccount": "Don't have an account? ●",
     "RegisterHere": "Register Here",
-    "LoginEnter": "Enter"
+    "LoginEnter": "Enter",
+    "BorrowerText": "Borrower",
+    "LenderText": "Lender",
+    "KontactText": "Contact"
+
   },
   "Forget": {
     "ForgotPassword": "Forgot Password",
@@ -110,6 +114,7 @@
   },
   "Borrower": {
     "BankDashboard": {
+      "BankDashboard": "Borrower",
       "menutext": "menu",
       "Account": "Account",
       "expand_more": "expand_more",

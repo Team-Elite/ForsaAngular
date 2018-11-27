@@ -163,9 +163,7 @@ this.spinner.hide();
     async GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected() {
 
         let rates = await this.viewAllPriceService.GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected();
-        console.log(rates);
         if (rates != null || rates != undefined) {
-            console.log('cp => 1');
             rates.forEach(ele => {
                 ele.class1 = false;
                 ele.class2 = this.obj.class2;
@@ -188,10 +186,8 @@ this.spinner.hide();
                 ele.class19 = this.obj.class19;
                 ele.class20 = this.obj.class20;
             });
-            console.log('cp => 2');
             this.viewAllPriceService.listAllBanks = rates;
-            this.ratesOfIntrest = this.viewAllPriceService.listAllBanks
-            console.log(this.ratesOfIntrest);
+            this.ratesOfIntrest = this.viewAllPriceService.listAllBanks;
 
             this.GetHighestRatesViewAllPrice();
 
@@ -341,9 +337,7 @@ this.spinner.hide();
         this.spinner.show();
         let rates = await this.viewAllPriceService.GetAllBanksWithInterestRateHorizontalyOrderByColumnName(columnName);
         console.log(rates);
-        this.viewAllPriceService.listAllBanks = rates;
-        console.log(this.viewAllPriceService.listAllBanks);
-        this.viewAllPriceService.listAllBanks.forEach(ele => {
+        rates.forEach(ele => {
             ele.class1 = false;
             ele.class2 = this.obj.class2;
             ele.class3 = this.obj.class3;
@@ -365,6 +359,8 @@ this.spinner.hide();
             ele.class19 = this.obj.class19;
             ele.class20 = this.obj.class20;
         });
+        this.viewAllPriceService.listAllBanks = rates;
+        this.ratesOfIntrest = this.viewAllPriceService.listAllBanks;
         this.GetHighestRatesViewAllPrice();
         //this.SetHighestRatesTimeInterval();
 
