@@ -70,30 +70,7 @@ export class ViewAllPriceComponent implements OnInit {
         { class19: true },
         { class20: true }
     ];
-    tempList = [
-        { id: 'check1', active: true, class1: true },
-        { id: 'check2', active: true, class2: true },
-        { id: 'check3', active: true, class3: true },
-        { id: 'check4', active: true, class4: true },
-        { id: 'check5', active: true, class5: true },
-        { id: 'check6', active: true, class6: true },
-        { id: 'check7', active: true, class7: true },
-        { id: 'check8', active: true, class8: true },
-        { id: 'check9', active: true, class9: true },
-        { id: 'check10', active: true, class10: true },
-        { id: 'check11', active: true, class11: true },
-        { id: 'check12', active: true, class12: true },
-        { id: 'check13', active: true, class13: true },
-        { id: 'check14', active: true, class14: true },
-        { id: 'check15', active: true, class15: true },
-        { id: 'check16', active: true, class16: true },
-        { id: 'check17', active: true, class17: true },
-        { id: 'check18', active: true, class18: true },
-        { id: 'check19', active: true, class19: true },
-        { id: 'check20', active: true, class20: true },
-        { id: 'check21', active: true, class21: true }
-    ];
- 
+   
     path: string;
     
 
@@ -218,11 +195,11 @@ this.spinner.hide();
             this.GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected();
         }, 5000);
     }
-    SetHighestRatesTimeInterval() {
-        this.timer1 = setInterval(() => {
-            this.GetHighestRatesViewAllPrice();
-        }, 5000);
-    }
+    //SetHighestRatesTimeInterval() {
+    //    this.timer1 = setInterval(() => {
+    //        this.GetHighestRatesViewAllPrice();
+    //    }, 5000);
+    //}
 
     GetHighestRatesViewAllPrice() {
 
@@ -391,9 +368,6 @@ this.spinner.hide();
         if (index == 0) {
             if (val) {
                 this.allChecked = true;
-                this.tempList.forEach(ele => {
-                    ele.active = true;
-                });
                 this.viewAllPriceService.listAllBanks.forEach((ele, i) => {
                     ele.class1 = true;
                     ele.class2 = true;
@@ -439,9 +413,7 @@ this.spinner.hide();
                     class20: true
                 };
             } else {
-                this.tempList.forEach(ele => {
-                    ele.active = false;
-                });
+               
                 this.viewAllPriceService.listAllBanks.forEach((ele, i) => {
                     ele.class1 = false;
                     ele.class2 = false;
@@ -489,8 +461,7 @@ this.spinner.hide();
             }
         } else {
             if (!val) {
-                this.tempList[0].active = false;
-                this.tempList[index].active = false;
+               
                 this.allChecked = false;
                 this.viewAllPriceService.listAllBanks.forEach((ele, i) => {
                     switch (index) {
@@ -498,119 +469,106 @@ this.spinner.hide();
                         case 1:
                             ele.class1 = false;
                             this.obj.class1 = false;
-                            this.tempList[index].class1 = false;
+                          
                             break;
                         case 2:
                             ele.class2 = false;
                             this.obj.class2 = false;
-                            this.tempList[index].class2 = false;
+                      
                             break;
                         case 3:
                             ele.class3 = false;
                             this.obj.class3 = false;
-                            this.tempList[index].class3 = false;
+                         
                             break;
                         case 4:
                             ele.class4 = false;
                             this.obj.class4 = false;
-                            this.tempList[index].class4 = false;
+                      
                             break;
                         case 5:
                             ele.class5 = false;
                             this.obj.class5 = false;
-                            this.tempList[index].class5 = false;
+                        
                             break;
                         case 6:
                             ele.class6 = false;
                             this.obj.class6 = false;
-                            this.tempList[index].class6 = false;
+                        
                             break;
                         case 7:
                             ele.class7 = false;
                             this.obj.class7 = false;
-                            this.tempList[index].class7 = false;
+                        
                             break;
                         case 8:
                             ele.class8 = false;
                             this.obj.class8 = false;
-                            this.tempList[index].class8 = false;
+                          
                             break;
                         case 9:
                             ele.class9 = false;
                             this.obj.class9 = false;
-                            this.tempList[index].class9 = false;
+                           
                             break;
                         case 10:
                             ele.class10 = false;
                             this.obj.class10 = false;
-                            this.tempList[index].class10 = false;
+                           
                             break;
                         case 11:
                             ele.class11 = false;
                             this.obj.class11 = false;
-                            this.tempList[index].class11 = false;
+                        
                             break;
                         case 12:
                             ele.class12 = false;
                             this.obj.class12 = false;
-                            this.tempList[index].class12 = false;
+                          
                             break;
                         case 13:
                             ele.class13 = false;
                             this.obj.class13 = false;
-                            this.tempList[index].class13 = false;
+                           
                             break;
                         case 14:
                             ele.class14 = false;
                             this.obj.class14 = false;
-                            this.tempList[index].class14 = false;
+                        
                             break;
                         case 15:
                             ele.class15 = false;
                             this.obj.class15 = false;
-                            this.tempList[index].class15 = false;
+                        
                             break;
                         case 16:
                             ele.class16 = false;
                             this.obj.class16 = false;
-                            this.tempList[index].class16 = false;
+                          
                             break;
                         case 17:
                             ele.class17 = false;
                             this.obj.class17 = false;
-                            this.tempList[index].class17 = false;
+                          
                             break;
                         case 18:
                             ele.class18 = false;
                             this.obj.class18 = false;
-                            this.tempList[index].class18 = false;
+                        
                             break;
                         case 19:
                             ele.class19 = false;
                             this.obj.class19 = false;
-                            this.tempList[index].class19 = false;
+                          
                             break;
                         case 20:
                             ele.class20 = false;
                             this.obj.class20 = false;
-                            this.tempList[index].class20 = false;
+                          
                     }
                 });
             } else {
-                this.temp_array = [];
-                this.tempList.forEach(ele => {
-                    if (ele.id != 'check1' && ele.active === false) {
-                        const differ = _.find(this.temp_array, { 'id': ele.id });
-                        if (!differ) this.temp_array.push(ele);
-                    }
-                });
-                if (this.temp_array.length < 2) {
-                    this.tempList[index].active = true;
-                    this.tempList[0].active = true;
-                    this.temp_array = [];
-                } else {
-                    this.tempList[index].active = true;
-                }
+               
             }
         }
 
