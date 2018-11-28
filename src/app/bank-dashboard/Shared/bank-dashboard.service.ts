@@ -50,9 +50,10 @@ export class BankDashboardService {
 
      UpdateRateOfInterest(rateModel: RateOfInterestOfBankModel[]) {
         // var body = JSON.stringify(rateModel);
-        //rateModel.UserId=this.userId;
-        var webtoken = { data: this.tokenService.jwtencrypt( rateModel) };
-        return this.http.post(this.authenticateServiceService.baseURL + '/api/BankDashBoard/UpdateRateOfInterestOfBank', webtoken, this.requestOptions).map(x => x.json());
+         //rateModel.UserId=this.userId;
+         var webtoken = { data: JSON.stringify(rateModel) };// this.tokenService.jwtencrypt(rateModel) };
+         return this.http.post(this.authenticateServiceService.baseURL + '/api/BankDashBoard/UpdateRateOfInterestOfBank', webtoken, this.requestOptions).map(x => x.json());
+       
     }
 
     PublishAndUnPublish(IsPublished: boolean) {

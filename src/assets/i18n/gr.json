@@ -27,7 +27,10 @@
     "ForgottenPasswordLabel": "Passwort vergessen?",
     "DontHaveAccount": "Hast du kein Konto? ●",
     "RegisterHere": "Hier registrieren",
-    "LoginEnter": "Eingeben"
+    "LoginEnter": "Eingeben",
+    "BorrowerText": "Kreditnehmer",
+    "LenderText": "Darlehensgeber",
+    "KontactText": "Kontact"
   },
   "Forget": {
     "ForgotPassword": "Passwort vergessen",
@@ -188,6 +191,7 @@
   },
   "Lender": {
     "DashBoard": {
+      "LogicRoom":"Logikraum",
       "LenderDashboard": "Kreditgeber Dashboard",
       "ContactDashboard": "Kontact Dashboard",
       "menu": "Speisekarte",

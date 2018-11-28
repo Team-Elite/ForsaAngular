@@ -667,3 +667,12 @@ input:focus~.highlight {
 .modal-footer {
     background-color: #72af09 !important;
 }
+.btn-secondary{ background-color:red !important;}
+.update-active {
+    background: #8636d7 !important;
+    border-bottom: 1px solid #9f3fff !important;
+}
+.icon-set-0 {
+    width: 20px;
+    text-indent: -121px;
+}

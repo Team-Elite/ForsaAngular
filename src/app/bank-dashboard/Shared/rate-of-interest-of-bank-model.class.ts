@@ -6,8 +6,9 @@ export class RateOfInterestOfBankModel {
     RateOfInterest: number;
     DateCreated :Date;
     DateModified :Date;
-    ModifiedBy :number;
-    GroupIds :string;
+    ModifiedBy: number;
+
+   // GroupIds :string;
     TimePeriod:string;
     IsDoubleTapped:boolean;
 }

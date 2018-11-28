@@ -147,17 +147,17 @@ export class AuthenticateServiceService {
         this.GetUserSession();
         return JSON.parse(this.Userdata.unique_name)[0];
     }
-    //  GetUserData() {
-    //    //var data = this.tokenService.jwtdecrypt(this.Usertoken);
-    //    var userId = this.GetUserId();
-       
-    //    var webtoken = { data: this.tokenService.jwtencrypt({ userId: userId }) };
-    //    var data = this.http.put(this.baseURL + '/api/user/GetUserDetailByUserId', webtoken, this.requestOptions).map((data: Response) => {
-    //        return data.json();
-    //      }).toPromise().then(token => { return JSON.parse(this.tokenService.jwtdecrypt(token.data).unique_name) });
-    //      ;
-    //      return data;
-      
-    //}
+    async GetUserById(userId) {
+        //var data = this.tokenService.jwtdecrypt(this.Usertoken);
+
+
+        var webtoken = { data: this.tokenService.jwtencrypt({ userId: userId }) };
+        var data = await this.http.put(this.baseURL + '/api/user/GetUserDetailByUserId', webtoken, this.requestOptions).map((data: Response) => {
+            return data.json();
+        }).toPromise().then(token => { return JSON.parse(this.tokenService.jwtdecrypt(token.data).unique_name) });
+        ;
+        return data;
+
+    }
     
 }

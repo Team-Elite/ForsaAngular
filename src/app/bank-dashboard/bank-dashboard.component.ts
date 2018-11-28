@@ -244,68 +244,142 @@ export class BankDashboardComponent implements OnInit {
         //    this.spinner.hide();
         //})
         this.CalculateBaseCurve(rate)
+        
     }
     CalculateBaseCurve(rate) {
-       
-        rate.FractionRate = (parseFloat(rate.RateOfInterest) + parseFloat(rate.BaseCurve)).toFixed(2);
-        rate.FractionRate2 = (parseFloat(rate.RateOfInterest2) + parseFloat(rate.BaseCurve)).toFixed(2);;
-        rate.FractionRate3 = (parseFloat(rate.RateOfInterest3) + parseFloat(rate.BaseCurve)).toFixed(2);;
+        debugger;
+        rate.RateOfInterest = ((rate.FractionRate/100) + parseFloat(rate.BaseCurve)).toFixed(2);
+        rate.RateOfInterest2 = ((rate.FractionRate2/100) + parseFloat(rate.BaseCurve)).toFixed(2);;
+        rate.RateOfInterest3 = ((rate.FractionRate3/100) + parseFloat(rate.BaseCurve)).toFixed(2);;
         // this.UpdateRateOfInterest(rate);
+        $(".update").addClass("btn-secondary");
+        $(".update").removeClass("update-active");
     }
+    
+    //IncreaseRateOfInterest(rate, type: number) {
+    //    ;
+    //    if (type == 3) {
+    //        if (rate.BaseCurve == undefined || rate.BaseCurve == null || rate.BaseCurve.length == 0) {
+    //            this.toastr.error("Rate must be entered.", "Dashboard");
+    //            return;
+    //        }
 
+    //        if (rate.BaseCurve >= 9999.99) {
+    //            this.toastr.error("Interest rate can not be greater than 9999.99", "Dashboard");
+    //            return;
+    //        }
+          
+    //        rate.BaseCurve = parseFloat(rate.BaseCurve) + .01;
+    //        rate.BaseCurve = parseFloat(rate.BaseCurve).toFixed(2);
+    //    }
+    //    else if (type == 4) {
+    //        if (rate.RateOfInterest == undefined || rate.RateOfInterest == null || rate.RateOfInterest.length == 0) {
+    //            this.toastr.error("Rate must be entered.", "Dashboard");
+    //            return;
+    //        }
+
+    //        if (rate.RateOfInterest >= 9999.99) {
+    //            this.toastr.error("Interest rate can not be greater than 9999.99", "Dashboard");
+    //            return;
+    //        }
+    //        rate.FractionRate = parseInt(rate.FractionRate);
+    //        rate.RateOfInterest = parseFloat(rate.RateOfInterest) + .01;
+    //        rate.RateOfInterest = parseFloat(rate.RateOfInterest).toFixed(2);
+    //    }
+    //    else if (type == 5) {
+    //        if (rate.RateOfInterest2 == undefined || rate.RateOfInterest2 == null || rate.RateOfInterest2.length == 0) {
+    //            this.toastr.error("Rate2 must be entered.", "Dashboard");
+    //            return;
+    //        }
+
+    //        if (rate.RateOfInterest2 >= 9999.99) {
+    //            this.toastr.error("Interest rate2 can not be greater than 9999.99", "Dashboard");
+    //            return;
+    //        }
+    //        rate.FractionRate2 = parseInt(rate.FractionRate2);
+    //        rate.RateOfInterest2 = parseFloat(rate.RateOfInterest2) + .01;
+    //        rate.RateOfInterest2 = parseFloat(rate.RateOfInterest2).toFixed(2);
+    //    }
+    //    else if (type == 6) {
+    //        if (rate.RateOfInterest3 == undefined || rate.RateOfInterest3 == null || rate.RateOfInterest3.length == 0) {
+    //            this.toastr.error("Rate3 must be entered.", "Dashboard");
+    //            return;
+    //        }
+
+    //        if (rate.RateOfInterest3 >= 9999.99) {
+    //            this.toastr.error("Interest rate3 can not be greater than 9999.99", "Dashboard");
+    //            return;
+    //        }
+    //        rate.FractionRate3 = parseInt(rate.FractionRate3);
+    //        rate.RateOfInterest3 = parseFloat(rate.RateOfInterest3) + .01;
+    //        rate.RateOfInterest3 = parseFloat(rate.RateOfInterest3).toFixed(2);
+    //    }
+
+    //    rate.ModifiedBy = this.bankDashboardService.userId;
+    //    //this.spinner.show();
+    //    //this.bankDashboardService.UpdateRateOfInterest(rate).subscribe(data => {
+    //    //    this.spinner.hide();
+    //    //})
+    //   this.CalculateBaseCurve(rate)
+    //}
     IncreaseRateOfInterest(rate, type: number) {
-        ;
+        debugger;
         if (type == 3) {
             if (rate.BaseCurve == undefined || rate.BaseCurve == null || rate.BaseCurve.length == 0) {
                 this.toastr.error("Rate must be entered.", "Dashboard");
                 return;
             }
 
-            if (rate.BaseCurve >= 9999.99) {
-                this.toastr.error("Interest rate can not be greater than 9999.99", "Dashboard");
+            if (rate.BaseCurve <= -9999.99) {
+                this.toastr.error("Interest rate can not be less than 9999.99", "Dashboard");
                 return;
             }
             rate.BaseCurve = parseFloat(rate.BaseCurve) + .01;
             rate.BaseCurve = parseFloat(rate.BaseCurve).toFixed(2);
         }
         else if (type == 4) {
-            if (rate.RateOfInterest == undefined || rate.RateOfInterest == null || rate.RateOfInterest.length == 0) {
-                this.toastr.error("Rate must be entered.", "Dashboard");
+            if (rate.FractionRate == undefined || rate.FractionRate == null || rate.FractionRate.length == 0) {
+                this.toastr.error("Fraction Rate must be entered.", "Dashboard");
                 return;
             }
-
-            if (rate.RateOfInterest >= 9999.99) {
-                this.toastr.error("Interest rate can not be greater than 9999.99", "Dashboard");
+            if (rate.FractionRate <= -9999.99) {
+                this.toastr.error("Fraction Rate rate can not be less than -9999.99", "Dashboard");
                 return;
             }
-            rate.RateOfInterest = parseFloat(rate.RateOfInterest) + .01;
-            rate.RateOfInterest = parseFloat(rate.RateOfInterest).toFixed(2);
+            rate.FractionRate = parseFloat(rate.FractionRate) + 1;
+            rate.FractionRate = parseInt(rate.FractionRate);
+            //rate.RateOfInterest = parseFloat(rate.RateOfInterest) - .01;
+            //rate.RateOfInterest = parseFloat(rate.RateOfInterest).toFixed(2);
         }
         else if (type == 5) {
-            if (rate.RateOfInterest2 == undefined || rate.RateOfInterest2 == null || rate.RateOfInterest2.length == 0) {
-                this.toastr.error("Rate2 must be entered.", "Dashboard");
+            if (rate.FractionRate2 == undefined || rate.FractionRate2 == null || rate.FractionRate2.length == 0) {
+                this.toastr.error("Fraction Rate 2 must be entered.", "Dashboard");
                 return;
             }
+            if (rate.FractionRate2 <= -9999.99) {
+                this.toastr.error("Fraction Rate2 can not be less than -9999.99", "Dashboard");
+                return;
+            }
+            rate.FractionRate2 = parseFloat(rate.FractionRate2) + 1;
+            rate.FractionRate2 = parseInt(rate.FractionRate2);
 
-            if (rate.RateOfInterest2 >= 9999.99) {
-                this.toastr.error("Interest rate2 can not be greater than 9999.99", "Dashboard");
-                return;
-            }
-            rate.RateOfInterest2 = parseFloat(rate.RateOfInterest2) + .01;
-            rate.RateOfInterest2 = parseFloat(rate.RateOfInterest2).toFixed(2);
+            //rate.FractionRate2 = parseInt(rate.FractionRate2);
+            //rate.RateOfInterest2 = parseFloat(rate.RateOfInterest2) - .01;
+            //rate.RateOfInterest2 = parseFloat(rate.RateOfInterest2).toFixed(2);
         }
         else if (type == 6) {
-            if (rate.RateOfInterest3 == undefined || rate.RateOfInterest3 == null || rate.RateOfInterest3.length == 0) {
-                this.toastr.error("Rate3 must be entered.", "Dashboard");
+            if (rate.FractionRate3 == undefined || rate.FractionRate3 == null || rate.FractionRate3.length == 0) {
+                this.toastr.error("Fraction Rate 3 must be entered.", "Dashboard");
                 return;
             }
-
-            if (rate.RateOfInterest3 >= 9999.99) {
-                this.toastr.error("Interest rate3 can not be greater than 9999.99", "Dashboard");
+            if (rate.RateOfInterest3 <= -9999.99) {
+                this.toastr.error("Fraction rate3 can not be less than -9999.99", "Dashboard");
                 return;
             }
-            rate.RateOfInterest3 = parseFloat(rate.RateOfInterest3) + .01;
-            rate.RateOfInterest3 = parseFloat(rate.RateOfInterest3).toFixed(2);
+            rate.FractionRate3 = parseFloat(rate.FractionRate3) + 1;
+            rate.FractionRate3 = parseInt(rate.FractionRate3);
+            //rate.RateOfInterest3 = parseFloat(rate.RateOfInterest3) - .01;
+            //rate.RateOfInterest3 = parseFloat(rate.RateOfInterest3).toFixed(2);
         }
 
         rate.ModifiedBy = this.bankDashboardService.userId;
@@ -313,9 +387,9 @@ export class BankDashboardComponent implements OnInit {
         //this.bankDashboardService.UpdateRateOfInterest(rate).subscribe(data => {
         //    this.spinner.hide();
         //})
-       this.CalculateBaseCurve(rate)
+        this.CalculateBaseCurve(rate);
+       
     }
-
     DecreaseRateOfInterest(rate, type: number) {
         if (type == 3) {
             if (rate.BaseCurve == undefined || rate.BaseCurve == null || rate.BaseCurve.length == 0) {
@@ -331,40 +405,48 @@ export class BankDashboardComponent implements OnInit {
             rate.BaseCurve = parseFloat(rate.BaseCurve).toFixed(2);
         }
         else if (type == 4) {
-            if (rate.RateOfInterest == undefined || rate.RateOfInterest == null || rate.RateOfInterest.length == 0) {
-                this.toastr.error("Rate must be entered.", "Dashboard");
+            if (rate.FractionRate == undefined || rate.FractionRate == null || rate.FractionRate.length == 0) {
+                this.toastr.error("Fraction Rate must be entered.", "Dashboard");
                 return;
             }
-            if (rate.RateOfInterest <= -9999.99) {
-                this.toastr.error("Interest rate can not be less than -9999.99", "Dashboard");
+            if (rate.FractionRate <= -9999.99) {
+                this.toastr.error("Fraction Rate rate can not be less than -9999.99", "Dashboard");
                 return;
             }
-            rate.RateOfInterest = parseFloat(rate.RateOfInterest) - .01;
-            rate.RateOfInterest = parseFloat(rate.RateOfInterest).toFixed(2);
+            rate.FractionRate = parseFloat(rate.FractionRate) - 1;
+            rate.FractionRate = parseInt(rate.FractionRate);
+            //rate.RateOfInterest = parseFloat(rate.RateOfInterest) - .01;
+            //rate.RateOfInterest = parseFloat(rate.RateOfInterest).toFixed(2);
         }
         else if (type == 5) {
-            if (rate.RateOfInterest2 == undefined || rate.RateOfInterest2 == null || rate.RateOfInterest2.length == 0) {
-                this.toastr.error("Rate2 must be entered.", "Dashboard");
+            if (rate.FractionRate2 == undefined || rate.FractionRate2 == null || rate.FractionRate2.length == 0) {
+                this.toastr.error("Fraction Rate 2 must be entered.", "Dashboard");
                 return;
             }
-            if (rate.RateOfInterest2 <= -9999.99) {
-                this.toastr.error("Interest rate2 can not be less than -9999.99", "Dashboard");
+            if (rate.FractionRate2 <= -9999.99) {
+                this.toastr.error("Fraction Rate2 can not be less than -9999.99", "Dashboard");
                 return;
             }
-            rate.RateOfInterest2 = parseFloat(rate.RateOfInterest2) - .01;
-            rate.RateOfInterest2 = parseFloat(rate.RateOfInterest2).toFixed(2);
+            rate.FractionRate2 = parseFloat(rate.FractionRate2) - 1;
+            rate.FractionRate2 = parseInt(rate.FractionRate2);
+
+            //rate.FractionRate2 = parseInt(rate.FractionRate2);
+            //rate.RateOfInterest2 = parseFloat(rate.RateOfInterest2) - .01;
+            //rate.RateOfInterest2 = parseFloat(rate.RateOfInterest2).toFixed(2);
         }
         else if (type == 6) {
-            if (rate.RateOfInterest3 == undefined || rate.RateOfInterest3 == null || rate.RateOfInterest3.length == 0) {
-                this.toastr.error("Rate3 must be entered.", "Dashboard");
+            if (rate.FractionRate3 == undefined || rate.FractionRate3 == null || rate.FractionRate3.length == 0) {
+                this.toastr.error("Fraction Rate 3 must be entered.", "Dashboard");
                 return;
             }
             if (rate.RateOfInterest3 <= -9999.99) {
-                this.toastr.error("Interest rate3 can not be less than -9999.99", "Dashboard");
+                this.toastr.error("Fraction rate3 can not be less than -9999.99", "Dashboard");
                 return;
             }
-            rate.RateOfInterest3 = parseFloat(rate.RateOfInterest3) - .01;
-            rate.RateOfInterest3 = parseFloat(rate.RateOfInterest3).toFixed(2);
+            rate.FractionRate3 = parseFloat(rate.FractionRate3) - 1;
+            rate.FractionRate3 = parseInt(rate.FractionRate3);
+            //rate.RateOfInterest3 = parseFloat(rate.RateOfInterest3) - .01;
+            //rate.RateOfInterest3 = parseFloat(rate.RateOfInterest3).toFixed(2);
         }
 
         rate.ModifiedBy = this.bankDashboardService.userId;
@@ -373,6 +455,7 @@ export class BankDashboardComponent implements OnInit {
         //    this.spinner.hide();
         //})
         this.CalculateBaseCurve(rate);
+        $(".update").addClass("btn-secondary");
     }
 
 
@@ -426,6 +509,8 @@ export class BankDashboardComponent implements OnInit {
         }
     }
     update(ratedata) {
+        $(".update").removeClass("btn-secondary");
+        $(".update").addClass("update-active");
         this.bankRateOfinterst = [];
         for (let i = 0; i < ratedata.length; i++) {
             let ratebankdetail = ratedata[i].listintersteRate
