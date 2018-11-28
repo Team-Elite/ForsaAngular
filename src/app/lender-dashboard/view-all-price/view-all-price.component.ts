@@ -1,7 +1,3 @@
-
-
-
-
 import { Inject, Component, OnInit } from '@angular/core';
 import { ViewAllPriceService } from '../Shared/view-all-price.service';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -14,15 +10,11 @@ import { environment } from '../../../environments/environment.prod';
 import { LOCAL_STORAGE, StorageService } from 'angular-webstorage-service';
 import { AuthenticateServiceService } from '../../Shared/authenticate-service.service';
 import { UserProfileServiceService } from '../../userprofile/Shared/user-profile-service.service';
-import { UserModel } from '../../registration/Shared/user-model.model';
-import { Console } from '@angular/core/src/console';
+//import { UserModel } from '../../registration/Shared/user-model.model';
+//import { Console } from '@angular/core/src/console';
 
-const connection = (environment.production) ? hubConnection('http://40.89.139.123:4044/signalr') : hubConnection('http://localhost:61088/signalr');
-
-
-
-
-const hubProxy = connection.createHubProxy('NgHub');
+const connection = (environment.production) ? hubConnection('http://40.89.139.123:4044') : hubConnection('http://localhost:50859');
+const hubProxy = connection.createHubProxy('ForsaHub');
 @Component({
     selector: 'app-view-all-price',
     templateUrl: './view-all-price.component.html',
@@ -111,7 +103,7 @@ export class ViewAllPriceComponent implements OnInit {
         this.spinner.show();
         // this.GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected();
         this.GetAllBanksWithInterestRateHorizontalyOrderByColumnName(this.orderByColumn);
-        this.SetTimeInterval();
+        //this.SetTimeInterval();
         this.spinner.hide();
         const self = this;
         const result = this.storage.get('viewAllPrice');
@@ -202,8 +194,7 @@ export class ViewAllPriceComponent implements OnInit {
 
     SetTimeInterval() {
         this.timer = setInterval(() => {
-            this.GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected();
-            //this.GetAllBanksWithInterestRateHorizontalyOrderByColumnName(this.orderByColumn);
+            this.GetAllBanksWithInterestRateHorizontalyOrderByColumnName(this.orderByColumn);
         }, 1000);
     }
     //SetHighestRatesTimeInterval() {
@@ -363,6 +354,7 @@ export class ViewAllPriceComponent implements OnInit {
         });
         this.viewAllPriceService.listAllBanks = rates;
         this.ratesOfIntrest = this.viewAllPriceService.listAllBanks;
+        this.GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected();
         this.GetHighestRatesViewAllPrice();
         //this.SetHighestRatesTimeInterval();
 

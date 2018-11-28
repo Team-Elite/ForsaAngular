@@ -63,6 +63,10 @@ if(response!=undefined && response != null){
     let listOfFileUploaded = await this.userProfileServiceService.GetDocList(this.userProfileServiceService.userId);
     //  this.userProfileServiceService.listOfFileUploaded = listOfFileUploaded;
      this.spinner.hide();
-}
+    }
+    //async updateUser() {
+    //    this.spinner.show();
+    //    const result = this.userProfileServiceService.updateUserProfile()
+    //}
 
 }

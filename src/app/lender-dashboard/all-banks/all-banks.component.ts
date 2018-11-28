@@ -8,9 +8,9 @@ import { AuthenticateServiceService } from '../../Shared/authenticate-service.se
 import { UserProfileServiceService } from '../../userprofile/Shared/user-profile-service.service';
 
 
-const connection = (environment.production) ? hubConnection('http://40.89.139.123:4044/signalr') : hubConnection('http://localhost:61088/signalr');
+const connection = (environment.production) ? hubConnection('http://40.89.139.123:4044') : hubConnection('http://localhost:50859');
 
-const hubProxy = connection.createHubProxy('NgHub');
+const hubProxy = connection.createHubProxy('ForsaHub');
 
 @Component({
     selector: 'app-all-banks',

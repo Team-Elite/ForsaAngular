@@ -10608,7 +10608,7 @@ direction: ltr;
 
  <div class="container-fluid" id="main-panel">
 
-     <div class="row lendersetting">
+     <div class="row lendersetting d-none">
          <div class="col-lg-4 col-md-12 col-sm-12">
              <ul>
                  <li class="heading">Bank</li>
@@ -10669,16 +10669,16 @@ direction: ltr;
          <div class="col-lg-12 col-md-12 col-sm-12">
              <ngb-pagination [collectionSize]="viewAllPriceService.toatlBanksCount" pageSize="15" (pageChange)="pageChange($event)" [(page)]="viewAllPriceService.selectedPageNumber" aria-label="Default pagination"></ngb-pagination>
          </div>
-         <div class="col-lg-12 col-md-12 col-sm-12">
-             <button class="btn btn-primary" type="button" routerLink="/lenderDashboard/setting"> {{'Button.ButtonSettingRateField'|translate}}</button>
-         </div>
      </div>
 
      <div class="row dashboard-price-list">
-         <div class="col-lg-12">
+         <div class="col-lg-12 col-md-12 col-sm-12">
+             <button class="btn btn-primary" type="button" routerLink="/lenderDashboard/setting"> {{'Button.ButtonSettingRateField'|translate}}</button>
+         </div>
+         <div class="col-lg-12 col-md-12 col-sm-12 mt-2">
              <table class="table table-bordered table-responsive">
                  <tbody>
-                    
+
                      <tr>
                          <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected()">{{'Lender.ViewAllPrice.AllBanks'|translate}}</th>
                          <!--<th [hidden]="!obj.class1" style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('TN')">{{'Lender.ViewAllPrice.Tag'|translate}}</th>-->

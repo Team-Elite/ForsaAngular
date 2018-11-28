@@ -6,6 +6,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 import {AuthenticateServiceService} from '../../Shared/authenticate-service.service';
 import { TokenService } from '../../token-service';
+import { UserModel } from '../../registration/Shared/user-model.model';
 
 @Injectable({
   providedIn: 'root'
@@ -37,9 +38,14 @@ async DeleteDocument(docId:number, docName:string,calledFrom:number) {
   if (this.userId != undefined || this.userId == null) webtoken={ data: this.tokenService.jwtencrypt({ userId:this.userId, docId: docId, docName:docName,calledFrom:calledFrom }) };
   return await this.http.post(this.url + '/api/BankDashBoard/DeleteDocument', webtoken, this.requestOptions).toPromise().then(x => x.json().data);
  
-}
+    }
 
-   
+    async updateUserProfile(user: UserModel) {
+        // var body=JSON.stringify(user);
+        var webtoken = { data: this.tokenService.jwtencrypt(user) };
+
+        return this.http.post(this.authenticateServiceService.baseURL + '/api/User/UpdateUserDetails', webtoken, this.requestOptions).map(x => x.json());
+    }
 
 async GetDocList(userId:number) {
   //this.listOfFileUploaded=[];

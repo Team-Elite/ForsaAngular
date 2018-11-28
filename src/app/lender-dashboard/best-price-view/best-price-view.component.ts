@@ -10,9 +10,9 @@ import { UserProfileServiceService } from '../../userprofile/Shared/user-profile
 import { AuthenticateServiceService } from '../../Shared/authenticate-service.service';
 import { UserModel } from '../../registration/Shared/user-model.model';
 
-const connection = (environment.production) ? hubConnection('http://40.89.139.123:4044/signalr') : hubConnection('http://localhost:61088/signalr');
+const connection = (environment.production) ? hubConnection('http://40.89.139.123:4044') : hubConnection('http://localhost:50859');
 
-const hubProxy = connection.createHubProxy('NgHub');
+const hubProxy = connection.createHubProxy('ForsaHub');
 @Component({
     selector: 'app-best-price-view',
     templateUrl: './best-price-view.component.html',
@@ -44,11 +44,11 @@ export class BestPriceViewComponent implements OnInit {
         this.getData();
     }
 
-    //SetTimeInterval() {
-    //    this.timer = setInterval(() => {
-    //        this.getData();
-    //    }, 5000);
-    //}
+    SetTimeInterval() {
+        this.timer = setInterval(() => {
+            this.getData();
+        }, 5000);
+    }
     getData() {
         this.spinner.show();
         
