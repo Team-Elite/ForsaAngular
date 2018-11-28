@@ -247,7 +247,7 @@ export class BankDashboardComponent implements OnInit {
         
     }
     CalculateBaseCurve(rate) {
-        debugger;
+        
         rate.RateOfInterest = ((rate.FractionRate/100) + parseFloat(rate.BaseCurve)).toFixed(2);
         rate.RateOfInterest2 = ((rate.FractionRate2/100) + parseFloat(rate.BaseCurve)).toFixed(2);;
         rate.RateOfInterest3 = ((rate.FractionRate3/100) + parseFloat(rate.BaseCurve)).toFixed(2);;
@@ -323,7 +323,7 @@ export class BankDashboardComponent implements OnInit {
     //   this.CalculateBaseCurve(rate)
     //}
     IncreaseRateOfInterest(rate, type: number) {
-        debugger;
+        
         if (type == 3) {
             if (rate.BaseCurve == undefined || rate.BaseCurve == null || rate.BaseCurve.length == 0) {
                 this.toastr.error("Rate must be entered.", "Dashboard");
