@@ -10750,24 +10750,31 @@ direction: ltr;
                 </button>
             </div>
 
-            <div class="modal-body" id="lendrequestbody">
-                <table>
+            <div  class="modal-body" id="lendrequestbody">
+                <table *ngIf="objBankInfo">
                     <tbody>
                         <tr><th>Bank</th><td>{{objBankInfo.Bank}}</td></tr>
                         <tr><th>Name Of Company</th><td>{{objBankInfo.NameOfCompany}}</td></tr>
                         <tr><th>Place</th><td>{{objBankInfo.Place}}</td></tr>
                         <tr><th>Street</th><td>{{objBankInfo.Street}}</td></tr>
+                        <tr>
+                            <td>
+                                <ul style="color:white;">
+                                    <strong>File(s) List</strong>
+                                    <li *ngFor="let file of userProfileServiceService.listOfFileUploaded">
+                                        <a style="color:white;" target="_blank" href="{{path}}{{file.bankId}}/UserProfile/{{file.name}}">{{file.name}}</a>
+                                        <!--<a style="color:white;" target="_blank" href="{{path}}{{file.name}}">{{file.name}}</a>-->
+
+                                    </li>
+                                </ul>
+
+                            </td>
+
+                        </tr>
                     </tbody>
                 </table>
 
-                <ul style="color:white;">
-                    <strong>File(s) List</strong>
-                    <li *ngFor="let file of userProfileServiceService.listOfFileUploaded">
-                        <a style="color:white;" target="_blank" href="{{path}}{{file.bankId}}/UserProfile/{{file.name}}">{{file.name}}</a>
-                        <!--<a style="color:white;" target="_blank" href="{{path}}{{file.name}}">{{file.name}}</a>-->
 
-                    </li>
-                </ul>
 
             </div>
             <div class="modal-footer">

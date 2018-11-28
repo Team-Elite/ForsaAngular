@@ -197,12 +197,14 @@ export class AllBanksComponent implements OnInit {
     }
     async ShowBankPopup(data: any) {
         this.spinner.show();
+
         await this.userProfileServiceService.GetDocList(data.UserId);
+        //this.objBankInfo.UserFiles = this.userProfileServiceService.listOfFileUploaded
+        this.objBankInfo = await this.authenticateServiceService.GetUserById(data.UserId)[0];
+
         this.spinner.hide();
-        debugger;
-        this.objBankInfo = this.userProfileServiceService.listOfFileUploaded;
         var element = document.getElementById('btnShowBankInfo');
         element.click();
-      
+
     }
 }

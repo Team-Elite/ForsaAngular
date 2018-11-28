@@ -21,8 +21,8 @@ const hubProxy = connection.createHubProxy('NgHub');
 export class BestPriceViewComponent implements OnInit {
    
     path: string;
-    //objBankInfo: any = { Bank: '', NameOfCompany: '', Place: '', Street: '' };
-    objBankInfo: UserModel;//any = { BankId: '', Bank: '', NameOfCompany: '', Place: '', Street: '' };
+    objBankInfo: any = { Bank: '', NameOfCompany: '', Place: '', Street: '' };
+  
     constructor(public bestPriceViewService: BestPriceViewService, public spinner: NgxSpinnerService
         , public toastr: ToastrService, public pipe: DatePipe
         , public lenderDashboardService: LenderDashboardService, public userProfileServiceService: UserProfileServiceService, public authenticateServiceService: AuthenticateServiceService) {
@@ -282,13 +282,16 @@ export class BestPriceViewComponent implements OnInit {
         return true;
     }
     async ShowBankPopup(data: any) {
-        
         this.spinner.show();
-        this.objBankInfo = await this.authenticateServiceService.GetUserById(data.UserId);
+
         await this.userProfileServiceService.GetDocList(data.UserId);
+        //this.objBankInfo.UserFiles = this.userProfileServiceService.listOfFileUploaded
+        this.objBankInfo = await this.authenticateServiceService.GetUserById(data.UserId)[0];
+
         this.spinner.hide();
         var element = document.getElementById('btnShowBankInfo');
-        element.click(); 
+        element.click();
+
     }
 
 }

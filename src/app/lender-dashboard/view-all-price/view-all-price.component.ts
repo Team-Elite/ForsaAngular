@@ -15,6 +15,7 @@ import { LOCAL_STORAGE, StorageService } from 'angular-webstorage-service';
 import { AuthenticateServiceService } from '../../Shared/authenticate-service.service';
 import { UserProfileServiceService } from '../../userprofile/Shared/user-profile-service.service';
 import { UserModel } from '../../registration/Shared/user-model.model';
+import { Console } from '@angular/core/src/console';
 
 const connection = (environment.production) ? hubConnection('http://40.89.139.123:4044/signalr') : hubConnection('http://localhost:61088/signalr');
 
@@ -31,7 +32,7 @@ export class ViewAllPriceComponent implements OnInit {
     temp_array = [];
     ratesOfIntrest = [];
     allChecked: boolean;
-    objBankInfo: UserModel;
+    objBankInfo:any;
     
     ///= { BankId: '', Bank: '', NameOfCompany: '', Place: '', Street: '', UserFiles: [] };
     obj = {
@@ -588,10 +589,11 @@ this.spinner.hide();
 
     async ShowBankPopup(data: any) {
         this.spinner.show();
-        this.objBankInfo = await this.authenticateServiceService.GetUserById(data.UserId)[0];
+      
         await this.userProfileServiceService.GetDocList(data.UserId);
-        //this.objBankInfo.UserFiles = this.userProfileServiceService.listOfFileUploaded;
-        debugger;
+        //this.objBankInfo.UserFiles = this.userProfileServiceService.listOfFileUploaded
+        this.objBankInfo =await  this.authenticateServiceService.GetUserById(data.UserId)[0];
+        
         this.spinner.hide();
         var element = document.getElementById('btnShowBankInfo');
         element.click();

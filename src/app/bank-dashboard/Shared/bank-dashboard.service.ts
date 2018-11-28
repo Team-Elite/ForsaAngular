@@ -110,4 +110,6 @@ export class BankDashboardService {
         var webtoken = { data: this.tokenService.jwtencrypt(lenderSendRequestModel) };
         return this.http.post(this.authenticateServiceService.baseURL + '/api/BankDashBoard/UpdateRateOfInterest', webtoken, this.requestOptions).map(x => x.json());
     }
+
+
 }
