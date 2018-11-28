@@ -439,8 +439,8 @@ export class RegistrationComponent implements OnInit {
         }
         if (form.value.Street == undefined || form.value.Street == null || form.value.Street.length == 0) {
             IfErrorFound = true;
-            numberOfErrorFound++;
-            errorMessage = errorMessage + " Street,";
+           // numberOfErrorFound++;
+            this._Message = this._Message +" Street,";
         }
         if (form.value.PostalCode == undefined || form.value.PostalCode == null || form.value.PostalCode.length == 0) {
             IfErrorFound = true;
@@ -499,25 +499,21 @@ export class RegistrationComponent implements OnInit {
             this._Message = this._Message + " Salutation,";
         }
         if (form.value.FirstName == undefined || form.value.FirstName == null || form.value.FirstName.length == 0) {
-            console.log('cp => 2');
             IfErrorFound = true;
             //numberOfErrorFound++;
             this._Message = this._Message + " First Name,";
         }
         if (form.value.SurName == undefined || form.value.SurName == null || form.value.SurName.length == 0) {
-            console.log('cp => 3');
             IfErrorFound = true;
             //numberOfErrorFound++;
             this._Message = this._Message + " Sur Name,";
         }
         if (form.value.ContactNumber == undefined || form.value.ContactNumber == null || form.value.ContactNumber.length == 0) {
-            console.log('cp => 4');
             IfErrorFound = true;
             //numberOfErrorFound++;
             this._Message = this._Message + " Contact Number,";
         }
         if (form.value.UserId == undefined || form.value.UserId == null || form.value.UserId == 0) {
-            console.log('cp => 5');
             if (form.value.EmailAddress == undefined || form.value.EmailAddress == null || form.value.EmailAddress.trim().length == 0) {
                 IfErrorFound = true;
                 //numberOfErrorFound++;
@@ -525,7 +521,6 @@ export class RegistrationComponent implements OnInit {
             }
         }
         if (form.value.UserId == undefined || form.value.UserId == null || form.value.UserId == 0) {
-            console.log('cp => 6');
             if (form.value.UserName == undefined || form.value.UserName == null || form.value.UserName.trim().length == 0) {
                 IfErrorFound = true;
                 //numberOfErrorFound++;
@@ -533,11 +528,12 @@ export class RegistrationComponent implements OnInit {
             }
         }
         if (form.value.UserTypeId == 4 && (form.value.DepositInsurance == undefined || form.value.DepositInsurance == null || form.value.DepositInsurance == 0)) {
-            console.log('cp => 7');
+           
             IfErrorFound = true;
             //numberOfErrorFound++;
             this._Message = this._Message + " Deposit Insurance,";
         }
+        return IfErrorFound;
     }
   Section3Visible(form: NgForm) {
       console.log(this.registrationService.userModel);
