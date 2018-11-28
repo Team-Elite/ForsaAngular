@@ -284,14 +284,16 @@ export class BestPriceViewComponent implements OnInit {
     async ShowBankPopup(data: any) {
         this.spinner.show();
 
-        await this.userProfileServiceService.GetDocList(data.UserId);
-        //this.objBankInfo.UserFiles = this.userProfileServiceService.listOfFileUploaded
-        this.objBankInfo = await this.authenticateServiceService.GetUserById(data.UserId)[0];
 
+        //this.objBankInfo.UserFiles = this.userProfileServiceService.listOfFileUploaded
+        await this.authenticateServiceService.GetUserById(data.UserId);
+        this.objBankInfo = this.authenticateServiceService.bankInfo;
+        await this.userProfileServiceService.GetDocList(data.UserId);
         this.spinner.hide();
         var element = document.getElementById('btnShowBankInfo');
         element.click();
 
     }
+
 
 }

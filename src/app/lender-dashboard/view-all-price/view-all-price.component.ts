@@ -32,9 +32,7 @@ export class ViewAllPriceComponent implements OnInit {
     temp_array = [];
     ratesOfIntrest = [];
     allChecked: boolean;
-    objBankInfo:any;
-    
-    ///= { BankId: '', Bank: '', NameOfCompany: '', Place: '', Street: '', UserFiles: [] };
+    objBankInfo: any = { BankId: '', Bank: '', NameOfCompany: '', Place: '', Street: '' };
     obj = {
         class1: false,
         class2: true,
@@ -79,9 +77,9 @@ export class ViewAllPriceComponent implements OnInit {
         { class19: true },
         { class20: true }
     ];
-   
+
     path: string;
-    
+
 
     constructor(public viewAllPriceService: ViewAllPriceService, public spinner: NgxSpinnerService
         , public toastr: ToastrService, @Inject(LOCAL_STORAGE) private storage: StorageService, public authenticateServiceService: AuthenticateServiceService, public userProfileServiceService: UserProfileServiceService) {
@@ -112,7 +110,7 @@ export class ViewAllPriceComponent implements OnInit {
         this.GetAllBanksWithStatusIsDeselected();
         this.spinner.show();
         // this.GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected();
-       this.GetAllBanksWithInterestRateHorizontalyOrderByColumnName(this.orderByColumn);
+        this.GetAllBanksWithInterestRateHorizontalyOrderByColumnName(this.orderByColumn);
         this.SetTimeInterval();
         this.spinner.hide();
         const self = this;
@@ -126,30 +124,30 @@ export class ViewAllPriceComponent implements OnInit {
 
     async GetAllBanksWithStatusIsDeselected() {
 
-    this.viewAllPriceService.count = 0;
-    this.viewAllPriceService.listViewAllPrice1 = [];
-    this.viewAllPriceService.listViewAllPrice2 = [];
-    this.viewAllPriceService.listViewAllPrice3 = [];
-    this.spinner.show();
-    let rates = await this.viewAllPriceService.GetAllBanksWithStatusIsDeselected();
-    this.viewAllPriceService.listViewAllPrice = rates;
-    if (this.viewAllPriceService.listViewAllPrice != undefined && this.viewAllPriceService.listViewAllPrice != null && this.viewAllPriceService.listViewAllPrice.length != 0) {
-    this.viewAllPriceService.toatlBanksCount = this.viewAllPriceService.listViewAllPrice[0].Count;
-}
-for (var i = 0; i <= this.viewAllPriceService.listViewAllPrice.length - 1; i++) {
-    if (this.viewAllPriceService.count > 9) {
-        this.viewAllPriceService.listViewAllPrice3[this.viewAllPriceService.listViewAllPrice3.length] = this.viewAllPriceService.listViewAllPrice[i];
+        this.viewAllPriceService.count = 0;
+        this.viewAllPriceService.listViewAllPrice1 = [];
+        this.viewAllPriceService.listViewAllPrice2 = [];
+        this.viewAllPriceService.listViewAllPrice3 = [];
+        this.spinner.show();
+        let rates = await this.viewAllPriceService.GetAllBanksWithStatusIsDeselected();
+        this.viewAllPriceService.listViewAllPrice = rates;
+        if (this.viewAllPriceService.listViewAllPrice != undefined && this.viewAllPriceService.listViewAllPrice != null && this.viewAllPriceService.listViewAllPrice.length != 0) {
+            this.viewAllPriceService.toatlBanksCount = this.viewAllPriceService.listViewAllPrice[0].Count;
+        }
+        for (var i = 0; i <= this.viewAllPriceService.listViewAllPrice.length - 1; i++) {
+            if (this.viewAllPriceService.count > 9) {
+                this.viewAllPriceService.listViewAllPrice3[this.viewAllPriceService.listViewAllPrice3.length] = this.viewAllPriceService.listViewAllPrice[i];
+            }
+            else if (this.viewAllPriceService.count > 4) {
+                this.viewAllPriceService.listViewAllPrice2[this.viewAllPriceService.listViewAllPrice2.length] = this.viewAllPriceService.listViewAllPrice[i];
+            }
+            else {
+                this.viewAllPriceService.listViewAllPrice1[i] = this.viewAllPriceService.listViewAllPrice[i];
+            }
+            this.viewAllPriceService.count++;
+        }
+        this.spinner.hide();
     }
-    else if (this.viewAllPriceService.count > 4) {
-        this.viewAllPriceService.listViewAllPrice2[this.viewAllPriceService.listViewAllPrice2.length] = this.viewAllPriceService.listViewAllPrice[i];
-    }
-    else {
-        this.viewAllPriceService.listViewAllPrice1[i] = this.viewAllPriceService.listViewAllPrice[i];
-    }
-    this.viewAllPriceService.count++;
-}
-this.spinner.hide();
-}
 
     async DeselectSelectBank(bank: any) {
 
@@ -426,7 +424,7 @@ this.spinner.hide();
                     class20: true
                 };
             } else {
-               
+
                 this.viewAllPriceService.listAllBanks.forEach((ele, i) => {
                     ele.class1 = false;
                     ele.class2 = false;
@@ -474,7 +472,7 @@ this.spinner.hide();
             }
         } else {
             if (!val) {
-               
+
                 this.allChecked = false;
                 this.viewAllPriceService.listAllBanks.forEach((ele, i) => {
                     switch (index) {
@@ -482,106 +480,106 @@ this.spinner.hide();
                         case 1:
                             ele.class1 = false;
                             this.obj.class1 = false;
-                          
+
                             break;
                         case 2:
                             ele.class2 = false;
                             this.obj.class2 = false;
-                      
+
                             break;
                         case 3:
                             ele.class3 = false;
                             this.obj.class3 = false;
-                         
+
                             break;
                         case 4:
                             ele.class4 = false;
                             this.obj.class4 = false;
-                      
+
                             break;
                         case 5:
                             ele.class5 = false;
                             this.obj.class5 = false;
-                        
+
                             break;
                         case 6:
                             ele.class6 = false;
                             this.obj.class6 = false;
-                        
+
                             break;
                         case 7:
                             ele.class7 = false;
                             this.obj.class7 = false;
-                        
+
                             break;
                         case 8:
                             ele.class8 = false;
                             this.obj.class8 = false;
-                          
+
                             break;
                         case 9:
                             ele.class9 = false;
                             this.obj.class9 = false;
-                           
+
                             break;
                         case 10:
                             ele.class10 = false;
                             this.obj.class10 = false;
-                           
+
                             break;
                         case 11:
                             ele.class11 = false;
                             this.obj.class11 = false;
-                        
+
                             break;
                         case 12:
                             ele.class12 = false;
                             this.obj.class12 = false;
-                          
+
                             break;
                         case 13:
                             ele.class13 = false;
                             this.obj.class13 = false;
-                           
+
                             break;
                         case 14:
                             ele.class14 = false;
                             this.obj.class14 = false;
-                        
+
                             break;
                         case 15:
                             ele.class15 = false;
                             this.obj.class15 = false;
-                        
+
                             break;
                         case 16:
                             ele.class16 = false;
                             this.obj.class16 = false;
-                          
+
                             break;
                         case 17:
                             ele.class17 = false;
                             this.obj.class17 = false;
-                          
+
                             break;
                         case 18:
                             ele.class18 = false;
                             this.obj.class18 = false;
-                        
+
                             break;
                         case 19:
                             ele.class19 = false;
                             this.obj.class19 = false;
-                          
+
                             break;
                         case 20:
                             ele.class20 = false;
                             this.obj.class20 = false;
-                          
+
                     }
                 });
             } else {
-               
+
             }
         }
 
@@ -590,10 +588,11 @@ this.spinner.hide();
     async ShowBankPopup(data: any) {
         this.spinner.show();
       
-        await this.userProfileServiceService.GetDocList(data.UserId);
+       
         //this.objBankInfo.UserFiles = this.userProfileServiceService.listOfFileUploaded
-        this.objBankInfo =await  this.authenticateServiceService.GetUserById(data.UserId)[0];
-        
+        await this.authenticateServiceService.GetUserById(data.UserId);
+        this.objBankInfo = this.authenticateServiceService.bankInfo; 
+        await this.userProfileServiceService.GetDocList(data.UserId);
         this.spinner.hide();
         var element = document.getElementById('btnShowBankInfo');
         element.click();

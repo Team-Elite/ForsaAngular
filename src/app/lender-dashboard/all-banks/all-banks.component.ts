@@ -39,12 +39,13 @@ export class AllBanksComponent implements OnInit {
     ngOnInit() {
         this.path = this.authenticateServiceService.baseURL + "/Uploads/Docs/";// + this.authenticateServiceService.GetUserId() + "/UserProfile/";
         this.spinner.show();
-       this.SetTimeInterval();
+        this.GetAllBanksWithInterestRateHorizontalyOrderByColumnName(this.orderByColumn);
+       //this.SetTimeInterval();
         this.spinner.hide();
     }
     SetTimeInterval() {
         this.timer = setInterval(() => {
-            this.GetAllBanksWithInterestRateHorizontalyOrderByColumnName(this.orderByColumn);
+            //this.GetAllBanksWithInterestRateHorizontalyOrderByColumnName(this.orderByColumn);
         }, 5000);
     }
     async GetAllBanksWithInterestRateHorizontaly() {
@@ -66,7 +67,7 @@ export class AllBanksComponent implements OnInit {
     // } 
 
     async GetAllBanksWithInterestRateHorizontalyOrderByColumnName(columnName: string) {
-
+        debugger;
         this.orderByColumn = columnName;
         let rates = await this.allBanksService.GetAllBanksWithInterestRateHorizontalyOrderByColumnName(columnName);
 
@@ -197,11 +198,10 @@ export class AllBanksComponent implements OnInit {
     }
     async ShowBankPopup(data: any) {
         this.spinner.show();
-
-        await this.userProfileServiceService.GetDocList(data.UserId);
         //this.objBankInfo.UserFiles = this.userProfileServiceService.listOfFileUploaded
-        this.objBankInfo = await this.authenticateServiceService.GetUserById(data.UserId)[0];
-
+        await this.authenticateServiceService.GetUserById(data.UserId);
+        this.objBankInfo = this.authenticateServiceService.bankInfo;
+        await this.userProfileServiceService.GetDocList(data.UserId);
         this.spinner.hide();
         var element = document.getElementById('btnShowBankInfo');
         element.click();

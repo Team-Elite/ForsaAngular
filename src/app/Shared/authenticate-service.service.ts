@@ -23,7 +23,7 @@ export class AuthenticateServiceService {
     baseURL: string = (environment.production) ? 'http://40.89.139.123:4043' : 'http://localhost:60744';
     headerOptions = new Headers({ 'Content-Type': 'application/json' });
     requestOptions = new RequestOptions({ method: RequestMethod.Post, headers: this.headerOptions });
-
+    bankInfo: any;
     constructor(@Inject(LOCAL_STORAGE) public storage: StorageService, public router: Router,public http: Http) {
         
       
@@ -155,8 +155,8 @@ export class AuthenticateServiceService {
         var webtoken = { data: this.tokenService.jwtencrypt({ userId: userId }) };
        var data  = await this.http.post(this.baseURL + '/api/user/GetUserDetailByUserId', webtoken, this.requestOptions).map((data: Response) => {
             return data.json();
-        }).toPromise().then(token => { if (token.IsSuccess) return JSON.parse(this.tokenService.jwtdecrypt(token.data).unique_name);   });
-        return data;
+        }).toPromise().then(token => { if (token.IsSuccess) return JSON.parse(this.tokenService.jwtdecrypt(token.data).unique_name); });
+        return this.bankInfo= data[0];
         
 
     }
