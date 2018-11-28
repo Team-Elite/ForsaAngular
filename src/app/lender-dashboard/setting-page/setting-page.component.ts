@@ -66,134 +66,136 @@ export class SettingPageComponent implements OnInit {
       this.viewAllPriceService.listViewAllPrice1 = [];
       this.viewAllPriceService.listViewAllPrice2 = [];
       this.viewAllPriceService.listViewAllPrice3 = [];
+      this.GetAllBanksWithStatusIsDeselected();
       this.GetAllBanksWithInterestRateHorizontalyOrderByColumnName(this.orderByColumn);
       this.spinner.show();
       this.spinner.hide();
       const self = this;
       const result = this.storage.get('viewAllPrice');
+      if (result) this.obj = result.obj;
       
   }
    
-  isSelected (val, type) {
-    if (type == 2) {
-        if (val) {
-            this.obj.class2 = true;
-        } else {
-            this.obj.class2 = false;
+    isSelected(val, type) {
+        if (type == 2) {
+            if (val) {
+                this.obj.class2 = true;
+            } else {
+                this.obj.class2 = false;
+            }
+        } else if (type == 3) {
+            if (val) {
+                this.obj.class3 = true;
+            } else {
+                this.obj.class3 = false;
+            }
+        } else if (type == 4) {
+            if (val) {
+                this.obj.class4 = true;
+            } else {
+                this.obj.class4 = false;
+            }
+        } else if (type == 5) {
+            if (val) {
+                this.obj.class5 = true;
+            } else {
+                this.obj.class5 = false;
+            }
+        } else if (type == 6) {
+            if (val) {
+                this.obj.class6 = true;
+            } else {
+                this.obj.class6 = false;
+            }
+        } else if (type == 7) {
+            if (val) {
+                this.obj.class7 = true;
+            } else {
+                this.obj.class7 = false;
+            }
+        } else if (type == 8) {
+            if (val) {
+                this.obj.class8 = true;
+            } else {
+                this.obj.class8 = false;
+            }
+        } else if (type == 9) {
+            if (val) {
+                this.obj.class9 = true;
+            } else {
+                this.obj.class9 = false;
+            }
+        } else if (type == 10) {
+            if (val) {
+                this.obj.class10 = true;
+            } else {
+                this.obj.class10 = false;
+            }
+        } else if (type == 11) {
+            if (val) {
+                this.obj.class11 = true;
+            } else {
+                this.obj.class11 = false;
+            }
+        } else if (type == 12) {
+            if (val) {
+                this.obj.class12 = true;
+            } else {
+                this.obj.class12 = false;
+            }
+        } else if (type == 13) {
+            if (val) {
+                this.obj.class13 = true;
+            } else {
+                this.obj.class13 = false;
+            }
+        } else if (type == 14) {
+            if (val) {
+                this.obj.class14 = true;
+            } else {
+                this.obj.class14 = false;
+            }
+        } else if (type == 15) {
+            if (val) {
+                this.obj.class15 = true;
+            } else {
+                this.obj.class15 = false;
+            }
+        } else if (type == 16) {
+            if (val) {
+                this.obj.class16 = true;
+            } else {
+                this.obj.class16 = false;
+            }
+        } else if (type == 17) {
+            if (val) {
+                this.obj.class17 = true;
+            } else {
+                this.obj.class17 = false;
+            }
+        } else if (type == 18) {
+            if (val) {
+                this.obj.class18 = true;
+            } else {
+                this.obj.class18 = false;
+            }
+        } else if (type == 19) {
+            if (val) {
+                this.obj.class19 = true;
+            } else {
+                this.obj.class19 = false;
+            }
+        } else if (type == 20) {
+            if (val) {
+                this.obj.class20 = true;
+            } else {
+                this.obj.class20 = false;
+            }
         }
-    } else if (type == 3) {
-        if (val) {
-            this.obj.class3 = true;
-        } else {
-            this.obj.class3 = false;
-        }
-    } else if (type == 4) {
-        if (val) {
-            this.obj.class4 = true;
-        } else {
-            this.obj.class4 = false;
-        }
-    } else if (type == 5) {
-        if (val) {
-            this.obj.class5 = true;
-        } else {
-            this.obj.class5 = false;
-        }
-    } else if (type == 6) {
-        if (val) {
-            this.obj.class6 = true;
-        } else {
-            this.obj.class6 = false;
-        }
-    } else if (type == 7) {
-        if (val) {
-            this.obj.class7 = true;
-        } else {
-            this.obj.class7 = false;
-        }
-    } else if (type == 8) {
-        if (val) {
-            this.obj.class8 = true;
-        } else {
-            this.obj.class8 = false;
-        }
-    } else if (type == 9) {
-        if (val) {
-            this.obj.class9 = true;
-        } else {
-            this.obj.class9 = false;
-        }
-    } else if (type == 10) {
-        if (val) {
-            this.obj.class10 = true;
-        } else {
-            this.obj.class10 = false;
-        }
-    } else if (type == 11) {
-        if (val) {
-            this.obj.class11 = true;
-        } else {
-            this.obj.class11 = false;
-        }
-    } else if (type == 12) {
-        if (val) {
-            this.obj.class12 = true;
-        } else {
-            this.obj.class12 = false;
-        }
-    } else if (type == 13) {
-        if (val) {
-            this.obj.class13 = true;
-        } else {
-            this.obj.class13 = false;
-        }
-    } else if (type == 14) {
-        if (val) {
-            this.obj.class14 = true;
-        } else {
-            this.obj.class14 = false;
-        }
-    } else if (type == 15) {
-        if (val) {
-            this.obj.class15 = true;
-        } else {
-            this.obj.class15 = false;
-        }
-    } else if (type == 16) {
-        if (val) {
-            this.obj.class16 = true;
-        } else {
-            this.obj.class16 = false;
-        }
-    } else if (type == 17) {
-        if (val) {
-            this.obj.class17 = true;
-        } else {
-            this.obj.class17 = false;
-        }
-    } else if (type == 18) {
-        if (val) {
-            this.obj.class18 = true;
-        } else {
-            this.obj.class18 = false;
-        }
-    } else if (type == 19) {
-        if (val) {
-            this.obj.class19 = true;
-        } else {
-            this.obj.class19 = false;
-        }
-    } else if (type == 20) {
-        if (val) {
-            this.obj.class20 = true;
-        } else {
-            this.obj.class20 = false;
-        }
-    }
   }
   save () {
       const self = this;
-    //  this.storage.set('viewAllPrice', {obj: this.obj});
+      this.storage.set('viewAllPrice', {obj: this.obj});
       self.router.navigateByUrl('/lenderDashboard/ViewAllPrice');
     //   this.storage.set('viewAllPrice', {obj: this.obj}).then(function () {
     //       self.router.navigateByUrl('/lenderDashboard/ViewAllPrice');
@@ -224,6 +226,9 @@ export class SettingPageComponent implements OnInit {
             }
             this.viewAllPriceService.count++;
         }
+        console.log(this.viewAllPriceService.listViewAllPrice1);
+        console.log(this.viewAllPriceService.listViewAllPrice2);
+        console.log(this.viewAllPriceService.listViewAllPrice3);
         this.spinner.hide();
     }
 
