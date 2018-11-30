@@ -45,6 +45,16 @@ this.GetDocList();
       );
   }
 
+    async UpdateProfile() {
+      
+        if (confirm("Are you sure to update profile")) {
+            this.spinner.show();
+            await this.userProfileServiceService.updateUserProfile(this.userProfileData);
+            this.spinner.hide();
+        }
+       
+    }
+
   async DeleteDocument(fileName:string, docId:number){
     this.spinner.show();
     let response = await this.userProfileServiceService.DeleteDocument(docId,fileName,0);

@@ -551,7 +551,7 @@ export class BankDashboardComponent implements OnInit {
         //}
     }
 
-    UpdateUserProfile() {
+    ChangePassword() {
 
 
         /* Validating controls */
@@ -628,6 +628,10 @@ export class BankDashboardComponent implements OnInit {
 
     }
 
+
+
+
+
     ShowUpdateProfileModal() {
         //document.getElementById('updateProfile').style.display='block';
         this.bankDashboardService.NewPassword = '';
@@ -667,7 +671,7 @@ export class BankDashboardComponent implements OnInit {
     async GetLenderSendRequestRequestdOnTheBasisOfBorrowerId() {
 
         this.lenderSendRequestModel = await this.bankDashboardService.GetLenderSendRequestRequestdOnTheBasisOfBorrowerId();
-        console.log(this.lenderSendRequestModel);
+       
         if (this.lenderSendRequestModel != undefined) {
             this.lenderSendRequestModel = this.lenderSendRequestModel[0];
             clearInterval(this.timer);

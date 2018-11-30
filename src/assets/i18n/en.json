@@ -17,7 +17,8 @@
     "ButtonRegisterasPartner": "Register as a Partner",
     "ButtonSettingRateField": "Setting Rate Field",
     "ButtonUpload": "Uplopad",
-    "ButtonChangePassword": "Change Password"
+    "ButtonChangePassword": "Change Password",
+    "ButtonSaveProfile": "Update Profile"
   },
   "Login": {
     "Title": "Log in",

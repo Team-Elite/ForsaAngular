@@ -20,7 +20,7 @@ export class AuthenticateServiceService {
     Usertoken: any = this.storage.get(this.userValue);
     Userdata: any;
     requestedForReport: string='';
-    baseURL: string = !(environment.production) ? 'http://40.89.139.123:4043' : 'http://localhost:60744';
+    baseURL: string = 'http://localhost:60744';//!(environment.production) ? 'http://40.89.139.123:4043' : 'http://localhost:60744';
     headerOptions = new Headers({ 'Content-Type': 'application/json' });
     requestOptions = new RequestOptions({ method: RequestMethod.Post, headers: this.headerOptions });
     bankInfo: any;
@@ -148,16 +148,5 @@ export class AuthenticateServiceService {
         return JSON.parse(this.Userdata.unique_name)[0];
     }
    
-    async GetUserById(userId) {
-        //var data = this.tokenService.jwtdecrypt(this.Usertoken);
-
-
-        var webtoken = { data: this.tokenService.jwtencrypt({ userId: userId }) };
-       var data  = await this.http.post(this.baseURL + '/api/user/GetUserDetailByUserId', webtoken, this.requestOptions).map((data: Response) => {
-            return data.json();
-        }).toPromise().then(token => { if (token.IsSuccess) return JSON.parse(this.tokenService.jwtdecrypt(token.data).unique_name); });
-        return this.bankInfo= data[0];
-        
-
-    }
+   
 }

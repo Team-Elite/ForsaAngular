@@ -560,7 +560,7 @@
                                             <input type="password" name="" class="form-control" value="">
                                         </div>
                                         <div class="col-md-12">
-                                            <input type="button" class="btn btn-info btn-lg" id="btnupdateprofile" value="Update">
+                                            
                                         </div>
 
 
@@ -569,6 +569,7 @@
 
                             </div>
                             <div class="modal-footer">
+                                <input type="button" class="btn btn-info btn-lg" id="btnupdateprofile" (click)="ChangePassword();" value="Update">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">{{'Button.ButtonClose'|translate}}</button>
 
                             </div>
@@ -591,9 +592,7 @@
                                 <app-userprofile></app-userprofile>
                             </div>
                             <div _ngcontent-c1="" class="modal-footer">
-                                <!--<button _ngcontent-c1="" class="btn btn-secondary" data-dismiss="modal" type="button">
-                                    {{'Button.ButtonUpload'|translate}}
-                                </button>-->
+                               
                                 <button _ngcontent-c1="" class="btn btn-secondary" data-dismiss="modal" data-toggle="modal" data-target=".bd-example-modal-lg-editsetting-page" data- type="button">{{'Button.ButtonChangePassword'|translate}}</button>
                             </div>
                         </div>
