@@ -147,6 +147,14 @@ export class AuthenticateServiceService {
         this.GetUserSession();
         return JSON.parse(this.Userdata.unique_name)[0];
     }
-   
+    async GetUserById(userId, IsloginUser:boolean) {
+        //var data = this.tokenService.jwtdecrypt(this.Usertoken);
+        var webtoken = { data: this.tokenService.jwtencrypt({ userId: userId }) };
+        var data = await this.http.post(this.baseURL + '/api/user/GetUserDetailByUserId', webtoken, this.requestOptions).map((data: Response) => {
+            return data.json();
+        }).toPromise().then(token => { if (token.IsSuccess) return JSON.parse(this.tokenService.jwtdecrypt(token.data).unique_name); });
+        return (IsloginUser) ? this.Userdata =data[0]:this.bankInfo = data[0];
+
+    }
    
 }

@@ -199,7 +199,7 @@ export class AllBanksComponent implements OnInit {
     async ShowBankPopup(data: any) {
         this.spinner.show();
         //this.objBankInfo.UserFiles = this.userProfileServiceService.listOfFileUploaded
-        await this.authenticateServiceService.GetUserById(data.UserId);
+        await this.authenticateServiceService.GetUserById(data.UserId,false);
         this.objBankInfo = this.authenticateServiceService.bankInfo;
         await this.userProfileServiceService.GetDocList(data.UserId);
         this.spinner.hide();

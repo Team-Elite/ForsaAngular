@@ -12,7 +12,7 @@ import { UserModel } from '../../registration/Shared/user-model.model';
     providedIn: 'root'
 })
 export class UserProfileServiceService {
-    bankInfo: any;
+    userinfo: any;
 
     constructor(public http: Http
         , public authenticateServiceService: AuthenticateServiceService) { }
@@ -59,13 +59,11 @@ export class UserProfileServiceService {
         }).toPromise().then(token => this.listOfFileUploaded = JSON.parse(this.tokenService.jwtdecrypt(token.data).unique_name));
 
     }
-    async GetUserById(userId) {
+    async GetUserById(userId,IsloginUser:boolean) {
         //var data = this.tokenService.jwtdecrypt(this.Usertoken);
-        var webtoken = { data: this.tokenService.jwtencrypt({ userId: userId }) };
-        var data = await this.http.post(this.url + '/api/user/GetUserDetailByUserId', webtoken, this.requestOptions).map((data: Response) => {
-            return data.json();
-        }).toPromise().then(token => { if (token.IsSuccess) return JSON.parse(this.tokenService.jwtdecrypt(token.data).unique_name); });
-        return this.bankInfo = data[0];
+
+         await this.authenticateServiceService.GetUserById(userId, IsloginUser);
+        return this.userinfo = this.authenticateServiceService.Userdata;
 
     }
 
