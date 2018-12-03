@@ -10,6 +10,7 @@ import { LenderDashboardService } from '../lender-dashboard/Shared/lender-dashbo
 import { LenderSendRequestModel } from '../lender-dashboard/best-price-view/Shared/lender-send-request-model.class';
 import { ExportAsService, ExportAsConfig } from 'ngx-export-as';
 import { parse } from 'url';
+import { state } from '@angular/animations';
 declare var $: any;
 
 @Component({
@@ -18,6 +19,7 @@ declare var $: any;
     styleUrls: ['./bank-dashboard.component.css']
 })
 export class BankDashboardComponent implements OnInit {
+    state: string = "expanded";
     bankRateOfinterst: any[];
     _MaturityList: any;
     IfShowBankDashBoard: boolean;
@@ -781,5 +783,25 @@ export class BankDashboardComponent implements OnInit {
             this.router.navigate(['lenderDashboard/AllBanks']);
         }
     }
+   // $('#navbar-toggle').click(function() {
+    toggelebar() {
+        if ($("body").hasClass('sidebar-mini')) {
+            $('.sidebar').css('margin-left', '0px');
+            $("body").removeClass("sidebar-mini ")
+        } else {
+            $('.sidebar').css('margin-left', '-212px');
+            $("body").addClass("sidebar-mini ")
+        }
+       
 
+        
+
+    }
+    
+    //})
 }
+
+
+
+
+

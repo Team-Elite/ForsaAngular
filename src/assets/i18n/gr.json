@@ -1,4 +1,16 @@
 {
+  "MaturityListfild": {
+    "Ticketnumber": "Ticket Nr.",
+    "tadig-date": "Handelstag",
+    "Lender": "Geldgeber",
+    "Bowwower": "Geldnehmer",
+    "Amount": "Volumen",
+    "Startdate": "Valuta",
+    "maturitydate": "Fälligkeit",
+    "rate": "Zins"
+  },
+
+  "DashboardText": "Meine Zinskurve",
   "ClientGroup": {
     "Group1": "Unternehmen / GmbH",
     "Group2": "Unternehmen / AöR und KdöR",
@@ -148,18 +160,24 @@
       "Payments": "ZAHLUNGEN",
       "RateOfInterest": "Zinssatz",
       "Ownmasterdatamanagement": "Eigene Stammdatenverwaltung",
-      "Viewanddownloadyourownduelist": "Ansehen und downloaden eigene Fälligkeitsliste",
-      "Viewanddownloadinthepastdonebusiness": "Ansehen und downloaden in der Vergangenheit getätigter Geschäfte",
-      "STOPPUBLISH": "STOPPEN VERÖFFENTLICHEN",
-      "STATUSON": "Status:Ein",
+      "Viewanddownloadyourownduelist": "Fälligkeitenliste",
+      "Viewanddownloadinthepastdonebusiness": "Historie der Geschäfte",
+      "STOPPUBLISH": "Stop Publizieren",
+      "STATUSON": "Status:AN",
       "STATUSOFF": "STATUS: AUS",
-      "CounterpartyConfiguration": "COUNTERPARTY KONFIGURATION",
+      "CounterpartyConfiguration": "Gegenparteien Konfiguration",
       "TicketNumber": "Ticket Number",
       "TradingDate": "Trading Date",
       "MaturityDate": "Maturity Date",
       "Rate": "Rate",
       "HistoryMaturityList": "Chronik-Fälligkeitsliste",
-      "MaturityList": "Fälligkeitsliste"
+      "MaturityList": "Fälligkeitsliste",
+      "BankRateField": {
+        "Runtime": "Laufzeit",
+        "Min": "mind. Betrag",
+        "Max": "max. Betrag",
+        "BaseCurve": "Basiskurve"
+      }
 
     }
   },
@@ -194,7 +212,7 @@
   },
   "Lender": {
     "DashBoard": {
-      "LogicRoom":"Logikraum",
+      "LogicRoom": "Logikraum",
       "LenderDashboard": "Kreditgeber Dashboard",
       "ContactDashboard": "Kontact Dashboard",
       "menu": "Speisekarte",

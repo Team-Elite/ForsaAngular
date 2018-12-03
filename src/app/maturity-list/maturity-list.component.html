@@ -19383,28 +19383,29 @@
                             <app-forsa-languages></app-forsa-languages>
 
                             <li class="identity account-style">
-                                {{'Lender.DashBoard.Account'|translate}}:
+                                {{'Lender.DashBoard.Account'|translate}}:   {{'Login.BorrowerText'|translate}}
                             </li>
-                            <li class="account">
+                            <!--   <li class="identity account-style">
+
                                 <div class="form-group form-md-line-input has-error">
                                     <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
 
-                                        <select class="mdl-selectfield__select" name="LogicRoom" id="logicroom">
-                                            <span class="input-group-icon">
-                                                <i class="material-icons">{{'Borrower.BankDashboard.expand_more'|translate}}</i>
-                                            </span>
-                                            <option value="" disabled selected>LogicRoom</option>
-                                            <option value="logicroom1">1</option>
-                                            <option value="logicroom2">2</option>
-                                            <option value="logicroom3">3</option>
-                                            <option value="logicroom4">4</option>
-                                        </select>
-                                    </div>
+                                <select class="mdl-selectfield__select" name="LogicRoom" id="logicroom">
+        <span class="input-group-icon">
+            <i class="material-icons">{{'Borrower.BankDashboard.expand_more'|translate}}</i>
+        </span>
+        <option value="" disabled selected>LogicRoom</option>
+        <option value="logicroom1">1</option>
+        <option value="logicroom2">2</option>
+        <option value="logicroom3">3</option>
+        <option value="logicroom4">4</option>
+    </select>
+                                </div>
 
                                 </div>
 
                             </li>
-                            <li>
+                            <!--<li>
                                 <a>
                                     <i class="material-icons icon-position">search</i>
                                 </a>
@@ -19413,13 +19414,13 @@
                                 <a>
                                     <i class="material-icons icon-position">forum</i>
                                 </a>
-                            </li>
+                            </li>-->
                             <li class="identity">
                                 <a href="#" data-toggle="modal" data-target=".admin-modal">
                                     <i class="material-icons">perm_identity</i>
                                 </a>
                             </li>
-                            <li *ngIf=" " class="settings" title="Switch Screen">
+                            <li *ngIf="IfBothUserTypeFound" class="settings" title="Switch Screen">
                                 <a href="javascript:void(0);" (click)="SwitchScreen()">
                                     <i class="material-icons icon-position">
                                     </i>   {{'Borrower.BankDashboard.Settings'|translate}}
@@ -19545,22 +19546,22 @@
                             <tbody>
                                 <tr>
 
-                                    <th style="cursor:pointer;" (click)="GetMaturityList('TicketNo')">Ticket No</th>
+                                    <th style="cursor:pointer;" (click)="GetMaturityList('TicketNo')">{{'MaturityListfild.Ticketnumber'|translate}}</th>
                                     <!--<th style="cursor:pointer;">LenderId</th>-->
-                                    <th style="cursor:pointer;" (click)="GetMaturityList('Lender')">Lender</th>
+                                    <th style="cursor:pointer;" (click)="GetMaturityList('Lender')">{{'MaturityListfild.Lender'|translate}}</th>
                                     <!--<th style="cursor:pointer;">BorrowerId</th>-->
-                                    <th style="cursor:pointer;" (click)="GetMaturityList('Borrower')">Borrower</th>
-                                    <th style="cursor:pointer;" (click)="GetMaturityList('Amount')">Amount</th>
-                                    <th style="cursor:pointer;" (click)="GetMaturityList('StartDate')">Start Date</th>
-                                    <th style="cursor:pointer;" (click)="GetMaturityList('EndDate')">End Date</th>
-                                    <th style="cursor:pointer;" (click)="GetMaturityList('NoOfDays')">No Of Days</th>
-                                    <th style="cursor:pointer;" (click)="GetMaturityList('InterestConvention')">Interest Convention</th>
-                                    <th style="cursor:pointer;" (click)="GetMaturityList('Payments')">Payments</th>
-                                    <!--<th style="cursor:pointer;">IsRequestAccepted</th>-->
+                                    <th style="cursor:pointer;" (click)="GetMaturityList('Borrower')">{{'MaturityListfild.Bowwower'|translate}}</th>
+                                    <th style="cursor:pointer;" (click)="GetMaturityList('Amount')">{{'MaturityListfild.Amount'|translate}}</th>
+                                    <th style="cursor:pointer;" (click)="GetMaturityList('StartDate')">{{'MaturityListfild.Startdate'|translate}}</th>
+                                    <th style="cursor:pointer;" (click)="GetMaturityList('MaturityDate')">{{'MaturityListfild.maturitydate'|translate}}</th>
+                                    <th style="cursor:pointer;" (click)="GetMaturityList('Rate')">{{'MaturityListfild.rate'|translate}}</th>
+                                    <!--<th style="cursor:pointer;" (click)="GetMaturityList('InterestConvention')">Interest Convention</th>
+    <th style="cursor:pointer;" (click)="GetMaturityList('Payments')">Payments</th>
+    <!--<th style="cursor:pointer;">IsRequestAccepted</th>-->
                                     <!--<th style="cursor:pointer;">RequestCreatedBy</th>-->
-                                    <th style="cursor:pointer;" (click)="GetMaturityList('RateOfInterestOfferred')">Rate Of Interest Offerred</th>
+                                  <!--  <th style="cursor:pointer;" (click)="GetMaturityList('RateOfInterestOfferred')">Rate Of Interest Offerred</th>-->
                                     <!--<th style="cursor:pointer;">Offerred Date</th>
-                                    <th style="cursor:pointer;">Status</th>-->
+    <th style="cursor:pointer;">Status</th>-->
 
                                 </tr>
                                 <tr *ngFor="let bank of _MaturityList">

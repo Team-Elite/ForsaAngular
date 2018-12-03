@@ -48,9 +48,71 @@ i.icon-position {
     font-size: 20px;
 }
 
+button.btn.w-100.w-100-px.update-active.update {
+    float: left !important;
+    width: 20% !important;
+    font-size: 15px;
+}
+button.btn.w-100.w-100-px.update-active.update-status {
+    float: right;
+    width: 20% !important;
+    font-size: 15px;
+}
+.cockpit-dropdown-div {
+    position: absolute;
+    top: 100px;
+}
+a.status-on.ng-star-inserted {
+    background-color: #72af09;
+    color: #fff !important;
+}
+a.status-off.ng-star-inserted {
+    background-color: orangered;
+    color: #fff !important;
+}
+
+.sidebar-nav[_ngcontent-c1] li[_ngcontent-c1] a.status-on.ng-star-inserted[_ngcontent-c1]:hover {
+    background-color: #72af09;
+}
+.sidebar-nav[_ngcontent-c1] li[_ngcontent-c1] a.status-off.ng-star-inserted[_ngcontent-c1]:hover {
+    background-color: orangered;
+}
+
+button.status-on.ng-star-inserted {
+    background-color: #72af09;
+    color: #fff !important;
+    width: 20%;
+    border: orangered;
+    padding: 0px !important;
+    height: 40px;
+    vertical-align: middle;
+    float: right;
+}
+
+button.status-off.ng-star-inserted[_ngcontent-c1] {
+    background-color: orangered;
+    color: #fff !important;
+    width: 20%;
+    border: orangered;
+    padding: 0px !important;
+    height: 40px;
+    vertical-align: middle;
+    float: right;
+}
+button.status-on, button.status-off {
+    background-color: #8636d7;
+    color: #fff !important;
+    width: 20%;
+    border: orangered;
+    padding: 0px !important;
+    height: 40px;
+    vertical-align: middle;
+    float: right;
+}
+
 /* header  css starts */
 @media screen and (max-width: 812px) {
-.full-header .instimatch-logo {
+    .full-header .instimatch-logo {
     margin-left: 30vw;
 }
 .full-header .col-lg-8.col-md-8 {

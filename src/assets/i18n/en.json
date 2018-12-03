@@ -1,8 +1,19 @@
 ﻿{
+  "MaturityListfild": {
+    "Ticketnumber": "Ticket Number",
+    "tadig-date": "Trading Date",
+    "Lender": "LENDER",
+    "Bowwower": "BORROWER",
+    "Amount": "AMOUNT",
+    "Startdate": "START-DATE",
+    "maturitydate": "Maturity Date",
+    "rate": "Rate"
+  },
+  "DashboardText": "DASHBOARD",
   "ClientGroup": {
-    "Group1": "Companies / GmbH",
-    "Group2": "Companies / AIR And death",
-    "Group3": "Communities"
+    "Group1": "Uneternehmen / GmbH",
+    "Group2": "Uneternehmen / AoR KdoR",
+    "Group3": "Kommunen"
   },
   "Button": {
     "ButtonSend": "Send",
@@ -39,7 +50,7 @@
     "Email": "Email"
   },
   "UserProfile": {
-    "FormTitle": "Own Master Data Management",
+    "FormTitle": "Stammdatenverwaltung",
     "Title": "Title",
     "NameofCompany": "Name of Company",
     "Street": "Street",
@@ -150,9 +161,9 @@
       "Payments": "PAYMENTS",
       "RateOfInterest": "Rate Of Interest",
       "PUBLISH": "PUBLISH",
-      "Viewanddownloadinthepastdonebusiness": "View and download in the past done business",
-      "Viewanddownloadyourownduelist": "View and download your own due list",
-      "Ownmasterdatamanagement": "Own master data management",
+      "Viewanddownloadinthepastdonebusiness": "HISTORY MATURITY LIST",
+      "Viewanddownloadyourownduelist": "MATURITY LIST",
+      "Ownmasterdatamanagement": "Stammdatenverwaltung",
       "STOPPUBLISH": "STOP PUBLISH",
       "STATUSON": "STATUS:ON",
       "STATUSOFF": "STATUS:OFF",
@@ -162,7 +173,13 @@
       "MaturityDate": "Maturity Date",
       "Rate": "Rate",
       "MaturityList": "Maturity List",
-      "HistoryMaturityList": "History Maturity List"
+      "HistoryMaturityList": "History Maturity List",
+      "BankRateField": {
+        "Runtime": "Maturity",
+        "Min": "Min. Amount",
+        "Max": "Max. Amount",
+        "BaseCurve": "Base-curve"
+      }
 
     }
   },

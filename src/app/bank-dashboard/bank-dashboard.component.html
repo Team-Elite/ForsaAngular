@@ -27,7 +27,7 @@
     </style>
 
 </head>
-
+    
 <body class="instibg app-pg">
     <!-- Wrapper for the Whole Application -->
     <div id="wrapper" class="wrapper-full">
@@ -37,14 +37,15 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-4 col-md-4">
-                        <a id="navbar-toggle">
-                            <span class="align-middle input-group-icon menu">
-                                <i class="material-icons ">menu</i>
-                            </span>
-                        </a>
-                        <div class="instimatch-logo">
-                            <img alt="Insimatch Logo" src="../assets/images/instimatch-logo.jpg">
-                        </div>
+                        <a href="javascript:void(0);"  id="navbar-toggle" (click)="toggelebar()">
+                            <!--<button  (click)="toggelbar()">-->
+                                <span class="align-middle input-group-icon menu">
+                                    <i class="material-icons ">menu</i>
+                                </span>
+                            </a>
+                            <div class="instimatch-logo">
+                                <img alt="Insimatch Logo" src="../assets/images/instimatch-logo.jpg">
+                            </div>
                     </div>
                     <div class="col-lg-8 col-md-8">
                         <ul class="in-lang text-right">
@@ -56,34 +57,34 @@
                             </li>
                             <!--   <li class="identity account-style">
 
-                                <div class="form-group form-md-line-input has-error">
-                                    <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
+                                                        <div class="form-group form-md-line-input has-error">
+                                                            <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
 
-                                <select class="mdl-selectfield__select" name="LogicRoom" id="logicroom">
-        <span class="input-group-icon">
-            <i class="material-icons">{{'Borrower.BankDashboard.expand_more'|translate}}</i>
-        </span>
-        <option value="" disabled selected>LogicRoom</option>
-        <option value="logicroom1">1</option>
-        <option value="logicroom2">2</option>
-        <option value="logicroom3">3</option>
-        <option value="logicroom4">4</option>
-    </select>
-                                </div>
+                                                        <select class="mdl-selectfield__select" name="LogicRoom" id="logicroom">
+                                <span class="input-group-icon">
+                                    <i class="material-icons">{{'Borrower.BankDashboard.expand_more'|translate}}</i>
+                                </span>
+                                <option value="" disabled selected>LogicRoom</option>
+                                <option value="logicroom1">1</option>
+                                <option value="logicroom2">2</option>
+                                <option value="logicroom3">3</option>
+                                <option value="logicroom4">4</option>
+                            </select>
+                                                        </div>
 
-                                </div>
+                                                        </div>
 
-                            </li>
-                            <!--<li>
-                                <a>
-                                    <i class="material-icons icon-position">search</i>
-                                </a>
-                            </li>
-                            <li>
-                                <a>
-                                    <i class="material-icons icon-position">forum</i>
-                                </a>
-                            </li>-->
+                                                    </li>
+                                                    <!--<li>
+                                                        <a>
+                                                            <i class="material-icons icon-position">search</i>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a>
+                                                            <i class="material-icons icon-position">forum</i>
+                                                        </a>
+                                                    </li>-->
                             <li class="identity">
                                 <a href="#" data-toggle="modal" data-target=".admin-modal">
                                     <i class="material-icons">perm_identity</i>
@@ -115,7 +116,7 @@
 
                     <ul class="sidebar-nav ">
                         <li>
-                            <a (click)="ShowScreen('BankDashboard');">DASHBOARD</a>
+                            <a (click)="ShowScreen('BankDashboard');">{{'DashboardText'|translate}}</a>
                         </li>
                         <li class="cockpit-btn">
                             <a>
@@ -127,11 +128,11 @@
                             <div class="cockpit-dropdown-div">
                                 <button type="button" class="dropcockpit" id="eigene" data-toggle="modal" data-target=".bd-example-modal-lg-eigene-Stammdatenverwaltung">{{'Borrower.BankDashboard.Ownmasterdatamanagement'|translate}}</button>
                                 <!--<button type="button" class="dropcockpit" (click)="ShowScreen('Mreport');" id="Ansehen">{{'Borrower.BankDashboard.Viewanddownloadyourownduelist'|translate}}</button>
-            <button type="button" class="dropcockpit" (click)="ShowScreen('HMreport');" id="Ansehenund">{{'Borrower.BankDashboard.Viewanddownloadinthepastdonebusiness'|translate}}</button>-->
+                                <button type="button" class="dropcockpit" (click)="ShowScreen('HMreport');" id="Ansehenund">{{'Borrower.BankDashboard.Viewanddownloadinthepastdonebusiness'|translate}}</button>-->
                                 <button type="button" class="dropcockpit" routerLink="/maturityList" id="Ansehen">{{'Borrower.BankDashboard.Viewanddownloadyourownduelist'|translate}}</button>
                                 <button type="button" class="dropcockpit" routerLink="/historyMaturityList" id="Ansehenund">{{'Borrower.BankDashboard.Viewanddownloadinthepastdonebusiness'|translate}}</button>
                                 <!--<button type="button" class="dropcockpit" >Maturity List</button>
-            <button type="button" class="dropcockpit" > History Maturity List</button>-->
+                                <button type="button" class="dropcockpit" > History Maturity List</button>-->
 
                             </div>
 
@@ -155,12 +156,12 @@
                             </a>
                         </li>
                         <li>
-                            <a *ngIf="IsPublished">
+                            <a *ngIf="IsPublished" class="status-on">
                                 {{'Borrower.BankDashboard.STATUSON'|translate}}  <span class="align-middle input-group-icon ">
                                     <img alt="Insimatch Logo" src="../assets/images/status-live-icon.png">
                                 </span>
                             </a>
-                            <a *ngIf="!IsPublished">
+                            <a *ngIf="!IsPublished" class="status-off">
                                 {{'Borrower.BankDashboard.STATUSOFF'|translate}}<span class="align-middle input-group-icon ">
                                     <img alt="Insimatch Logo" src="../assets/images/status-live-icon.png">
                                 </span>
@@ -211,25 +212,25 @@
                             <div *ngIf="IfShowBankDashBoard" id="Rate-Panel">
                                 <div class="no-gutters row">
                                     <div class="col-md-2 pr-1 text-centered">
-                                        <span class="modal-header">running time</span>
+                                        <span class="modal-header-table">{{'Borrower.BankDashboard.BankRateField.Runtime'|translate}}</span>
                                     </div>
                                     <div class="col-md-1 pr-1 text-centered">
-                                        <span class="modal-header">at least amount</span>
+                                        <span class="modal-header-table">{{'Borrower.BankDashboard.BankRateField.Min'|translate}}</span>
                                     </div>
                                     <div class="col-md-1 pr-1 text-centered">
-                                        <span class="modal-header">Max. Amount</span>
+                                        <span class="modal-header-table">{{'Borrower.BankDashboard.BankRateField.Max'|translate}}</span>
                                     </div>
                                     <div class="col-md-2 pr-1 text-centered">
-                                        <span class="modal-header">Base curve</span>
+                                        <span class="modal-header-table"> {{'Borrower.BankDashboard.BankRateField.BaseCurve'|translate}}</span>
                                     </div>
                                     <div class="col-md-2 pr-1 text-centered">
-                                        <span class="modal-header w-100">{{'ClientGroup.Group1'|translate}}</span>
+                                        <span class="modal-header-table w-100">{{'ClientGroup.Group1'|translate}}</span>
                                     </div>
                                     <div class="col-md-2 pr-1 text-centered">
-                                        <span class="modal-header">{{'ClientGroup.Group2'|translate}}</span>
+                                        <span class="modal-header-table">{{'ClientGroup.Group2'|translate}}</span>
                                     </div>
                                     <div class="col-md-2 pr-1 text-centered">
-                                        <span class="modal-header">{{'ClientGroup.Group3'|translate}}</span>
+                                        <span class="modal-header-table">{{'ClientGroup.Group3'|translate}}</span>
                                     </div>
 
                                 </div>
@@ -361,9 +362,27 @@
                                     </div>
 
                                 </div>
-                                <div class="col-md-10"></div>
-                                <div class="col-md-2 pr-1">
+
+
+                                <div class="col-md-12 ">
                                     <button type="button" class="btn w-100 w-100-px update-active update" (click)="update(listrateofinterstofbank)">Update</button>
+
+                                   
+                                        <button *ngIf="IsPublished" class="status-on">
+                                            {{'Borrower.BankDashboard.STATUSON'|translate}}  <span class="align-middle input-group-icon "></span>
+                                        </button>
+
+                                        <button *ngIf="!IsPublished" class="status-off">
+                                            {{'Borrower.BankDashboard.STATUSOFF'|translate}}<span class="align-middle input-group-icon ">
+                                               
+                                            </span>
+                                        </button>
+                                    
+
+                                </div>
+
+                                <div class="col-md-2">
+
                                 </div>
                             </div>
 
@@ -560,7 +579,7 @@
                                             <input type="password" name="" class="form-control" value="">
                                         </div>
                                         <div class="col-md-12">
-                                            
+
                                         </div>
 
 
@@ -592,7 +611,7 @@
                                 <app-userprofile></app-userprofile>
                             </div>
                             <div _ngcontent-c1="" class="modal-footer">
-                               
+
                                 <button _ngcontent-c1="" class="btn btn-secondary" data-dismiss="modal" data-toggle="modal" data-target=".bd-example-modal-lg-editsetting-page" data- type="button">{{'Button.ButtonChangePassword'|translate}}</button>
                             </div>
                         </div>
@@ -604,7 +623,7 @@
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLongTitle">Eigene Stammdatenverwaltung</h5>
+                                <h5 class="modal-title" id="exampleModalLongTitle">Stammdatenverwaltung</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -719,52 +738,35 @@
 
     </div>
 
-    <!-- <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script> -->
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
-    <script src='https://unpkg.com/popper.js'></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/js/bootstrap.min.js'></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js'></script>
-    <script src="js/index.js "></script>
-    <script>
-        var state = "expanded ";
-        //Check if navbar is expanded or minimized and handle
-        $('#navbar-toggle').click(function () {
-            if (state == "expanded ") {
-                $('.sidebar').css('margin-left', '-182px');
-                $("body").addClass("sidebar-mini ")
-                if (document.documentElement.clientWidth < 991) {
-                    $("html").addClass("nav-open")
+    <!-- <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>-->
+         <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+         <script src='https://unpkg.com/popper.js'></script>
+         <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/js/bootstrap.min.js'></script>
+         <script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js'></script>
+         <script src="js/index.js "></script>
+        <script>
+            var state = "expanded ";
+            $('.dashboard-left .link').on('click', function () {
+                if ($(this).hasClass('current')) {
+                    $(this).removeClass('current');
+                } else {
+                    $('.dashboard-left .link.current').removeClass('current');
+                    $(this).addClass('current');
                 }
-                state = "minimized ";
-            } else {
-                if (state == "minimized ") {
-                    $('.sidebar').css('margin-left', '0px');
-                    $("body ").removeClass("sidebar-mini ")
-                    if (document.documentElement.clientWidth < 991) {
-                        $("html").removeClass("nav-open")
-                    }
-                    state = "expanded ";
-                }
-            }
-        })
-
-        $('.dashboard-left .link').on('click', function () {
-            if ($(this).hasClass('current')) {
-                $(this).removeClass('current');
-            } else {
-                $('.dashboard-left .link.current').removeClass('current');
-                $(this).addClass('current');
-            }
-        });
+            });
+            //Check if navbar is expanded or minimized and handle
+            //$('#navbar-toggle').click(
+            //})
+           
 
 
-                                            // if (document.documentElement.clientWidth < 900) {
-                                            //     $('#navbar-toggle').click(function() {
-                                            //         $("html").addClass("open-nav")
-                                            //     })
-                                            // }
-    </script>
+                                                    // if (document.documentElement.clientWidth < 900) {
+                                                    //     $('#navbar-toggle').click(function() {
+                                                    //         $("html").addClass("open-nav")
+                                                    //     })
+                                                    // }
+        </script>
 
-</body>
-co
-</html>
+    </body>
+    
+    </html>
