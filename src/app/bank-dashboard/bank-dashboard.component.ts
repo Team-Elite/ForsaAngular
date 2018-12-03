@@ -652,7 +652,7 @@ export class BankDashboardComponent implements OnInit {
     async GetLenderMaturityList(IfHistoryReportRequested: boolean) {
        
         this.spinner.show();
-        let maturityList = await this.bankDashboardService.GetBorrowerMaturityList(IfHistoryReportRequested, this.bankDashboardService.loggedInUser.UserId);
+        let maturityList = await this.bankDashboardService.GetBorrowerMaturityList(IfHistoryReportRequested, this.bankDashboardService.loggedInUser.UserId, this.orderBy);
          this._MaturityList = maturityList;
          this.spinner.hide();
     }

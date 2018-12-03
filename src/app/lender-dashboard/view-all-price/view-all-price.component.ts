@@ -99,7 +99,7 @@ export class ViewAllPriceComponent implements OnInit {
         this.viewAllPriceService.listViewAllPrice1 = [];
         this.viewAllPriceService.listViewAllPrice2 = [];
         this.viewAllPriceService.listViewAllPrice3 = [];
-        this.GetAllBanksWithStatusIsDeselected();
+       // this.GetAllBanksWithStatusIsDeselected();
         this.spinner.show();
         // this.GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected();
         this.GetAllBanksWithInterestRateHorizontalyOrderByColumnName(this.orderByColumn);
@@ -192,11 +192,11 @@ export class ViewAllPriceComponent implements OnInit {
         }
     }
 
-    //SetTimeInterval() {
-    //    this.timer = setInterval(() => {
-    //        this.GetAllBanksWithInterestRateHorizontalyOrderByColumnName(this.orderByColumn);
-    //    }, 1000);
-    //}
+    SetTimeInterval() {
+        this.timer = setInterval(() => {
+            this.GetAllBanksWithInterestRateHorizontalyOrderByColumnName(this.orderByColumn);
+        }, 1000);
+    }
     //SetHighestRatesTimeInterval() {
     //    this.timer1 = setInterval(() => {
     //        this.GetHighestRatesViewAllPrice();
@@ -354,8 +354,9 @@ export class ViewAllPriceComponent implements OnInit {
         });
         this.viewAllPriceService.listAllBanks = rates;
         this.ratesOfIntrest = this.viewAllPriceService.listAllBanks;
-        this.GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected();
+     
         this.GetHighestRatesViewAllPrice();
+       // this.GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected();
         //this.SetHighestRatesTimeInterval();
 
         this.spinner.hide();

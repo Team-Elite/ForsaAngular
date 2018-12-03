@@ -65,8 +65,8 @@
   "Register": {
     "section1": {
       "Title": "Titel",
-      "Borrower": "Kreditnehmer",
-      "Lender": "Darlehensgeber",
+      "Borrower": "Geldnehmer",
+      "Lender": "Anleger",
       "NameofCompany": "Name Unternehmen",
       "Street": "Strasse",
       "PostalCode": "Postleitzahl",
@@ -94,6 +94,9 @@
       "expand_more": "expand_more",
       "LEINumber": "LEI Number",
       "RatingAgentur1": "RatingAgentur1",
+      "RatingAgentur2": "RatingAgentur2",
+      "RatingAgentValue1": "RatingAgent1 Value",
+      "RatingAgentValue2": "RatingAgent2 Value",
       "DepositInsurance": "Einlagensicherung"
     },
     "Section3": {

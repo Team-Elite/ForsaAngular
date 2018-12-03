@@ -23,19 +23,17 @@ export class LenderDashboardService {
     ConfirmPassword: string;
     CurrentPageName: string;
     UserTypeId: any = 5;
-   
-    async GetlenderMaturityList(showHistory, userId) {
-        var webtoken = { data: this.tokenService.jwtencrypt({ lenderId: userId, History: showHistory }) };
+    async GetlenderMaturityList(history: boolean, userId, orderBy: string) {
+        var webtoken = { data: this.tokenService.jwtencrypt({ userId: userId, History: history }), orderBy: orderBy };
         var result = await this.http.post(this.authenticateServiceService.baseURL + '/api/LenderDashBoard/GetMaturityList', webtoken, this.requestOptions).map((data: Response) => {
             return data.json();
-        }).toPromise().then(token => {
-            
-            return this.tokenService.jwtdecrypt(token.data)
-        });
-        
+        }).toPromise().then(token => { return this.tokenService.jwtdecrypt(token.data) });
+     
         result = JSON.parse(result.unique_name);
         return result;
     }
+
+   
    public async GetLenderStartPage() {
        if (this.userId === undefined) return null;
        var webtoken = { data: this.tokenService.jwtencrypt({ userId: this.userId }) };

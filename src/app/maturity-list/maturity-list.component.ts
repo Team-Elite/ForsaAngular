@@ -34,12 +34,14 @@ export class MaturityListComponent implements OnInit {
     Month = [];
     Year = [];
     IfBothUserTypeFound: boolean = false;
+    orderBy:string='EndDate';
     //lenderSendRequestModel: LenderSendRequestModel;
     //_authenticateServiceService: AuthenticateServiceService
 
-    async GetMaturityList() {
-        if (window.location.hash.replace("#","") === '/maturityList') this._MaturityList = await this.bankDashService.GetBorrowerMaturityList(true, this._authenticateServiceService.GetUserId());
-        if (window.location.hash.replace("#", "") === '/historyMaturityList') this._MaturityList = await this.bankDashService.GetBorrowerMaturityList(false, this._authenticateServiceService.GetUserId())
+    async GetMaturityList(orderBy:string) {
+        this.orderBy=orderBy;
+        if (window.location.hash.replace("#","") === '/maturityList') this._MaturityList = await this.bankDashService.GetBorrowerMaturityList(true, this._authenticateServiceService.GetUserId(),this.orderBy);
+        if (window.location.hash.replace("#", "") === '/historyMaturityList') this._MaturityList = await this.bankDashService.GetBorrowerMaturityList(false, this._authenticateServiceService.GetUserId(),this.orderBy)
     }
     _history: boolean;
     http: any;
@@ -68,7 +70,7 @@ export class MaturityListComponent implements OnInit {
         this.GetUserGroupForSettingRateOfInterestVisibility();
         this.bankDashService.loggedInUser = this._authenticateServiceService.GetUserDetail();
         this.copyLoggedInUser = Object.assign({}, this.bankDashService.loggedInUser);
-        this.GetMaturityList();
+        this.GetMaturityList('EndDate');
 
 
         //this.activeRoute.url.subscribe(url => {

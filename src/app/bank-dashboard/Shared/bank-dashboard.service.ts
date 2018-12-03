@@ -29,15 +29,16 @@ export class BankDashboardService {
     BorrowerMaturityList: any;
     constructor(private http: Http, public authenticateServiceService: AuthenticateServiceService) { }
 
-    async GetBorrowerMaturityList(history: boolean, userId) {
-        var webtoken = { data: this.tokenService.jwtencrypt({ userId: userId, History: history }) };
-        var result= await this.http.post(this.authenticateServiceService.baseURL + '/api/BankDashBoard/GetMaturityList', webtoken, this.requestOptions).map((data: Response) => {
+    async GetBorrowerMaturityList(history: boolean, userId, orderBy: string) {
+        var webtoken = { data: this.tokenService.jwtencrypt({ userId: userId, History: history }), orderBy: orderBy };
+        var result = await this.http.post(this.authenticateServiceService.baseURL + '/api/BankDashBoard/GetMaturityList', webtoken, this.requestOptions).map((data: Response) => {
             return data.json();
-        }).toPromise().then(token => {  return this.tokenService.jwtdecrypt(token.data)});
+        }).toPromise().then(token => { return this.tokenService.jwtdecrypt(token.data) });
         debugger;
         result = JSON.parse(result.unique_name);
         return result;
     }
+
 
 
     async GetRateOfInterestOfBank() {

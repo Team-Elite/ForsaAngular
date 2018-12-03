@@ -96,6 +96,9 @@
       "LEINumber": "LEI Number",
       "expand_more": "expand_more",
       "RatingAgentur1": "RatingAgentur1",
+      "RatingAgentur2": "RatingAgentur2",
+      "RatingAgentValue1": "RatingAgent1 Value",
+      "RatingAgentValue2": "RatingAgent2 Value",
       "DepositInsurance": "DepositInsurance"
     },
     "Section3": {

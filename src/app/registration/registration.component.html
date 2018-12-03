@@ -59,14 +59,14 @@
 
                                     <div class="md-radio md-radio-inline ">
                                         <!-- <input [value]="2" #rdbBank="ngModel" [(ngModel)]="registrationService.userModel.UserTypeId" name="UserTypeId" id="3" type="radio" checked=""> Bank
-                                        <label for="3"></label> -->
+            <label for="3"></label> -->
                                         <input #UserId="ngModel" [(ngModel)]="registrationService.userModel.UserId" name="UserId" id="UserId" type="hidden" />
                                         <input #rdbBank="ngModel" [(ngModel)]="registrationService.userModel.rdbBank" name="rdbBank" id="rdbBank" type="checkbox" class="cbx used">
                                         <label for="rdbBank" class="lbl"> {{'Register.section1.Borrower'|translate}} </label>
                                     </div>
                                     <div class="md-radio md-radio-inline">
                                         <!-- <input [value]="3" #rdbNonBank="ngModel" [(ngModel)]="registrationService.userModel.UserTypeId" name="UserTypeId" id="4" type="radio"> Non-Bank
-                                        <label for="4"> </label> -->
+            <label for="4"> </label> -->
                                         <input #rdbNonBank="ngModel" [(ngModel)]="registrationService.userModel.rdbNonBank" name="rdbNonBank" id="rdbNonBank" type="checkbox" class="cbx used">
                                         <label for="rdbNonBank" class="lbl"> {{'Register.section1.Lender'|translate}} </label>
                                     </div>
@@ -109,13 +109,13 @@
                                 </div>
 
                                 <!--<div class="form-group form-md-line-input has-error">
-                                    <div class="group input-group">
-                                        <input #AccountHolder="ngModel" [(ngModel)]="registrationService.userModel.AccountHolder" name="AccountHolder" type="text" class="used">
-                                        <span class="highlight"></span>
-                                        <span class="bar"></span>
-                                        <label>{{'Register.section1.AccountHolder'|translate}}*</label>
-                                    </div>
-                                </div>-->
+        <div class="group input-group">
+            <input #AccountHolder="ngModel" [(ngModel)]="registrationService.userModel.AccountHolder" name="AccountHolder" type="text" class="used">
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label>{{'Register.section1.AccountHolder'|translate}}*</label>
+        </div>
+    </div>-->
 
                                 <div class="form-group form-md-line-input has-error">
                                     <div class="group input-group">
@@ -159,15 +159,15 @@
                                 </div>
 
                                 <!--<div class="form-group form-md-line-input has-error">
-                                    <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
-                                        <label>{{'Register.section1.ClientSubGroup'|translate}}</label>
-                                        <select #SubGroupId="ngModel" [(ngModel)]="registrationService.userModel.SubGroupId" class="mdl-selectfield__select" name="SubGroupId" id="SubGroupId">
-                                            expand_more
-                                            <option value="0" disabled="" selected="">{{'Register.section1.ClientSubGroup'|translate}}*</option>
-                                            <option *ngFor="let subGroup of registrationService.listSubGroupModel" value="{{subGroup.SubGroupId}}">{{subGroup.SubGroupName}}</option>
-                                        </select>
-                                    </div>
-                                </div>-->
+        <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
+            <label>{{'Register.section1.ClientSubGroup'|translate}}</label>
+            <select #SubGroupId="ngModel" [(ngModel)]="registrationService.userModel.SubGroupId" class="mdl-selectfield__select" name="SubGroupId" id="SubGroupId">
+                expand_more
+                <option value="0" disabled="" selected="">{{'Register.section1.ClientSubGroup'|translate}}*</option>
+                <option *ngFor="let subGroup of registrationService.listSubGroupModel" value="{{subGroup.SubGroupId}}">{{subGroup.SubGroupName}}</option>
+            </select>
+        </div>
+    </div>-->
 
                                 <div class="form-group form-md-line-input has-error">
                                     <div class="group input-group">
@@ -178,67 +178,67 @@
                                     </div>
                                 </div>
 
-                                <!--<div class="group input-group">
-                                    <input #FurtherField4="ngModel" [(ngModel)]="registrationService.userModel.FurtherField4" name="FurtherField4" type="text" class="used">
-                                  <div class="form-group form-md-line-input has-error">
-                                      <span class="highlight"></span>
+                                <div class="form-group form-md-line-input has-error">
+                                    <div class="group input-group">
+                                        <input #FurtherField4="ngModel" [(ngModel)]="registrationService.userModel.FurtherField4" name="FurtherField4" type="text" class="used">
+                                        <span class="highlight"></span>
                                         <span class="bar"></span>
                                         <label>{{'Register.section1.FurtherField4'|translate}}</label>
                                     </div>
-                                </div>-->
+                                </div>
 
                                 <!-- <div class="form-group form-md-line-input has-error">
-                                              <div class="group input-group">
-                                                  <input #Address="ngModel" [(ngModel)]="registrationService.userModel.Address" name="Address" type="text" class="used">
-                                                  <span class="highlight"></span>
-                                                  <span class="bar"></span>
-                                                  <label>Address</label>
-                                                  <span class="input-group-icon">
-                                  <i class="material-icons">home</i>
-                                </span>
+                  <div class="group input-group">
+                      <input #Address="ngModel" [(ngModel)]="registrationService.userModel.Address" name="Address" type="text" class="used">
+                      <span class="highlight"></span>
+                      <span class="bar"></span>
+                      <label>Address</label>
+                      <span class="input-group-icon">
+      <i class="material-icons">home</i>
+    </span>
 
-                                              </div>
-                                          </div>
-
-
-                                          <div class="form-group form-md-line-input has-error">
-                                              <div class="group input-group">
-                                                  <input #ZipCode="ngModel" [(ngModel)]="registrationService.userModel.ZipCode" name="ZipCode" type="text" class="used">
-                                                  <span class="highlight"></span>
-                                                  <span class="bar"></span>
-                                                  <label>Zip Code</label>
+                  </div>
+              </div>
 
 
-                                              </div>
-                                          </div>
-
-                                          <div class="form-group form-md-line-input has-error">
-                                              <div class="group input-group">
-                                                  <input #City="ngModel" [(ngModel)]="registrationService.userModel.City" name="City" type="text" class="used">
-                                                  <span class="highlight"></span>
-                                                  <span class="bar"></span>
-                                                  <label>City</label>
+              <div class="form-group form-md-line-input has-error">
+                  <div class="group input-group">
+                      <input #ZipCode="ngModel" [(ngModel)]="registrationService.userModel.ZipCode" name="ZipCode" type="text" class="used">
+                      <span class="highlight"></span>
+                      <span class="bar"></span>
+                      <label>Zip Code</label>
 
 
-                                              </div>
-                                          </div> -->
+                  </div>
+              </div>
+
+              <div class="form-group form-md-line-input has-error">
+                  <div class="group input-group">
+                      <input #City="ngModel" [(ngModel)]="registrationService.userModel.City" name="City" type="text" class="used">
+                      <span class="highlight"></span>
+                      <span class="bar"></span>
+                      <label>City</label>
+
+
+                  </div>
+              </div> -->
                                 <!-- <div class="form-group form-md-line-input has-error">
-                                    <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
-                                      <label>Country</label>
-                                        <select #CountryId="ngModel" [(ngModel)]="registrationService.userModel.CountryId" class="mdl-selectfield__select" name="CountryId" id="userCountry" >expand_more
-                                            <option value="0" disabled="" selected="">Country</option>
-                                            <option *ngFor="let country of registrationService.CountryList" value="{{country.CountryId}}">{{country.Country}}</option>
-                                         </select>
-                                    </div>
-                                  </div> -->
+        <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
+          <label>Country</label>
+            <select #CountryId="ngModel" [(ngModel)]="registrationService.userModel.CountryId" class="mdl-selectfield__select" name="CountryId" id="userCountry" >expand_more
+                <option value="0" disabled="" selected="">Country</option>
+                <option *ngFor="let country of registrationService.CountryList" value="{{country.CountryId}}">{{country.Country}}</option>
+             </select>
+        </div>
+      </div> -->
                                 <!-- <div class="form-group form-md-line-input">
-                                    <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
-                                        <select #LanguageId="ngModel" [(ngModel)]="registrationService.userModel.LanguageId" class="mdl-selectfield__select" id="preferredLanguage" name="LanguageId">
-                                        <option value="0" disabled="" selected=""> Language</option>
-                                        <option *ngFor="let language of registrationService.languageList"  value="{{language.LanguageId}}">{{language.LanguageCode}}</option>
-                                      </select>
-                                    </div>
-                                </div> -->
+        <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
+            <select #LanguageId="ngModel" [(ngModel)]="registrationService.userModel.LanguageId" class="mdl-selectfield__select" id="preferredLanguage" name="LanguageId">
+            <option value="0" disabled="" selected=""> Language</option>
+            <option *ngFor="let language of registrationService.languageList"  value="{{language.LanguageId}}">{{language.LanguageCode}}</option>
+          </select>
+        </div>
+    </div> -->
 
                                 <div class="login-margin"></div>
 
