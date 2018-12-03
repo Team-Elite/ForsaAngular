@@ -11894,11 +11894,11 @@
         blockquote:before {
             position: absolute;
             left: -.5em;
-            content: '“'
+            content: 'ï¿½'
         }
 
         blockquote:after {
-            content: '”';
+            content: 'ï¿½';
             margin-left: -.05em
         }
 
@@ -19342,20 +19342,20 @@
                 <tbody>
                     <tr>
 
-                        <th style="cursor:pointer;">Ticket No</th>
+                        <th style="cursor:pointer;" (click)="GetMaturityList('TicketNo')">Ticket No</th>
                         <!--<th style="cursor:pointer;">LenderId</th>-->
-                        <th style="cursor:pointer;">Lender</th>
+                        <th style="cursor:pointer;" (click)="GetMaturityList('Lender')">Lender</th>
                         <!--<th style="cursor:pointer;">BorrowerId</th>-->
-                        <th style="cursor:pointer;">Borrower</th>
-                        <th style="cursor:pointer;">Amount</th>
-                        <th style="cursor:pointer;">Start Date</th>
-                        <th style="cursor:pointer;">End Date</th>
-                        <th style="cursor:pointer;">No Of Days</th>
-                        <th style="cursor:pointer;">Interest Convention</th>
-                        <th style="cursor:pointer;">Payments</th>
+                        <th style="cursor:pointer;" (click)="GetMaturityList('Borrower')">Borrower</th>
+                        <th style="cursor:pointer;" (click)="GetMaturityList('Amount')">Amount</th>
+                        <th style="cursor:pointer;" (click)="GetMaturityList('StartDate')">Start Date</th>
+                        <th style="cursor:pointer;" (click)="GetMaturityList('EndDate')">End Date</th>
+                        <th style="cursor:pointer;" (click)="GetMaturityList('NoOfDays')">No Of Days</th>
+                        <th style="cursor:pointer;" (click)="GetMaturityList('InterestConvention')">Interest Convention</th>
+                        <th style="cursor:pointer;" (click)="GetMaturityList('Payments')">Payments</th>
                         <!--<th style="cursor:pointer;">IsRequestAccepted</th>-->
                         <!--<th style="cursor:pointer;">RequestCreatedBy</th>-->
-                        <th style="cursor:pointer;">Rate Of Interest Offerred</th>
+                        <th style="cursor:pointer;" (click)="GetMaturityList('RateOfInterestOfferred')">Rate Of Interest Offerred</th>
                         <!--<th style="cursor:pointer;">Offerred Date</th>
                         <th style="cursor:pointer;">Status</th>-->
 

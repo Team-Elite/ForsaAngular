@@ -14,9 +14,10 @@ import { BankDashboardService } from '../../bank-dashboard/Shared/bank-dashboard
 
 export class MaturitylistComponent implements OnInit {
 
-    async GetMaturityList() {
-        if (window.location.hash.replace("#", "") === '/lenderDashboard/Maturitylist') this._MaturityList = await this._landerdashboardservice.GetlenderMaturityList(true, this._authenticateServiceService.GetUserId());
-        if (window.location.hash.replace("#", "") === '/lenderDashboard/historyMaturitylist') this._MaturityList = await this._landerdashboardservice.GetlenderMaturityList(false, this._authenticateServiceService.GetUserId());
+    async GetMaturityList(orderBy:string) {
+        this.orderBy=orderBy;
+        if (window.location.hash.replace("#", "") === '/lenderDashboard/Maturitylist') this._MaturityList = await this._landerdashboardservice.GetlenderMaturityList(true, this._authenticateServiceService.GetUserId(),this.orderBy);
+        if (window.location.hash.replace("#", "") === '/lenderDashboard/historyMaturitylist') this._MaturityList = await this._landerdashboardservice.GetlenderMaturityList(false, this._authenticateServiceService.GetUserId(),this.orderBy);
     }
     _history: boolean;
     http: any;
@@ -27,7 +28,7 @@ export class MaturitylistComponent implements OnInit {
     _landerdashboardservice: LenderDashboardService;
     _MaturityList: any;
     bankDashboardService: any;
-  
+    orderBy:string='EndDate';
     constructor(public authenticateServiceService: AuthenticateServiceService, public landerdashboardservice: LenderDashboardService, private exportAsService: ExportAsService,
         private activeRoute: ActivatedRoute, private bankDashService: BankDashboardService)
     {
@@ -43,7 +44,7 @@ export class MaturitylistComponent implements OnInit {
     ngOnInit() {
         console.log(`${window.location.pathname}`);
         
-        this.GetMaturityList();
+        this.GetMaturityList('EndDate');
 
       
         //this.activeRoute.url.subscribe(url => {

@@ -192,11 +192,11 @@ export class ViewAllPriceComponent implements OnInit {
         }
     }
 
-    SetTimeInterval() {
-        this.timer = setInterval(() => {
-            this.GetAllBanksWithInterestRateHorizontalyOrderByColumnName(this.orderByColumn);
-        }, 1000);
-    }
+    //SetTimeInterval() {
+    //    this.timer = setInterval(() => {
+    //        this.GetAllBanksWithInterestRateHorizontalyOrderByColumnName(this.orderByColumn);
+    //    }, 1000);
+    //}
     //SetHighestRatesTimeInterval() {
     //    this.timer1 = setInterval(() => {
     //        this.GetHighestRatesViewAllPrice();

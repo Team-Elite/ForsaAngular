@@ -27,6 +27,7 @@ export class RegistrationComponent implements OnInit {
   ) { }
     _Message: string = "";
   IfVerificationDone: boolean = false;
+  fileList:any=[];
   public resolved(captchaResponse: string) {
     if (captchaResponse != undefined && captchaResponse != null && captchaResponse.trim().length != 0) {
       this.IfVerificationDone = true;
@@ -70,7 +71,29 @@ export class RegistrationComponent implements OnInit {
     });
   }
 
+  fileuploaderFileChange(files: FileList){
+    this.fileList = files[0];
+  }
 
+  isUploadOneSelected(event) {
+    debugger;
+    const file = event.target.files[0];
+    if (!file) return;
+    if (file.type != 'application/pdf') {
+      return alert('Selected file is not pdf');
+    }
+    this.fileList[this.fileList.length] = file;
+    //this.registrationService.userModel.CommercialRegisterExtract = file;
+  }
+  isUploadTwoSelected(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+    if (file.type != 'application/pdf') {
+      return alert('Selected file is not pdf');
+    }
+    //this.registrationService.userModel.IdentityCard = file;
+    this.fileList[this.fileList.length] = file;
+  }
 
   resetForm(form?: NgForm) {
     if (form != null) {
@@ -133,7 +156,6 @@ export class RegistrationComponent implements OnInit {
   }
 
   async registerUser(form: NgForm) {
-    alert(0);
     // debugger;
     if (form.value.UserId != undefined && form.value.UserId != null && form.value.UserId > 0) {
       this.UpdateUserDetails(form);
@@ -195,7 +217,9 @@ export class RegistrationComponent implements OnInit {
     form.value.CommercialRegisterExtract = this.registrationService.userModel.CommercialRegisterExtract;
     form.value.IdentityCard = this.registrationService.userModel.IdentityCard;
     console.log(form.value);
-    this.registrationService.RegisterUser(form.value).subscribe(data => {
+    this.registrationService.RegisterUser(this.fileList, form.value)
+    .subscribe( response => {
+    
       this.resetForm(form);
       this.spinner.hide();
       setTimeout(() => {
@@ -204,8 +228,19 @@ export class RegistrationComponent implements OnInit {
       }, 5000);
       this.toastr.success("Registration is successfull. An email is sent to registered email id. This email have your login credentails.", "Registration");
       //location.reload();
+     });
 
-    })
+    // this.registrationService.RegisterUser(form.value).subscribe(data => {
+    //   this.resetForm(form);
+    //   this.spinner.hide();
+    //   setTimeout(() => {
+    //     /** spinner ends after 5 seconds */
+    //     this.router.navigate(['/login']);
+    //   }, 5000);
+    //   this.toastr.success("Registration is successfull. An email is sent to registered email id. This email have your login credentails.", "Registration");
+    //   //location.reload();
+
+    // })
   }
 
 
@@ -493,31 +528,26 @@ export class RegistrationComponent implements OnInit {
     ValidateSection2(form: NgForm): any {
         var IfErrorFound = false;
         if (form.value.Salutation == undefined || form.value.Salutation == null || form.value.Salutation == 0) {
-            console.log('cp => 1');
             IfErrorFound = true;
             //numberOfErrorFound++;
             this._Message = this._Message + " Salutation,";
         }
         if (form.value.FirstName == undefined || form.value.FirstName == null || form.value.FirstName.length == 0) {
-            console.log('cp => 2');
             IfErrorFound = true;
             //numberOfErrorFound++;
             this._Message = this._Message + " First Name,";
         }
         if (form.value.SurName == undefined || form.value.SurName == null || form.value.SurName.length == 0) {
-            console.log('cp => 3');
             IfErrorFound = true;
             //numberOfErrorFound++;
             this._Message = this._Message + " Sur Name,";
         }
         if (form.value.ContactNumber == undefined || form.value.ContactNumber == null || form.value.ContactNumber.length == 0) {
-            console.log('cp => 4');
             IfErrorFound = true;
             //numberOfErrorFound++;
             this._Message = this._Message + " Contact Number,";
         }
         if (form.value.UserId == undefined || form.value.UserId == null || form.value.UserId == 0) {
-            console.log('cp => 5');
             if (form.value.EmailAddress == undefined || form.value.EmailAddress == null || form.value.EmailAddress.trim().length == 0) {
                 IfErrorFound = true;
                 //numberOfErrorFound++;
@@ -525,7 +555,6 @@ export class RegistrationComponent implements OnInit {
             }
         }
         if (form.value.UserId == undefined || form.value.UserId == null || form.value.UserId == 0) {
-            console.log('cp => 6');
             if (form.value.UserName == undefined || form.value.UserName == null || form.value.UserName.trim().length == 0) {
                 IfErrorFound = true;
                 //numberOfErrorFound++;
@@ -533,11 +562,19 @@ export class RegistrationComponent implements OnInit {
             }
         }
         if (form.value.UserTypeId == 4 && (form.value.DepositInsurance == undefined || form.value.DepositInsurance == null || form.value.DepositInsurance == 0)) {
-            console.log('cp => 7');
+            
             IfErrorFound = true;
             //numberOfErrorFound++;
             this._Message = this._Message + " Deposit Insurance,";
         }
+
+        if (form.value.UserTypeId == 4 && (form.value.DepositInsuranceAmount == undefined || form.value.DepositInsuranceAmount == null || form.value.DepositInsuranceAmount == 0)) {
+
+            IfErrorFound = true;
+            //numberOfErrorFound++;
+            this._Message = this._Message + " Deposit Insurance Amount,";
+        }
+
     }
   Section3Visible(form: NgForm) {
       console.log(this.registrationService.userModel);
@@ -641,20 +678,7 @@ export class RegistrationComponent implements OnInit {
 
     })
   }
-  isUploadOneSelected(event) {
-    const file = event.target.files[0];
-    if (!file) return;
-    if (file.type != 'application/pdf') {
-      return alert('Selected file is not pdf');
-    }
-    this.registrationService.userModel.CommercialRegisterExtract = file;
-  }
-  isUploadTwoSelected(event) {
-    const file = event.target.files[0];
-    if (!file) return;
-    if (file.type != 'application/pdf') {
-      return alert('Selected file is not pdf');
-    }
-    this.registrationService.userModel.IdentityCard = file;
-  }
+  
+
+  
 }

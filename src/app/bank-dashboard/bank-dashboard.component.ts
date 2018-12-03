@@ -34,6 +34,7 @@ export class BankDashboardComponent implements OnInit {
     IfBothUserTypeFound: boolean = false;
     lenderSendRequestModel: LenderSendRequestModel;
     _authenticateServiceService: AuthenticateServiceService
+    orderBy:string='EndDate';
     constructor(public bankDashboardService: BankDashboardService, public authenticateServiceService: AuthenticateServiceService, public router: Router
         , public toastr: ToastrService, public spinner: NgxSpinnerService, public bestPriceViewService: BestPriceViewService
         , public pipe: DatePipe, public lenderDashboardService: LenderDashboardService, private exportAsService: ExportAsService) {

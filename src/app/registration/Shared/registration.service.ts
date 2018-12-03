@@ -138,6 +138,19 @@ export class RegistrationService {
 
 constructor(private http: Http, public authenticateServiceService: AuthenticateServiceService) { }
 
+RegisterUser(fileToUpload: File[],user :UserModel) {
+     debugger;
+     var webtoken = { data: this.tokenService.jwtencrypt(user) };
+    const _formData = new FormData();
+    _formData.append('file', fileToUpload[0], fileToUpload[0].name);   
+    _formData.append('file2', fileToUpload[1], fileToUpload[1].name);   
+    _formData.append('encrypted',JSON.stringify(webtoken) );
+    // _formData.append('encrypted',webtoken.toString() );
+    // return this.http.post(this.authenticateServiceService.baseURL + '/api/BankDashboard/UploadFiles?Id='+this.authenticateServiceService.GetUserId(), _formData);
+    //return this.http.post(this.authenticateServiceService.baseURL + '/api/BankDashboard/UploadFiles', _formData).map(x => x.json());
+    return this.http.post(this.authenticateServiceService.baseURL + '/api/User/RegisterUser', _formData).map(x => x.json());
+  }
+
     getCountryList() {
 
         this.http.get(this.authenticateServiceService.baseURL + '/api/Country/GettblCountries').map((data: Response) => {
@@ -211,12 +224,12 @@ constructor(private http: Http, public authenticateServiceService: AuthenticateS
             })
     }
 
-    RegisterUser(user: UserModel) {
-        // var body=JSON.stringify(user);
-        var webtoken = { data: this.tokenService.jwtencrypt(user) };
+    // RegisterUser(user: UserModel) {
+    //     // var body=JSON.stringify(user);
+    //     var webtoken = { data: this.tokenService.jwtencrypt(user) };
 
-            return this.http.post(this.authenticateServiceService.baseURL + '/api/User/RegisterUser', webtoken, this.requestOptions).map(x => x.json());
-    }
+    //         return this.http.post(this.authenticateServiceService.baseURL + '/api/User/RegisterUser', webtoken, this.requestOptions).map(x => x.json());
+    // }
 
     UpdateUserDetails(user: UserModel) {
         var webtoken = { data: this.tokenService.jwtencrypt(user) };

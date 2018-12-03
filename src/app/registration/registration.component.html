@@ -178,14 +178,14 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group form-md-line-input has-error">
-                                    <div class="group input-group">
-                                        <input #FurtherField4="ngModel" [(ngModel)]="registrationService.userModel.FurtherField4" name="FurtherField4" type="text" class="used">
-                                        <span class="highlight"></span>
+                                <!--<div class="group input-group">
+                                    <input #FurtherField4="ngModel" [(ngModel)]="registrationService.userModel.FurtherField4" name="FurtherField4" type="text" class="used">
+                                  <div class="form-group form-md-line-input has-error">
+                                      <span class="highlight"></span>
                                         <span class="bar"></span>
                                         <label>{{'Register.section1.FurtherField4'|translate}}</label>
                                     </div>
-                                </div>
+                                </div>-->
 
                                 <!-- <div class="form-group form-md-line-input has-error">
                                               <div class="group input-group">
@@ -365,44 +365,43 @@
 
 
                                 <!-- <div class="form-group form-md-line-input has-error">
-                                              <div class="group input-group">
-                                                  <input #confirmEmailAddress="ngModel" [(ngModel)]="registrationService.confirmEmailAddress" name="confirmEmailAddress" type="email" class="used">
-                                                  <span class="highlight"></span>
-                                                  <span class="bar"></span>
-                                                  <label>Confirm Email</label>
-                                                  <span class="input-group-icon">
-                                  <i class="material-icons">email</i>
-                                </span>
+                  <div class="group input-group">
+                      <input #confirmEmailAddress="ngModel" [(ngModel)]="registrationService.confirmEmailAddress" name="confirmEmailAddress" type="email" class="used">
+                      <span class="highlight"></span>
+                      <span class="bar"></span>
+                      <label>Confirm Email</label>
+                      <span class="input-group-icon">
+      <i class="material-icons">email</i>
+    </span>
 
-                                              </div>
-                                          </div> -->
+                  </div>
+              </div> -->
+                                <!--<div class="form-group form-md-line-input has-error">
+        <div class="group input-group">
+            <input #FurtherField1="ngModel" [(ngModel)]="registrationService.userModel.FurtherField1" name="FurtherField1" type="text" class="used">
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label>{{'Register.section2.FurtherField1'|translate}}</label>
+        </div>
+    </div>
 
-                                <div class="form-group form-md-line-input has-error">
-                                    <div class="group input-group">
-                                        <input #FurtherField1="ngModel" [(ngModel)]="registrationService.userModel.FurtherField1" name="FurtherField1" type="text" class="used">
-                                        <span class="highlight"></span>
-                                        <span class="bar"></span>
-                                        <label>{{'Register.section2.FurtherField1'|translate}}</label>
-                                    </div>
-                                </div>
+    <div class="form-group form-md-line-input has-error">
+        <div class="group input-group">
+            <input #FurtherField2="ngModel" [(ngModel)]="registrationService.userModel.FurtherField2" name="FurtherField2" type="text" class="used">
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label>{{'Register.section2.FurtherField2'|translate}}</label>
+        </div>
+    </div>
 
-                                <div class="form-group form-md-line-input has-error">
-                                    <div class="group input-group">
-                                        <input #FurtherField2="ngModel" [(ngModel)]="registrationService.userModel.FurtherField2" name="FurtherField2" type="text" class="used">
-                                        <span class="highlight"></span>
-                                        <span class="bar"></span>
-                                        <label>{{'Register.section2.FurtherField2'|translate}}</label>
-                                    </div>
-                                </div>
-
-                                <div class="form-group form-md-line-input has-error">
-                                    <div class="group input-group">
-                                        <input #FurtherField3="ngModel" [(ngModel)]="registrationService.userModel.FurtherField3" name="FurtherField3" type="text" class="used">
-                                        <span class="highlight"></span>
-                                        <span class="bar"></span>
-                                        <label>{{'Register.section2.FurtherField3'|translate}}</label>
-                                    </div>
-                                </div>
+    <div class="form-group form-md-line-input has-error">
+        <div class="group input-group">
+            <input #FurtherField3="ngModel" [(ngModel)]="registrationService.userModel.FurtherField3" name="FurtherField3" type="text" class="used">
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label>{{'Register.section2.FurtherField3'|translate}}</label>
+        </div>
+    </div>-->
 
                                 <div *ngIf="registrationService.userModel.rdbBank" class="form-group form-md-line-input has-error">
                                     <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
@@ -420,7 +419,7 @@
                                         <input #RatingAgenturValue1="ngModel" [(ngModel)]="registrationService.userModel.RatingAgenturValue1" name="RatingAgenturValue1" type="text" class="used">
                                         <span class="highlight"></span>
                                         <span class="bar"></span>
-                                        <label></label>
+                                        <label>{{'Register.section2.RatingAgentValue1'|translate}} *</label>
                                     </div>
                                 </div>
 
@@ -440,7 +439,7 @@
                                         <input #RatingAgenturValue2="ngModel" [(ngModel)]="registrationService.userModel.RatingAgenturValue2" name="RatingAgenturValue2" type="text" class="used">
                                         <span class="highlight"></span>
                                         <span class="bar"></span>
-                                        <label></label>
+                                        <label>{{'Register.section2.RatingAgentValue1'|translate}} *</label>
                                     </div>
                                 </div>
 
@@ -454,11 +453,22 @@
                                         </select>
                                     </div>
                                 </div>
+
+                                <div *ngIf="registrationService.userModel.rdbBank" class="form-group form-md-line-input has-error">
+                                    <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
+                                        <input #RatingAgenturValue2="ngModel" [(ngModel)]="registrationService.userModel.DepositInsuranceAmount" name="DepositInsuranceAmount" type="text" class="used">
+                                        <span class="highlight"></span>
+                                        <span class="bar"></span>
+                                        <label>{{'Register.section2.DepositInsuranceAmount'|translate}} </label>
+
+                                    </div>
+                                </div>
+
                                 <div class="form-group form-md-line-input has-error">
 
                                     <div class="group input-group">
 
-                                        <label   >File Upload</label>
+                                        <label>File Upload</label>
                                         <input type="file" (change)="isUploadOneSelected($event)" accept="application/pdf">
 
 
@@ -469,7 +479,7 @@
                                 </div>
                                 <div class="form-group form-md-line-input has-error">
                                     <div class="group input-group">
-                                        <label >File Upload</label>
+                                        <label>File Upload</label>
                                         <input type="file" (change)="isUploadTwoSelected($event)" accept="application/pdf">
 
 
