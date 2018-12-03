@@ -13,26 +13,27 @@ import { TokenService } from '../../token-service';
 export class LoginService {
     headerOptions = new Headers({ 'Content-Type': 'application/json' });
     requestOptions = new RequestOptions({ method: RequestMethod.Post, headers: this.headerOptions });
-  //baseURL:string='http://elitecore.cloudapp.net:8081';
-  // baseURL:string='http://localhost:60744/';
+    usertoken: any;
   loginModel:LoginModel;
   
     constructor(public http: Http, public authenticateServiceService: AuthenticateServiceService, public tokenService: TokenService) {}
 
- async ValidateUser(loginModel:LoginModel){
+async ValidateUser(loginModel:LoginModel){
     
      var webtoken = { data: this.tokenService.jwtencrypt(loginModel) };
     
     //var body=JSON.stringify(loginModel);
    
-     const response = await this.http.post(this.authenticateServiceService.baseURL + '/api/Login/ValidateUser', webtoken,this.requestOptions).toPromise();
-    return response.json();
+     const response =await this.http.post(this.authenticateServiceService.baseURL + '/api/Login/ValidateUser', webtoken,this.requestOptions).toPromise().then(data=>data.json());
+     return response;
   }
 
   async ForgotPassword(loginModel:LoginModel){
       var webtoken = { data: this.tokenService.jwtencrypt(loginModel) };
     
-      const response = await this.http.post(this.authenticateServiceService.baseURL + '/api/Login/ForgotPassword ', webtoken,this.requestOptions).toPromise();
-     return response.json();
+      const response = await this.http.post(this.authenticateServiceService.baseURL + '/api/Login/ForgotPassword ', webtoken, this.requestOptions).toPromise().then(data => data.json());
+      return response;
+
+   ///  return response.json();
    }
 }

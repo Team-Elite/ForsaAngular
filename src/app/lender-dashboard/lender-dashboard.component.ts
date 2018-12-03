@@ -194,6 +194,7 @@ export class LenderDashboardComponent implements OnInit {
     async GetLenderStartPage() {
 
         let startPage = await this.lenderDashboardService.GetLenderStartPage();
+        if (startPage == undefined) return;
         this.lenderDashboardService.StartingScreen = JSON.parse(startPage);
         //  this.spinner.hide();
         if (this.lenderDashboardService.StartingScreen[0].PageName == "Best Price View") {
