@@ -61,10 +61,7 @@ export class RegistrationComponent implements OnInit {
         this.registrationService.ShowSection2 = false;
         this.resetForm();
         this.activatedRoute.params.subscribe(x => {
-            console.log(x["uId"]);
-            debugger;
             if (x["uId"] != undefined && x["uId"] != null) {
-                debugger;
                 this.registrationService.userId = x["uId"];
                 this.GetUserDetailByUserId();
             }

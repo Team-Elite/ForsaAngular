@@ -14,13 +14,13 @@ import { TokenService } from '../../token-service';
 })
 export class LoginComponent implements OnInit {
     tokenService: TokenService = new TokenService;
-    constructor(public loginService: LoginService,  public authenticateServiceService: AuthenticateServiceService
+    constructor(public loginService: LoginService, public authenticateServiceService: AuthenticateServiceService
         , public router: Router, public toastr: ToastrService
         , public spinner: NgxSpinnerService
         , public lenderDashboardService: LenderDashboardService
-        
+
     ) { }
-  
+
 
     IfVerificationDone: boolean = false;
     IfShowPassword: boolean = false;
@@ -44,8 +44,6 @@ export class LoginComponent implements OnInit {
     }
 
     async ValidateUser(form: NgForm) {
-
-
         if (form != null) {
             if (form.value.UserName == undefined || form.value.UserName == null || form.value.UserName.trim().length == 0) {
                 this.toastr.error("User name / Email id is required.", "Login");
@@ -68,50 +66,54 @@ export class LoginComponent implements OnInit {
                 return false;
             }
 
-             if(!this.IfVerificationDone){
-                this.toastr.error("Please verify captcha.","Login");
+            if (!this.IfVerificationDone) {
+                this.toastr.error("Please verify captcha.", "Login");
                 return false;
-             }
+            }
             this.spinner.show();
             let user = await this.loginService.ValidateUser(form.value);
             if (user.IsSuccess == true) {
-                
+
                 this.authenticateServiceService.SaveSession(user.data);
-                let token = this.authenticateServiceService.storage.get(this.authenticateServiceService.userValue);
-                var data = this.tokenService.jwtdecrypt(token);
+                //let token = this.authenticateServiceService.storage.get(this.authenticateServiceService.userValue);
+                var data = this.tokenService.jwtdecrypt(user.data);
+
                 user = JSON.parse(data.unique_name)[0];
                 var IfBothUserTypeFound = user.UserTypeId.split(',').length > 1 ? true : false;
                 if (IfBothUserTypeFound) {
                     this.authenticateServiceService.SaveIfBothUserTypeFound(IfBothUserTypeFound);
                 }
-               
+
                 // else if(user.UserTypeId==6){
                 //   this.router.navigate(['/KontactDashBoard']);
                 // }
-              
+
                 if (user.UserTypeId === "5" || user.UserTypeId === "6") {
 
                     this.lenderDashboardService.userId = user.UserId; //this.authenticateServiceService.GetUserId();
                     let startPage = await this.lenderDashboardService.GetLenderStartPage();
-                    if (startPage != undefined) {
+                    if (startPage == undefined) { this.lenderDashboardService.StartingScreen = "All Banks"; }
+                    else {
                         this.lenderDashboardService.StartingScreen = startPage.PageName;
-                        if (this.lenderDashboardService.StartingScreen == "Best Price View") {
-                            this.router.navigate(['lenderDashboard/BestPriceView']);
-                        }
-                        else if (this.lenderDashboardService.StartingScreen == "View All Price") {
-                            this.router.navigate(['lenderDashboard/ViewAllPrice']);
-                        }
-                        else if (this.lenderDashboardService.StartingScreen == "All Banks") {
-                            this.router.navigate(['lenderDashboard/AllBanks']);
-                        }
                     }
+                    if (this.lenderDashboardService.StartingScreen == "Best Price View") {
+                        this.router.navigate(['lenderDashboard/BestPriceView']);
+                    }
+                    else if (this.lenderDashboardService.StartingScreen == "View All Price") {
+                        this.router.navigate(['lenderDashboard/ViewAllPrice']);
+                    }
+                    else if (this.lenderDashboardService.StartingScreen == "All Banks") {
+                        this.router.navigate(['lenderDashboard/AllBanks']);
+                    }
+
+
                 }
                 else {
-                   // if (user.UserTypeId == 4 || IfBothUserTypeFound) {
-                        this.router.navigate(['/bankDashBoard']);
-                   // }
+                    // if (user.UserTypeId == 4 || IfBothUserTypeFound) {
+                    this.router.navigate(['/bankDashBoard']);
+                    // }
                 }
-
+                this.spinner.hide();
             }
             else {
                 this.spinner.hide();
@@ -141,9 +143,9 @@ export class LoginComponent implements OnInit {
             this.toastr.success("Password sent.", "Login - Forgot Password");
         }
         else {
-            
+
             this.toastr.error("Email id is wrong.", "Login - Forgot Password");
-        }this.spinner.hide();
+        } this.spinner.hide();
     }
 
     keydown(event) {
