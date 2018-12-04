@@ -594,15 +594,18 @@ export class RegistrationComponent implements OnInit {
         this.spinner.show();
         var result = await this.registrationService.GetUserDetailByUserId();
         if (result.IsSuccess) {
-            if (JSON.parse(result.data)[0].UserTypeId != 6) {
+            // if (JSON.parse(result.data)[0].UserTypeId != 6) {
+                if (result[0].UserTypeId != 6) {
                 this.toastr.error('No information found.', 'Registration');
                 this.spinner.hide();
                 this.resetForm();
                 this.registrationService.userId = undefined;
                 return;
             }
-            this.registrationService.userModel = JSON.parse(result.data)[0];
+            this.registrationService.userModel = result[0];
             this.registrationService.userModel.UserTypeId = '0';
+            this.registrationService.ShowSection3 = true;
+            this.registrationService.ShowSection2 = true;
             //form.value=this.registrationService.userModel;
         }
         this.spinner.hide();
@@ -666,7 +669,7 @@ export class RegistrationComponent implements OnInit {
         // Updating user..
         form.value.UserName = this.registrationService.userModel.UserName;
         form.value.EmailAddress = this.registrationService.userModel.EmailAddress;
-        this.registrationService.UpdateUserDetails(form.value).subscribe(data => {
+        this.registrationService.UpdateUserDetails(this.fileList,form.value).subscribe(data => {
             this.resetForm(form);
             this.spinner.hide();
             setTimeout(() => {

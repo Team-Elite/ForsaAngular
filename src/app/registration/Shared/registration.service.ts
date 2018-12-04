@@ -151,6 +151,17 @@ RegisterUser(fileToUpload: File[],user :UserModel) {
     return this.http.post(this.authenticateServiceService.baseURL + '/api/User/RegisterUser', _formData).map(x => x.json());
   }
 
+  UpdateUserDetails(fileToUpload: File[],user: UserModel) {
+    //var webtoken = { data: this.tokenService.jwtencrypt(user) };
+    // var body=JSON.stringify(user);
+
+    var webtoken = { data: this.tokenService.jwtencrypt(user) };
+    const _formData = new FormData();
+    _formData.append('file', fileToUpload[0], fileToUpload[0].name);   
+    _formData.append('file2', fileToUpload[1], fileToUpload[1].name);   
+    _formData.append('encrypted',JSON.stringify(webtoken) );
+    return  this.http.post(this.authenticateServiceService.baseURL + '/api/User/UpdateUserDetails', _formData).map(x => x.json());
+}
     getCountryList() {
 
         this.http.get(this.authenticateServiceService.baseURL + '/api/Country/GettblCountries').map((data: Response) => {
@@ -231,12 +242,7 @@ RegisterUser(fileToUpload: File[],user :UserModel) {
     //         return this.http.post(this.authenticateServiceService.baseURL + '/api/User/RegisterUser', webtoken, this.requestOptions).map(x => x.json());
     // }
 
-    UpdateUserDetails(user: UserModel) {
-        var webtoken = { data: this.tokenService.jwtencrypt(user) };
-        // var body=JSON.stringify(user);
-
-        return  this.http.put(this.authenticateServiceService.baseURL + '/api/User/UpdateUserDetails', webtoken, this.requestOptions).map(x => x.json());
-    }
+    
 
     async CheckIfUserNameIsAvailable(userName: string) {
 
@@ -265,8 +271,10 @@ RegisterUser(fileToUpload: File[],user :UserModel) {
         let token = await this.http.post(this.authenticateServiceService.baseURL + '/api/User/GetUserDetailByUserId', webtoken, this.requestOptions).toPromise();
         var response;
         if (token != undefined) {
+            var IsSuccess =token.json().IsSuccess;
             token = token.json().data;
             response = JSON.parse(this.tokenService.jwtdecrypt(token).unique_name);
+            response.IsSuccess=IsSuccess;
         }
 
         return response;
