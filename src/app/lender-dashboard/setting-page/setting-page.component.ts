@@ -52,7 +52,7 @@ export class SettingPageComponent implements OnInit {
           this.viewAllPriceService.listViewAllPrice2 = [];
           this.viewAllPriceService.listViewAllPrice3 = [];
           this.GetAllBanksWithStatusIsDeselected();
-          this.GetAllBanksWithInterestRateHorizontalyOrderByColumnName(this.orderByColumn);
+          this.GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected(this.orderByColumn);
           //this.GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected();
           // 
       })
@@ -67,7 +67,7 @@ export class SettingPageComponent implements OnInit {
       this.viewAllPriceService.listViewAllPrice2 = [];
       this.viewAllPriceService.listViewAllPrice3 = [];
       this.GetAllBanksWithStatusIsDeselected();
-      this.GetAllBanksWithInterestRateHorizontalyOrderByColumnName(this.orderByColumn);
+      this.GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected(this.orderByColumn);
       this.spinner.show();
       this.spinner.hide();
       const self = this;
@@ -231,21 +231,18 @@ export class SettingPageComponent implements OnInit {
         console.log(this.viewAllPriceService.listViewAllPrice3);
         this.spinner.hide();
     }
-
-
-
-    async GetAllBanksWithInterestRateHorizontalyOrderByColumnName(columnName: string) {
+        
+    async GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected(columnName: string) {
         this.orderByColumn = columnName;
-        this.spinner.show();
-        let rates = await this.viewAllPriceService.GetAllBanksWithInterestRateHorizontalyOrderByColumnName(columnName);
+     //   this.spinner.show();
+        let rates = await this.viewAllPriceService.GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected(columnName);
         this.viewAllPriceService.listAllBanks = rates;
         this.ratesOfIntrest = this.viewAllPriceService.listAllBanks;
         this.GetHighestRatesViewAllPrice();
         //this.SetHighestRatesTimeInterval();
 
-        this.spinner.hide();
+       // this.spinner.hide();
     }
-
     
     GetHighestRatesViewAllPrice() {
 
@@ -373,18 +370,19 @@ export class SettingPageComponent implements OnInit {
         this.spinner.show();
         var result = await this.viewAllPriceService.DeselectSelectBank(bank.UserId, bank.IsSelected);
         if (JSON.parse(result.IsSuccess)) {
-            //this.GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected();
-             this.GetAllBanksWithInterestRateHorizontalyOrderByColumnName(this.orderByColumn);
+            this.GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected(this.orderByColumn);
+            //this.GetAllBanksWithInterestRateHorizontalyOrderByColumnName(this.orderByColumn);
         } else {
             this.toastr.error('Some issue occured.', 'Dashboard');
         }
         this.spinner.hide();
     }
-  
+
     pageChange(page: number) {
         if (page !== this.previousPage) {
             this.viewAllPriceService.selectedPageNumber = page;
-            this.GetAllBanksWithInterestRateHorizontalyOrderByColumnName(this.orderByColumn);
+            //this.GetAllBanksWithInterestRateHorizontalyOrderByColumnName(this.orderByColumn);
+            this.GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected(this.orderByColumn);
         }
     }
 

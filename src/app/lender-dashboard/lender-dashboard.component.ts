@@ -8,6 +8,8 @@ import { StartPageModel } from './Shared/start-page-model.class';
 import { BestPriceViewService } from '../lender-dashboard/best-price-view/Shared/best-price-view.service';
 import { LOCAL_STORAGE } from 'angular-webstorage-service';
 import { Http, Response, Headers, RequestOptions, RequestMethod } from '@angular/http';
+declare var $: any;
+
 @Component({
     selector: 'app-lender-dashboard',
     templateUrl: './lender-dashboard.component.html',
@@ -87,7 +89,15 @@ export class LenderDashboardComponent implements OnInit {
       this.SetTimeInterval();
         this.spinner.hide();
     }
-
+    toggelebar() {
+        if ($("body").hasClass('sidebar-mini')) {
+            $('.sidebar').css('margin-left', '0px');
+            $("body").removeClass("sidebar-mini ")
+        } else {
+            $('.sidebar').css('margin-left', '-212px');
+            $("body").addClass("sidebar-mini ")
+        }
+    }
     SetTimeInterval() {
         this.timer = setInterval(() => {
             this.GetLenderSendRequestPendingLendedRequestByLenderId();

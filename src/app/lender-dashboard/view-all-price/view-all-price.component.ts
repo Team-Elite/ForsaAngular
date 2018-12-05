@@ -81,8 +81,8 @@ export class ViewAllPriceComponent implements OnInit {
             this.viewAllPriceService.listViewAllPrice2 = [];
             this.viewAllPriceService.listViewAllPrice3 = [];
             this.GetAllBanksWithStatusIsDeselected();
-            // this.GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected();
-            this.GetAllBanksWithInterestRateHorizontalyOrderByColumnName(this.orderByColumn);
+            this.GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected(this.orderByColumn);
+           // this.GetAllBanksWithInterestRateHorizontalyOrderByColumnName(this.orderByColumn);
         })
         connection.start({ jsonp: true })
             .done(function () { console.log('Now connected, connection ID=' + connection.id); })
@@ -102,7 +102,7 @@ export class ViewAllPriceComponent implements OnInit {
        // this.GetAllBanksWithStatusIsDeselected();
         this.spinner.show();
         // this.GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected();
-        this.GetAllBanksWithInterestRateHorizontalyOrderByColumnName(this.orderByColumn);
+        this.GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected(this.orderByColumn);
         //this.SetTimeInterval();
         this.spinner.hide();
         const self = this;
@@ -147,16 +147,17 @@ export class ViewAllPriceComponent implements OnInit {
         var result = await this.viewAllPriceService.DeselectSelectBank(bank.UserId, bank.IsSelected);
         if (JSON.parse(result.IsSuccess)) {
             //this.GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected();
-            this.GetAllBanksWithInterestRateHorizontalyOrderByColumnName(this.orderByColumn);
+            this.GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected(this.orderByColumn);
         } else {
             this.toastr.error("Some issue occured.", "Dashboard");
         }
         this.spinner.hide();
     }
 
-    async GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected() {
-
-        let rates = await this.viewAllPriceService.GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected();
+    async GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected(columnName: string) {
+        this.orderByColumn = columnName;
+        debugger;
+        let rates = await this.viewAllPriceService.GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected(this.orderByColumn);
         if (rates != null || rates != undefined) {
             rates.forEach(ele => {
                 ele.class1 = false;
@@ -194,7 +195,7 @@ export class ViewAllPriceComponent implements OnInit {
 
     SetTimeInterval() {
         this.timer = setInterval(() => {
-            this.GetAllBanksWithInterestRateHorizontalyOrderByColumnName(this.orderByColumn);
+            this.GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected(this.orderByColumn);
         }, 1000);
     }
     //SetHighestRatesTimeInterval() {
@@ -325,42 +326,42 @@ export class ViewAllPriceComponent implements OnInit {
 
     }
 
-    async GetAllBanksWithInterestRateHorizontalyOrderByColumnName(columnName: string) {
-        this.orderByColumn = columnName;
-        this.spinner.show();
-        let rates = await this.viewAllPriceService.GetAllBanksWithInterestRateHorizontalyOrderByColumnName(columnName);
-        console.log(rates);
-        rates.forEach(ele => {
-            ele.class1 = false;
-            ele.class2 = this.obj.class2;
-            ele.class3 = this.obj.class3;
-            ele.class4 = this.obj.class4;
-            ele.class5 = this.obj.class5;
-            ele.class6 = this.obj.class6;
-            ele.class7 = this.obj.class7;
-            ele.class8 = this.obj.class8;
-            ele.class9 = this.obj.class9;
-            ele.class10 = this.obj.class10;
-            ele.class11 = this.obj.class11;
-            ele.class12 = this.obj.class12;
-            ele.class13 = this.obj.class13;
-            ele.class14 = this.obj.class14;
-            ele.class15 = this.obj.class15;
-            ele.class16 = this.obj.class16;
-            ele.class17 = this.obj.class17;
-            ele.class18 = this.obj.class18;
-            ele.class19 = this.obj.class19;
-            ele.class20 = this.obj.class20;
-        });
-        this.viewAllPriceService.listAllBanks = rates;
-        this.ratesOfIntrest = this.viewAllPriceService.listAllBanks;
+    //async GetAllBanksWithInterestRateHorizontalyOrderByColumnName(columnName: string) {
+    //    this.orderByColumn = columnName;
+    //    this.spinner.show();
+    //    let rates = await this.viewAllPriceService.GetAllBanksWithInterestRateHorizontalyOrderByColumnName(columnName);
+    //    console.log(rates);
+    //    rates.forEach(ele => {
+    //        ele.class1 = false;
+    //        ele.class2 = this.obj.class2;
+    //        ele.class3 = this.obj.class3;
+    //        ele.class4 = this.obj.class4;
+    //        ele.class5 = this.obj.class5;
+    //        ele.class6 = this.obj.class6;
+    //        ele.class7 = this.obj.class7;
+    //        ele.class8 = this.obj.class8;
+    //        ele.class9 = this.obj.class9;
+    //        ele.class10 = this.obj.class10;
+    //        ele.class11 = this.obj.class11;
+    //        ele.class12 = this.obj.class12;
+    //        ele.class13 = this.obj.class13;
+    //        ele.class14 = this.obj.class14;
+    //        ele.class15 = this.obj.class15;
+    //        ele.class16 = this.obj.class16;
+    //        ele.class17 = this.obj.class17;
+    //        ele.class18 = this.obj.class18;
+    //        ele.class19 = this.obj.class19;
+    //        ele.class20 = this.obj.class20;
+    //    });
+    //    this.viewAllPriceService.listAllBanks = rates;
+    //    this.ratesOfIntrest = this.viewAllPriceService.listAllBanks;
      
-        this.GetHighestRatesViewAllPrice();
-       // this.GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected();
-        //this.SetHighestRatesTimeInterval();
+    //    this.GetHighestRatesViewAllPrice();
+    //   // this.GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected();
+    //    //this.SetHighestRatesTimeInterval();
 
-        this.spinner.hide();
-    }
+    //    this.spinner.hide();
+    //}
 
     pageChange(page: number) {
         if (page !== this.previousPage) {

@@ -2310,18 +2310,29 @@ a.btn.disabled,
 fieldset[disabled] a.btn {
 pointer-events: none;
 }
+     .my-btn-primary {
+         color: #fff;
+         background-color: #8636d7 !important;
+         border-color: #9b45f1 !important;
+         border-radius:0px !important; 
+     }
 
-.btn-primary {
-color: #fff;
-background-color: #007bff;
-border-color: #007bff;
-}
+         .my-btn-primary:hover {
+             color: #fff;
+             background-color: #8636d7;
+             border-color: #9b45f1;
+         }
+     .btn-primary {
+         color: #fff;
+         background-color: #8636d7;
+         border-color: #9b45f1;
+     }
 
-.btn-primary:hover {
-color: #fff;
-background-color: #0069d9;
-border-color: #0062cc;
-}
+         .btn-primary:hover {
+             color: #fff;
+             background-color: #8636d7;
+             border-color: #9b45f1;
+         }
 
 .btn-primary:focus, .btn-primary.focus {
 box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
@@ -9609,7 +9620,7 @@ a#navbar-toggle span {
  float: right;
  width: calc(100% - 320px);
  color: #fff;
- padding: 2em 5em;
+ padding: 2em 1em;
  margin: 1%;
  background: #25272e;
 }
@@ -10673,34 +10684,34 @@ direction: ltr;
 
      <div class="row dashboard-price-list">
          <div class="col-lg-12 col-md-12 col-sm-12">
-             <button class="btn btn-primary" type="button" routerLink="/lenderDashboard/setting"> {{'Button.ButtonSettingRateField'|translate}}</button>
+             <button class="btn btn-primary my-btn-primary" type="button" routerLink="/lenderDashboard/setting"> {{'Button.ButtonSettingRateField'|translate}}</button>
          </div>
          <div class="col-lg-12 col-md-12 col-sm-12 mt-2">
              <table class="table table-bordered table-responsive">
                  <tbody>
 
                      <tr>
-                         <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected()">{{'Lender.ViewAllPrice.AllBanks'|translate}}</th>
-                         <!--<th [hidden]="!obj.class1" style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('TN')">{{'Lender.ViewAllPrice.Tag'|translate}}</th>-->
-                         <th [hidden]="!obj.class2" style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Week1')">{{'Lender.ViewAllPrice.Week1'|translate}}</th>
-                         <th [hidden]="!obj.class3" style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Week2')">{{'Lender.ViewAllPrice.Week2'|translate}}</th>
-                         <th [hidden]="!obj.class4" style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Week3')">{{'Lender.ViewAllPrice.Week3'|translate}}</th>
-                         <th [hidden]="!obj.class5" style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Month1')">{{'Lender.ViewAllPrice.Month1'|translate}}</th>
-                         <th [hidden]="!obj.class6" style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Month2')">{{'Lender.ViewAllPrice.Month2'|translate}}</th>
-                         <th [hidden]="!obj.class7" style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Month3')"> {{'Lender.ViewAllPrice.Month3'|translate}}</th>
-                         <th [hidden]="!obj.class8" style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Month4')">{{'Lender.ViewAllPrice.Month4'|translate}}</th>
-                         <th [hidden]="!obj.class9" style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Month5')">{{'Lender.ViewAllPrice.Month5'|translate}}</th>
-                         <th [hidden]="!obj.class10" style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Month6')">{{'Lender.ViewAllPrice.Month6'|translate}}</th>
-                         <th [hidden]="!obj.class11" style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Month7')">{{'Lender.ViewAllPrice.Month7'|translate}}</th>
-                         <th [hidden]="!obj.class12" style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Month8')">{{'Lender.ViewAllPrice.Month8'|translate}}</th>
-                         <th [hidden]="!obj.class13" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Month9')">{{'Lender.ViewAllPrice.Month9'|translate}}</th>
-                         <th [hidden]="!obj.class14" style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Month10')">{{'Lender.ViewAllPrice.Month10'|translate}}</th>
-                         <th [hidden]="!obj.class15" style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Month11')">{{'Lender.ViewAllPrice.Month11'|translate}}</th>
-                         <th [hidden]="!obj.class16" style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Month12')">{{'Lender.ViewAllPrice.Month12'|translate}}</th>
-                         <th [hidden]="!obj.class17" style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Year2')">{{'Lender.ViewAllPrice.Year2'|translate}}</th>
-                         <th [hidden]="!obj.class18" style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Year3')">{{'Lender.ViewAllPrice.Year3'|translate}}</th>
-                         <th [hidden]="!obj.class19" style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Year4')">{{'Lender.ViewAllPrice.Year4'|translate}}</th>
-                         <th [hidden]="!obj.class20" style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Year5')">{{'Lender.ViewAllPrice.Year5'|translate}}</th>
+                         <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected('Bank')">{{'Lender.ViewAllPrice.AllBanks'|translate}}</th>
+                         <!--<th [hidden]="!obj.class1" style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected('TN')">{{'Lender.ViewAllPrice.Tag'|translate}}</th>-->
+                         <th [hidden]="!obj.class2" style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected('Week1')">{{'Lender.ViewAllPrice.Week1'|translate}}</th>
+                         <th [hidden]="!obj.class3" style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected('Week2')">{{'Lender.ViewAllPrice.Week2'|translate}}</th>
+                         <th [hidden]="!obj.class4" style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected('Week3')">{{'Lender.ViewAllPrice.Week3'|translate}}</th>
+                         <th [hidden]="!obj.class5" style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected('Month1')">{{'Lender.ViewAllPrice.Month1'|translate}}</th>
+                         <th [hidden]="!obj.class6" style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected('Month2')">{{'Lender.ViewAllPrice.Month2'|translate}}</th>
+                         <th [hidden]="!obj.class7" style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected('Month3')"> {{'Lender.ViewAllPrice.Month3'|translate}}</th>
+                         <th [hidden]="!obj.class8" style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected('Month4')">{{'Lender.ViewAllPrice.Month4'|translate}}</th>
+                         <th [hidden]="!obj.class9" style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected('Month5')">{{'Lender.ViewAllPrice.Month5'|translate}}</th>
+                         <th [hidden]="!obj.class10" style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected('Month6')">{{'Lender.ViewAllPrice.Month6'|translate}}</th>
+                         <th [hidden]="!obj.class11" style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected('Month7')">{{'Lender.ViewAllPrice.Month7'|translate}}</th>
+                         <th [hidden]="!obj.class12" style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected('Month8')">{{'Lender.ViewAllPrice.Month8'|translate}}</th>
+                         <th [hidden]="!obj.class13" (click)="GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected('Month9')">{{'Lender.ViewAllPrice.Month9'|translate}}</th>
+                         <th [hidden]="!obj.class14" style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected('Month10')">{{'Lender.ViewAllPrice.Month10'|translate}}</th>
+                         <th [hidden]="!obj.class15" style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected('Month11')">{{'Lender.ViewAllPrice.Month11'|translate}}</th>
+                         <th [hidden]="!obj.class16" style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected('Month12')">{{'Lender.ViewAllPrice.Month12'|translate}}</th>
+                         <th [hidden]="!obj.class17" style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected('Year2')">{{'Lender.ViewAllPrice.Year2'|translate}}</th>
+                         <th [hidden]="!obj.class18" style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected('Year3')">{{'Lender.ViewAllPrice.Year3'|translate}}</th>
+                         <th [hidden]="!obj.class19" style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected('Year4')">{{'Lender.ViewAllPrice.Year4'|translate}}</th>
+                         <th [hidden]="!obj.class20" style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected('Year5')">{{'Lender.ViewAllPrice.Year5'|translate}}</th>
                      </tr>
 
                      <tr *ngFor="let bank of ratesOfIntrest">

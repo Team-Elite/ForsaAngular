@@ -28,3 +28,19 @@
             right: 0 !important;
             transform: translate(-50%, -50%) !important;
         }
+.my-color-box {
+    background-color: transparent !important;
+    border: none !important;
+}
+.my-btn-primary {
+    color: #fff;
+    background-color: #8636d7 !important;
+    border-color: #9b45f1 !important;
+    border-radius: 0px !important;
+}
+.my-btn-primary:hover {
+    color: #fff;
+    background-color: #8636d7 !important;
+    border-color: #9b45f1 !important;
+    border-radius: 0px !important;
+}

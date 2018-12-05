@@ -26,7 +26,7 @@
     "ButtonInfo": "INFO",
     "ButtinLend": "Lend",
     "ButtonRegisterasPartner": "Register as a Partner",
-    "ButtonSettingRateField": "Setting Rate Field",
+    "ButtonSettingRateField": "Einstellungen",
     "ButtonUpload": "Uplopad",
     "ButtonChangePassword": "Change Password",
     "ButtonSaveProfile": "Update Profile"
@@ -127,6 +127,7 @@
     }
 
   },
+
   "Borrower": {
     "BankDashboard": {
       "BankDashboard": "Borrower",
@@ -224,7 +225,7 @@
       "PermIdentity": "perm_identity",
       "Settings": "Switch to Borrower Dashboard",
       "Account": "Account",
-      "SettingStartPage": "Setting Start Page",
+      "SettingStartPage": "Einstellen Startseite",
       "LenderSettings": "LENDER  SETTINGS",
       "BestPriceView": "BEST PRICE VIEW",
       "ViewAllPrice": "VIEW ALL PRICE",

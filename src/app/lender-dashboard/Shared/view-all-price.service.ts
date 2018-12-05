@@ -58,8 +58,8 @@ export class ViewAllPriceService {
         return response;
     }
 
-    async GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected() {
-        var webtoken = { data: this.tokenService.jwtencrypt({ userId: this.lenderDashboardService.userId }) };
+    async GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected(orderByColumn: string) {
+        var webtoken = { data: this.tokenService.jwtencrypt({ userId: this.lenderDashboardService.userId }), orderBy: orderByColumn };
         let token = await this.http.post(this.lenderDashboardService.baseURL + '/api/LenderDashboard/GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected', webtoken, this.requestOptions  ).toPromise();
 
        // let token = await this.http.get(this.lenderDashboardService.baseURL + '/api/LenderDashboard/GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected?Id=' + this.lenderDashboardService.userId).toPromise();
@@ -68,16 +68,6 @@ export class ViewAllPriceService {
             token = token.json().data;
             response = JSON.parse(this.tokenService.jwtdecrypt(token).unique_name);
         }
-        return response;
-    }
-
-    async GetAllBanksWithInterestRateHorizontalyOrderByColumnName(orderByColumn: string) {
-       
-        var webtoken = { data: this.tokenService.jwtencrypt({ userId: this.lenderDashboardService.userId }), orderBy: orderByColumn };
-        var response;
-        let token = await this.http.post(this.lenderDashboardService.baseURL + '/api/LenderDashboard/GetAllBanksWithInterestRateHorizontalyOrderByColumnName', webtoken, this.requestOptions).map((data: Response) => { return data.json() }).toPromise().then(token => {
-            response = (token.data == undefined) ? null : JSON.parse(this.tokenService.jwtdecrypt(token.data).unique_name)
-            });
         return response;
     }
 

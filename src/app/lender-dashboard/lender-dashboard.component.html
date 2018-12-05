@@ -5433,7 +5433,7 @@
         }
 
         .modal-open {
-            overflow: hidden;
+            overflow: auto !important;
         }
 
         .modal {
@@ -5444,7 +5444,7 @@
             left: 0;
             z-index: 1050;
             display: none;
-            overflow: hidden;
+            overflow: auto !important;
             outline: 0;
         }
 
@@ -10526,7 +10526,7 @@
             float: right;
             width: calc(100% - 320px);
             color: #fff;
-            padding: 2em 5em;
+            padding: 2em 1em !important;
             margin: 1%;
             background: #25272e;
         }
@@ -19374,14 +19374,23 @@
         <header class="full-header">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-lg-2 col-md-2">
+                    <div class="col-lg-4 col-md-4">
+                        <!--<a id="navbar-toggle">
+                            <span class="align-middle input-group-icon menu">{{'Lender.DashBoard.menu'|translate}}<i class="material-icons "></i></span>
+                        </a>-->
+
+                        <a href="javascript:void(0);" id="navbar-toggle" (click)="toggelebar()">
+                            <!--<button  (click)="toggelbar()">-->
+                            <span class="align-middle input-group-icon menu">
+                                <i class="material-icons ">menu</i>
+                            </span>
+                        </a>
+
                         <div class="instimatch-logo">
                             <img alt="Insimatch Logo" src="../assets/images/instimatch-logo2.jpg">
                         </div>
                     </div>
-                    <div class="col-lg-2 col-md-2">
-                        <a id="navbar-toggle"><span class="align-middle input-group-icon menu">{{'Lender.DashBoard.menu'|translate}}<i class="material-icons "></i></span></a>
-                    </div>
+
 
                     <div class="col-lg-8 col-md-8">
                         <ul class="in-lang text-right">
@@ -19470,7 +19479,7 @@
                                 <button type="button" class="dropcockpit" (click)="ShowMaturityList(false);" id="Ansehen">{{'Borrower.BankDashboard.Viewanddownloadyourownduelist'|translate}}</button>
                                 <button type="button" class="dropcockpit" (click)="ShowMaturityList(true);" id="Ansehenund">{{'Borrower.BankDashboard.Viewanddownloadinthepastdonebusiness'|translate}}</button>
                                 <!--<button type="button" class="dropcockpit" >Maturity List</button>
-            <button type="button" class="dropcockpit" > History Maturity List</button>-->
+                                <button type="button" class="dropcockpit" > History Maturity List</button>-->
 
                             </div>
                         </li>
@@ -19492,25 +19501,25 @@
                         </li>
                         <li>
                             <a href="javascript:void(0);" (click)="SetCurrentPage('View All Price')">
-                                {{'Lender.DashBoard.ViewAllPrice'|translate}}<span class="align-middle input-group-icon "><i class="material-icons ">view_list</i></span>
+                                {{'Lender.DashBoard.ViewAllPrice'|translate}}<span _ngcontent-c5="" class="align-middle input-group-icon "><img _ngcontent-c5="" alt="Insimatch Logo" src="../assets/images/view-all-price.png"></span>
                             </a>
                         </li>
                         <li *ngIf="lenderDashboardService.UserTypeId == 5">
                             <a href="javascript:void(0);" (click)="SetCurrentPage('All Banks')">
-                                {{'Lender.DashBoard.AllBanks'|translate}}<span class="align-middle input-group-icon "><i class="material-icons ">view_list</i></span>
+                                {{'Lender.DashBoard.AllBanks'|translate}}<span _ngcontent-c5="" class="align-middle input-group-icon "><img _ngcontent-c5="" alt="Insimatch Logo" src="../assets/images/all-bank.png"></span>
                             </a>
                         </li>
-                        
+
                         <!--<li>
                             <a href="javascript:void(0);" routerLink="lenderDashboard/Maturitylist">
                                 {{'History Maturity List'}}<span class="align-middle input-group-icon "><i class="material-icons ">view_list</i></span>
                             </a>
                         </li>-->
                         <!--<li *ngIf="lenderDashboardService.UserTypeId == 5 || lenderDashboardService.UserTypeId == '4,5'">
-        <button type="button" class="dropcockpit" (click)="ShowScreen('Mreport');">Maturity List</button>
-        <button type="button" class="dropcockpit" (click)="ShowScreen('HMreport');"> History Maturity List</button>
+                            <button type="button" class="dropcockpit" (click)="ShowScreen('Mreport');">Maturity List</button>
+                            <button type="button" class="dropcockpit" (click)="ShowScreen('HMreport');"> History Maturity List</button>
 
-    </li>-->
+                        </li>-->
                         <li *ngIf="lenderDashboardService.UserTypeId == 6">
                             <a href="javascript:void(0);" (click)="SetCurrentPage('Kontact Dashboard')">
                                 {{'Lender.DashBoard.AllBanks'|translate}}<span class="align-middle input-group-icon "><i class="material-icons ">view_list</i></span>
@@ -19523,21 +19532,21 @@
                         </li>
                         <li>
                             <a href="javascript:void(0);" routerLink="/lenderDashboard/Maturitylist">
-                                {{'Maturity List'}}<span class="align-middle input-group-icon "><i class="material-icons ">view_list</i></span>
+                                {{'Maturity List'}}<span _ngcontent-c5="" class="align-middle input-group-icon "><img _ngcontent-c5="" alt="Insimatch Logo" src="../assets/images/maturity-list.png"></span>
                             </a>
                         </li>
                         <li>
                             <a href="javascript:void(0);" routerLink="/lenderDashboard/historyMaturitylist">
-                                {{'History Maturity List'}}<span class="align-middle input-group-icon "><i class="material-icons ">view_list</i></span>
+                                {{'History Maturity List'}}<span _ngcontent-c5="" class="align-middle input-group-icon "><img _ngcontent-c5="" alt="Insimatch Logo" src="../assets/images/history-maturity-list.png"></span>
                             </a>
                         </li>
 
 
 
                         <!-- <li>  (click)="SetCurrentPage('All Banks')"
-        <a href="# ">FAQ's<span class="align-middle input-group-icon "><i class="material-icons ">view_list</i></span>
-                                    </a>
-    </li> -->
+                            <a href="# ">FAQ's<span class="align-middle input-group-icon "><i class="material-icons ">view_list</i></span>
+                                                        </a>
+                        </li> -->
                         <li>
                             <button *ngIf="lenderDashboardService.UserTypeId == 6" (click)="RegisterAsPartner()" class="btn btn-secondary green-btn" type="button">{{'Button.ButtonRegisterasPartner'|translate}}</button>
 
@@ -19781,35 +19790,36 @@
     <script src="assets/scripts/bootstrap-datepicker.min.js"></script>
     <script src="assets/scripts/LenderIndex.js"></script>
     <script src="assets/scripts/bootstrap-datepicker.min.js"></script>
-    <script>
-        var state = "expanded ";
+    <script src="js/index.js "></script>
+    <!--<script>
+        // var state = "expanded ";
         //Check if navbar is expanded or minimized and handle
-        $('#navbar-toggle').click(function () {
-            if (state == "expanded ") {
-                $('.sidebar').css('margin-left', '-182px');
-                $("body").addClass("sidebar-mini ")
-                if (document.documentElement.clientWidth < 991) {
-                    $("html").addClass("nav-open")
+        //$('#navbar-toggle').click(function () {
+          //  if (state == "expanded ") {
+              //  $('.sidebar').css('margin-left', '-182px');
+              //  $("body").addClass("sidebar-mini ")
+              //  if (document.documentElement.clientWidth < 991) {
+                  //  $("html").addClass("nav-open")
                 }
-                state = "minimized ";
+              //  state = "minimized ";
             } else {
-                if (state == "minimized ") {
-                    $('.sidebar').css('margin-left', '0px');
-                    $("body ").removeClass("sidebar-mini ")
-                    if (document.documentElement.clientWidth < 991) {
-                        $("html").removeClass("nav-open")
+              //  if (state == "minimized ") {
+                   // $('.sidebar').css('margin-left', '0px');
+                   // $("body ").removeClass("sidebar-mini ")
+                  //  if (document.documentElement.clientWidth < 991) {
+                      //  $("html").removeClass("nav-open")
                     }
-                    state = "expanded ";
+                   // state = "expanded ";
                 }
             }
         })
 
-        $('.dashboard-left .link').on('click', function () {
-            if ($(this).hasClass('current')) {
-                $(this).removeClass('current');
+        //$('.dashboard-left .link').on('click', function () {
+           // if ($(this).hasClass('current')) {
+               // $(this).removeClass('current');
             } else {
-                $('.dashboard-left .link.current').removeClass('current');
-                $(this).addClass('current');
+               // $('.dashboard-left .link.current').removeClass('current');
+              //  $(this).addClass('current');
             }
         });
 
@@ -19819,6 +19829,30 @@
                                 //         $("html").addClass("open-nav")
                                 //     })
                                 // }
+    </script>-->
+
+    <script>
+            var state = "expanded ";
+            $('.dashboard-left .link').on('click', function () {
+                if ($(this).hasClass('current')) {
+                    $(this).removeClass('current');
+                } else {
+                    $('.dashboard-left .link.current').removeClass('current');
+                    $(this).addClass('current');
+                }
+            });
+
+            //Check if navbar is expanded or minimized and handle
+            //$('#navbar-toggle').click(
+            //})
+
+
+
+                                                    // if (document.documentElement.clientWidth < 900) {
+                                                    //     $('#navbar-toggle').click(function() {
+                                                    //         $("html").addClass("open-nav")
+                                                    //     })
+                                                    // }
     </script>
 
 

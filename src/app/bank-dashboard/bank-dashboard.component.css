@@ -1754,3 +1754,6 @@ input:focus~.highlight {
     display: block;
     height: 36px;
 }
+.head-modal-table {
+    padding: 8px 0px;
+}

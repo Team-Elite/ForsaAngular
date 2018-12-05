@@ -169,7 +169,9 @@ label.lbl.notrobot {
     left: -9999px;
 }
 
-
+.dashboard-price-list button.btn.btn-info.btn-lg.common-bt-1 {
+    margin: 12px 4px;
+}
 /* the checkbox
 -----------------------------------------------*/
 
@@ -191,13 +193,15 @@ label.lbl.notrobot {
 /* the checkbox -- checked
 -----------------------------------------------*/
 
-#wrapper input[type="checkbox"]:checked+label::after {
-    border: 2px solid #fff;
-    background: transparent;
-    transition: background-color 1s;
-    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUAQMAAAC3R49OAAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAAAFiS0dEAIgFHUgAAAAJcEhZcwAACxMAAAsTAQCanBgAAAAHdElNRQfgBwEQARzBMMQpAAAAN0lEQVQI12NgQAEHGBgYHzAwMAMxO5DN38AgIM/AYGHHwFBTw8Bg94OBQf4DUBgqzdwAVI5qAACbXgn3nmfmHgAAAABJRU5ErkJggg==);
-    background-position: -2px -1px;
-}
+    #wrapper input[type="checkbox"]:checked + label::after {
+        border: 2px solid #fff;
+        background: transparent;
+        transition: background-color 1s;
+        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUAQMAAAC3R49OAAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAAAFiS0dEAIgFHUgAAAAJcEhZcwAACxMAAAsTAQCanBgAAAAHdElNRQfgBwEQARzBMMQpAAAAN0lEQVQI12NgQAEHGBgYHzAwMAMxO5DN38AgIM/AYGHHwFBTw8Bg94OBQf4DUBgqzdwAVI5qAACbXgn3nmfmHgAAAABJRU5ErkJggg==);
+        background-position: 1px 1px;
+        background-size: 14px !important;
+        background-repeat: no-repeat;
+    }
 
 
 /* the checkbox -- disabled

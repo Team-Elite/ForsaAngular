@@ -11524,6 +11524,7 @@
 
     #lendrequestbody table tbody tr td {
         color: #fff;
+        text-align:right;
     }
 
     .dashboard-modal .modal-header {
@@ -11541,7 +11542,7 @@
     }
 
     #lendrequestbody table tbody tr th {
-        width: 21%;
+        width: 100%;
         line-height: 2.5;
         padding: 8px;
         color: #fff;
@@ -19387,6 +19388,9 @@
         </div>
 
         <div class="col-lg-6 col-md-12">
+            <div class="dashboard-right-head">
+                <p>EUR 1 Month</p>
+            </div>
             <div class="dashboard-right">
                 <!--<div class="in-buttons no-gutters row">
                     <div class="col-sm-12">
@@ -19566,10 +19570,10 @@
                 <div class="modal-body" id="lendrequestbody">
                     <table>
                         <tbody>
-                            <tr><th>Bank</th><td>{{objBankInfo.Bank}}</td></tr>
-                            <tr><th>Name Of Company</th><td>{{objBankInfo.NameOfCompany}}</td></tr>
-                            <tr><th>Place</th><td>{{objBankInfo.Place}}</td></tr>
-                            <tr><th>Street</th><td>{{objBankInfo.Street}}</td></tr>
+                            <tr><th>Name Unternehmen</th><td>{{objBankInfo.Bank}}</td></tr>
+                            <tr><th>Strasse</th><td>{{objBankInfo.NameOfCompany}}</td></tr>
+                            <tr><th>Postleitzahl</th><td>{{objBankInfo.Place}}</td></tr>
+                            <tr><th>Ort</th><td>{{objBankInfo.Street}}</td></tr>
                         </tbody>
                     </table>
 

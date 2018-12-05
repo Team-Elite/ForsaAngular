@@ -25,9 +25,9 @@
     "ButtonLogout": "Logout",
     "ButtonEurTN": "EUR (T/N)",
     "ButtonInfo": "INFO",
-    "ButtonLend": "Verleihen",
+    "ButtonLend": "Schließen",
     "ButtonRegisterasPartner": "Registrieren Sie sich als Partner",
-    "ButtonSettingRateField": "Setting Rate Field",
+    "ButtonSettingRateField": "Einstellungen",
     "ButtonUpload": "Uplopad",
     "ButtonChangePassword": "Change Password"
   },
@@ -126,6 +126,7 @@
     }
 
   },
+
   "Borrower": {
     "BankDashboard": {
       "menutext": "Speisekarte",
@@ -136,7 +137,7 @@
       "PermIdentity": "perm_identity",
       "logout": "logout",
       "Settings": "Wechseln Sie zu Kreditgeber",
-      "SettingStartPage": "Startseiteeinstellen",
+      "SettingStartPage": "Einstellen Startseite",
       "LenderSettings": "LENDEREINSTELLUNGEN",
       "BestPriceView": "Beste Preisansicht",
       "ViewAllPrice": "ALLE PREISE ANSEHEN",
@@ -159,7 +160,7 @@
       "InterestConvention": "INTERESSEKONVENTION",
       "Payments": "ZAHLUNGEN",
       "RateOfInterest": "Zinssatz",
-      "Ownmasterdatamanagement": "Eigene Stammdatenverwaltung",
+      "Ownmasterdatamanagement": "Stammdatenverwaltung",
       "Viewanddownloadyourownduelist": "Fälligkeitenliste",
       "Viewanddownloadinthepastdonebusiness": "Historie der Geschäfte",
       "STOPPUBLISH": "Stop Publizieren",
@@ -222,10 +223,10 @@
       "PermIdentity": "perm_identity",
       "Settings": "Wechseln Sie zum Benutzer",
       "Account": "Konto",
-      "SettingStartPage": "Startseiteeinstellen",
+      "SettingStartPage": "Einstellen Startseite",
       "LenderSettings": "LENDEREINSTELLUNGEN",
-      "BestPriceView": "Beste Preisansicht",
-      "ViewAllPrice": "ALLEPREISEANSEHEN",
+      "BestPriceView": "BEST-PREIS-ANSICHT",
+      "ViewAllPrice": "Favorite Einstellung",
       "AllBanks": "ALLEBANKEN",
       "viewlist": "view_list",
       "UpdateProfile": "Profil aktualisieren",
@@ -276,20 +277,39 @@
     },
     "BestPriceView": {
 
-      "Lender": "DARLEHENSGEBER",
-      "Borrower": "KREDITNEHMER",
-      "Amount": "MENGE",
-      "StartDate": "ANFANGSDATUM",
-      "Endate": "ENDTERMIN",
-      "NrOfDays": "NR. DER TAGE",
-      "InterestConvention": "INTERESSEKONVENTION",
-      "Payments": "ZAHLUNGEN",
+      "Lender": "Geldgeber",
+      "Borrower": "Geldnehmer",
+      "Amount": "Volumen",
+      "StartDate": "Valuta",
+      "Endate": "Fälligkeit",
+      "NrOfDays": "Anzahl der Tage",
+      "InterestConvention": "Zinskonvention",
+      "Payments": "Zahlungsfrequenz",
       "RateOfInterest": "Zinssatz",
-      "ModelTitle": "ANFRAGE SENDEN"
+      "ModelTitle": "Senden",
+      "Week1": "1 Woche",
+      "Week2": "2 Wochen",
+      "Week3": "3 Wochen",
+      "Month1": "1 Monat",
+      "Month2": "2 Monate",
+      "Month3": "3 Monate",
+      "Month4": "4 Monate",
+      "Month5": "5 Monate",
+      "Month6": "6 Monate",
+      "Month7": "7 Monate",
+      "Month8": "8 Monate",
+      "Month9": "9 Monate",
+      "Month10": "10 Monate",
+      "Month11": "11 Monate",
+      "Month12": "12 Monate",
+      "Year2": "2 Jahre",
+      "Year3": "3 Jahre",
+      "Year4": "4 Jahre",
+      "Year5": "5 Jahre"
     },
     "ViewAllPrice": {
       "Bank": "Bank",
-      "AllBanks": "Alle Banken",
+      "AllBanks": "Gegenpartei",
       "Tag": "Tag",
       "Week1": "1 W",
       "Week2": "2 W",
@@ -312,6 +332,7 @@
       "Year5": "5 Y"
 
     }
+
 
 
 
