@@ -46,41 +46,52 @@ export class ViewAllPriceService {
 
     async GetAllBanksWithStatusIsDeselected() {
 
-        var webtoken = { data: this.tokenService.jwtencrypt({ userId: this.lenderDashboardService.userId }), PageNumber:this.selectedPageNumber  };
-        let token = await this.http.post(this.lenderDashboardService.baseURL + '/api/LenderDashboard/GetAllBanksWithStatusIsDeselected', webtoken, this.requestOptions ).toPromise();
-
-       // let token = await this.http.get(this.lenderDashboardService.baseURL + '/api/LenderDashboard/GetAllBanksWithStatusIsDeselected?Id=' + this.lenderDashboardService.userId + '&PageNumber=' + this.selectedPageNumber).toPromise();
+        var webtoken = { data: this.tokenService.jwtencrypt({ userId: this.lenderDashboardService.userId }), PageNumber: this.selectedPageNumber };
         var response;
-        if (token != undefined) {
-            token = token.json().data;
-            response = JSON.parse(this.tokenService.jwtdecrypt(token).unique_name);
-        }
+        await this.http.post(this.lenderDashboardService.baseURL + '/api/LenderDashboard/GetAllBanksWithStatusIsDeselected', webtoken, this.requestOptions).map((data: Response) => {
+            return data.json();
+        }).toPromise().then(token => {
+            if (token != undefined && token.IsSuccess) {
+                token = token.data;
+                response = JSON.parse(this.tokenService.jwtdecrypt(token).unique_name);
+            }
+        });
         return response;
+       
     }
 
     async GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected(orderByColumn: string) {
         var webtoken = { data: this.tokenService.jwtencrypt({ userId: this.lenderDashboardService.userId }), orderBy: orderByColumn };
-        let token = await this.http.post(this.lenderDashboardService.baseURL + '/api/LenderDashboard/GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected', webtoken, this.requestOptions  ).toPromise();
+        var response;
+        await this.http.post(this.lenderDashboardService.baseURL + '/api/LenderDashboard/GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected', webtoken, this.requestOptions).map((data: Response) => {
+            return data.json();
+        }).toPromise().then(token => {
+            if (token != undefined && token.IsSuccess && token.data != undefined) {
+                token = token.data;
+                response = JSON.parse(this.tokenService.jwtdecrypt(token).unique_name);
+            }
+        });
 
        // let token = await this.http.get(this.lenderDashboardService.baseURL + '/api/LenderDashboard/GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected?Id=' + this.lenderDashboardService.userId).toPromise();
-        var response;
-        if (token != undefined && token.json().data != undefined) {
-            token = token.json().data;
-            response = JSON.parse(this.tokenService.jwtdecrypt(token).unique_name);
-        }
+     
         return response;
     }
 
     async DeselectSelectBank(bankId: number, IsSelected: any) {
         var webtoken = { data: this.tokenService.jwtencrypt({ userId: this.lenderDashboardService.userId, bankId: bankId, IsSelected: (IsSelected)?1:0 }) };
-        let token = await this.http.put(this.lenderDashboardService.baseURL + '/api/LenderDashboard/DeselectBank', webtoken, this.requestOptions).toPromise();
+        var response;
+        let token = await this.http.put(this.lenderDashboardService.baseURL + '/api/LenderDashboard/DeselectBank', webtoken, this.requestOptions).map((data: Response) => {
+            return data.json();
+        }).toPromise().then(token => {
+            if (token != undefined && token.IsSuccess) {
+              
+                response = token;
+            }
+        });;
 
        // let token = await this.http.get(this.lenderDashboardService.baseURL + '/api/LenderDashboard/DeselectBank?userId=' + this.lenderDashboardService.userId + "&bankId=" + bankId + "&IsSelected=" + IsSelected).toPromise();
-        var response;
-        if (token != undefined) {
-            token = token.json();
-            response = token;
-        }
+      
+      
         return response;
     }
 }

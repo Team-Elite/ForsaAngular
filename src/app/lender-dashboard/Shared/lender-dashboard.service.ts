@@ -38,15 +38,16 @@ export class LenderDashboardService {
         if (this.userId === undefined) return null;
         var webtoken = { data: this.tokenService.jwtencrypt({ userId: this.userId }) };
         var response;
-        let token = await this.http.post(this.authenticateServiceService.baseURL + '/api/LenderStartPage/GetLenderStartPage', webtoken, this.requestOptions).map((data: Response) => {
+      
+       await this.http.post(this.authenticateServiceService.baseURL + '/api/LenderStartPage/GetLenderStartPage', webtoken, this.requestOptions).map((data: Response) => {
             return data.json();
         }).toPromise().then(token => {
             if (token != undefined && token.IsSuccess) {
-                token = token.json().data;
+                token = token.data;
                 response = JSON.parse(this.tokenService.jwtdecrypt(token).unique_name)[0];
             }
         });
-
+        debugger;
         return response;
     }
 

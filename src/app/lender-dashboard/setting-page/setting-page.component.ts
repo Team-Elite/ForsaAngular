@@ -7,16 +7,16 @@ import { hubConnection, connection } from 'signalr-no-jquery';
 import * as _ from 'lodash';
 // import {LocalStorage} from '@ngx-pwa/local-storage';
 import { LOCAL_STORAGE, StorageService } from 'angular-webstorage-service';
-import {Router} from '@angular/router';
-import {Storage} from '@ionic/storage';
+import { Router } from '@angular/router';
+import { Storage } from '@ionic/storage';
 
 const connection = hubConnection('http://socket.elitewebdemo.com/signalr');
 const hubProxy = connection.createHubProxy('NgHub');
 
 @Component({
-  selector: 'app-setting-page',
-  templateUrl: './setting-page.component.html',
-  styleUrls: ['./setting-page.component.css']
+    selector: 'app-setting-page',
+    templateUrl: './setting-page.component.html',
+    styleUrls: ['./setting-page.component.css']
 })
 export class SettingPageComponent implements OnInit {
     allChecked: boolean;
@@ -45,37 +45,37 @@ export class SettingPageComponent implements OnInit {
     };
     ratesOfIntrest: any[];
 
-  constructor(public viewAllPriceService: ViewAllPriceService, public spinner: NgxSpinnerService
-      , public toastr: ToastrService, public router: Router, @Inject(LOCAL_STORAGE) private storage: StorageService) {
-      hubProxy.on('sendBankRate', (data) => {
-          this.viewAllPriceService.listViewAllPrice1 = [];
-          this.viewAllPriceService.listViewAllPrice2 = [];
-          this.viewAllPriceService.listViewAllPrice3 = [];
-          this.GetAllBanksWithStatusIsDeselected();
-          this.GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected(this.orderByColumn);
-          //this.GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected();
-          // 
-      })
-      connection.start({ jsonp: true })
-          .done(function () { console.log('Now connected, connection ID=' + connection.id); })
-          .fail(function () { console.log('Could not connect'); });
-  }
+    constructor(public viewAllPriceService: ViewAllPriceService, public spinner: NgxSpinnerService
+        , public toastr: ToastrService, public router: Router, @Inject(LOCAL_STORAGE) private storage: StorageService) {
+        hubProxy.on('sendBankRate', (data) => {
+            this.viewAllPriceService.listViewAllPrice1 = [];
+            this.viewAllPriceService.listViewAllPrice2 = [];
+            this.viewAllPriceService.listViewAllPrice3 = [];
+            this.GetAllBanksWithStatusIsDeselected();
+            this.GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected(this.orderByColumn);
+            //this.GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected();
+            // 
+        })
+        connection.start({ jsonp: true })
+            .done(function () { console.log('Now connected, connection ID=' + connection.id); })
+            .fail(function () { console.log('Could not connect'); });
+    }
 
-  ngOnInit() {
-      this.allChecked = true;
-      this.viewAllPriceService.listViewAllPrice1 = [];
-      this.viewAllPriceService.listViewAllPrice2 = [];
-      this.viewAllPriceService.listViewAllPrice3 = [];
-      this.GetAllBanksWithStatusIsDeselected();
-      this.GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected(this.orderByColumn);
-      this.spinner.show();
-      this.spinner.hide();
-      const self = this;
-      const result = this.storage.get('viewAllPrice');
-      if (result) this.obj = result.obj;
-      
-  }
-   
+    ngOnInit() {
+        this.allChecked = true;
+        this.viewAllPriceService.listViewAllPrice1 = [];
+        this.viewAllPriceService.listViewAllPrice2 = [];
+        this.viewAllPriceService.listViewAllPrice3 = [];
+        this.GetAllBanksWithStatusIsDeselected();
+        this.GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected(this.orderByColumn);
+        this.spinner.show();
+        this.spinner.hide();
+        const self = this;
+        const result = this.storage.get('viewAllPrice');
+        if (result) this.obj = result.obj;
+
+    }
+
     isSelected(val, type) {
         if (type == 2) {
             if (val) {
@@ -192,14 +192,14 @@ export class SettingPageComponent implements OnInit {
                 this.obj.class20 = false;
             }
         }
-  }
-  save () {
-      const self = this;
-      this.storage.set('viewAllPrice', {obj: this.obj});
-      self.router.navigateByUrl('/lenderDashboard/ViewAllPrice');
-    //   this.storage.set('viewAllPrice', {obj: this.obj}).then(function () {
-    //       self.router.navigateByUrl('/lenderDashboard/ViewAllPrice');
-    //   });
+    }
+    save() {
+        const self = this;
+        this.storage.set('viewAllPrice', { obj: this.obj });
+        self.router.navigateByUrl('/lenderDashboard/ViewAllPrice');
+        //   this.storage.set('viewAllPrice', {obj: this.obj}).then(function () {
+        //       self.router.navigateByUrl('/lenderDashboard/ViewAllPrice');
+        //   });
     }
 
     async GetAllBanksWithStatusIsDeselected() {
@@ -231,19 +231,19 @@ export class SettingPageComponent implements OnInit {
         console.log(this.viewAllPriceService.listViewAllPrice3);
         this.spinner.hide();
     }
-        
+
     async GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected(columnName: string) {
         this.orderByColumn = columnName;
-     //   this.spinner.show();
+        //   this.spinner.show();
         let rates = await this.viewAllPriceService.GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected(columnName);
         this.viewAllPriceService.listAllBanks = rates;
         this.ratesOfIntrest = this.viewAllPriceService.listAllBanks;
         this.GetHighestRatesViewAllPrice();
         //this.SetHighestRatesTimeInterval();
 
-       // this.spinner.hide();
+        // this.spinner.hide();
     }
-    
+
     GetHighestRatesViewAllPrice() {
 
         if (this.viewAllPriceService.listAllBanks != undefined && this.viewAllPriceService.listAllBanks != null && this.viewAllPriceService.listAllBanks.length != 0) {
