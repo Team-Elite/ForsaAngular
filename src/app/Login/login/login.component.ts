@@ -39,6 +39,7 @@ export class LoginComponent implements OnInit {
             UserName: '',
             UserPassword: '',
             ForgotPasswordEmailId: '',
+            LoginTime: undefined
             //UserEmailId:''
         }
     }
@@ -117,7 +118,7 @@ export class LoginComponent implements OnInit {
             }
             else {
                 this.spinner.hide();
-                this.toastr.error("User Name/Email Id or Password is incorrect.", "Login");
+                this.toastr.error("Invalid Login Credentials or User is not active.Contact Administrator.", "Login");
             }
         }
     }

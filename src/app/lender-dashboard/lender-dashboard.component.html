@@ -10071,6 +10071,7 @@
 
         ul.in-lang li {
             padding: 0.3em 0.6em;
+            color: #333 !important;
         }
 
         #wrapper ul.in-lang li a {
@@ -10090,9 +10091,15 @@
             background: #8636d7;
         }
 
-        #wrapper ul.in-lang li.active a,
+        /*#wrapper ul.in-lang li.active a,
         #wrapper ul.in-lang li:hover,
         #wrapper ul.in-lang li a:hover {
+            color: #fff;
+            background: #8636d7;
+        }*/
+        #wrapper ul.in-lang li.active a
+        
+         {
             color: #fff;
             background: #8636d7;
         }
@@ -10119,7 +10126,7 @@
             position: absolute;
             right: 0px;
             bottom: 0px;
-            color: #fff;
+            color: #1c5d98;
         }
 
         input:focus {
@@ -10428,9 +10435,12 @@
         }
 
         .identity i.material-icons {
-            top: 3px;
+            top: 6px;
             position: relative;
-            font-size: 20px;
+            font-size: 18px;
+            color: #1c5d98 !important;
+            border: 1px solid #fff;
+            padding: 2px 3px;
         }
 
         ul.in-lang li.french {
@@ -10504,6 +10514,14 @@
                 height: auto;
                 position: relative;
             }
+        #wrapper ul.in-lang li a {
+            color: #fff;
+            padding: 4px 0px;
+        }
+        .identity i.material-icons:hover
+        {
+            color:#fff !important;
+        }
 
         #main-panel,
         .sidebar-wrapper {
@@ -10526,9 +10544,10 @@
             float: right;
             width: calc(100% - 320px);
             color: #fff;
-            padding: 2em 1em !important;
+            padding: 2em 1em;
             margin: 1%;
-            background: #25272e;
+            background: #efefef;
+            z-index:999 !important;
         }
 
         .sidebar {
@@ -10562,22 +10581,25 @@
         .sidebar span.input-group-icon {
             position: inherit;
             float: right;
+            color: #1c5d98;
         }
 
         #wrapper .sidebar-nav li a {
             font-size: 12px;
             text-decoration: none;
-            color: #FFF;
+            color: #333;
             float: left;
             text-decoration: none;
             width: 100%;
             height: 70px;
             line-height: 25px;
             padding: 30px 10px;
+            text-transform: capitalize !important;
+            border-bottom: 1px solid #cacaca;
         }
 
         .sidebar-nav li a:hover {
-            background: #121213;
+            background: #cccccc !important;
             -webkit-transition: background 0.5s;
             transition: background 0.5s;
         }
@@ -11343,19 +11365,19 @@
         }
 
             .cockpit-dropdown-div button.dropcockpit {
-                color: #fff;
-                background: #37383d !important;
+                color: #333;
+                background: #e3e3e3 !important;
                 border: none;
                 text-align: left;
                 padding: 8px;
                 margin: 0px !important;
                 font-size: 11px !important;
-                text-transform: uppercase;
+                text-transform: capitalize !important;
                 width: 100%;
             }
 
                 .cockpit-dropdown-div button.dropcockpit:hover {
-                    background: #8636d7 !important;
+                    background: #e9e9e9 !important;
                 }
 
                 .cockpit-dropdown-div button.dropcockpit:focus {
@@ -11418,7 +11440,7 @@
         .cockpit-dropdown-div {
             display: none;
         }
-
+      
         .cockpit-btn:hover .cockpit-dropdown-div {
             display: block !important;
         }
@@ -11428,6 +11450,7 @@
         .admin-modal label {
             position: relative;
             top: 0px;
+            color:#333;
         }
 
         .admin-modal .modal-header {
@@ -11447,10 +11470,10 @@
         .admin-modal input {
             margin-bottom: 10px;
             border: none;
-            background: #37383d;
+            background: #c6d9f1 !important;
             border-radius: 0px;
-            border-bottom: 1px solid grey !important;
-            color: #fff !important;
+            border-bottom: 1px solid #c6d9f1 !important;
+            color: #333 !important;
             cursor: pointer;
         }
 
@@ -11464,7 +11487,7 @@
         }
 
         .admin-modal input.form-control:focus {
-            background: #37383d;
+            background: #c6d9f1;
             outline: none;
             box-shadow: none;
         }
@@ -11489,11 +11512,11 @@
         }
 
         .bd-example-modal-lg-setting-page select#SelectedStartPage {
-            background: #37383d;
+            background: #c6d9f1 !important;
             border-radius: 0px;
-            border-bottom: 1px solid grey !important;
+            border-bottom: 1px solid #c6d9f1 !important;
             border: none;
-            color: #fff;
+            color: #333;
         }
 
             .bd-example-modal-lg-setting-page select#SelectedStartPage:focus {
@@ -11522,7 +11545,7 @@
         }
 
         #lendrequestbody table tbody tr td {
-            color: #fff;
+            color: #333;
         }
 
         .dashboard-modal .modal-header {
@@ -11543,7 +11566,7 @@
             width: 21%;
             line-height: 2.5;
             padding: 8px;
-            color: #fff;
+            color: #333;
         }
 
         #lendrequestbody table tbody tr td input {
@@ -11556,34 +11579,35 @@
 
             #lendrequestbody table tbody tr td input {
                 width: 375px;
-                background: #37383d;
+                background: #c6d9f1;
                 border-radius: 0px;
-                border-bottom: 1px solid grey !important;
+                border-bottom: 1px solid #c6d9f1 !important;
                 border: none;
-                color: #fff;
+                color: #333;
             }
 
             #lendrequestbody table tbody tr td select {
-                background: #37383d;
+                background: #c6d9f1;
                 border-radius: 0px;
-                border-bottom: 1px solid grey !important;
+                border-bottom: 1px solid #c6d9f1 !important;
                 border: none;
-                color: #fff;
+                color: #333;
             }
 
         #lendrequestbody #sendRequest {
-            background-color: #8636d7;
-            border: #8636d7;
-            border-bottom: 1px solid grey !important;
+            background-color: #1c5d98;
+            border: #1c5d98;
+            border-bottom: 1px solid #1c5d98 !important;
             border-radius: 0px;
             font-size: 15px;
             margin: 0px 15px 0px 0px;
             margin-top: 10px;
             float: left;
+            color: #fff !important;
         }
 
         div#lendrequestbody {
-            background: #25272e;
+            background: #efefef;
         }
 
         .dashboard-modal .modal-footer {
@@ -19365,7 +19389,7 @@
 
 <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="large" color="#fff" type="ball-clip-rotate">
 </ngx-spinner>
-<body class="instibg" cz-shortcut-listen="true" style="background: #18191d !important; font-family:Roboto, Helvetica, Arial, sans-serif !important;">
+<body class="instibg" cz-shortcut-listen="true" style="background: #efefef !important; font-family:Roboto, Helvetica, Arial, sans-serif !important;">
 
     <!-- Wrapper for the Whole Application -->
     <div id="wrapper" class="wrapper-full">
@@ -19448,7 +19472,8 @@
                                 </a>
                             </li>
                             <li class="identity" title="Logout">
-                                <a href="javascript:void(0);" (click)="Logout()"><i class="material-icons"></i>{{'Button.ButtonLogout'|translate}}</a>
+                                <a href="javascript:void(0);" (click)="Logout()"><i class="material-icons">settings</i></a>
+
                             </li>
                         </ul>
 
@@ -19555,7 +19580,9 @@
                 </div>
             </aside>
             <!-- Aside Ends Here-->
-
+            <!---Footer Start--->
+            <footer _ngcontent-c1="" class="my-footer"><div _ngcontent-c1="" class="container"><div _ngcontent-c1="" class="navbar-footer"><a _ngcontent-c1="" class="active" href="#home">FORSA TopZins- Portal</a><a _ngcontent-c1="" href="#news">Nutzungsbedingungen</a><a _ngcontent-c1="" href="#contact">Datenschutzerklärung</a><a _ngcontent-c1="" href="#contact">Rechtliche Hinweise</a><a _ngcontent-c1="" href="#contact">Impressum</a></div></div></footer>
+            <!--Footer End-->
             <router-outlet></router-outlet>
 
             <!--admin icon modal page tab-->

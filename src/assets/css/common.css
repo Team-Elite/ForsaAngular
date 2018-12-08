@@ -5,11 +5,12 @@
 html body {
     font-family: Helvetica;
     -webkit-font-smoothing: antialiased;
-    background: #18191d !important; font-family:Roboto, Helvetica, Arial, sans-serif !important;
+    background: #efefef !important;
+    font-family: Roboto, Helvetica, Arial, sans-serif !important;
 }
 
 body.instibg {
-    background: #18191d;
+    background: #18191d !important;
     font-family: "Roboto", "Helvetica", "Arial", sans-serif;
 }
 
@@ -171,6 +172,9 @@ label.lbl.notrobot {
 
 .dashboard-price-list button.btn.btn-info.btn-lg.common-bt-1 {
     margin: 12px 4px;
+    background-color: #1c5d98 !important;
+    border-radius: 0px !important;
+    font-size: 15px !important;
 }
 /* the checkbox
 -----------------------------------------------*/
@@ -663,13 +667,24 @@ input:focus~.highlight {
     padding: 2em 5em;
     margin: 1%;
     background: #25272e;
+    z-index:999 !important;
 }
 .modal-header {
-    background-color: #72af09 !important;
+    background-color: #1c5d98 !important;
 }
 
 .modal-footer {
-    background-color: #72af09 !important;
+    background-color: #1c5d98 !important;
+}
+    .modal-footer button.btn.btn-secondary {
+        background-color: #fff !important;
+        color: #1c5d98;
+    }
+#lendrequestbody.modal-body button.btn.btn-secondary {
+    background-color: #1c5d98 !important;
+    border: 1px solid #1c5d98 !important;
+    margin: 0 auto;
+    display: block;
 }
 .btn-secondary{ background-color:red !important;}
 .update-active {

@@ -1,5 +1,6 @@
 export class LoginModel {
     UserName:string;
     UserPassword:string;
-    ForgotPasswordEmailId:string;
+    ForgotPasswordEmailId: string;
+    LoginTime: Date;
 }

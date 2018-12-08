@@ -10510,7 +10510,9 @@
         width: calc(100% - 160px);
         background: #25272e;
     }
-
+    .dashboard-price-list .table-bordered tr {
+        background-color: #c6d9f1 !important;
+    }
     #main-panel {
         position: relative;
         float: right;
@@ -10518,7 +10520,8 @@
         color: #fff;
         padding: 2em 1em;
         margin: 1%;
-        background: #25272e;
+        background: #efefef;
+        z-index:999 !important;
     }
 
     .sidebar {
@@ -10853,19 +10856,28 @@
             text-align: center;
             border-left-color: transparent;
         }
+        .dashboard-price-list table th {
+            background: #1c5d98;
+            border-bottom: 1px solid #1c5d98;
+            margin-right: 1px;
+            border-right: 1px solid #fff;
+            border-top-color: transparent;
+        }
 
         .dashboard-price-list .table-bordered td {
-            background: #37383d;
-            border-right-color: #25272e;
-            border-bottom-color: #25272e;
+            /*background: #37383d;*/
+            border-right-color: #fff;
+            border-bottom-color: #fff;
             cursor: pointer;
             vertical-align: inherit;
+            color:#333;
         }
 
             .dashboard-price-list .table-bordered td.active {
-                background: #8636d7;
-                border-bottom: 1px solid #9b45f1;
+                background: #1c5d98;
+                border-bottom: 1px solid #fff;
                 cursor: pointer;
+                color: #fff !important;
             }
 
             .dashboard-price-list .table-bordered td:focus {
@@ -11418,6 +11430,7 @@
     .admin-modal label {
         position: relative;
         top: 0px;
+        color:#333;
     }
 
     .admin-modal .modal-header {
@@ -11437,7 +11450,7 @@
     .admin-modal input {
         margin-bottom: 10px;
         border: none;
-        background: #37383d;
+        background: #37383d !important;
         border-radius: 0px;
         border-bottom: 1px solid grey !important;
         color: #fff !important;
@@ -11512,7 +11525,7 @@
     }
 
     #lendrequestbody table tbody tr td {
-        color: #fff;
+        color: #333;
     }
 
     .dashboard-modal .modal-header {
@@ -11533,7 +11546,7 @@
         width: 21%;
         line-height: 2.5;
         padding: 8px;
-        color: #fff;
+        color: #333;
     }
 
     #lendrequestbody table tbody tr td input {
@@ -11546,34 +11559,35 @@
 
         #lendrequestbody table tbody tr td input {
             width: 375px;
-            background: #37383d;
+            background: #c6d9f1;
             border-radius: 0px;
-            border-bottom: 1px solid grey !important;
+            border-bottom: 1px solid #c6d9f1 !important;
             border: none;
-            color: #fff;
+            color: #333;
         }
 
         #lendrequestbody table tbody tr td select {
-            background: #37383d;
+            background: #c6d9f1;
             border-radius: 0px;
-            border-bottom: 1px solid grey !important;
+            border-bottom: 1px solid #c6d9f1 !important;
             border: none;
-            color: #fff;
+            color: #333;
         }
 
     #lendrequestbody #sendRequest {
-        background-color: #8636d7;
-        border: #8636d7;
-        border-bottom: 1px solid grey !important;
+        background-color: #1c5d98;
+        border: #1c5d98;
+        border-bottom: 1px solid #1c5d98 !important;
         border-radius: 0px;
         font-size: 15px;
         margin: 0px 15px 0px 0px;
         margin-top: 10px;
         float: left;
+        color: #fff !important;
     }
 
     div#lendrequestbody {
-        background: #25272e;
+        background: #efefef;
     }
 
     .dashboard-modal .modal-footer {

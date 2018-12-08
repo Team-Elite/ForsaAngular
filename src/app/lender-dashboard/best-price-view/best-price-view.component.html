@@ -10518,7 +10518,8 @@
         color: #fff;
         padding: 2em 5em;
         margin: 1%;
-        background: #25272e;
+        background: #efefef;
+        z-index:999 !important;
     }
 
     .sidebar {
@@ -10605,11 +10606,11 @@
 
     /* Dashboard content css starts */
     .dashboard-left .link {
-        background: #37383d;
-        color: #fff;
+        background: #c6d9f1;
+        color: #fff !important;
         border: none;
-        text-transform: uppercase;
-        border-bottom: 1px solid grey;
+        text-transform: capitalize;
+        border-bottom: navajowhite;
         border-radius: 0px;
         padding: 8px 5px;
         margin-bottom: 6px;
@@ -10623,7 +10624,7 @@
         }
 
             .dashboard-left .link .col-md-6 a {
-                color: #fff !important;
+                color: #333 !important;
             }
 
         .dashboard-left .link:focus-within {
@@ -10656,10 +10657,10 @@
     }
 
         .dashboard-left button.link.current {
-            background: #8c21d3;
+            background: #1c5d98 !important;
             outline: none;
             box-shadow: none;
-            border-bottom-color: #c688ef;
+            border-bottom-color: #1c5d98 !important;
             touch-action: auto;
         }
 
@@ -10680,9 +10681,14 @@
     }
 
         .dashboard-right button.btn.w-100.active {
-            background: #8636d7 !important;
-            border-bottom: 1px solid #9f3fff;
+            background: #1c5d98 !important;
+            border-bottom: 1px solid #fff;
+            padding: 7px 3px !important;
         }
+    .dashboard-left button.link.current .col-md-6 a
+    {
+        color:#fff !important;
+    }
 
     .dashboard-right button:focus {
         outline: none;
@@ -10998,9 +11004,9 @@
         padding: 0px;
         margin-bottom: 4px;
         border-radius: 0px;
-        border-bottom: 1px solid #9f3fff;
-        background: #8636d7 !important;
-        height: 40px;
+        border: 1px solid #fff;
+        background: #37383d !important;
+        height: 38px;
     }
 
         .dashboard-right div.btn.w-100.active input {
@@ -11345,7 +11351,8 @@
         }
 
             .cockpit-dropdown-div button.dropcockpit:hover {
-                background: #8636d7 !important;
+                background: #cccccc !important;
+                color:#333 !important;
             }
 
             .cockpit-dropdown-div button.dropcockpit:focus {
@@ -11437,10 +11444,10 @@
     .admin-modal input {
         margin-bottom: 10px;
         border: none;
-        background: #37383d;
+        background: #c6d9f1 !important;
         border-radius: 0px;
-        border-bottom: 1px solid grey !important;
-        color: #fff !important;
+        border-bottom: 1px solid #c6d9f1 !important;
+        color: #333 !important;
         cursor: pointer;
     }
 
@@ -11454,7 +11461,7 @@
     }
 
     .admin-modal input.form-control:focus {
-        background: #37383d;
+        background: #c6d9f1;
         outline: none;
         box-shadow: none;
     }
@@ -11523,7 +11530,7 @@
     }
 
     #lendrequestbody table tbody tr td {
-        color: #fff;
+        color: #333;
         text-align:right;
     }
 
@@ -11545,7 +11552,7 @@
         width: 100%;
         line-height: 2.5;
         padding: 8px;
-        color: #fff;
+        color: #333;
     }
 
     #lendrequestbody table tbody tr td input {
@@ -11558,30 +11565,31 @@
 
         #lendrequestbody table tbody tr td input {
             width: 375px;
-            background: #37383d;
+            background: #c6d9f1;
             border-radius: 0px;
-            border-bottom: 1px solid grey !important;
+            border-bottom: 1px solid #c6d9f1 !important;
             border: none;
-            color: #fff;
+            color: #333;
         }
 
         #lendrequestbody table tbody tr td select {
-            background: #37383d;
+            background: #c6d9f1;
             border-radius: 0px;
-            border-bottom: 1px solid grey !important;
+            border-bottom: 1px solid #c6d9f1 !important;
             border: none;
-            color: #fff;
+            color: #333;
         }
 
     #lendrequestbody #sendRequest {
-        background-color: #8636d7;
-        border: #8636d7;
-        border-bottom: 1px solid grey !important;
+        background-color: #1c5d98;
+        border: #1c5d98;
+        border-bottom: 1px solid #1c5d98 !important;
         border-radius: 0px;
         font-size: 15px;
         margin: 0px 15px 0px 0px;
         margin-top: 10px;
         float: left;
+        color: #fff !important;
     }
 
     #lendrequestbody #AcceptRequest {
@@ -11607,7 +11615,7 @@
     }
 
     div#lendrequestbody {
-        background: #25272e;
+        background: #efefef;
     }
 
     .dashboard-modal .modal-footer {
