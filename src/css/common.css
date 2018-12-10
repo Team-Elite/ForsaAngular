@@ -8,7 +8,7 @@ html body {
 }
 
 body.instibg {
-    background: #18191d;
+    background: #efefef !important;
     font-family: "Roboto", "Helvetica", "Arial", sans-serif;
 }
 
@@ -22,10 +22,24 @@ hgroup {
 }
 
 #wrapper a {
-    color: #9f3fff;
+    color: #333;
     text-decoration: none;
     cursor: pointer;
 }
+.page-item.active .page-link {
+    z-index: 1;
+    color: #fff !important;
+    background-color: #1c5d98 !important;
+    border-color: #1c5d98 !important;
+}
+
+.buttonprl {
+    background-color: transparent !important;
+    border: 1px solid #1c5d98;
+    color: #1c5d98 !important;
+    padding: 5px 7px !important;
+    font-size: 13px !important;
+}s
 
 #wrapper {
     max-width: 1400px;
@@ -584,8 +598,12 @@ input:focus~.highlight {
     }
 }
 .modal-header {
-    background-color: #72af09 !important;
+    background-color: #1c5d98 !important;
 }
 .modal-footer {
-    background-color: #72af09 !important;
+    background-color: #1c5d98 !important;
+}
+
+.modal-backdrop {
+    z-index: -1 !important;
 }

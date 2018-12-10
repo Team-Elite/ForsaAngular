@@ -23,16 +23,26 @@ export class LoginComponent implements OnInit {
 
 
     IfVerificationDone: boolean = false;
-    IfShowPassword: boolean = false;
-    public resolved(captchaResponse: string) {
-        if (captchaResponse != undefined && captchaResponse != null && captchaResponse.trim().length != 0) {
-            this.IfVerificationDone = true;
-        }
-        else {
-            this.IfVerificationDone = false;
-        }
-    }
+    IfShowPassword: boolean = false
+    captcha: any;
+    //public resolved(captchaResponse: string) {
+    //    if (captchaResponse != undefined && captchaResponse != null && captchaResponse.trim().length != 0) {
+    //        this.IfVerificationDone = true;
+    //    }
+    //    else {
+    //        this.IfVerificationDone = false;
+    //    }
+    //}
+     generateCaptcha() {
+    var a = Math.floor((Math.random() * 10));
+    var b = Math.floor((Math.random() * 10));
+    var c = Math.floor((Math.random() * 10));
+    var d = Math.floor((Math.random() * 10));
 
+    this.captcha = a.toString() + b.toString() + c.toString() + d.toString();
+
+       // $("#captcha").val(this.captcha);
+}
     ngOnInit() {
         this.authenticateServiceService.ClearSession();
         this.loginService.loginModel = {
@@ -41,7 +51,8 @@ export class LoginComponent implements OnInit {
             ForgotPasswordEmailId: '',
             LoginTime: undefined
             //UserEmailId:''
-        }
+    }
+    this.generateCaptcha();
     }
 
     async ValidateUser(form: NgForm) {
@@ -66,11 +77,11 @@ export class LoginComponent implements OnInit {
                 this.toastr.error("Password is required.", "Login");
                 return false;
             }
-
-            if (!this.IfVerificationDone) {
-                this.toastr.error("Please verify captcha.", "Login");
-                return false;
-            }
+            //Recaptch comment
+            //if (!this.IfVerificationDone) {
+            //    this.toastr.error("Please verify captcha.", "Login");
+            //    return false;
+            //}
             this.spinner.show();
             let user = await this.loginService.ValidateUser(form.value);
             if (user.IsSuccess == true) {

@@ -408,7 +408,7 @@
                                         <label>{{'Register.section2.RatingAgentur1'|translate}} </label>
                                         <select #RatingAgentur1="ngModel" [(ngModel)]="registrationService.userModel.RatingAgentur1" class="mdl-selectfield__select" name="RatingAgentur1" id="RatingAgentur1">
                                             expand_more
-                                            <option value="0" disabled="" selected="">RatingAgentur1</option>
+                                            <option value="0" disabled="" selected="selected">RatingAgentur1</option>
                                             <option *ngFor="let objNturModel of registrationService.listRatingAgeNturModel1" value="{{objNturModel.RatingAgeNturId}}">{{objNturModel.RatingAgeNtur}}</option>
                                         </select>
                                     </div>
@@ -439,7 +439,7 @@
                                         <input #RatingAgenturValue2="ngModel" [(ngModel)]="registrationService.userModel.RatingAgenturValue2" name="RatingAgenturValue2" type="text" class="used">
                                         <span class="highlight"></span>
                                         <span class="bar"></span>
-                                        <label>{{'Register.section2.RatingAgentValue1'|translate}} *</label>
+                                        <label>{{'Register.section2.RatingAgentValue2'|translate}} *</label>
                                     </div>
                                 </div>
 
@@ -455,8 +455,9 @@
                                 </div>
 
                                 <div *ngIf="registrationService.userModel.rdbBank" class="form-group form-md-line-input has-error">
-                                    <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
-                                        <input #RatingAgenturValue2="ngModel" [(ngModel)]="registrationService.userModel.DepositInsuranceAmount" name="DepositInsuranceAmount" type="text" class="used">
+                                    <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label ">
+                                        <p class="eur-small-text">EUR</p>
+                                        <input #RatingAgenturValue2="ngModel" [(ngModel)]="registrationService.userModel.DepositInsuranceAmount" name="DepositInsuranceAmount" type="text" class="used my-half-input">
                                         <span class="highlight"></span>
                                         <span class="bar"></span>
                                         <label>{{'Register.section2.DepositInsuranceAmount'|translate}} </label>
@@ -464,27 +465,28 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group form-md-line-input has-error">
-
+                                <div class="form-group form-md-line-input has-error my-file-upload-div">
+                                    
+                                 
                                     <div class="group input-group">
-
-                                        <label>File Upload</label>
+                                        <p class="upload-lable" style="font-weight:bold;"><b>Daten zur Geldwascheprufung </b></p>
+                                        <p class="upload-lable"> Hochladen Handelsregisterauszug</p>
                                         <input type="file" (change)="isUploadOneSelected($event)" accept="application/pdf">
-
-
-                                    </div>
-                                </div>
-                                <div class="group input-group">
-                                    <label> Hochladen Handelsregisterauszug</label>
-                                </div>
-                                <div class="form-group form-md-line-input has-error">
-                                    <div class="group input-group">
-                                        <label>File Upload</label>
+                                        <br />
+                                        <p class="upload-lable"> Hochladen Handelsregisterauszug</p>
                                         <input type="file" (change)="isUploadTwoSelected($event)" accept="application/pdf">
 
-
                                     </div>
+                                    
+                                    
+
                                 </div>
+                                <!--<div class="group input-group">
+                                    
+                                </div>
+                                <div class="form-group form-md-line-input has-error">
+                                    
+                                </div>-->
 
                                 <div class="login-margin"></div>
                                 <button (click)="Section3Visible(registrationForm)" type="button" class="button btn" id="next-reg-3">
@@ -534,7 +536,10 @@
                                     <h6>Prices are shown For customer group * </h6>
 
                                     <div class="d-flex align-items-end flex-column">
-
+                                        <p>
+                                            <input #GroupCompany="ngModel" [(ngModel)]="registrationService.userModel.GroupCompany" name="GroupCompany" id="GroupCompany" type="checkbox" class="cbx used">
+                                            <label for="GroupCompany" class="lbl"> {{'ClientGroup.Group3'|translate}}</label>
+                                        </p>
 
                                         <p>
                                             <input #GroupCommunities="ngModel" [(ngModel)]="registrationService.userModel.GroupCommunities" name="GroupCommunities" id="GroupCommunities" type="checkbox" class="cbx used">
@@ -544,10 +549,7 @@
                                             <input #GroupCompanyGMBH="ngModel" [(ngModel)]="registrationService.userModel.GroupCompanyGMBH" name="GroupCompanyGMBH" id="GroupCompanyGMBH" type="checkbox" class="cbx used">
                                             <label for="GroupCompanyGMBH" class="lbl">{{'ClientGroup.Group2'|translate}}</label>
                                         </p>
-                                        <p>
-                                            <input #GroupCompany="ngModel" [(ngModel)]="registrationService.userModel.GroupCompany" name="GroupCompany" id="GroupCompany" type="checkbox" class="cbx used">
-                                            <label for="GroupCompany" class="lbl"> {{'ClientGroup.Group3'|translate}}</label>
-                                        </p>
+
 
                                     </div>
                                 </div>
@@ -636,13 +638,19 @@
                                 <br />
                                 <div class="form-group form-md-line-input has-error">
                                     <div class=" input-group">
-                                        <re-captcha (resolved)="resolved($event)"
-                                                    siteKey="6LcL6XoUAAAAAIyV8mXAkILN2BWehnY2b3VpLPZa"></re-captcha>
-
+                                        <!--<re-captcha (resolved)="resolved($event)"
+                siteKey="6LcL6XoUAAAAAIyV8mXAkILN2BWehnY2b3VpLPZa"></re-captcha>-->
                                         <!-- <span class="line"> I am not a robot</span>
-                                                            <input id="cbx3" type="checkbox" class="cbx used">
-                                                            <label for="cbx3" class="lbl notrobot">
-                                        </label> -->
+                        <input id="cbx3" type="checkbox" class="cbx used">
+                        <label for="cbx3" class="lbl notrobot">
+    </label> -->
+                                        <div class="new-captcha">
+
+                                            <input type="text" id="captcha" value="12345" disabled />
+                                            <input placeholder="Bitte Code eingeben" maxlength="5" type="text" id="inputText" />
+
+
+                                        </div>
                                     </div>
                                 </div>
 
@@ -651,7 +659,7 @@
                                     <div class="ripples buttonRipples">
                                         <span class="ripplesCircle" style="top: 20.7969px; left: 211.313px;"></span>
                                     </div>
-                                    {{'Button.ButtonSubmit'|translate}}
+                                    {{'Button.ButtonRegister'|translate}}
                                     <i class="material-icons">
                                         keyboard_arrow_right
                                     </i>

@@ -2,7 +2,7 @@
 
 select#logicroom {
     background: #8636d7;
-    border: 1px solid #9f3fff !important;
+    border: 1px solid #1c5d98 !important;
     color: #fff;
     padding: 0.2em 2em;
     border-radius: 3px;
@@ -15,6 +15,13 @@ li.account {
 
 .full-header .instimatch-logo {
     margin-left: 20%;
+}
+button.btn.w-100.w-100-px.update.btn-secondary {
+    float: left !important;
+    width: 20% !important;
+    font-size: 15px;
+    background-color: #1c5d98 !important;
+    color: #fff !important;
 }
 
 ul.in-lang li:nth-child(4),
@@ -34,10 +41,23 @@ ul.in-lang li:nth-child(4) {
 padding: 0.2em 0.8em 0.3em;
     
 }
+#Rate-Panel .pr-1.text-centered.head-modal-table {
+    background-color: #1c5d98 !important;
+    border: 1px solid #fff !important;
+}
 .identity i.material-icons {
-    top: 3px;
+    top: 6px;
     position: relative;
-    font-size: 20px;
+    font-size: 22px;
+    color: #1c5d98 !important;
+    border: 1px solid #1c5d98 !important;
+    padding: 2px 3px;
+}
+body .in-lang li.identity.account-style {
+    background-color: #1c5d98 !important;
+    color: #fff !important;
+    padding: 2px 10px !important;
+    font-size: 14px;
 }
 ul.in-lang li.french {
     display: none;
@@ -47,21 +67,40 @@ i.icon-position {
     top: 3px;
     font-size: 20px;
 }
+li.identity:hover {
+    background-color: transparent !important;
+    color: #fff !important;
+}
+
+li.identity a:hover {
+    background-color: transparent !important;
+    color: #fff !important;
+}
+
+#wrapper ul.in-lang li.hover {
+    background-color: transparent !important;
+    color: #fff !important;
+}
 
 button.btn.w-100.w-100-px.update-active.update {
     float: left !important;
     width: 20% !important;
     font-size: 15px;
+    background-color: #1c5d98 !important;
+    color: #fff !important;
 }
 button.btn.w-100.w-100-px.update-active.update-status {
     float: right;
     width: 20% !important;
     font-size: 15px;
 }
-.cockpit-dropdown-div {
+.dashboard-right button.btn.w-100 label {
+    color: #333 !important;
+}
+/*.cockpit-dropdown-div {
     position: absolute;
     top: 100px;
-}
+}*/
 a.status-on.ng-star-inserted {
     background-color: #72af09;
     color: #fff !important;
@@ -100,7 +139,7 @@ button.status-off.ng-star-inserted[_ngcontent-c1] {
     float: right;
 }
 button.status-on, button.status-off {
-    background-color: #8636d7;
+    background-color: green;
     color: #fff !important;
     width: 20%;
     border: orangered;
@@ -181,7 +220,7 @@ a#navbar-toggle span {
 
 .sidebar-mini #main-panel {
     width: calc(100% - 160px);
-    background: #25272e;
+    background: #efefef;
 }
 
 #main-panel {
@@ -189,9 +228,9 @@ a#navbar-toggle span {
     float: right;
     width: calc(100% - 320px);
     color: #fff;
-    padding: 2em 5em;
+    padding: 2em 1em;
     margin: 1%;
-    background: #25272e;
+    background: #efefef;
 }
 
 .sidebar {
@@ -230,17 +269,18 @@ a#navbar-toggle span {
 #wrapper .sidebar-nav li a {
     font-size: 12px;
     text-decoration: none;
-    color: #FFF;
+    color: #333;
     float: left;
     text-decoration: none;
     width: 100%;
-    height: 70px;
+    height: 52px !important;
     line-height: 25px;
-    padding: 30px 10px;
+    padding: 15px 10px !important;
+    border-bottom: 1px solid #cacaca !important;
 }
 
 .sidebar-nav li a:hover {
-    background: #121213;
+    background: #cccccc !important;
     -webkit-transition: background 0.5s;
     transition: background 0.5s;
 }
@@ -333,16 +373,16 @@ touch-action: auto;
 }
 .dashboard-right button.btn.w-100 {
     padding: 10px 3px;
-    background: #37383d;
-    border-bottom: 1px solid grey;
+    background: #c6d9f1 !important;
+    border-bottom: 1px solid #c6d9f1 !important;
     border-radius: 0px;
     margin-bottom: 4px;
-    color: #fff;
+    color: #333;
 }
-.dashboard-right button.btn.w-100.active{
-background: #8636d7 !important;
-border-bottom: 1px solid #9f3fff;
-}
+    .dashboard-right button.btn.w-100.active {
+        background: #1c5d98 !important;
+        border-bottom: 1px solid #1c5d98 !important;
+    }
 .dashboard-right button:focus {
     outline: none;
     /*background: #8636d7 !important;*/
@@ -572,28 +612,42 @@ padding-top: 10px;
 .counterparty-modal .modal-header {
     background-color: #72af09;
 }
-.counterparty-modal .modal-header .modal-title {
-    margin: 0px;
-    color: #fff;
-}
+
+    .counterparty-modal .modal-header .modal-title {
+        margin: 0px;
+        color: #fff;
+    }
+
 .counterparty-modal .modal-footer {
-    background: #25272e;
+    background: #efefef;
     border-top: none;
-    padding-top: 0px;
+    padding-top: 10px;
 }
+
 .counterparty-modal button.close {
     color: #fff;
     opacity: 1;
 }
+
 .counterparty-modal .btn-secondary {
     background-color: #72af09;
     border-color: #72af09;
 }
+
 .counterparty-modal .input-group {
     margin-bottom: 10px;
 }
+
 .counterparty-modal span.line {
-padding-bottom: 8px;
+    padding-bottom: 8px;
+    color: #333 !important;
+    background-color: #c6d9f1 !important;
+    border-bottom: 0px !important;
+    padding: 8px;
+}
+
+.counterparty-modal div#lendrequestbody {
+    padding-top: 25px;
 }
 .counterparty-modal div#lendrequestbody {
 padding-top: 25px;
@@ -610,7 +664,7 @@ padding-top: 25px;
     padding: 0px;
     margin-bottom: 4px;
     border-radius: 0px;
-    border-bottom: 1px solid #9f3fff;
+    border-bottom: 1px solid #1c5d98;
     background: #8636d7 !important;
     height: 40px;
 }
@@ -631,7 +685,7 @@ padding-top: 25px;
 }
 .application-sec button.btn.w-100 a {
     font-size: 25px;
-    color: #fff !important;
+    color: #333 !important;
 }
 .application-sec button.btn.w-100 span {
     font-size: 22px;
@@ -894,21 +948,20 @@ width: 338px;
 .cockpit-dropdown-div {
     margin-top: -10px;
 }
-.cockpit-dropdown-div button.dropcockpit {
-color: #fff;
-background: #37383d !important;
-    border: none;
-    
-    text-align: left;
-    padding: 8px;
-    margin: 0px !important;
-    font-size: 11px !important;
-    text-transform: uppercase;
-    width: 100%;
-}
-.cockpit-dropdown-div button.dropcockpit:hover {
-    background: #8636d7 !important;
-}
+    .cockpit-dropdown-div button.dropcockpit {
+        color: #333;
+        background: #e3e3e3 !important;
+        border: none;
+        text-align: left;
+        padding: 8px;
+        margin: 0px !important;
+        font-size: 11px !important;
+        text-transform: capitalize !important;
+        width: 100%;
+    }
+        .cockpit-dropdown-div button.dropcockpit:hover {
+            background: #e9e9e9 !important;
+        }
 .cockpit-dropdown-div button.dropcockpit:focus {
     outline: none;
     background-color: #8636d7 !important;
@@ -919,7 +972,9 @@ background: #37383d !important;
 .cockpit-dropdown-div button#Ansehenund:focus {
     border-bottom: 1px solid #c4fd63 !important;
 }
-
+.modal-backdrop {
+    z-index: -1 !important;
+}
 .application-export-sec {
     width: 100%;
     max-width: 100%;
@@ -972,6 +1027,7 @@ background: #37383d !important;
 .admin-modal label {
     position: relative;
     top: 0px;
+    color: #333;
 }
 .admin-modal .modal-header {
     background-color: #72af09;
@@ -987,10 +1043,10 @@ background: #37383d !important;
 .admin-modal input {
     margin-bottom: 10px;
     border: none;
-    background: #37383d;
+    background: #c6d9f1 !important;
     border-radius: 0px;
-    border-bottom: 1px solid grey !important;
-    color: #fff !important;
+    border-bottom: 1px solid #c6d9f1 !important;
+    color: #333 !important;
     cursor: pointer;
 }
 .admin-modal input::placeholder{
@@ -1103,7 +1159,7 @@ color: #fff !important;
     float: left;   
 }
 div#lendrequestbody {
-    background: #25272e;
+    background: #efefef;
 }
 .dashboard-modal .modal-footer {
     background: #25272e;
@@ -1160,7 +1216,7 @@ html body {
 }
 
 body.instibg {
-    background: #18191d;
+    background: #efefef !important;
     font-family: "Roboto", "Helvetica", "Arial", sans-serif;
 }
 
@@ -1174,7 +1230,7 @@ hgroup {
 }
 
 #wrapper a {
-    color: #9f3fff;
+    color: #1c5d98;
     text-decoration: none;
     cursor: pointer;
 }
@@ -1240,8 +1296,8 @@ span.line {
 
 label.lbl.notrobot {
     position: absolute !important;
-    right: 0px;
-    top: -5px;
+    right: 8px;
+    top: 3px;
     z-index: 1;
 }
 
@@ -1415,7 +1471,7 @@ label.lbl.notrobot {
 
 ul.in-lang li {
     display: inline-block;
-    border: 1px solid #9f3fff;
+    border: 1px solid #1c5d98;
     margin-left: 14px;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
@@ -1445,12 +1501,12 @@ ul.in-lang li a:hover {
     background: #8636d7;
 }
 
-#wrapper ul.in-lang li.active a,
+/*#wrapper ul.in-lang li.active a,
 #wrapper ul.in-lang li:hover,
 #wrapper ul.in-lang li a:hover {
     color: #fff;
     background: #8636d7;
-}
+}*/
 
 .fiftypercent .md-radio label {
     margin-left: 20%;
@@ -1474,7 +1530,13 @@ input {
     position: absolute;
     right: 0px;
     bottom: 0px;
-    color: #fff;
+    color: #1c5d98 !important;
+}
+body .in-lang li.identity.account-style {
+    background-color: #1c5d98 !important;
+    color: #fff !important;
+    padding: 2px 10px !important;
+    font-size: 14px;
 }
 
 input:focus {
@@ -1549,7 +1611,7 @@ label {
     transform: scale(.75);
     left: -2px;
     /* font-size: 14px; */
-    color: #9f3fff;
+    color: #1c5d98;
 }
 
 
@@ -1568,7 +1630,7 @@ label {
     width: 0;
     bottom: 0px;
     position: absolute;
-    background: #9f3fff;
+    background: #1c5d98;
     transition: all 0.2s ease;
 }
 
@@ -1756,4 +1818,12 @@ input:focus~.highlight {
 }
 .head-modal-table {
     padding: 8px 0px;
+}
+#wrapper input[type="checkbox"]:checked + label::after {
+    border: 2px solid #fff;
+    background: transparent;
+    transition: background-color 1s;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUAQMAAAC3R49OAAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAAAFiS0dEAIgFHUgAAAAJcEhZcwAACxMAAAsTAQCanBgAAAAHdElNRQfgBwEQARzBMMQpAAAAN0lEQVQI12NgQAEHGBgYHzAwMAMxO5DN38AgIM/AYGHHwFBTw8Bg94OBQf4DUBgqzdwAVI5qAACbXgn3nmfmHgAAAABJRU5ErkJggg==);
+    background-position: 1px 1px !important;
+    background-repeat: no-repeat !important;
 }

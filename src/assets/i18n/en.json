@@ -29,7 +29,8 @@
     "ButtonSettingRateField": "Einstellungen",
     "ButtonUpload": "Uplopad",
     "ButtonChangePassword": "Change Password",
-    "ButtonSaveProfile": "Update Profile"
+    "ButtonSaveProfile": "Update Profile",
+    "ButtonRegister": "Register"
   },
   "Login": {
     "Title": "Log in",
@@ -39,7 +40,7 @@
     "ForgottenPasswordLabel": "Forgotten your password?",
     "DontHaveAccount": "Don't have an account? ●",
     "RegisterHere": "Register Here",
-    "LoginEnter": "Enter",
+    "LoginEnter": "LOGIN",
     "BorrowerText": "Borrower",
     "LenderText": "Lender",
     "KontactText": "Contact"
@@ -77,7 +78,7 @@
   "ClientGroupAccess": { "Title": "Access given to Client Group Configuration" },
   "Register": {
     "section1": {
-      "Title": "Register",
+      "Title": "Register ",
       "Borrower": "Borrower",
       "Lender": "Lender",
       "NameofCompany": "Name of Company",
@@ -110,7 +111,8 @@
       "RatingAgentur2": "RatingAgentur2",
       "RatingAgentValue1": "RatingAgent1 Value",
       "RatingAgentValue2": "RatingAgent2 Value",
-      "DepositInsurance": "DepositInsurance"
+      "DepositInsurance": "DepositInsurance",
+      "DepositInsuranceAmount": "Höhe der Einlagesicherung "
     },
     "Section3": {
       "PricesshownCustomerGroup": "Prices are shown For customer group",
@@ -120,10 +122,10 @@
     },
     "Section4": {
       "RequestAdditionalAccess": "Request Additional Access",
-      "cbx1": "I agree to the Privacy Policy",
-      "cbx2": "I agree that ratings may be published on our company ",
-      "cbx4": "that information about our company may be published on the platform ",
-      "cbx3": " I accept the AGBs"
+      "cbx1": " I agree with Privacy Policy",
+      "cbx2": "I agree with the publishing of our Ratings ",
+      "cbx4": "I agree that information of our company is published ",
+      "cbx3": " I Accept Terms & Conditions"
     }
 
   },
@@ -239,6 +241,8 @@
       "ChangePassword": "Change Password",
       "OldPassword": "Old Password",
       "NewPassword": "New Password",
+      "MaturityList": "Maturity List",
+      "HistoryMaturityList": "History Maturity List",
       "ConfirmPassword": "Confirm Password",
       "Pricelist": {
         "GENERALOVERVIEW": "GENERAL OVERVIEW",

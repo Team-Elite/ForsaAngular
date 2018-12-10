@@ -61,8 +61,8 @@ export class BestPriceViewComponent implements OnInit {
             this.GetBanksByTimePeriod(selectedTimePeriodId);
         }
 
-        this.bestPriceViewService.listInterestConvention = [{ Id: 1, Value: 'act/360' }];
-        this.bestPriceViewService.listPayments = [{ Id: 1, Value: 'yearly payments' }];
+        this.bestPriceViewService.listInterestConvention = [{ Id: 1, Value: 'act / 360' }, { Id: 2, Value: 'act / act' }];
+        this.bestPriceViewService.listPayments = [{ Id: 1, Value: 'jahrliche Zahlung' }, { Id: 2, Value: 'halbjahrliche Zahlung' }, { Id: 3, Value: 'vierteljahrliche Zahlung' }, { Id: 4, Value: 'endfallig' }];
 
         this.bestPriceViewService.lenderSendRequestModel = {
             RequestId: 0,

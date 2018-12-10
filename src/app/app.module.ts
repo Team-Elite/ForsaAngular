@@ -41,6 +41,7 @@ import { UserprofileComponent } from './userprofile/userprofile.component';
 import { FileUploaderModule } from "ng4-file-upload";
 import { SettingPageComponent } from './lender-dashboard/setting-page/setting-page.component';
 import { MaturityListComponent } from './maturity-list/maturity-list.component';
+import { SettingratefieldComponent } from './lender-dashboard/settingratefield/settingratefield.component';
 //import { ExportAsModule } from 'ngx-export-as';
 //import { JwtHelperService} from '@auth0/angular-jwt';
 
@@ -72,6 +73,7 @@ const appRoutes: Routes = [{ path: 'login', component: LoginComponent },
     { path: 'AllBanks', component: AllBanksComponent },
         { path: 'AllBanksK', component: KontactDashboardLComponent },
         { path: 'setting', component: SettingPageComponent },
+        { path: 'settingratefield', component: SettingratefieldComponent },
         { path: 'Maturitylist', component: MaturitylistComponent },
         { path: 'historyMaturitylist', component: MaturitylistComponent }
     ]
@@ -100,6 +102,7 @@ const appRoutes: Routes = [{ path: 'login', component: LoginComponent },
         MaturityListLenderComponent,
         HistoryMaturityListLenderComponent,
         SettingPageComponent,
+        SettingratefieldComponent,
         MaturityListComponent
     ],
     imports: [

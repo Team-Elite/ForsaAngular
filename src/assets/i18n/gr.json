@@ -29,24 +29,25 @@
     "ButtonRegisterasPartner": "Registrieren Sie sich als Partner",
     "ButtonSettingRateField": "Einstellungen",
     "ButtonUpload": "Uplopad",
-    "ButtonChangePassword": "Change Password"
+    "ButtonChangePassword": "Change Password",
+    "ButtonRegister": "Register"
   },
   "Login": {
     "Title": "Anmeldung",
-    "UserLabel": "Name/Email Id",
-    "PasswordLabel": "Gib dein Passwort ein",
+    "UserLabel": "Benutzername",
+    "PasswordLabel": "Passwort",
     "ShowPasswordLabel": "Remove_Red_Eye",
     "ForgottenPasswordLabel": "Passwort vergessen?",
-    "DontHaveAccount": "Hast du kein Konto? ●",
-    "RegisterHere": "Hier registrieren",
-    "LoginEnter": "Eingeben",
+    "DontHaveAccount": "Noch kein Konto? ",
+    "RegisterHere": "Konto erstellen ",
+    "LoginEnter": "LOGIN",
     "BorrowerText": "Kreditnehmer",
     "LenderText": "Darlehensgeber",
     "KontactText": "Kontact"
   },
   "Forget": {
     "ForgotPassword": "Passwort vergessen",
-    "Email": "Email"
+    "Email": "Benutzername/Email"
   },
   "UserProfile": {
     "FormTitle": "Eigene Stammdatenverwaltung",
@@ -58,25 +59,25 @@
     "AccountHolder": "Kontoinhaber",
     "Bank": "Bank",
     "IBAN": "IBAN",
-    "BICCode": "Codigo BIC",
+    "BICCode": "BIC Code ",
     "ClientGroup": "Kundengruppe",
-    "LEINumber": "LEI Number",
+    "LEINumber": "LEI Nummer ",
     "FurtherField4": "Further Field 4",
     "Salutation": "Salutation",
     "FirstName": "Vorname",
     "SurName": "Nachname",
     "Username": "Benutzername",
-    "TelephoneNo": "Telefonnummer",
-    "EmailAddress": "E-Mail-Addresse",
+    "TelephoneNo": "Telefon Nr. ",
+    "EmailAddress": "Mail-Adresse",
     "MinimumVolume": "Minimum Volume",
     "Rating": "Bewertung",
     "CommercialRegisterExtract": "Handelsregisterauszug",
     "IdentityCard": "Personalausweis"
   },
-  "ClientGroupAccess": { "Title": "Zugriff aufdie Clientgruppenkonfiguration" },
+  "ClientGroupAccess": { "Title": "Access given to Client group Konfiguration" },
   "Register": {
     "section1": {
-      "Title": "Titel",
+      "Title": "Kundenprofil anlegen ",
       "Borrower": "Geldnehmer",
       "Lender": "Anleger",
       "NameofCompany": "Name Unternehmen",
@@ -86,10 +87,10 @@
       "AccountHolder": "Kontoinhaber",
       "Bank": "Bank",
       "IBAN": "IBAN",
-      "BICCode": "Codigo BIC",
+      "BICCode": "BIC Code ",
       "ClientGroup": "Kundengruppe",
       "ClientSubGroup": "Client-Untergruppe",
-      "LEINumber": "Número LEI",
+      "LEINumber": "LEI Nummer ",
       "FurtherField4": "Weiteres Feld 4"
     },
 
@@ -98,8 +99,8 @@
       "Title": "Titel",
       "FirstName": "Vorname",
       "SurName": "Nachname",
-      "TelephoneNo": "Telefonnummer",
-      "EmailAddress": "E-Mail-Addresse",
+      "TelephoneNo": "Telefon Nr.",
+      "EmailAddress": "Mail-Adresse ",
       "CreateUsername": "Benutzername (nach eigener Wahl)",
       "FurtherField1": "Weiteres Feld 1",
       "FurtherField2": "Weiteres Feld 2",
@@ -109,7 +110,8 @@
       "RatingAgentur2": "RatingAgentur2",
       "RatingAgentValue1": "RatingAgent1 Value",
       "RatingAgentValue2": "RatingAgent2 Value",
-      "DepositInsurance": "Einlagensicherung"
+      "DepositInsurance": "Einlagensicherung  ",
+      "DepositInsuranceAmount": "Höhe der Einlagesicherung  "
     },
     "Section3": {
       "PricesshownCustomerGroup": "Die Preise werden für die Kundengruppe angezeigt",
@@ -119,10 +121,10 @@
     },
     "Section4": {
       "RequestAdditionalAccess": "Fordern Sie zusätzlichen Zugang an",
-      "cbx1": "Ich akzeptiere die Datenschutzregelung",
-      "cbx2": "Ich stimme zu, dass Bewertungen in unserem Unternehmen veröffentlicht werden können ",
-      "cbx4": "Diese Informationen über unser Unternehmen können auf der Plattform veröffentlicht werden ",
-      "cbx3": " Ich akzeptiere die AGBs"
+      "cbx1": "Ich stimme den Datenschutzbestimungen zu",
+      "cbx2": "Ich stimme zu, dass Ratings zu unserem Unternehmen veröffentlicht werden dürfen ",
+      "cbx4": "dass Informationen zu unserem Unternehmen auf der Plattform veröffentlicht werden dürfen ",
+      "cbx3": " Ich akzeptiere die AGB’s"
     }
 
   },
@@ -188,7 +190,7 @@
     "expand_more": "expandiere mehr",
     "forum": "forum",
     "logout": "Ausloggen",
-    "GeneralOverview": "GESAMTÜBERSICHT",
+    "GeneralOverview": "Gesamtubersicht",
     "Tag": "Etikett",
     "Week1": "1 W",
     "Week2": "2 W",
@@ -224,10 +226,10 @@
       "Settings": "Wechseln Sie zum Benutzer",
       "Account": "Konto",
       "SettingStartPage": "Einstellen Startseite",
-      "LenderSettings": "LENDEREINSTELLUNGEN",
-      "BestPriceView": "BEST-PREIS-ANSICHT",
+      "LenderSettings": "Lendereinstellungen",
+      "BestPriceView": "Best-Preis-Ansicht",
       "ViewAllPrice": "Favorite Einstellung",
-      "AllBanks": "ALLEBANKEN",
+      "AllBanks": "Gesamtubersicht",
       "viewlist": "view_list",
       "UpdateProfile": "Profil aktualisieren",
       "EditDetails": "Details bearbeiten",
@@ -237,9 +239,11 @@
       "ChangePassword": "Passwort ändern",
       "OldPassword": "Altes Passwort",
       "NewPassword": "Neues Kennwort",
+      "MaturityList": "Fälligkeitenliste",
+      "HistoryMaturityList": "Historie der Geschäfte",
       "ConfirmPassword": "Bestätige das Passwort",
       "Pricelist": {
-        "GENERALOVERVIEW": "GESAMTÜBERSICHT",
+        "GENERALOVERVIEW": "Gesamtubersicht",
         "Tag": "Tag",
         "Week1": "1 W",
         "Week2": "2 W",
@@ -309,7 +313,7 @@
     },
     "ViewAllPrice": {
       "Bank": "Bank",
-      "AllBanks": "Gegenpartei",
+      "AllBanks": "Favorite Einstellungen",
       "Tag": "Tag",
       "Week1": "1 W",
       "Week2": "2 W",

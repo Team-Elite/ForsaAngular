@@ -19,6 +19,7 @@ const hubProxy = connection.createHubProxy('NgHub');
 })
 export class SettingratefieldComponent implements OnInit { 
     allChecked: boolean;
+    previousPage: any;
     obj = {
         class1: true,
         class2: true,
@@ -225,6 +226,14 @@ export class SettingratefieldComponent implements OnInit {
         this.storage.set('viewAllPrice', { obj: this.obj }).then(function () {
             self.router.navigateByUrl('/lenderDashboard/ViewAllPrice');
         });
+    }
+
+    pageChange(page: number) {
+        if (page !== this.previousPage) {
+            this.viewAllPriceService.selectedPageNumber = page;
+            //this.GetAllBanksWithInterestRateHorizontalyOrderByColumnName(this.orderByColumn);
+            this.GetAllBanksWithStatusIsDeselected();
+        }
     }
 
 }

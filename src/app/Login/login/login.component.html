@@ -20,10 +20,10 @@
                             </ul>
 
                             <!-- <li class="in-header-user text-right">
-                                <a href="javascript:void(0);">
-                                    <i class="material-icons whitebg"> supervisor_account </i>
-                                </a>
-                            </li> -->
+                            <a href="javascript:void(0);">
+                                <i class="material-icons whitebg"> supervisor_account </i>
+                            </a>
+                        </li> -->
 
                         </div>
                     </div>
@@ -117,15 +117,22 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group form-md-line-input has-error">
-                                    <div class=" input-group">
-                                         <re-captcha (resolved)="resolved($event)"
-                                                    siteKey="6LcL6XoUAAAAAIyV8mXAkILN2BWehnY2b3VpLPZa"></re-captcha> 
-                                        <!-- <span class="line"> I am not a robot</span>
-                                                            <input id="cbx3" type="checkbox" class="cbx used">
-                                                            <label for="cbx3" class="lbl notrobot">
-                                        </label> -->
-                                    </div>
+                                <!-- <div class="form-group form-md-line-input has-error">
+                                                            <div class=" input-group">
+                                                                <re-captcha (resolved)="resolved($event)"
+                                                                            siteKey="6LcL6XoUAAAAAIyV8mXAkILN2BWehnY2b3VpLPZa"></re-captcha>
+                                                                 <span class="line"> I am not a robot</span>
+                                                        <input id="cbx3" type="checkbox" class="cbx used">
+                                                        <label for="cbx3" class="lbl notrobot">
+                                    </label>
+                                </div>
+                            </div> -->
+                                <div class="new-captcha">
+
+                                    <input type="text" id="captcha" value="12345" disabled />
+                                    <input placeholder="Bitte Code eingeben" maxlength="5" type="text" id="inputText" />
+
+
                                 </div>
                                 <div class="login-margin"></div>
                                 <button type="button" class="button btn buttonBlue" (click)="ValidateUser(LoginForm);">
@@ -136,7 +143,7 @@
                                     </i>
                                 </button>
                                 <p class="text-center in-register-text">
-                                    {{'Login.DontHaveAccount'|translate}}? ●
+                                    {{'Login.DontHaveAccount'|translate}}
                                     <a routerLink="/registration">{{'Login.RegisterHere'|translate}}</a>
                                     <!-- <a routerLink="../Registration/app-registration"><button class="btn btn-success pull-right" > Add Customer</button></a> -->
                                 </p>
@@ -149,5 +156,19 @@
             </div>
 
         </div>
+        <script>var captcha;
+
+
+
+function check(){
+    var input=document.getElementById("inputText").value;
+
+    if(input==captcha){
+        alert("Equal");
+    }
+    else{
+        alert("Not Equal");
+    }
+}</script>
     </body>
 </form>

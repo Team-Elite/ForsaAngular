@@ -28,14 +28,14 @@ export class RegistrationComponent implements OnInit {
     _Message: string = "";
     IfVerificationDone: boolean = false;
     fileList: any = [];
-    public resolved(captchaResponse: string) {
-        if (captchaResponse != undefined && captchaResponse != null && captchaResponse.trim().length != 0) {
-            this.IfVerificationDone = true;
-        }
-        else {
-            this.IfVerificationDone = false;
-        }
-    }
+    //public resolved(captchaResponse: string) {
+    //    if (captchaResponse != undefined && captchaResponse != null && captchaResponse.trim().length != 0) {
+    //        this.IfVerificationDone = true;
+    //    }
+    //    else {
+    //        this.IfVerificationDone = false;
+    //    }
+    //}
 
     //It checks if key pressed is integer or not if not then it returns false.
     numberOnly(event): boolean {
@@ -440,10 +440,11 @@ export class RegistrationComponent implements OnInit {
         //  this.toastr.error("Please accept AGBs.", "Registration");
         //  return false;
         //}
-        if (!this.IfVerificationDone) {
-            this.toastr.error("Please verify captcha.", "Registration");
-            return false;
-        }
+        //recaptch Comment
+        //if (!this.IfVerificationDone) {
+        //    this.toastr.error("Please verify captcha.", "Registration");
+        //    return false;
+        //}
         return true;
     }
 

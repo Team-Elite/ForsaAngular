@@ -33,7 +33,7 @@ hgroup {
 }
 
 #wrapper a {
-    color: #9f3fff;
+    color: #1c5d98;
     text-decoration: none;
     cursor: pointer;
 }
@@ -378,7 +378,7 @@ input {
     position: absolute;
     right: 0px;
     bottom: 0px;
-    color: #fff;
+    color: #1c5d98;
 }
 
 input:focus {
@@ -414,7 +414,11 @@ label {
 /* Hide label */
 
 .mdl-selectfield label {
-    display: none;
+    display: block;
+}
+.buttonprl[_ngcontent-c3] {
+    background-color: #1c5d98 !important;
+    border-bottom: 2px solid #1c5d98 !important;
 }
 
 
@@ -456,7 +460,7 @@ label {
     transform: scale(.75);
     left: -2px;
     /* font-size: 14px; */
-    color: #9f3fff;
+    color: #1c5d98;
 }
 
 
@@ -475,7 +479,7 @@ label {
     width: 0;
     bottom: 0px;
     position: absolute;
-    background: #9f3fff;
+    background: #1c5d98;
     transition: all 0.2s ease;
 }
 
@@ -689,7 +693,7 @@ input:focus~.highlight {
 .btn-secondary{ background-color:red !important;}
 .update-active {
     background: #8636d7 !important;
-    border-bottom: 1px solid #9f3fff !important;
+    border-bottom: 1px solid #1c5d98 !important;
 }
 .icon-set-0 {
     width: 20px;

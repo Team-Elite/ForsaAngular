@@ -52,39 +52,42 @@
 
                             <app-forsa-languages></app-forsa-languages>
 
-                            <li class="identity account-style">
+                            <!--<li class="identity account-style">
                                 {{'Lender.DashBoard.Account'|translate}}:   {{'Login.BorrowerText'|translate}}
+                            </li>-->
+                            <li class="identity account-style">
+                                  {{'Login.BorrowerText'|translate}}
                             </li>
                             <!--   <li class="identity account-style">
 
-                                                        <div class="form-group form-md-line-input has-error">
-                                                            <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
+                                <div class="form-group form-md-line-input has-error">
+                                    <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
 
-                                                        <select class="mdl-selectfield__select" name="LogicRoom" id="logicroom">
-                                <span class="input-group-icon">
-                                    <i class="material-icons">{{'Borrower.BankDashboard.expand_more'|translate}}</i>
-                                </span>
-                                <option value="" disabled selected>LogicRoom</option>
-                                <option value="logicroom1">1</option>
-                                <option value="logicroom2">2</option>
-                                <option value="logicroom3">3</option>
-                                <option value="logicroom4">4</option>
-                            </select>
-                                                        </div>
+                                <select class="mdl-selectfield__select" name="LogicRoom" id="logicroom">
+        <span class="input-group-icon">
+            <i class="material-icons">{{'Borrower.BankDashboard.expand_more'|translate}}</i>
+        </span>
+        <option value="" disabled selected>LogicRoom</option>
+        <option value="logicroom1">1</option>
+        <option value="logicroom2">2</option>
+        <option value="logicroom3">3</option>
+        <option value="logicroom4">4</option>
+    </select>
+                                </div>
 
-                                                        </div>
+                                </div>
 
-                                                    </li>
-                                                    <!--<li>
-                                                        <a>
-                                                            <i class="material-icons icon-position">search</i>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a>
-                                                            <i class="material-icons icon-position">forum</i>
-                                                        </a>
-                                                    </li>-->
+                            </li>
+                            <!--<li>
+                                <a>
+                                    <i class="material-icons icon-position">search</i>
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    <i class="material-icons icon-position">forum</i>
+                                </a>
+                            </li>-->
                             <li class="identity">
                                 <a href="#" data-toggle="modal" data-target=".admin-modal">
                                     <i class="material-icons">perm_identity</i>
@@ -98,7 +101,7 @@
                                 </a>
                             </li>
                             <li class="identity" title="Logout">
-                                <a href="javascript:void(0);" (click)="Logout()"><i class="material-icons icon-position"></i>{{'Borrower.BankDashboard.logout'|translate}}</a>
+                                <a href="javascript:void(0);" (click)="Logout()"><i class="material-icons icon-position"> exit_to_app </i></a>
                             </li>
                         </ul>
 
@@ -118,25 +121,7 @@
                         <li>
                             <a (click)="ShowScreen('BankDashboard');">{{'DashboardText'|translate}}</a>
                         </li>
-                        <li class="cockpit-btn">
-                            <a>
-                                COCKPIT
-                                <span class="align-middle input-group-icon ">
-                                    <i class="material-icons ">view_list</i>
-                                </span>
-                            </a>
-                            <div class="cockpit-dropdown-div">
-                                <button type="button" class="dropcockpit" id="eigene" data-toggle="modal" data-target=".bd-example-modal-lg-eigene-Stammdatenverwaltung">{{'Borrower.BankDashboard.Ownmasterdatamanagement'|translate}}</button>
-                                <!--<button type="button" class="dropcockpit" (click)="ShowScreen('Mreport');" id="Ansehen">{{'Borrower.BankDashboard.Viewanddownloadyourownduelist'|translate}}</button>
-                                <button type="button" class="dropcockpit" (click)="ShowScreen('HMreport');" id="Ansehenund">{{'Borrower.BankDashboard.Viewanddownloadinthepastdonebusiness'|translate}}</button>-->
-                                <button type="button" class="dropcockpit" routerLink="/maturityList" id="Ansehen">{{'Borrower.BankDashboard.Viewanddownloadyourownduelist'|translate}}</button>
-                                <button type="button" class="dropcockpit" routerLink="/historyMaturityList" id="Ansehenund">{{'Borrower.BankDashboard.Viewanddownloadinthepastdonebusiness'|translate}}</button>
-                                <!--<button type="button" class="dropcockpit" >Maturity List</button>
-                                <button type="button" class="dropcockpit" > History Maturity List</button>-->
 
-                            </div>
-
-                        </li>
                         <li>
                             <a (click)="PublishAndUnPublish(true);">
                                 {{'Borrower.BankDashboard.PUBLISH'|translate}}
@@ -180,22 +165,43 @@
                                 </span>
                             </a>
                         </li>
-                        <!--<li>
-                            <a routerLink="/maturityList">
-                                {{'Borrower.BankDashboard.MaturityList'|translate}}
+                        <li class="cockpit-btn">
+                            <a>
+                                Cockpit
                                 <span class="align-middle input-group-icon ">
-                                    <img alt="Insimatch Logo" src="../assets/images/coountryparty-icon.png">
+                                    <i class="material-icons ">view_list</i>
                                 </span>
                             </a>
+                            <div class="cockpit-dropdown-div">
+                                <button type="button" class="dropcockpit" id="eigene" data-toggle="modal" data-target=".bd-example-modal-lg-eigene-Stammdatenverwaltung">{{'Borrower.BankDashboard.Ownmasterdatamanagement'|translate}} <span class="align-middle input-group-icon ">
+    <i class="material-icons ">perm_identity</i>
+</span></button>
+                                <!--<button type="button" class="dropcockpit" (click)="ShowScreen('Mreport');" id="Ansehen">{{'Borrower.BankDashboard.Viewanddownloadyourownduelist'|translate}}</button>
+            <button type="button" class="dropcockpit" (click)="ShowScreen('HMreport');" id="Ansehenund">{{'Borrower.BankDashboard.Viewanddownloadinthepastdonebusiness'|translate}}</button>-->
+                                <button type="button" class="dropcockpit" routerLink="/maturityList" id="Ansehen">{{'Borrower.BankDashboard.Viewanddownloadyourownduelist'|translate}} <span _ngcontent-c1="" class="align-middle input-group-icon "><img _ngcontent-c1="" _ngcontent-c5="" alt="Insimatch Logo" src="../assets/images/maturity-list.png"></span></button>
+                                <button type="button" class="dropcockpit" routerLink="/historyMaturityList" id="Ansehenund">{{'Borrower.BankDashboard.Viewanddownloadinthepastdonebusiness'|translate}}<span _ngcontent-c1="" class="align-middle input-group-icon "><img _ngcontent-c1="" _ngcontent-c5="" alt="Insimatch Logo" src="../assets/images/history-maturity-list.png"></span></button>
+                                <!--<button type="button" class="dropcockpit" >Maturity List</button>
+            <button type="button" class="dropcockpit" > History Maturity List</button>-->
+
+                            </div>
+
                         </li>
-                        <li>
-                            <a routerLink="/historyMaturityList">
-                                {{'Borrower.BankDashboard.HistoryMaturityList'|translate}}
-                                <span class="align-middle input-group-icon ">
-                                    <img alt="Insimatch Logo" src="../assets/images/coountryparty-icon.png">
-                                </span>
-                            </a>
-                        </li>-->
+                        <!--<li>
+        <a routerLink="/maturityList">
+            {{'Borrower.BankDashboard.MaturityList'|translate}}
+            <span class="align-middle input-group-icon ">
+                <img alt="Insimatch Logo" src="../assets/images/coountryparty-icon.png">
+            </span>
+        </a>
+    </li>
+    <li>
+        <a routerLink="/historyMaturityList">
+            {{'Borrower.BankDashboard.HistoryMaturityList'|translate}}
+            <span class="align-middle input-group-icon ">
+                <img alt="Insimatch Logo" src="../assets/images/coountryparty-icon.png">
+            </span>
+        </a>
+    </li>-->
 
 
 
@@ -211,7 +217,7 @@
 
                             <div *ngIf="IfShowBankDashBoard" id="Rate-Panel">
                                 <div class="no-gutters row">
-                                    <div class="col-md-2 pr-1 text-centered head-modal-table">
+                                    <div class="col-md-1 pr-1 text-centered head-modal-table">
                                         <span class="modal-header-table">{{'Borrower.BankDashboard.BankRateField.Runtime'|translate}}</span>
                                     </div>
                                     <div class="col-md-1 pr-1 text-centered head-modal-table">
@@ -240,7 +246,7 @@
 
                                     <div class="col-md-12 pr-1 row" style="display:block;padding:10px;cursor:pointer" (click)="iconChange(i)">
                                         <span class="plus">
-                                            <i class="material-icons" aria-hidden="true" style="float: left;font-size:16px">
+                                            <i class="material-icons" aria-hidden="true" style="float: left;font-size:16px; color:#333;">
                                                 {{flagArray[i]?'remove':'add'}}
                                             </i>
                                         </span>
@@ -249,7 +255,7 @@
                                     <div *ngIf="flagArray[i] == true" style="width:100%;">
                                         <div *ngFor="let rate of rate.listintersteRate">
                                             <div class="col-md-12 pr-1 row" *ngIf="rate.TimePeriod!=='(T/N)'">
-                                                <div class="col-md-2 pr-1">
+                                                <div class="col-md-1 pr-1">
                                                     <button type="button" class="btn w-100 ">{{rate.TimePeriod}}</button>
                                                 </div>
 
@@ -365,7 +371,7 @@
 
 
                                 <div class="col-md-12 ">
-                                    <button type="button" class="btn w-100 w-100-px update-active update" (click)="update(listrateofinterstofbank)">Update</button>
+                                    <button type="button" class="btn w-100 w-100-px update-active update" (click)="update(listrateofinterstofbank)">Aktualisieren</button>
 
 
                                     <button *ngIf="IsPublished" class="status-on">

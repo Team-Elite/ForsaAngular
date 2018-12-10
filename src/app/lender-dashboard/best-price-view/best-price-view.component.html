@@ -10060,7 +10060,7 @@
     }
 
     ul.in-lang li {
-        padding: 0.3em 0.6em;
+        padding: 0em 0.6em;
     }
 
     #wrapper ul.in-lang li a {
@@ -10530,7 +10530,7 @@
         z-index: 2;
         width: 260px;
         -webkit-transition: margin 2s;
-        transition: margin 2s;
+        transition: margin 1s;
     }
 
     #toggleView {
@@ -19455,22 +19455,29 @@
                         <tbody>
                             <tr><th>{{'Lender.BestPriceView.Lender'|translate}}</th><td>{{bestPriceViewService.lenderSendRequestModel.LenderName}}</td></tr>
                             <tr><th>{{'Lender.BestPriceView.Borrower'|translate}}</th><td>{{bestPriceViewService.lenderSendRequestModel.BorrowerName}}</td></tr>
-                            <tr><th>{{'Lender.BestPriceView.Amount'|translate}}</th><td><input [disabled]="IfBankResponseFound" (keypress)="numberOnly($event)" #Amount1="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.Amount" name="Amount" type="text" id="amount" class="form-control requestamount"></td></tr>
+                            <tr><th>{{'Lender.BestPriceView.Amount'|translate}}</th><td><input [disabled]="IfBankResponseFound" (keypress)="numberOnly($event)" #Amount1="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.Amount" name="Amount" placeholder="Volumen" type="text" id="amount" class="form-control requestamount"></td></tr>
                             <tr><th>{{'Lender.BestPriceView.StartDate'|translate}} </th><td><input [disabled]="IfBankResponseFound" (change)="CalculateNumberOfDays()" #StartDate="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.StartDate" name="StartDate" type="date" id="datepicker" class="form-control hasDatepicker datepicker"></td></tr>
                             <tr><th>{{'Lender.BestPriceView.Endate'|translate}}</th><td><input [disabled]="IfBankResponseFound" (change)="CalculateNumberOfDays()" #EndDate="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.EndDate" name="EndDate" type="date" id="datepicker1" class="form-control hasDatepicker datepicker1"></td></tr>
                             <tr><th>{{'Lender.BestPriceView.NrOfDays'|translate}}&nbsp;&nbsp;</th><td id="no_of_days">{{bestPriceViewService.lenderSendRequestModel.NoOfDays}}</td></tr>
                             <tr>
                                 <th>{{'Lender.BestPriceView.InterestConvention'|translate}}</th>
                                 <td>
-                                    <select [disabled]="1==1" #InterestConvention="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.InterestConvention" name="InterestConvention" class="form-control" id="interest">
+                                    <!--<select [disabled]="1==1" #InterestConvention="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.InterestConvention" name="InterestConvention" class="form-control" id="interest">
                                         <option *ngFor="let interest of bestPriceViewService.listInterestConvention" value="{{interest.Id}}">{{interest.Value}}</option>
+                                    </select>-->
+                                    <select [(ngModel)]="bestPriceViewService.lenderSendRequestModel.InterestConvention" name="InterestConvention" class="form-control" id="interest">
+                                        <option *ngFor="let interest of bestPriceViewService.listInterestConvention" value="{{interest.Id}}">{{interest.Value}}</option>
+                                       
                                     </select>
                                 </td>
                             </tr>
                             <tr>
                                 <th>{{'Lender.BestPriceView.Payments'|translate}}</th>
                                 <td>
-                                    <select #Payments="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.Payments" name="Payments" [disabled]="1==1 " class="form-control" id="payments">
+                                    <!--<select #Payments="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.Payments" name="Payments" [disabled]="1==1 " class="form-control" id="payments">
+                                        <option *ngFor="let payment of bestPriceViewService.listPayments" value="{{payment.Id}}">{{payment.Value}}</option>
+                                    </select>-->
+                                    <select #Payments="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.Payments" name="Payments"  class="form-control" id="payments">
                                         <option *ngFor="let payment of bestPriceViewService.listPayments" value="{{payment.Id}}">{{payment.Value}}</option>
                                     </select>
                                 </td>

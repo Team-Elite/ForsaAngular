@@ -5158,6 +5158,12 @@
                 flex: 1;
             }
 
+        body .in-lang li.identity.account-style {
+            background-color: #1c5d98 !important;
+            color: #fff !important;
+            padding: 2px 10px !important;
+            font-size: 14px;
+        }
             .list-group {
                 display: -ms-flexbox;
                 display: flex;
@@ -9815,7 +9821,7 @@
             }
 
             body.instibg {
-                background: #18191d;
+                background: #efefef !important;
                 font-family: "Roboto", "Helvetica", "Arial", sans-serif;
             }
 
@@ -9893,15 +9899,15 @@
             }
 
             span.line {
-                border-bottom: 1px solid #fff;
+                border-bottom: 1px solid #333;
                 width: 100%;
                 padding-bottom: 10px;
             }
 
             label.lbl.notrobot {
                 position: absolute !important;
-                right: 0px;
-                top: -5px;
+                right: 8px;
+                top: 3px;
                 z-index: 1;
             }
 
@@ -9916,14 +9922,14 @@
                 box-shadow: none;
             }
 
-            #wrapper input[type="checkbox"] + label {
-                cursor: pointer;
-                position: relative;
-                margin-right: 20px;
-                display: inline-block;
-                padding-right: 10px;
-                margin-top: 14px;
-            }
+        #wrapper input[type="checkbox"] + label {
+            cursor: pointer;
+            position: relative;
+            margin-right: 28px;
+            display: inline-block;
+            padding-right: 10px;
+            margin-top: 24px;
+        }
 
             #wrapper input[type="checkbox"] {
                 position: absolute;
@@ -9940,8 +9946,8 @@
                     border-radius: 2px;
                     background: transparent;
                     position: absolute;
-                    top: 50%;
-                    right: -40px;
+                    top: 10px;
+                    right: -33px;
                     transform: translate(-20px, -50%);
                     box-sizing: border-box;
                     width: 20px;
@@ -9951,13 +9957,13 @@
 
                 /* the checkbox -- checked
         -----------------------------------------------*/
-
                 #wrapper input[type="checkbox"]:checked + label::after {
                     border: 2px solid #fff;
                     background: transparent;
                     transition: background-color 1s;
                     background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUAQMAAAC3R49OAAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAAAFiS0dEAIgFHUgAAAAJcEhZcwAACxMAAAsTAQCanBgAAAAHdElNRQfgBwEQARzBMMQpAAAAN0lEQVQI12NgQAEHGBgYHzAwMAMxO5DN38AgIM/AYGHHwFBTw8Bg94OBQf4DUBgqzdwAVI5qAACbXgn3nmfmHgAAAABJRU5ErkJggg==);
-                    background-position: -2px -1px;
+                    background-position: 1px 1px;
+                    background-repeat: no-repeat;
                 }
 
 
@@ -10095,24 +10101,38 @@
             }
 
             ul.in-lang li a:hover {
-                color: #fff;
+                color: #fff !important;
             }
 
             #wrapper ul.in-lang li.active {
-                background: #8636d7;
+                background: #1c5d98;
             }
+        li.identity:hover
+        {
+            background-color:transparent !important;
+            color:#fff !important;
+        }
+        li.identity a:hover {
+            background-color: transparent !important;
+            color: #fff !important;
+        }
+
+        #wrapper ul.in-lang li.hover {
+            background-color: transparent !important ;
+            color: #fff !important;
+        }
 
             #wrapper ul.in-lang li:hover > a {
                 color: #fff;
-                background: #8636d7;
+                background: #1c5d98;
             }
 
-            #wrapper ul.in-lang li.active a,
+            /*#wrapper ul.in-lang li.active a,
             #wrapper ul.in-lang li:hover,
             #wrapper ul.in-lang li a:hover {
                 color: #fff;
-                background: #8636d7;
-            }
+                background: #1c5d98;
+            }*/
 
             .fiftypercent .md-radio label {
                 margin-left: 20%;
@@ -10132,12 +10152,12 @@
                 border-bottom: 1px solid #fff;
             }
 
-            .input-group-icon {
-                position: absolute;
-                right: 0px;
-                bottom: 0px;
-                color: #fff;
-            }
+        .input-group-icon {
+            position: absolute;
+            right: 0px;
+            bottom: 0px;
+            color: #1c5d98 !important;
+        }
 
             input:focus {
                 outline: none;
@@ -10410,7 +10430,7 @@
             /* Dashboard Page css starts here */
 
             select#logicroom {
-                background: #8636d7;
+                background: #1c5d98;
                 border: 1px solid #9f3fff !important;
                 color: #fff;
                 padding: 0.2em 2em;
@@ -10444,11 +10464,14 @@
                 padding: 0.2em 0.8em 0.3em;
             }
 
-            .identity i.material-icons {
-                top: 3px;
-                position: relative;
-                font-size: 20px;
-            }
+        .identity i.material-icons {
+            top: 6px;
+            position: relative;
+            font-size: 22px;
+            color: #1c5d98 !important;
+            border: 1px solid #1c5d98 !important;
+            padding: 2px 3px;
+        }
 
             ul.in-lang li.french {
                 display: none;
@@ -10535,7 +10558,7 @@
 
             .sidebar-mini #main-panel {
                 width: calc(100% - 160px);
-                background: #25272e;
+                background: #efefef;
             }
 
             #main-panel {
@@ -10543,9 +10566,9 @@
                 float: right;
                 width: calc(100% - 320px);
                 color: #fff;
-                padding: 2em 5em;
+                padding: 2em 1em;
                 margin: 1%;
-                background: #25272e;
+                background: #efefef;
             }
 
             .sidebar {
@@ -10576,28 +10599,31 @@
                 padding: 0;
             }
 
-            .sidebar span.input-group-icon {
-                position: inherit;
-                float: right;
-            }
+        .sidebar span.input-group-icon {
+            position: inherit;
+            float: right;
+            color: #1c5d98;
+        }
 
-            #wrapper .sidebar-nav li a {
-                font-size: 12px;
-                text-decoration: none;
-                color: #FFF;
-                float: left;
-                text-decoration: none;
-                width: 100%;
-                height: 70px;
-                line-height: 25px;
-                padding: 30px 10px;
-            }
+        #wrapper .sidebar-nav li a {
+            font-size: 12px;
+            text-decoration: none;
+            color: #333;
+            float: left;
+            text-decoration: none;
+            width: 100%;
+            height: 52px !important;
+            line-height: 25px;
+            padding: 15px 10px !important;
+            text-transform: capitalize !important;
+            border-bottom: 1px solid #cacaca;
+        }
 
-            .sidebar-nav li a:hover {
-                background: #121213;
-                -webkit-transition: background 0.5s;
-                transition: background 0.5s;
-            }
+        .sidebar-nav li a:hover {
+            background: #cccccc !important;
+            -webkit-transition: background 0.5s;
+            transition: background 0.5s;
+        }
 
             @media screen and (max-width: 812px) {
                 #main-panel {
@@ -10696,6 +10722,12 @@
                 font-size: 16px;
                 margin-bottom: 10px;
             }
+        .counterparty-modal label.lbl.notrobot {
+            position: absolute !important;
+            right: 3px;
+            top: 5px;
+            z-index: 1;
+        }
 
             .dashboard-right button.btn.w-100 {
                 padding: 10px 3px;
@@ -10707,13 +10739,13 @@
             }
 
                 .dashboard-right button.btn.w-100.active {
-                    background: #8636d7 !important;
+                    background: #1c5d98 !important;
                     border-bottom: 1px solid #9f3fff;
                 }
 
             .dashboard-right button:focus {
                 outline: none;
-                /*background: #8636d7 !important;*/
+                /*background: #1c5d98 !important;*/
                 box-shadow: none;
             }
 
@@ -10730,7 +10762,7 @@
 
                 .dashboard-right ul.pagination li a {
                     background-color: transparent;
-                    border-color: #8636d7;
+                    border-color: #1c5d98;
                     color: #fff !important;
                     font-size: 14px;
                     font-weight: 100;
@@ -10740,7 +10772,7 @@
                 }
 
                     .dashboard-right ul.pagination li a:focus, .dashboard-right ul.pagination li a:hover {
-                        background-color: #8636d7;
+                        background-color: #1c5d98;
                         outline: none !important;
                         box-shadow: none;
                     }
@@ -10860,7 +10892,7 @@
             }
 
                 .dashboard-price-list table th {
-                    background: #8636d7;
+                    background: #1c5d98;
                 }
 
                 .dashboard-price-list table {
@@ -10868,10 +10900,10 @@
                 }
 
                     .dashboard-price-list table th {
-                        background: #72af09;
-                        border-bottom: 1px solid #c4fd63;
+                        background: #1c5d98 !important;
+                        border-bottom: 1px solid #fff;
                         margin-right: 1px;
-                        border-right: 1px solid #25272e;
+                        border-right: 1px solid #fff;
                         border-top-color: transparent;
                     }
 
@@ -10882,21 +10914,22 @@
                 }
 
                 .dashboard-price-list .table-bordered td {
-                    background: #37383d;
-                    border-right-color: #25272e;
-                    border-bottom-color: #25272e;
+                    background: #c6d9f1 !important;
+                    border-right-color: #fff;
+                    border-bottom-color: #fff;
                     cursor: pointer;
                     vertical-align: inherit;
+                    color: #333 !important;
                 }
 
                     .dashboard-price-list .table-bordered td.active {
-                        background: #8636d7;
+                        background: #1c5d98;
                         border-bottom: 1px solid #9b45f1;
                         cursor: pointer;
                     }
 
                     .dashboard-price-list .table-bordered td:focus {
-                        background: #8c21d3;
+                        background: #1c5d98;
                         outline: none;
                         box-shadow: none;
                         border-bottom-color: #c688ef;
@@ -10934,7 +10967,7 @@
 
                 .lendersetting ul.pagination li a {
                     background-color: transparent;
-                    border-color: #8636d7;
+                    border-color: #1c5d98;
                     color: #fff !important;
                     font-size: 14px;
                     font-weight: 100;
@@ -10945,7 +10978,7 @@
 
                     .lendersetting ul.pagination li a:focus, .lendersetting ul.pagination li a:hover {
                         color: #fff;
-                        background: #8636d7;
+                        background: #1c5d98;
                     }
 
             .lendersetting .col-lg-4 ul {
@@ -10986,9 +11019,9 @@
                 }
 
             .counterparty-modal .modal-footer {
-                background: #25272e;
+                background: #efefef;
                 border-top: none;
-                padding-top: 0px;
+                padding-top: 10px;
             }
 
             .counterparty-modal button.close {
@@ -11005,9 +11038,13 @@
                 margin-bottom: 10px;
             }
 
-            .counterparty-modal span.line {
-                padding-bottom: 8px;
-            }
+        .counterparty-modal span.line {
+            padding-bottom: 8px;
+            color: #333 !important;
+            background-color: #c6d9f1 !important;
+            border-bottom: 0px !important;
+            padding: 8px;
+        }
 
             .counterparty-modal div#lendrequestbody {
                 padding-top: 25px;
@@ -11026,7 +11063,7 @@
                 margin-bottom: 4px;
                 border-radius: 0px;
                 border-bottom: 1px solid #9f3fff;
-                background: #8636d7 !important;
+                background: #1c5d98 !important;
                 height: 40px;
             }
 
@@ -11178,7 +11215,7 @@
             }
 
             .eigene-modal .modal-footer {
-                background: #25272e;
+                background: #efefef;
                 border-top: none;
                 padding-top: 0px;
             }
@@ -11190,8 +11227,8 @@
 
             .eigene-modal tr:last-child td input#updateuser, input.updateuser1 {
                 width: 50%;
-                background-color: #8636d7 !important;
-                border: #8636d7 !important;
+                background-color: #1c5d98 !important;
+                border: #1c5d98 !important;
                 border-bottom: 1px solid grey !important;
                 border-radius: 0px;
                 font-size: 15px;
@@ -11222,8 +11259,8 @@
             }
 
             #LenderPdf label.upload-pdf-btn {
-                background-color: #8636d7 !important;
-                border: #8636d7 !important;
+                background-color: #1c5d98 !important;
+                border: #1c5d98 !important;
                 border-bottom: 1px solid grey !important;
                 border-radius: 0px;
                 font-size: 15px;
@@ -11238,8 +11275,8 @@
                 }
 
             #LenderPdf #uploadpdf {
-                background-color: #8636d7 !important;
-                border: #8636d7 !important;
+                background-color: #1c5d98 !important;
+                border: #1c5d98 !important;
                 border-bottom: 1px solid grey !important;
                 border-radius: 0px;
                 font-size: 15px;
@@ -11283,8 +11320,8 @@
             }
 
             .eigene-modal td button.btn {
-                background-color: #8636d7;
-                border: #8636d7;
+                background-color: #1c5d98;
+                border: #1c5d98;
                 border-bottom: 1px solid grey !important;
                 border-radius: 0px;
                 font-size: 15px;
@@ -11299,8 +11336,8 @@
             }
 
             #eigenepdf .button-div input#eigenepdfBtn {
-                background-color: #8636d7;
-                border: #8636d7;
+                background-color: #1c5d98;
+                border: #1c5d98;
                 border-bottom: 1px solid grey !important;
                 border-radius: 0px;
                 font-size: 15px;
@@ -11321,8 +11358,8 @@
             input#btn_update {
                 width: 48%;
                 padding: 8px 15px;
-                background-color: #8636d7;
-                border: #8636d7;
+                background-color: #1c5d98;
+                border: #1c5d98;
                 border-bottom: 1px solid grey !important;
                 font-size: 15px;
             }
@@ -11354,32 +11391,36 @@
                 max-width: 100%;
                 width: 50%;
             }
+        /*.cockpit-dropdown-div {
+            position: absolute;
+            top: 100px;
+        }*/
 
             .cockpit-dropdown-div {
                 margin-top: -10px;
             }
 
                 .cockpit-dropdown-div button.dropcockpit {
-                    color: #fff;
-                    background: #37383d !important;
+                    color: #333;
+                    background: #e3e3e3 !important;
                     border: none;
                     text-align: left;
                     padding: 8px;
                     margin: 0px !important;
                     font-size: 11px !important;
-                    text-transform: uppercase;
+                    text-transform: capitalize !important;
                     width: 100%;
                 }
 
                     .cockpit-dropdown-div button.dropcockpit:hover {
-                        background: #8636d7 !important;
+                        background: #e9e9e9 !important;
                     }
 
                     .cockpit-dropdown-div button.dropcockpit:focus {
                         outline: none;
-                        background-color: #8636d7 !important;
-                        border-top: #8636d7 !important;
-                        border-bottom: #8636d7 !important;
+                        background-color: #1c5d98 !important;
+                        border-top: #1c5d98 !important;
+                        border-bottom: #1c5d98 !important;
                     }
 
                 .cockpit-dropdown-div button#Ansehenund:focus {
@@ -11409,7 +11450,7 @@
 
             .application-export-sec ul.pagination li a {
                 background-color: transparent;
-                border-color: #8636d7;
+                border-color: #1c5d98;
                 color: #fff !important;
                 font-size: 14px;
                 font-weight: 100;
@@ -11419,7 +11460,7 @@
             }
 
                 .application-export-sec ul.pagination li a:hover {
-                    background-color: #8636d7;
+                    background-color: #1c5d98;
                     outline: none !important;
                     box-shadow: none;
                 }
@@ -11445,6 +11486,7 @@
             .admin-modal label {
                 position: relative;
                 top: 0px;
+                color:#333 !important;
             }
 
             .admin-modal .modal-header {
@@ -11461,15 +11503,15 @@
                 border-color: #72af09;
             }
 
-            .admin-modal input {
-                margin-bottom: 10px;
-                border: none;
-                background: #37383d;
-                border-radius: 0px;
-                border-bottom: 1px solid grey !important;
-                color: #fff !important;
-                cursor: pointer;
-            }
+        .admin-modal input {
+            margin-bottom: 10px;
+            border: none;
+            background: #c6d9f1 !important;
+            border-radius: 0px;
+            border-bottom: 1px solid #c6d9f1 !important;
+            color: #333 !important;
+            cursor: pointer;
+        }
 
                 .admin-modal input::placeholder {
                     color: #fff !important;
@@ -11487,7 +11529,7 @@
             }
 
             .admin-modal .modal-footer {
-                background: #25272e;
+                background: #efefef;
                 border-top: none;
             }
 
@@ -11524,7 +11566,7 @@
             }
 
             .datepicker .datepicker-days table tr td.today {
-                background-color: #8636d7 !important;
+                background-color: #1c5d98 !important;
                 color: #fff !important;
                 background-image: none !important;
             }
@@ -11589,8 +11631,8 @@
                 }
 
             #lendrequestbody #sendRequest {
-                background-color: #8636d7;
-                border: #8636d7;
+                background-color: #1c5d98;
+                border: #1c5d98;
                 border-bottom: 1px solid grey !important;
                 border-radius: 0px;
                 font-size: 15px;
@@ -11600,11 +11642,11 @@
             }
 
             div#lendrequestbody {
-                background: #25272e;
+                background: #efefef;
             }
 
             .dashboard-modal .modal-footer {
-                background: #25272e;
+                background: #efefef;
                 border-top: none;
             }
 
@@ -19383,7 +19425,7 @@
                             <app-forsa-languages></app-forsa-languages>
 
                             <li class="identity account-style">
-                                {{'Lender.DashBoard.Account'|translate}}:   {{'Login.BorrowerText'|translate}}
+                                   {{'Login.BorrowerText'|translate}}
                             </li>
                             <!--   <li class="identity account-style">
 
@@ -19427,8 +19469,11 @@
 
                                 </a>
                             </li>
-                            <li class="identity" title="Logout">
+                            <!--<li class="identity" title="Logout">
                                 <a href="javascript:void(0);" (click)="Logout()"><i class="material-icons icon-position"></i>{{'Borrower.BankDashboard.logout'|translate}}</a>
+                            </li>-->
+                            <li class="identity" title="Logout">
+                                <a href="javascript:void(0);" (click)="Logout()"><i class="material-icons icon-position">exit_to_app</i></a>
                             </li>
                         </ul>
 
@@ -19446,27 +19491,9 @@
 
                     <ul class="sidebar-nav ">
                         <li>
-                            <a routerLink="/bankDashBoard">DASHBOARD</a>
+                            <a routerLink="/bankDashBoard">Dashboard</a>
                         </li>
-                        <li class="cockpit-btn">
-                            <a>
-                                COCKPIT
-                                <span class="align-middle input-group-icon ">
-                                    <i class="material-icons ">view_list</i>
-                                </span>
-                            </a>
-                            <div class="cockpit-dropdown-div">
-                                <button type="button" class="dropcockpit" id="eigene" data-toggle="modal" data-target=".bd-example-modal-lg-eigene-Stammdatenverwaltung">{{'Borrower.BankDashboard.Ownmasterdatamanagement'|translate}}</button>
-                                <!--<button type="button" class="dropcockpit" (click)="ShowScreen('Mreport');" id="Ansehen">{{'Borrower.BankDashboard.Viewanddownloadyourownduelist'|translate}}</button>
-                                <button type="button" class="dropcockpit" (click)="ShowScreen('HMreport');" id="Ansehenund">{{'Borrower.BankDashboard.Viewanddownloadinthepastdonebusiness'|translate}}</button>-->
-                                <button type="button" class="dropcockpit" routerLink="/maturityList" id="Ansehen">{{'Borrower.BankDashboard.Viewanddownloadyourownduelist'|translate}}</button>
-                                <button type="button" class="dropcockpit" routerLink="/historyMaturityList" id="Ansehenund">{{'Borrower.BankDashboard.Viewanddownloadinthepastdonebusiness'|translate}}</button>
-                                <!--<button type="button" class="dropcockpit" >Maturity List</button>
-                                <button type="button" class="dropcockpit" > History Maturity List</button>-->
 
-                            </div>
-
-                        </li>
                         <li>
                             <a (click)="PublishAndUnPublish(true);">
                                 {{'Borrower.BankDashboard.PUBLISH'|translate}}
@@ -19510,22 +19537,43 @@
                                 </span>
                             </a>
                         </li>
-                        <li>
-                            <a routerLink="/maturityList">
-                                {{'Borrower.BankDashboard.MaturityList'|translate}}
+                        <li class="cockpit-btn">
+                            <a>
+                                Cockpit
                                 <span class="align-middle input-group-icon ">
-                                    <img alt="Insimatch Logo" src="../assets/images/coountryparty-icon.png">
+                                    <i class="material-icons ">view_list</i>
                                 </span>
                             </a>
+                            <div class="cockpit-dropdown-div">
+                                <button type="button" class="dropcockpit" id="eigene" data-toggle="modal" data-target=".bd-example-modal-lg-eigene-Stammdatenverwaltung">{{'Borrower.BankDashboard.Ownmasterdatamanagement'|translate}}  <span class="align-middle input-group-icon ">
+ <i class="material-icons ">perm_identity</i>
+                                </span></button>
+                                <!--<button type="button" class="dropcockpit" (click)="ShowScreen('Mreport');" id="Ansehen">{{'Borrower.BankDashboard.Viewanddownloadyourownduelist'|translate}}</button>
+            <button type="button" class="dropcockpit" (click)="ShowScreen('HMreport');" id="Ansehenund">{{'Borrower.BankDashboard.Viewanddownloadinthepastdonebusiness'|translate}}</button>-->
+                                <button type="button" class="dropcockpit" routerLink="/maturityList" id="Ansehen">{{'Borrower.BankDashboard.Viewanddownloadyourownduelist'|translate}}<span _ngcontent-c1="" class="align-middle input-group-icon "><img _ngcontent-c1="" _ngcontent-c5="" alt="Insimatch Logo" src="../assets/images/maturity-list.png"></span></button>
+                                <button type="button" class="dropcockpit" routerLink="/historyMaturityList" id="Ansehenund">{{'Borrower.BankDashboard.Viewanddownloadinthepastdonebusiness'|translate}}<span _ngcontent-c1="" class="align-middle input-group-icon "><img _ngcontent-c1="" _ngcontent-c5="" alt="Insimatch Logo" src="../assets/images/history-maturity-list.png"></span></button>
+                                <!--<button type="button" class="dropcockpit" >Maturity List</button>
+            <button type="button" class="dropcockpit" > History Maturity List</button>-->
+
+                            </div>
+
                         </li>
-                        <li>
-                            <a routerLink="/historyMaturityList">
-                                {{'Borrower.BankDashboard.HistoryMaturityList'|translate}}
-                                <span class="align-middle input-group-icon ">
-                                    <img alt="Insimatch Logo" src="../assets/images/coountryparty-icon.png">
-                                </span>
-                            </a>
-                        </li>
+                        <!--<li>
+        <a routerLink="/maturityList">
+            {{'Borrower.BankDashboard.MaturityList'|translate}}
+            <span class="align-middle input-group-icon ">
+                <img alt="Insimatch Logo" src="../assets/images/coountryparty-icon.png">
+            </span>
+        </a>
+    </li>
+    <li>
+        <a routerLink="/historyMaturityList">
+            {{'Borrower.BankDashboard.HistoryMaturityList'|translate}}
+            <span class="align-middle input-group-icon ">
+                <img alt="Insimatch Logo" src="../assets/images/coountryparty-icon.png">
+            </span>
+        </a>
+    </li>-->
 
 
 

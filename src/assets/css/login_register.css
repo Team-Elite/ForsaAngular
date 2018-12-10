@@ -24,8 +24,8 @@ ul.in-lang li:last-child {
 }
 
 .in-header-user a {
-    background: #8636d7;
-    border: 1px solid #9f3fff;
+    background: #1c5d98 !important;
+    border: 1px solid #1c5d98 !important;
     color: #fff;
     padding: 0.8em 0.4em 0.7em;
     -webkit-border-radius: 3px;
@@ -81,29 +81,29 @@ ul.in-lang li:last-child {
     width: 49%;
 }
 
-.in-login .in-login-form button,
-.in-login .in-register-form button,
-.in-register .in-login-form button,
-.in-register .in-register-form button {
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    -ms-border-radius: 3px;
-    border-radius: 3px;
-    background: rgba(159, 63, 255, 0.4);
-    font-size: 14px;
-    font-weight: lighter;
-    margin: 0 auto;
-    text-align: center;
-    width: 100%;
-    color: #fff;
-    text-transform: capitalize;
-    border: 1px solid #7e2cb8;
-    cursor: pointer;
-    height: 40px;
-    display: flex;
-    justify-content: center;
-    text-transform: uppercase;
-}
+    .in-login .in-login-form button,
+    .in-login .in-register-form button,
+    .in-register .in-login-form button,
+    .in-register .in-register-form button {
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        -ms-border-radius: 3px;
+        border-radius: 3px;
+        background: rgba(28, 93, 152, 0.4);
+        font-size: 14px;
+        font-weight: lighter;
+        margin: 0 auto;
+        text-align: center;
+        width: 100%;
+        color: #fff;
+        text-transform: capitalize;
+        border: 1px solid #1c5d98;
+        cursor: pointer;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        text-transform: uppercase;
+    }
 
 .in-login .in-login-form button:focus,
 .in-login .in-register-form button:focus,
@@ -160,16 +160,15 @@ span.in-success-message {
 .in-register .in-register-form .form-circles a.dot {
     height: 12px;
     width: 12px;
-    background: rgba(159, 63, 255, 0.2);
+    background: rgba(28, 93, 152, 0.2);
     border-radius: 50%;
     display: inline-block;
     margin: 20px 6px;
-    border: 1px solid #7e2cb8;
+    border: 1px solid #1c5d98;
 }
 
-.in-register .in-register-form .form-circles a.active,
-.in-register .in-register-form .form-circles a:hover {
-    background: #8636d7;
+.in-register .in-register-form .form-circles a.active, .in-register .in-register-form .form-circles a:hover {
+    background: #1c5d98;
 }
 
 #userCountry,
@@ -209,9 +208,9 @@ select.form-control {
     background: #000;
 }
 
-#in-forgot-password .modal-footer,
-#in-forgot-password .modal-header {
+#in-forgot-password .modal-footer, #in-forgot-password .modal-header {
     border: none;
+    padding: 10px;
 }
 
 .instibg .modal-backdrop {
@@ -227,6 +226,9 @@ select.form-control {
     border: none;
     margin: inherit;
     width: auto;
+    padding: 0;
+    opacity: 1;
+    font-size: 28px;
 }
 
 
@@ -239,11 +241,11 @@ select.form-control {
     font-family: inherit;
     background-color: transparent;
     width: 100%;
-    padding: 4px 0;
-    font-size: 16px;
-    color: #fff;
+    padding: 4px 6px;
+    font-size: 11px !important;
+    color: #1c5d98;
     border: none;
-    border-bottom: 1px solid #fff
+    border-bottom: 1px solid #fff;
 }
 
 
@@ -265,16 +267,13 @@ select.form-control {
     background: #357bd8;
 }
 
-.in-login .in-login-form p.in-register-text,
-.in-login .in-register-form p.in-register-text,
-.in-register .in-login-form p.in-register-text,
-.in-register .in-register-form p.in-register-text {
+.in-login .in-login-form p.in-register-text, .in-login .in-register-form p.in-register-text, .in-register .in-login-form p.in-register-text, .in-register .in-register-form p.in-register-text {
     margin-top: 1.0em;
-    font-size: 80%;
+    font-size: 13px;
 }
 
 .modal-backdrop {
-    z-index: -1;
+    z-index: -1 !important;
 }
 
 
@@ -328,4 +327,40 @@ select.form-control {
     .in-register {
         width: 280px;
     }
+}
+input.used.ng-untouched.ng-pristine.ng-valid.my-half-input {
+    width: 80%;
+    margin: 10px ;
+    margin-left:60px;
+}
+p.eur-small-text {
+    position: absolute;
+    left: 0;
+    top: 20px;
+    font-size: 15px;
+    width: 20%;
+    float: left;
+}
+.my-file-upload-div input {
+    border-bottom: none !important;
+    padding: 0 !important;
+}
+p.upload-lable {
+    margin: 0;
+    font-size: 11px;
+}
+input.used.my-half-input.ng-valid.ng-dirty.ng-touched {
+    width: 80%;
+    margin-left: 60px;
+}
+h5#exampleModalLongTitle {
+    margin: 0px !important;
+}
+#in-forgot-password .modal-body.in-login {
+    width: 100%;
+    background-color: #efefef !important;
+    color: #333 !important;
+}
+#in-forgot-password input.used.ng-valid.ng-dirty.ng-touched {
+    color: #333;
 }

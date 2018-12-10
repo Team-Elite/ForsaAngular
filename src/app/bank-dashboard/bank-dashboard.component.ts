@@ -69,6 +69,7 @@ export class BankDashboardComponent implements OnInit {
         this.copyLoggedInUser = Object.assign({}, this.bankDashboardService.loggedInUser);
         this.SetTimeInterval();
        // this.GetLenderSendRequestRequestdOnTheBasisOfBorrowerId();
+      
         this.spinner.hide();
         this.bestPriceViewService.lenderSendRequestModel = {
             RequestId: 0,
@@ -110,7 +111,7 @@ export class BankDashboardComponent implements OnInit {
         if (this.bankDashboardService.listRateOfInterestOfBankModel != undefined && this.bankDashboardService.listRateOfInterestOfBankModel != null
             && this.bankDashboardService.listRateOfInterestOfBankModel.length != 0) {
             this.IsPublished = this.bankDashboardService.listRateOfInterestOfBankModel[0].IsPublished;
-
+           
             console.log(this.bankDashboardService.listRateOfInterestOfBankModel);
 
             for (let i = 0; i < this.Timeperiod.length; i++) {
