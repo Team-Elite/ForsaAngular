@@ -33,13 +33,8 @@ export class LoginComponent implements OnInit {
     //        this.IfVerificationDone = false;
     //    }
     //}
-     generateCaptcha() {
-    var a = Math.floor((Math.random() * 10));
-    var b = Math.floor((Math.random() * 10));
-    var c = Math.floor((Math.random() * 10));
-    var d = Math.floor((Math.random() * 10));
-
-    this.captcha = a.toString() + b.toString() + c.toString() + d.toString();
+    generateCaptcha() {
+        this.captcha = this.authenticateServiceService.GenerateCaptcha();
 
        // $("#captcha").val(this.captcha);
 }
@@ -49,7 +44,8 @@ export class LoginComponent implements OnInit {
             UserName: '',
             UserPassword: '',
             ForgotPasswordEmailId: '',
-            LoginTime: undefined
+            LoginTime: undefined,
+            Captcha:''
             //UserEmailId:''
     }
     this.generateCaptcha();
@@ -77,11 +73,21 @@ export class LoginComponent implements OnInit {
                 this.toastr.error("Password is required.", "Login");
                 return false;
             }
-            //Recaptch comment
-            //if (!this.IfVerificationDone) {
-            //    this.toastr.error("Please verify captcha.", "Login");
-            //    return false;
-            //}
+            if (form.value.Captchainput == undefined || form.value.Captchainput == null) {
+
+                this.toastr.error("Please enter captcha code", "Login");
+                this.generateCaptcha();
+                return false;
+            }
+            else {
+                const captchaimage = this.captcha.split(' ').join('');
+
+                if (captchaimage !== form.value.Captchainput) {
+                    this.toastr.error("Invalid captcha", "Login");
+                    this.generateCaptcha();
+                    return false;
+                }
+            }
             this.spinner.show();
             let user = await this.loginService.ValidateUser(form.value);
             if (user.IsSuccess == true) {
@@ -104,6 +110,7 @@ export class LoginComponent implements OnInit {
 
                     this.lenderDashboardService.userId = user.UserId; //this.authenticateServiceService.GetUserId();
                     let startPage = await this.lenderDashboardService.GetLenderStartPage();
+                    //console.log(startPage);
                     if (startPage == undefined) { this.lenderDashboardService.StartingScreen = "All Banks"; }
                     else {
                         this.lenderDashboardService.StartingScreen = startPage.PageName;

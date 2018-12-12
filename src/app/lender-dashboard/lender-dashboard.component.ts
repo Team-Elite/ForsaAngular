@@ -16,6 +16,7 @@ declare var $: any;
     styleUrls: ['./lender-dashboard.component.css']
 })
 export class LenderDashboardComponent implements OnInit {
+    selectedItem: string;
     _http: any;
   
     _userId: any
@@ -28,7 +29,7 @@ export class LenderDashboardComponent implements OnInit {
 
         this._authenticateServiceService = authenticateServiceService;
     }
-
+   
     copyLoggedInUser: any;
     SelectedStartPage: any;
     listPagesForStartingPage: StartPageModel[];
@@ -123,7 +124,7 @@ export class LenderDashboardComponent implements OnInit {
         this.spinner.show();
         this.bestPriceViewService.lenderSendRequestModel2.IsAccepted = true;
         var result = this.bestPriceViewService.AcceptLendedRequest(this.bestPriceViewService.lenderSendRequestModel2).subscribe(data => {
-            this.toastr.success('Your deal is completed.', 'Dashboard');
+            this.toastr.success('Successfully accepted Trade, please check E-Mail.', 'Dashboard');
             this.spinner.hide();
             this.SetTimeInterval();
             var element = document.getElementById('closeSendRequestModalLender');
@@ -170,7 +171,7 @@ export class LenderDashboardComponent implements OnInit {
         this.bestPriceViewService.lenderSendRequestModel2.IsMessageSentToForsa = true;
         this.bestPriceViewService.SaveForsaMessage(this.bestPriceViewService.lenderSendRequestModel2).subscribe(data => {
             this.spinner.hide();
-            this.toastr.success("Message sent to Forsa", "Dashboard");
+            this.toastr.success("YOU WILL BE CONTACTED BY FORSA.", "Dashboard");
             this.SetTimeInterval();
             var element = document.getElementById('closeSendChatModalLender');
             element.click();
@@ -319,6 +320,7 @@ this.router.navigate(['lenderDashboard/Maturitylist']);
 
 
     SetCurrentPage(pageName: string) {
+        this.selectedItem = pageName;
         this.spinner.show();
         this._showMaturity = false;
         this.lenderDashboardService.CurrentPageName = pageName;
@@ -358,6 +360,9 @@ this.router.navigate(['lenderDashboard/Maturitylist']);
     async LenderSaveStartPage() {
         this.spinner.show();
         var response = await this.lenderDashboardService.LenderSaveStartPage(this.SelectedStartPage);
+      
+        this.spinner.hide();
+        debugger;
         if (response.IsSuccess) {
             this.toastr.success("Start page updated successfully.", "Dashboard");
             var element = document.getElementById('btnCloseSetStartPageModal');
@@ -366,7 +371,7 @@ this.router.navigate(['lenderDashboard/Maturitylist']);
         else {
             this.toastr.error("Something went wrong");
         }
-        this.spinner.hide();
+      
 
     }
 
@@ -378,6 +383,10 @@ this.router.navigate(['lenderDashboard/Maturitylist']);
     RegisterAsPartner() {
         this.authenticateServiceService.ClearSession();
         this.router.navigate(['/registration/', this.lenderDashboardService.userId, 'KT']);
+    }
+    getPathName() {
+        console.log(window.location.pathname);
+        return window.location.pathname;
     }
 
 }

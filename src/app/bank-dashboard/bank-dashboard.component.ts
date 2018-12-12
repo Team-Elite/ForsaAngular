@@ -699,7 +699,7 @@ export class BankDashboardComponent implements OnInit {
         }
         this.spinner.show();
         var result = this.bankDashboardService.UpdateLenderSendRequestRateOfInterest(this.lenderSendRequestModel).subscribe(data => {
-            this.toastr.success('Rate of interest saved successfully.', 'Dashboard');
+            this.toastr.success('Die Anfrage wurde erfolgreich beantwortet, bitte warten Sie auf die Antwort des Geldgebers.', 'Dashboard');
             this.spinner.hide();
             this.SetTimeInterval();
             var element = document.getElementById('closeSendRequestModal');

@@ -1,6 +1,6 @@
 <li class="text-right lang-nav lang-icon">
-    <button (click)="changeLang('en')" class="button btn buttonprl">EN</button>
+    <button (click)="changeLang('en')" class="button btn buttonprl" [ngClass]="{'buttonprl-active': selectedLanguage === 'en'}">EN</button>
 </li>
 <li class="text-right lang-nav lang-icon">
-    <button (click)="changeLang('gr')" class="button btn buttonprl">DE</button>
+    <button (click)="changeLang('gr')" class="button btn buttonprl" [ngClass]="{'buttonprl-active': selectedLanguage === 'gr'}">DE</button>
 </li>

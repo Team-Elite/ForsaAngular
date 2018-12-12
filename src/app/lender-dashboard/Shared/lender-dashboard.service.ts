@@ -61,28 +61,35 @@ export class LenderDashboardService {
 
         if (this.userId === undefined) return null;
         var webtoken = { data: this.tokenService.jwtencrypt({ userId: this.userId }) };
-        let token = await this.http.post(this.authenticateServiceService.baseURL + '/api/LenderDashboard/GetPagesForLenderSettingStartPage', webtoken, this.requestOptions).toPromise();
-        //let token = await this.http.get(this.authenticateServiceService.baseURL + '/api/LenderDashboard/GetPagesForLenderSettingStartPage?id=' + this.userId).toPromise();
         var response;
-        if (token != undefined) {
-            token = token.json().data;
-            response = JSON.parse(this.tokenService.jwtdecrypt(token).unique_name);
-        }
-
+        let token = await this.http.post(this.authenticateServiceService.baseURL + '/api/LenderDashboard/GetPagesForLenderSettingStartPage', webtoken, this.requestOptions).map((data: Response) => {
+            return data.json();
+        }).toPromise().then(token => {
+            debugger;
+            if (token != undefined && token.IsSuccess) {
+                token = token.data;
+                response = JSON.parse(this.tokenService.jwtdecrypt(token).unique_name);
+            }
+        });
+        //let token = await this.http.get(this.authenticateServiceService.baseURL + '/api/LenderDashboard/GetPagesForLenderSettingStartPage?id=' + this.userId).toPromise();
         return response;
     }
 
     async LenderSaveStartPage(pageId: number) {
         if (this.userId === undefined) return null;
         var webtoken = { data: this.tokenService.jwtencrypt({ userId: this.userId, pageId: pageId }) };
-        let token = await this.http.post(this.authenticateServiceService.baseURL + '/api/LenderDashboard/LenderSaveStartPage', webtoken, this.requestOptions).toPromise();
-        // let token = await this.http.get(this.authenticateServiceService.baseURL + '/api/LenderDashboard/LenderSaveStartPage?id=' + this.userId  + "&pageId=" + pageId.toString()).toPromise();
         var response;
-        if (token != undefined) {
-            token = token.json().data;
-            response = JSON.parse(this.tokenService.jwtdecrypt(token).unique_name);
-        }
+        await this.http.post(this.authenticateServiceService.baseURL + '/api/LenderDashboard/LenderSaveStartPage', webtoken, this.requestOptions).map((data: Response) => {
+            return data.json();
+        }).toPromise().then(token => {
+            if (token != undefined) {
+                console.log(token);
+                //token = token.json().data;
+                response = { IsSuccess: token.IsSuccess };
+            }
+        });
 
+        // let token = await this.http.get(this.authenticateServiceService.baseURL + '/api/LenderDashboard/LenderSaveStartPage?id=' + this.userId  + "&pageId=" + pageId.toString()).toPromise();
         return response;
         //  return response.json();
     }

@@ -18,7 +18,19 @@ ul.in-lang li:last-child {
     border: none;
     padding-left: 30px;
 }
+section.in-login {
+    height:100vh;
+}
 
+body .input-group-icon {
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    color: #fff;
+}
+body i.material-icons.password_mask {
+    color: #fff !important;
+}
 #wrapper ul.in-lang li:hover:last-child {
     background: transparent;
 }
@@ -50,23 +62,23 @@ ul.in-lang li:last-child {
     width: 350px;
 }
 
-.in-login .in-login-form,
-.in-login .in-register-form,
-.in-register .in-login-form,
-.in-register .in-register-form {
-    background: #1f2024;
-    padding: 2em 2em;
-    opacity: 0.9;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    -ms-border-radius: 5px;
-    border-radius: 5px;
-    border: 1px solid #fff;
-    flex-wrap: wrap;
-    color: #fff;
-    font-size: 0.9em;
-    height: 100%;
-}
+    .in-login .in-login-form,
+    .in-login .in-register-form,
+    .in-register .in-login-form,
+    .in-register .in-register-form {
+        background: #1f2024;
+        padding: 2em 2em;
+        opacity: 0.9;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        -ms-border-radius: 5px;
+        border-radius: 5px;
+        border: 1px solid #1c5d98;
+        flex-wrap: wrap;
+        color: #fff;
+        font-size: 0.9em;
+        height: 100%;
+    }
 
 .login-form label {
     font-size: 1em;
@@ -243,7 +255,7 @@ select.form-control {
     width: 100%;
     padding: 4px 6px;
     font-size: 11px !important;
-    color: #1c5d98;
+    color: #fff;
     border: none;
     border-bottom: 1px solid #fff;
 }

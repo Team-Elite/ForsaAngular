@@ -2280,6 +2280,12 @@
                     background-color: #e9ecef;
                     opacity: 1;
                 }
+        #divtestUpload ul li a i.material-icons {
+            color: #1c5d98 !important;
+            font-size: 24px !important;
+            line-height: 0.5;
+            cursor: pointer;
+        }
 
             select.form-control:not([size]):not([multiple]) {
                 height: calc(2.25rem + 2px);
@@ -4761,12 +4767,12 @@
                 border-bottom-right-radius: 0.25rem;
             }
 
-            .page-item.active .page-link {
-                z-index: 2;
-                color: #fff;
-                background-color: #007bff;
-                border-color: #007bff;
-            }
+        #main-panel .pagination .page-item.active .page-link {
+            z-index: 1;
+            color: #fff !important;
+            background-color: #1c5d98 !important;
+            border-color: #1c5d98 !important;
+        }
 
             .page-item.disabled .page-link {
                 color: #868e96;
@@ -5161,8 +5167,9 @@
         body .in-lang li.identity.account-style {
             background-color: #1c5d98 !important;
             color: #fff !important;
-            padding: 2px 10px !important;
-            font-size: 14px;
+            padding: 5px 10px !important;
+            font-size: 16px !important;
+            vertical-align: text-bottom;
         }
             .list-group {
                 display: -ms-flexbox;
@@ -10124,7 +10131,7 @@
 
             #wrapper ul.in-lang li:hover > a {
                 color: #fff;
-                background: #1c5d98;
+                background-color:transparent !important ;
             }
 
             /*#wrapper ul.in-lang li.active a,
@@ -10465,13 +10472,17 @@
             }
 
         .identity i.material-icons {
-            top: 6px;
+            top: 0px;
             position: relative;
-            font-size: 22px;
+            font-size: 28px;
             color: #1c5d98 !important;
             border: 1px solid #1c5d98 !important;
             padding: 2px 3px;
         }
+            .identity i.material-icons:hover {
+                color: #fff !important;
+                background-color: #1c5d98 !important;
+            }
 
             ul.in-lang li.french {
                 display: none;
@@ -10566,7 +10577,7 @@
                 float: right;
                 width: calc(100% - 320px);
                 color: #fff;
-                padding: 2em 1em;
+                padding: 3em 1em;
                 margin: 1%;
                 background: #efefef;
             }
@@ -10680,10 +10691,18 @@
                     }
 
                 .dashboard-left .link:focus-within {
-                    background: #8c21d3;
+                    background: #1c5d98 !important;
                     outline: none;
                     box-shadow: none;
-                    border-bottom-color: #c688ef;
+                    border-bottom-color: #1c5d98 !important;
+                    color: #fff !important;
+                }
+                .dashboard-left .link:hover {
+                    background: #1c5d98 !important;
+                    outline: none;
+                    box-shadow: none;
+                    border-bottom-color: #1c5d98 !important;
+                    color: #fff !important;
                 }
 
             .dashboard-left li {
@@ -11414,6 +11433,7 @@
 
                     .cockpit-dropdown-div button.dropcockpit:hover {
                         background: #e9e9e9 !important;
+                        color: #333 !important;
                     }
 
                     .cockpit-dropdown-div button.dropcockpit:focus {
@@ -11421,6 +11441,7 @@
                         background-color: #1c5d98 !important;
                         border-top: #1c5d98 !important;
                         border-bottom: #1c5d98 !important;
+                        color: #333 !important;
                     }
 
                 .cockpit-dropdown-div button#Ansehenund:focus {
@@ -19491,7 +19512,7 @@
 
                     <ul class="sidebar-nav ">
                         <li>
-                            <a routerLink="/bankDashBoard">Dashboard</a>
+                            <a (click)="ShowScreen('BankDashboard');">{{'DashboardText'|translate}}</a>
                         </li>
 
                         <li>
@@ -19602,16 +19623,16 @@
                                     <th style="cursor:pointer;" (click)="GetMaturityList('Borrower')">{{'MaturityListfild.Bowwower'|translate}}</th>
                                     <th style="cursor:pointer;" (click)="GetMaturityList('Amount')">{{'MaturityListfild.Amount'|translate}}</th>
                                     <th style="cursor:pointer;" (click)="GetMaturityList('StartDate')">{{'MaturityListfild.Startdate'|translate}}</th>
-                                    <th style="cursor:pointer;" (click)="GetMaturityList('EndDate')">End Date</th>
+                                    <th style="cursor:pointer;" (click)="GetMaturityList('EndDate')">Maturity Date</th>
                                     <!--<th style="cursor:pointer;" (click)="GetMaturityList('MaturityDate')">{{'MaturityListfild.maturitydate'|translate}}</th>-->
                                     <th style="cursor:pointer;" (click)="GetMaturityList('Rate')">{{'MaturityListfild.rate'|translate}}</th>
                                     <!--<th style="cursor:pointer;" (click)="GetMaturityList('InterestConvention')">Interest Convention</th>
     <th style="cursor:pointer;" (click)="GetMaturityList('Payments')">Payments</th>
     <!--<th style="cursor:pointer;">IsRequestAccepted</th>-->
                                     <!--<th style="cursor:pointer;">RequestCreatedBy</th>-->
-                                    <th style="cursor:pointer;" (click)="GetMaturityList('RateOfInterestOfferred')">Rate Of Interest Offerred</th>
+                                    <!-- <th style="cursor:pointer;" (click)="GetMaturityList('RateOfInterestOfferred')">Rate</th>
                                     <th style="cursor:pointer;">Offerred Date</th>
-                                    <th style="cursor:pointer;">Status</th>
+                                    <th style="cursor:pointer;">Status</th> -->
 
                                 </tr>
                                 <tr *ngFor="let bank of _MaturityList">
@@ -19623,12 +19644,13 @@
                                     <td>{{bank.Amount}}</td>
                                     <td>{{bank.StartDate|date:'MM-dd-yyyy'}}</td>
                                    <td>{{bank.EndDate|date:'MM-dd-yyyy'}}
-                                    <td>{{bank.NoOfDays}}</td>
+                                    <td>{{bank.RateOfInterestOfferred}}</td>
+                                    <!-- <td>{{bank.NoOfDays}}</td>
                                     <td>{{bank.InterestConvention}}</td>
-                                    <td>{{bank.Payments}}</td>
+                                    <td>{{bank.Payments}}</td> -->
                                     <!--<td>{{bank.IsRequestAccepted}}</td>
                                     <td>{{bank.RequestCreatedBy}}</td>-->
-                                    <td>{{bank.RateOfInterestOfferred}}</td>
+                                    
 
                                     <!--<td>{{bank.OfferredOn|date:mm/dd/yy}}</td>
                                     <td>
@@ -19657,6 +19679,10 @@
         <!-- Dashboard Page main Content ends-->
 
     </div>
+
+    <footer _ngcontent-c4="" _ngcontent-c1="" class="my-footer"><div _ngcontent-c4="" _ngcontent-c1="" class="container"><div _ngcontent-c4="" _ngcontent-c1="" class="navbar-footer"><a _ngcontent-c4="" _ngcontent-c1="" class="active" href="#home">FORSA TopZins- Portal</a><a _ngcontent-c4="" _ngcontent-c1="" href="#news">Nutzungsbedingungen</a><a _ngcontent-c4="" _ngcontent-c1="" href="#contact">Datenschutzerklärung</a><a _ngcontent-c4="" _ngcontent-c1="" href="#contact">Rechtliche Hinweise</a><a _ngcontent-c4="" _ngcontent-c1="" href="#contact">Impressum</a></div></div></footer>
+
+
     <div class="modal fade bd-example-modal-lg-eigene-Stammdatenverwaltung admin-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
          aria-hidden="true">
         <div _ngcontent-c1="" class="modal-dialog modal-lg">
@@ -19798,5 +19824,5 @@
     </script>
 
 </body>
-co
+
 </html>

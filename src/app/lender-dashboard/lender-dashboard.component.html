@@ -6,8 +6,7 @@
 
     <title>Instimatch Dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- <link rel="stylesheet" href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css"> -->
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"> -->
+    
     <style media="" data-href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
         button, hr, input {
             overflow: visible
@@ -3830,6 +3829,12 @@
             .custom-file-input:focus ~ .custom-file-control {
                 box-shadow: 0 0 0 0.075rem #fff, 0 0 0 0.2rem #007bff;
             }
+        #main-panel .pagination .page-item.active .page-link {
+            z-index: 1;
+            color: #fff !important;
+            background-color: #1c5d98 !important;
+            border-color: #1c5d98 !important;
+        }
 
         .custom-file-control {
             position: absolute;
@@ -10082,14 +10087,22 @@
             color: #fff;
         }
 
-        #wrapper ul.in-lang li.active {
-            background: #8636d7;
+        #wrapper ul.in-lang li.hover {
+            background-color: transparent !important;
+            
         }
 
         #wrapper ul.in-lang li:hover > a {
-            color: #fff;
-            background: #8636d7;
+            
+            background-color: transparent !important;
         }
+        #lendrequestbody ul {
+            color: #333 !important;
+        }
+
+            #lendrequestbody ul li a {
+                color: #333 !important;
+            }
 
         /*#wrapper ul.in-lang li.active a,
         #wrapper ul.in-lang li:hover,
@@ -10097,11 +10110,9 @@
             color: #fff;
             background: #8636d7;
         }*/
-        #wrapper ul.in-lang li.active a
-        
-         {
-            color: #fff;
-            background: #8636d7;
+        #wrapper ul.in-lang li.active a {
+            
+            background-color: transparent !important;
         }
 
         .fiftypercent .md-radio label {
@@ -10518,9 +10529,9 @@
             color: #fff;
             padding: 4px 0px;
         }
-        .identity i.material-icons:hover
-        {
-            color:#fff !important;
+        .identity i.material-icons:hover {
+            color: #fff !important;
+            background-color: #1c5d98 !important;
         }
 
         #main-panel,
@@ -10544,7 +10555,7 @@
             float: right;
             width: calc(100% - 320px);
             color: #fff;
-            padding: 2em 1em;
+            padding: 3em 1em;
             margin: 1%;
             background: #efefef;
             z-index:999 !important;
@@ -10557,11 +10568,31 @@
             font-size: 14px;
         }
         .buttonprl {
-            background-color: transparent;
-            border: 1px solid #1c5d98;
+            background-color: transparent !important;
+            border: 1px solid #1c5d98 !important;
             color: #1c5d98 !important;
-            padding: 5px 7px !important;
-            font-size: 13px !important;
+        }
+
+            .buttonprl:hover {
+                background-color: #1c5d98 !important;
+                border: 1px solid #1c5d98 !important;
+                color: #fff !important;
+            }
+        #divtestUpload ul li a i.material-icons {
+            color: #1c5d98 !important;
+            font-size: 24px !important;
+            line-height: 0.5;
+            cursor: pointer;
+        }
+            .buttonprl.active-lan {
+                background-color: #1c5d98 !important;
+                border: 1px solid #1c5d98 !important;
+                color: #fff !important;
+            }
+        body .buttonprl {
+            background-color: transparent !important;
+            border: 1px solid #1c5d98 !important;
+            color: #1c5d98 !important;
         }
 
         .sidebar {
@@ -10616,6 +10647,12 @@
             background: #cccccc !important;
             -webkit-transition: background 0.5s;
             transition: background 0.5s;
+        }
+        .sidebar-nav li a.active-sidebar {
+            background: green !important;
+            -webkit-transition: background 0.5s;
+            transition: background 0.5s;
+            color:#fff !important;
         }
 
         @media screen and (max-width: 812px) {
@@ -10673,10 +10710,18 @@
                 }
 
             .dashboard-left .link:focus-within {
-                background: #8c21d3;
+                background: #1c5d98 !important;
                 outline: none;
                 box-shadow: none;
-                border-bottom-color: #c688ef;
+                border-bottom-color: #1c5d98 !important;
+                color: #fff !important;
+            }
+            .dashboard-left .link:hover {
+                background: #1c5d98 !important;
+                outline: none;
+                box-shadow: none;
+                border-bottom-color: #1c5d98 !important;
+                color: #fff !important;
             }
 
         .dashboard-left li {
@@ -10702,10 +10747,10 @@
         }
 
             .dashboard-left button.link.current {
-                background: #8c21d3;
+                background: #1c5d98 !important;
                 outline: none;
                 box-shadow: none;
-                border-bottom-color: #c688ef;
+                border-bottom-color: #1c5d98 !important;
                 touch-action: auto;
             }
 
@@ -11394,13 +11439,15 @@
 
                 .cockpit-dropdown-div button.dropcockpit:hover {
                     background: #e9e9e9 !important;
+                    color: #333 !important;
                 }
 
                 .cockpit-dropdown-div button.dropcockpit:focus {
                     outline: none;
-                    background-color: #8636d7 !important;
-                    border-top: #8636d7 !important;
-                    border-bottom: #8636d7 !important;
+                    background-color: #e9e9e9 !important;
+                    border-top: #e9e9e9 !important;
+                    border-bottom: #e9e9e9 !important;
+                    color: #333 !important;
                 }
 
             .cockpit-dropdown-div button#Ansehenund:focus {
@@ -11579,7 +11626,7 @@
         }
 
         #lendrequestbody table tbody tr th {
-            width: 21%;
+            width: 100%;
             line-height: 2.5;
             padding: 8px;
             color: #333;
@@ -11587,6 +11634,14 @@
 
         #lendrequestbody table tbody tr td input {
             width: 360px;
+        }
+        .dashboard-price-list .table-bordered td .material-icons {
+            width: auto;
+            float: right;
+            position: absolute;
+            text-align: left;
+            font-size: 20px !important;
+            left: 20px;
         }
 
         #lendrequestbody table tbody tr {
@@ -19388,13 +19443,57 @@
         }
 
         #MessageForForsa {
-            background: #37383d;
-            height: 500px;
+            background: #c6d9f1 !important;
+            height: 350px;
             border-radius: 0px;
-            border-bottom: 1px solid grey !important;
+            border-bottom: 1px solid #c6d9f1 !important;
             border: none;
-            color: #fff;
+            border-bottom-color: currentcolor;
+            border-bottom-style: none;
+            border-bottom-width: medium;
+            color: #333;
         }
+        #RejectRequest {
+            background-color: #1c5d98 !important;
+            color: #fff !important;
+        }
+        .chat-forsa-modal table tbody tr th {
+
+    width: 100%;
+    float: left;
+
+}
+        input#AcceptRequest {
+            background-color: #1c5d98 !important;
+            color: #fff !important;
+            font-size: 15px !important;
+            margin-top: 10px;
+        }
+
+        input#RejectRequest {
+            background-color: #1c5d98 !important;
+            color: #fff !important;
+            font-size: 15px !important;
+            margin-top: 10px;
+        }
+
+        input.btn.btn-info.btn-lg.full-width.chtforsa {
+            background-color: #1c5d98 !important;
+            color: #fff !important;
+            font-size: 15px !important;
+            margin-top: 10px;
+        }
+
+.chat-forsa-modal table tbody tr td {
+
+    /*background-color: #c6d9f1 !important;*/
+    width: 100%;
+    float: left;
+
+}
+
+
+
     </style>
 
     <!--<script src="./Instimatch Dashboard_files/prefixfree.min.js"></script>-->
@@ -19528,13 +19627,13 @@
                             </div>
                         </li>
                         <li *ngIf="lenderDashboardService.UserTypeId == 5">
-                            <a href="javascript:void(0);" (click)="SetCurrentPage('All Banks')">
+                            <a href="javascript:void(0);" (click)="SetCurrentPage('All Banks')" [ngClass]="{'active': selectedItem == 'All Banks'}">
                                 {{'Lender.DashBoard.AllBanks'|translate}}<span _ngcontent-c5="" class="align-middle input-group-icon "><img _ngcontent-c5="" alt="Insimatch Logo" src="../assets/images/all-bank.png"></span>
                             </a>
                         </li>
 
                         <li style="display: none;">
-                            <a href="javascript:void(0);" (click)="SetCurrentPage('Lender Settings')">
+                            <a href="javascript:void(0);" (click)="SetCurrentPage('Lender Settings')" [ngClass]="{'active': selectedItem == 'Lender Settings'}">
                                 {{'Lender.DashBoard.LenderSettings'|translate}}<span class="align-middle input-group-icon ">
                                     <i class="material-icons ">
                                         speaker_notes
@@ -19544,12 +19643,12 @@
                         </li>
 
                         <li>
-                            <a href="javascript:void(0);" (click)="SetCurrentPage('View All Price')">
+                            <a href="javascript:void(0);" (click)="SetCurrentPage('View All Price')" [ngClass]="{'active': selectedItem == 'View All Price'}">
                                 {{'Lender.DashBoard.ViewAllPrice'|translate}}<span _ngcontent-c5="" class="align-middle input-group-icon "><img _ngcontent-c5="" alt="Insimatch Logo" src="../assets/images/view-all-price.png"></span>
                             </a>
                         </li>
                         <li>
-                            <a href="javascript:void(0);" (click)="SetCurrentPage('Best Price View')">
+                            <a href="javascript:void(0);" (click)="SetCurrentPage('Best Price View')" [ngClass]="{'active': selectedItem == 'Best Price View'}">
                                 {{'Lender.DashBoard.BestPriceView'|translate}}<span class="align-middle input-group-icon "><i class="material-icons ">settings</i></span>
                             </a>
                         </li>
@@ -19566,22 +19665,22 @@
 
     </li>-->
                         <li *ngIf="lenderDashboardService.UserTypeId == 6">
-                            <a href="javascript:void(0);" (click)="SetCurrentPage('Kontact Dashboard')">
+                            <a href="javascript:void(0);" (click)="SetCurrentPage('Kontact Dashboard')" [ngClass]="{'active': selectedItem == 'Kontact Dashboard'}">
                                 {{'Lender.DashBoard.AllBanks'|translate}}<span class="align-middle input-group-icon "><i class="material-icons ">view_list</i></span>
                             </a>
                         </li>
                         <li *ngIf="IfBothUserTypeFound">
-                            <a href="javascript:void(0);" (click)="SetCurrentPage('All Banks')">
+                            <a href="javascript:void(0);" (click)="SetCurrentPage('All Banks')" [ngClass]="{'active': selectedItem == 'All Banks'}">
                                 {{'Lender.DashBoard.AllBanks'|translate}}<span class="align-middle input-group-icon "><i class="material-icons ">view_list</i></span>
                             </a>
                         </li>
                         <li>
-                            <a href="javascript:void(0);" routerLink="/lenderDashboard/Maturitylist">
+                            <a href="javascript:void(0);" (click)="SetCurrentPage('MaturityList')" routerLink="/lenderDashboard/Maturitylist" [ngClass]="{'active': selectedItem == 'MaturityList'}">
                                 {{'Lender.DashBoard.MaturityList'|translate}}<span _ngcontent-c5="" class="align-middle input-group-icon "><img _ngcontent-c5="" alt="Insimatch Logo" src="../assets/images/maturity-list.png"></span>
                             </a>
                         </li>
                         <li>
-                            <a href="javascript:void(0);" routerLink="/lenderDashboard/historyMaturitylist">
+                            <a href="javascript:void(0);" (click)="SetCurrentPage('HistoryMaturityList')" routerLink="/lenderDashboard/historyMaturitylist" [ngClass]="{'active': selectedItem == 'HistoryMaturityList'}">
                                 {{'Lender.DashBoard.HistoryMaturityList'|translate}}<span _ngcontent-c5="" class="align-middle input-group-icon "><img _ngcontent-c5="" alt="Insimatch Logo" src="../assets/images/history-maturity-list.png"></span>
                             </a>
                         </li>
@@ -19679,7 +19778,7 @@
 
         <button Id="ShowSendRequestLDPopup" type="button" style="display:none;" class="btn w-100 active" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target=".modalSendRequest">Lend</button>
         <!-- Modal -->
-        <div class="modal fade bd-example-modal-lg dashboard-modal" id="myModal" role="dialog" style="z-index: 99999;">
+        <div class="modal fade bd-example-modal-lg dashboard-modal chatwithforsa-pop" id="myModal" role="dialog" style="z-index: 99999;">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -19689,7 +19788,7 @@
                         </button>
                     </div>
 
-                    <div class="modal-body" id="lendrequestbody">
+                    <div class="modal-body chat-forsa-modal" id="lendrequestbody">
                         <table style="width: 100%;">
                             <tbody>
                                 <tr>
@@ -19741,7 +19840,7 @@
                                     <td>
                                         <select [disabled]="1==1 || IfBankResponseFound" #InterestConvention="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel2.InterestConvention" name="InterestConvention" class="form-control" id="interest">
 
-                                            <option *ngFor="let interest of bestPriceViewService.listInterestConvention" value="{{interest.Id}}">{{interest.Value}}</option>
+                                            <option *ngFor="let interest of bestPriceViewService.listInterestConvention" value="{{interest.Id}}">---{{interest.Value}}--</option>
                                         </select>
                                     </td>
                                 </tr>
@@ -19834,10 +19933,7 @@
         </div>
     </div>
 
-    <script src="assets/scripts/bootstrap-datepicker.min.js"></script>
-    <script src="assets/scripts/LenderIndex.js"></script>
-    <script src="assets/scripts/bootstrap-datepicker.min.js"></script>
-    <script src="js/index.js "></script>
+
     <!--<script>
         // var state = "expanded ";
         //Check if navbar is expanded or minimized and handle
@@ -19905,4 +20001,8 @@
 
 
 </body>
+    <script src="assets/scripts/bootstrap-datepicker.min.js"></script>
+    <script src="assets/scripts/LenderIndex.js"></script>
+    <script src="assets/scripts/bootstrap-datepicker.min.js"></script>
+    <script src="js/index.js "></script>
 </html>

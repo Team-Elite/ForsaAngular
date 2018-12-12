@@ -1,3 +1,11 @@
+<style>
+    body .buttonprl {
+        background-color: transparent !important;
+        border: 1px solid #fff !important;
+        color: #fff !important;
+    }
+</style>
+
 <form #LoginForm="ngForm">
     <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="large" color="#fff" type="ball-clip-rotate">
     </ngx-spinner>
@@ -20,10 +28,10 @@
                             </ul>
 
                             <!-- <li class="in-header-user text-right">
-                            <a href="javascript:void(0);">
-                                <i class="material-icons whitebg"> supervisor_account </i>
-                            </a>
-                        </li> -->
+                                <a href="javascript:void(0);">
+                                    <i class="material-icons whitebg"> supervisor_account </i>
+                                </a>
+                            </li> -->
 
                         </div>
                     </div>
@@ -110,31 +118,25 @@
                                                     </div>
                                                 </div>
                                             </div>
+
+                                            <div class="login-margin"></div>
+
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-primary" (click)="ForgotPassword(LoginForm)">{{'Button.ButtonSend'|translate}}</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                <div class="form-group form-md-line-input has-error">
+                                    <div class="new-captcha">
+                                        <label name="captcha-value" class="captcha" name="captcha">{{captcha}}</label>
 
-                                <!-- <div class="form-group form-md-line-input has-error">
-                                                            <div class=" input-group">
-                                                                <re-captcha (resolved)="resolved($event)"
-                                                                            siteKey="6LcL6XoUAAAAAIyV8mXAkILN2BWehnY2b3VpLPZa"></re-captcha>
-                                                                 <span class="line"> I am not a robot</span>
-                                                        <input id="cbx3" type="checkbox" class="cbx used">
-                                                        <label for="cbx3" class="lbl notrobot">
-                                    </label>
+                                        <div class="group input-group">
+                                            <input placeholder="Bitte Code eingeben" maxlength="5" type="text" id="inputText" style="margin-left:30%" name="Captchainput" [(ngModel)]="loginService.loginModel.Captcha" />
+                                        </div>
+                                    </div>
                                 </div>
-                            </div> -->
-                                <div class="new-captcha">
 
-                                    <input type="text" id="captcha" value="12345" disabled />
-                                    <input placeholder="Bitte Code eingeben" maxlength="5" type="text" id="inputText" />
-
-
-                                </div>
-                                <div class="login-margin"></div>
                                 <button type="button" class="button btn buttonBlue" (click)="ValidateUser(LoginForm);">
                                     <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
                                     {{'Login.LoginEnter'|translate}} <i class="material-icons">
@@ -156,19 +158,20 @@
             </div>
 
         </div>
-        <script>var captcha;
+        <script>
+            var captcha;
 
 
 
-function check(){
-    var input=document.getElementById("inputText").value;
+            function check() {
+                var input = document.getElementById("inputText").value;
 
-    if(input==captcha){
-        alert("Equal");
-    }
-    else{
-        alert("Not Equal");
-    }
-}</script>
+                if (input == captcha) {
+                    alert("Equal");
+                }
+                else {
+                    alert("Not Equal");
+                }
+            }</script>
     </body>
 </form>

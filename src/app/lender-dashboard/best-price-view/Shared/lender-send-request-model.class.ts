@@ -4,7 +4,7 @@ export class LenderSendRequestModel {
     BorrowerId :number;
     LenderName:string;
     BorrowerName:string;
-    Amount :number;
+    Amount :any;
     StartDate :string;
     EndDate :string
     NoOfDays :number

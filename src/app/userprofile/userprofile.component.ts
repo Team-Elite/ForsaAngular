@@ -3,6 +3,7 @@ import { AuthenticateServiceService } from '../Shared/authenticate-service.servi
 import { UserProfileServiceService } from './Shared/user-profile-service.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
+import { NgForm } from '@angular/forms';
 
 @Component({
     selector: 'app-userprofile',
@@ -49,11 +50,11 @@ export class UserprofileComponent implements OnInit {
             );
     }
 
-    async UpdateProfile() {
+    async UpdateProfile(form: NgForm) {
 
         if (confirm("Are you sure to update profile")) {
             this.spinner.show();
-            await this.userProfileServiceService.updateUserProfile(this.userProfileData);
+            await this.userProfileServiceService.updateUserProfile(form.value);
             this.getUserData();
 
             this.spinner.hide();

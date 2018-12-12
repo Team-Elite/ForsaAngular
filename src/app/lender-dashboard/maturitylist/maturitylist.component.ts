@@ -16,8 +16,8 @@ export class MaturitylistComponent implements OnInit {
 
     async GetMaturityList(orderBy:string) {
         this.orderBy=orderBy;
-        if (window.location.hash.replace("#", "") === '/lenderDashboard/Maturitylist') this._MaturityList = await this._landerdashboardservice.GetlenderMaturityList(true, this._authenticateServiceService.GetUserId(),this.orderBy);
-        if (window.location.hash.replace("#", "") === '/lenderDashboard/historyMaturitylist') this._MaturityList = await this._landerdashboardservice.GetlenderMaturityList(false, this._authenticateServiceService.GetUserId(),this.orderBy);
+        if (window.location.hash.replace("#", "") === '/lenderDashboard/Maturitylist') this._MaturityList = await this._landerdashboardservice.GetlenderMaturityList(true, this._authenticateServiceService.GetUserId(), this.orderBy);
+        if (window.location.hash.replace("#", "") === '/lenderDashboard/historyMaturitylist') this._MaturityList = await this._landerdashboardservice.GetlenderMaturityList(false, this._authenticateServiceService.GetUserId(), this.orderBy);
     }
     _history: boolean;
     http: any;

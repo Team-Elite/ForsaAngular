@@ -10072,19 +10072,43 @@
     }
 
     #wrapper ul.in-lang li.active {
-        background: #8636d7;
+        background-color: transparent !important;
     }
 
     #wrapper ul.in-lang li:hover > a {
         color: #fff;
-        background: #8636d7;
+        background-color: transparent !important;
     }
-
+    #lendrequestbody ul {
+        color: #333 !important;
+    }
+        #lendrequestbody ul li a {
+            color: #333 !important;
+        }
+    /*.dashboard-price-list .table-bordered td .material-icons {
+        width: auto;
+        float: right;
+        position: absolute;
+        text-align: left;
+        font-size: 20px !important;
+        left: 20px;
+    }*/
+    body .buttonprl {
+        background-color: transparent !important;
+        border: 1px solid #1c5d98 !important;
+        color: #1c5d98 !important;
+    }
+    #divtestUpload ul li a i.material-icons {
+        color: #1c5d98 !important;
+        font-size: 24px !important;
+        line-height: 0.5;
+        cursor: pointer;
+    }
     #wrapper ul.in-lang li.active a,
     #wrapper ul.in-lang li:hover,
     #wrapper ul.in-lang li a:hover {
         color: #fff;
-        background: #8636d7;
+        background-color: transparent !important;
     }
 
     .fiftypercent .md-radio label {
@@ -10516,7 +10540,7 @@
         float: right;
         width: calc(100% - 320px);
         color: #fff;
-        padding: 2em 5em;
+        padding: 3em 5em;
         margin: 1%;
         background: #efefef;
         z-index:999 !important;
@@ -10628,10 +10652,18 @@
             }
 
         .dashboard-left .link:focus-within {
-            background: #8c21d3;
+            background: #1c5d98 !important;
             outline: none;
             box-shadow: none;
-            border-bottom-color: #c688ef;
+            border-bottom-color: #1c5d98 !important;
+            color:#fff !important;
+        }
+        .dashboard-left .link:hover {
+            background: #1c5d98 !important;
+            outline: none;
+            box-shadow: none;
+            border-bottom-color: #1c5d98 !important;
+            color: #fff !important;
         }
 
     .dashboard-left li {
@@ -19387,7 +19419,7 @@
                      <button type="button" class="btn w-100 ">Tagesgeld (T/N)</button>
                  </div> -->
                 <div *ngFor="let rate of bestPriceViewService.listRatesByTimePeriod" class="col-lg-12  pr-1">
-                    <button id="rate.TimePeriodId" [ngClass]="{'current': selectedTimePeriod==rate.TimePeriodId}" (click)="GetBanksByTimePeriod(rate.TimePeriodId)" type="button" class="link row">
+                    <button id="rate.TimePeriodId"  (click)="GetBanksByTimePeriod(rate.TimePeriodId,rate.TimePeriod)" type="button" class="link row">
                         <div class="col-md-6 col-sm-12"><a>{{rate.TimePeriod}}</a></div>
                         <div class="col-md-6 col-sm-12"><a>{{rate.RateOfInterest}}</a></div>
                     </button>
@@ -19397,7 +19429,7 @@
 
         <div class="col-lg-6 col-md-12">
             <div class="dashboard-right-head">
-                <p>EUR 1 Month</p>
+                <p>EUR {{selectedTimePeriod}}</p>
             </div>
             <div class="dashboard-right">
                 <!--<div class="in-buttons no-gutters row">
@@ -19455,7 +19487,7 @@
                         <tbody>
                             <tr><th>{{'Lender.BestPriceView.Lender'|translate}}</th><td>{{bestPriceViewService.lenderSendRequestModel.LenderName}}</td></tr>
                             <tr><th>{{'Lender.BestPriceView.Borrower'|translate}}</th><td>{{bestPriceViewService.lenderSendRequestModel.BorrowerName}}</td></tr>
-                            <tr><th>{{'Lender.BestPriceView.Amount'|translate}}</th><td><input [disabled]="IfBankResponseFound" (keypress)="numberOnly($event)" #Amount1="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.Amount" name="Amount" placeholder="Volumen" type="text" id="amount" class="form-control requestamount"></td></tr>
+                            <tr><th>{{'Lender.BestPriceView.Amount'|translate}}</th><td><input [disabled]="IfBankResponseFound" (blur)="GermanFormat()"  #Amount1="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.Amount" name="Amount" placeholder="Volumen" type="text" id="amount" class="form-control requestamount"></td></tr>
                             <tr><th>{{'Lender.BestPriceView.StartDate'|translate}} </th><td><input [disabled]="IfBankResponseFound" (change)="CalculateNumberOfDays()" #StartDate="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.StartDate" name="StartDate" type="date" id="datepicker" class="form-control hasDatepicker datepicker"></td></tr>
                             <tr><th>{{'Lender.BestPriceView.Endate'|translate}}</th><td><input [disabled]="IfBankResponseFound" (change)="CalculateNumberOfDays()" #EndDate="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.EndDate" name="EndDate" type="date" id="datepicker1" class="form-control hasDatepicker datepicker1"></td></tr>
                             <tr><th>{{'Lender.BestPriceView.NrOfDays'|translate}}&nbsp;&nbsp;</th><td id="no_of_days">{{bestPriceViewService.lenderSendRequestModel.NoOfDays}}</td></tr>
@@ -19515,7 +19547,7 @@
                         <tbody>
                             <tr><th>{{'Lender.BestPriceView.Lender'|translate}}</th><td>Stadt Singen</td></tr>
                             <tr><th>{{'Lender.BestPriceView.Borrower'|translate}}</th><td>Mainz Bank</td></tr>
-                            <tr><th>{{'Lender.BestPriceView.Amount'|translate}}</th><td><input type="number" id="amount" class="form-control requestamount"></td></tr>
+                            <tr><th>{{'Lender.BestPriceView.Amount'|translate}}</th><td><input type="number" (blur)="GermanFormat()" id="amount" class="form-control requestamount"></td></tr>
                             <tr><th>{{'Lender.BestPriceView.StartDate'|translate}}</th><td><input type="date" id="datepicker" class="form-control hasDatepicker datepicker"></td></tr>
                             <tr><th>{{'Lender.BestPriceView.Endate'|translate}}</th><td><input type="date" id="datepicker1" class="form-control hasDatepicker datepicker1"></td></tr>
                             <tr><th>{{'Lender.BestPriceView.NrOfDays'|translate}}&nbsp;&nbsp;</th><td id="no_of_days"></td></tr>

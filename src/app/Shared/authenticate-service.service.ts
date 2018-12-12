@@ -20,7 +20,7 @@ export class AuthenticateServiceService {
     Usertoken: any = this.storage.get(this.userValue);
     Userdata: any;
     requestedForReport: string='';
-    baseURL: string = (environment.production) ? 'http://40.89.139.123:4043' : 'http://40.89.139.123:4043';
+    baseURL: string = (environment.production) ? 'http://40.89.139.123:4043' : 'http://localhost:60744';
     headerOptions = new Headers({ 'Content-Type': 'application/json' });
     requestOptions = new RequestOptions({ method: RequestMethod.Post, headers: this.headerOptions });
     bankInfo: any;
@@ -45,7 +45,10 @@ export class AuthenticateServiceService {
 
 
     }
-
+    GenerateCaptcha() {
+        const captcha = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+        return Math.floor((Math.random() * captcha.length)).toString() + " " + Math.floor((Math.random() * captcha.length)).toString() + " " + Math.floor((Math.random() * captcha.length)).toString() + " " + Math.floor((Math.random() * captcha.length)).toString();
+    }
 
     AuthenticateSession() {
 

@@ -2,3 +2,38 @@
     margin-bottom: 10px !important;
     margin-right: 10px !important;
 }
+footer.my-footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    left: 0;
+    z-index: 999999;
+}
+
+footer.my-footer .container {
+    padding: .5em 0 !important;
+}
+
+.my-footer .navbar-footer {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: .5rem 1rem;
+}
+
+    .my-footer .navbar-footer a {
+        color: #333 !important;
+        text-decoration: none;
+    }
+.my-footer {
+    background-color: #ccc;
+}
+#lendrequestbody ul {
+    color: #333 !important;
+}
+
+    #lendrequestbody ul li a {
+        color: #333 !important;
+    }

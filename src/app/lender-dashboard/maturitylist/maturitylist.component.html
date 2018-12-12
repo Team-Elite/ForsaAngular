@@ -19350,13 +19350,14 @@
                         <th style="cursor:pointer;" (click)="GetMaturityList('Borrower')">Borrower</th>
                         <th style="cursor:pointer;" (click)="GetMaturityList('Amount')">Amount</th>
                         <th style="cursor:pointer;" (click)="GetMaturityList('StartDate')">Start Date</th>
-                        <th style="cursor:pointer;" (click)="GetMaturityList('EndDate')">End Date</th>
-                        <th style="cursor:pointer;" (click)="GetMaturityList('NoOfDays')">No Of Days</th>
+                        <th style="cursor:pointer;" (click)="GetMaturityList('EndDate')">Maturity Date</th>
+                        <th style="cursor:pointer;" (click)="GetMaturityList('RateOfInterestOfferred')">Rate</th>
+                        <!--<th style="cursor:pointer;" (click)="GetMaturityList('NoOfDays')">No Of Days</th>
                         <th style="cursor:pointer;" (click)="GetMaturityList('InterestConvention')">Interest Convention</th>
-                        <th style="cursor:pointer;" (click)="GetMaturityList('Payments')">Payments</th>
+                        <th style="cursor:pointer;" (click)="GetMaturityList('Payments')">Payments</th>-->
                         <!--<th style="cursor:pointer;">IsRequestAccepted</th>-->
                         <!--<th style="cursor:pointer;">RequestCreatedBy</th>-->
-                        <th style="cursor:pointer;" (click)="GetMaturityList('RateOfInterestOfferred')">Rate Of Interest Offerred</th>
+                        <!--<th style="cursor:pointer;" (click)="GetMaturityList('RateOfInterestOfferred')">Rate Of Interest Offerred</th>-->
                         <!--<th style="cursor:pointer;">Offerred Date</th>
                         <th style="cursor:pointer;">Status</th>-->
 
@@ -19370,12 +19371,13 @@
                         <td>{{bank.Amount}}</td>
                         <td>{{bank.StartDate|date:'MM-dd-yyyy'}}</td>
                         <td>{{bank.EndDate|date:'MM-dd-yyyy'}}</td>
-                        <td>{{bank.NoOfDays}}</td>
-                        <td>{{bank.InterestConvention}}</td>
-                        <td>{{bank.Payments}}</td>
+                        <td>{{bank.RateOfInterestOfferred}}</td>
+                        <!--<td>{{bank.NoOfDays}}</td>
+                        <td>{{bank.InterestConvention}}</td>-->
+                        <!--<td>{{bank.Payments}}</td>-->
                         <!--<td>{{bank.IsRequestAccepted}}</td>
                         <td>{{bank.RequestCreatedBy}}</td>-->
-                        <td>{{bank.RateOfInterestOfferred}}</td>
+                        <!--<td>{{bank.RateOfInterestOfferred}}</td>-->
 
                         <!--<td>{{bank.OfferredOn|date:'medium'}}</td>
                         <td>

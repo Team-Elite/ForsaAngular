@@ -9,6 +9,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 //import {FormBuilder, FormGroup, Validators} from '@angular/forms'; 
 import { NgxSpinnerService } from 'ngx-spinner';
+import { AuthenticateServiceService } from '../Shared/authenticate-service.service';
 
 @Component({
     selector: '[app-registration]',
@@ -20,9 +21,12 @@ import { NgxSpinnerService } from 'ngx-spinner';
 
 export class RegistrationComponent implements OnInit {
 
+    captcha: any;
+    ;
     constructor(public registrationService: RegistrationService, public customValidationServiceService: CustomValidationServiceService
         , public router: Router, public toastr: ToastrService, public spinner: NgxSpinnerService
-        , public activatedRoute: ActivatedRoute
+        , public activatedRoute: ActivatedRoute,
+       public authenticateServiceService: AuthenticateServiceService
         //  ,public formBuilder:FormBuilder, public formGroup:FormGroup
     ) { }
     _Message: string = "";
@@ -66,6 +70,7 @@ export class RegistrationComponent implements OnInit {
                 this.GetUserDetailByUserId();
             }
         });
+        this.generateCaptcha();
     }
 
     fileuploaderFileChange(files: FileList) {
@@ -147,25 +152,47 @@ export class RegistrationComponent implements OnInit {
             rdbNonBank: false,
             NewPassword: '',
             CommercialRegisterExtract: null,
-            IdentityCard: null
+            IdentityCard: null,
+            Captcha:''
             //LEINumber2:''
         }
     }
+    generateCaptcha() {
+        this.captcha = this.authenticateServiceService.GenerateCaptcha();
 
-    async registerUser(form: NgForm) {
-        if (!this.ValidateUserForm(form)) return;
+        // $("#captcha").val(this.captcha);
+    }
+    async registerUser(form: NgForm) {  this.spinner.show();
+        if (!this.ValidateUserForm(form)) { this.spinner.hide(); return; }
+        if (form.value.Captchainput == undefined || form.value.Captchainput == null) {
 
+            this.toastr.error("Please enter captcha code", "Ragisteration");
+            this.generateCaptcha();
+            this.spinner.hide();
+            return false;
+        }
+        else {
+            const captchaimage = this.captcha.split(' ').join('');
 
+            if (captchaimage !== form.value.Captchainput) {
+                this.toastr.error("Invalid captcha code", "Ragisteration");
+                this.generateCaptcha();
+                this.spinner.hide();
+                return false;
+            }
+        }
+        form.value.DateModified = new Date();
         // debugger;
         if (form.value.UserId != undefined && form.value.UserId != null && form.value.UserId > 0) {
             this.UpdateUserDetails(form);
+            this.spinner.hide();
             return;
         }
         form.value.DateCreated = new Date();
-        form.value.DateModified = new Date();
+       
         form.value.CreatedBy = -1;
       
-        this.spinner.show();
+      
         // Checking ifUserExist
         let userExist = await this.registrationService.CheckIfUserNameIsAvailable(form.value.UserName);
      
@@ -186,7 +213,7 @@ export class RegistrationComponent implements OnInit {
             return;
         }
 
-        this.spinner.hide();
+      
         if (form.value.rdbBank) {
             form.value.GroupIds = '';
             if (form.value.GroupCommunities)
@@ -226,7 +253,7 @@ export class RegistrationComponent implements OnInit {
                 this.toastr.success("Registration is successfull. An email is sent to registered email id. This email have your login credentails.", "Registration");
                 //location.reload();
             });
-
+        this.spinner.hide();
         // this.registrationService.RegisterUser(form.value).subscribe(data => {
         //   this.resetForm(form);
         //   this.spinner.hide();
@@ -244,8 +271,8 @@ export class RegistrationComponent implements OnInit {
     ValidateUserForm(form: NgForm) {
         let IfErrorFound: boolean = false;
         let numberOfErrorFound: number = 0;
-        this.Section2Visible(form);
-        this.Section3Visible(form);
+        IfErrorFound = this.Section2Visible(form);
+        IfErrorFound= this.Section3Visible(form);
         //_Message = 'Fields marked with * are required. Please fill';
         /*
               
@@ -445,7 +472,7 @@ export class RegistrationComponent implements OnInit {
         //    this.toastr.error("Please verify captcha.", "Registration");
         //    return false;
         //}
-        return true;
+        return IfErrorFound;
     }
 
     Section2Visible(form: NgForm) {
@@ -457,12 +484,13 @@ export class RegistrationComponent implements OnInit {
            
             this._Message = this._Message.substring(0, this._Message.length - 1);
             this.toastr.error(this._Message, "Registration");
-            this.registrationService.ShowSection2 = false;
-            return;
+           
+          //  this.registrationService.ShowSection2 = false;
+            return false;
         }
 
         this.registrationService.ShowSection2 = true;
-
+       
     }
     ValidateSection1(form: NgForm): any {
         var IfErrorFound = false;
@@ -527,6 +555,7 @@ export class RegistrationComponent implements OnInit {
         return IfErrorFound;
     }
     ValidateSection2(form: NgForm): any {
+
         var IfErrorFound = false;
         if (form.value.Salutation == undefined || form.value.Salutation == null || form.value.Salutation == 0) {
             IfErrorFound = true;
@@ -576,21 +605,23 @@ export class RegistrationComponent implements OnInit {
             this._Message = this._Message + " Deposit Insurance Amount,";
         }
         return IfErrorFound;
+       
     }
     Section3Visible(form: NgForm) {
         console.log(this.registrationService.userModel);
         if (this.ValidateSection2(form)) {
-            this.registrationService.ShowSection3 = false;
+           // this.registrationService.ShowSection3 = false;
             this._Message = this._Message.substring(0, this._Message.length - 1);
             this.toastr.error(this._Message, "Registration");
-            return;
+            
+            return false;
         }
         this.registrationService.ShowSection3 = true;
     }
 
 
     async GetUserDetailByUserId(form?: NgForm) {
-        debugger;
+     
         //this.registrationService.userId=74;
         this.spinner.show();
         var result = await this.registrationService.GetUserDetailByUserId();
@@ -614,15 +645,11 @@ export class RegistrationComponent implements OnInit {
 
 
     async UpdateUserDetails(form: NgForm) {
-        debugger;
+     
+       
         form.value.DateCreated = new Date();
         form.value.DateModified = new Date();
         form.value.CreatedBy = -1;
-        if (!this.ValidateUserForm(form)) {
-            return false;
-        }
-
-        this.spinner.show();
         // // Checking ifUserExist
         // let userExist= await this.registrationService.CheckIfUserNameIsAvailable(form.value.UserName);
         // debugger;
@@ -643,7 +670,7 @@ export class RegistrationComponent implements OnInit {
         // // //   return;
         // // // }
 
-        this.spinner.hide();
+       
         if (form.value.rdbBank) {
             form.value.GroupIds = '';
             if (form.value.GroupCommunities)
@@ -666,10 +693,10 @@ export class RegistrationComponent implements OnInit {
             form.value.UserTypeId = form.value.UserTypeId + '5,';
         form.value.UserTypeId = form.value.UserTypeId.substring(0, form.value.UserTypeId.length - 1);
 
-        this.spinner.show();
+       
         // Updating user..
-        form.value.UserName = this.registrationService.userModel.UserName;
-        form.value.EmailAddress = this.registrationService.userModel.EmailAddress;
+        debugger;
+        //form.value.EmailAddress = this.registrationService.userModel.EmailAddress;
         this.registrationService.UpdateUserDetails(this.fileList,form.value).subscribe(data => {
             this.resetForm(form);
             this.spinner.hide();
@@ -681,6 +708,7 @@ export class RegistrationComponent implements OnInit {
             //location.reload();
 
         })
+        this.spinner.hide();
     }
 
 

@@ -4734,13 +4734,26 @@
         border-bottom-right-radius: 0.25rem;
     }
 
-    .page-item.active .page-link {
-        z-index: 2;
-        color: #fff;
-        background-color: #007bff;
-        border-color: #007bff;
+    #main-panel .pagination .page-item.active .page-link {
+        z-index: 1;
+        color: #fff !important;
+        background-color: #1c5d98 !important;
+        border-color: #1c5d98 !important;
     }
-
+    /*.dashboard-price-list .table-bordered td .material-icons {
+        width: auto;
+        float: right;
+        position: absolute;
+        text-align: left;
+        font-size: 20px !important;
+        left: 20px;
+    }*/
+    #divtestUpload ul li a i.material-icons {
+        color: #1c5d98 !important;
+        font-size: 24px !important;
+        line-height: 0.5;
+        cursor:pointer;
+    }
     .page-item.disabled .page-link {
         color: #868e96;
         pointer-events: none;

@@ -4733,12 +4733,15 @@
         border-top-right-radius: 0.25rem;
         border-bottom-right-radius: 0.25rem;
     }
+    #lendrequestbody ul {
+        color: #333 !important;
+    }
 
-    .page-item.active .page-link {
-        z-index: 2;
-        color: #fff;
-        background-color: #007bff;
-        border-color: #007bff;
+    #main-panel .pagination .page-item.active .page-link {
+        z-index: 1;
+        color: #fff !important;
+        background-color: #1c5d98 !important;
+        border-color: #1c5d98 !important;
     }
 
     .page-item.disabled .page-link {
@@ -9123,7 +9126,24 @@
     .text-primary {
         color: #007bff !important;
     }
-
+    input#AcceptRequest {
+        background-color: #1c5d98 !important;
+        color: #fff !important;
+        font-size: 15px !important;
+        margin-top: 10px;
+    }
+    input#RejectRequest {
+        background-color: #1c5d98 !important;
+        color: #fff !important;
+        font-size: 15px !important;
+        margin-top: 10px;
+    }
+    input.btn.btn-info.btn-lg.full-width.chtforsa {
+        background-color: #1c5d98 !important;
+        color: #fff !important;
+        font-size: 15px !important;
+        margin-top: 10px;
+    }
     a.text-primary:focus, a.text-primary:hover {
         color: #0062cc !important;
     }
@@ -11541,18 +11561,35 @@
         background-color: #72af09;
         border-color: #72af09;
     }
+    body .buttonprl {
+        background-color: transparent !important;
+        border: 1px solid #1c5d98 !important;
+        color: #1c5d98 !important;
+    }
 
     #lendrequestbody table tbody tr th {
-        width: 21%;
+        width: 100%;
         line-height: 2.5;
         padding: 8px;
         color: #333;
     }
-
+    #divtestUpload ul li a i.material-icons {
+        color: #1c5d98 !important;
+        font-size: 24px !important;
+        line-height: 0.5;
+        cursor: pointer;
+    }
     #lendrequestbody table tbody tr td input {
         width: 360px;
     }
-
+    /*.dashboard-price-list .table-bordered td .material-icons {
+        width: auto;
+        float: right;
+        position: absolute;
+        text-align: left;
+        font-size: 20px !important;
+        left: 20px;
+    }*/
     #lendrequestbody table tbody tr {
         border-bottom: 1px solid grey;
     }
@@ -19350,7 +19387,8 @@
             <table class="table table-bordered table-responsive">
                 <tbody>
                     <tr>
-                        <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontaly()">{{'Lender.DashBoard.Pricelist.GENERALOVERVIEW'|translate}}</th>
+                        <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Bank')">{{'Lender.DashBoard.Pricelist.GENERALOVERVIEW'|translate}}</th>
+                        <!--<th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontaly()">{{'Lender.DashBoard.Pricelist.GENERALOVERVIEW'|translate}}</th>-->
                         <!--<th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('TN')">{{'Lender.DashBoard.Pricelist.Tag'|translate}}</th>-->
                         <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Week1')">{{'Lender.DashBoard.Pricelist.Week1'|translate}}</th>
                         <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Week2')">{{'Lender.DashBoard.Pricelist.Week2'|translate}}</th>

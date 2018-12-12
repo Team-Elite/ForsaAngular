@@ -24,6 +24,7 @@ button.btn.w-100.w-100-px.update.btn-secondary {
     color: #fff !important;
 }
 
+
 ul.in-lang li:nth-child(4),
 ul.in-lang li:nth-child(5) {
     background: none !important;
@@ -46,18 +47,23 @@ padding: 0.2em 0.8em 0.3em;
     border: 1px solid #fff !important;
 }
 .identity i.material-icons {
-    top: 6px;
+    top: 0px;
     position: relative;
-    font-size: 22px;
+    font-size: 28px;
     color: #1c5d98 !important;
     border: 1px solid #1c5d98 !important;
     padding: 2px 3px;
 }
+    .identity i.material-icons:hover {
+        color: #fff !important;
+        background-color: #1c5d98 !important;
+    }
 body .in-lang li.identity.account-style {
     background-color: #1c5d98 !important;
     color: #fff !important;
-    padding: 2px 10px !important;
-    font-size: 14px;
+    padding: 5px 10px !important;
+    font-size: 16px !important;
+    vertical-align: text-bottom;
 }
 ul.in-lang li.french {
     display: none;
@@ -228,9 +234,15 @@ a#navbar-toggle span {
     float: right;
     width: calc(100% - 320px);
     color: #fff;
-    padding: 2em 1em;
+    padding: 3em 1em;
     margin: 1%;
     background: #efefef;
+}
+#lendrequestbody ul {
+    color: #333 !important;
+}
+#lendrequestbody ul li a{
+    color: #333 !important;
 }
 
 .sidebar {
@@ -331,19 +343,52 @@ a#navbar-toggle{
 .dashboard-left .link .col-md-6 a {
     color: #fff !important;
 }
-.dashboard-left .link:focus-within {
-    background: #8c21d3;
-    outline: none;
-    box-shadow: none;
-    border-bottom-color: #c688ef;
-}
+    .dashboard-left .link:focus-within {
+        background: #1c5d98 !important;
+        outline: none;
+        box-shadow: none;
+        border-bottom-color: #1c5d98 !important;
+        color: #fff !important;
+    }
+
+    .dashboard-left .link:hover {
+        background: #1c5d98 !important;
+        outline: none;
+        box-shadow: none;
+        border-bottom-color: #1c5d98 !important;
+        color: #fff !important;
+    }
 .dashboard-left li {
     list-style: none;
     border-top: 1px solid #737375;
     border-bottom: 1px solid #737375;
     padding: 5px 0px;
 }
-
+footer.my-footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    left: 0;
+    z-index: 999999;
+}
+    footer.my-footer .container {
+        padding: .5em 0 !important;
+    }
+.my-footer .navbar-footer {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: .5rem 1rem;
+}
+.my-footer .navbar-footer a {
+    color: #333 !important;
+    text-decoration: none;
+}
+.my-footer {
+    background-color: #ccc;
+}
 .dashboard-left .col-lg-6.d-lg-inline {
     margin-bottom: 6px;
 }
@@ -961,14 +1006,15 @@ width: 338px;
     }
         .cockpit-dropdown-div button.dropcockpit:hover {
             background: #e9e9e9 !important;
+            color:#333 !important;
         }
-.cockpit-dropdown-div button.dropcockpit:focus {
-    outline: none;
-    background-color: #8636d7 !important;
-    border-top: #8636d7 !important;
-    border-bottom: #8636d7 !important;
-    
-}
+        .cockpit-dropdown-div button.dropcockpit:focus {
+            outline: none;
+            background-color: #e9e9e9 !important;
+            border-top: #e9e9e9 !important;
+            border-bottom: #e9e9e9 !important;
+            color: #333 !important;
+        }
 .cockpit-dropdown-div button#Ansehenund:focus {
     border-bottom: 1px solid #c4fd63 !important;
 }
@@ -1076,6 +1122,10 @@ color: #fff !important;
     width: 375px;
     max-width: 100%;
 }
+input#sendRequest {
+    background-color: #fff !important;
+    color: #1c5d98;
+}
 .bd-example-modal-lg-setting-page select#setting_start_page {
     background: #37383d;
     border-radius: 0px;
@@ -1104,7 +1154,7 @@ color: #fff !important;
     color: #fff;
 }
 #lendrequestbody table tbody tr td {
-    color: #fff;
+    color: #333;
 }
 .dashboard-modal .modal-header {
     background-color: #72af09;
@@ -1119,10 +1169,10 @@ color: #fff !important;
     border-color: #72af09;
 }
 #lendrequestbody table tbody tr th {
-    width: 21%;
+    width: 100%;
     line-height: 2.5;
     padding: 8px;
-    color: #fff;
+    color: #333;
 }
 #lendrequestbody table tbody tr td input {
     width: 360px;
@@ -1130,23 +1180,21 @@ color: #fff !important;
 #lendrequestbody table tbody tr {
     border-bottom: 1px solid grey;
 }
-#lendrequestbody table tbody tr td input {
-    width: 375px;
-    background: #37383d;
-    border-radius: 0px;
-    border-bottom: 1px solid grey !important;
-    border:none;
-    color: #fff;
-   
-}
-#lendrequestbody table tbody tr td select {
-    
-    background: #37383d;
-    border-radius: 0px;
-    border-bottom: 1px solid grey !important;
-    border: none;
-    color: #fff;
-}
+    #lendrequestbody table tbody tr td input {
+        width: 375px;
+        background: #c6d9f1 !important;
+        border-radius: 0;
+        border-bottom: 1px solid #c6d9f1 !important;
+        border: none;
+        color: #333 !important;
+    }
+    #lendrequestbody table tbody tr td select {
+        background: #c6d9f1 !important;
+        borde:;
+        border-bottom: 1px solid #c6d9f1 !important;
+        border: none;
+        color: #333;
+    }
 
 #lendrequestbody #sendRequest{
   background-color: #8636d7;
@@ -1532,12 +1580,12 @@ input {
     bottom: 0px;
     color: #1c5d98 !important;
 }
-body .in-lang li.identity.account-style {
+/*body .in-lang li.identity.account-style {
     background-color: #1c5d98 !important;
     color: #fff !important;
     padding: 2px 10px !important;
     font-size: 14px;
-}
+}*/
 
 input:focus {
     outline: none;

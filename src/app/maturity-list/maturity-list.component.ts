@@ -165,6 +165,19 @@ export class MaturityListComponent implements OnInit {
         this.IfLastGroupLeftThenDisablingControl();
         this.spinner.hide();
     }
+    ShowScreen(screen: string) {
+        if (screen == 'BankDashboard') {
+            this.IfShowBankDashBoard = true;
+        }
+        //else if (screen == 'Mreport') {
+        //    this.GetMaturityList('EndDate');
+        //    this.IfShowBankDashBoard = false;
+        //}
+        else //if (screen == 'HMreport') {
+        {  this.GetMaturityList('EndDate');
+            this.IfShowBankDashBoard = false;
+        }
+    }
     IfLastGroupLeftThenDisablingControl() {
         var numberOfGroupsChecked = 0;
         for (var i = 0; i <= this.bankDashService.listUserGroupForSettingRateOfInterestVisibility.length - 1; i++) {

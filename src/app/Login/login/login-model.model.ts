@@ -3,4 +3,5 @@ export class LoginModel {
     UserPassword:string;
     ForgotPasswordEmailId: string;
     LoginTime: Date;
+    Captcha: string;
 }

@@ -36,7 +36,8 @@ export class BestPriceViewComponent implements OnInit {
     }
 
     p: any;
-    selectedTimePeriod: number = null;
+    selectedRateType: string = '';
+    selectedTimePeriod: any = null;
     IfBankResponseFound: boolean = false;
     timer: any;
     ngOnInit() {
@@ -54,12 +55,12 @@ export class BestPriceViewComponent implements OnInit {
         
         this.GetRatesByTimePeriod();
         this.bestPriceViewService.listBankByTimePeriod = [];
-        var selectedTimePeriodId = undefined;
-        selectedTimePeriodId = this.bestPriceViewService.lenderDashboardService.authenticateServiceService.GetSavedSelectedTimePeriodId();
-        if (selectedTimePeriodId != undefined) {
-            this.selectedTimePeriod = selectedTimePeriodId;
-            this.GetBanksByTimePeriod(selectedTimePeriodId);
-        }
+       
+        //selectedTimePeriodId = this.bestPriceViewService.lenderDashboardService.authenticateServiceService.GetSavedSelectedTimePeriodId();
+        //if (selectedTimePeriodId != undefined) {
+            //this.selectedTimePeriod = selectedTimePeriodId;
+            this.GetBanksByTimePeriod(2,'1 Week');
+       // }
 
         this.bestPriceViewService.listInterestConvention = [{ Id: 1, Value: 'act / 360' }, { Id: 2, Value: 'act / act' }];
         this.bestPriceViewService.listPayments = [{ Id: 1, Value: 'jahrliche Zahlung' }, { Id: 2, Value: 'halbjahrliche Zahlung' }, { Id: 3, Value: 'vierteljahrliche Zahlung' }, { Id: 4, Value: 'endfallig' }];
@@ -127,10 +128,11 @@ export class BestPriceViewComponent implements OnInit {
         this.spinner.hide();
     }
 
-    async GetBanksByTimePeriod(timePeriodId: number) {
-        
+    async GetBanksByTimePeriod(timePeriodId: number,timePeriodName:string) {
         //document.getElementById(timePeriodId.toString());
-        this.selectedTimePeriod = timePeriodId;
+        //this.selectedRateType = timePeriodId;
+       
+        this.selectedTimePeriod = timePeriodName;
         this.bestPriceViewService.lenderDashboardService.authenticateServiceService.SaveSelectedTimePeriodId(timePeriodId);
         this.bestPriceViewService.timePeriod = timePeriodId;
         this.bestPriceViewService.pageNumber = 1;
@@ -171,7 +173,7 @@ export class BestPriceViewComponent implements OnInit {
             BorrowerId: 0,
             LenderName: '',
             BorrowerName: '',
-            Amount: 0.00,
+            Amount: null,
             StartDate: '',
             EndDate: '',
             NoOfDays: 0,
@@ -191,7 +193,7 @@ export class BestPriceViewComponent implements OnInit {
             MessageForForsa: '',
             IsMessageSentToForsa: false
         };
-        this.bestPriceViewService.lenderSendRequestModel.Amount = 0;
+        this.bestPriceViewService.lenderSendRequestModel.Amount = null;
         this.bestPriceViewService.lenderSendRequestModel.NoOfDays = 0;
         this.bestPriceViewService.lenderSendRequestModel.BorrowerId = bank.UserId;
         this.bestPriceViewService.lenderSendRequestModel.LenderId = this.bestPriceViewService.lenderDashboardService.authenticateServiceService.GetUserId();
@@ -228,7 +230,7 @@ export class BestPriceViewComponent implements OnInit {
         this.spinner.show();
         this.bestPriceViewService.SaveSendRequest(this.bestPriceViewService.lenderSendRequestModel).subscribe(data => {
             this.spinner.hide();
-            this.toastr.success("Your Requst has been sent, kindly check your email for more details.", "Dashboard");
+            this.toastr.success(".REQUEST SENT SUCCESFULLY. PLEASE WAIT FOR BORROWER’S RESPONSE.", "Dashboard");
             var element = document.getElementById('closeSendRequestModal');
             element.click();
         })
@@ -280,6 +282,15 @@ export class BestPriceViewComponent implements OnInit {
         }
 
         return true;
+    }
+    GermanFormat() {
+        var amt = this.bestPriceViewService.lenderSendRequestModel2.Amount;
+        var parts = amt.toString().split(".");
+        parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        //console.log(parts.join("."));
+        this.bestPriceViewService.lenderSendRequestModel2.Amount = parts.join(".");
+        // console.log("Hello");
+        // console.log();
     }
     async ShowBankPopup(data: any) {
         this.spinner.show();
