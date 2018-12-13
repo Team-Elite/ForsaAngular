@@ -19831,7 +19831,7 @@
                             <tbody>
                                 <tr><th>LENDER</th><td>{{bestPriceViewService.lenderSendRequestModel2.LenderName}}</td></tr>
                                 <tr><th>BORROWER</th><td>{{bestPriceViewService.lenderSendRequestModel2.BorrowerName}}</td></tr>
-                                <tr><th>AMOUNT</th><td><input [disabled]="IfBankResponseFound" #Amount="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel2.Amount" name="Amount" type="text" id="amount1" class="form-control requestamount"></td></tr>
+                                <tr><th>AMOUNT</th><td><input [disabled]="IfBankResponseFound" #Amount="ngModel" [(ngModel)]="tempAmount" name="Amount" type="text" id="amount1" class="form-control requestamount"></td></tr>
                                 <tr><th>START-DATE </th><td><input [disabled]="IfBankResponseFound" #StartDate="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel2.StartDate" name="StartDate" type="date" id="datepicker" class="form-control hasDatepicker datepicker"></td></tr>
                                 <tr><th>END-DATE</th><td><input [disabled]="IfBankResponseFound" #EndDate="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel2.EndDate" name="EndDate" type="date" id="datepicker1" class="form-control hasDatepicker datepicker1"></td></tr>
                                 <tr><th>NR. OF DAYS&nbsp;&nbsp;</th><td id="no_of_days">{{bestPriceViewService.lenderSendRequestModel2.NoOfDays}}</td></tr>

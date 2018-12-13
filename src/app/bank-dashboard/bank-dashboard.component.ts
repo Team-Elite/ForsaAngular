@@ -19,6 +19,7 @@ declare var $: any;
     styleUrls: ['./bank-dashboard.component.css']
 })
 export class BankDashboardComponent implements OnInit {
+    tempValue: any;
     state: string = "expanded";
     bankRateOfinterst: any[];
     _MaturityList: any;
@@ -678,6 +679,10 @@ export class BankDashboardComponent implements OnInit {
        
         if (this.lenderSendRequestModel != undefined) {
             this.lenderSendRequestModel = this.lenderSendRequestModel[0];
+            if(this.lenderSendRequestModel.Amount) {
+                this.tempValue = this.lenderSendRequestModel.Amount;
+                this.tempValue = this.lenderSendRequestModel.Amount.toLocaleString('de-DE');
+            }
             clearInterval(this.timer);
             //this.bestPriceViewService.lenderSendRequestModel = result.data;
             $('#modalSendRequest').modal('show');

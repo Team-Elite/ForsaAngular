@@ -19487,7 +19487,7 @@
                         <tbody>
                             <tr><th>{{'Lender.BestPriceView.Lender'|translate}}</th><td>{{bestPriceViewService.lenderSendRequestModel.LenderName}}</td></tr>
                             <tr><th>{{'Lender.BestPriceView.Borrower'|translate}}</th><td>{{bestPriceViewService.lenderSendRequestModel.BorrowerName}}</td></tr>
-                            <tr><th>{{'Lender.BestPriceView.Amount'|translate}}</th><td><input [disabled]="IfBankResponseFound" (blur)="GermanFormat()"  #Amount1="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.Amount" name="Amount" placeholder="Volumen" type="text" id="amount" class="form-control requestamount"></td></tr>
+                            <tr><th>{{'Lender.BestPriceView.Amount'|translate}}</th><td><input [disabled]="IfBankResponseFound" [(ngModel)]="tempAmount" (blur)="GermanFormat(tempAmount)"  #Amount1="ngModel" name="Amount" placeholder="Volumen" type="text" id="amount" class="form-control requestamount"></td></tr>
                             <tr><th>{{'Lender.BestPriceView.StartDate'|translate}} </th><td><input [disabled]="IfBankResponseFound" (change)="CalculateNumberOfDays()" #StartDate="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.StartDate" name="StartDate" type="date" id="datepicker" class="form-control hasDatepicker datepicker"></td></tr>
                             <tr><th>{{'Lender.BestPriceView.Endate'|translate}}</th><td><input [disabled]="IfBankResponseFound" (change)="CalculateNumberOfDays()" #EndDate="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.EndDate" name="EndDate" type="date" id="datepicker1" class="form-control hasDatepicker datepicker1"></td></tr>
                             <tr><th>{{'Lender.BestPriceView.NrOfDays'|translate}}&nbsp;&nbsp;</th><td id="no_of_days">{{bestPriceViewService.lenderSendRequestModel.NoOfDays}}</td></tr>
@@ -19547,7 +19547,7 @@
                         <tbody>
                             <tr><th>{{'Lender.BestPriceView.Lender'|translate}}</th><td>Stadt Singen</td></tr>
                             <tr><th>{{'Lender.BestPriceView.Borrower'|translate}}</th><td>Mainz Bank</td></tr>
-                            <tr><th>{{'Lender.BestPriceView.Amount'|translate}}</th><td><input type="number" (blur)="GermanFormat()" id="amount" class="form-control requestamount"></td></tr>
+                            <tr><th>{{'Lender.BestPriceView.Amount'|translate}}</th><td><input type="number" [(ngModel)]="tempAmount" (blur)="GermanFormat(tempAmount)" id="amount" class="form-control requestamount"></td></tr>
                             <tr><th>{{'Lender.BestPriceView.StartDate'|translate}}</th><td><input type="date" id="datepicker" class="form-control hasDatepicker datepicker"></td></tr>
                             <tr><th>{{'Lender.BestPriceView.Endate'|translate}}</th><td><input type="date" id="datepicker1" class="form-control hasDatepicker datepicker1"></td></tr>
                             <tr><th>{{'Lender.BestPriceView.NrOfDays'|translate}}&nbsp;&nbsp;</th><td id="no_of_days"></td></tr>

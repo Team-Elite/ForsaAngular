@@ -501,7 +501,7 @@
                                     <tbody>
                                         <tr><th>{{'Borrower.BankDashboard.Lender'|translate}}</th><td>{{lenderSendRequestModel.LenderName}}</td></tr>
                                         <tr><th>{{'Borrower.BankDashboard.Borrower'|translate}}</th><td>{{lenderSendRequestModel.BorrowerName}}</td></tr>
-                                        <tr><th>{{'Borrower.BankDashboard.Amount'|translate}}</th><td><input [disabled]="1==1" #Amount="ngModel" [(ngModel)]="lenderSendRequestModel.Amount" name="Amount" type="text" id="amount1" class="form-control requestamount" maxlength="7"></td></tr>
+                                        <tr><th>{{'Borrower.BankDashboard.Amount'|translate}}</th><td><input [disabled]="1==1" #Amount="ngModel" [(ngModel)]="tempValue" name="Amount" type="text" id="amount1" class="form-control requestamount" maxlength="7"></td></tr>
                                         <tr><th>{{'Borrower.BankDashboard.StartDate'|translate}} </th><td><input [disabled]="1==1" #StartDate="ngModel" [(ngModel)]="lenderSendRequestModel.StartDate" name="StartDate" type="date" id="datepicker" class="form-control hasDatepicker datepicker"></td></tr>
                                         <tr><th>{{'Borrower.BankDashboard.Endate'|translate}}</th><td><input [disabled]="1==1" #EndDate="ngModel" [(ngModel)]="lenderSendRequestModel.EndDate" name="EndDate" type="date" id="datepicker1" class="form-control hasDatepicker datepicker1"></td></tr>
                                         <tr><th>{{'Borrower.BankDashboard.NrOfDays'|translate}}&nbsp;&nbsp;</th><td id="no_of_days">{{lenderSendRequestModel.NoOfDays}}</td></tr>

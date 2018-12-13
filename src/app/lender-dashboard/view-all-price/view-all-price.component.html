@@ -10748,25 +10748,25 @@ direction: ltr;
                              <span><i (click)="ShowBankPopup(bank)" class="material-icons">perm_info</i></span>
                          </td>
                          <!--<td [hidden]="!bank.class1" [ngClass]="{'active':viewAllPriceService.HighestRateTN===bank.TN}">{{bank.TN}}</td>-->
-                         <td [hidden]="!bank.class2" [ngClass]="{'active':viewAllPriceService.HighestRateW1===bank.Week1}">{{bank.Week1|number:'1.4'}}</td>
-                         <td [hidden]="!bank.class3" [ngClass]="{'active':viewAllPriceService.HighestRateW2===bank.Week2}">{{bank.Week2|number:'1.4'}}</td>
-                         <td [hidden]="!bank.class4" [ngClass]="{'active':viewAllPriceService.HighestRateW3===bank.Week3}">{{bank.Week3|number:'1.4'}}</td>
-                         <td [hidden]="!bank.class5" [ngClass]="{'active':viewAllPriceService.HighestRateM1===bank.Month1}">{{bank.Month1|number:'1.4'}}</td>
-                         <td [hidden]="!bank.class6" [ngClass]="{'active':viewAllPriceService.HighestRateM2===bank.Month2}">{{bank.Month2|number:'1.4'}}</td>
-                         <td [hidden]="!bank.class7" [ngClass]="{'active':viewAllPriceService.HighestRateM3===bank.Month3}">{{bank.Month3|number:'1.4'}}</td>
-                         <td [hidden]="!bank.class8" [ngClass]="{'active':viewAllPriceService.HighestRateM4===bank.Month4}">{{bank.Month4|number:'1.4'}}</td>
-                         <td [hidden]="!bank.class9" [ngClass]="{'active':viewAllPriceService.HighestRateM5===bank.Month5}">{{bank.Month5|number:'1.4'}}</td>
-                         <td [hidden]="!bank.class10" [ngClass]="{'active':viewAllPriceService.HighestRateM6===bank.Month6}">{{bank.Month6|number:'1.4'}}</td>
-                         <td [hidden]="!bank.class11" [ngClass]="{'active':viewAllPriceService.HighestRateM7===bank.Month7}">{{bank.Month7|number:'1.4'}}</td>
-                         <td [hidden]="!bank.class12" [ngClass]="{'active':viewAllPriceService.HighestRateM8===bank.Month8}">{{bank.Month8|number:'1.4'}}</td>
-                         <td [hidden]="!bank.class13" [ngClass]="{'active':viewAllPriceService.HighestRateM9===bank.Month9}">{{bank.Month9|number:'1.4'}}</td>
-                         <td [hidden]="!bank.class14" [ngClass]="{'active':viewAllPriceService.HighestRateM10===bank.Month10}">{{bank.Month10|number:'1.4'}}</td>
-                         <td [hidden]="!bank.class15" [ngClass]="{'active':viewAllPriceService.HighestRateM11===bank.Month11}">{{bank.Month11|number:'1.4'}}</td>
-                         <td [hidden]="!bank.class16" [ngClass]="{'active':viewAllPriceService.HighestRateM12===bank.Month12}">{{bank.Month12|number:'1.4'}}</td>
-                         <td [hidden]="!bank.class17" [ngClass]="{'active':viewAllPriceService.HighestRateY2===bank.Year2}">{{bank.Year2|number:'1.4'}}</td>
-                         <td [hidden]="!bank.class18" [ngClass]="{'active':viewAllPriceService.HighestRateY3===bank.Year3}">{{bank.Year3|number:'1.4'}}</td>
-                         <td [hidden]="!bank.class19" [ngClass]="{'active':viewAllPriceService.HighestRateY4===bank.Year4}">{{bank.Year4|number:'1.4'}}</td>
-                         <td [hidden]="!bank.class20" [ngClass]="{'active':viewAllPriceService.HighestRateY5===bank.Year5}">{{bank.Year5|number:'1.4'}}</td>
+                         <td [hidden]="!bank.class2" (click)="ShowSendRequestModal(bank)" data-toggle="modal" data-target=".BestPriceViewModal" [ngClass]="{'active':viewAllPriceService.HighestRateW1===bank.Week1}">{{bank.Week1|number:'1.4'}}</td>
+                         <td [hidden]="!bank.class3" (click)="ShowSendRequestModal(bank)" data-toggle="modal" data-target=".BestPriceViewModal" [ngClass]="{'active':viewAllPriceService.HighestRateW2===bank.Week2}">{{bank.Week2|number:'1.4'}}</td>
+                         <td [hidden]="!bank.class4" (click)="ShowSendRequestModal(bank)" data-toggle="modal" data-target=".BestPriceViewModal" [ngClass]="{'active':viewAllPriceService.HighestRateW3===bank.Week3}">{{bank.Week3|number:'1.4'}}</td>
+                         <td [hidden]="!bank.class5" (click)="ShowSendRequestModal(bank)" data-toggle="modal" data-target=".BestPriceViewModal" [ngClass]="{'active':viewAllPriceService.HighestRateM1===bank.Month1}">{{bank.Month1|number:'1.4'}}</td>
+                         <td [hidden]="!bank.class6" (click)="ShowSendRequestModal(bank)" data-toggle="modal" data-target=".BestPriceViewModal" [ngClass]="{'active':viewAllPriceService.HighestRateM2===bank.Month2}">{{bank.Month2|number:'1.4'}}</td>
+                         <td [hidden]="!bank.class7" (click)="ShowSendRequestModal(bank)" data-toggle="modal" data-target=".BestPriceViewModal" [ngClass]="{'active':viewAllPriceService.HighestRateM3===bank.Month3}">{{bank.Month3|number:'1.4'}}</td>
+                         <td [hidden]="!bank.class8" (click)="ShowSendRequestModal(bank)" data-toggle="modal" data-target=".BestPriceViewModal" [ngClass]="{'active':viewAllPriceService.HighestRateM4===bank.Month4}">{{bank.Month4|number:'1.4'}}</td>
+                         <td [hidden]="!bank.class9"  (click)="ShowSendRequestModal(bank)" data-toggle="modal" data-target=".BestPriceViewModal" [ngClass]="{'active':viewAllPriceService.HighestRateM5===bank.Month5}">{{bank.Month5|number:'1.4'}}</td>
+                         <td [hidden]="!bank.class10" (click)="ShowSendRequestModal(bank)" data-toggle="modal" data-target=".BestPriceViewModal" [ngClass]="{'active':viewAllPriceService.HighestRateM6===bank.Month6}">{{bank.Month6|number:'1.4'}}</td>
+                         <td [hidden]="!bank.class11" (click)="ShowSendRequestModal(bank)" data-toggle="modal" data-target=".BestPriceViewModal" [ngClass]="{'active':viewAllPriceService.HighestRateM7===bank.Month7}">{{bank.Month7|number:'1.4'}}</td>
+                         <td [hidden]="!bank.class12" (click)="ShowSendRequestModal(bank)" data-toggle="modal" data-target=".BestPriceViewModal" [ngClass]="{'active':viewAllPriceService.HighestRateM8===bank.Month8}">{{bank.Month8|number:'1.4'}}</td>
+                         <td [hidden]="!bank.class13" (click)="ShowSendRequestModal(bank)" data-toggle="modal" data-target=".BestPriceViewModal" [ngClass]="{'active':viewAllPriceService.HighestRateM9===bank.Month9}">{{bank.Month9|number:'1.4'}}</td>
+                         <td [hidden]="!bank.class14" (click)="ShowSendRequestModal(bank)" data-toggle="modal" data-target=".BestPriceViewModal" [ngClass]="{'active':viewAllPriceService.HighestRateM10===bank.Month10}">{{bank.Month10|number:'1.4'}}</td>
+                         <td [hidden]="!bank.class15" (click)="ShowSendRequestModal(bank)" data-toggle="modal" data-target=".BestPriceViewModal" [ngClass]="{'active':viewAllPriceService.HighestRateM11===bank.Month11}">{{bank.Month11|number:'1.4'}}</td>
+                         <td [hidden]="!bank.class16" (click)="ShowSendRequestModal(bank)" data-toggle="modal" data-target=".BestPriceViewModal" [ngClass]="{'active':viewAllPriceService.HighestRateM12===bank.Month12}">{{bank.Month12|number:'1.4'}}</td>
+                         <td [hidden]="!bank.class17" (click)="ShowSendRequestModal(bank)" data-toggle="modal" data-target=".BestPriceViewModal" [ngClass]="{'active':viewAllPriceService.HighestRateY2===bank.Year2}">{{bank.Year2|number:'1.4'}}</td>
+                         <td [hidden]="!bank.class18" (click)="ShowSendRequestModal(bank)" data-toggle="modal" data-target=".BestPriceViewModal" [ngClass]="{'active':viewAllPriceService.HighestRateY3===bank.Year3}">{{bank.Year3|number:'1.4'}}</td>
+                         <td [hidden]="!bank.class19" (click)="ShowSendRequestModal(bank)" data-toggle="modal" data-target=".BestPriceViewModal" [ngClass]="{'active':viewAllPriceService.HighestRateY4===bank.Year4}">{{bank.Year4|number:'1.4'}}</td>
+                         <td [hidden]="!bank.class20" (click)="ShowSendRequestModal(bank)" data-toggle="modal" data-target=".BestPriceViewModal" [ngClass]="{'active':viewAllPriceService.HighestRateY5===bank.Year5}">{{bank.Year5|number:'1.4'}}</td>
 
                      </tr>
 
@@ -10827,7 +10827,66 @@ direction: ltr;
     </div>
  </div> 
 <!-- </div> -->
-   
+
+
+
+   <!-- modal Send money request-->
+    <div *ngIf="bestPriceViewService.lenderDashboardService.UserTypeId == 5 || bestPriceViewService.lenderDashboardService.UserTypeId == '4,5'" id="modalSendRequest" class="modal fade bd-example-modal-lg dashboard-modal BestPriceViewModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">{{'Lender.BestPriceView.ModelTitle'|translate}}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="lendrequestbody">
+                    <table>
+                        <tbody>
+                            <tr><th>{{'Lender.BestPriceView.Lender'|translate}}</th><td>{{bestPriceViewService.lenderSendRequestModel.LenderName}}</td></tr>
+                            <tr><th>{{'Lender.BestPriceView.Borrower'|translate}}</th><td>{{bestPriceViewService.lenderSendRequestModel.BorrowerName}}</td></tr>
+                            <tr><th>{{'Lender.BestPriceView.Amount'|translate}}</th><td><input  [disabled]="IfBankResponseFound" name="Amount" [(ngModel)]="tempAmount" (blur)="GermanFormat(tempAmount)" placeholder="Volumen" type="text" id="amount" class="form-control requestamount"></td></tr>
+                            <tr><th>{{'Lender.BestPriceView.StartDate'|translate}} </th><td><input [disabled]="IfBankResponseFound" (change)="CalculateNumberOfDays()" #StartDate="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.StartDate" name="StartDate" type="date" id="datepicker" class="form-control hasDatepicker datepicker"></td></tr>
+                            <tr><th>{{'Lender.BestPriceView.Endate'|translate}}</th><td><input [disabled]="IfBankResponseFound" (change)="CalculateNumberOfDays()" #EndDate="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.EndDate" name="EndDate" type="date" id="datepicker1" class="form-control hasDatepicker datepicker1"></td></tr>
+                            <tr><th>{{'Lender.BestPriceView.NrOfDays'|translate}}&nbsp;&nbsp;</th><td id="no_of_days">{{bestPriceViewService.lenderSendRequestModel.NoOfDays}}</td></tr>
+                            <tr>
+                                <th>{{'Lender.BestPriceView.InterestConvention'|translate}}</th>
+                                <td>
+                                    <!--<select [disabled]="1==1" #InterestConvention="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.InterestConvention" name="InterestConvention" class="form-control" id="interest">
+                                        <option *ngFor="let interest of bestPriceViewService.listInterestConvention" value="{{interest.Id}}">{{interest.Value}}</option>
+                                    </select>-->
+                                    <select [(ngModel)]="bestPriceViewService.lenderSendRequestModel.InterestConvention" name="InterestConvention" class="form-control" id="interest">
+                                        <option *ngFor="let interest of bestPriceViewService.listInterestConvention" value="{{interest.Id}}">{{interest.Value}}</option>
+                                       
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>{{'Lender.BestPriceView.Payments'|translate}}</th>
+                                <td>
+                                    <!--<select #Payments="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.Payments" name="Payments" [disabled]="1==1 " class="form-control" id="payments">
+                                        <option *ngFor="let payment of bestPriceViewService.listPayments" value="{{payment.Id}}">{{payment.Value}}</option>
+                                    </select>-->
+                                    <select #Payments="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.Payments" name="Payments"  class="form-control" id="payments">
+                                        <option *ngFor="let payment of bestPriceViewService.listPayments" value="{{payment.Id}}">{{payment.Value}}</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr *ngIf="IfBankResponseFound"><th>{{'Lender.BestPriceView.RateOfInterest'|translate}}</th><td><input [disabled]="1==1" (keypress)="numberWithDecimalOnly($event)" #RateOfInterest="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.RateOfInterest" name="RateOfInterest" type="text" id="RateOfInterest" class="form-control requestamount" maxlength="7"></td></tr>
+                            <tr><td><input type="button" (click)="SaveSendRequest()" class="btn btn-info btn-lg" id="sendRequest" value="{{'Button.ButtonSend'|translate}}"></td></tr>
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{'Button.ButtonLend'|translate}}</button>
+                    <button id="closeSendRequestModal" style="display:none;" type="button" data-dismiss="modal" class="btn btn-secondary">{{'Button.ButtonClose'|translate}} 12</button>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
    
               
    

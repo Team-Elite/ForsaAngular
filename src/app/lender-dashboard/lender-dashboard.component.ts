@@ -16,6 +16,7 @@ declare var $: any;
     styleUrls: ['./lender-dashboard.component.css']
 })
 export class LenderDashboardComponent implements OnInit {
+    tempAmount: any;
     selectedItem: string;
     _http: any;
   
@@ -198,6 +199,10 @@ export class LenderDashboardComponent implements OnInit {
             var element = document.getElementById('ShowSendRequestLDPopup');
             element.click();
             this.bestPriceViewService.lenderSendRequestModel2 = result[0];
+            if(this.bestPriceViewService.lenderSendRequestModel2.Amount) {
+                this.tempAmount = this.bestPriceViewService.lenderSendRequestModel2.Amount;
+                this.tempAmount = this.tempAmount.toLocaleString('de-DE');
+            }
         }
         //this.spinner.hide();
     }

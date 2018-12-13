@@ -10,7 +10,7 @@ import { UserProfileServiceService } from '../../userprofile/Shared/user-profile
 import { AuthenticateServiceService } from '../../Shared/authenticate-service.service';
 import { UserModel } from '../../registration/Shared/user-model.model';
 
-const connection = (environment.production) ? hubConnection('http://40.89.139.123:4044') : hubConnection('http://localhost:50859');
+const connection = (environment.production) ? hubConnection('http://40.89.169.211:4044') : hubConnection('http://localhost:50859');
 
 const hubProxy = connection.createHubProxy('ForsaHub');
 @Component({
@@ -19,7 +19,8 @@ const hubProxy = connection.createHubProxy('ForsaHub');
     styleUrls: ['./best-price-view.component.css']
 })
 export class BestPriceViewComponent implements OnInit {
-   
+    tempAmount: any;
+    tempStorage: any;
     path: string;
     objBankInfo: any = { Bank: '', NameOfCompany: '', Place: '', Street: '' };
   
@@ -207,7 +208,8 @@ export class BestPriceViewComponent implements OnInit {
     }
 
     SaveSendRequest() {
-        
+        this.bestPriceViewService.lenderSendRequestModel.Amount = this.tempStorage;
+        console.log(this.bestPriceViewService.lenderSendRequestModel.Amount);
         for (var i = 0; i <= this.bestPriceViewService.listInterestConvention.length - 1; i++) {
             if (this.bestPriceViewService.lenderSendRequestModel.InterestConvention == this.bestPriceViewService.listInterestConvention[i].Id) {
                 this.bestPriceViewService.lenderSendRequestModel.InterestConventionName = this.bestPriceViewService.listInterestConvention[i].Value;
@@ -228,6 +230,7 @@ export class BestPriceViewComponent implements OnInit {
         }
 
         this.spinner.show();
+        console.log(this.bestPriceViewService.lenderSendRequestModel.Amount);
         this.bestPriceViewService.SaveSendRequest(this.bestPriceViewService.lenderSendRequestModel).subscribe(data => {
             this.spinner.hide();
             this.toastr.success(".REQUEST SENT SUCCESFULLY. PLEASE WAIT FOR BORROWER’S RESPONSE.", "Dashboard");
@@ -238,11 +241,11 @@ export class BestPriceViewComponent implements OnInit {
 
     ValidateSendRequest(requestModel: any) {
 
-        if (requestModel.Amount == undefined && requestModel.Amount == null && requestModel.Amount.length == 0) {
+        if (!requestModel.Amount || requestModel.Amount == '0') {
             this.toastr.error("Please fill amount.", "Dashboard");
             return false;
         }
-        if (requestModel.Amount != undefined && requestModel.Amount != null && requestModel.Amount.length != 0) {
+        if (requestModel.Amount != undefined && requestModel.Amount != null) {
             try {
                 if (isNaN(Number(requestModel.Amount.toString())) == true) {
                     this.toastr.error("Amount must be numeric.", "Registration");
@@ -283,14 +286,18 @@ export class BestPriceViewComponent implements OnInit {
 
         return true;
     }
-    GermanFormat() {
-        var amt = this.bestPriceViewService.lenderSendRequestModel2.Amount;
-        var parts = amt.toString().split(".");
-        parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-        //console.log(parts.join("."));
-        this.bestPriceViewService.lenderSendRequestModel2.Amount = parts.join(".");
-        // console.log("Hello");
-        // console.log();
+    GermanFormat(amount) {
+        if(!amount) return;
+        const val = parseFloat(amount);
+        this.tempStorage = val;
+        this.tempAmount = val.toLocaleString('de-DE');
+        console.log(this.tempAmount);
+        
+        // var amt = this.bestPriceViewService.lenderSendRequestModel2.Amount;
+        // var parts = amt.toString().split(".");
+        // parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        // this.bestPriceViewService.lenderSendRequestModel2.Amount = parts.join(".");
+        
     }
     async ShowBankPopup(data: any) {
         this.spinner.show();
