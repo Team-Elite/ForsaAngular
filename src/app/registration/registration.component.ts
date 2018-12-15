@@ -52,7 +52,6 @@ export class RegistrationComponent implements OnInit {
     }
 
     ngOnInit() {
-        console.log({ list: this.registrationService.listSubGroupModel })
         this.registrationService.getCountryList();
         this.registrationService.getLanguageList();
         this.registrationService.getDepositInsuranceList();
@@ -78,7 +77,7 @@ export class RegistrationComponent implements OnInit {
     }
 
     isUploadOneSelected(event) {
-        debugger;
+      
         const file = event.target.files[0];
         if (!file) return;
         if (file.type != 'application/pdf') {
@@ -476,7 +475,7 @@ export class RegistrationComponent implements OnInit {
     }
 
     Section2Visible(form: NgForm) {
-        let IfErrorFound: boolean = false;
+      //  let IfErrorFound: boolean = false;
         let numberOfErrorFound: number = 0;
         this._Message = 'Fields marked with * are required. Please ';
 
@@ -490,7 +489,7 @@ export class RegistrationComponent implements OnInit {
         }
 
         this.registrationService.ShowSection2 = true;
-       
+        return true;
     }
     ValidateSection1(form: NgForm): any {
         var IfErrorFound = false;
@@ -608,7 +607,7 @@ export class RegistrationComponent implements OnInit {
        
     }
     Section3Visible(form: NgForm) {
-        console.log(this.registrationService.userModel);
+      
         if (this.ValidateSection2(form)) {
            // this.registrationService.ShowSection3 = false;
             this._Message = this._Message.substring(0, this._Message.length - 1);
@@ -617,6 +616,7 @@ export class RegistrationComponent implements OnInit {
             return false;
         }
         this.registrationService.ShowSection3 = true;
+        return true;
     }
 
 
@@ -695,7 +695,7 @@ export class RegistrationComponent implements OnInit {
 
        
         // Updating user..
-        debugger;
+      
         //form.value.EmailAddress = this.registrationService.userModel.EmailAddress;
         this.registrationService.UpdateUserDetails(this.fileList,form.value).subscribe(data => {
             this.resetForm(form);

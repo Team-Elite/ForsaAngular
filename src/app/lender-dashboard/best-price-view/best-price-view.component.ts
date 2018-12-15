@@ -2,27 +2,35 @@ import { Component, OnInit } from '@angular/core';
 import { BestPriceViewService } from './Shared/best-price-view.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
-import { DatePipe } from '@angular/common';
+import { DatePipe, DeprecatedI18NPipesModule } from '@angular/common';
 import { LenderDashboardService } from '../Shared/lender-dashboard.service';
 import { hubConnection, connection } from 'signalr-no-jquery';
 import { environment } from '../../../environments/environment.prod';
 import { UserProfileServiceService } from '../../userprofile/Shared/user-profile-service.service';
 import { AuthenticateServiceService } from '../../Shared/authenticate-service.service';
 import { UserModel } from '../../registration/Shared/user-model.model';
+import { IMyDpOptions } from 'mydatepicker';
 
 const connection = (environment.production) ? hubConnection('http://40.89.169.211:4044') : hubConnection('http://localhost:50859');
 
 const hubProxy = connection.createHubProxy('ForsaHub');
 @Component({
     selector: 'app-best-price-view',
-    templateUrl: './best-price-view.component.html',
+    templateUrl: './best-price-view.component.html',    
     styleUrls: ['./best-price-view.component.css']
 })
 export class BestPriceViewComponent implements OnInit {
+    public myDatePickerOptions: IMyDpOptions = {
+        // other options...
+        dateFormat: 'dd/mm/yyyy',   
+        sunHighlight: false
+    };
     tempAmount: any;
     tempStorage: any;
     path: string;
+    request_sent;
     objBankInfo: any = { Bank: '', NameOfCompany: '', Place: '', Street: '' };
+    IfRequestSent:boolean=false;
   
     constructor(public bestPriceViewService: BestPriceViewService, public spinner: NgxSpinnerService
         , public toastr: ToastrService, public pipe: DatePipe
@@ -42,6 +50,7 @@ export class BestPriceViewComponent implements OnInit {
     IfBankResponseFound: boolean = false;
     timer: any;
     ngOnInit() {
+        this.request_sent = false;
         this.path = this.authenticateServiceService.baseURL + "/Uploads/Docs/";// + this.authenticateServiceService.GetUserId() + "/UserProfile/";
         this.getData();
     }
@@ -60,7 +69,7 @@ export class BestPriceViewComponent implements OnInit {
         //selectedTimePeriodId = this.bestPriceViewService.lenderDashboardService.authenticateServiceService.GetSavedSelectedTimePeriodId();
         //if (selectedTimePeriodId != undefined) {
             //this.selectedTimePeriod = selectedTimePeriodId;
-            this.GetBanksByTimePeriod(2,'1 Week');
+            this.GetBanksByTimePeriod(2,'1 Woche');
        // }
 
         this.bestPriceViewService.listInterestConvention = [{ Id: 1, Value: 'act / 360' }, { Id: 2, Value: 'act / act' }];
@@ -95,18 +104,18 @@ export class BestPriceViewComponent implements OnInit {
         this.spinner.hide();
 
     }
-
-
-
-    CalculateNumberOfDays() {
-        
-        let fromDate: any = new Date(this.bestPriceViewService.lenderSendRequestModel.StartDate);
-        let toDate: any = new Date(this.bestPriceViewService.lenderSendRequestModel.EndDate);
+    getNumberOfDays(){
+        // console.log(this.bestPriceViewService.lenderSendRequestModel.StartDate);
+        // console.log(this.bestPriceViewService.lenderSendRequestModel.EndDate);
+        let fromDate: any = this.bestPriceViewService.lenderSendRequestModel.StartDate['epoc'];
+        let toDate: any = this.bestPriceViewService.lenderSendRequestModel.EndDate['epoc'];
         if (this.bestPriceViewService.lenderSendRequestModel.StartDate != "" && this.bestPriceViewService.lenderSendRequestModel.EndDate != "") {
-            this.bestPriceViewService.lenderSendRequestModel.NoOfDays = (toDate - fromDate) / 86400000;
+            this.bestPriceViewService.lenderSendRequestModel.NoOfDays = (toDate - fromDate) / 86400;
+            return (toDate - fromDate) / 86400;
         }
         else {
-            this.bestPriceViewService.lenderSendRequestModel.NoOfDays = 0;
+            this.bestPriceViewService.lenderSendRequestModel.NoOfDays = 0
+            return 0;
         }
     }
 
@@ -168,6 +177,7 @@ export class BestPriceViewComponent implements OnInit {
         //  document.getElementById('modalSendRequest').style.display='block';
         //  document.getElementById('modalSendRequest').style.display='block';
         this.IfBankResponseFound = false;
+        this.IfRequestSent=false;
         this.bestPriceViewService.lenderSendRequestModel = this.bestPriceViewService.lenderSendRequestModel = {
             RequestId: 0,
             LenderId: 0,
@@ -200,8 +210,8 @@ export class BestPriceViewComponent implements OnInit {
         this.bestPriceViewService.lenderSendRequestModel.LenderId = this.bestPriceViewService.lenderDashboardService.authenticateServiceService.GetUserId();
         this.bestPriceViewService.lenderSendRequestModel.BorrowerName = bank.Bank;
         this.bestPriceViewService.lenderSendRequestModel.LenderName = this.bestPriceViewService.lenderDashboardService.authenticateServiceService.GetLenderName();
-        this.bestPriceViewService.lenderSendRequestModel.StartDate = this.pipe.transform(new Date(), 'yyyy-MM-dd');
-        this.bestPriceViewService.lenderSendRequestModel.EndDate = this.pipe.transform(new Date(), 'yyyy-MM-dd');
+        // this.bestPriceViewService.lenderSendRequestModel.StartDate = this.pipe.transform(new Date(), 'yyyy-MM-dd');
+        // this.bestPriceViewService.lenderSendRequestModel.EndDate = this.pipe.transform(new Date(), 'yyyy-MM-dd');
         this.bestPriceViewService.lenderSendRequestModel.InterestConvention = this.bestPriceViewService.listInterestConvention[0].Id;
         this.bestPriceViewService.lenderSendRequestModel.Payments = this.bestPriceViewService.listPayments[0].Id;
         this.bestPriceViewService.lenderSendRequestModel.LenderEmailId = this.bestPriceViewService.lenderDashboardService.authenticateServiceService.GetEmailId();
@@ -230,12 +240,18 @@ export class BestPriceViewComponent implements OnInit {
         }
 
         this.spinner.show();
-        console.log(this.bestPriceViewService.lenderSendRequestModel.Amount);
-        this.bestPriceViewService.SaveSendRequest(this.bestPriceViewService.lenderSendRequestModel).subscribe(data => {
+        var d1 = this.bestPriceViewService.lenderSendRequestModel.StartDate['jsdate'];
+        d1.setTime( d1.getTime() - d1.getTimezoneOffset()*60*1000 );
+        var d2 = this.bestPriceViewService.lenderSendRequestModel.EndDate['jsdate'];
+        d2.setTime( d2.getTime() - d2.getTimezoneOffset()*60*1000 );
+        this.bestPriceViewService.SaveSendRequest({...this.bestPriceViewService.lenderSendRequestModel, ...{StartDate: d1}, ...{EndDate: d2}})
+        .subscribe(data => {
             this.spinner.hide();
-            this.toastr.success(".REQUEST SENT SUCCESFULLY. PLEASE WAIT FOR BORROWER’S RESPONSE.", "Dashboard");
-            var element = document.getElementById('closeSendRequestModal');
-            element.click();
+            this.request_sent = true;
+            // this.toastr.success(".REQUEST SENT SUCCESFULLY. PLEASE WAIT FOR BORROWER’S RESPONSE.", "Dashboard");
+            this.IfRequestSent=true;
+            // var element = document.getElementById('closeSendRequestModal');
+            // element.click();
         })
     }
 
@@ -261,9 +277,18 @@ export class BestPriceViewComponent implements OnInit {
             this.toastr.error('Amounut can not be 0.');
             return false;
         }
-        let currentDate: any = new Date(this.pipe.transform(new Date(), 'yyyy-MM-dd')).getTime();
-        let startDate: any = new Date(requestModel.StartDate).getTime();
-        let endDate: any = new Date(requestModel.EndDate).getTime();
+        let currentDate: any = (new Date(this.pipe.transform(new Date(), 'yyyy-MM-dd')).getTime())/1000;
+        let startDate: any = requestModel.StartDate['epoc'];
+        let endDate: any = requestModel.EndDate['epoc'];
+
+        if (!startDate) {
+            this.toastr.error('Please select Start date');
+            return false;
+        }
+        if (!endDate) {
+            this.toastr.error('Please select End date');
+            return false;
+        }
         if (startDate < currentDate) {
             this.toastr.error('Start date can not be less than from today date.');
             return false;
@@ -279,7 +304,7 @@ export class BestPriceViewComponent implements OnInit {
             return false;
         }
 
-        if (currentDate == endDate) {
+        if (startDate == endDate) {
             this.toastr.error('Start and End date can not be same.');
             return false;
         }

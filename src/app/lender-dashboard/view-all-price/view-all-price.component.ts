@@ -29,6 +29,7 @@ export class ViewAllPriceComponent implements OnInit {
     temp_array = [];
     ratesOfIntrest = [];
     allChecked: boolean;
+    IfRequestSent:boolean=false;
     objBankInfo: any = { BankId: '', Bank: '', NameOfCompany: '', Place: '', Street: '' };
     obj = {
         class1: false,
@@ -650,6 +651,7 @@ export class ViewAllPriceComponent implements OnInit {
         //  document.getElementById('modalSendRequest').style.display='block';
         //  document.getElementById('modalSendRequest').style.display='block';
         this.IfBankResponseFound = false;
+        this.IfRequestSent=false;
         this.bestPriceViewService.lenderSendRequestModel = this.bestPriceViewService.lenderSendRequestModel = {
             RequestId: 0,
             LenderId: 0,
@@ -715,8 +717,9 @@ export class ViewAllPriceComponent implements OnInit {
         this.bestPriceViewService.SaveSendRequest(this.bestPriceViewService.lenderSendRequestModel).subscribe(data => {
             this.spinner.hide();
             this.toastr.success(".REQUEST SENT SUCCESFULLY. PLEASE WAIT FOR BORROWER’S RESPONSE.", "Dashboard");
-            var element = document.getElementById('closeSendRequestModal');
-            element.click();
+            // var element = document.getElementById('closeSendRequestModal');
+            // element.click();
+            this.IfRequestSent=true;
         })
     }
 

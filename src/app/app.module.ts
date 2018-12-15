@@ -44,8 +44,8 @@ import { MaturityListComponent } from './maturity-list/maturity-list.component';
 import { SettingratefieldComponent } from './lender-dashboard/settingratefield/settingratefield.component';
 //import { ExportAsModule } from 'ngx-export-as';
 //import { JwtHelperService} from '@auth0/angular-jwt';
-
-
+import { NgDraggableModule } from 'angular-draggable'; 
+import { MyDatePickerModule } from 'mydatepicker';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
     return new TranslateHttpLoader(httpClient);
@@ -117,6 +117,8 @@ const appRoutes: Routes = [{ path: 'login', component: LoginComponent },
         NgbModule,
         BrowserAnimationsModule,
         NgxSpinnerModule,
+        NgDraggableModule,
+        MyDatePickerModule,
         NgxPaginationModule,
         TranslateModule.forRoot({
             loader: {

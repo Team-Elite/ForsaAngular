@@ -9,7 +9,6 @@
     "maturitydate": "Fälligkeit",
     "rate": "Zins"
   },
-
   "DashboardText": "Meine Zinskurve",
   "ClientGroup": {
     "Group1": "Unternehmen / GmbH",
@@ -128,7 +127,12 @@
     }
 
   },
-
+  "BankInfo": {
+    "Name": "Name Unternehmen",
+    "Comapany": "Strasse",
+    "Place": "Postleitzahl",
+    "Street": "Ort"
+  },
   "Borrower": {
     "BankDashboard": {
       "menutext": "Speisekarte",
@@ -139,10 +143,6 @@
       "PermIdentity": "perm_identity",
       "logout": "logout",
       "Settings": "Wechseln Sie zu Kreditgeber",
-      "SettingStartPage": "Einstellen Startseite",
-      "LenderSettings": "LENDEREINSTELLUNGEN",
-      "BestPriceView": "Beste Preisansicht",
-      "ViewAllPrice": "ALLE PREISE ANSEHEN",
       "UpdateProfile": "Profil aktualisieren",
       "EditDetails": "Details bearbeiten",
       "FirstName": "Vorname",
@@ -226,8 +226,8 @@
       "Settings": "Wechseln Sie zum Benutzer",
       "Account": "Konto",
       "SettingStartPage": "Einstellen Startseite",
-      "LenderSettings": "Lendereinstellungen",
-      "BestPriceView": "Best-Preis-Ansicht",
+      "LenderSettings": "LENDEREINSTELLUNGEN",
+      "BestPriceView": "Best-Peris-Ansicht",
       "ViewAllPrice": "Favorite Einstellung",
       "AllBanks": "Gesamtubersicht",
       "viewlist": "view_list",
@@ -280,7 +280,6 @@
       }
     },
     "BestPriceView": {
-
       "Lender": "Geldgeber",
       "Borrower": "Geldnehmer",
       "Amount": "Volumen",
@@ -290,7 +289,8 @@
       "InterestConvention": "Zinskonvention",
       "Payments": "Zahlungsfrequenz",
       "RateOfInterest": "Zinssatz",
-      "ModelTitle": "Senden",
+      "ModelTitle": "Senden",                  
+      "listPayments": [{ "Id": 1, "Value": "jährliche Zahlung" }, { "Id": 2, "Value": "halbjährliche Zahlung" }, { "Id": 3, "Value": "vierteljährliche Zahlung" }, { "Id": 4, "Value": "endfällig" }],
       "Week1": "1 Woche",
       "Week2": "2 Wochen",
       "Week3": "3 Wochen",
@@ -334,12 +334,6 @@
       "Year3": "3 Y",
       "Year4": "4 Y",
       "Year5": "5 Y"
-
     }
-
-
-
-
-
   }
 }

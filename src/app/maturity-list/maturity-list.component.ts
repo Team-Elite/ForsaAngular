@@ -52,7 +52,7 @@ export class MaturityListComponent implements OnInit {
     _landerdashboardservice: LenderDashboardService;
 
     constructor(public authenticateServiceService: AuthenticateServiceService, public landerdashboardservice: LenderDashboardService, private exportAsService: ExportAsService,
-        private activeRoute: ActivatedRoute, private spinner: NgxSpinnerService, private toastr: ToastrService, private bankDashService: BankDashboardService, private router: Router) {
+        private activeRoute: ActivatedRoute, private spinner: NgxSpinnerService, private toastr: ToastrService, public bankDashService: BankDashboardService, private router: Router) {
         this._authenticateServiceService = authenticateServiceService;
         this._landerdashboardservice = landerdashboardservice;
 
@@ -168,6 +168,7 @@ export class MaturityListComponent implements OnInit {
     ShowScreen(screen: string) {
         if (screen == 'BankDashboard') {
             this.IfShowBankDashBoard = true;
+            this.router.navigate(['/bankDashBoard']);
         }
         //else if (screen == 'Mreport') {
         //    this.GetMaturityList('EndDate');
@@ -192,6 +193,38 @@ export class MaturityListComponent implements OnInit {
         }
         else {
             this.bankDashService.lastGroupId = '';
+        }
+    }
+
+    GroupCheckUnCheck(event, group) {
+        //    
+        let groupsString: string = '';
+        var ifNoneIsSelected: boolean = true;
+
+        // Making string of group ids which are checked.
+        for (var i = 0; i <= this.bankDashService.listUserGroupForSettingRateOfInterestVisibility.length - 1; i++) {
+            let obj: any = this.bankDashService.listUserGroupForSettingRateOfInterestVisibility[i];
+            // if(obj.GroupName != group.GroupName && obj.IfRateWillBeVisible == true){
+            if (obj.RateVisible == true) {
+                ifNoneIsSelected = false;
+                groupsString = groupsString + obj.GroupId + ',';
+            }
+        }
+
+
+        groupsString = groupsString.substring(0, groupsString.length - 1);
+
+        // Checking if none is selected then not saving last remaining grous value in db.
+        if (!ifNoneIsSelected) {
+            this.spinner.show();
+            this.bankDashService.UpdateUserGroupAgainstBankWhomRateOfInterestWillBeVisible(groupsString).subscribe(data => {
+                this.spinner.hide();
+                this.toastr.success("Saved successfully.", "Dashboard");
+
+                // Checking if only one group is left checked or not.
+                // If true then disabling control from getting unchecked.
+                this.IfLastGroupLeftThenDisablingControl();
+            })
         }
     }
 

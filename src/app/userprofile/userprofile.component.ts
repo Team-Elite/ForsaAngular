@@ -28,6 +28,7 @@ export class UserprofileComponent implements OnInit {
    async getUserData() {
        await this.userProfileServiceService.GetUserById(this.authenticateServiceService.GetUserId(), true);
        this.userProfileData = this.userProfileServiceService.userinfo;
+       debugger;
       
     }
 
@@ -54,9 +55,10 @@ export class UserprofileComponent implements OnInit {
 
         if (confirm("Are you sure to update profile")) {
             this.spinner.show();
-            await this.userProfileServiceService.updateUserProfile(form.value);
+            // await this.userProfileServiceService.updateUserProfile(form.value);
+            await this.userProfileServiceService.updateUserProfile(this.userProfileData);
             this.getUserData();
-
+this.toastr.success('Updated successfully.');
             this.spinner.hide();
         }
 

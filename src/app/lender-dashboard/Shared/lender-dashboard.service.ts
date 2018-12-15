@@ -51,10 +51,17 @@ export class LenderDashboardService {
         return response;
     }
 
-    UpdateUserProfile(userModel: UserModel) {
+    async  UpdateUserProfile(userModel: UserModel) {
         var webtoken = { data: this.tokenService.jwtencrypt(userModel) };
-
-        return this.http.post(this.authenticateServiceService.baseURL + '/api/User/UpdateUser', webtoken, this.requestOptions).map(x => x.json());
+      var response;
+      await this.http.post(this.authenticateServiceService.baseURL + '/api/User/UpdateUser', webtoken, this.requestOptions).map((data: Response) => {
+          return data.json();
+      }).toPromise().then(token => {
+         
+          response = token;
+      });
+      //let token = await this.http.get(this.authenticateServiceService.baseURL + '/api/LenderDashboard/GetPagesForLenderSettingStartPage?id=' + this.userId).toPromise();
+      return response;
     }
 
     public async GetPagesForLenderSettingStartPage() {

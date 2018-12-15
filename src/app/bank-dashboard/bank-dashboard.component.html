@@ -26,6 +26,15 @@
             float: left;
             width: 100% !important;
         }
+
+        .dashboard-right div.btn.w-100.active {
+            padding: 0;
+            margin-bottom: 4px;
+            border-radius: 0;
+            border-bottom: 1px solid #1c5d98;
+            background-color: #1c5d98 !important;
+            height: 40px;
+        }
     </style>
 
 </head>
@@ -260,7 +269,7 @@
                                         <div *ngFor="let rate of rate.listintersteRate">
                                             <div class="col-md-12 pr-1 row" *ngIf="rate.TimePeriod!=='(T/N)'">
                                                 <div class="col-md-1 pr-1">
-                                                    <button type="button" class="btn w-100 ">{{rate.TimePeriod}}</button>
+                                                    <button type="button" class="btn w-100 ">{{rate.TimePeriodShort}}</button>
                                                 </div>
 
 
@@ -360,8 +369,7 @@
                                                     </div>
                                                     <div class="col-md-4 pr-1 in-float-lf">
                                                         <button type="button" class="btn w-100 w-100-px">
-                                                            <label style="width: 100%;
-                                                                    text-align: center;">{{rate.RateOfInterest3}}</label>
+                                                            <label style="width: 100%;text-align: center;">{{rate.RateOfInterest3}}</label>
                                                         </button>
                                                     </div>
                                                 </div>
@@ -528,7 +536,7 @@
                                 </table>
                             </div>
                             <div class="modal-footer">
-                                <input type="button" (click)="UpdateLenderSendRequestRateOfInterest()" class="btn btn-info btn-lg common-bt" id="sendRequest" value="SEND">
+                                <input type="button" [disabled]="IfRequestSent" (click)="UpdateLenderSendRequestRateOfInterest()" class="btn btn-info btn-lg common-bt" id="sendRequest" value="SEND">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="SetTimeInterval()">{{'Button.ButtonClose'|translate}}</button>
                                 <button id="closeSendRequestModal" style="display:none;" type="button" data-dismiss="modal" class="btn btn-secondary">Close 12</button>
 
@@ -578,25 +586,19 @@
 
                                     <div class="row">
 
-                                        <div class="heading col-sm-12">
-                                            <h4>{{'Borrower.BankDashboard.ChangePassword'|translate}}</h4>
-                                            <hr>
+                                        <div class="col-md-6">
+                                            <label>{{'Borrower.BankDashboard.OldPassword'|translate}} *</label>
+                                            <input #Password="ngModel" [(ngModel)]="copyLoggedInUser.Password" type="password" name="Password" class="form-control">
                                         </div>
                                         <div class="col-md-6">
-                                            <label>{{'Borrower.BankDashboard.OldPassword'|translate}}</label>
-                                            <input type="password" name="" class="form-control" value="">
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label>{{'Borrower.BankDashboard.NewPassword'|translate}}</label>
-                                            <input type="password" name="" class="form-control" value="">
+                                            <label>{{'Borrower.BankDashboard.NewPassword'|translate}} *</label>
+                                            <input #NewPassword="ngModel" [(ngModel)]="bankDashboardService.NewPassword" type="password" name="NewPassword" class="form-control">
                                         </div>
                                         <div class="col-md-12">
-                                            <label>{{'Borrower.BankDashboard.ConfirmPassword'|translate}}</label>
-                                            <input type="password" name="" class="form-control" value="">
+                                            <label>{{'Borrower.BankDashboard.ConfirmPassword'|translate}} *</label>
+                                            <input #ConfirmPassword="ngModel" [(ngModel)]="bankDashboardService.ConfirmPassword" type="password" name="ConfirmPassword" class="form-control">
                                         </div>
-                                        <div class="col-md-12">
-
-                                        </div>
+                                      
 
 
                                     </div>
@@ -765,17 +767,17 @@
                 $(this).addClass('current');
             }
         });
-                        //Check if navbar is expanded or minimized and handle
-                        //$('#navbar-toggle').click(
-                        //})
+                                    //Check if navbar is expanded or minimized and handle
+                                    //$('#navbar-toggle').click(
+                                    //})
 
 
 
-                                                                // if (document.documentElement.clientWidth < 900) {
-                                                                //     $('#navbar-toggle').click(function() {
-                                                                //         $("html").addClass("open-nav")
-                                                                //     })
-                                                                // }
+                                                                            // if (document.documentElement.clientWidth < 900) {
+                                                                            //     $('#navbar-toggle').click(function() {
+                                                                            //         $("html").addClass("open-nav")
+                                                                            //     })
+                                                                            // }
     </script>
 
 </body>

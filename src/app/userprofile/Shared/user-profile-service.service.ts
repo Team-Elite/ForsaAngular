@@ -45,9 +45,12 @@ export class UserProfileServiceService {
     async updateUserProfile(user: UserModel) {
         // var body=JSON.stringify(user);
         debugger;
+        user.UserId=this.userId;
         var webtoken = { data: this.tokenService.jwtencrypt(user) };
+        const _formData = new FormData();
+        _formData.append('encrypted', JSON.stringify(webtoken));
 
-        return await this.http.post(this.authenticateServiceService.baseURL + '/api/User/UpdateUserDetails', webtoken, this.requestOptions).toPromise().then(x => { debugger; x.json() });
+        return await this.http.post(this.authenticateServiceService.baseURL + '/api/User/UpdateUserProfile2', _formData).toPromise().then(x => { debugger; x.json() });
     }
 
     async GetDocList(userId: number) {
@@ -63,6 +66,7 @@ export class UserProfileServiceService {
         //var data = this.tokenService.jwtdecrypt(this.Usertoken);
 
          await this.authenticateServiceService.GetUserById(userId, IsloginUser);
+         debugger;
         return this.userinfo = this.authenticateServiceService.Userdata;
 
     }

@@ -129,7 +129,12 @@
     }
 
   },
-
+  "BankInfo": {
+    "Name": "Name of Bank",
+    "Comapany": "Name of Company",
+    "Place": "Place",
+    "Street": "Street"
+  },
   "Borrower": {
     "BankDashboard": {
       "BankDashboard": "Borrower",
@@ -292,7 +297,8 @@
       "InterestConvention": "INTEREST CONVENTION",
       "Payments": "PAYMENTS",
       "RateOfInterest": "Rate Of Interest",
-      "ModelTitle": "SEND REQUEST"
+      "ModelTitle": "SEND REQUEST",
+      "listPayments": [{ "Id": 1, "Value": "yearly payment" }, { "Id": 2, "Value": "semi-annual" }, { "Id": 3, "Value": "quarterly" }, { "Id": 4, "Value": "at maturity" }]
     },
     "ViewAllPrice": {
       "Bank": "Bank",

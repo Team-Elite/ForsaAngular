@@ -11,4 +11,5 @@ export class RateOfInterestOfBankModel {
    // GroupIds :string;
     TimePeriod:string;
     IsDoubleTapped:boolean;
+    TimePeriodShort:string;
 }

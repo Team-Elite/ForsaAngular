@@ -20,6 +20,7 @@ declare var $: any;
 })
 export class BankDashboardComponent implements OnInit {
     tempValue: any;
+    IfRequestSent:boolean=false;
     state: string = "expanded";
     bankRateOfinterst: any[];
     _MaturityList: any;
@@ -123,6 +124,8 @@ export class BankDashboardComponent implements OnInit {
                     for (let j = 0; j < this.bankDashboardService.listRateOfInterestOfBankModel.length; j++) {
                         let splitetimepriod1 = this.bankDashboardService.listRateOfInterestOfBankModel[j].TimePeriod.split(" ");
                         if (splitetimepriod1[1] == "Week") {
+                            this.bankDashboardService.listRateOfInterestOfBankModel[j].TimePeriodShort = splitetimepriod1[0] + " " + splitetimepriod1[1].substr(0, 1);
+
                             this.Week.push(this.bankDashboardService.listRateOfInterestOfBankModel[j])
                         }
 
@@ -134,7 +137,9 @@ export class BankDashboardComponent implements OnInit {
 
                     for (let j = 0; j < this.bankDashboardService.listRateOfInterestOfBankModel.length; j++) {
                         let splitetimepriod1 = this.bankDashboardService.listRateOfInterestOfBankModel[j].TimePeriod.split(" ");
+                       
                         if (splitetimepriod1[1] == "Month") {
+                            this.bankDashboardService.listRateOfInterestOfBankModel[j].TimePeriodShort = splitetimepriod1[0] +" "+ splitetimepriod1[1].substr(0, 1);
                             this.Month.push(this.bankDashboardService.listRateOfInterestOfBankModel[j])
                         }
                     }
@@ -143,8 +148,11 @@ export class BankDashboardComponent implements OnInit {
                 }
                 else if (splitetimepriod == "Year") {
                     for (let j = 0; j < this.bankDashboardService.listRateOfInterestOfBankModel.length; j++) {
+
                         let splitetimepriod1 = this.bankDashboardService.listRateOfInterestOfBankModel[j].TimePeriod.split(" ");
+                        
                         if (splitetimepriod1[1] == "Year") {
+                            this.bankDashboardService.listRateOfInterestOfBankModel[j].TimePeriodShort = splitetimepriod1[0] + " " + splitetimepriod1[1].substr(0, 1);
                             this.Year.push(this.bankDashboardService.listRateOfInterestOfBankModel[j])
                         }
                     }
@@ -153,6 +161,7 @@ export class BankDashboardComponent implements OnInit {
                 this.flagArray[i] = true;
                 // this.listrateofinterstofbank.push({})
             }
+          
             this.listrateofinterstofbank.push({ timeprioed: "Week", listintersteRate: this.Week });
             this.listrateofinterstofbank.push({ timeprioed: "Month", listintersteRate: this.Month });
             this.listrateofinterstofbank.push({ timeprioed: "Year", listintersteRate: this.Year });
@@ -556,7 +565,7 @@ export class BankDashboardComponent implements OnInit {
         //}
     }
 
-    ChangePassword() {
+    async ChangePassword() {
 
 
         /* Validating controls */
@@ -564,7 +573,8 @@ export class BankDashboardComponent implements OnInit {
             this.copyLoggedInUser.NewPassword = this.bankDashboardService.NewPassword.trim();
             this.copyLoggedInUser.Password = this.copyLoggedInUser.Password.trim();
             this.spinner.show();
-            this.bankDashboardService.UpdateUserProfile(this.copyLoggedInUser).subscribe(data => {
+            var data;
+            data = await this.bankDashboardService.UpdateUserProfile(this.copyLoggedInUser);
                 this.spinner.hide();
                 if (data != undefined && data != null) {
 
@@ -573,13 +583,15 @@ export class BankDashboardComponent implements OnInit {
                         return;
                     }
                     this.authenticateServiceService.UpdateSession(data.data);
-                    this.bankDashboardService.loggedInUser = this._authenticateServiceService.GetUserDetail();
                     this.toastr.success("Updated successfully. An email has been sent to your email id.", "Dashboard");
+                    this.bankDashboardService.loggedInUser = this._authenticateServiceService.GetUserDetail();
+                 
                 }
 
-            });
+            
         }
     }
+
 
     ValidateUserPfrofileFields(userModel: any, NewPassword: string, ConfirmPassword: string) {
         let IfErrorFound: boolean = false;
@@ -685,9 +697,10 @@ export class BankDashboardComponent implements OnInit {
             }
             clearInterval(this.timer);
             //this.bestPriceViewService.lenderSendRequestModel = result.data;
-            $('#modalSendRequest').modal('show');
-            //var element = document.getElementById('modalSendRequest');
-            //element.click();
+            //$('#modalSendRequest').modal('show');
+            this.IfRequestSent=false;
+            var element = document.getElementById('ShowLendPopup');
+            element.click();
             
 
             // setInterval(this.timer);
@@ -706,9 +719,10 @@ export class BankDashboardComponent implements OnInit {
         var result = this.bankDashboardService.UpdateLenderSendRequestRateOfInterest(this.lenderSendRequestModel).subscribe(data => {
             this.toastr.success('Die Anfrage wurde erfolgreich beantwortet, bitte warten Sie auf die Antwort des Geldgebers.', 'Dashboard');
             this.spinner.hide();
-            this.SetTimeInterval();
-            var element = document.getElementById('closeSendRequestModal');
-            element.click();
+            //this.SetTimeInterval();
+            this.IfRequestSent=true;
+            // var element = document.getElementById('closeSendRequestModal');
+            // element.click();
             //setInterval(this.GetLenderSendRequestRequestdOnTheBasisOfBorrowerId,5000);
         });
 

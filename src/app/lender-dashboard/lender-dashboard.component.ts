@@ -8,6 +8,7 @@ import { StartPageModel } from './Shared/start-page-model.class';
 import { BestPriceViewService } from '../lender-dashboard/best-price-view/Shared/best-price-view.service';
 import { LOCAL_STORAGE } from 'angular-webstorage-service';
 import { Http, Response, Headers, RequestOptions, RequestMethod } from '@angular/http';
+import { isNullOrUndefined } from 'util';
 declare var $: any;
 
 @Component({
@@ -19,7 +20,7 @@ export class LenderDashboardComponent implements OnInit {
     tempAmount: any;
     selectedItem: string;
     _http: any;
-  
+    IfRequestSent:boolean=false;
     _userId: any
     _authenticateServiceService: AuthenticateServiceService
     _showMaturity: boolean;
@@ -127,9 +128,10 @@ export class LenderDashboardComponent implements OnInit {
         var result = this.bestPriceViewService.AcceptLendedRequest(this.bestPriceViewService.lenderSendRequestModel2).subscribe(data => {
             this.toastr.success('Successfully accepted Trade, please check E-Mail.', 'Dashboard');
             this.spinner.hide();
-            this.SetTimeInterval();
-            var element = document.getElementById('closeSendRequestModalLender');
-            element.click();
+            this.IfRequestSent=true;
+            // this.SetTimeInterval();
+            // var element = document.getElementById('closeSendRequestModalLender');
+            // element.click();
         });
 
     }
@@ -156,9 +158,10 @@ export class LenderDashboardComponent implements OnInit {
         var result = this.bestPriceViewService.RejectLendedRequest(this.bestPriceViewService.lenderSendRequestModel2).subscribe(data => {
             this.toastr.success('The Deal request has been declined.', 'Dashboard');
             this.spinner.hide();
-            var element = document.getElementById('closeSendRequestModalLender');
-            element.click();
-            this.SetTimeInterval();
+            this.IfRequestSent=true;
+            // var element = document.getElementById('closeSendRequestModalLender');
+            // element.click();
+            // this.SetTimeInterval();
         });
 
     }
@@ -196,6 +199,7 @@ export class LenderDashboardComponent implements OnInit {
         if (result!= undefined && result.length >0) {
             clearInterval(this.timer);
             this.IfBankResponseFound = true;
+            this.IfRequestSent=false;
             var element = document.getElementById('ShowSendRequestLDPopup');
             element.click();
             this.bestPriceViewService.lenderSendRequestModel2 = result[0];
@@ -228,7 +232,7 @@ export class LenderDashboardComponent implements OnInit {
         //}
     }
 
-    UpdateUserProfile() {
+    async UpdateUserProfile() {
 
 
         /* Validating controls */
@@ -236,20 +240,22 @@ export class LenderDashboardComponent implements OnInit {
             this.copyLoggedInUser.NewPassword = this.lenderDashboardService.NewPassword.trim();
             this.copyLoggedInUser.Password = this.copyLoggedInUser.Password.trim();
             this.spinner.show();
-            this.lenderDashboardService.UpdateUserProfile(this.copyLoggedInUser).subscribe(data => {
-                this.spinner.hide();
-                if (data != undefined && data != null) {
+            var data;
+            data = await this.lenderDashboardService.UpdateUserProfile(this.copyLoggedInUser);//.subscribe(data => {
+            this.spinner.hide();
+            debugger;
+                if ( !isNullOrUndefined(data)) {
                    
                     if (data.IsSuccess == false) {
                         this.toastr.error("Old password is not correct.", "Dashboard");
                         return;
                     }
                     this.authenticateServiceService.UpdateSession(data.data);
-                    this.lenderDashboardService.loggedInUser = this.authenticateServiceService.GetUserDetail();
                     this.toastr.success("Updated successfully. An email has been sent to your email id.", "Dashboard");
+                    this.lenderDashboardService.loggedInUser = this.authenticateServiceService.GetUserDetail();
                 }
 
-            });
+            //});
         }
     }
 

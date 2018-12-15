@@ -85,13 +85,23 @@ export class BankDashboardService {
         //    return this.http.post(this.authenticateServiceService.baseURL + '/api/BankDashBoard/UpdateUserGroupAgainstBankWhomRateOfInterestWillBeVisible?GroupIds=' + GroupIds + "&id=" + this.userId, requestOptions).map(x => x.json());
 
     }
-
-    UpdateUserProfile(userModel: UserModel) {
+    async UpdateUserProfile(userModel: UserModel) {
         // var body = JSON.stringify(userModel);
         var webtoken = { data: this.tokenService.jwtencrypt(userModel) };
-        return this.http.post(this.authenticateServiceService.baseURL + '/api/User/UpdateUser', webtoken, this.requestOptions).map(x => x.json());
+        var response;
+        await this.http.post(this.authenticateServiceService.baseURL + '/api/User/UpdateUser', webtoken, this.requestOptions).map((data: Response) => {
+            return data.json();
+        }).toPromise().then(token => {
+            response = token;
+            //if (token.IsSuccess) return this.lenderSendRequestModel = JSON.parse(this.tokenService.jwtdecrypt(token.data).unique_name);
+            //return { IsSuccess: token.IsSuccess , data: JSON.parse(this.tokenService.jwtdecrypt(token.data).unique_name) };
+            //return { IsSuccess: token.IsSuccess };
+            });
+        return response;
         //return this.http.post(this.authenticateServiceService.baseURL + '/api/User/UpdateUser', body, requestOptions).map(x => x.json());
     }
+
+   
 
     async GetLenderSendRequestRequestdOnTheBasisOfBorrowerId() {
         var webtoken = { data: this.tokenService.jwtencrypt({ userId: this.userId }) };

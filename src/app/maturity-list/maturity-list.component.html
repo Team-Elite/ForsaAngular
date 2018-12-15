@@ -19446,41 +19446,41 @@
                             <app-forsa-languages></app-forsa-languages>
 
                             <li class="identity account-style">
-                                   {{'Login.BorrowerText'|translate}}
+                                {{'Login.BorrowerText'|translate}}
                             </li>
                             <!--   <li class="identity account-style">
 
-                                <div class="form-group form-md-line-input has-error">
-                                    <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
+                                                        <div class="form-group form-md-line-input has-error">
+                                                            <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
 
-                                <select class="mdl-selectfield__select" name="LogicRoom" id="logicroom">
-        <span class="input-group-icon">
-            <i class="material-icons">{{'Borrower.BankDashboard.expand_more'|translate}}</i>
-        </span>
-        <option value="" disabled selected>LogicRoom</option>
-        <option value="logicroom1">1</option>
-        <option value="logicroom2">2</option>
-        <option value="logicroom3">3</option>
-        <option value="logicroom4">4</option>
-    </select>
-                                </div>
+                                                        <select class="mdl-selectfield__select" name="LogicRoom" id="logicroom">
+                                <span class="input-group-icon">
+                                    <i class="material-icons">{{'Borrower.BankDashboard.expand_more'|translate}}</i>
+                                </span>
+                                <option value="" disabled selected>LogicRoom</option>
+                                <option value="logicroom1">1</option>
+                                <option value="logicroom2">2</option>
+                                <option value="logicroom3">3</option>
+                                <option value="logicroom4">4</option>
+                            </select>
+                                                        </div>
 
-                                </div>
+                                                        </div>
 
-                            </li>
-                            <!--<li>
-                                <a>
-                                    <i class="material-icons icon-position">search</i>
-                                </a>
-                            </li>
-                            <li>
-                                <a>
-                                    <i class="material-icons icon-position">forum</i>
-                                </a>
-                            </li>-->
+                                                    </li>
+                                                    <!--<li>
+                                                        <a>
+                                                            <i class="material-icons icon-position">search</i>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a>
+                                                            <i class="material-icons icon-position">forum</i>
+                                                        </a>
+                                                    </li>-->
                             <li class="identity">
                                 <a href="#" data-toggle="modal" data-target=".admin-modal">
-                                    <i class="material-icons">perm_identity</i>
+                                    <i class="material-icons"></i>
                                 </a>
                             </li>
                             <li *ngIf="IfBothUserTypeFound" class="settings" title="Switch Screen">
@@ -19566,35 +19566,37 @@
                                 </span>
                             </a>
                             <div class="cockpit-dropdown-div">
-                                <button type="button" class="dropcockpit" id="eigene" data-toggle="modal" data-target=".bd-example-modal-lg-eigene-Stammdatenverwaltung">{{'Borrower.BankDashboard.Ownmasterdatamanagement'|translate}}  <span class="align-middle input-group-icon ">
- <i class="material-icons ">perm_identity</i>
-                                </span></button>
+                                <button type="button" class="dropcockpit" id="eigene" data-toggle="modal" data-target=".bd-example-modal-lg-eigene-Stammdatenverwaltung">
+                                    {{'Borrower.BankDashboard.Ownmasterdatamanagement'|translate}}  <span class="align-middle input-group-icon ">
+                                        <i class="material-icons ">perm_identity</i>
+                                    </span>
+                                </button>
                                 <!--<button type="button" class="dropcockpit" (click)="ShowScreen('Mreport');" id="Ansehen">{{'Borrower.BankDashboard.Viewanddownloadyourownduelist'|translate}}</button>
-            <button type="button" class="dropcockpit" (click)="ShowScreen('HMreport');" id="Ansehenund">{{'Borrower.BankDashboard.Viewanddownloadinthepastdonebusiness'|translate}}</button>-->
+                                <button type="button" class="dropcockpit" (click)="ShowScreen('HMreport');" id="Ansehenund">{{'Borrower.BankDashboard.Viewanddownloadinthepastdonebusiness'|translate}}</button>-->
                                 <button type="button" class="dropcockpit" routerLink="/maturityList" id="Ansehen">{{'Borrower.BankDashboard.Viewanddownloadyourownduelist'|translate}}<span _ngcontent-c1="" class="align-middle input-group-icon "><img _ngcontent-c1="" _ngcontent-c5="" alt="Insimatch Logo" src="../assets/images/maturity-list.png"></span></button>
                                 <button type="button" class="dropcockpit" routerLink="/historyMaturityList" id="Ansehenund">{{'Borrower.BankDashboard.Viewanddownloadinthepastdonebusiness'|translate}}<span _ngcontent-c1="" class="align-middle input-group-icon "><img _ngcontent-c1="" _ngcontent-c5="" alt="Insimatch Logo" src="../assets/images/history-maturity-list.png"></span></button>
                                 <!--<button type="button" class="dropcockpit" >Maturity List</button>
-            <button type="button" class="dropcockpit" > History Maturity List</button>-->
+                                <button type="button" class="dropcockpit" > History Maturity List</button>-->
 
                             </div>
 
                         </li>
                         <!--<li>
-        <a routerLink="/maturityList">
-            {{'Borrower.BankDashboard.MaturityList'|translate}}
-            <span class="align-middle input-group-icon ">
-                <img alt="Insimatch Logo" src="../assets/images/coountryparty-icon.png">
-            </span>
-        </a>
-    </li>
-    <li>
-        <a routerLink="/historyMaturityList">
-            {{'Borrower.BankDashboard.HistoryMaturityList'|translate}}
-            <span class="align-middle input-group-icon ">
-                <img alt="Insimatch Logo" src="../assets/images/coountryparty-icon.png">
-            </span>
-        </a>
-    </li>-->
+                            <a routerLink="/maturityList">
+                                {{'Borrower.BankDashboard.MaturityList'|translate}}
+                                <span class="align-middle input-group-icon ">
+                                    <img alt="Insimatch Logo" src="../assets/images/coountryparty-icon.png">
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a routerLink="/historyMaturityList">
+                                {{'Borrower.BankDashboard.HistoryMaturityList'|translate}}
+                                <span class="align-middle input-group-icon ">
+                                    <img alt="Insimatch Logo" src="../assets/images/coountryparty-icon.png">
+                                </span>
+                            </a>
+                        </li>-->
 
 
 
@@ -19617,18 +19619,18 @@
 
                                     <th style="cursor:pointer;" (click)="GetMaturityList('TicketNo')">{{'MaturityListfild.Ticketnumber'|translate}}</th>
                                     <!--<th style="cursor:pointer;">LenderId</th>-->
-                                    <!--<th style="cursor:pointer;" (click)="GetMaturityList('Trading Date')">{{'MaturityListfild.tadig-date'|translate}}</th>-->
+                                    <th style="cursor:pointer;" (click)="GetMaturityList('DateCreated')">{{'MaturityListfild.tadig-date'|translate}}</th>
                                     <th style="cursor:pointer;" (click)="GetMaturityList('Lender')">{{'MaturityListfild.Lender'|translate}}</th>
                                     <!--<th style="cursor:pointer;">BorrowerId</th>-->
                                     <th style="cursor:pointer;" (click)="GetMaturityList('Borrower')">{{'MaturityListfild.Bowwower'|translate}}</th>
                                     <th style="cursor:pointer;" (click)="GetMaturityList('Amount')">{{'MaturityListfild.Amount'|translate}}</th>
                                     <th style="cursor:pointer;" (click)="GetMaturityList('StartDate')">{{'MaturityListfild.Startdate'|translate}}</th>
-                                    <th style="cursor:pointer;" (click)="GetMaturityList('EndDate')">Maturity Date</th>
-                                    <!--<th style="cursor:pointer;" (click)="GetMaturityList('MaturityDate')">{{'MaturityListfild.maturitydate'|translate}}</th>-->
+                                    <th style="cursor:pointer;" (click)="GetMaturityList('EndDate')">{{'MaturityListfild.maturitydate'|translate}}</th>
+                                    <!--<th style="cursor:pointer;" (click)="GetMaturityList('MaturityDate')"></th>-->
                                     <th style="cursor:pointer;" (click)="GetMaturityList('Rate')">{{'MaturityListfild.rate'|translate}}</th>
                                     <!--<th style="cursor:pointer;" (click)="GetMaturityList('InterestConvention')">Interest Convention</th>
-    <th style="cursor:pointer;" (click)="GetMaturityList('Payments')">Payments</th>
-    <!--<th style="cursor:pointer;">IsRequestAccepted</th>-->
+                                    <th style="cursor:pointer;" (click)="GetMaturityList('Payments')">Payments</th>
+                                    <!--<th style="cursor:pointer;">IsRequestAccepted</th>-->
                                     <!--<th style="cursor:pointer;">RequestCreatedBy</th>-->
                                     <!-- <th style="cursor:pointer;" (click)="GetMaturityList('RateOfInterestOfferred')">Rate</th>
                                     <th style="cursor:pointer;">Offerred Date</th>
@@ -19637,21 +19639,19 @@
                                 </tr>
                                 <tr *ngFor="let bank of _MaturityList">
                                     <td>{{bank.TicketNo}}</td>
-                                    <!--<td>{{bank.LenderId}}</td>-->
+                                    <td>{{bank.DateCreated|date:'MM-dd-yyyy'}}</td>
                                     <td>{{bank.Lender}}</td>
                                     <!--<td>{{bank.BorrowerId}}</td>-->
                                     <td>{{bank.Borrower}}</td>
                                     <td>{{bank.Amount}}</td>
                                     <td>{{bank.StartDate|date:'MM-dd-yyyy'}}</td>
-                                   <td>{{bank.EndDate|date:'MM-dd-yyyy'}}
+                                    <td>{{bank.EndDate|date:'MM-dd-yyyy'}}
                                     <td>{{bank.RateOfInterestOfferred}}</td>
                                     <!-- <td>{{bank.NoOfDays}}</td>
                                     <td>{{bank.InterestConvention}}</td>
                                     <td>{{bank.Payments}}</td> -->
                                     <!--<td>{{bank.IsRequestAccepted}}</td>
                                     <td>{{bank.RequestCreatedBy}}</td>-->
-                                    
-
                                     <!--<td>{{bank.OfferredOn|date:mm/dd/yy}}</td>
                                     <td>
                                         IsAccepted:{{bank.IsAccepted}}
@@ -19777,6 +19777,44 @@
         </div>
     </div>
 
+    <!-- modal start-->
+    <!--admin icon modal page tab-->
+    <div class="modal fade  counterparty-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">{{'ClientGroupAccess.Title'|translate}}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body" id="lendrequestbody">
+                    <form>
+                        <div class="row">
+                            <div class="form-md-line-input has-error col-sm-12">
+                                <div *ngFor="let group of bankDashService.listUserGroupForSettingRateOfInterestVisibility" class=" input-group">
+                                    <span class="line">{{group.GroupName}}</span>
+                                    <input id="{{group.GroupName}}" name="{{group.GroupName}}" [(ngModel)]="group.RateVisible" (ngModelChange)="GroupCheckUnCheck($event,group);" type="checkbox" class="cbx used">
+                                    <label for="{{group.GroupName}}" class="lbl notrobot">
+                                    </label>
+                                 
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{'Button.ButtonClose'|translate}}</button>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
     <!-- <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script> -->
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
     <script src='https://unpkg.com/popper.js'></script>
@@ -19816,11 +19854,11 @@
         });
 
 
-                                                    // if (document.documentElement.clientWidth < 900) {
-                                                    //     $('#navbar-toggle').click(function() {
-                                                    //         $("html").addClass("open-nav")
-                                                    //     })
-                                                    // }
+                                                        // if (document.documentElement.clientWidth < 900) {
+                                                        //     $('#navbar-toggle').click(function() {
+                                                        //         $("html").addClass("open-nav")
+                                                        //     })
+                                                        // }
     </script>
 
 </body>

@@ -23,8 +23,8 @@ export class BestPriceViewService {
     listBankByTimePeriod: LenderModel[];
     lenderSendRequestModel: LenderSendRequestModel;
     lenderSendRequestModel2: LenderSendRequestModel;
-    listInterestConvention: any[] = [{ Id: 1, Value: 'act/360' }];
-    listPayments: any[] = [{ Id: 1, Value: 'yearly payments' }];
+    listInterestConvention: any[] = [{ Id: 1, Value: 'act / 360' },{ Id: 2, Value: 'act / act' }];
+    listPayments: any[] =  [{ Id: 1, Value: 'yearly payments' }, { Id: 2, Value: 'semi-annual' }, { Id: 3, Value: 'quarterly' }, { Id: 4, Value: 'at maturity' }];
 
     async GetRatesByTimePeriod() {
         if (this.lenderDashboardService.userId === undefined) return null;
