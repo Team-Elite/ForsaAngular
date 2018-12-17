@@ -19418,7 +19418,7 @@
                 <!--  <div class="col-lg-6 d-lg-inline pr-1">
                      <button type="button" class="btn w-100 ">Tagesgeld (T/N)</button>
                  </div> -->
-                <div *ngFor="let rate of bestPriceViewService.listRatesByTimePeriod" class="col-lg-12  pr-1">
+                 <div *ngFor="let rate of bestPriceViewService.listRatesByTimePeriod" class="col-lg-12  pr-1">
                     <button id="rate.TimePeriodId"  (click)="GetBanksByTimePeriod(rate.TimePeriodId,rate.TimePeriodGR)" type="button" class="link row">
                         <div class="col-md-6 col-sm-12"><a>{{rate.TimePeriodGR}}</a></div>
                         <div class="col-md-6 col-sm-12"><a>{{rate.RateOfInterest}}</a></div>
@@ -19473,26 +19473,29 @@
     <button Id="ShowSendRequestPotonpup" type="button" style="display:none;" class="btn w-100 active" data-toggle="modal" data-target=".BestPriceViewModal">{{'Button.ButtonLend'|translate}}</button>
 
     <!-- modal second-->
-    <div id="modalSendRequest" draggable class="modal fade bd-example-modal-lg dashboard-modal BestPriceViewModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div id="modalSendRequest" draggable class="modal fade bd-example-modal-lg dashboard-modal BestPriceViewModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"  data-backdrop="static" data-keyboard="false" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLongTitle">{{'Lender.BestPriceView.ModelTitle'|translate}}</h5>
-                    <div *ngIf="request_sent">REQUEST SENT SUCCESFULLY. PLEASE WAIT FOR BORROWER’S RESPONSE.</div>
+                    <p *ngIf="request_sent" class="model-msg">{{'MessageText.BorrowerRQSent'|translate}}</p>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
+                   
+                    
                 </div>
                 <div class="modal-body" id="lendrequestbody">
+                
                     <table>
                         <tbody>
                             <tr><th>{{'Lender.BestPriceView.Lender'|translate}}</th><td>{{bestPriceViewService.lenderSendRequestModel.LenderName}}</td></tr>
                             <tr><th>{{'Lender.BestPriceView.Borrower'|translate}}</th><td>{{bestPriceViewService.lenderSendRequestModel.BorrowerName}}</td></tr>
                             <tr><th>{{'Lender.BestPriceView.Amount'|translate}}</th><td><input [disabled]="IfBankResponseFound" [(ngModel)]="tempAmount" (blur)="GermanFormat(tempAmount)"  #Amount1="ngModel" name="Amount" placeholder="Volumen" type="text" id="amount" class="form-control requestamount"></td></tr>
                             <!-- <tr><th>{{'Lender.BestPriceView.StartDate'|translate}} </th><td><input [disabled]="IfBankResponseFound" (change)="CalculateNumberOfDays()" #StartDate="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.StartDate" name="StartDate" type="date" id="datepicker" class="form-control hasDatepicker datepicker"></td></tr> -->
-                            <tr><th>{{'Lender.BestPriceView.StartDate'|translate}}</th><td><my-date-picker [disabled]="IfBankResponseFound" name="mydate" [options]="myDatePickerOptions"
+                            <tr><th>{{'Lender.BestPriceView.StartDate'|translate}}</th><td><my-date-picker [disabled]="IfBankResponseFound" name="mydate" [options]="'myDatePickerOptions'|translate"
                                 [(ngModel)]="bestPriceViewService.lenderSendRequestModel.StartDate" required></my-date-picker></td></tr>
-                                <tr><th>{{'Lender.BestPriceView.Endate'|translate}}</th><td><my-date-picker [disabled]="IfBankResponseFound" name="mydate" [options]="myDatePickerOptions"
+                                <tr><th>{{'Lender.BestPriceView.Endate'|translate}}</th><td><my-date-picker [disabled]="IfBankResponseFound" name="mydate" [options]="'myDatePickerOptions'|translate"
                                     [(ngModel)]="bestPriceViewService.lenderSendRequestModel.EndDate" required></my-date-picker></td></tr>
                                 
                                     <!-- <tr><th>{{'Lender.BestPriceView.Endate'|translate}}</th><td><input [disabled]="IfBankResponseFound" (change)="CalculateNumberOfDays()" #EndDate="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.EndDate" name="EndDate" type="date" id="datepicker1" class="form-control hasDatepicker datepicker1"></td></tr> -->
@@ -19537,7 +19540,7 @@
     </div>
     <!-- modal third-->
 
-    <div class="modal fade bd-example-modal-lg-3 dashboard-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div draggable class="modal fade bd-example-modal-lg-3 dashboard-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
@@ -19574,7 +19577,7 @@
     </div>
     <!-- modal Frankfurt Bank-->
 
-    <div class="modal fade bd-example-modal-lg-4 dashboard-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div draggable class="modal fade bd-example-modal-lg-4 dashboard-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
@@ -19610,11 +19613,10 @@
     </div>
 
     <button Id="btnShowBankInfo" type="button" style="display:none;" class="btn w-100 active" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target=".chatWithForsaModal">Lend</button>
-    <div id="modalSendRequest" class="modal fade bd-example-modal-lg dashboard-modal chatWithForsaModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div draggable id="modalSendRequest" class="modal fade bd-example-modal-lg dashboard-modal chatWithForsaModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle2">Bank Info</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>

@@ -215,7 +215,7 @@ export class MaturityListComponent implements OnInit {
         groupsString = groupsString.substring(0, groupsString.length - 1);
 
         // Checking if none is selected then not saving last remaining grous value in db.
-        if (!ifNoneIsSelected) {
+       // if (!ifNoneIsSelected) {
             this.spinner.show();
             this.bankDashService.UpdateUserGroupAgainstBankWhomRateOfInterestWillBeVisible(groupsString).subscribe(data => {
                 this.spinner.hide();
@@ -225,7 +225,7 @@ export class MaturityListComponent implements OnInit {
                 // If true then disabling control from getting unchecked.
                 this.IfLastGroupLeftThenDisablingControl();
             })
-        }
+       // }
     }
 
 }

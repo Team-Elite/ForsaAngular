@@ -24,6 +24,7 @@
             float: left;
             width: 100% !important;
         }
+ 
     </style>
     <style media="" data-href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
         button, hr, input {
@@ -178,10 +179,10 @@
             overflow: auto
         }
 
-        [type=checkbox], [type=radio] {
+        /*[type=checkbox], [type=radio] {
             box-sizing: border-box;
             padding: 0
-        }
+        }*/
 
         [type=number]::-webkit-inner-spin-button, [type=number]::-webkit-outer-spin-button {
             height: auto
@@ -11349,6 +11350,10 @@
                 color: #fff;
                 width: 100%;
             }
+        input[type="checkbox"][_ngcontent-c6] {
+            position: absolute;
+            left: -9999px;
+        }
 
             .eigene-modal tr:last-child td {
                 width: 50%;
@@ -19393,6 +19398,7 @@
             .demo-wrapper iframe {
                 border: 1px solid rgba(0,0,0,.5)
             }
+            
     </style>
     <style media="" data-href="https://fonts.googleapis.com/icon?family=Material+Icons">
         /* fallback */
@@ -19480,7 +19486,7 @@
                                                     </li>-->
                             <li class="identity">
                                 <a href="#" data-toggle="modal" data-target=".admin-modal">
-                                    <i class="material-icons"></i>
+                                    <i class="material-icons">perm_identity</i>
                                 </a>
                             </li>
                             <li *ngIf="IfBothUserTypeFound" class="settings" title="Switch Screen">
@@ -19609,9 +19615,9 @@
                 <div class="clearfix"></div>
                 <div class="row dashboard-price-list">
                     <div class="col-lg-12">
-                        <button (click)="exportAs('pdf')" class="btn btn-info btn-lg common-bt-1 export-pdf">Export To Pdf</button>
+                        <button (click)="exportAs('pdf')" class="btn btn-info btn-lg common-bt-1 export-pdf">Export PDF</button>
 
-                        <button (click)="exportAs('xlsx')" class="btn btn-info btn-lg common-bt-1 export-excel">Export to Excel</button>
+                        <button (click)="exportAs('xlsx')" class="btn btn-info btn-lg common-bt-1 export-excel">Export Excel</button>
 
                         <table class="table table-bordered table-responsive" id="mytable">
                             <tbody>
@@ -19796,7 +19802,7 @@
                                 <div *ngFor="let group of bankDashService.listUserGroupForSettingRateOfInterestVisibility" class=" input-group">
                                     <span class="line">{{group.GroupName}}</span>
                                     <input id="{{group.GroupName}}" name="{{group.GroupName}}" [(ngModel)]="group.RateVisible" (ngModelChange)="GroupCheckUnCheck($event,group);" type="checkbox" class="cbx used">
-                                    <label for="{{group.GroupName}}" class="lbl notrobot">
+                                    <label for="{{group.GroupName}}" class="lbl notrobot top-forsa">
                                     </label>
                                  
                                 </div>

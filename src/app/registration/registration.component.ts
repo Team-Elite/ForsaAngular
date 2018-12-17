@@ -271,6 +271,7 @@ export class RegistrationComponent implements OnInit {
         let IfErrorFound: boolean = false;
         let numberOfErrorFound: number = 0;
         IfErrorFound = this.Section2Visible(form);
+        if (!IfErrorFound) return; IfErrorFound;
         IfErrorFound= this.Section3Visible(form);
         //_Message = 'Fields marked with * are required. Please fill';
         /*
@@ -646,7 +647,7 @@ export class RegistrationComponent implements OnInit {
 
     async UpdateUserDetails(form: NgForm) {
      
-       
+        debugger;
         form.value.DateCreated = new Date();
         form.value.DateModified = new Date();
         form.value.CreatedBy = -1;

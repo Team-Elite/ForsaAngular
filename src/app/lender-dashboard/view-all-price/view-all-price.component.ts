@@ -23,6 +23,7 @@ const hubProxy = connection.createHubProxy('ForsaHub');
     styleUrls: ['./view-all-price.component.css']
 })
 export class ViewAllPriceComponent implements OnInit {
+    request_sent: boolean=false;
     tempStorage: any;
     tempAmount: any;
     IfBankResponseFound: boolean = false;
@@ -103,6 +104,7 @@ export class ViewAllPriceComponent implements OnInit {
     orderByColumn: string = "Bank";
     loginUserTypeId: string;
     ngOnInit() {
+        this.request_sent = false;
         this.path = this.authenticateServiceService.GetUserId().baseURL + "/Uploads/Docs/";// + this.authenticateServiceService.GetUserId() + "/UserProfile/";
         this.allChecked = true;
         this.viewAllPriceService.listViewAllPrice1 = [];
@@ -130,8 +132,8 @@ export class ViewAllPriceComponent implements OnInit {
             LenderName: '',
             BorrowerName: '',
             Amount: 0.00,
-            StartDate: '',
-            EndDate: '',
+            StartDate: null,
+            EndDate: null,
             NoOfDays: 0,
             InterestConvention: '',
             Payments: '',
@@ -650,8 +652,11 @@ export class ViewAllPriceComponent implements OnInit {
         
         //  document.getElementById('modalSendRequest').style.display='block';
         //  document.getElementById('modalSendRequest').style.display='block';
+      
         this.IfBankResponseFound = false;
+        this.request_sent = false;
         this.IfRequestSent=false;
+        this.tempAmount = '';
         this.bestPriceViewService.lenderSendRequestModel = this.bestPriceViewService.lenderSendRequestModel = {
             RequestId: 0,
             LenderId: 0,
@@ -659,8 +664,8 @@ export class ViewAllPriceComponent implements OnInit {
             LenderName: '',
             BorrowerName: '',
             Amount: null,
-            StartDate: '',
-            EndDate: '',
+            StartDate: null,
+            EndDate: null,
             NoOfDays: 0,
             InterestConvention: '',
             Payments: '',
@@ -684,8 +689,8 @@ export class ViewAllPriceComponent implements OnInit {
         this.bestPriceViewService.lenderSendRequestModel.LenderId = this.bestPriceViewService.lenderDashboardService.authenticateServiceService.GetUserId();
         this.bestPriceViewService.lenderSendRequestModel.BorrowerName = bank.Bank;
         this.bestPriceViewService.lenderSendRequestModel.LenderName = this.bestPriceViewService.lenderDashboardService.authenticateServiceService.GetLenderName();
-        this.bestPriceViewService.lenderSendRequestModel.StartDate = this.pipe.transform(new Date(), 'yyyy-MM-dd');
-        this.bestPriceViewService.lenderSendRequestModel.EndDate = this.pipe.transform(new Date(), 'yyyy-MM-dd');
+        // this.bestPriceViewService.lenderSendRequestModel.StartDate = this.pipe.transform(new Date(), 'yyyy-MM-dd');
+        // this.bestPriceViewService.lenderSendRequestModel.EndDate = this.pipe.transform(new Date(), 'yyyy-MM-dd');
         this.bestPriceViewService.lenderSendRequestModel.InterestConvention = this.bestPriceViewService.listInterestConvention[0].Id;
         this.bestPriceViewService.lenderSendRequestModel.Payments = this.bestPriceViewService.listPayments[0].Id;
         this.bestPriceViewService.lenderSendRequestModel.LenderEmailId = this.bestPriceViewService.lenderDashboardService.authenticateServiceService.GetEmailId();
@@ -714,9 +719,16 @@ export class ViewAllPriceComponent implements OnInit {
         }
 
         this.spinner.show();
-        this.bestPriceViewService.SaveSendRequest(this.bestPriceViewService.lenderSendRequestModel).subscribe(data => {
+        var d1 = this.bestPriceViewService.lenderSendRequestModel.StartDate['jsdate'];
+        d1.setTime( d1.getTime() - d1.getTimezoneOffset()*60*1000 );
+        var d2 = this.bestPriceViewService.lenderSendRequestModel.EndDate['jsdate'];
+        d2.setTime( d2.getTime() - d2.getTimezoneOffset()*60*1000 );
+        console.log({...this.bestPriceViewService.lenderSendRequestModel, ...{StartDate: d1}, ...{EndDate: d2}});
+        this.bestPriceViewService.SaveSendRequest({...this.bestPriceViewService.lenderSendRequestModel, ...{StartDate: d1}, ...{EndDate: d2}})
+        .subscribe(data => {
             this.spinner.hide();
-            this.toastr.success(".REQUEST SENT SUCCESFULLY. PLEASE WAIT FOR BORROWER’S RESPONSE.", "Dashboard");
+            this.request_sent = true;
+            // this.toastr.success(".REQUEST SENT SUCCESFULLY. PLEASE WAIT FOR BORROWER’S RESPONSE.", "Dashboard");
             // var element = document.getElementById('closeSendRequestModal');
             // element.click();
             this.IfRequestSent=true;
@@ -745,9 +757,20 @@ export class ViewAllPriceComponent implements OnInit {
             this.toastr.error('Amounut can not be 0.');
             return false;
         }
-        let currentDate: any = new Date(this.pipe.transform(new Date(), 'yyyy-MM-dd')).getTime();
-        let startDate: any = new Date(requestModel.StartDate).getTime();
-        let endDate: any = new Date(requestModel.EndDate).getTime();
+        // let currentDate: any = new Date(this.pipe.transform(new Date(), 'yyyy-MM-dd')).getTime();
+        // let startDate: any = new Date(requestModel.StartDate).getTime();
+        // let endDate: any = new Date(requestModel.EndDate).getTime();
+        let currentDate: any = (new Date(this.pipe.transform(new Date().setDate(new Date().getDate() - 1), 'yyyy-MM-dd')).getTime())/1000;
+        let startDate: any = requestModel.StartDate['epoc'];
+        let endDate: any = requestModel.EndDate['epoc'];
+        if (!startDate) {
+            this.toastr.error('Please select Start date');
+            return false;
+        }
+        if (!endDate) {
+            this.toastr.error('Please select End date');
+            return false;
+        }
         if (startDate < currentDate) {
             this.toastr.error('Start date can not be less than from today date.');
             return false;
@@ -763,7 +786,7 @@ export class ViewAllPriceComponent implements OnInit {
             return false;
         }
 
-        if (currentDate == endDate) {
+        if (startDate == endDate) {
             this.toastr.error('Start and End date can not be same.');
             return false;
         }
@@ -773,13 +796,30 @@ export class ViewAllPriceComponent implements OnInit {
 
     CalculateNumberOfDays() {
         
-        let fromDate: any = new Date(this.bestPriceViewService.lenderSendRequestModel.StartDate);
-        let toDate: any = new Date(this.bestPriceViewService.lenderSendRequestModel.EndDate);
-        if (this.bestPriceViewService.lenderSendRequestModel.StartDate != "" && this.bestPriceViewService.lenderSendRequestModel.EndDate != "") {
-            this.bestPriceViewService.lenderSendRequestModel.NoOfDays = (toDate - fromDate) / 86400000;
+        // let fromDate: any = new Date(this.bestPriceViewService.lenderSendRequestModel.StartDate);
+        // let toDate: any = new Date(this.bestPriceViewService.lenderSendRequestModel.EndDate);
+        // if (this.bestPriceViewService.lenderSendRequestModel.StartDate != "" && this.bestPriceViewService.lenderSendRequestModel.EndDate != "") {
+        //     this.bestPriceViewService.lenderSendRequestModel.NoOfDays = (toDate - fromDate) / 86400000;
+        // }
+        // else {
+        //     this.bestPriceViewService.lenderSendRequestModel.NoOfDays = 0;
+        // }
+        let fromDate: any;
+        let toDate: any;
+        if(this.bestPriceViewService.lenderSendRequestModel.StartDate) {
+            fromDate = this.bestPriceViewService.lenderSendRequestModel.StartDate['epoc'];
+        }
+        if(this.bestPriceViewService.lenderSendRequestModel.EndDate) {
+            toDate = this.bestPriceViewService.lenderSendRequestModel.EndDate['epoc'];
+        }
+         
+        if (fromDate && toDate) {
+            this.bestPriceViewService.lenderSendRequestModel.NoOfDays = (toDate - fromDate) / 86400;
+            return (toDate - fromDate) / 86400;
         }
         else {
-            this.bestPriceViewService.lenderSendRequestModel.NoOfDays = 0;
+            this.bestPriceViewService.lenderSendRequestModel.NoOfDays = 0
+            return 0;
         }
     }
 

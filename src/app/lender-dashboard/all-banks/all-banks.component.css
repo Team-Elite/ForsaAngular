@@ -1,3 +1,7 @@
 .modal.fade.bd-example-modal-lg-eigene-Stammdatenverwaltung.admin-modal.show {
     overflow: auto !important;
 }
+.sidebar-mini #main-panel {
+    width: calc(100% - 160px);
+    background: #25272e;
+}

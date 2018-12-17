@@ -2,6 +2,104 @@
     box-sizing: border-box;
 }
 
+label.lbl.notrobot {
+    position: absolute !important;
+    right: 8px;
+    top: 3px;
+    z-index: 1;
+}
+
+.form-group input:focus ~ label.notrobot,
+.form-group input.used ~ label.notrobot {
+    transform: scale(1);
+}
+
+ btn:focus,
+ .btn.focus {
+    outline: 0;
+    box-shadow: none;
+}
+
+input[type="checkbox"] + label {
+    cursor: pointer;
+    position: relative;
+    margin-right: 20px;
+    display: inline-block;
+    padding-right: 10px;
+    margin-top: 14px;
+}
+
+input[type="checkbox"] {
+    position: absolute;
+    left: -9999px;
+}
+.top-forsa {
+    right: 9px;
+    position: absolute;
+    top: 5px;
+}
+
+    /* the checkbox
+-----------------------------------------------*/
+
+input[type="checkbox"] + label::after {
+        content: '';
+        border: 2px solid #fff;
+        border-radius: 2px;
+        background: transparent;
+        position: absolute;
+        top: 50%;
+        right: -40px;
+        transform: translate(-20px, -50%);
+        box-sizing: border-box;
+        width: 20px;
+        height: 20px;
+    }
+
+
+    /* the checkbox -- checked
+-----------------------------------------------*/
+
+input[type="checkbox"]:checked + label::after {
+        border: 2px solid #fff;
+        background: transparent;
+        transition: background-color 1s;
+        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUAQMAAAC3R49OAAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAAAFiS0dEAIgFHUgAAAAJcEhZcwAACxMAAAsTAQCanBgAAAAHdElNRQfgBwEQARzBMMQpAAAAN0lEQVQI12NgQAEHGBgYHzAwMAMxO5DN38AgIM/AYGHHwFBTw8Bg94OBQf4DUBgqzdwAVI5qAACbXgn3nmfmHgAAAABJRU5ErkJggg==);
+        background-position: -2px -1px;
+    }
+
+
+    /* the checkbox -- disabled
+-----------------------------------------------*/
+
+input[type="checkbox"]:disabled + label::after {
+        border: 2px solid rgba(0, 0, 0, .1);
+        background-color: rgba(0, 0, 0, .05);
+        background-image: none;
+    }
+
+
+    /* the focus ripple
+-----------------------------------------------*/
+
+input[type="checkbox"] + label::before {
+        content: '';
+        border-radius: 50%;
+        background-color: rgba(0, 0, 0, .1);
+        position: absolute;
+        box-sizing: border-box;
+        top: 50%;
+        right: -10px;
+        transform: translate(-50%, -50%) scale(0);
+        width: 1.8px;
+        height: 1.8px;
+    }
+
+input[type="checkbox"]:focus + label::before {
+        animation: checkboxripple 1s ease-out;
+    }
+
+
 html body {
     font-family: Helvetica;
     -webkit-font-smoothing: antialiased;
@@ -31,6 +129,28 @@ hgroup {
     text-align: center;
     margin-top: 4em;
 }
+.model-msg {
+    width: 100%;
+    float: left;
+    color: #fff !important;
+    margin: 3px !important;
+    text-align: center !important;
+}
+.model-msg-close {
+    width: 80%;
+    float: none;
+    color: #fff !important;
+    margin: 3px !important;
+    text-align: center !important;
+}
+.model-msg-contact {
+    width: 100%;
+    float: none;
+    color: #fff !important;
+    margin: 3px !important;
+    text-align: center !important;
+}
+
 
 #wrapper a {
     color: #1c5d98;
@@ -702,7 +822,7 @@ input:focus~.highlight {
     float: right;
     width: calc(100% - 320px);
     color: #fff;
-    padding: 2em 5em;
+    padding: 2em 1em !important;
     margin: 1%;
     background: #25272e;
     z-index:999 !important;
@@ -732,4 +852,18 @@ input:focus~.highlight {
 .icon-set-0 {
     width: 20px;
     text-indent: -121px;
+}
+#wrapper[_ngcontent-c6] input[type="checkbox"][_ngcontent-c6] + label[_ngcontent-c6]::after {
+    content: '';
+    border: 2px solid #fff;
+    border-radius: 2px;
+    background: transparent;
+    position: absolute;
+    top: 50%;
+    right: -40px;
+    -webkit-transform: translate(-20px, -50%);
+    transform: translate(-20px, -50%);
+    box-sizing: border-box;
+    width: 20px;
+    height: 20px;
 }

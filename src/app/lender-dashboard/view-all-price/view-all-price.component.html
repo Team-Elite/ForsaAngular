@@ -10779,11 +10779,10 @@ direction: ltr;
  
  
     <button Id="btnShowBankInfo" type="button" style="display:none;" class="btn w-100 active" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target=".chatWithForsaModal">Lend</button>
-<div id="modalSendRequest" class="modal fade bd-example-modal-lg dashboard-modal chatWithForsaModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<div draggable id="modalSendRequest" class="modal fade bd-example-modal-lg dashboard-modal chatWithForsaModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle2">Bank Info</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
@@ -10792,16 +10791,15 @@ direction: ltr;
             <div  class="modal-body" id="lendrequestbody">
                 <table>
                     <tbody>
-                        <tr><th>Bank</th><td>{{objBankInfo.Bank}}</td></tr>
-                        <tr><th>Name Of Company</th><td>{{objBankInfo.NameOfCompany}}</td></tr>
-                        <tr><th>Place</th><td>{{objBankInfo.Place}}</td></tr>
-                        <tr><th>Street</th><td>{{objBankInfo.Street}}</td></tr>
+                        <tr><th>{{'BankInfo.Name'|translate}}</th><td>{{objBankInfo.Bank}}</td></tr>
+                        <tr><th>{{'BankInfo.Comapany'|translate}}</th><td>{{objBankInfo.NameOfCompany}}</td></tr>
+                        <tr><th>{{'BankInfo.Place'|translate}}</th><td>{{objBankInfo.Place}}</td></tr>
+                        <tr><th>{{'BankInfo.Street'|translate}}</th><td>{{objBankInfo.Street}}</td></tr>
                         <tr>
                             <td>
-                                <ul style="color:white;">
-                                    <strong>File(s) List</strong>
+                                <ul style="color:black;">
                                     <li *ngFor="let file of userProfileServiceService.listOfFileUploaded">
-                                        <a style="color:white;" target="_blank" href="{{path}}{{file.bankId}}/UserProfile/{{file.name}}">{{file.name}}</a>
+                                        <a style="color:black;" target="_blank" href="{{path}}{{file.bankId}}/UserProfile/{{file.name}}">{{file.name}}</a>
                                         <!--<a style="color:white;" target="_blank" href="{{path}}{{file.name}}">{{file.name}}</a>-->
 
                                     </li>
@@ -10831,11 +10829,12 @@ direction: ltr;
 
 
    <!-- modal Send money request-->
-    <div *ngIf="bestPriceViewService.lenderDashboardService.UserTypeId == 5 || bestPriceViewService.lenderDashboardService.UserTypeId == '4,5'" id="modalSendRequest" class="modal fade bd-example-modal-lg dashboard-modal BestPriceViewModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div draggable *ngIf="bestPriceViewService.lenderDashboardService.UserTypeId == 5 || bestPriceViewService.lenderDashboardService.UserTypeId == '4,5'" id="modalSendRequest" class="modal fade bd-example-modal-lg dashboard-modal BestPriceViewModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" data-backdrop="static" data-keyboard="false" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLongTitle">{{'Lender.BestPriceView.ModelTitle'|translate}}</h5>
+                    <p *ngIf="request_sent" class="model-msg">{{'MessageText.BorrowerRQSent'|translate}}</p>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
@@ -10846,9 +10845,11 @@ direction: ltr;
                             <tr><th>{{'Lender.BestPriceView.Lender'|translate}}</th><td>{{bestPriceViewService.lenderSendRequestModel.LenderName}}</td></tr>
                             <tr><th>{{'Lender.BestPriceView.Borrower'|translate}}</th><td>{{bestPriceViewService.lenderSendRequestModel.BorrowerName}}</td></tr>
                             <tr><th>{{'Lender.BestPriceView.Amount'|translate}}</th><td><input  [disabled]="IfBankResponseFound" name="Amount" [(ngModel)]="tempAmount" (blur)="GermanFormat(tempAmount)" placeholder="Volumen" type="text" id="amount" class="form-control requestamount"></td></tr>
-                            <tr><th>{{'Lender.BestPriceView.StartDate'|translate}} </th><td><input [disabled]="IfBankResponseFound" (change)="CalculateNumberOfDays()" #StartDate="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.StartDate" name="StartDate" type="date" id="datepicker" class="form-control hasDatepicker datepicker"></td></tr>
-                            <tr><th>{{'Lender.BestPriceView.Endate'|translate}}</th><td><input [disabled]="IfBankResponseFound" (change)="CalculateNumberOfDays()" #EndDate="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.EndDate" name="EndDate" type="date" id="datepicker1" class="form-control hasDatepicker datepicker1"></td></tr>
-                            <tr><th>{{'Lender.BestPriceView.NrOfDays'|translate}}&nbsp;&nbsp;</th><td id="no_of_days">{{bestPriceViewService.lenderSendRequestModel.NoOfDays}}</td></tr>
+                            <tr><th>{{'Lender.BestPriceView.StartDate'|translate}}</th><td><my-date-picker [disabled]="IfBankResponseFound" name="mydate" [options]="'myDatePickerOptions'|translate"
+                                [(ngModel)]="bestPriceViewService.lenderSendRequestModel.StartDate" required></my-date-picker></td></tr>
+                                <tr><th>{{'Lender.BestPriceView.Endate'|translate}}</th><td><my-date-picker [disabled]="IfBankResponseFound" name="mydate" [options]="'myDatePickerOptions'|translate"
+                                    [(ngModel)]="bestPriceViewService.lenderSendRequestModel.EndDate" required></my-date-picker></td></tr>
+                            <tr><th>{{'Lender.BestPriceView.NrOfDays'|translate}}&nbsp;&nbsp;</th><td id="no_of_days">{{CalculateNumberOfDays()}}</td></tr>
                             <tr>
                                 <th>{{'Lender.BestPriceView.InterestConvention'|translate}}</th>
                                 <td>
@@ -10868,18 +10869,18 @@ direction: ltr;
                                         <option *ngFor="let payment of bestPriceViewService.listPayments" value="{{payment.Id}}">{{payment.Value}}</option>
                                     </select>-->
                                     <select #Payments="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.Payments" name="Payments"  class="form-control" id="payments">
-                                        <option *ngFor="let payment of bestPriceViewService.listPayments" value="{{payment.Id}}">{{payment.Value}}</option>
+                                        <option *ngFor="let payment of ('Lender.BestPriceView.listPayments'|translate)" value="{{payment.Id}}">{{payment.Value}}</option>
                                     </select>
                                 </td>
                             </tr>
                             <tr *ngIf="IfBankResponseFound"><th>{{'Lender.BestPriceView.RateOfInterest'|translate}}</th><td><input [disabled]="1==1" (keypress)="numberWithDecimalOnly($event)" #RateOfInterest="ngModel" [(ngModel)]="bestPriceViewService.lenderSendRequestModel.RateOfInterest" name="RateOfInterest" type="text" id="RateOfInterest" class="form-control requestamount" maxlength="7"></td></tr>
-                            <tr><td><input type="button" (click)="SaveSendRequest()" class="btn btn-info btn-lg" id="sendRequest" value="{{'Button.ButtonSend'|translate}}"></td></tr>
+                            <tr><td><input type="button" [disabled]="IfRequestSent" (click)="SaveSendRequest()" class="btn btn-info btn-lg" id="sendRequest" value="{{'Button.ButtonSend'|translate}}"></td></tr>
 
                         </tbody>
                     </table>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{'Button.ButtonLend'|translate}}</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{'Button.ButtonClose'|translate}}</button>
                     <button id="closeSendRequestModal" style="display:none;" type="button" data-dismiss="modal" class="btn btn-secondary">{{'Button.ButtonClose'|translate}} 12</button>
 
                 </div>

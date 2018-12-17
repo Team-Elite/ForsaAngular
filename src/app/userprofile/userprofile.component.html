@@ -28,10 +28,10 @@
                 <label _ngcontent-c1="">{{'UserProfile.Place'|translate}}</label>
                 <input _ngcontent-c1="" class="form-control ng-untouched ng-pristine" id="Place" #Place="ngModel" [(ngModel)]="userProfileData.Place" name="Place" placeholder="" type="text" >
             </div>
-            <div class="full-width" *ngIf="userProfileData.UserTypeId == 4">
+            <!-- <div class="full-width" *ngIf="userProfileData.UserTypeId == 4">
                 <label _ngcontent-c1="">{{'UserProfile.AccountHolder'|translate}}</label>
                 <input _ngcontent-c1="" class="form-control ng-untouched ng-pristine" id="AccountHolder" #AccountHolder="ngModel" [(ngModel)]="userProfileData.AccountHolder" name="AccountHolder" placeholder="" type="text" >
-            </div>
+            </div> -->
             <div class="full-width">
                 <label _ngcontent-c1="">{{'UserProfile.Bank'|translate}}</label>
                 <input _ngcontent-c1="" class="form-control ng-untouched ng-pristine" id="Bank" #Bank="ngModel" [(ngModel)]="userProfileData.Bank" name="Bank" placeholder="" type="text" >
@@ -68,16 +68,16 @@
                 <label _ngcontent-c1="">{{'UserProfile.Username'|translate}}</label>
                 <input [disabled]="1==1" _ngcontent-c1="" class="form-control ng-untouched ng-pristine" id="Username" #UserName="ngModel" [(ngModel)]="userProfileData.UserName" name="UserName" placeholder="" type="text" >
             </div>
-            <div class="full-width" *ngIf="userProfileData.UserTypeId == 4">
+            <!-- <div class="full-width" *ngIf="userProfileData.UserTypeId == 4">
                 <label _ngcontent-c1="">{{'UserProfile.UserType'|translate}}</label>
                 <input [disabled]="1==1" _ngcontent-c1="" class="form-control ng-untouched ng-pristine" id="UserType" #UserType="ngModel" [(ngModel)]="userProfileData.UserType" name="UserType" placeholder="" type="text" >
-            </div>
+            </div> -->
             <div class="full-width">
                 <label _ngcontent-c1="">{{'UserProfile.TelephoneNo'|translate}}</label>
                 <input _ngcontent-c1="" class="form-control ng-untouched ng-pristine" id="TelephoneNo" #ContactNumber="ngModel" [(ngModel)]="userProfileData.ContactNumber" name="ContactNumber" placeholder="" type="text" >
             </div>
             <div class="full-width">
-                <label _ngcontent-c1="">Group Name</label>
+                <label _ngcontent-c1="">{{'UserProfile.ClientGroup'|translate}}</label>
                 <input [disabled]="1==1" _ngcontent-c1="" class="form-control ng-untouched ng-pristine" id="GroupName" #GroupName="ngModel" [(ngModel)]="userProfileData.GroupName" name="GroupName" placeholder="" type="text" >
             </div>
             <!-- <div class="full-width">

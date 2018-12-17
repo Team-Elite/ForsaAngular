@@ -1,11 +1,16 @@
 ﻿{
+  "MessageText": {
+    "BorrowerRQSent": "Request sent succesfully. Please wait for Borrower’s response.",
+    "ChatWithForsa": "Chat with Forsa"
+  },
+
   "MaturityListfild": {
     "Ticketnumber": "Ticket Number",
     "tadig-date": "Trading Date",
-    "Lender": "LENDER",
-    "Bowwower": "BORROWER",
-    "Amount": "AMOUNT",
-    "Startdate": "START-DATE",
+    "Lender": "Lender",
+    "Bowwower": "Borrower",
+    "Amount": "Amount",
+    "Startdate": "Start-Date",
     "maturitydate": "Maturity Date",
     "rate": "Rate"
   },
@@ -25,12 +30,16 @@
     "ButtonEurTN": "EUR (T/N)",
     "ButtonInfo": "INFO",
     "ButtinLend": "Lend",
-    "ButtonRegisterasPartner": "Register as a Partner",
+    "ButtonRegisterasPartner": "Become Trading Client",
     "ButtonSettingRateField": "Einstellungen",
     "ButtonUpload": "Upload",
     "ButtonChangePassword": "Change Password",
     "ButtonSaveProfile": "Update Profile",
-    "ButtonRegister": "Register"
+    "ButtonRegister": "Register",
+    "ButtonLend": "Lend",
+    "ButtonAcceptRequest": "ACCEPT",
+    "ButtonDeclineRequest": "DECLINE",
+    "ButtonChatWithForsa": "FORSA,please contact me"
   },
   "Login": {
     "Title": "Log in",
@@ -51,7 +60,7 @@
     "Email": "Email"
   },
   "UserProfile": {
-    "FormTitle": "Stammdatenverwaltung",
+    "FormTitle": "Eigene Stammdatenverwaltung",
     "Title": "Title",
     "NameofCompany": "Name of Company",
     "Street": "Street",
@@ -64,7 +73,7 @@
     "ClientGroup": "Client Group",
     "LEINumber": "LEI Number",
     "FurtherField4": "Further Field 4",
-    "Salutation": "Salutation",
+    "Salutation": "Anrede",
     "FirstName": "First Name",
     "SurName": "SurName",
     "Username": "User Name",
@@ -160,22 +169,22 @@
       "OldPassword": "Old Password",
       "NewPassword": "New Password",
       "ConfirmPassword": "Confirm Password",
-      "Lender": "LENDER",
-      "Amount": "AMOUNT",
-      "StartDate": "START-DATE",
-      "Endate": "END-DATE",
-      "NrOfDays": "NR.OFDAYS",
-      "InterestConvention": "INTEREST CONVENTION",
-      "Payments": "PAYMENTS",
+      "Lender": "Lender",
+      "Amount": "Amount",
+      "StartDate": "Start-Date",
+      "Endate": "End-Date",
+      "NrOfDays": "Nr. Of Days",
+      "InterestConvention": "Interest Convention",
+      "Payments": "Payments",
       "RateOfInterest": "Rate Of Interest",
-      "PUBLISH": "PUBLISH",
-      "Viewanddownloadinthepastdonebusiness": "HISTORY MATURITY LIST",
-      "Viewanddownloadyourownduelist": "MATURITY LIST",
+      "PUBLISH": "Publish",
+      "Viewanddownloadinthepastdonebusiness": "History Maturity List",
+      "Viewanddownloadyourownduelist": "Maturity List",
       "Ownmasterdatamanagement": "Stammdatenverwaltung",
-      "STOPPUBLISH": "STOP PUBLISH",
+      "STOPPUBLISH": "Stop Publish",
       "STATUSON": "STATUS:ON",
       "STATUSOFF": "STATUS:OFF",
-      "CounterpartyConfiguration": "COUNTERPARTY CONFIGURATION",
+      "CounterpartyConfiguration": "Counterparty Configuration",
       "TicketNumber": "Ticket Number",
       "TradingDate": "Trading Date",
       "MaturityDate": "Maturity Date",
@@ -233,10 +242,10 @@
       "Settings": "Switch to Borrower Dashboard",
       "Account": "Account",
       "SettingStartPage": "Einstellen Startseite",
-      "LenderSettings": "LENDER  SETTINGS",
-      "BestPriceView": "BEST PRICE VIEW",
-      "ViewAllPrice": "VIEW ALL PRICE",
-      "AllBanks": "ALL BANKS",
+      "LenderSettings": "Lender Settings",
+      "BestPriceView": "Best Price View",
+      "ViewAllPrice": "View All Price",
+      "AllBanks": "All Banks",
       "viewlist": "view_list",
       "UpdateProfile": "Update Profile",
       "EditDetails": "Edit Details",
@@ -250,7 +259,7 @@
       "HistoryMaturityList": "History Maturity List",
       "ConfirmPassword": "Confirm Password",
       "Pricelist": {
-        "GENERALOVERVIEW": "GENERAL OVERVIEW",
+        "GENERALOVERVIEW": "All Banks",
         "Tag": "Tag",
         "Week1": "1 W",
         "Week2": "2 W",
@@ -288,17 +297,34 @@
     },
     "BestPriceView": {
 
-      "Lender": "LENDER",
-      "Borrower": "BORROWER",
-      "Amount": "AMOUNT",
-      "StartDate": "START-DATE",
-      "Endate": "END-DATE",
-      "NrOfDays": "NR.OFDAYS",
-      "InterestConvention": "INTEREST CONVENTION",
-      "Payments": "PAYMENTS",
+      "Lender": "Lender",
+      "Borrower": "Borrower",
+      "Amount": "Amount",
+      "StartDate": "Start-Date",
+      "Endate": "End-Date",
+      "NrOfDays": "Nr. Of Days",
+      "InterestConvention": "Interest Convention",
+      "Payments": "Payments",
       "RateOfInterest": "Rate Of Interest",
       "ModelTitle": "SEND REQUEST",
-      "listPayments": [{ "Id": 1, "Value": "yearly payment" }, { "Id": 2, "Value": "semi-annual" }, { "Id": 3, "Value": "quarterly" }, { "Id": 4, "Value": "at maturity" }]
+      "listPayments": [
+        {
+          "Id": 1,
+          "Value": "yearly payment"
+        },
+        {
+          "Id": 2,
+          "Value": "semi-annual"
+        },
+        {
+          "Id": 3,
+          "Value": "quarterly"
+        },
+        {
+          "Id": 4,
+          "Value": "at maturity"
+        }
+      ]
     },
     "ViewAllPrice": {
       "Bank": "Bank",
@@ -327,5 +353,32 @@
     }
 
 
+  },
+  "myDatePickerOptions": {
+    "dateFormat": "dd/mm/yyyy",
+    "sunHighlight": false,
+    "monthLabels": {
+      "1": "January",
+      "2": "February",
+      "3": "March",
+      "4": "April",
+      "5": "May",
+      "6": "June",
+      "7": "July",
+      "8": "August",
+      "9": "September",
+      "10": "October",
+      "11": "November",
+      "12": "December"
+    },
+    "dayLabels": {
+      "su": "Sunday",
+      "mo": "Monday",
+      "tu": "Tuesday",
+      "we": "Wednesday",
+      "th": "Thursday",
+      "fr": "Friday",
+      "sa": "Satday"
+    }
   }
 }

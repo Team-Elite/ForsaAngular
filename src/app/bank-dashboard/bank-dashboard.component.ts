@@ -130,7 +130,7 @@ export class BankDashboardComponent implements OnInit {
                         }
 
                     }
-
+                    this.flagArray[i] = false;
 
                 }
                 else if (splitetimepriod == "Month") {
@@ -143,7 +143,7 @@ export class BankDashboardComponent implements OnInit {
                             this.Month.push(this.bankDashboardService.listRateOfInterestOfBankModel[j])
                         }
                     }
-
+                    this.flagArray[i] = true;
 
                 }
                 else if (splitetimepriod == "Year") {
@@ -156,9 +156,9 @@ export class BankDashboardComponent implements OnInit {
                             this.Year.push(this.bankDashboardService.listRateOfInterestOfBankModel[j])
                         }
                     }
-
+                    this.flagArray[i] = false;
                 }
-                this.flagArray[i] = true;
+                
                 // this.listrateofinterstofbank.push({})
             }
           
@@ -261,6 +261,15 @@ export class BankDashboardComponent implements OnInit {
         
     }
     CalculateBaseCurve(rate) {
+        //changes in calculation so that comma can be converted to dot in interest rate
+        //start
+        if(parseInt(rate.BaseCurve.replace(',','.')) && typeof parseInt(rate.BaseCurve.replace(',','.')) === 'number') {
+            rate.BaseCurve = parseFloat(rate.BaseCurve.replace(',','.')).toFixed(2)
+        } else{
+            rate.BaseCurve = 0;
+            this.toastr.warning("Ihre Eingabe enthält unzulässige Zeichen", "Dashboard");
+        }
+        //end done by prabhjot
         
         rate.RateOfInterest = ((rate.FractionRate/100) + parseFloat(rate.BaseCurve)).toFixed(2);
         rate.RateOfInterest2 = ((rate.FractionRate2/100) + parseFloat(rate.BaseCurve)).toFixed(2);;
@@ -510,7 +519,7 @@ export class BankDashboardComponent implements OnInit {
         groupsString = groupsString.substring(0, groupsString.length - 1);
 
         // Checking if none is selected then not saving last remaining grous value in db.
-        if (!ifNoneIsSelected) {
+        ///if (!ifNoneIsSelected) {
             this.spinner.show();
             this.bankDashboardService.UpdateUserGroupAgainstBankWhomRateOfInterestWillBeVisible(groupsString).subscribe(data => {
                 this.spinner.hide();
@@ -520,7 +529,7 @@ export class BankDashboardComponent implements OnInit {
                 // If true then disabling control from getting unchecked.
                 this.IfLastGroupLeftThenDisablingControl();
             })
-        }
+       // }
     }
     update(ratedata) {
         $(".update").removeClass("btn-secondary");
@@ -717,7 +726,7 @@ export class BankDashboardComponent implements OnInit {
         }
         this.spinner.show();
         var result = this.bankDashboardService.UpdateLenderSendRequestRateOfInterest(this.lenderSendRequestModel).subscribe(data => {
-            this.toastr.success('Die Anfrage wurde erfolgreich beantwortet, bitte warten Sie auf die Antwort des Geldgebers.', 'Dashboard');
+            // this.toastr.success('Die Anfrage wurde erfolgreich beantwortet, bitte warten Sie auf die Antwort des Geldgebers.', 'Dashboard');
             this.spinner.hide();
             //this.SetTimeInterval();
             this.IfRequestSent=true;

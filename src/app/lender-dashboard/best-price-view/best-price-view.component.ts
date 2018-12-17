@@ -20,11 +20,6 @@ const hubProxy = connection.createHubProxy('ForsaHub');
     styleUrls: ['./best-price-view.component.css']
 })
 export class BestPriceViewComponent implements OnInit {
-    public myDatePickerOptions: IMyDpOptions = {
-        // other options...
-        dateFormat: 'dd/mm/yyyy',   
-        sunHighlight: false
-    };
     tempAmount: any;
     tempStorage: any;
     path: string;
@@ -82,8 +77,8 @@ export class BestPriceViewComponent implements OnInit {
             LenderName: '',
             BorrowerName: '',
             Amount: 0.00,
-            StartDate: '',
-            EndDate: '',
+            StartDate: null,
+            EndDate: null,
             NoOfDays: 0,
             InterestConvention: '',
             Payments: '',
@@ -107,9 +102,15 @@ export class BestPriceViewComponent implements OnInit {
     getNumberOfDays(){
         // console.log(this.bestPriceViewService.lenderSendRequestModel.StartDate);
         // console.log(this.bestPriceViewService.lenderSendRequestModel.EndDate);
-        let fromDate: any = this.bestPriceViewService.lenderSendRequestModel.StartDate['epoc'];
-        let toDate: any = this.bestPriceViewService.lenderSendRequestModel.EndDate['epoc'];
-        if (this.bestPriceViewService.lenderSendRequestModel.StartDate != "" && this.bestPriceViewService.lenderSendRequestModel.EndDate != "") {
+        let fromDate: any;
+        let toDate: any;
+        if(this.bestPriceViewService.lenderSendRequestModel.StartDate) {
+            fromDate = this.bestPriceViewService.lenderSendRequestModel.StartDate['epoc'];
+        }
+        if(this.bestPriceViewService.lenderSendRequestModel.EndDate) {
+            toDate = this.bestPriceViewService.lenderSendRequestModel.EndDate['epoc'];
+        }
+        if (toDate && fromDate) {
             this.bestPriceViewService.lenderSendRequestModel.NoOfDays = (toDate - fromDate) / 86400;
             return (toDate - fromDate) / 86400;
         }
@@ -177,7 +178,8 @@ export class BestPriceViewComponent implements OnInit {
         //  document.getElementById('modalSendRequest').style.display='block';
         //  document.getElementById('modalSendRequest').style.display='block';
         this.IfBankResponseFound = false;
-        this.IfRequestSent=false;
+        this.IfRequestSent = false;
+        this.request_sent = false;
         this.bestPriceViewService.lenderSendRequestModel = this.bestPriceViewService.lenderSendRequestModel = {
             RequestId: 0,
             LenderId: 0,
@@ -185,8 +187,8 @@ export class BestPriceViewComponent implements OnInit {
             LenderName: '',
             BorrowerName: '',
             Amount: null,
-            StartDate: '',
-            EndDate: '',
+            StartDate: null,
+            EndDate: null,
             NoOfDays: 0,
             InterestConvention: '',
             Payments: '',
@@ -204,6 +206,7 @@ export class BestPriceViewComponent implements OnInit {
             MessageForForsa: '',
             IsMessageSentToForsa: false
         };
+        this.tempAmount = '';
         this.bestPriceViewService.lenderSendRequestModel.Amount = null;
         this.bestPriceViewService.lenderSendRequestModel.NoOfDays = 0;
         this.bestPriceViewService.lenderSendRequestModel.BorrowerId = bank.UserId;
@@ -277,7 +280,7 @@ export class BestPriceViewComponent implements OnInit {
             this.toastr.error('Amounut can not be 0.');
             return false;
         }
-        let currentDate: any = (new Date(this.pipe.transform(new Date(), 'yyyy-MM-dd')).getTime())/1000;
+        let currentDate: any = (new Date(this.pipe.transform(new Date().setDate(new Date().getDate() - 1), 'yyyy-MM-dd')).getTime())/1000;
         let startDate: any = requestModel.StartDate['epoc'];
         let endDate: any = requestModel.EndDate['epoc'];
 

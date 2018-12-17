@@ -3874,7 +3874,10 @@
         margin-bottom: 0;
         list-style: none;
     }
-
+    .sidebar-mini #main-panel{
+    width: calc(100% - 160px) !important;
+    background: #efefef !important;
+}
     .nav-link {
         display: block;
         padding: 0.5rem 1rem;
@@ -10534,13 +10537,13 @@
         background-color: #c6d9f1 !important;
     }
     #main-panel {
-        position: relative;
-        float: right;
-        width: calc(100% - 320px);
-        color: #fff;
-        padding: 2em 1em;
-        margin: 1%;
-        background: #efefef;
+        position: relative !important;
+    float: right !important;
+    width: calc(100% - 320px) !important;
+    color: #fff !important;
+    padding: 2em 1em !important;
+    margin: 1% !important;
+    background: #efefef !important;
         z-index:999 !important;
     }
 
@@ -19442,7 +19445,7 @@
     </div>
 </div>
 
-<div class="modal fade bd-example-modal-lg-marrino dashboard-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" style="display: none;" aria-hidden="true">
+<div draggable class="modal fade bd-example-modal-lg-marrino dashboard-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" style="display: none;" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -19478,12 +19481,11 @@
 </div>
 
 
-<button Id="btnShowBankInfo" type="button" style="display:none;" class="btn w-100 active" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target=".chatWithForsaModal">Lend</button>
-<div id="modalSendRequest" class="modal fade bd-example-modal-lg dashboard-modal chatWithForsaModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<button  Id="btnShowBankInfo" type="button" style="display:none;" class="btn w-100 active" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target=".chatWithForsaModal">Lend</button>
+<div draggable id="modalSendRequest" class="modal fade bd-example-modal-lg dashboard-modal chatWithForsaModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle2">Bank Info</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>

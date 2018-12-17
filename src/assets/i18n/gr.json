@@ -1,4 +1,8 @@
 {
+  "MessageText": {
+    "BorrowerRQSent": "Ihre Anfrage wurde erfolgreich versandt. Bitte warten Sie auf die Rückmeldung des Geldnhemers.",
+    "ChatWithForsa": "Kontakt mit Forsa"
+  },
   "MaturityListfild": {
     "Ticketnumber": "Ticket Nr.",
     "tadig-date": "Handelstag",
@@ -16,20 +20,25 @@
     "Group3": "Kommunen"
   },
   "Button": {
+    "ButtonSaveProfile": "Hochladen",
     "ButtonSend": "senden",
     "ButtonNext": "Nächster",
     "ButtonSubmit": "Einreichen",
-    "ButtonClose": "Schließen",
+    "ButtonClose": "Schliessen",
     "ButtonSendRequest": "Anfrage senden",
     "ButtonLogout": "Logout",
     "ButtonEurTN": "EUR (T/N)",
     "ButtonInfo": "INFO",
     "ButtonLend": "Anfrage Anlage",
-    "ButtonRegisterasPartner": "Registrieren Sie sich als Partner",
+    "ButtonRegisterasPartner": "Anfrage Starten",
     "ButtonSettingRateField": "Einstellungen",
     "ButtonUpload": "Upload",
-    "ButtonChangePassword": "Change Password",
-    "ButtonRegister": "Register"
+    "ButtonChangePassword": "Passwort ändern",
+    "ButtonRegister": "Register",
+    "ButtonAcceptRequest": "Akzeptieren",
+    "ButtonDeclineRequest": "Ablehnen",
+    "ButtonChatWithForsa": "FORSA,please contact me"
+
   },
   "Login": {
     "Title": "Anmeldung",
@@ -50,26 +59,26 @@
   },
   "UserProfile": {
     "FormTitle": "Eigene Stammdatenverwaltung",
-    "Title": "Title",
+    "Title": "Titel",
     "NameofCompany": "Name Unternehmen ",
     "Street": "Strasse",
     "PostalCode": "Postleitzahl",
     "Place": "Ort",
     "AccountHolder": "Kontoinhaber",
     "Bank": "Bank",
-    "IBAN": "IBAN",
+    "IBAN": "IBAN Number",
     "BICCode": "BIC Code ",
     "ClientGroup": "Kundengruppe",
     "LEINumber": "LEI Nummer ",
     "FurtherField4": "Further Field 4",
-    "Salutation": "Salutation",
+    "Salutation": "Anrede",
     "FirstName": "Vorname",
     "SurName": "Nachname",
-    "Username": "Benutzername",
-    "TelephoneNo": "Telefon Nr. ",
+    "Username": "Benutzertyp",
+    "TelephoneNo": "Telefonnummer",
     "EmailAddress": "Mail-Adresse",
-    "MinimumVolume": "Minimum Volume",
-    "Rating": "Bewertung",
+    "MinimumVolume": "Mindest-Volumen",
+    "Rating": "Rating",
     "CommercialRegisterExtract": "Handelsregisterauszug",
     "IdentityCard": "Personalausweis"
   },
@@ -138,7 +147,7 @@
       "menutext": "Speisekarte",
       "Account": "Konto",
       "expand_more": "expandiere mehr",
-      "Borrower": "Kreditnehmer",
+      "Borrower": "Geldnehmer",
       "forum": "forum",
       "PermIdentity": "perm_identity",
       "logout": "logout",
@@ -154,14 +163,14 @@
       "NewPassword": "Neues Kennwort",
       "PUBLISH": "Publizieren",
       "ConfirmPassword": "Bestätige das Passwort",
-      "Lender": "Darlehensgeber",
-      "Amount": "Menge",
-      "StartDate": "Anfangsdatum",
-      "Endate": "Endtermin",
-      "NrOfDays": "NR. Der Tage",
-      "InterestConvention": "Interessekonvention",
-      "Payments": "Zahlungen",
-      "RateOfInterest": "Zinssatz",
+      "Lender": "Geldgeber",
+      "Amount": "Volumen",
+      "StartDate": "Valuta",
+      "Endate": "Fälligkeit",
+      "NrOfDays": "Anzahl der Tage",
+      "InterestConvention": "Zinskonvention",
+      "Payments": "Zahlungsfrequenz",
+      "RateOfInterest": "Interest Rate",
       "Ownmasterdatamanagement": "Stammdatenverwaltung",
       "Viewanddownloadyourownduelist": "Fälligkeitenliste",
       "Viewanddownloadinthepastdonebusiness": "Historie der Geschäfte",
@@ -190,7 +199,7 @@
     "expand_more": "Expandiere mehr",
     "forum": "Forum",
     "logout": "Ausloggen",
-    "GeneralOverview": "Gesamtubersicht",
+    "GeneralOverview": "Gesamtübersicht",
     "Tag": "Etikett",
     "Week1": "1 W",
     "Week2": "2 W",
@@ -222,14 +231,14 @@
       "ExpandMore": "Expand_more",
       "search": "Suche",
       "forum": "Forum",
-      "PermIdentity": "Perm_identity",
+      "PermIdentity": "perm_identity",
       "Settings": "Wechseln Sie zum Benutzer",
       "Account": "Konto",
       "SettingStartPage": "Einstellen Startseite",
       "LenderSettings": "LENDEREINSTELLUNGEN",
       "BestPriceView": "Best-Peris-Ansicht",
       "ViewAllPrice": "Favorite Einstellung",
-      "AllBanks": "Gesamtubersicht",
+      "AllBanks": "Gesamtübersicht",
       "viewlist": "view_list",
       "UpdateProfile": "Profil aktualisieren",
       "EditDetails": "Details bearbeiten",
@@ -243,7 +252,7 @@
       "HistoryMaturityList": "Historie der Geschäfte",
       "ConfirmPassword": "Bestätige das Passwort",
       "Pricelist": {
-        "GENERALOVERVIEW": "Gesamtubersicht",
+        "GENERALOVERVIEW": "Gesamtübersicht",
         "Tag": "Tag",
         "Week1": "1 W",
         "Week2": "2 W",
@@ -289,8 +298,25 @@
       "InterestConvention": "Zinskonvention",
       "Payments": "Zahlungsfrequenz",
       "RateOfInterest": "Zinssatz",
-      "ModelTitle": "Senden",                  
-      "listPayments": [{ "Id": 1, "Value": "jährliche Zahlung" }, { "Id": 2, "Value": "halbjährliche Zahlung" }, { "Id": 3, "Value": "vierteljährliche Zahlung" }, { "Id": 4, "Value": "endfällig" }],
+      "ModelTitle": "Senden",
+      "listPayments": [
+        {
+          "Id": 1,
+          "Value": "jährliche Zahlung"
+        },
+        {
+          "Id": 2,
+          "Value": "halbjährliche Zahlung"
+        },
+        {
+          "Id": 3,
+          "Value": "vierteljährliche Zahlung"
+        },
+        {
+          "Id": 4,
+          "Value": "endfällig"
+        }
+      ],
       "Week1": "1 Woche",
       "Week2": "2 Wochen",
       "Week3": "3 Wochen",
@@ -334,6 +360,33 @@
       "Year3": "3 Y",
       "Year4": "4 Y",
       "Year5": "5 Y"
+    }
+  },
+  "myDatePickerOptions": {
+    "dateFormat": "dd/mm/yyyy",
+    "sunHighlight": false,
+    "monthLabels": {
+      "1": "Januar",
+      "2": "Februar",
+      "3": "März",
+      "4": "April",
+      "5": "Mai",
+      "6": "Juni",
+      "7": "Juli",
+      "8": "August",
+      "9": "September",
+      "10": "Oktober",
+      "11": "November",
+      "12": "Dezember"
+    },
+    "dayLabels": {
+      "su": "Sonntag",
+      "mo": "Montag",
+      "tu": "Dienstag",
+      "we": "Mittwoch",
+      "th": "Donnerstag",
+      "fr": "Freitag",
+      "sa": "Samstag"
     }
   }
 }

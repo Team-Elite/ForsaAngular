@@ -9605,13 +9605,13 @@ a#navbar-toggle span {
 }
 
 #main-panel {
- position: relative;
- float: right;
- width: calc(100% - 320px);
- color: #fff;
- padding: 2em 5em;
- margin: 1%;
- background: #25272e;
+    position: relative;
+    float: right;
+    width: calc(100% - 320px);
+    color: #fff;
+    padding: 2em 1em;
+    margin: 1%;
+    background: #efefef;
 }
 
 .sidebar {
@@ -9896,11 +9896,11 @@ padding-left: 0px;
  display: inline-table;
 }
 .dashboard-price-list table th {
-background: #72af09;
- border-bottom: 1px solid #c4fd63;
- margin-right: 1px;
- border-right: 1px solid #25272e;
- border-top-color: transparent;
+    background: #1c5d98 !important;
+    border-bottom: 1px solid #fff !important;
+    margin-right: 1px;
+    border-right: 1px solid #fff !important;
+    border-top-color: transparent;
 }
 
 .dashboard-price-list .table-bordered td, .dashboard-price-list .table-bordered th {
@@ -9909,17 +9909,20 @@ background: #72af09;
  border-left-color: transparent;
 }
 .dashboard-price-list .table-bordered td {
- background: #37383d;
- border-right-color: #25272e;
- border-bottom-color: #25272e;
- cursor: pointer;
- vertical-align: inherit;
+    background: #c6d9f1 !important;
+    border-right-color: #fff;
+    border-bottom-color: #fff;
+    cursor: pointer;
+    vertical-align: inherit;
+    color: #333 !important;
 }
 .dashboard-price-list .table-bordered td.active {
- background: #8636d7;
- border-bottom: 1px solid #9b45f1;
- cursor: pointer;
+    background: #1c5d98 !important;
+    border-bottom: 1px solid #fff !important;
+    cursor: pointer;
+    color: #fff !important;
 }
+
 .dashboard-price-list .table-bordered td:focus {
  background: #8c21d3;
  outline: none;
@@ -10613,7 +10616,7 @@ direction: ltr;
               <tbody>
                   <tr>
                       <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontaly('bank')">{{'Kontact.GeneralOverview'|translate}}</th>
-                      <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('TN')">{{'Kontact.Tag'|translate}}</th>
+                     
                       <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Week1')">{{'Kontact.Week1'|translate}}</th>
                       <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Week2')">{{'Kontact.Week2'|translate}}</th>
                       <th style="cursor:pointer;" (click)="GetAllBanksWithInterestRateHorizontalyOrderByColumnName('Week3')">{{'Kontact.Week3'|translate}}</th>
@@ -10637,7 +10640,7 @@ direction: ltr;
                   </tr>
                   <tr *ngFor="let bank of allBanksService.listAllBanks">
                       <td>{{bank.Bank}}</td>
-                      <td [ngClass]="{'active':allBanksService.HighestRateTN===bank.TN}">{{bank.TN}}</td>
+                    
                       <td [ngClass]="{'active':allBanksService.HighestRateW1===bank.Week1}">{{bank.Week1}}</td>
                       <td [ngClass]="{'active':allBanksService.HighestRateW2===bank.Week2}">{{bank.Week2}}</td>
                       <td [ngClass]="{'active':allBanksService.HighestRateW3===bank.Week3}">{{bank.Week3}}</td>

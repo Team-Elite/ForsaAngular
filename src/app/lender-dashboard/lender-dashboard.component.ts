@@ -24,6 +24,8 @@ export class LenderDashboardComponent implements OnInit {
     _userId: any
     _authenticateServiceService: AuthenticateServiceService
     _showMaturity: boolean;
+    reacted_message;
+    chat_message;
     constructor( public lenderDashboardService: LenderDashboardService, public spinner: NgxSpinnerService
         , public authenticateServiceService: AuthenticateServiceService, public router: Router
         , public toastr: ToastrService
@@ -47,7 +49,8 @@ export class LenderDashboardComponent implements OnInit {
     requestOptions = new RequestOptions({ method: RequestMethod.Post, headers: this.headerOptions });
   _MaturityList: any;
     ngOnInit() {
-
+        this.reacted_message = '';
+        this.chat_message = '';
         this.spinner.show();
         this._authenticateServiceService.GetUserSession();
         this._authenticateServiceService.AuthenticateSession();
@@ -126,7 +129,8 @@ export class LenderDashboardComponent implements OnInit {
         this.spinner.show();
         this.bestPriceViewService.lenderSendRequestModel2.IsAccepted = true;
         var result = this.bestPriceViewService.AcceptLendedRequest(this.bestPriceViewService.lenderSendRequestModel2).subscribe(data => {
-            this.toastr.success('Successfully accepted Trade, please check E-Mail.', 'Dashboard');
+            this.reacted_message = 'Successfully accepted Trade, please check E-Mail.'
+            // this.toastr.success('Successfully accepted Trade, please check E-Mail.', 'Dashboard');
             this.spinner.hide();
             this.IfRequestSent=true;
             // this.SetTimeInterval();
@@ -156,7 +160,8 @@ export class LenderDashboardComponent implements OnInit {
         this.spinner.show();
         this.bestPriceViewService.lenderSendRequestModel2.IsRejected = true;
         var result = this.bestPriceViewService.RejectLendedRequest(this.bestPriceViewService.lenderSendRequestModel2).subscribe(data => {
-            this.toastr.success('The Deal request has been declined.', 'Dashboard');
+            // this.toastr.success('The Deal request has been declined.', 'Dashboard');
+            this.reacted_message = 'The Deal request has been declined.'
             this.spinner.hide();
             this.IfRequestSent=true;
             // var element = document.getElementById('closeSendRequestModalLender');
@@ -175,7 +180,8 @@ export class LenderDashboardComponent implements OnInit {
         this.bestPriceViewService.lenderSendRequestModel2.IsMessageSentToForsa = true;
         this.bestPriceViewService.SaveForsaMessage(this.bestPriceViewService.lenderSendRequestModel2).subscribe(data => {
             this.spinner.hide();
-            this.toastr.success("YOU WILL BE CONTACTED BY FORSA.", "Dashboard");
+            this.chat_message = 'Forsa wird mit mit Ihnen Kontakt aufnehmen';
+            // this.toastr.success("YOU WILL BE CONTACTED BY FORSA.", "Dashboard");
             this.SetTimeInterval();
             var element = document.getElementById('closeSendChatModalLender');
             element.click();

@@ -35,6 +35,17 @@
             background-color: #1c5d98 !important;
             height: 40px;
         }
+        input[type=number]::-webkit-outer-spin-button,
+        input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+    border: none !important;
+}
+
+input[type=number] {
+    -moz-appearance:textfield;
+    border: none !important;
+}
     </style>
 
 </head>
@@ -223,7 +234,7 @@
             </aside>
             <!-- Aside Ends Here-->
 
-            <div class="container-fluid application-panel" id="main-panel">
+            <div  class="container-fluid application-panel" id="main-panel">
                 <div class="row application-page" style="overflow-x:scroll;">
                     <div class="col-lg-12 col-md-12" style="width:1500px;">
                         <div class="dashboard-right application-sec" style="width:1500px;">
@@ -274,26 +285,25 @@
 
 
                                                 <div class="col-md-1 pr-1">
-                                                    <button type="button" (click)="EnableTextBox(rate,1)" class="btn w-100 w-100-px active">
+                                                    <div  (click)="EnableTextBox(rate,1)" class="btn w-100 w-100-px active">
                                                         <input type="number"
-                                                               [disabled]="!rate.IsDoubleTapped1" #RateOfMinValue="ngModel"
+                                                                #RateOfMinValue="ngModel"
                                                                [(ngModel)]="rate.MinValue" name="RateOfMinValue" />
-                                                    </button>
+                                                    </div>
                                                 </div>
                                                 <div class="col-md-1 pr-1">
-                                                    <button type="button" (click)="EnableTextBox(rate,2)" class="btn w-100 w-100-px active">
+                                                    <div (click)="EnableTextBox(rate,2)" class="btn w-100 w-100-px active">
                                                         <input type="number"
-                                                               [disabled]="!rate.IsDoubleTapped2" #MaxValue="ngModel"
+                                                                #MaxValue="ngModel"
                                                                [(ngModel)]="rate.MaxValue" name="MaxValue" value="2" />
-                                                    </button>
+                                                    </div>
                                                 </div>
                                                 <div class="col-md-2 pr-1">
                                                     <div class="col-md-6 pr-1 in-float-lf">
-                                                        <button type="button" (click)="EnableTextBox(rate,3)" class="btn w-100 w-100-px active">
-                                                            <input (blur)="CalculateBaseCurve(rate)" type="number"
-                                                                   [disabled]="!rate.IsDoubleTapped3" #RateOfBaseCurave="ngModel"
+                                                        <div (click)="EnableTextBox(rate,3)" class="btn w-100 w-100-px active">
+                                                            <input (blur)="CalculateBaseCurve(rate)"  #RateOfBaseCurave="ngModel"
                                                                    [(ngModel)]="rate.BaseCurve" name="RateOfBaseCurave" value="3" style="text-align:center;" />
-                                                        </button>
+                                                        </div>
                                                     </div>
                                                     <div class="col-md-6 pr-1 in-float-lf">
                                                         <button type="button" class="btn w-100 w-100-px">
@@ -305,11 +315,11 @@
                                                 </div>
                                                 <div class="col-md-2 pr-1">
                                                     <div class="col-md-4 pr-1 in-float-lf">
-                                                        <button type="button" (click)="EnableTextBox(rate,4)" class="btn w-100 w-100-px active">
+                                                        <div (click)="EnableTextBox(rate,4)" class="btn w-100 w-100-px active">
                                                             <input (blur)="UpdateRateOfInterest(rate)" type="number"
-                                                                   [disabled]="!rate.IsDoubleTapped4" #RateOfInterest="ngModel"
+                                                                    #RateOfInterest="ngModel"
                                                                    [(ngModel)]="rate.FractionRate" name="FractionRate" />
-                                                        </button>
+                                                        </div>
                                                     </div>
                                                     <div class="col-md-4 pr-1 in-float-lf">
                                                         <button type="button" class="btn w-100 w-100-px">
@@ -330,11 +340,11 @@
                                                 </div>
                                                 <div class="col-md-2 pr-1">
                                                     <div class="col-md-4 pr-1  in-float-lf">
-                                                        <button type="button" (click)="EnableTextBox(rate,5)" class="btn w-100 active">
+                                                        <div (click)="EnableTextBox(rate,5)" class="btn w-100 active">
                                                             <input (blur)="UpdateRateOfInterest(rate)" type="number"
-                                                                   [disabled]="!rate.IsDoubleTapped5" #RateOfInterest2="ngModel"
+                                                                    #RateOfInterest2="ngModel"
                                                                    [(ngModel)]="rate.FractionRate2" name="FractionRate2" />
-                                                        </button>
+                                                        </div>
 
                                                     </div>
                                                     <div class="col-md-4 pr-1  in-float-lf">
@@ -353,11 +363,11 @@
                                                 </div>
                                                 <div class="col-md-2 pr-1">
                                                     <div class="col-md-4 pr-1  in-float-lf">
-                                                        <button type="button" (click)="EnableTextBox(rate,6)" class="btn w-100 active">
+                                                        <div (click)="EnableTextBox(rate,6)" class="btn w-100 active">
                                                             <input (blur)="UpdateRateOfInterest(rate)" type="number"
-                                                                   [disabled]="!rate.IsDoubleTapped6" #RateOfInterest3="ngModel"
+                                                                   #RateOfInterest3="ngModel"
                                                                    [(ngModel)]="rate.FractionRate3" name="FractionRate3" />
-                                                        </button>
+                                                        </div>
 
                                                     </div>
                                                     <div class="col-md-4 pr-1  in-float-lf">
@@ -415,7 +425,7 @@
 
                 <!-- modal start-->
                 <!--admin icon modal page tab-->
-                <div class="modal fade  counterparty-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                <div draggable class="modal fade  counterparty-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -429,7 +439,7 @@
                                 <form>
                                     <div class="row">
                                         <div class="form-md-line-input has-error col-sm-12">
-                                            <div *ngFor="let group of bankDashboardService.listUserGroupForSettingRateOfInterestVisibility" class=" input-group">
+                                            <div *ngFor="let group of bankDashboardService.listUserGroupForSettingRateOfInterestVisibility" class="input-group">
                                                 <span class="line">{{group.GroupName}}</span>
                                                 <input id="{{group.GroupName}}" name="{{group.GroupName}}" [(ngModel)]="group.RateVisible" (ngModelChange)="GroupCheckUnCheck($event,group);" type="checkbox" class="cbx used">
                                                 <label for="{{group.GroupName}}" class="lbl notrobot">
@@ -453,7 +463,6 @@
                                         </div>
                                     </div>
                                 </form>
-                                v>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">{{'Button.ButtonClose'|translate}}</button>
@@ -465,7 +474,7 @@
                 </div>
                 <button Id="ShowLendPopup" type="button" style="display:none;" class="btn w-100 active" data-toggle="modal" data-target=".modalSendRequest" data-backdrop="static" data-keyboard="false">Lend</button>
                 <!-- modal setting start page tab-->
-                <div class="modal fade bd-example-modal-lg-setting-page dashboard-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+                <div draggable class="modal fade bd-example-modal-lg-setting-page dashboard-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
                      aria-hidden="true">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
@@ -494,14 +503,13 @@
                     </div>
                 </div>
                 <!-- modal setting send request page tab-->
-                <div id="modalSendRequest" class="modal fade bd-example-modal-lg modalSendRequest" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                <div draggable id="modalSendRequest" draggable class="modal fade bd-example-modal-lg modalSendRequest" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true"  data-backdrop="static" data-keyboard="false">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="exampleModalLongTitle">{{'Button.ButtonSendRequest'|translate}}</h5>
-                                <button type="button" (click)="SetTimeInterval();" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">×</span>
-                                </button>
+                                <p class="model-msg-close" *ngIf="IfRequestSent">Die Anfrage wurde erfolgreich beantwortet, bitte warten Sie auf die Antwort des Geldgebers.</p>
+                                
                             </div>
 
                             <div *ngIf="lenderSendRequestModel" class="modal-body" id="lendrequestbody">
@@ -536,8 +544,8 @@
                                 </table>
                             </div>
                             <div class="modal-footer">
-                                <input type="button" [disabled]="IfRequestSent" (click)="UpdateLenderSendRequestRateOfInterest()" class="btn btn-info btn-lg common-bt" id="sendRequest" value="SEND">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="SetTimeInterval()">{{'Button.ButtonClose'|translate}}</button>
+                                <input type="button" [disabled]="IfRequestSent" (click)="UpdateLenderSendRequestRateOfInterest()" class="btn btn-info btn-lg common-bt" id="sendRequest" value="{{'Button.ButtonSend'|translate}}">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal"  (click)="SetTimeInterval()">{{'Button.ButtonClose'|translate}}</button>
                                 <button id="closeSendRequestModal" style="display:none;" type="button" data-dismiss="modal" class="btn btn-secondary">Close 12</button>
 
                             </div>
@@ -547,7 +555,7 @@
                 </div>
 
                 <!--admin icon modal page tab-->
-                <div class="modal fade bd-example-modal-lg-editsetting-page admin-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+                <div draggable class="modal fade bd-example-modal-lg-editsetting-page admin-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
                      aria-hidden="true">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
@@ -617,7 +625,7 @@
 
 
 
-                <div class="modal fade bd-example-modal-lg-eigene-Stammdatenverwaltung admin-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+                <div draggable data-backdrop="static" data-keyboard="false" class="modal fade bd-example-modal-lg-eigene-Stammdatenverwaltung admin-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
                      aria-hidden="true">
                     <div _ngcontent-c1="" class="modal-dialog modal-lg">
                         <div _ngcontent-c1="" class="modal-content">
@@ -636,7 +644,7 @@
                     </div>
                 </div>
                 <!---modal Eigene start-->
-                <div class="modal fade bd-example-modal-lg-eigene-Stammdatenverwaltung eigene-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+                <div draggable class="modal fade bd-example-modal-lg-eigene-Stammdatenverwaltung eigene-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
                      aria-hidden="true">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">

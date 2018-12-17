@@ -44,3 +44,15 @@ footer.my-footer {
     -webkit-transition: background 0.5s;
     transition: background 0.5s;
 }
+.sidebar-nav li .green-btn {
+    background-color: #1c5d98 !important;
+    border: 1px solid #1c5d98 !important;
+    border-radius: 0;
+    padding: 11px;
+    width: 100%;
+    margin: 10px 0px;
+}
+.sidebar-mini #main-panel {
+    width: calc(100% - 160px);
+    background: #efefef;
+}      
