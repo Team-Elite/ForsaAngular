@@ -11,7 +11,7 @@ import { AuthenticateServiceService } from '../../Shared/authenticate-service.se
 import { UserModel } from '../../registration/Shared/user-model.model';
 import { IMyDpOptions } from 'mydatepicker';
 
-const connection = (environment.production) ? hubConnection('http://40.89.169.211:4044') : hubConnection('http://localhost:50859');
+const connection = (environment.production) ? hubConnection('http://40.89.139.123:4044') : hubConnection('http://localhost:50859');
 
 const hubProxy = connection.createHubProxy('ForsaHub');
 @Component({
