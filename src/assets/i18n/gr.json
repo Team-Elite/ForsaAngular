@@ -20,7 +20,7 @@
     "Group3": "Kommunen"
   },
   "Button": {
-    "ButtonSaveProfile": "Hochladen",
+    "ButtonSaveProfile": "Speichern",
     "ButtonSend": "senden",
     "ButtonNext": "Nächster",
     "ButtonSubmit": "Einreichen",
@@ -82,7 +82,7 @@
     "CommercialRegisterExtract": "Handelsregisterauszug",
     "IdentityCard": "Personalausweis"
   },
-  "ClientGroupAccess": { "Title": "Access given to Client group Konfiguration" },
+  "ClientGroupAccess": { "Title": "Zugang für Abgeber" },
   "Register": {
     "section1": {
       "Title": "Kundenprofil anlegen ",

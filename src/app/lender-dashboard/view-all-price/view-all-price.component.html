@@ -9663,17 +9663,17 @@ a#navbar-toggle span {
  float: right;
 }
 
-#wrapper .sidebar-nav li a {
- font-size: 12px;
- text-decoration: none;
- color: #FFF;
- float: left;
- text-decoration: none;
- width: 100%;
- height: 70px;
- line-height: 25px;
- padding: 30px 10px;
-}
+     #wrapper .sidebar-nav li a {
+         font-size: 12px;
+         text-decoration: none;
+         color: #FFF;
+         float: left;
+         text-decoration: none;
+         width: 100%;
+         height: 52px !important;
+         line-height: 25px;
+         padding: 15px 10px !important;
+     }
 
 .sidebar-nav li a:hover {
  background: #121213;
@@ -9948,6 +9948,20 @@ padding-left: 0px;
  background: #8c21d3;
 border-bottom-color: #c688ef;
 }
+         .dashboard-price-list .table-bordered td span i.material-icons {
+             position: relative;
+             top: -19px;
+         }
+
+         .dashboard-price-list .table-bordered td.new-td-style {
+             text-align: left !important;
+             padding: 16px 4px !important;
+             width: min-content;
+         }
+             .dashboard-price-list .table-bordered td.new-td-style span {
+                 height: 0px !important;
+                 display: table-caption;
+             }
 /*Media Queries*/
 
 @media(max-width: 1440px) {
@@ -10044,14 +10058,14 @@ padding-top: 25px;
 }
 /* Dashboard Lender setting css end */
 /* Dashboard application page css start */
-.dashboard-right div.btn.w-100.active {
- padding: 0px;
- margin-bottom: 4px;
- border-radius: 0px;
- border-bottom: 1px solid #9f3fff;
- background: #8636d7 !important;
- height: 40px;
-}
+     .dashboard-right div.btn.w-100.active {
+         padding: 0;
+         margin-bottom: 4px;
+         border-radius: 0;
+         border-bottom: 1px solid #1c5d98 !important;
+         background-color: #1c5d98 !important;
+         height: 40px;
+     }
 .dashboard-right div.btn.w-100.active input {
  border-bottom: none;
  margin-bottom: 0px;
@@ -10743,7 +10757,7 @@ direction: ltr;
                      </tr>
 
                      <tr *ngFor="let bank of ratesOfIntrest">
-                         <td>
+                         <td class="new-td-style">
                              {{bank.Bank}}
                              <span><i (click)="ShowBankPopup(bank)" class="material-icons">perm_info</i></span>
                          </td>

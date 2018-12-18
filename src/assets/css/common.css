@@ -19,7 +19,14 @@ label.lbl.notrobot {
     outline: 0;
     box-shadow: none;
 }
-
+.dashboard-right div.btn.w-100.active {
+    padding: 0;
+    margin-bottom: 4px;
+    border-radius: 0;
+    border-bottom: 1px solid #1c5d98 !important;
+    background-color: #1c5d98 !important;
+    height: 40px;
+}
 input[type="checkbox"] + label {
     cursor: pointer;
     position: relative;
@@ -491,7 +498,20 @@ ul.in-lang li a:hover {
     margin-left: 20%;
     padding: 0 10px;
 }
-
+.admin-modal input {
+    margin-bottom: 10px;
+    border: none;
+    background: #c6d9f1 !important;
+    border-radius: 0px;
+    border-bottom: 1px solid #c6d9f1 !important;
+    color: #333 !important;
+    cursor: pointer;
+}
+.form-control:disabled, .form-control[readonly] {
+    background-color: #c6d9f1 !important;
+    opacity: 1;
+    color: #333;
+}
 input {
     font-size: 0.9em;
     padding: 10px 10px 10px 5px;
@@ -523,7 +543,17 @@ input:focus {
     position: relative;
     margin: 0 0 15px;
 }
-
+.admin-modal label {
+    position: relative !important;
+    top: 0px !important;
+    color: #333 !important;
+}
+    .admin-modal label.btn-primary {
+        color: #fff !important;
+        background-color: #1c5d98;
+        border-color: #1c5d98;
+        padding: 9px 9px !important;
+    }
 label {
     color: #fff;
     font-weight: normal;

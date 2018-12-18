@@ -709,8 +709,8 @@ padding-top: 25px;
     padding: 0px;
     margin-bottom: 4px;
     border-radius: 0px;
-    border-bottom: 1px solid #1c5d98;
-    background: #8636d7 !important;
+    border-bottom: 1px solid #1c5d98 !important;
+    background: #1c5d98 !important;
     height: 40px;
 }
 .dashboard-right div.btn.w-100.active input {

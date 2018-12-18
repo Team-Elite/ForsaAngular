@@ -34,13 +34,13 @@
 }
 .my-btn-primary {
     color: #fff;
-    background-color: #8636d7 !important;
-    border-color: #9b45f1 !important;
+    background-color: #1c5d98 !important;
+    border-color: #1c5d98 !important;
     border-radius: 0px !important;
 }
-.my-btn-primary:hover {
-    color: #fff;
-    background-color: #8636d7 !important;
-    border-color: #9b45f1 !important;
-    border-radius: 0px !important;
-}
+    .my-btn-primary:hover {
+        color: #fff;
+        background-color: #1c5d98 !important;
+        border-color: #1c5d98 !important;
+        border-radius: 0px !important;
+    }

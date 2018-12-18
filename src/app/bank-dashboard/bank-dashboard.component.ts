@@ -263,11 +263,11 @@ export class BankDashboardComponent implements OnInit {
     CalculateBaseCurve(rate) {
         //changes in calculation so that comma can be converted to dot in interest rate
         //start
-        if(parseInt(rate.BaseCurve.replace(',','.')) && typeof parseInt(rate.BaseCurve.replace(',','.')) === 'number') {
+        if (parseFloat(rate.BaseCurve.replace(',', '.')) && typeof parseFloat(rate.BaseCurve.replace(',','.')) === 'number') {
             rate.BaseCurve = parseFloat(rate.BaseCurve.replace(',','.')).toFixed(2)
         } else{
-            rate.BaseCurve = 0;
-            this.toastr.warning("Ihre Eingabe enthält unzulässige Zeichen", "Dashboard");
+            //rate.BaseCurve = 0;
+          //  this.toastr.warning("Ihre Eingabe enthält unzulässige Zeichen", "Dashboard");
         }
         //end done by prabhjot
         
