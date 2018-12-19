@@ -15,7 +15,7 @@ import { UserProfileServiceService } from '../../userprofile/Shared/user-profile
 import { BestPriceViewService } from '../best-price-view/Shared/best-price-view.service';
 import { DatePipe } from '@angular/common';
 
-const connection = (environment.production) ? hubConnection('http://40.89.169.211:4044') : hubConnection('http://localhost:50859');
+const connection = (environment.production) ? hubConnection('http://40.89.139.123:4044') : hubConnection('http://localhost:50859');
 const hubProxy = connection.createHubProxy('ForsaHub');
 @Component({
     selector: 'app-view-all-price',
