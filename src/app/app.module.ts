@@ -45,7 +45,7 @@ import { SettingratefieldComponent } from './lender-dashboard/settingratefield/s
 //import { ExportAsModule } from 'ngx-export-as';
 //import { JwtHelperService} from '@auth0/angular-jwt';
 import { NgDraggableModule } from 'angular-draggable'; 
-import { MyDatePickerModule } from 'mydatepicker';
+import { MyDatePickerModule } from 'mydatepicker'; 
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
     return new TranslateHttpLoader(httpClient);

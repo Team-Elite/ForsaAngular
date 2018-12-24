@@ -24,6 +24,7 @@ export class BankDashboardService {
     ConfirmPassword: string = '';
     lastGroupId: string = '';
     lenderSendRequestModel: LenderSendRequestModel;
+    responseLenderSendRequestModel: LenderSendRequestModel;
     headerOptions = new Headers({ 'Content-Type': 'application/json' });
     requestOptions = new RequestOptions({ method: RequestMethod.Post, headers: this.headerOptions });
     BorrowerMaturityList: any;
@@ -120,6 +121,20 @@ export class BankDashboardService {
         //var body = JSON.stringify(lenderSendRequestModel);
         var webtoken = { data: this.tokenService.jwtencrypt(lenderSendRequestModel) };
         return this.http.post(this.authenticateServiceService.baseURL + '/api/BankDashBoard/UpdateRateOfInterest', webtoken, this.requestOptions).map(x => x.json());
+    }
+
+    async GetAndUpdateResponseOfPendingRequestOnTheBasisOfRequestId(obj:any) {
+        debugger;
+        var webtoken = { data: this.tokenService.jwtencrypt(obj) };
+       return await this.http.post(this.authenticateServiceService.baseURL + '/api/BankDashBoard'
+            + '/GetAndUpdateResponseOfPendingRequestOnTheBasisOfRequestId', webtoken, this.requestOptions).map((data: Response) => {
+                return data.json();
+           }).toPromise().then(token => {
+               if (token.IsSuccess)  return this.responseLenderSendRequestModel = JSON.parse(this.tokenService.jwtdecrypt(token.data).unique_name);
+                     //return { IsSuccess: token.IsSuccess , data: JSON.parse(this.tokenService.jwtdecrypt(token.data).unique_name) };
+                //return { IsSuccess: token.IsSuccess };
+            });
+   
     }
 
 

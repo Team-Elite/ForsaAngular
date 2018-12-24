@@ -11,6 +11,7 @@ import { UserProfileServiceService } from '../../userprofile/Shared/user-profile
 const connection = (environment.production) ? hubConnection('http://40.89.139.123:4044') : hubConnection('http://localhost:50859');
 
 const hubProxy = connection.createHubProxy('ForsaHub');
+const hubProxyConfiguration = connection.createHubProxy('UserConfigurationHub');
 
 @Component({
     selector: 'app-all-banks',
@@ -27,7 +28,13 @@ export class AllBanksComponent implements OnInit {
         hubProxy.on('sendBankRate', (data) => {
             //this.GetAllBanksWithInterestRateHorizontaly();
             this.GetAllBanksWithInterestRateHorizontalyOrderByColumnName(this.orderByColumn);
+        }) 
+
+        hubProxyConfiguration.on('SendConfiguration', (data) => {
+            console.log('Configuration socket fired');
+            this.GetAllBanksWithInterestRateHorizontalyOrderByColumnName(this.orderByColumn);
         })
+
         connection.start({ jsonp: true })
             .done(function () { console.log('Now connected, connection ID=' + connection.id); })
             .fail(function () { console.log('Could not connect'); });
@@ -204,7 +211,7 @@ export class AllBanksComponent implements OnInit {
         await this.userProfileServiceService.GetDocList(data.UserId);
         this.spinner.hide();
         var element = document.getElementById('btnShowBankInfo');
-        element.click();
+        element.click(); 
 
     }
 }

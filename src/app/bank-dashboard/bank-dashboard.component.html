@@ -59,12 +59,12 @@ input[type=number] {
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-4 col-md-4">
-                        <a href="javascript:void(0);" id="navbar-toggle" (click)="toggelebar()">
-                            <!--<button  (click)="toggelbar()">-->
-                            <span class="align-middle input-group-icon menu">
-                                <i class="material-icons ">menu</i>
-                            </span>
-                        </a>
+                        <!-- <a href="javascript:void(0);" id="navbar-toggle" (click)="toggelebar()">
+         <!--<button  (click)="toggelbar()">
+                        <span class="align-middle input-group-icon menu">
+                            <i class="material-icons ">menu</i>
+                        </span>
+                        </a>-->
                         <div class="instimatch-logo">
                             <img alt="Insimatch Logo" src="../assets/images/instimatch-logo.jpg">
                         </div>
@@ -75,41 +75,41 @@ input[type=number] {
                             <app-forsa-languages></app-forsa-languages>
 
                             <!--<li class="identity account-style">
-                                {{'Lender.DashBoard.Account'|translate}}:   {{'Login.BorrowerText'|translate}}
-                            </li>-->
+                            {{'Lender.DashBoard.Account'|translate}}:   {{'Login.BorrowerText'|translate}}
+                        </li>-->
                             <li class="identity account-style">
                                 {{'Login.BorrowerText'|translate}}
                             </li>
                             <!--   <li class="identity account-style">
 
-                                                        <div class="form-group form-md-line-input has-error">
-                                                            <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
+                                                    <div class="form-group form-md-line-input has-error">
+                                                        <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
 
-                                                        <select class="mdl-selectfield__select" name="LogicRoom" id="logicroom">
-                                <span class="input-group-icon">
-                                    <i class="material-icons">{{'Borrower.BankDashboard.expand_more'|translate}}</i>
-                                </span>
-                                <option value="" disabled selected>LogicRoom</option>
-                                <option value="logicroom1">1</option>
-                                <option value="logicroom2">2</option>
-                                <option value="logicroom3">3</option>
-                                <option value="logicroom4">4</option>
-                            </select>
-                                                        </div>
+                                                    <select class="mdl-selectfield__select" name="LogicRoom" id="logicroom">
+                            <span class="input-group-icon">
+                                <i class="material-icons">{{'Borrower.BankDashboard.expand_more'|translate}}</i>
+                            </span>
+                            <option value="" disabled selected>LogicRoom</option>
+                            <option value="logicroom1">1</option>
+                            <option value="logicroom2">2</option>
+                            <option value="logicroom3">3</option>
+                            <option value="logicroom4">4</option>
+                        </select>
+                                                    </div>
 
-                                                        </div>
+                                                    </div>
 
-                                                    </li>
-                                                    <!--<li>
-                                                        <a>
-                                                            <i class="material-icons icon-position">search</i>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a>
-                                                            <i class="material-icons icon-position">forum</i>
-                                                        </a>
-                                                    </li>-->
+                                                </li>
+                                                <!--<li>
+                                                    <a>
+                                                        <i class="material-icons icon-position">search</i>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a>
+                                                        <i class="material-icons icon-position">forum</i>
+                                                    </a>
+                                                </li>-->
                             <li class="identity">
                                 <a href="#" data-toggle="modal" data-target=".admin-modal">
                                     <i class="material-icons">perm_identity</i>
@@ -132,112 +132,83 @@ input[type=number] {
                 </div>
             </div>
         </header>
+
+        <div id="header-menus-new" class="container-fluid">
+            <div class="row">
+                <div class="col-md-2">
+                    <li>
+                        <a class="header-menu-btns" (click)="ShowScreen('BankDashboard');">{{'DashboardText'|translate}}</a>
+                    </li>
+                </div>
+                <div class="col-md-2">
+                    <li>
+                        <a class="header-menu-btns" (click)="PublishAndUnPublish(true);">
+                            {{'Borrower.BankDashboard.PUBLISH'|translate}}
+
+
+                        </a>
+                    </li>
+                </div>
+                <div class="col-md-2">
+                    <li>
+                        <a class="header-menu-btns" (click)="PublishAndUnPublish(false);">
+                            {{'Borrower.BankDashboard.STOPPUBLISH'|translate}}
+
+
+                        </a>
+                    </li>
+                </div>
+                <div class="col-md-2">
+                    <li>
+                        <a *ngIf="IsPublished" class="status-on header-menu-btns">
+                            {{'Borrower.BankDashboard.STATUSON'|translate}}
+                        </a>
+                        <a *ngIf="!IsPublished" class="status-off header-menu-btns">
+                            {{'Borrower.BankDashboard.STATUSOFF'|translate}}
+                        </a>
+                    </li>
+                </div>
+                <div class="col-md-2">
+                    <li>
+                        <a class="header-menu-btns" data-toggle="modal" data-target=".counterparty-modal">
+                            {{'Borrower.BankDashboard.CounterpartyConfiguration'|translate}}
+
+                        </a>
+                    </li>
+                </div>
+                <div class="col-md-2">
+                    <li class="cockpit-btn">
+                        <a class="header-menu-btns ">
+                            Cockpit
+
+                        </a>
+
+                        <div class="cockpit-dropdown-div">
+                            <button type="button" class="dropcockpit" id="eigene" data-toggle="modal" data-target=".bd-example-modal-lg-eigene-Stammdatenverwaltung">
+                                {{'Borrower.BankDashboard.Ownmasterdatamanagement'|translate}}
+                            </button>
+                            <button type="button" class="dropcockpit" routerLink="/maturityList" id="Ansehen">{{'Borrower.BankDashboard.Viewanddownloadyourownduelist'|translate}} </button>
+                            <button type="button" class="dropcockpit" routerLink="/historyMaturityList" id="Ansehenund">{{'Borrower.BankDashboard.Viewanddownloadinthepastdonebusiness'|translate}}</button>
+
+
+                        </div>
+                    </li>
+
+                </div>
+            </div>
+
+        </div>
         <!-- Header Ends Here -->
         <div class="main-container">
             <!-- Dashboard Page main Content starts-->
             <!-- Aside Starts Here-->
-            <aside>
-                <div class="sidebar ">
-
-                    <ul class="sidebar-nav ">
-                        <li>
-                            <a (click)="ShowScreen('BankDashboard');">{{'DashboardText'|translate}}</a>
-                        </li>
-
-                        <li>
-                            <a (click)="PublishAndUnPublish(true);">
-                                {{'Borrower.BankDashboard.PUBLISH'|translate}}
-
-                                <span class="align-middle input-group-icon ">
-                                    <img alt="Insimatch Logo" src="../assets/images/publish-icon.png">
-                                </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a (click)="PublishAndUnPublish(false);">
-                                {{'Borrower.BankDashboard.STOPPUBLISH'|translate}}
-
-                                <span class="align-middle input-group-icon ">
-                                    <img alt="Insimatch Logo" src="../assets/images/stoppublish-icon.png">
-                                </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a *ngIf="IsPublished" class="status-on">
-                                {{'Borrower.BankDashboard.STATUSON'|translate}}  <span class="align-middle input-group-icon ">
-                                    <img alt="Insimatch Logo" src="../assets/images/status-live-icon.png">
-                                </span>
-                            </a>
-                            <a *ngIf="!IsPublished" class="status-off">
-                                {{'Borrower.BankDashboard.STATUSOFF'|translate}}<span class="align-middle input-group-icon ">
-                                    <img alt="Insimatch Logo" src="../assets/images/status-live-icon.png">
-                                </span>
-                            </a>
-
-
-
-                        </li>
-
-
-                        <li>
-                            <a data-toggle="modal" data-target=".counterparty-modal">
-                                {{'Borrower.BankDashboard.CounterpartyConfiguration'|translate}}
-                                <span class="align-middle input-group-icon ">
-                                    <img alt="Insimatch Logo" src="../assets/images/coountryparty-icon.png">
-                                </span>
-                            </a>
-                        </li>
-                        <li class="cockpit-btn">
-                            <a>
-                                Cockpit
-                                <span class="align-middle input-group-icon ">
-                                    <i class="material-icons ">view_list</i>
-                                </span>
-                            </a>
-                            <div class="cockpit-dropdown-div">
-                                <button type="button" class="dropcockpit" id="eigene" data-toggle="modal" data-target=".bd-example-modal-lg-eigene-Stammdatenverwaltung">
-                                    {{'Borrower.BankDashboard.Ownmasterdatamanagement'|translate}} <span class="align-middle input-group-icon ">
-                                        <i class="material-icons ">perm_identity</i>
-                                    </span>
-                                </button>
-                                <!--<button type="button" class="dropcockpit" (click)="ShowScreen('Mreport');" id="Ansehen">{{'Borrower.BankDashboard.Viewanddownloadyourownduelist'|translate}}</button>
-                                <button type="button" class="dropcockpit" (click)="ShowScreen('HMreport');" id="Ansehenund">{{'Borrower.BankDashboard.Viewanddownloadinthepastdonebusiness'|translate}}</button>-->
-                                <button type="button" class="dropcockpit" routerLink="/maturityList" id="Ansehen">{{'Borrower.BankDashboard.Viewanddownloadyourownduelist'|translate}} <span _ngcontent-c1="" class="align-middle input-group-icon "><img _ngcontent-c1="" _ngcontent-c5="" alt="Insimatch Logo" src="../assets/images/maturity-list.png"></span></button>
-                                <button type="button" class="dropcockpit" routerLink="/historyMaturityList" id="Ansehenund">{{'Borrower.BankDashboard.Viewanddownloadinthepastdonebusiness'|translate}}<span _ngcontent-c1="" class="align-middle input-group-icon "><img _ngcontent-c1="" _ngcontent-c5="" alt="Insimatch Logo" src="../assets/images/history-maturity-list.png"></span></button>
-                                <!--<button type="button" class="dropcockpit" >Maturity List</button>
-                                <button type="button" class="dropcockpit" > History Maturity List</button>-->
-
-                            </div>
-
-                        </li>
-                        <!--<li>
-                            <a routerLink="/maturityList">
-                                {{'Borrower.BankDashboard.MaturityList'|translate}}
-                                <span class="align-middle input-group-icon ">
-                                    <img alt="Insimatch Logo" src="../assets/images/coountryparty-icon.png">
-                                </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a routerLink="/historyMaturityList">
-                                {{'Borrower.BankDashboard.HistoryMaturityList'|translate}}
-                                <span class="align-middle input-group-icon ">
-                                    <img alt="Insimatch Logo" src="../assets/images/coountryparty-icon.png">
-                                </span>
-                            </a>
-                        </li>-->
-
-
-
-                    </ul>
-                </div>
-            </aside>
+            <aside></aside>
             <!-- Aside Ends Here-->
 
-            <div  class="container-fluid application-panel" id="main-panel">
-                <div class="row application-page" style="overflow-x:scroll;">
+            <div class="container-fluid application-panel" id="main-panel">
+                <div class="row application-page">
                     <div class="col-lg-12 col-md-12" style="width:1500px;">
-                        <div class="dashboard-right application-sec" style="width:1500px;">
+                        <div class="dashboard-right application-sec" style="width:100%;">
 
                             <div *ngIf="IfShowBankDashBoard" id="Rate-Panel">
                                 <div class="no-gutters row">
@@ -247,7 +218,7 @@ input[type=number] {
                                     <div class="col-md-1 pr-1 text-centered head-modal-table">
                                         <span class="modal-header-table">{{'Borrower.BankDashboard.BankRateField.Min'|translate}}</span>
                                     </div>
-                                    <div class="col-md-1 pr-1 text-centered head-modal-table">
+                                    <div class="col-md-2 pr-1 text-centered head-modal-table">
                                         <span class="modal-header-table">{{'Borrower.BankDashboard.BankRateField.Max'|translate}}</span>
                                     </div>
                                     <div class="col-md-2 pr-1 text-centered head-modal-table">
@@ -278,34 +249,34 @@ input[type=number] {
 
                                     <div *ngIf="flagArray[i] == true" style="width:100%;">
                                         <div *ngFor="let rate of rate.listintersteRate">
-                                            <div class="col-md-12 pr-1 row" *ngIf="rate.TimePeriod!=='(T/N)'">
-                                                <div class="col-md-1 pr-1">
+                                            <div class=" no-gutters row" *ngIf="rate.TimePeriod!=='(T/N)'">
+                                                <div class="col-md-1 bank-table-box">
                                                     <button type="button" class="btn w-100 ">{{rate.TimePeriodShort}}</button>
                                                 </div>
 
 
-                                                <div class="col-md-1 pr-1">
-                                                    <div  (click)="EnableTextBox(rate,1)" class="btn w-100 w-100-px active">
+                                                <div class="col-md-1 bank-table-box">
+                                                    <div (click)="EnableTextBox(rate,1)" class="btn w-100 w-100-px active">
                                                         <input type="number"
-                                                                #RateOfMinValue="ngModel"
+                                                               #RateOfMinValue="ngModel"
                                                                [(ngModel)]="rate.MinValue" name="RateOfMinValue" />
                                                     </div>
                                                 </div>
-                                                <div class="col-md-1 pr-1">
+                                                <div class="col-md-2 bank-table-box">
                                                     <div (click)="EnableTextBox(rate,2)" class="btn w-100 w-100-px active">
                                                         <input type="number"
-                                                                #MaxValue="ngModel"
+                                                               #MaxValue="ngModel"
                                                                [(ngModel)]="rate.MaxValue" name="MaxValue" value="2" />
                                                     </div>
                                                 </div>
-                                                <div class="col-md-2 pr-1">
-                                                    <div class="col-md-6 pr-1 in-float-lf">
+                                                <div class="col-md-2 bank-table-box">
+                                                    <div class="col-md-6 in-float-lf bank-table-box">
                                                         <div (click)="EnableTextBox(rate,3)" class="btn w-100 w-100-px active">
-                                                            <input (blur)="CalculateBaseCurve(rate)"  #RateOfBaseCurave="ngModel"
+                                                            <input (blur)="CalculateBaseCurve(rate)" #RateOfBaseCurave="ngModel"
                                                                    [(ngModel)]="rate.BaseCurve" name="RateOfBaseCurave" value="3" style="text-align:center;" />
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-6 pr-1 in-float-lf">
+                                                    <div class="col-md-6 in-float-lf bank-table-box">
                                                         <button type="button" class="btn w-100 w-100-px">
                                                             <a (click)="IncreaseRateOfInterest(rate,3)" class="valInc">+</a>
                                                             <span>/</span>
@@ -313,22 +284,22 @@ input[type=number] {
                                                         </button>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-2 pr-1">
-                                                    <div class="col-md-4 pr-1 in-float-lf">
+                                                <div class="col-md-2 bank-table-box bank-table-box">
+                                                    <div class="col-md-4 bank-table-box in-float-lf">
                                                         <div (click)="EnableTextBox(rate,4)" class="btn w-100 w-100-px active">
                                                             <input (blur)="UpdateRateOfInterest(rate)" type="number"
-                                                                    #RateOfInterest="ngModel"
+                                                                   #RateOfInterest="ngModel"
                                                                    [(ngModel)]="rate.FractionRate" name="FractionRate" />
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-4 pr-1 in-float-lf">
+                                                    <div class="col-md-4 bank-table-box in-float-lf">
                                                         <button type="button" class="btn w-100 w-100-px">
                                                             <a (click)="IncreaseRateOfInterest(rate,4)">+</a>
                                                             <span>/</span>
                                                             <a (click)="DecreaseRateOfInterest(rate,4)">-</a>
                                                         </button>
                                                     </div>
-                                                    <div class="col-md-4 pr-1 in-float-lf">
+                                                    <div class="col-md-4 bank-table-box in-float-lf">
 
                                                         <button type="button" class="btn w-100 w-100-px">
                                                             <label style="width: 100%;
@@ -338,31 +309,31 @@ input[type=number] {
                                                     </div>
 
                                                 </div>
-                                                <div class="col-md-2 pr-1">
-                                                    <div class="col-md-4 pr-1  in-float-lf">
+                                                <div class="col-md-2 bank-table-box">
+                                                    <div class="col-md-4 bank-table-box  in-float-lf">
                                                         <div (click)="EnableTextBox(rate,5)" class="btn w-100 active">
                                                             <input (blur)="UpdateRateOfInterest(rate)" type="number"
-                                                                    #RateOfInterest2="ngModel"
+                                                                   #RateOfInterest2="ngModel"
                                                                    [(ngModel)]="rate.FractionRate2" name="FractionRate2" />
                                                         </div>
 
                                                     </div>
-                                                    <div class="col-md-4 pr-1  in-float-lf">
+                                                    <div class="col-md-4 bank-table-box  in-float-lf">
                                                         <button type="button" class="btn w-100">
                                                             <a (click)="IncreaseRateOfInterest(rate,5)">+</a>
                                                             <span>/</span>
                                                             <a (click)="DecreaseRateOfInterest(rate,5)">-</a>
                                                         </button>
                                                     </div>
-                                                    <div class="col-md-4 pr-1 in-float-lf">
+                                                    <div class="col-md-4 bank-table-box in-float-lf">
                                                         <button type="button" class="btn w-100 w-100-px">
                                                             <label style="width: 100%;
                                                                     text-align: center;">{{rate.RateOfInterest2}}</label>
                                                         </button>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-2 pr-1">
-                                                    <div class="col-md-4 pr-1  in-float-lf">
+                                                <div class="col-md-2 bank-table-box">
+                                                    <div class="col-md-4 bank-table-box  in-float-lf">
                                                         <div (click)="EnableTextBox(rate,6)" class="btn w-100 active">
                                                             <input (blur)="UpdateRateOfInterest(rate)" type="number"
                                                                    #RateOfInterest3="ngModel"
@@ -370,14 +341,14 @@ input[type=number] {
                                                         </div>
 
                                                     </div>
-                                                    <div class="col-md-4 pr-1  in-float-lf">
+                                                    <div class="col-md-4 bank-table-box  in-float-lf">
                                                         <button type="button" class="btn w-100">
                                                             <a (click)="IncreaseRateOfInterest(rate,6)">+</a>
                                                             <span>/</span>
                                                             <a (click)="DecreaseRateOfInterest(rate,6)">-</a>
                                                         </button>
                                                     </div>
-                                                    <div class="col-md-4 pr-1 in-float-lf">
+                                                    <div class="col-md-4 bank-table-box in-float-lf">
                                                         <button type="button" class="btn w-100 w-100-px">
                                                             <label style="width: 100%;text-align: center;">{{rate.RateOfInterest3}}</label>
                                                         </button>
@@ -421,7 +392,8 @@ input[type=number] {
                     </div>
 
                 </div>
-                <footer _ngcontent-c4="" _ngcontent-c1="" class="my-footer"><div _ngcontent-c4="" _ngcontent-c1="" class="container"><div _ngcontent-c4="" _ngcontent-c1="" class="navbar-footer"><a _ngcontent-c4="" _ngcontent-c1="" class="active" href="#home">FORSA TopZins- Portal</a><a _ngcontent-c4="" _ngcontent-c1="" href="#news">Nutzungsbedingungen</a><a _ngcontent-c4="" _ngcontent-c1="" href="#contact">Datenschutzerklärung</a><a _ngcontent-c4="" _ngcontent-c1="" href="#contact">Rechtliche Hinweise</a><a _ngcontent-c4="" _ngcontent-c1="" href="#contact">Impressum</a></div></div></footer>
+                <footer _ngcontent-c4="" _ngcontent-c1="" class="my-footer"><div _ngcontent-c4="" _ngcontent-c1="" class="container"><div _ngcontent-c4="" _ngcontent-c1="" class="navbar-footer">
+                    <a _ngcontent-c4="" _ngcontent-c1="" class="" href="#home">FORSA TopZins- Portal</a><a _ngcontent-c4="" _ngcontent-c1="" href="#news">Nutzungsbedingungen</a><a _ngcontent-c4="" _ngcontent-c1="" href="#contact">Datenschutzerklärung</a><a _ngcontent-c4="" _ngcontent-c1="" href="#contact">Rechtliche Hinweise</a><a _ngcontent-c4="" _ngcontent-c1="" href="#contact">Impressum</a></div></div></footer>
 
                 <!-- modal start-->
                 <!--admin icon modal page tab-->
@@ -445,20 +417,20 @@ input[type=number] {
                                                 <label for="{{group.GroupName}}" class="lbl notrobot">
                                                 </label>
                                                 <!--<div *ngIf="bankDashboardService.lastGroupId == group.GroupName" class=" input-group">
-                                                    <span class="line">{{group.GroupName}}</span>
+                                                <span class="line">{{group.GroupName}}</span>
 
-                                                    <input type="checkbox" class="cbx used" checked="checked">
-                                                    <label for="{{group.GroupName}}" class="lbl notrobot">
-                                                    </label>
-                                                </div>
-                                                <div *ngIf="bankDashboardService.lastGroupId != group.GroupName" class=" input-group">
+                                                <input type="checkbox" class="cbx used" checked="checked">
+                                                <label for="{{group.GroupName}}" class="lbl notrobot">
+                                                </label>
+                                            </div>
+                                            <div *ngIf="bankDashboardService.lastGroupId != group.GroupName" class=" input-group">
 
 
-                                                    <span class="line">{{group.GroupName}}</span>
-                                                    <input id="{{group.GroupName}}" name="{{group.GroupName}}" [(ngModel)]="group.RateVisible" (ngModelChange)="GroupCheckUnCheck($event,group);" type="checkbox" class="cbx used">
-                                                    <label for="{{group.GroupName}}" class="lbl notrobot">
-                                                    </label>
-                                                </div>-->
+                                                <span class="line">{{group.GroupName}}</span>
+                                                <input id="{{group.GroupName}}" name="{{group.GroupName}}" [(ngModel)]="group.RateVisible" (ngModelChange)="GroupCheckUnCheck($event,group);" type="checkbox" class="cbx used">
+                                                <label for="{{group.GroupName}}" class="lbl notrobot">
+                                                </label>
+                                            </div>-->
                                             </div>
                                         </div>
                                     </div>
@@ -503,13 +475,13 @@ input[type=number] {
                     </div>
                 </div>
                 <!-- modal setting send request page tab-->
-                <div draggable id="modalSendRequest" draggable class="modal fade bd-example-modal-lg modalSendRequest" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true"  data-backdrop="static" data-keyboard="false">
+                <div draggable id="modalSendRequest" draggable class="modal fade bd-example-modal-lg modalSendRequest" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="exampleModalLongTitle">{{'Button.ButtonSendRequest'|translate}}</h5>
                                 <p class="model-msg-close" *ngIf="IfRequestSent">Die Anfrage wurde erfolgreich beantwortet, bitte warten Sie auf die Antwort des Geldgebers.</p>
-                                
+
                             </div>
 
                             <div *ngIf="lenderSendRequestModel" class="modal-body" id="lendrequestbody">
@@ -545,7 +517,7 @@ input[type=number] {
                             </div>
                             <div class="modal-footer">
                                 <input type="button" [disabled]="IfRequestSent" (click)="UpdateLenderSendRequestRateOfInterest()" class="btn btn-info btn-lg common-bt" id="sendRequest" value="{{'Button.ButtonSend'|translate}}">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal"  (click)="SetTimeInterval()">{{'Button.ButtonClose'|translate}}</button>
+                                <button type="button" style="display: none;" class="btn btn-secondary" data-dismiss="modal" (click)="SetTimeInterval()">{{'Button.ButtonClose'|translate}}</button>
                                 <button id="closeSendRequestModal" style="display:none;" type="button" data-dismiss="modal" class="btn btn-secondary">Close 12</button>
 
                             </div>
@@ -553,6 +525,32 @@ input[type=number] {
                         </div>
                     </div>
                 </div>
+
+
+                <!-- Modal showing response-->
+                <button Id="ShowResponseModalPopup" type="button" style="display:none;" class="btn w-100 active" data-toggle="modal" data-target=".modalResponse" data-backdrop="static" data-keyboard="false">Lend</button>
+                <div draggable id="modalResponse" draggable class="modal fade bd-example-modal-lg modalResponse " tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle">Response</h5>
+                            </div>
+
+                            <div class="modal-body" id="lendrequestbody">
+                                <span class="btn">{{responseMessage}}</span>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="SetTimeInterval()">OK</button>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
 
                 <!--admin icon modal page tab-->
                 <div draggable class="modal fade bd-example-modal-lg-editsetting-page admin-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
@@ -606,7 +604,7 @@ input[type=number] {
                                             <label>{{'Borrower.BankDashboard.ConfirmPassword'|translate}} *</label>
                                             <input #ConfirmPassword="ngModel" [(ngModel)]="bankDashboardService.ConfirmPassword" type="password" name="ConfirmPassword" class="form-control">
                                         </div>
-                                      
+
 
 
                                     </div>

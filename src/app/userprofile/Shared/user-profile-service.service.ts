@@ -55,11 +55,13 @@ export class UserProfileServiceService {
 
     async GetDocList(userId: number) {
         //this.listOfFileUploaded=[];
+        debugger;
         var webtoken = { data: this.tokenService.jwtencrypt({ userId: userId, type: 0 }) };
         // return await this.http.post(this.authenticateServiceService.baseURL + '/api/BankDashBoard/GetDocList', webtoken, this.requestOptions).map((data: Response) => {
         return await this.http.post(this.url + '/api/BankDashBoard/GetDocList', webtoken, this.requestOptions).map((data: Response) => {
             return data.json();
-        }).toPromise().then(token => this.listOfFileUploaded = JSON.parse(this.tokenService.jwtdecrypt(token.data).unique_name));
+        }).toPromise().then(token => this.listOfFileUploaded = JSON.parse(this.tokenService.jwtdecrypt(token.data).unique_name) == undefined 
+        ||JSON.parse(this.tokenService.jwtdecrypt(token.data).unique_name) == null ?[] : JSON.parse(this.tokenService.jwtdecrypt(token.data).unique_name));
 
     }
     async GetUserById(userId,IsloginUser:boolean) {

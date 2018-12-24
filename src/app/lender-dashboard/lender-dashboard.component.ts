@@ -9,6 +9,7 @@ import { BestPriceViewService } from '../lender-dashboard/best-price-view/Shared
 import { LOCAL_STORAGE } from 'angular-webstorage-service';
 import { Http, Response, Headers, RequestOptions, RequestMethod } from '@angular/http';
 import { isNullOrUndefined } from 'util';
+import { BankDashboardService } from '../bank-dashboard/Shared/bank-dashboard.service';
 declare var $: any;
 
 @Component({
@@ -17,44 +18,49 @@ declare var $: any;
     styleUrls: ['./lender-dashboard.component.css']
 })
 export class LenderDashboardComponent implements OnInit {
+
+    ifTimerForRetrievingPendingRequestHastToStart = false; // It will ensure that accept/reject and chat with forsa pop up is closed.
+    responseTimerId: any;
+    responseMessage: string = '';
     tempAmount: any;
     selectedItem: string;
     _http: any;
-    IfRequestSent:boolean=false;
+    IfRequestSent: boolean = false;
     _userId: any
     _authenticateServiceService: AuthenticateServiceService
     _showMaturity: boolean;
     reacted_message;
     chat_message;
-    constructor( public lenderDashboardService: LenderDashboardService, public spinner: NgxSpinnerService
+    constructor(public lenderDashboardService: LenderDashboardService, public spinner: NgxSpinnerService
         , public authenticateServiceService: AuthenticateServiceService, public router: Router
         , public toastr: ToastrService
-        , public bestPriceViewService: BestPriceViewService) {
+        , public bestPriceViewService: BestPriceViewService
+        , public bankDashboardService: BankDashboardService) {
 
         this._authenticateServiceService = authenticateServiceService;
     }
-   
+
     copyLoggedInUser: any;
     SelectedStartPage: any;
     listPagesForStartingPage: StartPageModel[];
-    testList = [{ Id: 1, Value: 'Test1' },
-    { Id: 2, Value: 'Test2' },
-    { Id: 3, Value: 'Test3' },
-    { Id: 4, Value: 'Test4' },
-    { Id: 5, Value: 'Test5' }];
+    //testList = [{ Id: 1, Value: 'Test1' },
+    //{ Id: 2, Value: 'Test2' },
+    //{ Id: 3, Value: 'Test3' },
+    //{ Id: 4, Value: 'Test4' },
+    //{ Id: 5, Value: 'Test5' }];
     timer: any;
     IfBankResponseFound: boolean = false;
     IfBothUserTypeFound: boolean = false;
     headerOptions = new Headers({ 'Content-Type': 'application/json' });
     requestOptions = new RequestOptions({ method: RequestMethod.Post, headers: this.headerOptions });
-  _MaturityList: any;
+    _MaturityList: any;
     ngOnInit() {
         this.reacted_message = '';
         this.chat_message = '';
         this.spinner.show();
         this._authenticateServiceService.GetUserSession();
         this._authenticateServiceService.AuthenticateSession();
-      
+
         this.lenderDashboardService.UserTypeId = this._authenticateServiceService.GetUserTypeId();
         //console.log("this.lenderDashboardService.UserTypeId",this.lenderDashboardService.UserTypeId)
         this.lenderDashboardService.userId = this._authenticateServiceService.GetUserId();
@@ -63,7 +69,7 @@ export class LenderDashboardComponent implements OnInit {
         this.copyLoggedInUser = Object.assign({}, this.lenderDashboardService.loggedInUser);
         this.GetPagesForLenderSettingStartPage();
 
-        this.SelectedStartPage = this.testList[0].Id;
+        //this.SelectedStartPage = this.testList[0].Id;
         //this.GetLenderStartPage();
         this.bestPriceViewService.lenderSendRequestModel2 = {
             RequestId: 0,
@@ -91,8 +97,8 @@ export class LenderDashboardComponent implements OnInit {
             MessageForForsa: '',
             IsMessageSentToForsa: false
         }
-     //   this.GetLenderSendRequestPendingLendedRequestByLenderId()
-      this.SetTimeInterval();
+        //   this.GetLenderSendRequestPendingLendedRequestByLenderId()
+        this.SetTimeInterval();
         this.spinner.hide();
     }
     toggelebar() {
@@ -105,13 +111,15 @@ export class LenderDashboardComponent implements OnInit {
         }
     }
     SetTimeInterval() {
+        console.log('lender dashboard');
         this.timer = setInterval(() => {
+            console.log('lender dashboard');
             this.GetLenderSendRequestPendingLendedRequestByLenderId();
         }, 5000);
     }
-   
+
     AcceptLendedRequest() {
-        
+
         for (var i = 0; i <= this.bestPriceViewService.listInterestConvention.length - 1; i++) {
             if (this.bestPriceViewService.lenderSendRequestModel2.InterestConvention == this.bestPriceViewService.listInterestConvention[i].Id) {
                 this.bestPriceViewService.lenderSendRequestModel2.InterestConventionName = this.bestPriceViewService.listInterestConvention[i].Value;
@@ -132,7 +140,7 @@ export class LenderDashboardComponent implements OnInit {
             this.reacted_message = 'Successfully accepted Trade, please check E-Mail.'
             // this.toastr.success('Successfully accepted Trade, please check E-Mail.', 'Dashboard');
             this.spinner.hide();
-            this.IfRequestSent=true;
+            this.IfRequestSent = true;
             // this.SetTimeInterval();
             // var element = document.getElementById('closeSendRequestModalLender');
             // element.click();
@@ -163,7 +171,7 @@ export class LenderDashboardComponent implements OnInit {
             // this.toastr.success('The Deal request has been declined.', 'Dashboard');
             this.reacted_message = 'The Deal request has been declined.'
             this.spinner.hide();
-            this.IfRequestSent=true;
+            this.IfRequestSent = true;
             // var element = document.getElementById('closeSendRequestModalLender');
             // element.click();
             // this.SetTimeInterval();
@@ -172,6 +180,7 @@ export class LenderDashboardComponent implements OnInit {
     }
 
     SaveForsaMessage() {
+
         if (this.bestPriceViewService.lenderSendRequestModel2.MessageForForsa == undefined || this.bestPriceViewService.lenderSendRequestModel2.MessageForForsa == null || this.bestPriceViewService.lenderSendRequestModel2.MessageForForsa.toString().trim().length == 0) {
             this.toastr.error("Please enter message", "Dashbaord");
             return;
@@ -182,9 +191,14 @@ export class LenderDashboardComponent implements OnInit {
             this.spinner.hide();
             this.chat_message = 'Forsa wird mit mit Ihnen Kontakt aufnehmen';
             // this.toastr.success("YOU WILL BE CONTACTED BY FORSA.", "Dashboard");
-            this.SetTimeInterval();
-            var element = document.getElementById('closeSendChatModalLender');
+            //this.SetTimeInterval();
+
+            // Closing accept/ Reject /Chat with forsa pop up when Message is sent/save to Forsa for help.
+            var element = document.getElementById('btnCloseSendRequestModal123');
             element.click();
+
+            // Starting timer for retrieving forsa message when requested for forsa help.
+            this.SetResponseTimeInterval(this.bestPriceViewService.lenderSendRequestModel2.RequestId);
         });
     }
     ///
@@ -201,15 +215,22 @@ export class LenderDashboardComponent implements OnInit {
             return;
         };
         var result = await this.bestPriceViewService.GetLenderSendRequestPendingLendedRequestByLenderId();
-        
-        if (result!= undefined && result.length >0) {
+        debugger;
+        if (result != undefined && result.length > 0) {
             clearInterval(this.timer);
             this.IfBankResponseFound = true;
-            this.IfRequestSent=false;
+            this.IfRequestSent = false;
+
+            // Hiding lend popup modal when pending lend request is found.
+            var element = document.getElementById('closeSendRequestModal');
+            element.click();
+
             var element = document.getElementById('ShowSendRequestLDPopup');
             element.click();
+
+
             this.bestPriceViewService.lenderSendRequestModel2 = result[0];
-            if(this.bestPriceViewService.lenderSendRequestModel2.Amount) {
+            if (this.bestPriceViewService.lenderSendRequestModel2.Amount) {
                 this.tempAmount = this.bestPriceViewService.lenderSendRequestModel2.Amount;
                 this.tempAmount = this.tempAmount.toLocaleString('de-DE');
             }
@@ -250,16 +271,16 @@ export class LenderDashboardComponent implements OnInit {
             data = await this.lenderDashboardService.UpdateUserProfile(this.copyLoggedInUser);//.subscribe(data => {
             this.spinner.hide();
             debugger;
-                if ( !isNullOrUndefined(data)) {
-                   
-                    if (data.IsSuccess == false) {
-                        this.toastr.error("Old password is not correct.", "Dashboard");
-                        return;
-                    }
-                    this.authenticateServiceService.UpdateSession(data.data);
-                    this.toastr.success("Updated successfully. An email has been sent to your email id.", "Dashboard");
-                    this.lenderDashboardService.loggedInUser = this.authenticateServiceService.GetUserDetail();
+            if (!isNullOrUndefined(data)) {
+
+                if (data.IsSuccess == false) {
+                    this.toastr.error("Old password is not correct.", "Dashboard");
+                    return;
                 }
+                this.authenticateServiceService.UpdateSession(data.data);
+                this.toastr.success("Updated successfully. An email has been sent to your email id.", "Dashboard");
+                this.lenderDashboardService.loggedInUser = this.authenticateServiceService.GetUserDetail();
+            }
 
             //});
         }
@@ -326,14 +347,14 @@ export class LenderDashboardComponent implements OnInit {
     async ShowMaturityList(History: boolean) {
 
         this._showMaturity = true;
-      //  this.lenderDashboardService.showhistory = History;
-       // await this.lenderDashboardService.GetlenderMaturityList();
-        this.router.onSameUrlNavigation="reload";
-this.router.navigate(['lenderDashboard/Maturitylist']);
+        //  this.lenderDashboardService.showhistory = History;
+        // await this.lenderDashboardService.GetlenderMaturityList();
+        this.router.onSameUrlNavigation = "reload";
+        this.router.navigate(['lenderDashboard/Maturitylist']);
         //await this.lenderDashboardService.GetlenderMaturityList(ShowMaturity);
     }
 
-  
+
 
 
     SetCurrentPage(pageName: string) {
@@ -360,7 +381,7 @@ this.router.navigate(['lenderDashboard/Maturitylist']);
     }
 
     async GetPagesForLenderSettingStartPage() {
-       
+
         var response = await this.lenderDashboardService.GetPagesForLenderSettingStartPage();
         this.listPagesForStartingPage = response;
         if (this.listPagesForStartingPage != undefined && this.listPagesForStartingPage.length != 0) {
@@ -371,13 +392,13 @@ this.router.navigate(['lenderDashboard/Maturitylist']);
                 }
             }
         }
-       
+
     }
 
     async LenderSaveStartPage() {
         this.spinner.show();
         var response = await this.lenderDashboardService.LenderSaveStartPage(this.SelectedStartPage);
-      
+
         this.spinner.hide();
         debugger;
         if (response.IsSuccess) {
@@ -388,7 +409,7 @@ this.router.navigate(['lenderDashboard/Maturitylist']);
         else {
             this.toastr.error("Something went wrong");
         }
-      
+
 
     }
 
@@ -404,6 +425,78 @@ this.router.navigate(['lenderDashboard/Maturitylist']);
     getPathName() {
         console.log(window.location.pathname);
         return window.location.pathname;
+    }
+
+
+    /* STARTS--------Repsonse of Lender request work starts here  */
+
+
+    // Starting timer which will retrieve response of a particular request.
+    SetResponseTimeInterval(RequestId: number) {
+        debugger;
+        this.responseTimerId = setInterval(() => {
+            this.GetAndUpdateResponseOfPendingRequestOnTheBasisOfRequestId(RequestId);
+        }, 5000);
+    }
+
+    // Get response method. It gets response when lender requests for Forsa help by sending message to forsa.
+    // It also updates status of response is shown to lender.
+    async GetAndUpdateResponseOfPendingRequestOnTheBasisOfRequestId(RequestId: number) {
+
+        var obj = { RequestId: RequestId, UserTypeId: 5 };
+        var responseRequestModel = await this.bankDashboardService.GetAndUpdateResponseOfPendingRequestOnTheBasisOfRequestId(obj);
+
+        if (responseRequestModel != undefined) {
+
+            // this variaable will be by default false.
+            // It will be true once any of response i.e Accepted/Rejected/Forsa Response is received.
+            var ifAnyResponseFound = false;
+
+            responseRequestModel = responseRequestModel[0];
+
+            // Closing chat with forsa pop up when response is received.
+            var element = document.getElementById('btncloseChatWithForsaPopUp123');
+            element.click();
+
+            if (responseRequestModel.IsForsaAcceptedResponseReceivedByLender != undefined
+                && responseRequestModel.IsForsaAcceptedResponseReceivedByLender != null
+                && responseRequestModel.IsForsaAcceptedResponseReceivedByLender == true) {
+                // Show popup when forsa accepted response.
+                this.responseMessage = "YOUR LENDING TO " + responseRequestModel.NameOfCompany +" HAS BEEN PERFORMED SUCCESFULLY BY FORSA, PLEASE CHECK E-MAIL";
+                ifAnyResponseFound = true;
+                var elementResponseModal = document.getElementById('ShowResponseModalPopup');
+                elementResponseModal.click();
+            }
+
+            else if (responseRequestModel.IsForsaRejectedResponseReceivedByLender != undefined
+                && responseRequestModel.IsForsaRejectedResponseReceivedByLender != null
+                && responseRequestModel.IsForsaRejectedResponseReceivedByLender == true) {
+                // Show popup when forsa rejected response.
+                this.responseMessage = "YOUR LENDING TO " + responseRequestModel.NameOfCompany + " HAS BEEN REJECTED BY FORSA, PLEASE CHECK E-MAIL";;
+                ifAnyResponseFound = true;
+                var elementResponseModal = document.getElementById('ShowResponseModalPopup');
+                elementResponseModal.click();
+            }
+
+
+            // Stoping get response timer if any response i.e Accepted/Rejected/ Forsa response found.
+            if (ifAnyResponseFound) {
+                clearInterval(this.responseTimerId);
+            }
+
+        }
+        this.spinner.hide();
+    }
+
+
+
+
+    /* ENDS-----------Repsonse of Lender request work starts here */
+
+    ClsoeChatWithForsaPopupAndStartTime() {
+        if (this.ifTimerForRetrievingPendingRequestHastToStart) {
+            this.SetTimeInterval();
+        }
     }
 
 }

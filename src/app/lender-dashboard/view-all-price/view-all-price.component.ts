@@ -17,6 +17,7 @@ import { DatePipe } from '@angular/common';
 
 const connection = (environment.production) ? hubConnection('http://40.89.139.123:4044') : hubConnection('http://localhost:50859');
 const hubProxy = connection.createHubProxy('ForsaHub');
+const hubProxyConfiguration = connection.createHubProxy('UserConfigurationHub');
 @Component({
     selector: 'app-view-all-price',
     templateUrl: './view-all-price.component.html',
@@ -93,6 +94,16 @@ export class ViewAllPriceComponent implements OnInit {
             this.GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected(this.orderByColumn);
            // this.GetAllBanksWithInterestRateHorizontalyOrderByColumnName(this.orderByColumn);
         })
+
+        hubProxyConfiguration.on('SendConfiguration', (data) => {
+            this.viewAllPriceService.listViewAllPrice1 = [];
+            this.viewAllPriceService.listViewAllPrice2 = [];
+            this.viewAllPriceService.listViewAllPrice3 = [];
+            this.GetAllBanksWithStatusIsDeselected();
+            this.GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected(this.orderByColumn);
+           // this.GetAllBanksWithInterestRateHorizontalyOrderByColumnName(this.orderByColumn);
+        })
+        
         connection.start({ jsonp: true })
             .done(function () { console.log('Now connected, connection ID=' + connection.id); })
             .fail(function () { console.log('Could not connect'); });

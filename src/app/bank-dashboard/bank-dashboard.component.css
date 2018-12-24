@@ -14,7 +14,7 @@ li.account {
 }
 
 .full-header .instimatch-logo {
-    margin-left: 20%;
+    margin-left: 0%;
 }
 button.btn.w-100.w-100-px.update.btn-secondary {
     float: left !important;
@@ -108,11 +108,11 @@ button.btn.w-100.w-100-px.update-active.update-status {
     top: 100px;
 }*/
 a.status-on.ng-star-inserted {
-    background-color: #72af09;
+    background-color: #72af09 !important;
     color: #fff !important;
 }
 a.status-off.ng-star-inserted {
-    background-color: orangered;
+    background-color: orangered !important;
     color: #fff !important;
 }
 
@@ -232,7 +232,7 @@ a#navbar-toggle span {
 #main-panel {
     position: relative;
     float: right;
-    width: calc(100% - 320px);
+    width: 100%;
     color: #fff;
     padding: 3em 1em;
     margin: 1%;

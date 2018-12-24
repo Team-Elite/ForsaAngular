@@ -11,6 +11,7 @@ import { LenderSendRequestModel } from '../lender-dashboard/best-price-view/Shar
 import { ExportAsService, ExportAsConfig } from 'ngx-export-as';
 import { parse } from 'url';
 import { state } from '@angular/animations';
+import { isNullOrUndefined } from 'util';
 declare var $: any;
 
 @Component({
@@ -29,6 +30,7 @@ export class BankDashboardComponent implements OnInit {
     copyLoggedInUser: any;
     testTrue: boolean = false;
     timer: any;
+    
     listrateofinterstofbank: any = [];
     flagArray = [];
     Timeperiod = ['Week', 'Month', 'Year']
@@ -39,6 +41,11 @@ export class BankDashboardComponent implements OnInit {
     lenderSendRequestModel: LenderSendRequestModel;
     _authenticateServiceService: AuthenticateServiceService
     orderBy:string='EndDate';
+    responseTimerId: any;
+    responseMessage:string='';
+
+
+
     constructor(public bankDashboardService: BankDashboardService, public authenticateServiceService: AuthenticateServiceService, public router: Router
         , public toastr: ToastrService, public spinner: NgxSpinnerService, public bestPriceViewService: BestPriceViewService
         , public pipe: DatePipe, public lenderDashboardService: LenderDashboardService, private exportAsService: ExportAsService) {
@@ -730,6 +737,12 @@ export class BankDashboardComponent implements OnInit {
             this.spinner.hide();
             //this.SetTimeInterval();
             this.IfRequestSent=true;
+
+          
+
+            // Starting timer for getting response of this particular request
+            this.SetResponseTimeInterval(this.lenderSendRequestModel.RequestId);
+
             // var element = document.getElementById('closeSendRequestModal');
             // element.click();
             //setInterval(this.GetLenderSendRequestRequestdOnTheBasisOfBorrowerId,5000);
@@ -828,6 +841,85 @@ export class BankDashboardComponent implements OnInit {
     }
     
     //})
+
+
+
+
+    /* STARTS--------Repsonse of Lender request work starts here  */
+
+
+    // Starting timer which will retrieve response of a particular request.
+    SetResponseTimeInterval(RequestId:number) {
+      
+        this.responseTimerId = setInterval(() => {
+            this.GetAndUpdateResponseOfPendingRequestOnTheBasisOfRequestId(RequestId);
+        }, 5000);
+    }
+
+    // Get response method. It gets response when borrower add rate of interest and send it to lender.
+    // It also updates status of response is shown to borrower.
+    async GetAndUpdateResponseOfPendingRequestOnTheBasisOfRequestId(RequestId:number) {
+      
+        var obj={RequestId:RequestId,UserTypeId:4};
+        var responseRequestModel = await this.bankDashboardService.GetAndUpdateResponseOfPendingRequestOnTheBasisOfRequestId(obj);
+     
+        if (responseRequestModel != undefined) {
+
+            // this variaable will be by default false.
+            // It will be true once any of response i.e Accepted/Rejected/Forsa Response is received.
+            var ifAnyResponseFound=false;
+
+            responseRequestModel = responseRequestModel[0];
+            if ((!isNullOrUndefined( responseRequestModel.IsAcceptedResponseReceivedByBorrower) 
+                    && responseRequestModel.IsAcceptedResponseReceivedByBorrower == true)&& isNullOrUndefined(responseRequestModel.IsForsaAcceptedResponseReceivedByBorrower)){
+                        // Show popup response accepted.
+                    this.responseMessage = responseRequestModel.NameOfCompany +" has accepted your request. Please check your email.";
+                        ifAnyResponseFound=true;
+                        var elementResponseModal = document.getElementById('ShowResponseModalPopup');
+                        elementResponseModal.click();
+                    }
+            else if (!isNullOrUndefined((responseRequestModel.IsRejectedResponseReceivedByBorrower)
+                    && responseRequestModel.IsRejectedResponseReceivedByBorrower == true) && isNullOrUndefined(responseRequestModel.IsForsaRejectedResponseReceivedByBorrower)  ) {
+                            // Show popup response rejected.
+                            this.responseMessage=responseRequestModel.NameOfCompany+ " has declined your request.";
+                            ifAnyResponseFound=true;
+                            var elementResponseModal = document.getElementById('ShowResponseModalPopup');
+                            elementResponseModal.click();
+                        }
+            else if (!isNullOrUndefined( responseRequestModel.IsForsaAcceptedResponseReceivedByBorrower)
+                            && responseRequestModel.IsForsaAcceptedResponseReceivedByBorrower == true){
+                                // Show popup when forsa accepted response.
+                                this.responseMessage="Forsa has accepted your request!";
+                                ifAnyResponseFound=true;
+                                var elementResponseModal = document.getElementById('ShowResponseModalPopup');
+                                elementResponseModal.click();
+                            }
+
+            else if (!isNullOrUndefined(responseRequestModel.IsForsaRejectedResponseReceivedByBorrower)
+                                && responseRequestModel.IsForsaRejectedResponseReceivedByBorrower == true){
+                                    // Show popup when forsa rejected response.
+                    this.responseMessage ="Forsa has declined your request!";
+                                    ifAnyResponseFound=true;
+                                    var elementResponseModal = document.getElementById('ShowResponseModalPopup');
+                                    elementResponseModal.click();
+                                }
+            // Closing fill rate of interest and send pop up when response is received.
+            var element = document.getElementById('closeSendRequestModal');
+            element.click();
+
+            // Stoping get response timer if any response i.e Accepted/Rejected/ Forsa response found.
+            if(ifAnyResponseFound){
+            clearInterval(this.responseTimerId);
+            }
+            
+        }
+        this.spinner.hide();
+    }
+
+
+
+    
+    /* ENDS-----------Repsonse of Lender request work starts here */
 }
 
 

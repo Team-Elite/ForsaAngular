@@ -10451,7 +10451,7 @@
             }
 
             .full-header .instimatch-logo {
-                margin-left: 20%;
+                margin-left: 0%;
             }
 
             ul.in-lang li:nth-child(4),
@@ -19437,11 +19437,11 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-4 col-md-4">
-                        <a id="navbar-toggle">
-                            <span class="align-middle input-group-icon menu">
-                                <i class="material-icons ">menu</i>
-                            </span>
-                        </a>
+                        <!--<a id="navbar-toggle">
+                        <span class="align-middle input-group-icon menu">
+                            <i class="material-icons ">menu</i>
+                        </span>
+                    </a>-->
                         <div class="instimatch-logo">
                             <img alt="Insimatch Logo" src="../assets/images/instimatch-logo.jpg">
                         </div>
@@ -19456,34 +19456,34 @@
                             </li>
                             <!--   <li class="identity account-style">
 
-                                                        <div class="form-group form-md-line-input has-error">
-                                                            <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
+                                                    <div class="form-group form-md-line-input has-error">
+                                                        <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
 
-                                                        <select class="mdl-selectfield__select" name="LogicRoom" id="logicroom">
-                                <span class="input-group-icon">
-                                    <i class="material-icons">{{'Borrower.BankDashboard.expand_more'|translate}}</i>
-                                </span>
-                                <option value="" disabled selected>LogicRoom</option>
-                                <option value="logicroom1">1</option>
-                                <option value="logicroom2">2</option>
-                                <option value="logicroom3">3</option>
-                                <option value="logicroom4">4</option>
-                            </select>
-                                                        </div>
+                                                    <select class="mdl-selectfield__select" name="LogicRoom" id="logicroom">
+                            <span class="input-group-icon">
+                                <i class="material-icons">{{'Borrower.BankDashboard.expand_more'|translate}}</i>
+                            </span>
+                            <option value="" disabled selected>LogicRoom</option>
+                            <option value="logicroom1">1</option>
+                            <option value="logicroom2">2</option>
+                            <option value="logicroom3">3</option>
+                            <option value="logicroom4">4</option>
+                        </select>
+                                                    </div>
 
-                                                        </div>
+                                                    </div>
 
-                                                    </li>
-                                                    <!--<li>
-                                                        <a>
-                                                            <i class="material-icons icon-position">search</i>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a>
-                                                            <i class="material-icons icon-position">forum</i>
-                                                        </a>
-                                                    </li>-->
+                                                </li>
+                                                <!--<li>
+                                                    <a>
+                                                        <i class="material-icons icon-position">search</i>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a>
+                                                        <i class="material-icons icon-position">forum</i>
+                                                    </a>
+                                                </li>-->
                             <li class="identity">
                                 <a href="#" data-toggle="modal" data-target=".admin-modal">
                                     <i class="material-icons">perm_identity</i>
@@ -19497,8 +19497,8 @@
                                 </a>
                             </li>
                             <!--<li class="identity" title="Logout">
-                                <a href="javascript:void(0);" (click)="Logout()"><i class="material-icons icon-position"></i>{{'Borrower.BankDashboard.logout'|translate}}</a>
-                            </li>-->
+                            <a href="javascript:void(0);" (click)="Logout()"><i class="material-icons icon-position"></i>{{'Borrower.BankDashboard.logout'|translate}}</a>
+                        </li>-->
                             <li class="identity" title="Logout">
                                 <a href="javascript:void(0);" (click)="Logout()"><i class="material-icons icon-position">exit_to_app</i></a>
                             </li>
@@ -19509,105 +19509,78 @@
                 </div>
             </div>
         </header>
+
+        <div id="header-menus-new" class="container-fluid">
+            <div class="row">
+                <div class="col-md-2">
+                    <li>
+                        <a class="header-menu-btns" (click)="ShowScreen('BankDashboard');">{{'DashboardText'|translate}}</a>
+                    </li>
+                </div>
+                <div class="col-md-2">
+                    <li>
+                        <a class="header-menu-btns" (click)="PublishAndUnPublish(true);">
+                            {{'Borrower.BankDashboard.PUBLISH'|translate}}
+
+
+                        </a>
+                    </li>
+                </div>
+                <div class="col-md-2">
+                    <li>
+                        <a class="header-menu-btns" (click)="PublishAndUnPublish(false);">
+                            {{'Borrower.BankDashboard.STOPPUBLISH'|translate}}
+
+
+                        </a>
+                    </li>
+                </div>
+                <div class="col-md-2">
+                    <li>
+                        <a *ngIf="IsPublished" class="status-on header-menu-btns">
+                            {{'Borrower.BankDashboard.STATUSON'|translate}}
+                        </a>
+                        <a *ngIf="!IsPublished" class="status-off header-menu-btns">
+                            {{'Borrower.BankDashboard.STATUSOFF'|translate}}
+                        </a>
+                    </li>
+                </div>
+                <div class="col-md-2">
+                    <li>
+                        <a class="header-menu-btns" data-toggle="modal" data-target=".counterparty-modal">
+                            {{'Borrower.BankDashboard.CounterpartyConfiguration'|translate}}
+
+                        </a>
+                    </li>
+                </div>
+                <div class="col-md-2">
+                    <li class="cockpit-btn">
+                        <a class="header-menu-btns ">
+                            Cockpit
+
+                        </a>
+
+                        <div class="cockpit-dropdown-div">
+                            <button type="button" class="dropcockpit" id="eigene" data-toggle="modal" data-target=".bd-example-modal-lg-eigene-Stammdatenverwaltung">
+                                {{'Borrower.BankDashboard.Ownmasterdatamanagement'|translate}}
+                            </button>
+                            <button type="button" class="dropcockpit" routerLink="/maturityList" id="Ansehen">{{'Borrower.BankDashboard.Viewanddownloadyourownduelist'|translate}} </button>
+                            <button type="button" class="dropcockpit" routerLink="/historyMaturityList" id="Ansehenund">{{'Borrower.BankDashboard.Viewanddownloadinthepastdonebusiness'|translate}}</button>
+
+
+                        </div>
+                    </li>
+
+                </div>
+            </div>
+
+        </div>
         <!-- Header Ends Here -->
         <div class="main-container">
             <!-- Dashboard Page main Content starts-->
             <!-- Aside Starts Here-->
             <aside>
-                <div class="sidebar ">
-
-                    <ul class="sidebar-nav ">
-                        <li>
-                            <a (click)="ShowScreen('BankDashboard');">{{'DashboardText'|translate}}</a>
-                        </li>
-
-                        <li>
-                            <a (click)="PublishAndUnPublish(true);">
-                                {{'Borrower.BankDashboard.PUBLISH'|translate}}
-
-                                <span class="align-middle input-group-icon ">
-                                    <img alt="Insimatch Logo" src="../assets/images/publish-icon.png">
-                                </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a (click)="PublishAndUnPublish(false);">
-                                {{'Borrower.BankDashboard.STOPPUBLISH'|translate}}
-
-                                <span class="align-middle input-group-icon ">
-                                    <img alt="Insimatch Logo" src="../assets/images/stoppublish-icon.png">
-                                </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a *ngIf="IsPublished">
-                                {{'Borrower.BankDashboard.STATUSON'|translate}}  <span class="align-middle input-group-icon ">
-                                    <img alt="Insimatch Logo" src="../assets/images/status-live-icon.png">
-                                </span>
-                            </a>
-                            <a *ngIf="!IsPublished">
-                                {{'Borrower.BankDashboard.STATUSOFF'|translate}}<span class="align-middle input-group-icon ">
-                                    <img alt="Insimatch Logo" src="../assets/images/status-live-icon.png">
-                                </span>
-                            </a>
-
-
-
-                        </li>
-
-
-                        <li>
-                            <a data-toggle="modal" data-target=".counterparty-modal">
-                                {{'Borrower.BankDashboard.CounterpartyConfiguration'|translate}}
-                                <span class="align-middle input-group-icon ">
-                                    <img alt="Insimatch Logo" src="../assets/images/coountryparty-icon.png">
-                                </span>
-                            </a>
-                        </li>
-                        <li class="cockpit-btn">
-                            <a>
-                                Cockpit
-                                <span class="align-middle input-group-icon ">
-                                    <i class="material-icons ">view_list</i>
-                                </span>
-                            </a>
-                            <div class="cockpit-dropdown-div">
-                                <button type="button" class="dropcockpit" id="eigene" data-toggle="modal" data-target=".bd-example-modal-lg-eigene-Stammdatenverwaltung">
-                                    {{'Borrower.BankDashboard.Ownmasterdatamanagement'|translate}}  <span class="align-middle input-group-icon ">
-                                        <i class="material-icons ">perm_identity</i>
-                                    </span>
-                                </button>
-                                <!--<button type="button" class="dropcockpit" (click)="ShowScreen('Mreport');" id="Ansehen">{{'Borrower.BankDashboard.Viewanddownloadyourownduelist'|translate}}</button>
-                                <button type="button" class="dropcockpit" (click)="ShowScreen('HMreport');" id="Ansehenund">{{'Borrower.BankDashboard.Viewanddownloadinthepastdonebusiness'|translate}}</button>-->
-                                <button type="button" class="dropcockpit" routerLink="/maturityList" id="Ansehen">{{'Borrower.BankDashboard.Viewanddownloadyourownduelist'|translate}}<span _ngcontent-c1="" class="align-middle input-group-icon "><img _ngcontent-c1="" _ngcontent-c5="" alt="Insimatch Logo" src="../assets/images/maturity-list.png"></span></button>
-                                <button type="button" class="dropcockpit" routerLink="/historyMaturityList" id="Ansehenund">{{'Borrower.BankDashboard.Viewanddownloadinthepastdonebusiness'|translate}}<span _ngcontent-c1="" class="align-middle input-group-icon "><img _ngcontent-c1="" _ngcontent-c5="" alt="Insimatch Logo" src="../assets/images/history-maturity-list.png"></span></button>
-                                <!--<button type="button" class="dropcockpit" >Maturity List</button>
-                                <button type="button" class="dropcockpit" > History Maturity List</button>-->
-
-                            </div>
-
-                        </li>
-                        <!--<li>
-                            <a routerLink="/maturityList">
-                                {{'Borrower.BankDashboard.MaturityList'|translate}}
-                                <span class="align-middle input-group-icon ">
-                                    <img alt="Insimatch Logo" src="../assets/images/coountryparty-icon.png">
-                                </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a routerLink="/historyMaturityList">
-                                {{'Borrower.BankDashboard.HistoryMaturityList'|translate}}
-                                <span class="align-middle input-group-icon ">
-                                    <img alt="Insimatch Logo" src="../assets/images/coountryparty-icon.png">
-                                </span>
-                            </a>
-                        </li>-->
-
-
-
-                    </ul>
-                </div>
+               
             </aside>
             <!-- Aside Ends Here-->
 
@@ -19635,12 +19608,12 @@
                                     <!--<th style="cursor:pointer;" (click)="GetMaturityList('MaturityDate')"></th>-->
                                     <th style="cursor:pointer;" (click)="GetMaturityList('Rate')">{{'MaturityListfild.rate'|translate}}</th>
                                     <!--<th style="cursor:pointer;" (click)="GetMaturityList('InterestConvention')">Interest Convention</th>
-                                    <th style="cursor:pointer;" (click)="GetMaturityList('Payments')">Payments</th>
-                                    <!--<th style="cursor:pointer;">IsRequestAccepted</th>-->
+                                <th style="cursor:pointer;" (click)="GetMaturityList('Payments')">Payments</th>
+                                <!--<th style="cursor:pointer;">IsRequestAccepted</th>-->
                                     <!--<th style="cursor:pointer;">RequestCreatedBy</th>-->
                                     <!-- <th style="cursor:pointer;" (click)="GetMaturityList('RateOfInterestOfferred')">Rate</th>
-                                    <th style="cursor:pointer;">Offerred Date</th>
-                                    <th style="cursor:pointer;">Status</th> -->
+                                <th style="cursor:pointer;">Offerred Date</th>
+                                <th style="cursor:pointer;">Status</th> -->
 
                                 </tr>
                                 <tr *ngFor="let bank of _MaturityList">
@@ -19654,23 +19627,23 @@
                                     <td>{{bank.EndDate|date:'MM-dd-yyyy'}}
                                     <td>{{bank.RateOfInterestOfferred}}</td>
                                     <!-- <td>{{bank.NoOfDays}}</td>
-                                    <td>{{bank.InterestConvention}}</td>
-                                    <td>{{bank.Payments}}</td> -->
+                                <td>{{bank.InterestConvention}}</td>
+                                <td>{{bank.Payments}}</td> -->
                                     <!--<td>{{bank.IsRequestAccepted}}</td>
-                                    <td>{{bank.RequestCreatedBy}}</td>-->
+                                <td>{{bank.RequestCreatedBy}}</td>-->
                                     <!--<td>{{bank.OfferredOn|date:mm/dd/yy}}</td>
-                                    <td>
-                                        IsAccepted:{{bank.IsAccepted}}
-                                        <ng-container [ngSwitch]="true">
-                                            <div *ngSwitchCase="bank.IsAccepted === 1">Accepted</div>
-                                            <div *ngSwitchCase="bank.IsReject === 1">Reject</div>
-                                            <div *ngSwitchCase="bank.IsMessageSentToForsa === 1">Sent to Forsa<br /> Message: {{bank.MessageForForsa}}  </div>
-                                            <div *ngSwitchDefault>Processed</div>
-                                        </ng-container>
-                                        IsReject:{{bank.IsRejected}}
-                                        {{bank.MessageForForsa}}
+                                <td>
+                                    IsAccepted:{{bank.IsAccepted}}
+                                    <ng-container [ngSwitch]="true">
+                                        <div *ngSwitchCase="bank.IsAccepted === 1">Accepted</div>
+                                        <div *ngSwitchCase="bank.IsReject === 1">Reject</div>
+                                        <div *ngSwitchCase="bank.IsMessageSentToForsa === 1">Sent to Forsa<br /> Message: {{bank.MessageForForsa}}  </div>
+                                        <div *ngSwitchDefault>Processed</div>
+                                    </ng-container>
+                                    IsReject:{{bank.IsRejected}}
+                                    {{bank.MessageForForsa}}
 
-                                    </td>-->
+                                </td>-->
                                 </tr>
                             </tbody>
                         </table>

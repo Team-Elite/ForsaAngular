@@ -40,7 +40,7 @@ footer.my-footer {
     font-size: 13px !important;
 }
 .active {
-    background: #cccccc !important;
+    background: green !important;
     -webkit-transition: background 0.5s;
     transition: background 0.5s;
 }
