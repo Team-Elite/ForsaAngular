@@ -222,7 +222,7 @@ export class ViewAllPriceComponent implements OnInit {
 
     async GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected(columnName: string) {
         this.orderByColumn = columnName;
-        debugger;
+      //  debugger;
         let rates = await this.viewAllPriceService.GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected(this.orderByColumn);
         if (rates != null || rates != undefined) {
             rates.forEach(ele => {

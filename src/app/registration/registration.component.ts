@@ -7,7 +7,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 //import { $$ } from '../../../node_modules/protractor';
 //import { NgbdModalBasic } from './Shared/modal-basic';
 import { ToastrService } from 'ngx-toastr';
-//import {FormBuilder, FormGroup, Validators} from '@angular/forms'; 
+import { FormBuilder, FormGroup, Validators } from '@angular/forms'; //Puneet 2018-12-24
 import { NgxSpinnerService } from 'ngx-spinner';
 import { AuthenticateServiceService } from '../Shared/authenticate-service.service';
 
@@ -20,13 +20,16 @@ import { AuthenticateServiceService } from '../Shared/authenticate-service.servi
 })
 
 export class RegistrationComponent implements OnInit {
-
+    emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
     captcha: any;
-    ;
+    tempAmount: any;
+    tempStorage: any;
+    UploadOneSelectedFileSize: number = 0;
+    UploadTwoSelectedFileSize: number = 0;
     constructor(public registrationService: RegistrationService, public customValidationServiceService: CustomValidationServiceService
         , public router: Router, public toastr: ToastrService, public spinner: NgxSpinnerService
         , public activatedRoute: ActivatedRoute,
-       public authenticateServiceService: AuthenticateServiceService
+        public authenticateServiceService: AuthenticateServiceService
         //  ,public formBuilder:FormBuilder, public formGroup:FormGroup
     ) { }
     _Message: string = "";
@@ -50,8 +53,35 @@ export class RegistrationComponent implements OnInit {
         return true;
 
     }
+    //#region Puneet Create 2018-12-24 Create a Validation Function
+    ValidateEmail(inputText) {
+        var regexp = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+        var test = regexp.test(inputText);
+        if (test) {
+            return true;
+        }
+        else {
+            return false;
+        }
 
+    }
+    validateNumberOrLeter(event): boolean {
+        const charCode = (event.which) ? event.which : event.keyCode;
+        // console.log("Enter Keys =" +charCode);
+        if ((charCode >= 48 && charCode <= 57) || (charCode >= 96 && charCode <= 122)
+            || (charCode >= 65 && charCode <= 90) || (charCode >= 8 && charCode <= 9)) {
+            return true;
+        }
+        return false;
+    }
+    spaceAddAfterFourChar(inputString) {
+        var newString = inputString.replace(/^(.{4})(.{4})(.{4})(.{4})(.{4})(.*)$/, "$1 $2 $3 $4 $5 $6");
+        this.registrationService.userModel.IBAN = newString;
+
+    }
+    //#endregion
     ngOnInit() {
+
         this.registrationService.getCountryList();
         this.registrationService.getLanguageList();
         this.registrationService.getDepositInsuranceList();
@@ -77,13 +107,21 @@ export class RegistrationComponent implements OnInit {
     }
 
     isUploadOneSelected(event) {
-      
         const file = event.target.files[0];
         if (!file) return;
         if (file.type != 'application/pdf') {
             return alert('Selected file is not pdf');
         }
+        //#region Puneet Changes For Getting File Size 
+        var filesize = Math.round(file.size / 1024);// size in KB
+        this.UploadOneSelectedFileSize = filesize;
+        if (filesize > 500) {
+            return alert('Selected file less then 500 KB');
+        }
+        //#endregion
         this.fileList[this.fileList.length] = file;
+
+
         //this.registrationService.userModel.CommercialRegisterExtract = file;
     }
     isUploadTwoSelected(event) {
@@ -92,6 +130,14 @@ export class RegistrationComponent implements OnInit {
         if (file.type != 'application/pdf') {
             return alert('Selected file is not pdf');
         }
+        //#region Puneet Changes For Getting File Size 
+        var filesize = Math.round(file.size / 1024);// size in KB
+        this.UploadTwoSelectedFileSize = filesize;
+        if (filesize > 500) {
+            return alert('Selected file less then 500 KB');
+        }
+        //#endregion
+
         //this.registrationService.userModel.IdentityCard = file;
         this.fileList[this.fileList.length] = file;
     }
@@ -136,6 +182,7 @@ export class RegistrationComponent implements OnInit {
             RatingAgentur2: '',
             RatingAgenturValue2: '',
             DepositInsurance: 0,
+            DepositInsuranceAmount: 0,
             ClientGroupId: 0,
             AgreeToThePrivacyPolicy: false,
             GroupCommunities: false,
@@ -152,7 +199,7 @@ export class RegistrationComponent implements OnInit {
             NewPassword: '',
             CommercialRegisterExtract: null,
             IdentityCard: null,
-            Captcha:''
+            Captcha: ''
             //LEINumber2:''
         }
     }
@@ -161,8 +208,17 @@ export class RegistrationComponent implements OnInit {
 
         // $("#captcha").val(this.captcha);
     }
-    async registerUser(form: NgForm) {  this.spinner.show();
+    async registerUser(form: NgForm) {
+        this.spinner.show();
         if (!this.ValidateUserForm(form)) { this.spinner.hide(); return; }
+        //#region Puneet 2018-12-24
+
+        if (form.value.AcceptAGBS == false) {
+            this.toastr.error("Please accept AGBs.", "Registration");
+            this.spinner.hide();
+            return false;
+        }
+        //#endregion
         if (form.value.Captchainput == undefined || form.value.Captchainput == null) {
 
             this.toastr.error("Please enter captcha code", "Ragisteration");
@@ -170,6 +226,7 @@ export class RegistrationComponent implements OnInit {
             this.spinner.hide();
             return false;
         }
+
         else {
             const captchaimage = this.captcha.split(' ').join('');
 
@@ -181,20 +238,19 @@ export class RegistrationComponent implements OnInit {
             }
         }
         form.value.DateModified = new Date();
-        // debugger;
         if (form.value.UserId != undefined && form.value.UserId != null && form.value.UserId > 0) {
             this.UpdateUserDetails(form);
             this.spinner.hide();
             return;
         }
         form.value.DateCreated = new Date();
-       
+
         form.value.CreatedBy = -1;
-      
-      
+
+
         // Checking ifUserExist
         let userExist = await this.registrationService.CheckIfUserNameIsAvailable(form.value.UserName);
-     
+
         if (userExist == true) {
             this.spinner.hide();
             this.toastr.error("User name available.", "Registration");
@@ -212,7 +268,7 @@ export class RegistrationComponent implements OnInit {
             return;
         }
 
-      
+
         if (form.value.rdbBank) {
             form.value.GroupIds = '';
             if (form.value.GroupCommunities)
@@ -226,7 +282,16 @@ export class RegistrationComponent implements OnInit {
         else {
             form.value.GroupIds = "";
         }
-
+        //#region Puneet Add Code 2018-12-27 for Cusromer Group Validation
+        if (form.value.rdbBank == true) {// only valid for Bank Seleced Case
+            if (form.value.GroupIds == null || form.value.GroupIds.length == 0 || form.value.GroupIds == undefined) {
+                this.spinner.hide();
+                this.toastr.error("Please select Customer Group.", "Registration");
+                //this.registrationService.userModelExist=null;
+                return;
+            }
+        }
+        //#endregion
 
         form.value.UserTypeId = '';
         if (form.value.rdbBank)
@@ -239,7 +304,10 @@ export class RegistrationComponent implements OnInit {
         // Registering user..
         form.value.CommercialRegisterExtract = this.registrationService.userModel.CommercialRegisterExtract;
         form.value.IdentityCard = this.registrationService.userModel.IdentityCard;
+        //puneet add code for insert a same ui value
+        form.value.DepositInsuranceAmount = this.tempStorage;
 
+        ///
         this.registrationService.RegisterUser(this.fileList, form.value)
             .subscribe(response => {
 
@@ -272,7 +340,8 @@ export class RegistrationComponent implements OnInit {
         let numberOfErrorFound: number = 0;
         IfErrorFound = this.Section2Visible(form);
         if (!IfErrorFound) return; IfErrorFound;
-        IfErrorFound= this.Section3Visible(form);
+        IfErrorFound = this.Section3Visible(form);
+        //#region Comment Code
         //_Message = 'Fields marked with * are required. Please fill';
         /*
               
@@ -472,26 +541,29 @@ export class RegistrationComponent implements OnInit {
         //    this.toastr.error("Please verify captcha.", "Registration");
         //    return false;
         //}
+
+        //#endregion
         return IfErrorFound;
     }
 
     Section2Visible(form: NgForm) {
-      //  let IfErrorFound: boolean = false;
+        //  let IfErrorFound: boolean = false;
         let numberOfErrorFound: number = 0;
         this._Message = 'Fields marked with * are required. Please ';
 
         if (this.ValidateSection1(form)) {
-           
+
             this._Message = this._Message.substring(0, this._Message.length - 1);
             this.toastr.error(this._Message, "Registration");
-           
-          //  this.registrationService.ShowSection2 = false;
+
+            //  this.registrationService.ShowSection2 = false;
             return false;
         }
 
         this.registrationService.ShowSection2 = true;
         return true;
     }
+    //#region ValidateSection1
     ValidateSection1(form: NgForm): any {
         var IfErrorFound = false;
         if ((form.value.rdbBank == undefined && form.value.rdbNonBank == undefined) || (form.value.rdbBank == false && form.value.rdbNonBank == false)) {
@@ -509,7 +581,7 @@ export class RegistrationComponent implements OnInit {
             //numberOfErrorFound++;
             this._Message = this._Message + " Street\n";
         }
-        if (form.value.PostalCode == undefined || form.value.PostalCode == null || form.value.PostalCode.length == 0) {
+        if (form.value.PostalCode == undefined || form.value.PostalCode == null || form.value.PostalCode.length == 0 || form.value.PostalCode.length > 5) {
             IfErrorFound = true;
             //numberOfErrorFound++;
             this._Message = this._Message + " Postal Code\n";
@@ -530,12 +602,12 @@ export class RegistrationComponent implements OnInit {
             //numberOfErrorFound++;
             this._Message = this._Message + " Bank\n";
         }
-        if (form.value.IBAN == undefined || form.value.IBAN == null || form.value.IBAN.length == 0) {
+        if (form.value.IBAN == undefined || form.value.IBAN == null || form.value.IBAN.length == 0 || form.value.IBAN.length > 27) {
             IfErrorFound = true;
             //numberOfErrorFound++;
             this._Message = this._Message + " IBAN\n";
         }
-        if (form.value.BICCode == undefined || form.value.BICCode == null || form.value.BICCode.length == 0) {
+        if (form.value.BICCode == undefined || form.value.BICCode == null || form.value.BICCode.length == 0 || form.value.BICCode.length > 11) {
             IfErrorFound = true;
             //numberOfErrorFound++;
             this._Message = this._Message + " BICCode\n";
@@ -551,11 +623,16 @@ export class RegistrationComponent implements OnInit {
         //  errorMessage = errorMessage + " Sub group,";
         //}
 
-     
+
         return IfErrorFound;
     }
+    //#endregion
+
+
     ValidateSection2(form: NgForm): any {
 
+
+        this._Message = ""; // Puneet Change 2018-12-25
         var IfErrorFound = false;
         if (form.value.Salutation == undefined || form.value.Salutation == null || form.value.Salutation == 0) {
             IfErrorFound = true;
@@ -591,6 +668,23 @@ export class RegistrationComponent implements OnInit {
                 this._Message = this._Message + " User Name,";
             }
         }
+        /*********************************/
+        //puneet Changes 2018-12-25
+        //if (form.value.RatingAgenturValue1 == undefined || form.value.RatingAgenturValue1 == null || form.value.RatingAgenturValue1 == 0) {
+        //    if (form.value.RatingAgenturValue1 == undefined || form.value.RatingAgenturValue1 == null || form.value.RatingAgenturValue1.trim().length == 0) {
+        //        IfErrorFound = true;
+        //        //numberOfErrorFound++;
+        //        this._Message = this._Message + " Rating Agentur Value,";
+        //    }
+        //}
+        //if (form.value.RatingAgenturValue2 == undefined || form.value.RatingAgenturValue2 == null || form.value.RatingAgenturValue2 == 0) {
+        //    if (form.value.RatingAgenturValue2 == undefined || form.value.RatingAgenturValue2 == null || form.value.RatingAgenturValue2.trim().length == 0) {
+        //        IfErrorFound = true;
+        //        //numberOfErrorFound++;
+        //        this._Message = this._Message + " Rating Agentur Value 2,";
+        //    }
+        //}
+        /*****************************************/
         if (form.value.UserTypeId == 4 && (form.value.DepositInsurance == undefined || form.value.DepositInsurance == null || form.value.DepositInsurance == 0)) {
 
             IfErrorFound = true;
@@ -604,16 +698,69 @@ export class RegistrationComponent implements OnInit {
             //numberOfErrorFound++;
             this._Message = this._Message + " Deposit Insurance Amount,";
         }
+        //Puneet Add Code 2018-12-27 for File Upload Validation
+        /// Start
+        //if (this.UploadOneSelectedFileSize == 0 || this.UploadOneSelectedFileSize > 500) {
+        //    IfErrorFound = true;
+        //    //numberOfErrorFound++;
+        //    if (this.UploadOneSelectedFileSize == 0)
+        //        this._Message = this._Message + "Plese select file for Upload one,";
+        //    else
+        //        this._Message = this._Message + "Upload One File size must be less then 500 KB,";
+        //}
+        //if (this.UploadTwoSelectedFileSize == 0 || this.UploadTwoSelectedFileSize > 500) {
+        //    IfErrorFound = true;
+        //    //numberOfErrorFound++;
+        //    if (this.UploadTwoSelectedFileSize == 0)
+        //        this._Message = this._Message + "Plese select file for Upload Two,";
+        //    else
+        //        this._Message = this._Message + "Upload Second File size must be less then 500 KB,";
+        //}
+        /////////// end 
+
         return IfErrorFound;
-       
+
+    }
+
+
+    async IsUserExixts(UserName: string) {
+
+        return await this.registrationService.CheckIfUserNameIsAvailable(UserName).then(x => {
+            return x;//x.json()
+        });
     }
     Section3Visible(form: NgForm) {
-      
+        //puneet 2018-12-24
+        if (!this.ValidateEmail(form.value.EmailAddress)) {
+            //this._Message = this._Message + " Mail Address,";
+            this.toastr.error(this._Message, "Mail Address Incorrect");
+
+            return false;
+        }
+        // // Checking ifUserExist 
+        var userExist;
+        userExist = this.IsUserExixts(form.value.UserName);
+        //.then(data => {
+        //    console.log("Call Api");
+        //    console.log(data[0]);
+        //    console.log(data._body);
+        //});
+
+        // debugger;
+        if (userExist.IsSuccess) {
+            this.spinner.hide();
+            this.toastr.error("User name not available.", "Registration");
+            this.registrationService.userModelExist = null;
+            return false;
+        }
+        /***************************/
         if (this.ValidateSection2(form)) {
-           // this.registrationService.ShowSection3 = false;
+
+
+            // this.registrationService.ShowSection3 = false;
             this._Message = this._Message.substring(0, this._Message.length - 1);
             this.toastr.error(this._Message, "Registration");
-            
+
             return false;
         }
         this.registrationService.ShowSection3 = true;
@@ -622,13 +769,13 @@ export class RegistrationComponent implements OnInit {
 
 
     async GetUserDetailByUserId(form?: NgForm) {
-     
+
         //this.registrationService.userId=74;
         this.spinner.show();
         var result = await this.registrationService.GetUserDetailByUserId();
         if (result.IsSuccess) {
             // if (JSON.parse(result.data)[0].UserTypeId != 6) {
-                if (result[0].UserTypeId != 6) {
+            if (result[0].UserTypeId != 6) {
                 this.toastr.error('No information found.', 'Registration');
                 this.spinner.hide();
                 this.resetForm();
@@ -646,20 +793,20 @@ export class RegistrationComponent implements OnInit {
 
 
     async UpdateUserDetails(form: NgForm) {
-     
-        debugger;
+
+        // debugger;
         form.value.DateCreated = new Date();
         form.value.DateModified = new Date();
         form.value.CreatedBy = -1;
         // // Checking ifUserExist
-        // let userExist= await this.registrationService.CheckIfUserNameIsAvailable(form.value.UserName);
-        // debugger;
-        // if(userExist == true){
-        //   this.spinner.hide();
-        //   this.toastr.error("User name not available.","Registration");
-        //   this.registrationService.userModelExist=null;
-        //   return;
-        // }
+        let userExist = await this.registrationService.CheckIfUserNameIsAvailable(form.value.UserName);
+
+        if (userExist == true) {
+            this.spinner.hide();
+            this.toastr.error("User name not available.", "Registration");
+            this.registrationService.userModelExist = null;
+            return;
+        }
 
         // Checking if email already registered
         // // // let ifEmailIdAlreadyRegistered= await this.registrationService.CheckIfEmailIdIsRegistered(form.value.EmailAddress);
@@ -671,7 +818,7 @@ export class RegistrationComponent implements OnInit {
         // // //   return;
         // // // }
 
-       
+
         if (form.value.rdbBank) {
             form.value.GroupIds = '';
             if (form.value.GroupCommunities)
@@ -694,11 +841,11 @@ export class RegistrationComponent implements OnInit {
             form.value.UserTypeId = form.value.UserTypeId + '5,';
         form.value.UserTypeId = form.value.UserTypeId.substring(0, form.value.UserTypeId.length - 1);
 
-       
+
         // Updating user..
-      
+
         //form.value.EmailAddress = this.registrationService.userModel.EmailAddress;
-        this.registrationService.UpdateUserDetails(this.fileList,form.value).subscribe(data => {
+        this.registrationService.UpdateUserDetails(this.fileList, form.value).subscribe(data => {
             this.resetForm(form);
             this.spinner.hide();
             setTimeout(() => {
@@ -712,6 +859,13 @@ export class RegistrationComponent implements OnInit {
         this.spinner.hide();
     }
 
+    //Punee Add  a Function For Converting a Amount value In Dont Seprate  
+    GermanFormat(amount) {
+        if (!amount) return;
+        const val = parseFloat(amount);
+        this.tempStorage = val;
+        this.tempAmount = val.toLocaleString('de-DE');
 
 
+    }
 }

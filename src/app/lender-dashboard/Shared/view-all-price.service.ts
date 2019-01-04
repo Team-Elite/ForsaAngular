@@ -64,6 +64,7 @@ export class ViewAllPriceService {
         var webtoken = { data: this.tokenService.jwtencrypt({ userId: this.lenderDashboardService.userId }), orderBy: orderByColumn };
         var response;
         await this.http.post(this.lenderDashboardService.baseURL + '/api/LenderDashboard/GetAllBanksWithInterestRateHorizontalyWhichAreNotDeSelected', webtoken, this.requestOptions).map((data: Response) => {
+            
             return data.json();
         }).toPromise().then(token => {
             if (token != undefined && token.IsSuccess && token.data != undefined) {

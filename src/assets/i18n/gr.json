@@ -22,7 +22,7 @@
   "Button": {
     "ButtonSaveProfile": "Speichern",
     "ButtonSend": "senden",
-    "ButtonNext": "Nächster",
+    "ButtonNext": "Weiter",
     "ButtonSubmit": "Einreichen",
     "ButtonClose": "Schliessen",
     "ButtonSendRequest": "Anfrage senden",
@@ -34,7 +34,7 @@
     "ButtonSettingRateField": "Einstellungen",
     "ButtonUpload": "Upload",
     "ButtonChangePassword": "Passwort ändern",
-    "ButtonRegister": "Register",
+    "ButtonRegister": " Registrieren",
     "ButtonAcceptRequest": "Akzeptieren",
     "ButtonDeclineRequest": "Ablehnen",
     "ButtonChatWithForsa": "FORSA,please contact me"
@@ -116,8 +116,8 @@
       "LEINumber": "LEI Number",
       "RatingAgentur1": "RatingAgentur1",
       "RatingAgentur2": "RatingAgentur2",
-      "RatingAgentValue1": "RatingAgent1 Value",
-      "RatingAgentValue2": "RatingAgent2 Value",
+      "RatingAgentValue1": " Ratingagentur 1",
+      "RatingAgentValue2": " Ratingagentur 2",
       "DepositInsurance": "Einlagensicherung  ",
       "DepositInsuranceAmount": "Höhe der Einlagesicherung  "
     },

@@ -68,7 +68,7 @@ export class BankDashboardComponent implements OnInit {
     ngOnInit() {
         this.spinner.show();
 
-        this.authenticateServiceService.AuthenticateSession();
+        //  this.authenticateServiceService.AuthenticateSession();
         this.IfShowBankDashBoard = true;
         this.IfBothUserTypeFound = this._authenticateServiceService.GetIfBothUserTypeFound() == (undefined || null) ? false : true;
         this.bankDashboardService.userId = this._authenticateServiceService.GetUserId();
@@ -77,7 +77,8 @@ export class BankDashboardComponent implements OnInit {
         this.bankDashboardService.loggedInUser = this._authenticateServiceService.GetUserDetail();
         this.copyLoggedInUser = Object.assign({}, this.bankDashboardService.loggedInUser);
         this.SetTimeInterval();
-       // this.GetLenderSendRequestRequestdOnTheBasisOfBorrowerId();
+
+        // this.GetLenderSendRequestRequestdOnTheBasisOfBorrowerId();
       
         this.spinner.hide();
         this.bestPriceViewService.lenderSendRequestModel = {
@@ -256,9 +257,19 @@ export class BankDashboardComponent implements OnInit {
         }
         rate.IsDoubleTapped1 = false;
         rate.ModifiedBy = this.bankDashboardService.userId;
-        rate.RateOfInterest = parseFloat( rate.RateOfInterest).toFixed(2);
-        rate.RateOfInterest2 = parseFloat(rate.RateOfInterest2).toFixed(2);
-        rate.RateOfInterest3 = parseFloat( rate.RateOfInterest3).toFixed(2);
+        //rate.RateOfInterest = parseFloat( rate.RateOfInterest).toFixed(2);
+        //rate.RateOfInterest2 = parseFloat(rate.RateOfInterest2).toFixed(2);
+        //rate.RateOfInterest3 = parseFloat(rate.RateOfInterest3).toFixed(2);
+
+        /************************************/
+        //puneet changes 2018-12-26
+        rate.RateOfInterest = parseInt(rate.RateOfInterest);
+        rate.RateOfInterest2 = parseInt(rate.RateOfInterest2);
+        rate.RateOfInterest3 = parseInt(rate.RateOfInterest3);
+        rate.FractionRate = parseInt(rate.FractionRate);
+        rate.FractionRate2 = parseInt(rate.FractionRate2);
+        rate.FractionRate3 = parseInt(rate.FractionRate3);
+        /*******************************/
         rate.BaseCurve = parseFloat(rate.BaseCurve).toFixed(2);
         //this.spinner.show();
         //this.bankDashboardService.UpdateRateOfInterest(rate).subscribe(data => {
@@ -269,15 +280,17 @@ export class BankDashboardComponent implements OnInit {
     }
     CalculateBaseCurve(rate) {
         //changes in calculation so that comma can be converted to dot in interest rate
+        //#region Commented code . This Code is Replace a ',' Seprated Value Replace in '.'
         //start
-        if (parseFloat(rate.BaseCurve.replace(',', '.')) && typeof parseFloat(rate.BaseCurve.replace(',','.')) === 'number') {
-            rate.BaseCurve = parseFloat(rate.BaseCurve.replace(',','.')).toFixed(2)
-        } else{
-            //rate.BaseCurve = 0;
-          //  this.toastr.warning("Ihre Eingabe enthält unzulässige Zeichen", "Dashboard");
-        }
+
+        //if (parseFloat(rate.BaseCurve.replace(',', '.')) && typeof parseFloat(rate.BaseCurve.replace(',','.')) === 'number') {
+        //    rate.BaseCurve = parseFloat(rate.BaseCurve.replace(',','.')).toFixed(2)
+        //} else{
+        //    //rate.BaseCurve = 0;
+        //  //  this.toastr.warning("Ihre Eingabe enthält unzulässige Zeichen", "Dashboard");
+        //}
         //end done by prabhjot
-        
+        //#endregion
         rate.RateOfInterest = ((rate.FractionRate/100) + parseFloat(rate.BaseCurve)).toFixed(2);
         rate.RateOfInterest2 = ((rate.FractionRate2/100) + parseFloat(rate.BaseCurve)).toFixed(2);;
         rate.RateOfInterest3 = ((rate.FractionRate3/100) + parseFloat(rate.BaseCurve)).toFixed(2);;
@@ -353,7 +366,7 @@ export class BankDashboardComponent implements OnInit {
     //   this.CalculateBaseCurve(rate)
     //}
     IncreaseRateOfInterest(rate, type: number) {
-        
+      
         if (type == 3) {
             if (rate.BaseCurve == undefined || rate.BaseCurve == null || rate.BaseCurve.length == 0) {
                 this.toastr.error("Rate must be entered.", "Dashboard");
@@ -364,6 +377,8 @@ export class BankDashboardComponent implements OnInit {
                 this.toastr.error("Interest rate can not be less than 9999.99", "Dashboard");
                 return;
             }
+            console.log("Puneet Call...........");
+           // console.log(rate.BaseCurve);
             rate.BaseCurve = parseFloat(rate.BaseCurve) + .01;
             rate.BaseCurve = parseFloat(rate.BaseCurve).toFixed(2);
         }
@@ -583,7 +598,6 @@ export class BankDashboardComponent implements OnInit {
 
     async ChangePassword() {
 
-
         /* Validating controls */
         if (this.ValidateUserPfrofileFields(this.copyLoggedInUser, this.bankDashboardService.NewPassword, this.bankDashboardService.ConfirmPassword)) {
             this.copyLoggedInUser.NewPassword = this.bankDashboardService.NewPassword.trim();
@@ -598,6 +612,8 @@ export class BankDashboardComponent implements OnInit {
                         this.toastr.error("Old password is not correct.", "Dashboard");
                         return;
                     }
+                    var element = document.getElementById('closeUpdateProfileModal');
+                    element.click();
                     this.authenticateServiceService.UpdateSession(data.data);
                     this.toastr.success("Updated successfully. An email has been sent to your email id.", "Dashboard");
                     this.bankDashboardService.loggedInUser = this._authenticateServiceService.GetUserDetail();
@@ -643,8 +659,12 @@ export class BankDashboardComponent implements OnInit {
             return false;
         }
 
-        if (NewPassword.trim().length < 6) {
-            this.toastr.error("Password must be at least of six characters.", "Dashboard");
+        if (NewPassword.trim().length < 3) {
+            this.toastr.error("Password must be at least of three characters.", "Dashboard");
+            return false;
+        }
+        if (NewPassword.trim().length > 20) {
+            this.toastr.error("Password must be at least of less then twenty characters.", "Dashboard");
             return false;
         }
 
@@ -811,18 +831,18 @@ export class BankDashboardComponent implements OnInit {
     }
 
     async SwitchScreen() {
-
+        console.log("Switch Screen Call");
         this.lenderDashboardService.userId = this._authenticateServiceService.GetUserId();
         let startPage = await this.lenderDashboardService.GetLenderStartPage();
         this.lenderDashboardService.StartingScreen = startPage;
         if (this.lenderDashboardService.StartingScreen.PageName == "Best Price View") {
-            this.router.navigate(['lenderDashboard/BestPriceView']);
+            this.router.navigate(['/lenderDashboard/BestPriceView']);
         }
         else if (this.lenderDashboardService.StartingScreen.PageName == "View All Price") {
-            this.router.navigate(['lenderDashboard/ViewAllPrice']);
+            this.router.navigate(['/lenderDashboard/ViewAllPrice']);
         }
         else if (this.lenderDashboardService.StartingScreen.PageName == "All Banks") {
-            this.router.navigate(['lenderDashboard/AllBanks']);
+            this.router.navigate(['/lenderDashboard/AllBanks']);
         }
     }
    // $('#navbar-toggle').click(function() {

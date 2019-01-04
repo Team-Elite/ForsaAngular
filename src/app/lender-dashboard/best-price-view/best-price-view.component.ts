@@ -14,6 +14,10 @@ import { IMyDpOptions } from 'mydatepicker';
 const connection = (environment.production) ? hubConnection('http://40.89.139.123:4044') : hubConnection('http://localhost:50859');
 
 const hubProxy = connection.createHubProxy('ForsaHub');
+/************** */
+//Puneet
+const hubProxyConfiguration = connection.createHubProxy('UserConfigurationHub');
+/**************/
 @Component({
     selector: 'app-best-price-view',
     templateUrl: './best-price-view.component.html',    
@@ -34,6 +38,13 @@ export class BestPriceViewComponent implements OnInit {
         hubProxy.on('sendBankRate', (data) => {
             this.getData();
         })
+        //Puneet Changes 2018-12-24
+        /**********/
+            hubProxyConfiguration.on('SendConfiguration', (data) => {
+                this.getData();
+            
+        })
+        /*********/
         connection.start({ jsonp: true })
             .done(function () { console.log('Now connected, connection ID=' + connection.id); })
             .fail(function () { console.log('Could not connect'); });

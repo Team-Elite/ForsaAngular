@@ -28,15 +28,15 @@ import { ViewAllPriceComponent } from './lender-dashboard/view-all-price/view-al
 import { AllBanksComponent } from './lender-dashboard/all-banks/all-banks.component';
 import { KontactDashboardComponent } from './kontact-dashboard/kontact-dashboard.component';
 import { KontactDashboardLComponent } from './lender-dashboard/kontact-dashboard-l/kontact-dashboard-l.component'; // <-- import the module
-import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'; // Language Translator 
+import { TranslateHttpLoader } from '@ngx-translate/http-loader'; // Language Translator 
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core'; // Language Translator 
 import { ForsaLanguagesComponent } from './forsa-languages/forsa-languages.component';
 import { TokenService } from './token-service';
 import { MaturitylistComponent } from './lender-dashboard/maturitylist/maturitylist.component';
 
-import {MaturityListLenderComponent} from './lender-dashboard/maturity-list-lender/maturity-list-lender.component';
-import {HistoryMaturityListLenderComponent} from './lender-dashboard/history-maturity-list-lender/history-maturity-list-lender.component';
+import { MaturityListLenderComponent } from './lender-dashboard/maturity-list-lender/maturity-list-lender.component';
+import { HistoryMaturityListLenderComponent } from './lender-dashboard/history-maturity-list-lender/history-maturity-list-lender.component';
 import { UserprofileComponent } from './userprofile/userprofile.component';
 import { FileUploaderModule } from "ng4-file-upload";
 import { SettingPageComponent } from './lender-dashboard/setting-page/setting-page.component';
@@ -44,11 +44,12 @@ import { MaturityListComponent } from './maturity-list/maturity-list.component';
 import { SettingratefieldComponent } from './lender-dashboard/settingratefield/settingratefield.component';
 //import { ExportAsModule } from 'ngx-export-as';
 //import { JwtHelperService} from '@auth0/angular-jwt';
-import { NgDraggableModule } from 'angular-draggable'; 
-import { MyDatePickerModule } from 'mydatepicker'; 
+import { NgDraggableModule } from 'angular-draggable';
+import { MyDatePickerModule } from 'mydatepicker';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
     return new TranslateHttpLoader(httpClient);
+
 }
 //return new TranslateHttpLoader(httpClient, './assets/i18n/', '.json')
 
@@ -56,28 +57,28 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
 
 
 const appRoutes: Routes = [{ path: 'login', component: LoginComponent },
-    { path: 'registration', component: RegistrationComponent },
-    { path: 'userprofile', component: UserprofileComponent },
-//  {path:'registration/:uId',component:RegistrationComponent},
-{ path: 'registration/:uId/:uRole', component: RegistrationComponent },
-{ path: '', redirectTo: 'login', pathMatch: 'full' },
-    { path: 'bankDashBoard', component: BankDashboardComponent },
-    { path: 'maturityList', component: MaturityListComponent },
-    { path: 'historyMaturityList', component: MaturityListComponent },
-{ path: 'KontactDashBoard', component: KontactDashboardComponent },
-{ path: 'test', component: TestComponent },
-{
-    path: 'lenderDashboard', component: LenderDashboardComponent,
-    children: [{ path: "BestPriceView", component: BestPriceViewComponent },
-    { path: "ViewAllPrice", component: ViewAllPriceComponent },
-    { path: 'AllBanks', component: AllBanksComponent },
-        { path: 'AllBanksK', component: KontactDashboardLComponent },
-        { path: 'setting', component: SettingPageComponent },
-        { path: 'settingratefield', component: SettingratefieldComponent },
-        { path: 'Maturitylist', component: MaturitylistComponent },
-        { path: 'historyMaturitylist', component: MaturitylistComponent }
-    ]
-}
+                            { path: 'registration', component: RegistrationComponent },
+                            { path: 'userprofile', component: UserprofileComponent },
+                            //  {path:'registration/:uId',component:RegistrationComponent},
+                            { path: 'registration/:uId/:uRole', component: RegistrationComponent },
+                            { path: '', redirectTo: 'login', pathMatch: 'full' },
+                            { path: 'bankDashBoard', component: BankDashboardComponent },
+                            { path: 'maturityList', component: MaturityListComponent },
+                            { path: 'historyMaturityList', component: MaturityListComponent },
+                            { path: 'KontactDashBoard', component: KontactDashboardComponent },
+                            { path: 'test', component: TestComponent },
+                            { path: 'lenderDashboard', component: LenderDashboardComponent,
+                                children: [
+                                            { path: "BestPriceView", component: BestPriceViewComponent },
+                                            { path: "ViewAllPrice", component: ViewAllPriceComponent },
+                                            { path: 'AllBanks', component: AllBanksComponent },
+                                            { path: 'AllBanksK', component: KontactDashboardLComponent },
+                                            { path: 'setting', component: SettingPageComponent },
+                                            { path: 'settingratefield', component: SettingratefieldComponent },
+                                            { path: 'Maturitylist', component: MaturitylistComponent },
+                                            { path: 'historyMaturitylist', component: MaturitylistComponent }
+                                           ]
+                            }
     //  {path:'BestPriceView', component:BestPriceViewComponent}
     // {path:'',redirectTo:'bankDashBoard', pathMatch:'full'},
 ];
@@ -107,7 +108,7 @@ const appRoutes: Routes = [{ path: 'login', component: LoginComponent },
     ],
     imports: [
         BrowserModule,
-       // ExportAsModule,
+        // ExportAsModule,
         HttpModule,
         FormsModule,
         RouterModule.forRoot(appRoutes, { useHash: true }),

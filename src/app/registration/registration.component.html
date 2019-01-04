@@ -92,7 +92,7 @@
 
                                 <div class="form-group form-md-line-input has-error">
                                     <div class="group input-group">
-                                        <input #PostalCode="ngModel" [(ngModel)]="registrationService.userModel.PostalCode" name="PostalCode" type="text" class="used">
+                                        <input  #PostalCode="ngModel" (keypress)="numberOnly($event)" maxlength="5" [(ngModel)]="registrationService.userModel.PostalCode" name="PostalCode" type="text" class="used">
                                         <span class="highlight"></span>
                                         <span class="bar"></span>
                                         <label>{{'Register.section1.PostalCode'|translate}} *</label>
@@ -131,7 +131,7 @@
 
                                 <div class="form-group form-md-line-input has-error">
                                     <div class="group input-group">
-                                        <input #IBAN="ngModel" [(ngModel)]="registrationService.userModel.IBAN" name="IBAN" type="text" class="used">
+                                        <input #IBAN="ngModel" maxlength="22" (keypress)="validateNumberOrLeter($event)" (blur)="spaceAddAfterFourChar(registrationService.userModel.IBAN)" [(ngModel)]="registrationService.userModel.IBAN" name="IBAN" type="text" class="used">
                                         <span class="highlight"></span>
                                         <span class="bar"></span>
                                         <label>{{'Register.section1.IBAN'|translate}} *</label>
@@ -140,7 +140,7 @@
 
                                 <div class="form-group form-md-line-input has-error">
                                     <div class="group input-group">
-                                        <input #BICCode="ngModel" [(ngModel)]="registrationService.userModel.BICCode" name="BICCode" type="text" class="used">
+                                        <input #BICCode="ngModel" maxlength="11" (keypress)="validateNumberOrLeter($event)" [(ngModel)]="registrationService.userModel.BICCode" name="BICCode" type="text" class="used">
                                         <span class="highlight"></span>
                                         <span class="bar"></span>
                                         <label>{{'Register.section1.BICCode'|translate}} *</label>
@@ -149,10 +149,10 @@
 
                                 <div class="form-group form-md-line-input has-error">
                                     <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
-                                        <label>{{'Register.section1.ClientGroup'|translate}} *</label>
+                                        <label style="margin-top:-26px;font-size: 9px;">{{'Register.section1.ClientGroup'|translate}} *</label>
                                         <select #ClientGroupId="ngModel" [(ngModel)]="registrationService.userModel.ClientGroupId" class="mdl-selectfield__select" name="ClientGroupId" id="ClientGroupId">
                                             expand_more
-                                            <option value="0" disabled="" selected="">{{'Register.section1.ClientGroup'|translate}}*</option>
+                                            <!--<option value="0" disabled="" selected="">{{'Register.section1.ClientGroup'|translate}}*</option>-->
                                             <option *ngFor="let group of registrationService.listGroupModel" value="{{group.GroupId}}">{{group.GroupName}}</option>
                                         </select>
                                     </div>
@@ -171,7 +171,7 @@
 
                                 <div class="form-group form-md-line-input has-error">
                                     <div class="group input-group">
-                                        <input #LEINumber="ngModel" [(ngModel)]="registrationService.userModel.LEINumber" name="LEINumber" type="text" class="used">
+                                        <input #LEINumber="ngModel" maxlength="20" (keypress)="validateNumberOrLeter($event)" [(ngModel)]="registrationService.userModel.LEINumber" name="LEINumber" type="text" class="used">
                                         <span class="highlight"></span>
                                         <span class="bar"></span>
                                         <label>{{'Register.section1.LEINumber'|translate}}</label>
@@ -284,10 +284,10 @@
 
                                 <div class="form-group form-md-line-input has-error">
                                     <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
-                                        <label>{{'Register.section2.Salutation'|translate}} *</label>
+                                        <label style="margin-top:-26px;font-size: 9px;">{{'Register.section2.Salutation'|translate}} *</label>
                                         <select #Salutation="ngModel" [(ngModel)]="registrationService.userModel.Salutation" class="mdl-selectfield__select" name="Salutation" id="Salutation">
                                             expand_more
-                                            <option value="0" disabled="" selected="">{{'Register.section2.Salutation'|translate}}*</option>
+                                            <!--<option value="0" disabled="" selected="">{{'Register.section2.Salutation'|translate}}*</option>-->
                                             <option *ngFor="let saluatationObj of registrationService.listSalutationModel" value="{{saluatationObj.SalutationId}}">{{saluatationObj.Salutation}}</option>
                                         </select>
                                     </div>
@@ -295,7 +295,7 @@
 
                                 <div class="form-group form-md-line-input has-error">
                                     <div class="group input-group">
-                                        <input #Title="ngModel" [(ngModel)]="registrationService.userModel.Title" name="Title" type="text" class="used">
+                                        <input #Title="ngModel" [(ngModel)]="registrationService.userModel.Title" maxlength="25" name="Title" type="text" class="used">
                                         <span class="highlight"></span>
                                         <span class="bar"></span>
                                         <label>{{'Register.section2.Title'|translate}}</label>
@@ -304,7 +304,7 @@
 
                                 <div class="form-group form-md-line-input has-error">
                                     <div class="group input-group">
-                                        <input #FirstName="ngModel" [(ngModel)]="registrationService.userModel.FirstName" name="FirstName" type="text" class="used">
+                                        <input #FirstName="ngModel"  [(ngModel)]="registrationService.userModel.FirstName" name="FirstName" type="text" class="used">
                                         <span class="highlight"></span>
                                         <span class="bar"></span>
                                         <label>{{'Register.section2.FirstName'|translate}} *</label>
@@ -326,7 +326,7 @@
 
                                 <div class="form-group form-md-line-input has-error">
                                     <div class="group input-group">
-                                        <input (keypress)="numberOnly($event)" appBlockPaste maxlength="10" #ContactNumber="ngModel" [(ngModel)]="registrationService.userModel.ContactNumber" name="ContactNumber" type="text" class="used">
+                                        <input (keypress)="numberOnly($event)" appBlockPaste maxlength="18" #ContactNumber="ngModel" [(ngModel)]="registrationService.userModel.ContactNumber" name="ContactNumber" type="text" class="used">
                                         <span class="highlight"></span>
                                         <span class="bar"></span>
                                         <label>{{'Register.section2.TelephoneNo'|translate}} *</label>
@@ -339,7 +339,7 @@
 
                                 <div class="form-group form-md-line-input has-error">
                                     <div class="group input-group">
-                                        <input [disabled]="registrationService.userModel.UserId != null && registrationService.userModel.UserId != 0" email pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" #EmailAddress="ngModel" [(ngModel)]="registrationService.userModel.EmailAddress" name="EmailAddress" type="email" class="used">
+                                        <input [disabled]="registrationService.userModel.UserId != null && registrationService.userModel.UserId != 0" required email="true" [pattern]="emailPattern" #EmailAddress="ngModel" [(ngModel)]="registrationService.userModel.EmailAddress" name="EmailAddress" type="email" class="used">
                                         <span class="highlight"></span>
                                         <span class="bar"></span>
                                         <label>{{'Register.section2.EmailAddress'|translate}}*</label>
@@ -405,7 +405,7 @@
 
                                 <div *ngIf="registrationService.userModel.rdbBank" class="form-group form-md-line-input has-error">
                                     <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
-                                        <label>{{'Register.section2.RatingAgentur1'|translate}} </label>
+                                        <label style="margin-top:-26px;font-size: 9px;">{{'Register.section2.RatingAgentur1'|translate}} </label>
                                         <select #RatingAgentur1="ngModel" [(ngModel)]="registrationService.userModel.RatingAgentur1" class="mdl-selectfield__select" name="RatingAgentur1" id="RatingAgentur1">
                                             expand_more
                                             <option value="0" disabled="" selected="selected">RatingAgentur1</option>
@@ -416,7 +416,7 @@
 
                                 <div *ngIf="registrationService.userModel.rdbBank" class="form-group form-md-line-input has-error">
                                     <div class="group input-group">
-                                        <input #RatingAgenturValue1="ngModel" [(ngModel)]="registrationService.userModel.RatingAgenturValue1" name="RatingAgenturValue1" type="text" class="used">
+                                        <input #RatingAgenturValue1="ngModel" (keypress)="numberOnly($event)" [(ngModel)]="registrationService.userModel.RatingAgenturValue1" required name="RatingAgenturValue1" type="text" class="used">
                                         <span class="highlight"></span>
                                         <span class="bar"></span>
                                         <label>{{'Register.section2.RatingAgentValue1'|translate}} *</label>
@@ -425,7 +425,7 @@
 
                                 <div *ngIf="registrationService.userModel.rdbBank" class="form-group form-md-line-input has-error">
                                     <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
-                                        <label>{{'Register.section2.RatingAgentur2'|translate}} </label>
+                                        <label style="margin-top:-26px;font-size: 9px;">{{'Register.section2.RatingAgentur2'|translate}} </label>
                                         <select #RatingAgentur2="ngModel" [(ngModel)]="registrationService.userModel.RatingAgentur2" class="mdl-selectfield__select" name="RatingAgentur2" id="RatingAgentur2">
                                             expand_more
                                             <option value="0" disabled="" selected="">RatingAgentur2</option>
@@ -436,7 +436,7 @@
 
                                 <div *ngIf="registrationService.userModel.rdbBank" class="form-group form-md-line-input has-error">
                                     <div class="group input-group">
-                                        <input #RatingAgenturValue2="ngModel" [(ngModel)]="registrationService.userModel.RatingAgenturValue2" name="RatingAgenturValue2" type="text" class="used">
+                                        <input #RatingAgenturValue2="ngModel" (keypress)="numberOnly($event)" [(ngModel)]="registrationService.userModel.RatingAgenturValue2" name="RatingAgenturValue2" type="text" class="used">
                                         <span class="highlight"></span>
                                         <span class="bar"></span>
                                         <label>{{'Register.section2.RatingAgentValue2'|translate}} *</label>
@@ -445,10 +445,11 @@
 
                                 <div *ngIf="registrationService.userModel.rdbBank" class="form-group form-md-line-input has-error">
                                     <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
-                                        <label>{{'Register.section2.DepositInsurance'|translate}} </label>
+                                        <label style="margin-top:-26px;font-size: 9px;">{{'Register.section2.DepositInsurance'|translate}} </label>
                                         <select #DepositInsurance="ngModel" [(ngModel)]="registrationService.userModel.DepositInsurance" class="mdl-selectfield__select" name="DepositInsurance" id="DepositInsurance">
                                             expand_more
-                                            <option value="0" disabled="" selected="">Deposit Insurance*</option>
+                                            <option value="0" disabled="" selected=""> Select Any *</option>
+                                            <!--<option value="0" >Deposit Insurance </option>-->
                                             <option *ngFor="let objDeposit of registrationService.listDepositInsurance" value="{{objDeposit.DepositInsuranceId}}">{{objDeposit.DepositInsurance}}</option>
                                         </select>
                                     </div>
@@ -456,8 +457,8 @@
 
                                 <div *ngIf="registrationService.userModel.rdbBank" class="form-group form-md-line-input has-error">
                                     <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label ">
-                                        <p class="eur-small-text">EUR</p>
-                                        <input #RatingAgenturValue2="ngModel" [(ngModel)]="registrationService.userModel.DepositInsuranceAmount" name="DepositInsuranceAmount" type="text" class="used my-half-input">
+                                        <p class="eur-small-text">EUR</p> <!--registrationService.userModel.DepositInsuranceAmount-->
+                                        <input #DepositInsuranceAmount="ngModel" (keypress)="numberOnly($event)" [(ngModel)]="tempAmount" (blur)="GermanFormat(tempAmount)" name="DepositInsuranceAmount" type="text" class="used my-half-input">
                                         <span class="highlight"></span>
                                         <span class="bar"></span>
                                         <label>{{'Register.section2.DepositInsuranceAmount'|translate}} </label>
@@ -471,9 +472,11 @@
                                     <div class="group input-group">
                                         <p class="upload-lable" style="font-weight:bold;"><b>Daten zur Geldwascheprufung </b></p>
                                         <p class="upload-lable"> Hochladen Handelsregisterauszug</p>
-                                        <input type="file" (change)="isUploadOneSelected($event)" accept="application/pdf">
+                                        <!--<button style="width:40px;height:30px;" onclick="document.getElementById('uploadOneSelected').click()">Open from File...</button>-->
+                                        <input type="file" id="uploadOneSelected" (change)="isUploadOneSelected($event)" accept="application/pdf">
                                         <br />
-                                        <p class="upload-lable"> Hochladen Handelsregisterauszug</p>
+                                        <br />
+                                        <p class="upload-lable">Hochladen Personalausweis</p>
                                         <input type="file" (change)="isUploadTwoSelected($event)" accept="application/pdf">
 
                                     </div>
@@ -534,7 +537,7 @@
 
                                 <div *ngIf="registrationService.userModel.rdbBank" class="in-ad-access">
                                     <h6>Prices are shown For customer group * </h6>
-
+                                   
                                     <div class="d-flex align-items-end flex-column">
                                         <p>
                                             <input #GroupCompany="ngModel" [(ngModel)]="registrationService.userModel.GroupCompany" name="GroupCompany" id="GroupCompany" type="checkbox" class="cbx used">
@@ -609,7 +612,7 @@
                                               </div>
                                           </div> -->
                                 <div class="in-ad-access">
-                                    <h6>{{'Register.Section4.RequestAdditionalAccess'|translate}}*</h6>
+                                    <h6 style="margin-top:40px;"><!--{{'Register.Section4.RequestAdditionalAccess'|translate}}*--></h6>
 
                                     <div class="d-flex align-items-end flex-column">
 

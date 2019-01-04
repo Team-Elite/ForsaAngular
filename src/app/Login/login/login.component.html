@@ -54,7 +54,7 @@
 
                                 <div class="form-group form-md-line-input has-error">
                                     <div class="group input-group">
-                                        <input #UserName="ngModel" [(ngModel)]="loginService.loginModel.UserName" name="UserName" type="name" autofocus="" class="used">
+                                        <input #UserName="ngModel"  [(ngModel)]="loginService.loginModel.UserName" name="UserName" type="name" autofocus="" class="used">
                                         <span class="highlight"></span>
                                         <span class="bar"></span>
                                         <label>{{'Login.UserLabel'|translate}}</label>
@@ -68,8 +68,8 @@
 
                                 <div class="form-group form-md-line-input has-error">
                                     <div class=" input-group">
-                                        <input *ngIf="!IfShowPassword" #UserPassword="ngModel" [(ngModel)]="loginService.loginModel.UserPassword" name="UserPassword" type="password" id="login_password" class="used">
-                                        <input *ngIf="IfShowPassword" #UserPassword1="ngModel" [(ngModel)]="loginService.loginModel.UserPassword" name="UserPassword1" type="text" id="login_password1" class="used">
+                                        <input *ngIf="!IfShowPassword" maxlength="20" minlength="3" #UserPassword="ngModel" [(ngModel)]="loginService.loginModel.UserPassword" name="UserPassword" type="password" id="login_password" class="used">
+                                        <input *ngIf="IfShowPassword" maxlength="20" minlength="3" #UserPassword1="ngModel" [(ngModel)]="loginService.loginModel.UserPassword" name="UserPassword1" type="text" id="login_password1" class="used">
                                         <span class="highlight"></span>
                                         <span class="bar"></span>
                                         <label>{{'Login.PasswordLabel'|translate}}</label>
@@ -100,7 +100,7 @@
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h5 class="modal-title" id="exampleModalLongTitle">{{'Forget.ForgotPassword'|translate}}</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <button type="button" id="closeForgotPasswordModal" class="close" data-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true">×</span>
                                                 </button>
                                             </div>

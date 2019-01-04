@@ -92,7 +92,7 @@ export class BestPriceViewService {
         let token = await this.http.post(this.lenderDashboardService.authenticateServiceService.baseURL + '/api/LenderDashboard/GetLenderSendRequestPendingLendedRequestByLenderId', webtoken, this.requestOptions).toPromise();
 
        // let token = await this.http.get(this.lenderDashboardService.authenticateServiceService.baseURL + '/api/LenderDashboard/GetLenderSendRequestPendingLendedRequestByLenderId?Id=' + this.lenderDashboardService.userId).toPromise();
-        debugger
+       // debugger
         if (token != undefined) {
             token = token.json().data;
             response = this.tokenService.jwtdecrypt(token).unique_name == "[]" ? [] : JSON.parse(this.tokenService.jwtdecrypt(token).unique_name);

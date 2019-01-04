@@ -113,7 +113,7 @@
 
             <!-- Comment below div -->
             <div class="col-md-12" id="divtestUpload" style="display: block;float: left; width: 100%;">
-                <file-uploader [maxSizeInKb]="110" [allowMultiple]="false" [fileType]="'application/pdf'"
+                <file-uploader [maxSizeInKb]="500" [allowMultiple]="false" [fileType]="'application/pdf'"
                                (onSelection)="fileuploaderFileChange($event)" [required]="false"></file-uploader>
                 <ul style="margin:0px; padding:0px;">
                     <li *ngFor="let file of userProfileServiceService.listOfFileUploaded" style="width:100%; display:block; float:left; list-style-type:none; margin-bottom:5px;">

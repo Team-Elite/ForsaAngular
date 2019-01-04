@@ -139,16 +139,18 @@ export class RegistrationService {
     constructor(private http: Http, public authenticateServiceService: AuthenticateServiceService) { }
 
     RegisterUser(fileToUpload: File[], user: UserModel) {
-        
+
+        console.log(user);
         var webtoken = { data: this.tokenService.jwtencrypt(user) };
         const _formData = new FormData();
-        if(fileToUpload.length>0)  _formData.append('file', fileToUpload[0], fileToUpload[0].name);
+        if (fileToUpload.length > 0) _formData.append('file', fileToUpload[0], fileToUpload[0].name);
         if (fileToUpload.length > 1) _formData.append('file2', fileToUpload[1], fileToUpload[1].name);
         _formData.append('encrypted', JSON.stringify(webtoken));
         // _formData.append('encrypted',webtoken.toString() );
         // return this.http.post(this.authenticateServiceService.baseURL + '/api/BankDashboard/UploadFiles?Id='+this.authenticateServiceService.GetUserId(), _formData);
         //return this.http.post(this.authenticateServiceService.baseURL + '/api/BankDashboard/UploadFiles', _formData).map(x => x.json());
-        return this.http.post(this.authenticateServiceService.baseURL + '/api/User/RegisterUser', _formData).map(x => x.json());
+        console.log(_formData);
+       return this.http.post(this.authenticateServiceService.baseURL + '/api/User/RegisterUser', _formData);//.map(x => x.json())
     }
 
     UpdateUserDetails(fileToUpload: File[], user: UserModel) {
@@ -251,9 +253,19 @@ export class RegistrationService {
         //     this.userModelExist=x;
         // });
         var webtoken = { data: this.tokenService.jwtencrypt({ userName: userName }) };
+        //console.log(this.tokenService.jwtencrypt({ userName: userName }));
+        //console.log(this.authenticateServiceService.baseURL + '/api/User/IfUserNameAvailable' +" "+ webtoken + "  " +this.requestOptions);
 
-        return await this.http.post(this.authenticateServiceService.baseURL + '/api/User/IfUserNameAvailable', webtoken, this.requestOptions).toPromise().then(x => x.json().data);
+        //return await this.http.post(this.authenticateServiceService.baseURL + '/api/User/IfUserNameAvailable', webtoken, this.requestOptions).toPromise().then(x => x.json().data);
 
+        /*********************/
+        //console.log("Service Call");
+        //console.log(this.http.post(this.authenticateServiceService.baseURL + '/api/User/IfUserNameAvailable', webtoken, this.requestOptions));
+        var result;
+        await this.http.post(this.authenticateServiceService.baseURL + '/api/User/IfUserNameAvailable', webtoken, this.requestOptions).map(x => x).toPromise().then(x => { result = { IsSuccess: x } });
+        //debugger;
+        result = result;//result.json();
+        return result;
 
     }
 

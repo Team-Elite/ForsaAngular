@@ -21,7 +21,8 @@ export class AuthenticateServiceService {
     Userdata: any;
     requestedForReport: string='';
     //baseURL: string =!(environment.production) ? 'http://40.89.139.123:4043' : 'http://localhost:60744';
-baseURL: string = 'http://40.89.139.123:4043';
+   // baseURL: string = 'http://40.89.139.123:4043'; comment for local testing --- puneet comment 
+    baseURL: string = 'http://localhost:60744';
     headerOptions = new Headers({ 'Content-Type': 'application/json' });
     requestOptions = new RequestOptions({ method: RequestMethod.Post, headers: this.headerOptions });
     bankInfo: any;

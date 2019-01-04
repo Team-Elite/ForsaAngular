@@ -105,7 +105,7 @@
     },
 
     "section2": {
-      "Salutation": "Salutation",
+      "Salutation": "Prefex",
       "Title": "Title",
       "FirstName": "First Name",
       "SurName": "SurName",

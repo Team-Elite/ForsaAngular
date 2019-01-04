@@ -11,10 +11,16 @@ export class ForsaLanguagesComponent implements OnInit {
     selectedLanguage: string;
 
     constructor(public viewContainerRef: ViewContainerRef, public translate: TranslateService) {
-     
+       
         translate.addLangs(['en', 'gr']);
         translate.setDefaultLang('gr');
+        
+        //#region Puneet Change 2018-12-28 for Default Language Set Germen
+        this.selectedLanguage = 'gr';// Select a Default Language German
+        localStorage.setItem("language", "gr");
+        //#endregion
         translate.use(localStorage.getItem("language"));
+
     }
     changeLang(lang) {
         

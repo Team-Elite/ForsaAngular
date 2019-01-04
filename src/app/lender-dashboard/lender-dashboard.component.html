@@ -19703,12 +19703,12 @@
             <router-outlet></router-outlet>
 
             <!--admin icon modal page tab-->
-            <div draggable class="modal fade bd-example-modal-lg-setting-page admin-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div draggable class="modal fade bd-example-modal-lg-setting-page admin-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" [ngStyle]="{'display':display}">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLongTitle">  {{'Lender.DashBoard.UpdateProfile'|translate}}</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <button type="button" id="closeModal" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">×</span>
                             </button>
                         </div>
@@ -19754,7 +19754,7 @@
                                         <input #ConfirmPassword="ngModel" [(ngModel)]="lenderDashboardService.ConfirmPassword" type="password" name="ConfirmPassword" class="form-control">
                                     </div>
                                     <div class="col-md-12">
-                                        <input (click)="UpdateUserProfile()" type="button" class="btn btn-info btn-lg" id="sendRequest" value="Update">
+                                        <input (click)="UpdateUserProfile()" type="button"  class="btn btn-info btn-lg" id="sendRequest" value="Update">
                                     </div>
 
 
@@ -19948,9 +19948,10 @@
                 </div>
                 <div _ngcontent-c1="" class="modal-footer">
                     <!--<button _ngcontent-c1="" class="btn btn-secondary" data-dismiss="modal" type="button">
-                        {{'Button.ButtonUpload'|translate}}
-                    </button>-->
-                    <button _ngcontent-c1="" class="btn btn-secondary" data-dismiss="modal" data-toggle="modal" data-target=".bd-example-modal-lg-editsetting-page" data- type="button">{{'Button.ButtonChangePassword'|translate}}</button>
+        {{'Button.ButtonUpload'|translate}}
+    </button>-->
+                    <!--data-toggle="modal" data-target=".bd-example-modal-lg-editsetting-page"data-toggle="modal" data-target=".bd-example-modal-lg-editsetting-page"-->
+                    <button _ngcontent-c1="" class="btn btn-secondary" data-dismiss="modal" data-toggle="modal" data-target=".admin-modal" data- type="button">{{'Button.ButtonChangePassword'|translate}}</button>
                 </div>
             </div>
         </div>

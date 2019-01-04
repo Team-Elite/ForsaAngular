@@ -7,6 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { LenderDashboardService } from '../../lender-dashboard/Shared/lender-dashboard.service';
 import { TokenService } from '../../token-service';
+declare var $: any;
 @Component({
     selector: 'app-login',
     templateUrl: './login.component.html',
@@ -52,6 +53,9 @@ export class LoginComponent implements OnInit {
     }
 
     async ValidateUser(form: NgForm) {
+        //#region Commented Code For Clear toastr
+        //this.toastr.clear();
+        //#endregion
         if (form != null) {
             if (form.value.UserName == undefined || form.value.UserName == null || form.value.UserName.trim().length == 0) {
                 this.toastr.error("User name / Email id is required.", "Login");
@@ -91,7 +95,7 @@ export class LoginComponent implements OnInit {
             this.spinner.show();
             let user = await this.loginService.ValidateUser(form.value);
             if (user.IsSuccess == true) {
-debugger;
+//debugger;
                 this.authenticateServiceService.SaveSession(user.data);
                 //let token = this.authenticateServiceService.storage.get(this.authenticateServiceService.userValue);
                 var data = this.tokenService.jwtdecrypt(user.data);
@@ -160,6 +164,9 @@ debugger;
         let forgotEmail = await this.loginService.ForgotPassword(form.value);
         if (forgotEmail.IsSuccess == true) {
             this.toastr.success("Password sent.", "Login - Forgot Password");
+            this.loginService.loginModel.ForgotPasswordEmailId = "";
+            var element = document.getElementById('closeForgotPasswordModal');
+            element.click();
         }
         else {
 

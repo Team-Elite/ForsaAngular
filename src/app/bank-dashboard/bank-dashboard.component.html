@@ -115,8 +115,9 @@ input[type=number] {
                                     <i class="material-icons">perm_identity</i>
                                 </a>
                             </li>
-                            <li *ngIf="IfBothUserTypeFound" class="settings" title="Switch Screen">
-                                <a href="javascript:void(0);" (click)="SwitchScreen()">
+                            <li *ngIf="IfBothUserTypeFound" class="settings" title="Switch Screen" style="border: 1px solid black;">
+                                <!--href="javascript:void(0);"-->
+                                <a (click)="SwitchScreen()">
                                     <i class="material-icons icon-position">
                                     </i>   {{'Borrower.BankDashboard.Settings'|translate}}
 
@@ -289,7 +290,7 @@ input[type=number] {
                                                         <div (click)="EnableTextBox(rate,4)" class="btn w-100 w-100-px active">
                                                             <input (blur)="UpdateRateOfInterest(rate)" type="number"
                                                                    #RateOfInterest="ngModel"
-                                                                   [(ngModel)]="rate.FractionRate" name="FractionRate" />
+                                                                   [(ngModel)]="rate.FractionRate " name="FractionRate" />
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4 bank-table-box in-float-lf">
@@ -598,11 +599,11 @@ input[type=number] {
                                         </div>
                                         <div class="col-md-6">
                                             <label>{{'Borrower.BankDashboard.NewPassword'|translate}} *</label>
-                                            <input #NewPassword="ngModel" [(ngModel)]="bankDashboardService.NewPassword" type="password" name="NewPassword" class="form-control">
+                                            <input #NewPassword="ngModel" [(ngModel)]="bankDashboardService.NewPassword" maxlength="20" type="password" name="NewPassword" class="form-control">
                                         </div>
                                         <div class="col-md-12">
                                             <label>{{'Borrower.BankDashboard.ConfirmPassword'|translate}} *</label>
-                                            <input #ConfirmPassword="ngModel" [(ngModel)]="bankDashboardService.ConfirmPassword" type="password" name="ConfirmPassword" class="form-control">
+                                            <input #ConfirmPassword="ngModel" [(ngModel)]="bankDashboardService.ConfirmPassword" maxlength="20" type="password" name="ConfirmPassword" class="form-control">
                                         </div>
 
 
@@ -613,7 +614,7 @@ input[type=number] {
                             </div>
                             <div class="modal-footer">
                                 <input type="button" class="btn btn-info btn-lg" id="btnupdateprofile" (click)="ChangePassword();" value="Update">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{'Button.ButtonClose'|translate}}</button>
+                                <button type="button" class="btn btn-secondary" id="closeUpdateProfileModal" data-dismiss="modal">{{'Button.ButtonClose'|translate}}</button>
 
                             </div>
 

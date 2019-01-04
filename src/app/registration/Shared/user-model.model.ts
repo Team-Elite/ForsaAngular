@@ -29,6 +29,7 @@ export class UserModel {
     RatingAgentur2: string;
     RatingAgenturValue2: string;
     DepositInsurance: number;
+    DepositInsuranceAmount: any;
     ClientGroupId: number;
     AgreeToThePrivacyPolicy: boolean;
     GroupCommunities: boolean;

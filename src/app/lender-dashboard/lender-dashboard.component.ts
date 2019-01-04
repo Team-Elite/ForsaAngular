@@ -18,9 +18,8 @@ declare var $: any;
     styleUrls: ['./lender-dashboard.component.css']
 })
 export class LenderDashboardComponent implements OnInit {
-
     ifTimerForRetrievingPendingRequestHastToStart = false; // It will ensure that accept/reject and chat with forsa pop up is closed.
-    responseTimerId: any;
+    responseTimerId: any; 
     responseMessage: string = '';
     tempAmount: any;
     selectedItem: string;
@@ -31,6 +30,7 @@ export class LenderDashboardComponent implements OnInit {
     _showMaturity: boolean;
     reacted_message;
     chat_message;
+    display = 'none'; //default Variable
     constructor(public lenderDashboardService: LenderDashboardService, public spinner: NgxSpinnerService
         , public authenticateServiceService: AuthenticateServiceService, public router: Router
         , public toastr: ToastrService
@@ -215,7 +215,7 @@ export class LenderDashboardComponent implements OnInit {
             return;
         };
         var result = await this.bestPriceViewService.GetLenderSendRequestPendingLendedRequestByLenderId();
-        debugger;
+      //  debugger;
         if (result != undefined && result.length > 0) {
             clearInterval(this.timer);
             this.IfBankResponseFound = true;
@@ -261,7 +261,6 @@ export class LenderDashboardComponent implements OnInit {
 
     async UpdateUserProfile() {
 
-
         /* Validating controls */
         if (this.ValidateUserPfrofileFields(this.copyLoggedInUser, this.lenderDashboardService.NewPassword, this.lenderDashboardService.ConfirmPassword)) {
             this.copyLoggedInUser.NewPassword = this.lenderDashboardService.NewPassword.trim();
@@ -270,16 +269,21 @@ export class LenderDashboardComponent implements OnInit {
             var data;
             data = await this.lenderDashboardService.UpdateUserProfile(this.copyLoggedInUser);//.subscribe(data => {
             this.spinner.hide();
-            debugger;
             if (!isNullOrUndefined(data)) {
 
                 if (data.IsSuccess == false) {
                     this.toastr.error("Old password is not correct.", "Dashboard");
                     return;
                 }
+                //alert("ss");
+                //$(".bd-example-modal-lg-editsetting-page").removeClass("show");
+                this.display = 'none'; //set none css after close dialog
+                console.log('UpdateProfile Call ');
+                console.log(document.getElementById('closeModal'));
                 this.authenticateServiceService.UpdateSession(data.data);
                 this.toastr.success("Updated successfully. An email has been sent to your email id.", "Dashboard");
                 this.lenderDashboardService.loggedInUser = this.authenticateServiceService.GetUserDetail();
+
             }
 
             //});
@@ -400,7 +404,7 @@ export class LenderDashboardComponent implements OnInit {
         var response = await this.lenderDashboardService.LenderSaveStartPage(this.SelectedStartPage);
 
         this.spinner.hide();
-        debugger;
+        //debugger;
         if (response.IsSuccess) {
             this.toastr.success("Start page updated successfully.", "Dashboard");
             var element = document.getElementById('btnCloseSetStartPageModal');
@@ -433,7 +437,7 @@ export class LenderDashboardComponent implements OnInit {
 
     // Starting timer which will retrieve response of a particular request.
     SetResponseTimeInterval(RequestId: number) {
-        debugger;
+     //   debugger;
         this.responseTimerId = setInterval(() => {
             this.GetAndUpdateResponseOfPendingRequestOnTheBasisOfRequestId(RequestId);
         }, 5000);
@@ -498,5 +502,6 @@ export class LenderDashboardComponent implements OnInit {
             this.SetTimeInterval();
         }
     }
+
 
 }
